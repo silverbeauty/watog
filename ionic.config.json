@@ -1,0 +1,7 @@
+{
+  "name": "watogApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
