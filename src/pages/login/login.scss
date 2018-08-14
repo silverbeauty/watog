@@ -1,0 +1,58 @@
+page-login {
+    .body{
+        background-image: url(../../assets/imgs/rio.jpg);
+        background-position: center top;
+        color: white;
+    }
+    
+    .navbar a i{
+        color: white;
+        font-size: 4em;
+    }
+    
+    a{
+        color: white !important;
+        text-decoration: underline;
+    }
+    
+    .bold{
+        font-weight: 600;
+    }
+    
+    .img-fluid-height{
+        height: 5em;
+        margin: auto;
+    }
+    
+    .text-huge{
+        font-size: 2em;
+    }
+    
+    .form-control{
+        border-radius: 50em;
+        font-size: 1.2em;
+        padding: 0em;
+    }
+    
+    .input-group{
+        padding: 1.2em;
+    }
+    
+    .input-group-text{
+        background-color: white;
+        border-radius: 50em;
+        border-right-color: white;
+    }
+    
+    .btn-submit{
+        background-color: #a96ba7;
+        color: white;
+        font-size: 1em;
+        border-radius: 50em;
+        padding: .7em;
+        padding-left: 30vw;
+        padding-right: 30vw;
+        margin-top: 3em;
+        margin-bottom: 1em;
+    }
+}

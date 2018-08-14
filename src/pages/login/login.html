@@ -1,0 +1,43 @@
+<ion-content padding class="body">
+    <div class="navbar"><a href="#"><i class="fa fa-angle-left"></i></a></div>
+    <section class="logo-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img src="../../assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="login">
+        <div class="container">
+            <div class="row">
+                <div class="col-md">
+                    <form>
+                        <div class="input-group" (ngSubmit)="logForm()">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="login-picture"><img src="../../assets/imgs/login-logo.png" alt="login logo"></span>
+                            </div>
+                            <ion-input type="email" class="form-control" id="login-input" aria-describedby="login-picture" [(ngModel)]="todo.user" name="title" placeholder="Login"></ion-input>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="passwd-picture"><img src="../../assets/imgs/shopping-bag.png" alt="password logo"></span>
+                            </div>
+                            <ion-input type="password" class="form-control" id="password-input" aria-describedby="passwd-picture" placeholder="Password" name="Pass" [(ngModel)]="todo.user"></ion-input>
+                        </div>
+                        <p class="text-center"><a href="#">Forgot password ?</a></p>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-submit btn-md">LOGIN</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="register">
+        <div class="container">
+            <p class="text-center">First time here ? <a href="#" class="bold">REGISTER</a></p>
+        </div>
+    </section>
+</ion-content>
