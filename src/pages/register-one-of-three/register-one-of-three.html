@@ -1,0 +1,96 @@
+<ion-content padding class="body">
+  <div class="navbar">
+    <a href="login.html"><i class="fa fa-angle-left"></i></a>
+    <img src="../../assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
+  </div>
+  <section class="position">
+    <div class="container">
+      <div class="row">
+        <div class="col-1"></div>
+          <div class="col">
+            <p class="text-huge">Register</p>
+          </div>
+          <div class="col text-right">
+            <p class="text-huge">1/3</p>
+          </div>
+          <div class="col-1"></div>
+        </div>
+      </div>
+  </section>
+
+  <section class="sign-in">
+    <a href="#">upload a profil picture</a>
+    <div class="container">
+      <div class="row">
+        <div class="col-md">
+          <a href="#" class="btn btn-info upload-cover-photo"><p>Upload cover photo</p><i ></i></a>
+
+          <form (ngSubmit)="logForm()">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="login-picture"><img src="../../assets/imgs/login-logo.png" alt="login logo"></span>
+                </div>
+                <ion-input type="email" class="form-control" id="login-input" aria-describedby="login-picture" placeholder="First Name*" name="FirstName"></ion-input>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="passwd-picture"><img src="../../assets/imgs/shopping-bag.png" alt="password logo"></span>
+                </div>
+                <ion-input type="password" class="form-control" id="password-input" aria-describedby="passwd-picture" placeholder="Last Name*" name="LastName"></ion-input>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="passwd-picture"><img src="../../assets/imgs/shopping-bag.png" alt="password logo"></span>
+                </div>
+                <ion-input type="password" class="form-control" id="password-input" aria-describedby="passwd-picture" placeholder="Password*" name="Pass"></ion-input>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="passwd-picture"><img src="../../assets/imgs/shopping-bag.png" alt="password logo"></span>
+                </div>
+                <ion-input type="password" class="form-control" id="password-input" aria-describedby="passwd-picture" placeholder="Confirm Password*" name="PassConf"></ion-input>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="passwd-picture"><img src="../../assets/imgs/shopping-bag.png" alt="password logo"></span>
+                </div>
+                <ion-input type="password" class="form-control" id="password-input" aria-describedby="passwd-picture" placeholder="Email*" name="Email"></ion-input>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="passwd-picture"><img src="../../assets/imgs/shopping-bag.png" alt="password logo"></span>
+                </div>
+                <ion-input type="password" class="form-control" id="password-input" aria-describedby="passwd-picture" placeholder="Cell Phone*" name="Phone"></ion-input>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="passwd-picture"><img src="../../assets/imgs/shopping-bag.png" alt="password logo"></span>
+                </div>
+                <ion-input type="password" class="form-control" id="password-input" aria-describedby="passwd-picture" placeholder="Country*" name="Country"></ion-input>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="passwd-picture"><img src="../../assets/imgs/shopping-bag.png" alt="password logo"></span>
+                </div>
+                <ion-input type="password" class="form-control" id="password-input" aria-describedby="passwd-picture" placeholder="Hospital" name="Hospital"></ion-input>
+            </div>
+            <div class="input-group">
+              <select class="custom-select">
+                <option selected>Trainee or resident in OB/GYN</option>
+                <option value="1">Fellow or Young OB/GYN (Less than 10 years after entering OB/GYN residency</option>
+                <option value="2">Confirmed OB/GYN (More than 10 years after entering OB/GYN residency)</option>
+                <option value="3">Medical Student (Not OB/GYN yet)</option>
+                <option value="4">Medical Doctor, Other Speciality</option>
+                <option value="5">Mid Wife</option>
+                <option value="6">Other: Please specify</option>
+              </select>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-submit btn-md">NEXT</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</ion-content>

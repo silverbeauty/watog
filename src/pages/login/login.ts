@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular'
+import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 
 /**
  * Generated class for the LoginPage page.
@@ -16,10 +17,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class LoginPage {
 
   todo = {
-    
+    user: ""
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.navCtrl.setRoot(RegisterOneOfThreePage)
   }
 
   ionViewDidLoad() {
