@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular'
 
 /** Page **/
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
+import { LandingPage } from '../landing/landing';
 
 /** Provider **/
 import { DataProvider } from '../../providers/data/data';
@@ -33,6 +34,11 @@ export class LoginPage {
   navigateToRegister(){
     this.navCtrl.push(RegisterOneOfThreePage)
   }
+
+  navigateToLanding(){
+    this.navCtrl.push(LandingPage)
+  }
+
   logForm() {
     console.log(this.todo)
   }
