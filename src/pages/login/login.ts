@@ -16,16 +16,19 @@ import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of
 })
 export class LoginPage {
 
-  todo = {
-    user: ""
+  public todo = {
+    user: "",
+    pass: ""
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
   }
 
   navigateToRegister(){
     this.navCtrl.push(RegisterOneOfThreePage)
+  }
+  logForm() {
+    console.log(this.todo)
   }
 
   ionViewDidLoad() {
