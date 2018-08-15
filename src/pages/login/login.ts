@@ -21,7 +21,11 @@ export class LoginPage {
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.navCtrl.setRoot(RegisterOneOfThreePage)
+    
+  }
+
+  navigateToRegister(){
+    this.navCtrl.push(RegisterOneOfThreePage)
   }
 
   ionViewDidLoad() {
