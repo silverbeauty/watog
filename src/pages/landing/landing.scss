@@ -6,15 +6,35 @@ page-landing {
     }
 
     img{
-        /*padding-top: 8vh;
-        padding-bottom: 10vh;*/
         margin-top: 8vh;
-        margin-bottom: 20vh;
     }
 
-    ion-slides{
+    .purple{
+        color: #a96ba7;
+    }
+
+    .what-is-watog{
+        position: fixed;
+        bottom: 0;
+        height: auto;
+        width: 100%;
+    }
+
+    .custom-carousel{
         background: white;
         color: #525252;
+    }
+
+    .custom-carousel ul{
+        list-style: none;
+        padding: 0;
+        padding-top: 2em;
+    }
+
+    .custom-carousel ul li{
+        display: inline;
+        padding: .5em;
+        font-size: .8em;
     }
 
     ion-slide{
@@ -27,5 +47,13 @@ page-landing {
 
     ion-slide p{
         font-size: .8em;
+    }
+
+    .div-btn-start a{
+        background: #a96ba7;
+        color: white;
+        width: 100%;
+        font-size: 1em;
+        padding: 1.5em;
     }
 }
