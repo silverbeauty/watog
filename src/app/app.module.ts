@@ -31,7 +31,6 @@ import { DataProvider } from '../providers/data/data';
 	LoginPage,
 	RegisterOneOfThreePage,
 	LandingPage,
-	ionic-master/master
   ],
   imports: [
     BrowserModule,
@@ -44,7 +43,6 @@ import { DataProvider } from '../providers/data/data';
 	LoginPage,
 	RegisterOneOfThreePage,
 	LandingPage,
-	ionic-master/master
   ],
   providers: [
     StatusBar,
