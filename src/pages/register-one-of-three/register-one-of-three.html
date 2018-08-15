@@ -1,4 +1,4 @@
-<ion-content padding class="body">
+<ion-content class="body">
   <div class="navbar">
     <a href="login.html"><i class="fa fa-angle-left"></i></a>
     <img src="../../assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
@@ -19,11 +19,26 @@
   </section>
 
   <section class="sign-in">
-    <a href="#">upload a profil picture</a>
+    <div class="upload-profil-picture container-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-4 justify-content-right">
+            <div id="profil-picture">
+              <!--Image is the css property background-image: url(...);-->
+            </div>
+          </div>
+          <div class="col-8" class="profile-picture-description align-middle">
+            <p>upload a profile picture <br> (optional)</p>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-md">
-          <a href="#" class="btn btn-info upload-cover-photo"><p>Upload cover photo</p><i ></i></a>
+          <div class="text-center div-upload-cover-photo">
+            <a href="#" class="btn btn-info upload-cover-photo "><p>Upload cover photo</p><i class="fa fa-upload"></i></a>
+          </div>
 
           <form (ngSubmit)="logForm()">
             <div class="input-group">
@@ -85,7 +100,7 @@
                 <option value="6">Other: Please specify</option>
               </select>
             </div>
-            <div class="text-center">
+            <div class="text-center div-btn-submit">
               <button type="submit" class="btn btn-submit btn-md">NEXT</button>
             </div>
           </form>
