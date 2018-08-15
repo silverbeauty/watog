@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular'
+
+/** Page **/
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
+
+/** Provider **/
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,7 +26,8 @@ export class LoginPage {
     pass: ""
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public data: DataProvider) {
+    this.data.getData();
   }
 
   navigateToRegister(){

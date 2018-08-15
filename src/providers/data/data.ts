@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { Injectable } from '@angular/core';
+
+import { AlertController } from 'ionic-angular';
 
 /*
   Generated class for the DataProvider provider.
@@ -10,8 +12,24 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class DataProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello DataProvider Provider');
+  constructor(public sqlite: SQLite,private alertCtrl: AlertController) {
+    this.getData();
+  }
+
+  getData(){
+    this.sqlite.create({
+      name: 'data.db',
+      location: 'default'
+    })
+      .then((db: SQLiteObject) => {
+        let alert = this.alertCtrl.create({
+          title: 'Low battery',
+          subTitle: '10% of battery remaining',
+          buttons: ['Dismiss']
+        });
+        alert.present();
+      })
+      .catch(e => console.log(e));
   }
 
 }
