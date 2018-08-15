@@ -25,13 +25,14 @@ page-register-one-of-three {
     }
     
     .text-huge{
-        font-size: 2em;
+        font-size: 2.3em;
     }
     
     .form-control{
         border-radius: 50em;
         font-size: 1.2em;
         padding: 0em;
+        border-left: none;
     }
     
     .input-group{
@@ -41,6 +42,11 @@ page-register-one-of-three {
     .input-group-text{
         background-color: white;
         border-radius: 50em;
+        padding-left: 2em;
+    }
+
+    .input-group-text img{
+        height: 2em;
     }
 
     .text-input{
@@ -83,7 +89,8 @@ page-register-one-of-three {
     .profile-picture-description p{
         margin: 0;
         font-style: italic;
-        margin-top: 1em;
+        margin-top: 1.1em;
+        font-size: .9em;
     }
 
     .div-upload-cover-photo{
@@ -109,9 +116,10 @@ page-register-one-of-three {
         padding-left: .7em;
     }
 
-    .upload-cover-photo i{
+    .upload-cover-photo img{
        float: right;
        padding-right: .7em;
+       height: 1.2em;
     }
 }
 
