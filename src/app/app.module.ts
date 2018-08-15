@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-one-of-three';
+import { DataProvider } from '../providers/data/data';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataProvider
   ]
 })
 export class AppModule {}
