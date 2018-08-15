@@ -163,23 +163,42 @@ page-register-one-of-three {
         font-size: .8em;
     }
 
-    .div-link-qualif{
-        background: white;
-        color: black;
+    /*.div-upload-cover-photo{
+        padding: 1.2em;
+    }
+
+    .upload-cover-photo{
+        background: #a96ba7;
+        color: white;
+        border: none;
         text-decoration: none;
         font-size: 1.2em;
         border-radius: 50px;
-        padding: 0.4em;
-        margin-left: 1.2em;
-        width: 95%;
+        padding: .7em;
+        width: 100%;
+    }
+
+    .upload-cover-photo p {
+        padding: 0;
+        margin: 0;
+        display: inline;
+        float: left;
+        padding-left: .7em;
+    }*/
+
+    .div-link-qualif{
+        padding: 1.2em;
     }
 
     .div-link-qualif a{
-        color: black !important;
+        background: white;
+        color: black!important;
+        border: none;
         text-decoration: none;
         font-size: 1.2em;
-        margin: 0;
-        padding: 0;
+        border-radius: 50px;
+        padding: .7em;
+        width: 100%;
     }
 }
 
