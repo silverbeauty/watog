@@ -1,6 +1,6 @@
 <ion-content class="body">
   <div class="navbar">
-    <a (tap)="goToLogin()"><i class="fa fa-angle-left"></i></a>
+    <a (click)="goToLogin()"><i class="fa fa-angle-left"></i></a>
     <img src="../../assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
   </div>
   <section class="position">
@@ -91,7 +91,7 @@
             </div>
 
             <div class="text-center div-link-qualif">
-              <a href="#" (tap)="openMenu()" id="qualificationInput" class="btn font-weight-light"> Select qualification </a>
+              <a href="#" (click)="openMenu()" id="qualificationInput" class="btn font-weight-light"> Select qualification </a>
             </div>
 
             <div class="text-center div-btn-submit">
@@ -104,24 +104,24 @@
   </section>
 
   <div id="qualificationInputMenu" class="down-menu">
-    <a href="#" (tap)="closeMenu()" class="btn-close">X</a>
+    <a href="#" (click)="closeMenu()" class="btn-close">X</a>
     <div class="container">
       <div class="row">
         <div class="col">
           <ul class="font-weight-light">
-            <li><a href="#" (tap)="selectQualification('Trainee or resident in OB/GYN')">Trainee or resident in OB/GYN</a></li>
+            <li><a href="#" (click)="selectQualification('Trainee or resident in OB/GYN')">Trainee or resident in OB/GYN</a></li>
             <hr>
-            <li><a href="#" (tap)="selectQualification('Fellow or Young OB/GYN')">Fellow or Young OB/GYN (Less than 10 years after entering OB/GYN residency</a></li>
+            <li><a href="#" (click)="selectQualification('Fellow or Young OB/GYN')">Fellow or Young OB/GYN (Less than 10 years after entering OB/GYN residency</a></li>
             <hr>
-            <li><a href="#" (tap)="selectQualification('Confirmed OB/GYN')">Confirmed OB/GYN (More than 10 years after entering OB/GYN residency)</a></li>
+            <li><a href="#" (click)="selectQualification('Confirmed OB/GYN')">Confirmed OB/GYN (More than 10 years after entering OB/GYN residency)</a></li>
             <hr>
-            <li><a href="#" (tap)="selectQualification('Medical Student')">Medical Student (Not OB/GYN yet)</a></li>
+            <li><a href="#" (click)="selectQualification('Medical Student')">Medical Student (Not OB/GYN yet)</a></li>
             <hr>
-            <li><a href="#" (tap)="selectQualification('Medical Doctor, Other Speciality')">Medical Doctor, Other Speciality</a></li>
+            <li><a href="#" (click)="selectQualification('Medical Doctor, Other Speciality')">Medical Doctor, Other Speciality</a></li>
             <hr>
-            <li><a href="#" (tap)="selectQualification('Mid Wife')">Mid Wife</a></li>
+            <li><a href="#" (click)="selectQualification('Mid Wife')">Mid Wife</a></li>
             <hr>
-            <li><a href="#" (tap)="selectQualification('Other')">Other: Please specify</a></li>
+            <li><a href="#" (click)="selectQualification('Other')">Other: Please specify</a></li>
           </ul>
         </div>
       </div>
