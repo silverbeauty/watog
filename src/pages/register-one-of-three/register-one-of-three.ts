@@ -15,12 +15,25 @@ import { LoginPage } from '../login/login';
   templateUrl: 'register-one-of-three.html',
 })
 export class RegisterOneOfThreePage {
+  public todo = {
+    FirstName: "",
+    LastName: "",
+    password: "",
+    PassConf: "",
+    Email: "",
+    Phone: null,
+    Country: "",
+    Hospital:""
+  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-  
+
   goToLogin(){
     this.navCtrl.push(LoginPage);
+  }
+  logForm(){
+    console.log(this.todo);
   }
 
   ionViewDidLoad() {
