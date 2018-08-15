@@ -27,4 +27,21 @@ export class RegisterOneOfThreePage {
     console.log('ionViewDidLoad RegisterOneOfThreePage');
   }
 
+  /*Methods for the html dom modification */
+  openMenu(){
+    document.getElementById('qualificationInputMenu').style.bottom = '0';
+  }
+
+  closeMenu(){
+    document.getElementById('qualificationInputMenu').style.bottom = '-100vh';
+  }
+  
+  selectQualification(qualification){
+    document.getElementById('qualificationInput').innerHTML = qualification;
+    this.closeMenu();
+  }
+
+  specifyQualification(){
+    alert('test');
+  }
 }

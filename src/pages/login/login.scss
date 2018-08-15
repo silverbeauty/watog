@@ -32,6 +32,7 @@ page-login {
         border-radius: 50em;
         font-size: 1.2em;
         padding: 0em;
+        border-left: none;
     }
     
     .input-group{
@@ -41,7 +42,15 @@ page-login {
     .input-group-text{
         background-color: white;
         border-radius: 50em;
-        border-right-color: white;
+        padding-left: 2em;
+    }
+
+    .input-group-text img{
+        height: 2em;
+    }
+
+    .text-input{
+        Margin: .6em;
     }
     
     .btn-submit{

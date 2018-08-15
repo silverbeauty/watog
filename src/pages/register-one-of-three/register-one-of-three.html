@@ -89,17 +89,11 @@
                 </div>
                 <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" name="Hospital"></ion-input>
             </div>
-            <div class="input-group">
-              <select class="custom-select">
-                <option selected>Trainee or resident in OB/GYN</option>
-                <option value="1">Fellow or Young OB/GYN (Less than 10 years after entering OB/GYN residency</option>
-                <option value="2">Confirmed OB/GYN (More than 10 years after entering OB/GYN residency)</option>
-                <option value="3">Medical Student (Not OB/GYN yet)</option>
-                <option value="4">Medical Doctor, Other Speciality</option>
-                <option value="5">Mid Wife</option>
-                <option value="6">Other: Please specify</option>
-              </select>
+
+            <div class="text-center div-link-qualif">
+              <a href="#" (tap)="openMenu()" id="qualificationInput" class="btn font-weight-light"> Select qualification </a>
             </div>
+
             <div class="text-center div-btn-submit">
               <button type="submit" class="btn btn-submit btn-md">NEXT</button>
             </div>
@@ -108,4 +102,29 @@
       </div>
     </div>
   </section>
+
+  <div id="qualificationInputMenu" class="down-menu">
+    <a href="#" (tap)="closeMenu()" class="btn-close">X</a>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <ul class="font-weight-light">
+            <li><a href="#" (tap)="selectQualification('Trainee or resident in OB/GYN')">Trainee or resident in OB/GYN</a></li>
+            <hr>
+            <li><a href="#" (tap)="selectQualification('Fellow or Young OB/GYN')">Fellow or Young OB/GYN (Less than 10 years after entering OB/GYN residency</a></li>
+            <hr>
+            <li><a href="#" (tap)="selectQualification('Confirmed OB/GYN')">Confirmed OB/GYN (More than 10 years after entering OB/GYN residency)</a></li>
+            <hr>
+            <li><a href="#" (tap)="selectQualification('Medical Student')">Medical Student (Not OB/GYN yet)</a></li>
+            <hr>
+            <li><a href="#" (tap)="selectQualification('Medical Doctor, Other Speciality')">Medical Doctor, Other Speciality</a></li>
+            <hr>
+            <li><a href="#" (tap)="selectQualification('Mid Wife')">Mid Wife</a></li>
+            <hr>
+            <li><a href="#" (tap)="selectQualification('Other')">Other: Please specify</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
