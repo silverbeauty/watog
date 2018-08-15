@@ -29,12 +29,9 @@ import { DataProvider } from '../providers/data/data';
     MyApp,
     HomePage,
 	LoginPage,
-<<<<<<< HEAD
-	RegisterOneOfThreePage
-=======
 	RegisterOneOfThreePage,
-	LandingPage
->>>>>>> ionic-master/master
+	LandingPage,
+	ionic-master/master
   ],
   imports: [
     BrowserModule,
@@ -45,12 +42,9 @@ import { DataProvider } from '../providers/data/data';
     MyApp,
     HomePage,
 	LoginPage,
-<<<<<<< HEAD
-	RegisterOneOfThreePage
-=======
 	RegisterOneOfThreePage,
-	LandingPage
->>>>>>> ionic-master/master
+	LandingPage,
+	ionic-master/master
   ],
   providers: [
     StatusBar,
