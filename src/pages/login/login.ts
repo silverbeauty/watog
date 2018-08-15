@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular'
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
+import { LandingPage } from '../landing/landing';
 
 /**
  * Generated class for the LoginPage page.
@@ -27,6 +28,11 @@ export class LoginPage {
   navigateToRegister(){
     this.navCtrl.push(RegisterOneOfThreePage)
   }
+
+  navigateToLanding(){
+    this.navCtrl.push(LandingPage)
+  }
+
   logForm() {
     console.log(this.todo)
   }

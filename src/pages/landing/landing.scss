@@ -1,0 +1,31 @@
+page-landing {
+    .body{
+        background-image: url(../../assets/imgs/rio.jpg);
+        background-position: center top;
+        color: white;
+    }
+
+    img{
+        /*padding-top: 8vh;
+        padding-bottom: 10vh;*/
+        margin-top: 8vh;
+        margin-bottom: 20vh;
+    }
+
+    ion-slides{
+        background: white;
+        color: #525252;
+    }
+
+    ion-slide{
+        padding: 1em;
+    }
+    
+    ion-slide h1{
+        font-weight: bold;
+    }
+
+    ion-slide p{
+        font-size: .8em;
+    }
+}
