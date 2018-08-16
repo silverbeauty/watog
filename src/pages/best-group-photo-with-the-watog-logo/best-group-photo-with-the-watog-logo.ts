@@ -1,0 +1,25 @@
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+/**
+ * Generated class for the BestGroupPhotoWithTheWatogLogoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
+@Component({
+  selector: 'page-best-group-photo-with-the-watog-logo',
+  templateUrl: 'best-group-photo-with-the-watog-logo.html',
+})
+export class BestGroupPhotoWithTheWatogLogoPage {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad BestGroupPhotoWithTheWatogLogoPage');
+  }
+
+}
