@@ -1,3 +1,55 @@
 page-upload-profile-photo {
+    .body{
+        background-image: url(../../assets/imgs/rio.jpg);
+        background-position: center top;
+        color: white;
+    }
+    
+    .navbar a i{
+        color: white;
+        font-size: 4em;
+    }
+    
+    a{
+        color: white !important;
+        text-decoration: underline;
+    }
+    
+    .bold{
+        font-weight: 600;
+    }
+    
+    .img-fluid-height{
+        height: 5em;
+        margin: auto;
+    }
+    
+    .text-huge{
+        font-size: 2.3em;
+    }
 
+    h2{
+        font-size: 1.4em;
+        font-weight: 400;
+        margin-top: 5vh;
+        margin-bottom: 10vh;
+    }
+
+    .pictures{
+        background: white;
+        color: black;
+        margin: .5em;
+        border-radius: 1em;
+    }
+
+    .pictures a{
+        color: black !important;
+        text-decoration: none;
+    }
+    
+    .divider{
+        border-left: 1px solid #ddd;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
 }

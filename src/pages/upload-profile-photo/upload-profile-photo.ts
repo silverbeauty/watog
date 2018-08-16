@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 
 /**
  * Generated class for the UploadProfilePhotoPage page.
@@ -20,6 +21,10 @@ export class UploadProfilePhotoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UploadProfilePhotoPage');
+  }
+
+  gotToRegister(){
+    this.navCtrl.push(RegisterOneOfThreePage)
   }
 
 }
