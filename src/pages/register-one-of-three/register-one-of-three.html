@@ -55,6 +55,12 @@
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
+                    <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="pseudo icon"></span>
+                </div>
+                <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="todo.Pseudo" name="Pseudo"></ion-input>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Password.png" alt="password logo"></span>
                 </div>
                 <ion-input type="password" class="form-control font-weight-light" id="PasswordInput" aria-describedby="passwd-picture" placeholder="Password*" [(ngModel)]="todo.password" name="Pass"></ion-input>
