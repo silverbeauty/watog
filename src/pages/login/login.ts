@@ -28,7 +28,7 @@ export class LoginPage {
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public data: DataProvider) {
-    //this.data.getData();
+    this.data.getData();
   }
 
   navigateToRegister(){

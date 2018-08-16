@@ -17,7 +17,7 @@ export class DataProvider {
     this.getData();
   }
 
-  private getData(): void {
+  public getData(): void {
     this.sqlite.create({
       name: 'data.db',
       location: 'default'
@@ -25,9 +25,9 @@ export class DataProvider {
     }).then((db: SQLiteObject) => {
         this.db = db;
         this.db.executeSql(
-          "CREATE TABLE `uers` (id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,Firstname TEXT NOT NULL,Password TEXT NOT NULL,Email NUMERIC NOT NULL,Country INTEGER NOT NULL,Hospital INTEGER,Phone INTEGER NOT NULL UNIQUE);", {})
+          "CREATE TABLE uers (id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,Firstname TEXT NOT NULL,Password TEXT NOT NULL,Email NUMERIC NOT NULL,Country INTEGER NOT NULL,Hospital INTEGER,Phone INTEGER NOT NULL UNIQUE);")
         .then((data) => {
-            console.log("USER TABLE CREATED: ", data);
+            alert(data);
         });
       });
    }
