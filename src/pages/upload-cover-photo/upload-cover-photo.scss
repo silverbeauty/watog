@@ -1,3 +1,46 @@
 page-upload-cover-photo {
+    .body{
+        background-image: url(../../assets/imgs/rio.jpg);
+        background-position: center top;
+        color: white;
+    }
+    
+    .navbar a i{
+        color: white;
+        font-size: 4em;
+    }
+    
+    a{
+        color: white !important;
+        text-decoration: underline;
+    }
+    
+    .bold{
+        font-weight: 600;
+    }
+    
+    .img-fluid-height{
+        height: 5em;
+        margin: auto;
+    }
+    
+    .text-huge{
+        font-size: 2.3em;
+    }
 
+    h2{
+        font-size: 1.5em;
+        font-weight: 400;
+    }
+
+    .pictures{
+        background: white;
+        color: black;
+        margin: .5em;
+        border-radius: .5em;
+    }
+
+    .pictures a{
+        color: black !important;
+    }
 }

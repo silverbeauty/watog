@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { UploadCoverPhotoPage } from '../upload-cover-photo/upload-cover-photo'
 
 /**
  * Generated class for the RegisterOneOfThreePage page.
@@ -38,6 +39,10 @@ export class RegisterOneOfThreePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterOneOfThreePage');
+  }
+
+  navToUploadCoverPhoto(){
+    this.navCtrl.push(UploadCoverPhotoPage);
   }
 
   /*Methods for the html dom modification */
