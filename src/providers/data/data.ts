@@ -14,7 +14,8 @@ export class DataProvider {
   private db: SQLiteObject;
 
   constructor(public sqlite: SQLite) {
-    this.getData();
+    //this.getData();
+    console.log("hey")
   }
 
   public getData(): void {
@@ -22,15 +23,25 @@ export class DataProvider {
       name: 'data.db',
       location: 'default'
 
-    }).then((db: SQLiteObject) => {
+    })
+    .then((db: SQLiteObject) => {
         this.db = db;
         this.db.executeSql(
           "CREATE TABLE uers (id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,Firstname TEXT NOT NULL,Password TEXT NOT NULL,Email NUMERIC NOT NULL,Country INTEGER NOT NULL,Hospital INTEGER,Phone INTEGER NOT NULL UNIQUE);")
         .then((data) => {
-            alert(data);
-        });
+          console.log(data)
+        })
+        .catch(e => {
+          console.log(e)
+        })
+        console.log(this.db);
       });
    }
+
+   /* Recupere le nombre de vote */
+
+
+   /*  */
 }
 
 
