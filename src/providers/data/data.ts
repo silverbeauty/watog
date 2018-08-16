@@ -1,7 +1,7 @@
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { Injectable } from '@angular/core';
 
-import { AlertController } from 'ionic-angular';
+//import { AlertController } from 'ionic-angular';
 
 /*
   Generated class for the DataProvider provider.
@@ -13,30 +13,36 @@ import { AlertController } from 'ionic-angular';
 export class DataProvider {
   private db: SQLiteObject;
 
-  constructor(public sqlite: SQLite,private alertCtrl: AlertController) {
-    this.getData();
+  constructor(public sqlite: SQLite) {
+    //this.getData();
   }
 
-  getData(): void {
+  private getData(): void {
     this.sqlite.create({
       name: 'data.db',
       location: 'default'
     })
       .then((db: SQLiteObject) => {
-        return this.db = db;
-
-      /*  alert("salut");
-        let alert = this.alertCtrl.create({
-          title: 'salut',
-          subTitle: '10% of battery remaining',
-          buttons: ['Dismiss']
-        });
-        alert.present();*/
-      })
-      .then(data => {
-        alert(data);
+        this.db = db;
       })
       .catch(e => console.log(e));
   }
+/*
+  private createTable(): void {
+    this.db.executeSql(`
+      CREATE TABLE `uers` (
+      	`id`	INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+      	`Firstname`	TEXT NOT NULL,
+      	`Password`	TEXT NOT NULL,
+      	`Email`	NUMERIC NOT NULL,
+      	`Country`	INTEGER NOT NULL,
+      	`Hospital`	INTEGER,
+      	`Phone`	INTEGER NOT NULL UNIQUE
+      )
+    `)
+      .then(() => console.log('Executed SQL'))
+      .catch(e => console.log(e));
 
+  }
+*/
 }
