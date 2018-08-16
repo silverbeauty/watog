@@ -27,8 +27,8 @@ export class DataProvider {
       })
       .catch(e => console.log(e));
   }
-
-  private createTable(db): void{
+/*
+  private createTable(): void {
     this.db.executeSql(`
       CREATE TABLE `uers` (
       	`id`	INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
@@ -38,11 +38,11 @@ export class DataProvider {
       	`Country`	INTEGER NOT NULL,
       	`Hospital`	INTEGER,
       	`Phone`	INTEGER NOT NULL UNIQUE
-      );
+      )
     `)
       .then(() => console.log('Executed SQL'))
       .catch(e => console.log(e));
 
   }
-
+*/
 }

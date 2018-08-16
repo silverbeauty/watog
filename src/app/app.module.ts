@@ -15,10 +15,8 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-one-of-three';
 import { LandingPage } from '../pages/landing/landing';
 
-<<<<<<< HEAD
-=======
+
 	/*Provider*/
->>>>>>> ionic-front/master
 import { DataProvider } from '../providers/data/data';
 
 
@@ -26,15 +24,9 @@ import { DataProvider } from '../providers/data/data';
   declarations: [
     MyApp,
     HomePage,
-<<<<<<< HEAD
 	  LoginPage,
 	  RegisterOneOfThreePage,
     LandingPage
-=======
-	LoginPage,
-	RegisterOneOfThreePage,
-	LandingPage,
->>>>>>> ionic-front/master
   ],
   imports: [
     BrowserModule,
@@ -44,15 +36,9 @@ import { DataProvider } from '../providers/data/data';
   entryComponents: [
     MyApp,
     HomePage,
-<<<<<<< HEAD
 	  LoginPage,
 	  RegisterOneOfThreePage,
     LandingPage
-=======
-	LoginPage,
-	RegisterOneOfThreePage,
-	LandingPage,
->>>>>>> ionic-front/master
   ],
   providers: [
     StatusBar,
