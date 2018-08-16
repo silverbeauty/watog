@@ -5,12 +5,12 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RestProvider {
 
-  apiUrl = 'https://jsonplaceholder.typicode.com';
+  apiUrl = 'http://localhost:3000/api';
 
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
-
+/*
   getUsers() {
     return new Promise(resolve => {
       this.http.get(this.apiUrl+'/users').retry(3).subscribe(data => {
@@ -31,5 +31,18 @@ export class RestProvider {
         });
     });
   }
+*/
 
+// data = { email, password}
+  login({email, password}) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/users/login', JSON.stringify({email, password}))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          console.info('Login Failed:', err)
+          reject(err);
+        });
+    })
+  }
 }
