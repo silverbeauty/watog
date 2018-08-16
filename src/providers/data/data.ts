@@ -12,7 +12,6 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class DataProvider {
   private db: SQLiteObject;
-  //private alertCtrl: AlertController
 
   constructor(public sqlite: SQLite) {
     //this.getData();
