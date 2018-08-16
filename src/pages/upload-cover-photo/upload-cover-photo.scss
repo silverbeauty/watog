@@ -29,18 +29,27 @@ page-upload-cover-photo {
     }
 
     h2{
-        font-size: 1.5em;
+        font-size: 1.4em;
         font-weight: 400;
+        margin-top: 5vh;
+        margin-bottom: 10vh;
     }
 
     .pictures{
         background: white;
         color: black;
         margin: .5em;
-        border-radius: .5em;
+        border-radius: 1em;
     }
 
     .pictures a{
         color: black !important;
+        text-decoration: none;
+    }
+    
+    .divider{
+        border-left: 1px solid #ddd;
+        margin-top: 1em;
+        margin-bottom: 1em;
     }
 }
