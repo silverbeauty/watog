@@ -1,3 +1,62 @@
 page-dashboard {
+    /*BEGIN TOOLBAR CSS*/
+    .toolbar-background{
+        background-color: #775576;
+    }
 
+    .toolbar-title{
+        color: white;
+        font-size: 1.2em;
+        font-weight: 200;
+    }
+
+    .btn-profile{
+        background-color: #775576;
+        float: right;
+    }
+
+    .btn-profile img{
+        height: 2em;
+    }
+    /*END TOOLBAR CSS*/
+
+    .contest, .about{
+        height: 50%;
+        margin: 0;
+        position: relative;
+    }
+
+    .contest{
+        background-image: url(../../assets/imgs/rio.jpg);
+        background-size: cover;
+        background-position: center;
+        color: white;
+    }
+
+    .about{
+        background-image: url(../../assets/imgs/Watog.jpg);
+        background-size: cover;
+        background-position: center;
+        color: white;
+    }
+
+    .label-area{
+        background-color: rgba(169, 107, 167, 0.8);
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .vertical-align-center{
+        height: 100%;
+    }
+
+    .poce-bleu{
+        height: 12vh;
+        transform: rotate(-15deg);
+        position: relative;
+        top: 25%;
+        margin: auto;
+    }
 }
