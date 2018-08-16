@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { IonicPage, NavController, NavParams } from 'ionic-angular'
 
 /** Page **/
@@ -7,6 +9,7 @@ import { LandingPage } from '../landing/landing';
 
 /** Provider **/
 import { DataProvider } from '../../providers/data/data';
+import { RestProvider } from '../../providers/rest/rest';
 
 /**
  * Generated class for the LoginPage page.
@@ -27,7 +30,7 @@ export class LoginPage {
     pass: ""
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public data: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public rest: RestProvider, public data: DataProvider, public http: HttpClient) {
     //this.data.getData();
   }
 
@@ -40,11 +43,10 @@ export class LoginPage {
   }
 
   logForm() {
-    console.log(this.todo)
+    console.log('Login Form Data:', this.todo)
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-
 }
