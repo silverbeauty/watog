@@ -10,6 +10,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-one-of-three';
+import { LandingPage } from '../pages/landing/landing';
+
 import { DataProvider } from '../providers/data/data';
 
 
@@ -17,8 +19,9 @@ import { DataProvider } from '../providers/data/data';
   declarations: [
     MyApp,
     HomePage,
-	LoginPage,
-	RegisterOneOfThreePage
+	  LoginPage,
+	  RegisterOneOfThreePage,
+    LandingPage
   ],
   imports: [
     BrowserModule,
@@ -28,8 +31,9 @@ import { DataProvider } from '../providers/data/data';
   entryComponents: [
     MyApp,
     HomePage,
-	LoginPage,
-	RegisterOneOfThreePage
+	  LoginPage,
+	  RegisterOneOfThreePage,
+    LandingPage
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,59 @@
+page-landing {
+    .body{
+        background-image: url(../../assets/imgs/rio.jpg);
+        background-position: center top;
+        color: white;
+    }
+
+    img{
+        margin-top: 8vh;
+    }
+
+    .purple{
+        color: #a96ba7;
+    }
+
+    .what-is-watog{
+        position: fixed;
+        bottom: 0;
+        height: auto;
+        width: 100%;
+    }
+
+    .custom-carousel{
+        background: white;
+        color: #525252;
+    }
+
+    .custom-carousel ul{
+        list-style: none;
+        padding: 0;
+        padding-top: 2em;
+    }
+
+    .custom-carousel ul li{
+        display: inline;
+        padding: .5em;
+        font-size: .8em;
+    }
+
+    ion-slide{
+        padding: 1em;
+    }
+    
+    ion-slide h1{
+        font-weight: bold;
+    }
+
+    ion-slide p{
+        font-size: .8em;
+    }
+
+    .div-btn-start a{
+        background: #a96ba7;
+        color: white;
+        width: 100%;
+        font-size: 1em;
+        padding: 1.5em;
+    }
+}
