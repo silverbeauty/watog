@@ -37,6 +37,7 @@ import { RegisterTwoOfThreePage } from '../pages/register-two-of-three/register-
 import { UploadCoverPhotoPage } from '../pages/upload-cover-photo/upload-cover-photo';
 import { UploadProfilePhotoPage } from '../pages/upload-profile-photo/upload-profile-photo';
 import { WhatIsWatogPage } from '../pages/what-is-watog/what-is-watog';
+import { SettingsPage } from '../pages/settings/settings';
 
 
 	/*Provider*/
@@ -72,7 +73,8 @@ import { DataProvider } from '../providers/data/data';
 	RegisterTwoOfThreePage,
 	UploadCoverPhotoPage,
 	UploadProfilePhotoPage,
-	WhatIsWatogPage
+	WhatIsWatogPage,
+	SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -107,7 +109,8 @@ import { DataProvider } from '../providers/data/data';
 	RegisterTwoOfThreePage,
 	UploadCoverPhotoPage,
 	UploadProfilePhotoPage,
-	WhatIsWatogPage
+	WhatIsWatogPage,
+	SettingsPage
   ],
   providers: [
     StatusBar,

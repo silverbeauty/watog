@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
+import { ProfilePage } from '../profile/profile';
+import { SettingsPage } from '../settings/settings';
 
 /**
  * Generated class for the DashboardPage page.
@@ -20,6 +23,22 @@ export class DashboardPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DashboardPage');
+  }
+
+  goToProfilePage(){
+    this.navCtrl.push(ProfilePage);
+  }
+
+  goToSettingsPage(){
+    this.navCtrl.push(SettingsPage);
+  }
+
+  logout(){
+    console.log('not implemented yet');
+  }
+
+  goToWhatIsWatog(){
+    this.navCtrl.push(WhatIsWatogPage);
   }
 
 }

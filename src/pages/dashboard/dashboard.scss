@@ -1,27 +1,48 @@
 page-dashboard {
     /*BEGIN TOOLBAR CSS*/
-    .toolbar-background{
+    .navbar{
         background-color: #775576;
     }
 
-    .toolbar-title{
+    .navbar h1{
         color: white;
         font-size: 1.2em;
         font-weight: 200;
+        margin: 0;
     }
 
     .btn-profile{
         background-color: #775576;
-        float: right;
     }
 
     .btn-profile img{
         height: 2em;
     }
+
+    .dropdown-menu{
+        padding: 2em;        
+    }
+
+    .dropdown-item{
+        font-size: 1.5em;
+        font-weight: 200;
+        text-align: left;
+        padding-right: 5em;
+    }
+
+    .dropdown-item img{
+        height: 1.2em;
+        padding-right: 1em;
+    }
+
+    .dropdown-menu-right{
+        right: 0;
+        left: auto;
+    }
     /*END TOOLBAR CSS*/
 
     .contest, .about{
-        height: 50%;
+        height: 47%;
         margin: 0;
         position: relative;
     }
@@ -46,6 +67,7 @@ page-dashboard {
         bottom: 0;
         width: 100%;
         text-align: center;
+        padding-bottom: .5em;
     }
 
     .vertical-align-center{
