@@ -34,7 +34,7 @@ export class RegisterOneOfThreePage {
     email: "",
     cell_phone: null,
     country: "",
-    hospital:""
+    hospital:"",
   }
   countries : any[] = countries;
   server_url: any = server_url;
@@ -52,16 +52,17 @@ export class RegisterOneOfThreePage {
       'Content-Type': 'application/json; charset=utf-8',
       'Access-Control-Allow-Origin': '*'
     });
+    try{
+      this.http.post(this.server_url+'/users', JSON.stringify(this.todo), {headers: httpHeaders}).subscribe(data => {
 
-    this.http.post(this.server_url+'/users', JSON.stringify(this.todo), {headers: httpHeaders}).subscribe(data => {
-
-      console.log(data);
-      if(data.status == "true"){
-        alert('true');
-      }else{
-        alert('false');
-      }
-    })
+        console.log(data);
+        if(data.status == "true"){
+          alert('true');
+        }else{
+          alert('false');
+        }
+      })
+    } catch (e){console.log("http.post returned :" + e);}
 
   }
 

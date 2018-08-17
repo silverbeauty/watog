@@ -26,7 +26,7 @@ export class DataProvider {
 
    private InstanceData(): void {
     this.sqlite.create({
-      name: my_database,
+      name: "my_database",
       location: 'default'
     })
     .then((db: SQLiteObject) => {
