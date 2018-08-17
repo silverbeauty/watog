@@ -1,3 +1,47 @@
 page-contest-search {
+    .navbar{
+        background-color: #775576;
+    }
 
+    .navbar h1{
+        color: white;
+        font-size: 1.2em;
+        font-weight: 200;
+        margin: 0;
+    }
+
+    .btn-profile{
+        background-color: #775576;
+    }
+
+    .btn-profile img{
+        height: 2em;
+    }
+
+    .dropdown-menu{
+        padding: 2em;        
+    }
+
+    .dropdown-item{
+        font-size: 1.5em;
+        font-weight: 200;
+        text-align: left;
+        padding-right: 5em;
+    }
+
+    .dropdown-item img{
+        height: 1.2em;
+        padding-right: 1em;
+    }
+
+    .dropdown-menu-right{
+        right: 0;
+        left: auto;
+    }
+
+    .body{
+        background-image: url(../../assets/imgs/rio.jpg);
+        background-position: center top;
+        color: white;
+    }
 }
