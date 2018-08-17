@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
-import { SettingsPage } from '../settings/settings';
 
 /**
  * Generated class for the SettingsPage page.
@@ -31,10 +30,6 @@ export class SettingsPage {
 
   goToProfilePage(){
     this.navCtrl.push(ProfilePage);
-  }
-
-  goToSettingsPage(){
-    this.navCtrl.push(SettingsPage);
   }
 
   logout(){
