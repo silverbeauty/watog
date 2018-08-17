@@ -9,8 +9,7 @@ import { LandingPage } from '../landing/landing';
 import { DashboardPage } from '..//dashboard/dashboard';
 
 /** Provider **/
-import { DataProvider } from '../../providers/data/data';
-import { RestProvider } from '../../providers/rest/rest';
+import { DataProvider, RestProvider } from '../../providers';
 
 import { User, Auth } from '../../types';
 /**
