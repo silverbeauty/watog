@@ -68,7 +68,7 @@ export class RestProvider {
             reject('Sign Up failed!')
           }
         }, (err) => {
-          console.info('Login Failed:', err)
+          console.info('SignUp Failed:', err)
           reject(err);
         });
     })
