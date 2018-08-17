@@ -37,7 +37,7 @@ export class DashboardPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
+    /*this.dataProvider.clearProfile();*/
     this.navCtrl.push(LoginPage);
   }
 

@@ -6,7 +6,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular'
 /** Page **/
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { LandingPage } from '../landing/landing';
-import { DashboardPage } from '..//dashboard/dashboard';
+import { DashboardPage } from '../dashboard/dashboard';
 
 /** Provider **/
 import { DataProvider, RestProvider } from '../../providers';
