@@ -48,9 +48,7 @@ export class RestProvider {
             const auth = new Auth(user, token);
             resolve(auth);
           } else {
-            throw {
-              error: 'Invalid email or password'
-            }
+            reject ('Invalid email or password')
           }
         }, (err) => {
           console.info('Login Failed:', err)
@@ -66,9 +64,7 @@ export class RestProvider {
           if (res.status) {
             resolve(res.data);
           } else {
-            throw {
-              error: 'Invalid email or password'
-            }
+            reject('Sign Up failed!')
           }
         }, (err) => {
           console.info('Login Failed:', err)
