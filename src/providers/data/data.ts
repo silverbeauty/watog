@@ -38,9 +38,11 @@ export class DataProvider {
       });
    }
 
+   public saveProfile(profile): void {
+
+   }
+
    /* Recupere le nombre de vote */
-
-
    /*  */
 }
 
