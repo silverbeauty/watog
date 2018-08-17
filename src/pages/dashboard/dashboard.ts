@@ -5,6 +5,8 @@ import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
 
+import { DataProvider } from '../../providers/data/data';
+
 /**
  * Generated class for the DashboardPage page.
  *
@@ -19,7 +21,7 @@ import { LoginPage } from '../login/login';
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -35,6 +37,7 @@ export class DashboardPage {
   }
 
   logout(){
+    this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
   }
 
