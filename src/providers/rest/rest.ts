@@ -39,7 +39,6 @@ export class RestProvider {
   }
 */
 
-// data = { email, password}
   public login(email: string, password: string): Promise<Auth> {
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/users/login', JSON.stringify({email, password}), { headers: jsonHeader })
@@ -48,6 +47,24 @@ export class RestProvider {
             const  { user, token } = res.data;
             const auth = new Auth(user, token);
             resolve(auth);
+          } else {
+            throw {
+              error: 'Invalid email or password'
+            }
+          }
+        }, (err) => {
+          console.info('Login Failed:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public signUp(user: User): Promise<Auth> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/users', JSON.stringify(user), { headers: jsonHeader })
+        .subscribe(res => {
+          if (res.status) {
+            resolve(res.data);
           } else {
             throw {
               error: 'Invalid email or password'
