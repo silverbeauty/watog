@@ -4,6 +4,9 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 
+/* Providers */
+import { DataProvider } from '../../providers/data/data';
+
 /**
  * Generated class for the ContestPage page.
  *
@@ -17,6 +20,7 @@ import { SettingsPage } from '../settings/settings';
   templateUrl: 'contest.html',
 })
 export class ContestPage {
+  public data: DataProvider;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

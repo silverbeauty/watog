@@ -2,12 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 
-/**
- * Generated class for the LandingPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { DataProvider } from '../../providers/data/data';
 
 @IonicPage()
 @Component({
@@ -21,6 +16,7 @@ export class LandingPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LandingPage');
+    //console.log(this.data);
   }
 
   navigateToLogin(){

@@ -26,6 +26,8 @@ import { User, Auth } from '../../types';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  public data: DataProvider;
+  public any: object;
 
   public data = {
     email: '',
@@ -38,11 +40,13 @@ export class LoginPage {
   }
 
   navigateToRegister(){
-    this.navCtrl.push(RegisterOneOfThreePage)
+    this.navCtrl.push(RegisterOneOfThreePage);
+    //console.log(this.data)
   }
 
   navigateToLanding(){
-    this.navCtrl.push(LandingPage)
+    this.navCtrl.push(LandingPage);
+
   }
 
   invalidate() {
