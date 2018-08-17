@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the DashboardPage page.
@@ -34,7 +35,7 @@ export class DashboardPage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.navCtrl.push(LoginPage);
   }
 
   goToWhatIsWatog(){
