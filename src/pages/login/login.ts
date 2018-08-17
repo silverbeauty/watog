@@ -8,12 +8,6 @@ import { LandingPage } from '../landing/landing';
 /** Provider **/
 import { DataProvider } from '../../providers/data/data';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -21,22 +15,25 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  public data: DataProvider;
+  public any: object;
 
   public todo = {
     user: "",
     pass: ""
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public data: DataProvider) {
-    this.data.getData();
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   navigateToRegister(){
-    this.navCtrl.push(RegisterOneOfThreePage)
+    this.navCtrl.push(RegisterOneOfThreePage);
+    //console.log(this.data)
   }
 
   navigateToLanding(){
-    this.navCtrl.push(LandingPage)
+    this.navCtrl.push(LandingPage);
+
   }
 
   logForm() {
@@ -45,6 +42,7 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+    console.log("register");
   }
 
 }

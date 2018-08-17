@@ -41,6 +41,7 @@ import { WhatIsWatogPage } from '../pages/what-is-watog/what-is-watog';
 
 	/*Provider*/
 import { DataProvider } from '../providers/data/data';
+import { DistantDataBaseProvider } from '../providers/distant-data-base/distant-data-base';
 
 
 @NgModule({
@@ -114,7 +115,8 @@ import { DataProvider } from '../providers/data/data';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
-    SQLite
+    SQLite,
+    DistantDataBaseProvider
   ]
 })
 export class AppModule {}
