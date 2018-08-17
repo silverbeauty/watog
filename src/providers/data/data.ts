@@ -4,10 +4,11 @@ import { Injectable } from '@angular/core';
 
 import { User, Auth } from '../../types';
 
-//import { AlertController } from 'ionic-angular';
+const my_database = 'data.db';
 
 @Injectable()
 export class DataProvider {
+
   private db: SQLiteObject;
   private Firstname: string;
   private Password: string;
@@ -18,12 +19,14 @@ export class DataProvider {
   private arr: any;
 
   constructor(public sqlite: SQLite, private storage: Storage) {
-    //this.getData();
     //this.InstanceData();
+    //this.create(this.any, "james")
   }
+  
+  /** CODE IN DEVELLOPMENT CORDOVA FULL REQUIERMENT PLEASE DON'T TOUCH IF YOU DON'T KNOW WHAT YOU ARE DOING **/
 
     /** Local user Database **/
-
+/*
    private InstanceData(): void {
     this.sqlite.create({
       name: my_database,
@@ -45,12 +48,15 @@ export class DataProvider {
           console.log(e)
         })
       });
-   }/*
-   createUser(User: any, fn: string){
+    }
+   
+    create(task: any, fn: string){
       this.Firstname = fn;
-      let sql = 'INSERT INTO user(Firstname,Password) VALUES('\this.Firstname\','\this.Password'\)';
+      let sql = `INSERT INTO user(Firstname) VALUES(${ this.Firstname })`;
+      console.log(this.Firstname);
       return this.db.executeSql(sql, [task.title, task.completed]);
-    }*/
+    }
+	
     getAll(){
        let sql = 'SELECT * FROM user';
        return this.db.executeSql(sql, [])
@@ -63,18 +69,36 @@ export class DataProvider {
            return Promise.resolve( tasks );
          })
          .catch(error => Promise.reject(error));
-     }
-
+    }
+*/
 
    /** Structure  **/
-
+/*
    public saveProfile(auth: Auth): void {
      const profile = auth as User;
-     // save profile
      this.storage.set('profile', JSON.stringify(profile));
-     // save auth token
      this.storage.set('authorization', auth.token);
    }
+
+
+
+    update(task: any){
+      let sql = 'UPDATE tasks SET title=?, completed=? WHERE id=?';
+      return this.db.executeSql(sql, [task.title, task.completed, task.id]);
+    }
+
+    delete(task: any){
+      let sql = 'DELETE FROM tasks WHERE id=?';
+      return this.db.executeSql(sql, [task.id]);
+    }
+
+   searchInDb() {
+     //this.db.executeSql("")
+     this.user = "toma";
+     console.log(this.user);
+   }
+
+
 
    public getProfile(): Promise<Auth> {
      return Promise.all([this.storage.get('authorization'), this.storage.get('profile')]).then((res: Array<any>) => {
@@ -98,4 +122,5 @@ export class DataProvider {
      this.storage.set('profile', null)
      this.storage.set('authorization', null)
    }
+ */
 }

@@ -44,6 +44,7 @@ import { SettingsPage } from '../pages/settings/settings';
 
 	/*Provider*/
 import { DataProvider } from '../providers/data/data';
+import { DistantDataBaseProvider } from '../providers/distant-data-base/distant-data-base';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -123,8 +124,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
-    RestProvider,
     SQLite,
+    DistantDataBaseProvider,
+    RestProvider,
     HttpClient
   ]
 })
