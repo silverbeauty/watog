@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -44,6 +43,8 @@ import { SettingsPage } from '../pages/settings/settings';
 	/*Provider*/
 import { DataProvider } from '../providers/data/data';
 import { RestProvider } from '../providers/rest/rest';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -120,7 +121,8 @@ import { RestProvider } from '../providers/rest/rest';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     RestProvider,
-    SQLite
+    SQLite,
+    HttpClient
   ]
 })
 export class AppModule {}
