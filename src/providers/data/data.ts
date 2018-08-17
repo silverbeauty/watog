@@ -1,7 +1,8 @@
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
 
-//import { AlertController } from 'ionic-angular';
+import { User, Auth } from '../../types';
 
 const my_database = 'data.db';
 
@@ -17,12 +18,16 @@ export class DataProvider {
   private Phone: number;
   private arr: any;
 
-  constructor(public sqlite: SQLite) {
+  constructor(public sqlite: SQLite, private storage: Storage) {
     //this.InstanceData();
     //this.create(this.any, "james")
   }
-  /*
-  private InstanceData(): void {
+  
+  /** CODE IN DEVELLOPMENT CORDOVA FULL REQUIERMENT PLEASE DON'T TOUCH IF YOU DON'T KNOW WHAT YOU ARE DOING **/
+
+    /** Local user Database **/
+/*
+   private InstanceData(): void {
     this.sqlite.create({
       name: my_database,
       location: 'default'
@@ -43,15 +48,15 @@ export class DataProvider {
           console.log(e)
         })
       });
-   }
-
-   create(task: any, fn: string){
+    }
+   
+    create(task: any, fn: string){
       this.Firstname = fn;
       let sql = `INSERT INTO user(Firstname) VALUES(${ this.Firstname })`;
       console.log(this.Firstname);
       return this.db.executeSql(sql, [task.title, task.completed]);
     }
-
+	
     getAll(){
        let sql = 'SELECT * FROM user';
        return this.db.executeSql(sql, [])
@@ -64,8 +69,17 @@ export class DataProvider {
            return Promise.resolve( tasks );
          })
          .catch(error => Promise.reject(error));
-     }*/
+    }
+*/
+
+   /** Structure  **/
 /*
+   public saveProfile(auth: Auth): void {
+     const profile = auth as User;
+     this.storage.set('profile', JSON.stringify(profile));
+     this.storage.set('authorization', auth.token);
+   }
+
 
 
     update(task: any){
@@ -85,5 +99,28 @@ export class DataProvider {
    }
 
 
-*/
+
+   public getProfile(): Promise<Auth> {
+     return Promise.all([this.storage.get('authorization'), this.storage.get('profile')]).then((res: Array<any>) => {
+       if (res[0]) {
+         const profile: object = JSON.parse(res[1]);
+         if (profile) {
+           return new Auth(res[0], res[1]);
+         } else {
+           return new Auth(res[0], null);
+         }
+       } else {
+         return null
+       }
+     }).catch((e: any) => {
+       console.info(e)
+       return null;
+     })
+   }
+
+   public clearProfile() {
+     this.storage.set('profile', null)
+     this.storage.set('authorization', null)
+   }
+ */
 }

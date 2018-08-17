@@ -4,6 +4,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SQLite } from '@ionic-native/sqlite';
+import { IonicStorageModule } from '@ionic/storage';
+
 //import { AlertController } from 'ionic-angular';
 
 	/*Components*/
@@ -37,11 +39,14 @@ import { RegisterTwoOfThreePage } from '../pages/register-two-of-three/register-
 import { UploadCoverPhotoPage } from '../pages/upload-cover-photo/upload-cover-photo';
 import { UploadProfilePhotoPage } from '../pages/upload-profile-photo/upload-profile-photo';
 import { WhatIsWatogPage } from '../pages/what-is-watog/what-is-watog';
+import { SettingsPage } from '../pages/settings/settings';
 
 
 	/*Provider*/
 import { DataProvider } from '../providers/data/data';
 import { DistantDataBaseProvider } from '../providers/distant-data-base/distant-data-base';
+import { RestProvider } from '../providers/rest/rest';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -73,11 +78,14 @@ import { DistantDataBaseProvider } from '../providers/distant-data-base/distant-
 	RegisterTwoOfThreePage,
 	UploadCoverPhotoPage,
 	UploadProfilePhotoPage,
-	WhatIsWatogPage
+	WhatIsWatogPage,
+	SettingsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpClientModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -108,7 +116,8 @@ import { DistantDataBaseProvider } from '../providers/distant-data-base/distant-
 	RegisterTwoOfThreePage,
 	UploadCoverPhotoPage,
 	UploadProfilePhotoPage,
-	WhatIsWatogPage
+	WhatIsWatogPage,
+	SettingsPage
   ],
   providers: [
     StatusBar,
@@ -116,7 +125,9 @@ import { DistantDataBaseProvider } from '../providers/distant-data-base/distant-
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     SQLite,
-    DistantDataBaseProvider
+    DistantDataBaseProvider,
+    RestProvider,
+    HttpClient
   ]
 })
 export class AppModule {}
