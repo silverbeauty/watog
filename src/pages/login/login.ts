@@ -28,7 +28,8 @@ export class LoginPage {
 
   public data = {
     email: '',
-    password: ''
+    password: '',
+    error: null
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, public http: HttpClient) {
@@ -43,13 +44,24 @@ export class LoginPage {
     this.navCtrl.push(LandingPage)
   }
 
+  invalidate() {
+    this.data.error = null;
+  }
+
   logForm() {
     console.log('Login Form Data:', this.data)
-    this.restProvider.login(this.data).then((resp) => {
-      this.navCtrl.push(DashboardPage)
-    }).catch((error) => {
 
-    })
+    const { email, password } = this.data;
+    if (email && password) {
+      this.restProvider.login({ email, password }).then((resp) => {
+        console.info('Login Response:', resp)
+        this.navCtrl.push(DashboardPage)
+      }).catch((error) => {
+        this.data.error = 'Invalid email or password';
+      })
+    } else {
+      this.data.error = 'Please enter email and password'
+    }
   }
 
   ionViewDidLoad() {

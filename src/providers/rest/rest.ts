@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+
+const jsonHeader = new HttpHeaders({
+  'Content-Type':  'application/json'
+});
 
 @Injectable()
 export class RestProvider {
@@ -36,7 +40,7 @@ export class RestProvider {
 // data = { email, password}
   login({email, password}) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/users/login', JSON.stringify({email, password}))
+      this.http.post(this.apiUrl+'/users/login', JSON.stringify({email, password}), { headers: jsonHeader })
         .subscribe(res => {
           resolve(res);
         }, (err) => {
