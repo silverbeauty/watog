@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DashboardPage } from '../dashboard/dashboard';
+import { ProfilePage } from '../profile/profile';
+import { SettingsPage } from '../settings/settings';
+
 
 /**
  * Generated class for the ContestSearchPage page.
@@ -22,4 +26,19 @@ export class ContestSearchPage {
     console.log('ionViewDidLoad ContestSearchPage');
   }
 
+  goToDashboard(){
+    this.navCtrl.push(DashboardPage);
+  }
+
+  goToProfilePage(){
+    this.navCtrl.push(ProfilePage);
+  }
+
+  goToSettingsPage(){
+    this.navCtrl.push(SettingsPage);
+  }
+
+  logout(){
+    console.log('not implemented yet');
+  }
 }

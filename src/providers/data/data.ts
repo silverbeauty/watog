@@ -1,5 +1,8 @@
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
+
+import { User, Auth } from '../../types';
 
 //import { AlertController } from 'ionic-angular';
 
@@ -13,7 +16,7 @@ import { Injectable } from '@angular/core';
 export class DataProvider {
   private db: SQLiteObject;
 
-  constructor(public sqlite: SQLite) {
+  constructor(public sqlite: SQLite, private storage: Storage) {
     //this.getData();
     console.log("hey")
   }
@@ -38,9 +41,37 @@ export class DataProvider {
       });
    }
 
-   /* Recupere le nombre de vote */
+   public saveProfile(auth: Auth): void {
+     const profile = auth as User;
+     // save profile
+     this.storage.set('profile', JSON.stringify(profile));
+     // save auth token
+     this.storage.set('authorization', auth.token);
+   }
 
+   public getProfile(): Promise<Auth> {
+     return Promise.all([this.storage.get('authorization'), this.storage.get('profile')]).then((res: Array<any>) => {
+       if (res[0]) {
+         const profile: object = JSON.parse(res[1]);
+         if (profile) {
+           return new Auth(res[0], res[1]);
+         } else {
+           return new Auth(res[0], null);
+         }
+       } else {
+         return null
+       }
+     }).catch((e: any) => {
+       console.info(e)
+       return null;
+     })
+   }
 
+   public clearProfile() {
+     this.storage.set('profile', null)
+     this.storage.set('authorization', null)
+   }
+    /* Recupere le nombre de vote */
    /*  */
 }
 

@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+
+import { User, Auth } from '../../types';
+
+const jsonHeader = new HttpHeaders({
+  'Content-Type':  'application/json'
+});
 
 @Injectable()
 export class RestProvider {
@@ -34,11 +40,19 @@ export class RestProvider {
 */
 
 // data = { email, password}
-  login({email, password}) {
+  public login(email: string, password: string): Promise<Auth> {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/users/login', JSON.stringify({email, password}))
+      this.http.post(this.apiUrl+'/users/login', JSON.stringify({email, password}), { headers: jsonHeader })
         .subscribe(res => {
-          resolve(res);
+          if (res.status) {
+            const  { user, token } = res.data;
+            const auth = new Auth(user, token);
+            resolve(auth);
+          } else {
+            throw {
+              error: 'Invalid email or password'
+            }
+          }
         }, (err) => {
           console.info('Login Failed:', err)
           reject(err);

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DashboardPage } from '../dashboard/dashboard';
+import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the SettingsPage page.
@@ -20,6 +22,18 @@ export class SettingsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
+  }
+
+  goToDashboard(){
+    this.navCtrl.push(DashboardPage);
+  }
+
+  goToProfilePage(){
+    this.navCtrl.push(ProfilePage);
+  }
+
+  logout(){
+    console.log('not implemented yet');
   }
 
 }
