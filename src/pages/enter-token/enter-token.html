@@ -1,0 +1,40 @@
+<ion-content class="body">
+    <div class="navbar">
+      <a (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+      <img src="../../assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
+    </div>
+    <section class="position">
+      <div class="container">
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col">
+            <p class="text-huge">Register</p>
+          </div>
+          <div class="col text-right">
+            <p class="text-huge">3/3</p>
+          </div>
+          <div class="col-1"></div>
+        </div>
+      </div>
+    </section>
+    <section class="check-token">
+      <p>Check your email/SMS to recieve your token</p>
+    </section>
+    <div class="text-center">
+      <a href="#" class="not-recieved">Not recieved ?</a>
+    </div>
+    <section class="enter-token">
+      <div class="container">
+        <form>
+          <div class="text-center">
+            <p>Enter code (Token)</p>
+          </div>
+          <ion-input type="text" class="form-control font-weight-light" id="tokenInput" aria-describedby="token-picture" placeholder="Token" name="token"></ion-input>
+
+          <div class="text-center div-btn-submit">
+            <button type="submit" class="btn btn-submit btn-md" (click)="goToDashboard()">REGISTER</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </ion-content>

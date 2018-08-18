@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
+import { RegisterThreeOfThreePage } from '../register-three-of-three/register-three-of-three';
 
 /**
  * Generated class for the RegisterTwoOfThreePage page.
@@ -20,6 +22,14 @@ export class RegisterTwoOfThreePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterTwoOfThreePage');
+  }
+
+  goToRegister(){
+    this.navCtrl.push(RegisterOneOfThreePage);
+  }
+
+  goToRegisterThreeOfThree(){
+    this.navCtrl.push(RegisterThreeOfThreePage);
   }
 
 }

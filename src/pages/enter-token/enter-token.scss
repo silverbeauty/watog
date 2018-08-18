@@ -1,0 +1,78 @@
+page-enter-token {
+    .body{
+        background-image: url(../../assets/imgs/rio.jpg);
+        background-position: center top;
+        color: white;
+    }
+    
+    .navbar a i{
+        color: white;
+        font-size: 4em;
+    }
+    
+    a{
+        color: white !important;
+        text-decoration: underline;
+    }
+    
+    .bold{
+        font-weight: 600;
+    }
+    
+    .img-fluid-height{
+        height: 5em;
+        margin: auto;
+    }
+    
+    .text-huge{
+        font-size: 2.3em;
+    }
+
+    .check-token{
+        background-color: #774576;
+        text-align: center;
+        padding: 1.5em;
+        padding-bottom: 1em;
+        font-size: 1.2em;
+        font-weight: 200;
+        padding-left: 20vw;
+        padding-right: 20vw;
+    }
+
+    .not-recieved{
+        display: block;
+        font-weight: 200;
+        margin-top: 1em;
+    }
+
+    .enter-token{
+        margin-top: 3em;
+    }
+
+    .enter-token form{
+        padding: 1em;
+    }
+
+    .enter-token p{
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+
+    .enter-token ion-input{
+        border-radius: 50em;
+        font-size: 1.2em;
+        padding: 0em;
+        padding-left: 1em;
+    }
+
+    .btn-submit{
+        margin-top: 2em;
+        background-color: #a96ba7;
+        color: white;
+        font-size: 1.1em;
+        font-weight: 200;
+        padding: .8em;
+        width: 100%;
+        border-radius: 50em;
+    }
+}

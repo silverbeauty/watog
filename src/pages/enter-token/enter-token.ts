@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { EnterTokenPage } from '../enter-token/enter-token';
+import { DashboardPage } from '../dashboard/dashboard';
 
 /**
- * Generated class for the RegisterThreeOfThreePage page.
+ * Generated class for the EnterTokenPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,24 +11,24 @@ import { EnterTokenPage } from '../enter-token/enter-token';
 
 @IonicPage()
 @Component({
-  selector: 'page-register-three-of-three',
-  templateUrl: 'register-three-of-three.html',
+  selector: 'page-enter-token',
+  templateUrl: 'enter-token.html',
 })
-export class RegisterThreeOfThreePage {
+export class EnterTokenPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterThreeOfThreePage');
+    console.log('ionViewDidLoad EnterTokenPage');
   }
 
   goBack(){
     this.navCtrl.pop();
   }
 
-  goToEnterToken(){
-    this.navCtrl.push(EnterTokenPage);
+  goToDashboard(){
+    this.navCtrl.push(DashboardPage);
   }
 
 }
