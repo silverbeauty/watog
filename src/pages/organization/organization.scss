@@ -42,7 +42,20 @@ page-organization {
     .body{
         background-image: url(../../assets/imgs/rio.jpg);
         background-position: center top;
-        color: white;
     }
 
+    .title {
+        text-align: center;
+        color: #525252;
+    }
+
+    .card.info-box {
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        .card-content {
+            padding: 20px;
+            font-size: 12px;
+            color: #555;
+        }
+    }
 }
