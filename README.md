@@ -21,7 +21,10 @@
 
 ### Browser
 
-- `ionic cordova run browser`  
+- `ionic cordova run browser` 
+Or  
+
+- `npm run start:dev`   
 
 ### Android  
 
