@@ -1,11 +1,18 @@
-You need to install sqlite first:
+# Watog Ionic Mobile App 
 
-                  Sqlite
+## Dependencies
 
-ionic cordova plugin add cordova-sqlite-storage
-npm install --save @ionic-native/sqlite
+1. SQLite
 
-                  Camera/photo
+- `ionic cordova plugin add cordova-sqlite-storage`
+- `npm install --save @ionic-native/sqlite`
 
-ionic cordova plugin add cordova-plugin-camera
-npm install --save @ionic-native/camera
+2. Native Storage
+
+- `ionic cordova plugin add cordova-sqlite-storage`
+- `npm install --save @ionic-native/sqlite`
+
+3. Camera/Photo
+
+- `ionic cordova plugin add cordova-plugin-camera`
+- `npm install --save @ionic-native/camera`
