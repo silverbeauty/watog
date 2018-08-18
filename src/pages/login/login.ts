@@ -6,12 +6,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular'
 /** Page **/
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { LandingPage } from '../landing/landing';
-//import { DashboardPage } from '../dashboard/dashboard';
+import { DashboardPage } from '../dashboard/dashboard';
 
 /** Provider **/
-//import { DataProvider, RestProvider } from '../../providers';
-
-//import { User, Auth } from '../../types';
+import { DataProvider, RestProvider } from '../../providers';
+import { User, Auth } from '../../types';
 
 
 @IonicPage()
@@ -30,7 +29,7 @@ export class LoginPage {
 
 //public restProvider: RestProvider, public dataProvider: DataProvider, public http: HttpClient
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {
     //this.data.getData();
   }
 
@@ -43,7 +42,7 @@ export class LoginPage {
     this.navCtrl.push(LandingPage);
 
   }
-/*
+
   invalidate() {
     this.data.error = null;
   }
@@ -73,5 +72,5 @@ export class LoginPage {
       }
     })
   }
-  */
+  
 }

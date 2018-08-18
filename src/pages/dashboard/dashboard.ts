@@ -6,6 +6,7 @@ import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
 
 import { DataProvider } from '../../providers/data/data';
+import { ContestPage } from '../contest/contest';
 
 /**
  * Generated class for the DashboardPage page.
@@ -37,12 +38,16 @@ export class DashboardPage {
   }
 
   logout(){
-    /*this.dataProvider.clearProfile();*/
+    this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
   }
 
   goToWhatIsWatog(){
     this.navCtrl.push(WhatIsWatogPage);
+  }
+
+  goToContest(){
+    this.navCtrl.push(ContestPage);
   }
 
 }

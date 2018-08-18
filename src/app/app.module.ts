@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SQLite } from '@ionic-native/sqlite';
-import { IonicStorageModule } from '@ionic/storage';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 //import { AlertController } from 'ionic-angular';
 
@@ -42,6 +42,7 @@ import { WhatIsWatogPage } from '../pages/what-is-watog/what-is-watog';
 import { SettingsPage } from '../pages/settings/settings';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { EnterTokenPage } from '../pages/enter-token/enter-token';
 
 
 	/*Provider*/
@@ -83,13 +84,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   	WhatIsWatogPage,
 	SettingsPage,
 	ChangePasswordPage,
-	EditProfilePage
+	EditProfilePage,
+	EnterTokenPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -123,7 +124,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 	WhatIsWatogPage,
 	SettingsPage,
 	ChangePasswordPage,
-	EditProfilePage
+	EditProfilePage,
+	EnterTokenPage
   ],
   providers: [
     StatusBar,
@@ -133,7 +135,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     SQLite,
     DistantDataBaseProvider,
     RestProvider,
-    HttpClient
+    HttpClient,
+    NativeStorage
   ]
 })
 export class AppModule {}

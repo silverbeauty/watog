@@ -1,18 +1,47 @@
-<!--
-  Generated template for the RegisterTwoOfThreePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>RegisterTwoOfThree</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+<ion-content class="body">
+    <div class="navbar">
+      <a (click)="goToRegister()"><i class="fa fa-angle-left"></i></a>
+      <img src="../../assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
+    </div>
+    <section class="position">
+      <div class="container">
+        <div class="row">
+          <div class="col-1"></div>
+            <div class="col">
+              <p class="text-huge">Register</p>
+            </div>
+            <div class="col text-right">
+              <p class="text-huge">2/3</p>
+            </div>
+            <div class="col-1"></div>
+          </div>
+        </div>
+    </section>
+    <section class="proof text-center">
+      <p>Send Proof of your status</p>
+      <p>(Diploma, student card, MD card, any proof of your status)</p>
+    </section>
+    <section class="upload">
+      <div class="container">
+        <div class="row pictures">
+          <div class="col">
+            <a href="#">
+              <img src="../../assets/imgs/appareil.png" alt="camera">
+              <p class="font-weight-light text-center">Take a Picture</p>
+            </a>
+          </div>
+          <div class="divider"></div>
+          <div class="col">
+            <a href="#">
+              <img src="../../assets/imgs/on_your_computer.png" alt="On your computer">
+              <p class="font-weight-light text-center">On your device</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="text-center">
+      <button class="btn btn-next" (click)="goToRegisterThreeOfThree()">NEXT</button>
+    </div>
+  </ion-content>
+  

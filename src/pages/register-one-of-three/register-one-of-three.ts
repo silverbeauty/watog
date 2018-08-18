@@ -7,6 +7,7 @@ import { UploadCoverPhotoPage } from '../upload-cover-photo/upload-cover-photo';
 import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
 //import {HttpClient,  HttpHeaders} from '@angular/common/http';
 import { server_url } from '../../environments/environment'
+import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
 
 
 
@@ -85,6 +86,10 @@ export class RegisterOneOfThreePage {
   selectQualification(qualification){
     document.getElementById('qualificationInput').innerHTML = qualification;
     this.closeMenu();
+  }
+
+  goToRegisterTwoOfThree(){
+    this.navCtrl.push(RegisterTwoOfThreePage);
   }
 
   specifyQualification(){

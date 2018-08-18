@@ -15,4 +15,89 @@
         </div>
       </div>
     </div>
+    <section class="second-title">
+      <div class="container">
+        <div class="row">
+          <div class="col-2">
+              <img src="../../assets/icon/ArrowWhite.png" alt="arrow back" (click)="goBack()">
+          </div>
+          <div class="col">
+              <p>Edit Profile</p>
+          </div>
+          <div class="col-2"></div>
+        </div>
+      </div>
+    </section>
+    <section class="sign-in">
+        <div class="upload-profil-picture container-fluid" (click)="navToUploadProfilePhoto()">
+            <div class="container">
+              <div class="row">
+                <div class="col-4 justify-content-right">
+                  <div id="profil-picture">
+                    <!--Image is the css property background-image: url(...);-->
+                  </div>
+                </div>
+                <div class="col-8" class="profile-picture-description align-middle">
+                  <p class="font-weight-light">Change Profile Picture</p>
+                </div>
+              </div>
+            </div>
+          </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md">  
+            <form (ngSubmit)="logForm()">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="login logo"></span>
+                    </div>
+                    <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First Name*" name="first_name"  ></ion-input>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="password logo"></span>
+                    </div>
+                    <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" name="last_name"  ></ion-input>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="pseudo icon"></span>
+                    </div>
+                    <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" name="Pseudo"  ></ion-input>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="../../assets/icon/Mail02.png" alt="password logo"></span>
+                    </div>
+                    <ion-input type="email" class="form-control font-weight-light" id="EmailInput" aria-describedby="passwd-picture" placeholder="Email*" name="email"  ></ion-input>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="../../assets/icon/Phone.png" alt="password logo"></span>
+                    </div>
+                    <ion-input type="number" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" placeholder="Cell Phone*" name="cell_phone"  ></ion-input>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="../../assets/icon/Location.png" alt="password logo"></span>
+                    </div>
+                  <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" name="country" >
+                    <ion-option *ngFor="let item of countries" value="{{item}}">{{item}}</ion-option>
+                  </ion-select>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="../../assets/icon/Hopital.png" alt="password logo"></span>
+                    </div>
+                    <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" name="hospital"  ></ion-input>
+                </div>
+  
+              <div class="text-center div-btn-submit">
+                <button type="submit" class="btn btn-submit btn-md">CHANGE PASSWORD</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 </ion-content>

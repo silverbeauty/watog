@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { ContestSubmitPage } from '../contest-submit/contest-submit';
 
 /**
  * Generated class for the BestPhotoWithTheWatogLogoPage page.
@@ -35,6 +36,10 @@ export class BestPhotoWithTheWatogLogoPage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goToContestSubmit(){
+    this.navCtrl.push(ContestSubmitPage);
   }
 
   logout(){

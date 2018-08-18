@@ -1,3 +1,93 @@
 page-register-three-of-three {
+    .body{
+        background-image: url(../../assets/imgs/rio.jpg);
+        background-position: center top;
+        color: white;
+    }
+    
+    .navbar a i{
+        color: white;
+        font-size: 4em;
+    }
+    
+    a{
+        color: white !important;
+        text-decoration: underline;
+    }
+    
+    .bold{
+        font-weight: 600;
+    }
+    
+    .img-fluid-height{
+        height: 5em;
+        margin: auto;
+    }
+    
+    .text-huge{
+        font-size: 2.3em;
+    }
 
+    h2{
+        font-size: 1.4em;
+        font-weight: 400;
+        margin-top: 5vh;
+        margin-bottom: 10vh;
+    }
+
+    .pictures{
+        background: white;
+        color: black;
+        margin: .5em;
+        border-radius: 1em;
+    }
+
+    .pictures a{
+        color: black !important;
+        text-decoration: none;
+    }
+    
+    .divider{
+        border-left: 1px solid #ddd;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .btn-next{
+        background-color: #a96ba7;
+        color: white;
+        font-size: 1em;
+        padding: .8em;
+        border-radius: 50em;
+        margin-top: 4em;
+        width: 70%;
+    }
+
+    .proof{
+        background-color: #774576;
+        padding: 1em;
+        padding-left: 10vw;
+        padding-right: 10vw;
+    }
+
+    .proof p{
+        font-size: 1.5em;
+        font-weight: 800;
+    }
+
+    .proof .form-check-label{
+        margin-left: 1em;
+        font-size: 1.1em;
+        font-weight: 200;
+    }
+
+    .token-info{
+        background-color: #dce4e7;
+        color: black;
+        margin-top: 4em;
+        padding: 1em;
+        padding-bottom: .5em;
+        text-align: center;
+        font-weight: 200;
+    }
 }
