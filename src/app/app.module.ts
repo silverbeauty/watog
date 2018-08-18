@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SQLite } from '@ionic-native/sqlite';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 //import { AlertController } from 'ionic-angular';
 
@@ -83,7 +84,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -125,7 +126,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     SQLite,
     DistantDataBaseProvider,
     RestProvider,
-    HttpClient
+    HttpClient,
+    NativeStorage
   ]
 })
 export class AppModule {}
