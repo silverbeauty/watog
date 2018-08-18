@@ -16,13 +16,85 @@
       </div>
     </div>
     <section class="second-title">
-      <h1>Settings</h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-2">
+              <img src="../../assets/icon/ArrowDarkGrey.png" alt="arrow back" (click)="goBack()">
+          </div>
+          <div class="col">
+              <h1>Settings</h1>
+          </div>
+          <div class="col-2"></div>
+        </div>
+      </div>
     </section>
     <section class="account">
-      Account
+      <div class="container">
+        <div class="account-inside">
+              <div class="inside-header"><img src="../../assets/icon/Profil.png" alt="profile icon"> <h2>Account</h2></div>
+            <hr>
+            <a href="#" (click)="goToEditProfile()">Edit Profile</a>
+            <a href="#" (click)="gotToChangePassword()">Change Password</a>
+        </div>
+      </div>
     </section>
     <section class="notifications">
-      Notifications
+        <div class="container">
+            <div class="account-inside">
+                  <div class="inside-header"><img src="../../assets/icon/Notifications.png" alt="profile icon"> <h2>Notifications</h2></div>
+                <hr>
+                <div class="notification-option">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <h4>Participate</h4>
+                        <p class="font-italic"> Show updates on contests I submited to</p>
+                      </div>
+                      <div class="col-2">
+                        <button type="button" class="btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                          <i class="fa fa-circle toggle-left"></i>
+                          <i class="fa fa-circle toggle-right"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="notification-option">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <h4>Vote</h4>
+                        <p class="font-italic"> Show notification when a vote is recieved</p>
+                      </div>
+                      <div class="col-2">
+                        <button type="button" class="btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                          <i class="fa fa-circle toggle-left"></i>
+                          <i class="fa fa-circle toggle-right"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="notification-option">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <h4>Spam Mark</h4>
+                        <p class="font-italic"> Hide my photos repoted abuse</p>
+                      </div>
+                      <div class="col-2">
+                        <button type="button" class="btn active" data-toggle="button" aria-pressed="true" autocomplete="off">
+                          <i class="fa fa-circle toggle-left"></i>
+                          <i class="fa fa-circle toggle-right"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
     </section>
-    <button>Logout</button>
+    <div class="text-center">
+      <button class="btn btn-logout" (click)="logout()"><img src="../../assets/icon/Tracé 31.png" alt="Logout icon"> LOGOUT</button>
+    </div>
 </ion-content>

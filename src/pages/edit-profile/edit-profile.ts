@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
-import { EditProfilePage } from '../edit-profile/edit-profile';
-import { ChangePasswordPage } from '../change-password/change-password';
+import { SettingsPage } from '../settings/settings';
 
 /**
- * Generated class for the SettingsPage page.
+ * Generated class for the EditProfilePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -14,16 +13,16 @@ import { ChangePasswordPage } from '../change-password/change-password';
 
 @IonicPage()
 @Component({
-  selector: 'page-settings',
-  templateUrl: 'settings.html',
+  selector: 'page-edit-profile',
+  templateUrl: 'edit-profile.html',
 })
-export class SettingsPage {
+export class EditProfilePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
+    console.log('ionViewDidLoad EditProfilePage');
   }
 
   goToDashboard(){
@@ -34,20 +33,12 @@ export class SettingsPage {
     this.navCtrl.push(ProfilePage);
   }
 
-  goToEditProfile(){
-    this.navCtrl.push(EditProfilePage);
-  }
-
-  gotToChangePassword(){
-    this.navCtrl.push(ChangePasswordPage);
+  goToSettingsPage(){
+    this.navCtrl.push(SettingsPage);
   }
 
   logout(){
     console.log('not implemented yet');
-  }
-
-  goBack(){
-    this.navCtrl.pop();
   }
 
 }
