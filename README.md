@@ -2,17 +2,17 @@
 
 ## Dependencies
 
-1. SQLite
+- SQLite
 
-- `ionic cordova plugin add cordova-sqlite-storage`
-- `npm install --save @ionic-native/sqlite`
+	`ionic cordova plugin add cordova-sqlite-storage`
+	`npm install --save @ionic-native/sqlite`
 
-2. Native Storage
+- Native Storage
 
-- `ionic cordova plugin add cordova-sqlite-storage`
-- `npm install --save @ionic-native/sqlite`
+  `ionic cordova plugin add cordova-sqlite-storage`
+  `npm install --save @ionic-native/sqlite`
 
-3. Camera/Photo
+- Camera/Photo
 
-- `ionic cordova plugin add cordova-plugin-camera`
-- `npm install --save @ionic-native/camera`
+  `ionic cordova plugin add cordova-plugin-camera`
+  `npm install --save @ionic-native/camera`
