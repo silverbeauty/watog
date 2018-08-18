@@ -16,3 +16,17 @@
 
 `ionic cordova plugin add cordova-plugin-camera`  
 `npm install --save @ionic-native/camera`  
+
+## How to run
+
+### Browser
+
+- `ionic cordova run browser`  
+
+### Android  
+
+- `ionic cordova run android`  
+
+### iOS
+This platform should be added by `ionic cordova platform add browser`  
+- `ionic cordova run ios`  
