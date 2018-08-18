@@ -1,8 +1,8 @@
 //import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-//import { Storage } from '@ionic/storage';
+import { NativeStorage } from '@ionic-native/native-storage';
 import { Injectable } from '@angular/core';
 
-//import { User, Auth } from '../../types';
+import { User, Auth } from '../../types';
 
 const my_database = 'data.db';
 
@@ -20,9 +20,8 @@ export class DataProvider {
 
   //public sqlite: SQLite, private storage: Storage
 
-  constructor() {
-  }
-}
+  constructor(private storage: NativeStorage) {}
+
   /** CODE IN DEVELLOPMENT CORDOVA FULL REQUIERMENT PLEASE DON'T TOUCH IF YOU DON'T KNOW WHAT YOU ARE DOING **/
 
     /** Local user Database **/
@@ -73,15 +72,8 @@ export class DataProvider {
 */
 
    /** Structure  **/
+
 /*
-   public saveProfile(auth: Auth): void {
-     const profile = auth as User;
-     this.storage.set('profile', JSON.stringify(profile));
-     this.storage.set('authorization', auth.token);
-   }
-
-
-
     update(task: any){
       let sql = 'UPDATE tasks SET title=?, completed=? WHERE id=?';
       return this.db.executeSql(sql, [task.title, task.completed, task.id]);
@@ -98,28 +90,37 @@ export class DataProvider {
      console.log(this.user);
    }
 
+*/
+  public saveProfile(auth: Auth): void {
+    const profile = auth as User;
+    this.storage.setItem('profile', JSON.stringify(profile));
+    this.storage.setItem('authorization', auth.token);
+  }
 
-
-   public getProfile(): Promise<Auth> {
-     return Promise.all([this.storage.get('authorization'), this.storage.get('profile')]).then((res: Array<any>) => {
-       if (res[0]) {
-         const profile: object = JSON.parse(res[1]);
-         if (profile) {
-           return new Auth(res[0], res[1]);
-         } else {
-           return new Auth(res[0], null);
-         }
-       } else {
-         return null
-       }
-     }).catch((e: any) => {
-       console.info(e)
-       return null;
-     })
+  public getProfile(): Promise<Auth> {
+    return Promise.all([this.storage.getItem('authorization'), this.storage.getItem('profile')]).then((res: Array<any>) => {
+      if (res[0]) {
+        const profile: object = JSON.parse(res[1]);
+        if (profile) {
+          const auth: Auth = profile as Auth;
+          auth.token = res[0];
+          return auth
+        } else {
+          const auth = new Auth()
+          auth.token = res[0];
+          return auth;
+        }
+      } else {
+        return null
+      }
+    }).catch((e: any) => {
+      console.info(e)
+      return null;
+    })
    }
 
-   public clearProfile() {
-     this.storage.set('profile', null)
-     this.storage.set('authorization', null)
-   }
- */
+  public clearProfile() {
+    this.storage.setItem('profile', null)
+    this.storage.setItem('authorization', null)
+  }
+}
