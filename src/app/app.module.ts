@@ -40,6 +40,8 @@ import { UploadCoverPhotoPage } from '../pages/upload-cover-photo/upload-cover-p
 import { UploadProfilePhotoPage } from '../pages/upload-profile-photo/upload-profile-photo';
 import { WhatIsWatogPage } from '../pages/what-is-watog/what-is-watog';
 import { SettingsPage } from '../pages/settings/settings';
+import { ChangePasswordPage } from '../pages/change-password/change-password';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 
 
 	/*Provider*/
@@ -79,7 +81,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   	UploadCoverPhotoPage,
   	UploadProfilePhotoPage,
   	WhatIsWatogPage,
-  	SettingsPage
+	SettingsPage,
+	ChangePasswordPage,
+	EditProfilePage
   ],
   imports: [
     BrowserModule,
@@ -116,8 +120,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   	RegisterTwoOfThreePage,
   	UploadCoverPhotoPage,
   	UploadProfilePhotoPage,
-  	WhatIsWatogPage,
-  	SettingsPage
+	WhatIsWatogPage,
+	SettingsPage,
+	ChangePasswordPage,
+	EditProfilePage
   ],
   providers: [
     StatusBar,

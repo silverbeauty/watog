@@ -45,4 +45,108 @@ page-settings {
         color: white;
     }
 
+    .second-title img{
+        margin-top: 1.5em;
+        height: 2.5em;
+    }
+
+    .second-title h1{
+        text-align: center;
+        color: #525252;
+        font-weight: 900;
+    }
+
+    .account-inside{
+        background-color: white;
+        color: black;
+        border-radius: 1em;
+        padding: 1em;
+        margin-top: 2em;
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+    .account-inside h2{
+        padding-left: .5em;
+        color: #525252;
+        font-size: 1.3em;
+        display: inline;
+        vertical-align: bottom;
+    }
+
+    .account-inside hr{
+        margin-bottom: 1.5em;
+    }
+
+    .account-inside a{
+        color: black !important;
+        font-weight: 200;
+        margin-bottom: 1em;
+        display: block;
+        font-size: 1em;
+    }
+
+    .account-inside img{
+        height: 1.7em;
+    }
+
+    .notification-option{
+        color: #525252;
+    }
+
+    .notification-option h4{
+        font-size: 1em !important;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .notification-option p{
+        font-size: .8em;
+    }
+
+    .notification-option button{
+        background-color: #dce4e7;
+        font-size: 1.2em;
+        padding: 0;
+        border-radius: 10em;
+        height: 1.05em;
+        padding-left: .1em;
+        padding-right: .1em;
+        margin-top: .7em;
+    }
+
+    .notification-option .toggle-left{
+        color: #525252;
+        vertical-align: top;
+    }
+
+    .notification-option .toggle-right{
+        color: #dce4e7;
+        vertical-align: top;
+    }
+
+    .notification-option .active .toggle-right{
+        color: #775576;
+    }
+
+    .notification-option .active .toggle-left{
+        color: #dce4e7;
+    }
+
+    .btn-logout{
+        background-color: #a96ba7;
+        color: white;
+        margin-top: 3em;
+        padding: .7em;
+        border-radius: 10em;
+        font-size: 1.1em;
+        font-weight: 200;
+        padding-right: 2em;
+        padding-left: 2em;
+    }
+
+    .btn-logout img{
+        transform: rotate(90deg);
+        margin-right: .5em;
+    }
 }
