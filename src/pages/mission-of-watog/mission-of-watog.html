@@ -1,18 +1,56 @@
 <ion-content class="body">
-    <div class="navbar">
-      <a href="#" (click)="goToDashboard()"><img src="../../assets/icon/Menu.png" alt="Menu icon"></a>
-      <h1>Mission of WATOG</h1>
-      <div class="btn-group">
-        <button type="button" class="btn btn-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="../../assets/icon/Profil02.png" alt="profile icon">
-        </button>
-        <div class="dropdown-menu dropdown-menu-right">
-          <button type="button" class="dropdown-item" (click)="goToProfilePage()"><img src="../../assets/icon/Profil.png" alt="profile icon"> Profile</button>
-          <hr>
-          <button type="button" class="dropdown-item" (click)="goToSettingsPage()"><img src="../../assets/icon/Gear.png" alt="profile icon"> Settings</button>
-          <hr>
-          <button type="button" class="dropdown-item" (click)="logout()"><img src="../../assets/icon/Logout.png" alt="profile icon"> Logout</button>
-        </div>
+  <div class="navbar">
+    <a href="#" (click)="goToDashboard()">
+      <img src="../../assets/icon/Menu.png" alt="Menu icon">
+    </a>
+    <h1>What is WATOG</h1>
+    <div class="btn-group">
+      <button type="button" class="btn btn-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src="../../assets/icon/Profil02.png" alt="profile icon">
+      </button>
+      <div class="dropdown-menu dropdown-menu-right">
+        <button type="button" class="dropdown-item" (click)="goToProfilePage()">
+          <img src="../../assets/icon/Profil.png" alt="profile icon"> Profile</button>
+        <hr>
+        <button type="button" class="dropdown-item" (click)="goToSettingsPage()">
+          <img src="../../assets/icon/Gear.png" alt="profile icon"> Settings</button>
+        <hr>
+        <button type="button" class="dropdown-item" (click)="logout()">
+          <img src="../../assets/icon/Logout.png" alt="profile icon"> Logout</button>
       </div>
     </div>
+  </div>
+
+  <section class="title">
+    <h3 class="font-weight-bold mt-5 mb-5">Mission of WATOG</h3>
+  </section>
+
+  <ion-card class="info-box">
+    <ion-card-content>
+      <div class="mb-3">The World Association of Trainees in Obstetrics & Gynecology (WATOG) is a non-profit organization that represents the
+        worldwide network of young obstetricians and gynecologists (OB/GYN).</div>
+
+      <div class="mb-3">WATOG’s main mission is to help every OB/GYN trainee worldwide to access the highest level of education, overcome cultural
+        and gender barriers and facilitate contact and exchange between members globally.</div>
+
+      <div class="mb-3">WATOG constantly promotes the foundation and sustainment of OB/GYN trainee associations at national and regional levels.
+        In order to achieve this, WATOG encourages and helps trainees’ initiatives but also collaborates with the FIGO and
+        other national and regional senior associations to strengthen the connection between young and senior representatives
+        of our profession. The final goal is to potentiate the involvement of OB/GYN trainees in global issues pertaining
+        to reproductive health care, specifically those of the mother, fetus and newborn but also women’s health care in
+        general.</div>
+
+    </ion-card-content>
+  </ion-card>
+
+  <div class="pt-4 pb-4">
+    <div class="row">
+      <div class="col-5 offset-1 text-center">
+        <button ion-button round full color="light" class="text-uppercase">Back</button>
+      </div>
+      <div class="col-5 text-center">
+        <button ion-button round full color="teal" class="text-uppercase">Next</button>
+      </div>
+    </div>
+  </div>
 </ion-content>
