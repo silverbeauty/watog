@@ -14,3 +14,16 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.button {
+	font-size: 14px;
+	outline: 0 !important;
+}
+
+.button[color="teal"] {
+	background-color: #a96ba7;
+}
+
+.button[color="teal"].activated {
+	background-color: #a360a1;
+}
