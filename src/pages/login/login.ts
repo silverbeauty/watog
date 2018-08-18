@@ -6,18 +6,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular'
 /** Page **/
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { LandingPage } from '../landing/landing';
-import { DashboardPage } from '../dashboard/dashboard';
+//import { DashboardPage } from '../dashboard/dashboard';
 
 /** Provider **/
-import { DataProvider, RestProvider } from '../../providers';
+//import { DataProvider, RestProvider } from '../../providers';
 
-import { User, Auth } from '../../types';
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+//import { User, Auth } from '../../types';
+
 
 @IonicPage()
 @Component({
@@ -25,7 +20,6 @@ import { User, Auth } from '../../types';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  public data: DataProvider;
   public any: object;
 
   public data = {
@@ -34,7 +28,9 @@ export class LoginPage {
     error: null
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, public http: HttpClient) {
+//public restProvider: RestProvider, public dataProvider: DataProvider, public http: HttpClient
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     //this.data.getData();
   }
 
@@ -47,7 +43,7 @@ export class LoginPage {
     this.navCtrl.push(LandingPage);
 
   }
-
+/*
   invalidate() {
     this.data.error = null;
   }
@@ -77,4 +73,5 @@ export class LoginPage {
       }
     })
   }
+  */
 }

@@ -1,15 +1,15 @@
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-import { Storage } from '@ionic/storage';
+//import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+//import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
 
-import { User, Auth } from '../../types';
+//import { User, Auth } from '../../types';
 
 const my_database = 'data.db';
 
 @Injectable()
 export class DataProvider {
 
-  private db: SQLiteObject;
+  //private db: SQLiteObject;
   private Firstname: string;
   private Password: string;
   private Email: string;
@@ -18,11 +18,11 @@ export class DataProvider {
   private Phone: number;
   private arr: any;
 
-  constructor(public sqlite: SQLite, private storage: Storage) {
-    //this.InstanceData();
-    //this.create(this.any, "james")
+  //public sqlite: SQLite, private storage: Storage
+
+  constructor() {
   }
-  
+}
   /** CODE IN DEVELLOPMENT CORDOVA FULL REQUIERMENT PLEASE DON'T TOUCH IF YOU DON'T KNOW WHAT YOU ARE DOING **/
 
     /** Local user Database **/
@@ -49,14 +49,14 @@ export class DataProvider {
         })
       });
     }
-   
+
     create(task: any, fn: string){
       this.Firstname = fn;
       let sql = `INSERT INTO user(Firstname) VALUES(${ this.Firstname })`;
       console.log(this.Firstname);
       return this.db.executeSql(sql, [task.title, task.completed]);
     }
-	
+
     getAll(){
        let sql = 'SELECT * FROM user';
        return this.db.executeSql(sql, [])
@@ -123,4 +123,3 @@ export class DataProvider {
      this.storage.set('authorization', null)
    }
  */
-}

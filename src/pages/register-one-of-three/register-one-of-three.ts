@@ -5,18 +5,10 @@ import { countries } from '../../models/model';
 import { LoginPage } from '../login/login';
 import { UploadCoverPhotoPage } from '../upload-cover-photo/upload-cover-photo';
 import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
-import {HttpClient,  HttpHeaders} from '@angular/common/http';
+//import {HttpClient,  HttpHeaders} from '@angular/common/http';
 import { server_url } from '../../environments/environment'
 
 
-
-@Injectable()
-/**
- * Generated class for the RegisterOneOfThreePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -40,12 +32,14 @@ export class RegisterOneOfThreePage {
   server_url: any = server_url;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient ) {
+  //private http: HttpClient 
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   goToLogin(){
     this.navCtrl.push(LoginPage);
   }
+  /*
   logForm(){
 
     const httpHeaders = new HttpHeaders({
@@ -65,6 +59,7 @@ export class RegisterOneOfThreePage {
     } catch (e){console.log("http.post returned :" + e);}
 
   }
+  */
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterOneOfThreePage');
