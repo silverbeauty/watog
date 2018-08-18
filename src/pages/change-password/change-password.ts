@@ -37,6 +37,10 @@ export class ChangePasswordPage {
     this.navCtrl.push(SettingsPage);
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
   logout(){
     console.log('not implemented yet');
   }

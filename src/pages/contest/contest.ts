@@ -6,6 +6,8 @@ import { SettingsPage } from '../settings/settings';
 
 /* Providers */
 import { DataProvider } from '../../providers/data/data';
+import { ParticipatePage } from '../participate/participate';
+import { ContestVotePage } from '../contest-vote/contest-vote';
 
 /**
  * Generated class for the ContestPage page.
@@ -39,6 +41,15 @@ export class ContestPage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goToParticipate(){
+    //First show a modal
+    this.navCtrl.push(ParticipatePage);
+  }
+
+  goToVote(){
+    this.navCtrl.push(ContestVotePage);
   }
 
   logout(){

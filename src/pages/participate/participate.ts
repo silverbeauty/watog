@@ -3,6 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { BestUltrasoundImagePage } from '../best-ultrasound-image/best-ultrasound-image';
+import { BestSurgicalImagePage } from '../best-surgical-image/best-surgical-image';
+import { BestPhotoWithTheWatogLogoPage } from '../best-photo-with-the-watog-logo/best-photo-with-the-watog-logo';
+import { BestGroupPhotoWithTheWatogLogoPage } from '../best-group-photo-with-the-watog-logo/best-group-photo-with-the-watog-logo';
+import { BestHumanitaryPhotoPage } from '../best-humanitary-photo/best-humanitary-photo';
 
 /**
  * Generated class for the ParticipatePage page.
@@ -35,6 +40,26 @@ export class ParticipatePage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goToBestUltrasoundImage(){
+    this.navCtrl.push(BestUltrasoundImagePage);
+  }
+
+  goToBestSurgicalImage(){
+    this.navCtrl.push(BestSurgicalImagePage);
+  }
+
+  goToBestPhotoWithWatogLogo(){
+    this.navCtrl.push(BestPhotoWithTheWatogLogoPage);
+  }
+
+  gotToBestGroupPhotoWithTheWatogLogo(){
+    this.navCtrl.push(BestGroupPhotoWithTheWatogLogoPage);
+  }
+
+  goToBestHumanitaryPhoto(){
+    this.navCtrl.push(BestHumanitaryPhotoPage);
   }
 
   logout(){

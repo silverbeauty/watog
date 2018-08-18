@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { ContestSubmitedPage } from '../contest-submited/contest-submited';
 
 /**
  * Generated class for the ContestSubmitPage page.
@@ -35,6 +36,10 @@ export class ContestSubmitPage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goToContestSubmited(){
+    this.navCtrl.push(ContestSubmitedPage);
   }
 
   logout(){
