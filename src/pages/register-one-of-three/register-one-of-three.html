@@ -125,7 +125,7 @@
             <hr>
             <li><a href="#" (click)="selectQualification('Medical Student')">Medical Student (Not OB/GYN yet)</a></li>
             <hr>
-            <li><a href="#" (click)="selectQualification('Medical Doctor, Other Speciality')">Medical Doctor, Other Speciality</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#modal-other-speciality" (click)="selectQualification('Medical Doctor, Other Speciality')">Medical Doctor, Other Speciality</a></li>
             <hr>
             <li><a href="#" (click)="selectQualification('Mid Wife')">Mid Wife</a></li>
             <hr>
@@ -135,4 +135,24 @@
       </div>
     </div>
   </div>
+
+  <div id="modal-other-speciality" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title ">Enter other speciality</h5>
+            <button id="btn-modal-close" type="button" class="close hide" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body p-4">
+                <ion-input type="text" class="form-control font-weight-light" [(ngModel)]="todo.other_speciality" name="other_speciality" [ngModelOptions]="{standalone: true}"></ion-input>
+          </div>
+          <div class="modal-footer">
+              <button ion-button round color="light" class="text-uppercase mr-3" data-dismiss="modal" (click)="cancelOtherSpeciality()">Cancel</button>
+              <button ion-button round color="teal" class="text-uppercase" (click)="saveOtherSpeciality()">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </ion-content>
