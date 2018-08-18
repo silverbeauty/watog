@@ -98,7 +98,7 @@ export class DataProvider {
   }
 
   public getProfile(): Promise<Auth> {
-    return Promise.all([this.storage.getItem('authorization'), this.storage.get('profile')]).then((res: Array<any>) => {
+    return Promise.all([this.storage.getItem('authorization'), this.storage.getItem('profile')]).then((res: Array<any>) => {
       if (res[0]) {
         const profile: object = JSON.parse(res[1]);
         if (profile) {
