@@ -5,6 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SQLite } from '@ionic-native/sqlite';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Camera } from '@ionic-native/camera';
+
 
 //import { AlertController } from 'ionic-angular';
 
@@ -50,6 +53,7 @@ import { DataProvider } from '../providers/data/data';
 import { DistantDataBaseProvider } from '../providers/distant-data-base/distant-data-base';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CameraProvider } from '../providers/camera/camera';
 
 
 @NgModule({
@@ -136,7 +140,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     DistantDataBaseProvider,
     RestProvider,
     HttpClient,
-    NativeStorage
+    NativeStorage,
+    ImagePicker,
+    CameraProvider,
+    Camera,
   ]
 })
 export class AppModule {}

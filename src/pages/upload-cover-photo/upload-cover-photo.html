@@ -22,15 +22,15 @@
       <h2 class="text-center">Upload cover photo</h2>
       <div class="row pictures">
         <div class="col">
-          <a href="#">
-            <img src="../../assets/imgs/appareil.png" alt="camera">
+          <a href="#" (click)="TakeaPicture()">
+            <img alt="camera" ng-src="base64Image" />
             <p class="font-weight-light text-center">Take a Picture</p>
           </a>
         </div>
         <div class="divider"></div>
         <div class="col">
-          <a href="#">
-            <img src="../../assets/imgs/on_your_computer.png" alt="On your computer">
+          <a href="#" (click)="navToGallery()">
+            <img alt="On your computer" src="{{ chooseImg }}" />
             <p class="font-weight-light text-center">On your device</p>
           </a>
         </div>
