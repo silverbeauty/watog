@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { SettingsPage } from '../settings/settings';
+import { DataProvider } from '../../providers';
+import { User, Auth } from '../../types';
 
 /**
  * Generated class for the ProfilePage page.
@@ -16,8 +18,30 @@ import { SettingsPage } from '../settings/settings';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+  public promise : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public name: string;
+  public lastname: string;
+  public proffesion: string;
+  public location: string;
+  public fullname: string;
+
+  public best_rank: string = "2nd";
+  public votes: number = 335;
+  public new_votes: number = 128;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public profil: DataProvider) {
+    this.promise = Promise.all([this.profil.get()]);
+    this.promise.then(res => {
+      return JSON.parse(res);
+    })
+    .then(data => {
+      this.name = data.first_name;
+      this.lastname = data.last_name;
+      this.proffesion = data.hospital;
+      this.location = data.country;
+      this.fullname = this.name + ' ' + this.lastname;
+    })
   }
 
   ionViewDidLoad() {
@@ -27,7 +51,7 @@ export class ProfilePage {
   goToDashboard(){
     this.navCtrl.push(DashboardPage);
   }
-  
+
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
   }

@@ -86,10 +86,10 @@ import { CameraProvider } from '../providers/camera/camera';
   	UploadCoverPhotoPage,
   	UploadProfilePhotoPage,
   	WhatIsWatogPage,
-	SettingsPage,
-	ChangePasswordPage,
-	EditProfilePage,
-	EnterTokenPage
+  	SettingsPage,
+  	ChangePasswordPage,
+  	EditProfilePage,
+  	EnterTokenPage
   ],
   imports: [
     BrowserModule,
@@ -125,11 +125,11 @@ import { CameraProvider } from '../providers/camera/camera';
   	RegisterTwoOfThreePage,
   	UploadCoverPhotoPage,
   	UploadProfilePhotoPage,
-	WhatIsWatogPage,
-	SettingsPage,
-	ChangePasswordPage,
-	EditProfilePage,
-	EnterTokenPage
+  	WhatIsWatogPage,
+  	SettingsPage,
+  	ChangePasswordPage,
+  	EditProfilePage,
+  	EnterTokenPage
   ],
   providers: [
     StatusBar,
@@ -143,7 +143,7 @@ import { CameraProvider } from '../providers/camera/camera';
     NativeStorage,
     ImagePicker,
     CameraProvider,
-    Camera,
+    Camera
   ]
 })
 export class AppModule {}

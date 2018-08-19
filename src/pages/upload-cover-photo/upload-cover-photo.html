@@ -23,14 +23,14 @@
       <div class="row pictures">
         <div class="col">
           <a href="#" (click)="TakeaPicture()">
-            <img alt="camera" ng-src="base64Image" />
+            <img alt="camera" [src]=base64Image />
             <p class="font-weight-light text-center">Take a Picture</p>
           </a>
         </div>
         <div class="divider"></div>
         <div class="col">
           <a href="#" (click)="navToGallery()">
-            <img alt="On your computer" src="{{ chooseImg }}" />
+            <img alt="On your computer" [src]=chooseImg />
             <p class="font-weight-light text-center">On your device</p>
           </a>
         </div>
