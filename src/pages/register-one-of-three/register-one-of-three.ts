@@ -5,7 +5,7 @@ import { countries } from '../../models/model';
 import { LoginPage } from '../login/login';
 import { UploadCoverPhotoPage } from '../upload-cover-photo/upload-cover-photo';
 import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
-//import {HttpClient,  HttpHeaders} from '@angular/common/http';
+import {HttpClient,  HttpHeaders} from '@angular/common/http';
 import { server_url } from '../../environments/environment'
 import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
 
@@ -30,18 +30,17 @@ export class RegisterOneOfThreePage {
     hospital:"",
     other_speciality: ""
   }
+
   countries : any[] = countries;
   server_url: any = server_url;
 
 
-  //private http: HttpClient 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  //
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
   }
 
-  goToLogin(){
-    this.navCtrl.push(LoginPage);
-  }
-  /*
+  /** Request Http **/
+
   logForm(){
 
     const httpHeaders = new HttpHeaders({
@@ -50,21 +49,30 @@ export class RegisterOneOfThreePage {
     });
     try{
       this.http.post(this.server_url+'/users', JSON.stringify(this.todo), {headers: httpHeaders}).subscribe(data => {
-
         console.log(data);
-        if(data.status == "true"){
-          alert('true');
-        }else{
-          alert('false');
+        if((typeof data) == "object"){
+          if(data == "true"){
+            alert('true');
+          }else{
+            alert('false');
+          }
+        }
+        else{
+          console.log("data is not define");
         }
       })
     } catch (e){console.log("http.post returned :" + e);}
 
   }
-  */
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterOneOfThreePage');
+  /** Navigation **/
+
+  goToLogin(){
+    this.navCtrl.push(LoginPage);
+  }
+
+  goToRegisterTwoOfThree(){
+    this.navCtrl.push(RegisterTwoOfThreePage);
   }
 
   navToUploadCoverPhoto(){
@@ -73,6 +81,10 @@ export class RegisterOneOfThreePage {
 
   navToUploadProfilePhoto(){
     this.navCtrl.push(UploadProfilePhotoPage);
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad RegisterOneOfThreePage');
   }
 
   /*Methods for the html dom modification */
@@ -87,10 +99,6 @@ export class RegisterOneOfThreePage {
   selectQualification(qualification){
     document.getElementById('qualificationInput').innerHTML = qualification;
     this.closeMenu();
-  }
-
-  goToRegisterTwoOfThree(){
-    this.navCtrl.push(RegisterTwoOfThreePage);
   }
 
   specifyQualification(){
