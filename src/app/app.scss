@@ -27,3 +27,23 @@
 .button[color="teal"].activated {
 	background-color: #a360a1;
 }
+
+.modal-open .modal {
+	background-color: rgba(0, 0, 0, 0.4);
+	.modal-header {
+		padding: 15px 20px;
+		.close {
+			font-size: 22px;
+		}
+	}
+	.modal-dialog {
+		margin: 20px;
+		.modal-content {
+			border-radius: 10px;
+		}
+	}
+}
+
+.modal-backdrop {
+	display: none;
+}

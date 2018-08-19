@@ -28,6 +28,7 @@ export class RegisterOneOfThreePage {
     cell_phone: null,
     country: "",
     hospital:"",
+    other_speciality: ""
   }
   countries : any[] = countries;
   server_url: any = server_url;
@@ -94,5 +95,18 @@ export class RegisterOneOfThreePage {
 
   specifyQualification(){
     alert('test');
+  }
+
+  saveOtherSpeciality() {
+    if(this.todo.other_speciality != '') {
+      this.selectQualification(this.todo.other_speciality);
+      var btnClose = document.getElementById("btn-modal-close") as any;
+      btnClose.click();
+    }
+  }
+
+  cancelOtherSpeciality() {
+    this.selectQualification('Select qualification');
+    this.todo.other_speciality = "";
   }
 }
