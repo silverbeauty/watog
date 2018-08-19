@@ -51,7 +51,7 @@ export class RegisterOneOfThreePage {
       this.http.post(this.server_url+'/users', JSON.stringify(this.todo), {headers: httpHeaders}).subscribe(data => {
         console.log(data);
         if((typeof data) == "object"){
-          if(data == "true"){
+          if(status == "true"){
             alert('true');
           }else{
             alert('false');

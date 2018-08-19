@@ -4,6 +4,9 @@ import 'rxjs/add/operator/map';
 
 import { User, Auth } from '../../types';
 
+import { server_url } from '../../environments/environment'
+
+
 const jsonHeader = new HttpHeaders({
   'Content-Type':  'application/json'
 });
@@ -11,7 +14,7 @@ const jsonHeader = new HttpHeaders({
 @Injectable()
 export class RestProvider {
 
-  apiUrl = 'http://localhost:3000/api';
+  apiUrl: any = server_url;
 
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
