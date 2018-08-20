@@ -49,7 +49,7 @@ export class RestProvider {
           if (res.status) {
             const  { user, token } = res.data;
             const auth: Auth = user as Auth;
-            auth.token =token;
+            auth.token = token;
             resolve(auth);
           } else {
             reject ('Invalid email or password')
