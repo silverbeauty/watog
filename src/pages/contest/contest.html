@@ -15,8 +15,24 @@
         </div>
       </div>
     </div>
+    <section class="logo">
+      <img src="../../assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG Logo">
+    </section>
     <section class="main">
-      <button class="btn btn-lg btn-primary" (click)="goToParticipate()">Participate</button>
-      <button class="btn btn-lg btn-secondary" (click)="goToVote()">Vote</button>
+      <div class="container">
+        <div class="row">
+          <div class="col" (click)="goToParticipate()">
+            <img src="../../assets/imgs/Participate.png" alt="participate img" class="img-left">
+            <p>Participate !</p> 
+          </div>
+          <div class="divider"></div>
+          <div class="col" (click)="goToVote()">
+            <img src="../../assets/imgs/Vote.png" alt="participate img" class="img-right">
+            <p>Vote !</p> 
+          </div>
+        </div>
+      </div>
+      <!--<button class="btn btn-lg btn-primary" (click)="goToParticipate()">Participate</button>
+      <button class="btn btn-lg btn-secondary" (click)="goToVote()">Vote</button>-->
     </section>
 </ion-content>

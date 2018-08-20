@@ -45,4 +45,84 @@ page-contest-vote {
         color: white;
     }
 
+    h2{
+        text-align: center;
+        font-size: 1.3em;
+        font-weight: 800;
+    }
+
+    .form-control{
+        border-radius: 50em;
+        font-size: 1.2em;
+        padding: 0em;
+        border-left: none;
+        max-width: 100%;
+    }
+
+    .input-group{
+        padding: 1.2em;
+    }
+
+    .input-group-text{
+        background-color: white;
+        border-radius: 50em;
+        padding-left: 2em;
+    }
+
+    .input-group-text img{
+        height: 2em;
+    }
+
+    .text-input{
+        margin: .6em;
+    }
+
+    .input-cover{
+        display: none;
+    }
+
+    table{
+        border-spacing: 1em;
+        border-collapse: separate;
+        margin: auto;
+    }
+
+    td{
+        background-color: #dce4e7;
+        color: black;
+        font-weight: 200;
+        padding-left: 1em;
+        padding-right: 1em;
+        border-radius: 10em;
+    }
+
+    .btn-search{
+        background-color: #a96ba7;
+    }
+
+    .btn-random{
+        background-color: #775576;
+    }
+
+    .btn-search, .btn-random{
+        margin: 1em;
+        color: white;
+        font-size: 1.1em;
+        font-weight: 200;
+        padding: .5em;
+        border-radius: 10em;
+        width: 80vw;
+    }
+
+    .random{
+        background-color: #dce4e7;
+        color: #525252;
+        padding: 1em;
+        padding-left: 3em;
+        padding-right: 3em;
+        text-align: center;
+        font-size: 1.1em;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+    }
 }

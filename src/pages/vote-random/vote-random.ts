@@ -3,10 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
-import { VoteRandomPage } from '../vote-random/vote-random';
 
 /**
- * Generated class for the ContestVotePage page.
+ * Generated class for the VoteRandomPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -14,16 +13,16 @@ import { VoteRandomPage } from '../vote-random/vote-random';
 
 @IonicPage()
 @Component({
-  selector: 'page-contest-vote',
-  templateUrl: 'contest-vote.html',
+  selector: 'page-vote-random',
+  templateUrl: 'vote-random.html',
 })
-export class ContestVotePage {
+export class VoteRandomPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContestVotePage');
+    console.log('ionViewDidLoad VoteRandomPage');
   }
 
   goToDashboard(){
@@ -36,10 +35,6 @@ export class ContestVotePage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
-  }
-
-  goToVoteRandom(){
-    this.navCtrl.push(VoteRandomPage);
   }
 
   logout(){

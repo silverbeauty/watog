@@ -1,4 +1,4 @@
-page-contest {
+page-vote-random {
     .navbar{
         background-color: #775576;
     }
@@ -45,30 +45,47 @@ page-contest {
         color: white;
     }
 
-    .logo{
-        margin-top: 4em;
-    }
-
-    .main{
+    .vote-card{
+        margin: 1em;
         background-color: white;
-        color: #525252;
-        margin: 2em;
-        margin-top: 4em;
-        border-radius: 1em;
-        text-align: center;
     }
 
-    .main img{
-        height: 10em;
+
+    .vote-card-img{
+        background-image: url('../../assets/imgs/Watog.jpg');
+        height: 45vh;
+        background-position: center top;
+        background-size: cover;
+        position: relative;
     }
 
-    .main .divider{
-        border-left: 1px solid #ddd;
+    .vote-card-legend{
+        position: absolute;
+        bottom: 0;
+        background-color: black;
+        opacity: .7;
+        width: 100%;
+        padding: 1em;
+        font-weight: 200;
+    }
+
+    .vote-card img{
+        height: 5vh;
+    }
+
+    .vote-card .btn{
+        background-color: white;
+    }
+
+    .vote-card-description{
         margin-top: 2em;
-        margin-bottom: 2em;
     }
 
-    .main p{
-        font-size: 1.3em;
+    .vote-card-description .btn{
+        font-size: 1.2em;
+    }
+
+    .btn-dislike img{
+        transform: rotate(180deg);
     }
 }

@@ -15,4 +15,41 @@
         </div>
       </div>
     </div>
+    <h2>Vote For you Favorite Photos !</h2>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><img src="../../assets/icon/Groupe 2.png" alt="pseudo icon"></span>
+        </div>
+        <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Search" name="Pseudo"></ion-input>
+    </div>
+    <h2>Suggestions :</h2>
+    <table>
+      <tbody>
+        <tr>
+          <td>Suggestion</td>
+          <td>Suggestion</td>
+          <td>Suggestion</td>
+        </tr>
+        <tr>
+          <td>Suggestion</td>
+          <td>Suggestion</td>
+          <td>Suggestion</td>
+        </tr>
+        <tr>
+          <td>Suggestion</td>
+          <td>Suggestion</td>
+          <td>Suggestion</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center">
+      <button class="btn btn-search">SEARCH</button>
+    </div>
+    <section class="random">
+      <p>You will vote on other contestant's photos. Swipe right if you like them, left if you don't.</p>
+      <p>Your vote will be weighted by your status</p>
+    </section>
+    <div class="text-center">
+      <button class="btn btn-random" (click)="goToVoteRandom()">RANDOM</button>
+    </div>
 </ion-content>
