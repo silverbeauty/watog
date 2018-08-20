@@ -15,8 +15,17 @@ npm install --save @ionic-native/native-storage
 ```
 - Camera/Photo
 
-`ionic cordova plugin add cordova-plugin-camera`  
-`npm install --save @ionic-native/camera`  
+```  
+ionic cordova plugin add cordova-plugin-camera    
+npm install --save @ionic-native/camera  
+```  
+
+- Image Picker  
+
+```  
+$ ionic cordova plugin add cordova-plugin-telerik-imagepicker --variable PHOTO_LIBRARY_USAGE_DESCRIPTION="Watog needs to access the photos to upload images."
+$ npm install --save @ionic-native/image-picker
+```  
 
 ## How to run
 
