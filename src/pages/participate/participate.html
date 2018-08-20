@@ -15,12 +15,41 @@
         </div>
       </div>
     </div>
+    <h1>Pick a category :</h1>
     <section class="main">
-      <h1>Pick-up a category</h1>
-      <button class="btn btn-lg btn-primary" (click)="goToBestUltrasoundImage()">Best Ultrasound Image</button>
-      <button class="btn btn-lg btn-primary" (click)="goToBestSurgicalImage()">Best Surgical Image</button>
-      <button class="btn btn-lg btn-primary" (click)="goToBestPhotoWithWatogLogo()">Best photo with the watog Logo</button>
-      <button class="btn btn-lg btn-primary" (click)="gotToBestGroupPhotoWithTheWatogLogo()">Best OB/GYN group photo with the WATOG logo</button>
-      <button class="btn btn-lg btn-primary" (click)="goToBestHumanitaryPhoto()">Best Humanitary OB/GYN photo</button>
+      <div class="container">
+        <div class="row">
+          <div class="col" (click)="goToBestUltrasoundImage()">
+            <img src="../../assets/imgs/polaroid 2.png" alt="best Ultrasound picture">
+            <p>Best ultrasound image</p>
+          </div>
+          <div class="divider"></div>
+          <div class="col" (click)="goToBestSurgicalImage()">
+            <img src="../../assets/imgs/polaroid robot.png" alt="best surgical picture">
+            <p>Best surgical image</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" (click)="goToBestPhotoWithWatogLogo()">
+            <img src="../../assets/imgs/polaroid 3 montagne.png" alt="best photo with the WATOG logo">
+            <p>Best photo with the WATOG logo</p>
+          </div>
+          <div class="divider"></div>
+          <div class="col" (click)="gotToBestGroupPhotoWithTheWatogLogo()">
+            <img src="../../assets/imgs/polaroid groupe.png" alt="best OB/GYN group with the WATOG logo">
+            <p>Best OB/GYN group with the WATOG logo</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" (click)="goToBestHumanitaryPhoto()">
+            <img src="../../assets/imgs/polaroid humanitaire shelter.png" alt="best Humanitary picture">
+            <p>Best humanitary OB/GYN photo</p>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
     </section>
+    <div class="text-center">
+      <button class="btn btn-back" (click)="goBack()">BACK</button>
+    </div>
 </ion-content>

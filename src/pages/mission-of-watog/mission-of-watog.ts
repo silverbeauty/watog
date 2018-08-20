@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { OrganizationPage } from '../organization/organization';
+import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 
 /**
  * Generated class for the MissionOfWatogPage page.
@@ -35,6 +37,14 @@ export class MissionOfWatogPage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goToOrganization(){
+    this.navCtrl.push(OrganizationPage);
+  }
+
+  goToWhatIsWatog(){
+    this.navCtrl.push(WhatIsWatogPage);
   }
 
   logout(){

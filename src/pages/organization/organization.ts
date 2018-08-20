@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { AccomplishmentsToDatePage } from '../accomplishments-to-date/accomplishments-to-date';
 
 /**
  * Generated class for the OrganizationPage page.
@@ -35,6 +36,14 @@ export class OrganizationPage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goBack(){
+    this.navCtrl.pop();
+  }
+
+  goToAccomplishments(){
+    this.navCtrl.push(AccomplishmentsToDatePage);
   }
 
   logout(){
