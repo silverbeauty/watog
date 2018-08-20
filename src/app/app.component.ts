@@ -37,6 +37,8 @@ export class MyApp {
         } else {
           this.rootPage = LoginPage; // Go to login page
         }
+      }).catch((e: any) => {
+        this.rootPage = LoginPage; // Go to login page
       })
 
       statusBar.styleDefault();
