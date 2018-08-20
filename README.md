@@ -3,10 +3,12 @@
 ## Dependencies
 
 - SQLite
+
 ```
 ionic cordova plugin add cordova-sqlite-storage  
 npm install --save @ionic-native/sqlite  
 ```
+
 - Native Storage
 
 ```
