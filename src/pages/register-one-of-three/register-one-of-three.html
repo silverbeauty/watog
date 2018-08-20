@@ -40,70 +40,76 @@
             <a href="#" (click)="navToUploadCoverPhoto()" class="btn btn-info upload-cover-photo"><p class="font-weight-light">Upload cover photo</p><img src="../../assets/icon/Upload.png" alt=""></a>
           </div>
 
-          <form (ngSubmit)="logForm()">
+          <form [formGroup]="registerForm">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="login logo"></span>
                 </div>
-                <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First Name*" [(ngModel)]="todo.first_name" name="first_name" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First Name*" formControlName="firstName"></ion-input>
             </div>
+            <p class="err_msg" *ngIf="!registerForm.controls.firstName.valid && registerForm.controls.firstName.touched">Please enter first name</p>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="password logo"></span>
                 </div>
-                <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" [(ngModel)]="todo.last_name" name="last_name" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" formControlName="lastName"></ion-input>
             </div>
+            <p class="err_msg" *ngIf="!registerForm.controls.lastName.valid && registerForm.controls.lastName.touched">Please enter last name</p>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="pseudo icon"></span>
                 </div>
-                <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="todo.Pseudo" name="Pseudo" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" formControlName="pseudo"></ion-input>
             </div>
+            <p class="err_msg" *ngIf="!registerForm.controls.pseudo.valid && registerForm.controls.pseudo.touched">Please enter pseudo</p>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Password.png" alt="password logo"></span>
                 </div>
-                <ion-input type="password" class="form-control font-weight-light" id="PasswordInput" aria-describedby="passwd-picture" placeholder="Password*" [(ngModel)]="todo.password" name="Pass" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="password" class="form-control font-weight-light" id="PasswordInput" aria-describedby="passwd-picture" placeholder="Password*" formControlName="password"></ion-input>
             </div>
+            <p class="err_msg" *ngIf="!registerForm.controls.password.valid && registerForm.controls.password.touched">Please enter password</p>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Password.png" alt="password logo"></span>
                 </div>
-                <ion-input type="password" class="form-control font-weight-light" id="ConfirmPasswordInput" aria-describedby="passwd-picture" placeholder="Confirm Password*" [(ngModel)]="todo.pass_conf" name="pass_conf" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="password" class="form-control font-weight-light" id="ConfirmPasswordInput" aria-describedby="passwd-picture" placeholder="Confirm Password*" formControlName="confirmPassword"></ion-input>
             </div>
+            <p class="err_msg" *ngIf="!registerForm.controls.confirmPassword.valid && registerForm.controls.confirmPassword.touched">Please enter confirm Password</p>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Mail02.png" alt="password logo"></span>
                 </div>
-                <ion-input type="email" class="form-control font-weight-light" id="EmailInput" aria-describedby="passwd-picture" placeholder="Email*" [(ngModel)]="todo.email" name="email" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="email" class="form-control font-weight-light" id="EmailInput" aria-describedby="passwd-picture" placeholder="Email*" formControlName="email"></ion-input>
             </div>
+            <p class="err_msg" *ngIf="!registerForm.controls.email.valid && registerForm.controls.email.touched">Please enter email</p>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Phone.png" alt="password logo"></span>
                 </div>
-                <ion-input type="number" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" placeholder="Cell Phone*" [(ngModel)]="todo.cell_phone" name="cell_phone" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="number" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" placeholder="Cell Phone*" formControlName="phone"></ion-input>
             </div>
+            <p class="err_msg" *ngIf="!registerForm.controls.phone.valid && registerForm.controls.phone.touched">Please enter phone number</p>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Location.png" alt="password logo"></span>
                 </div>
-              <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" name="country" [(ngModel)]="todo.country" [ngModelOptions]="{standalone: true}" >
+              <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" name="country" formControlName="country">
                 <ion-option *ngFor="let item of countries" value="{{item}}">{{item}}</ion-option>
               </ion-select>
             </div>
+            <p class="err_msg" *ngIf="!registerForm.controls.country.valid && registerForm.controls.country.touched">Please enter country</p>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Hopital.png" alt="password logo"></span>
                 </div>
-                <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="todo.hospital" name="hospital" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" formControlName="hospital"></ion-input>
             </div>
-
             <div class="text-center div-link-qualif">
               <a href="#" (click)="openMenu()" id="qualificationInput" class="btn font-weight-light"> Select qualification </a>
             </div>
-
             <div class="text-center div-btn-submit">
-              <button type="submit" class="btn btn-submit btn-md" (click)="goToRegisterTwoOfThree()">NEXT</button>
+              <button [disabled]="!registerForm.valid" class="btn btn-submit btn-md" (click)="goToRegisterTwoOfThree()">NEXT</button>
             </div>
           </form>
         </div>
@@ -146,7 +152,7 @@
             </button>
           </div>
           <div class="modal-body p-4">
-                <ion-input type="text" class="form-control font-weight-light" [(ngModel)]="todo.other_speciality" name="other_speciality" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" [(ngModel)]="registerInfo.other_speciality" name="other_speciality" [ngModelOptions]="{standalone: true}"></ion-input>
           </div>
           <div class="modal-footer">
               <button ion-button round color="light" class="text-uppercase mr-3" data-dismiss="modal" (click)="cancelOtherSpeciality()">Cancel</button>

@@ -126,12 +126,14 @@ page-register-one-of-three {
     .down-menu{
         width: 100%;
         position: fixed;
-        z-index: 1;
-        bottom: -100vh;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;        
         background-color: white;
         overflow-y: hidden;
         padding-top: 1em;
         color: black;
+        display: none;
     }
 
     .down-menu a{
@@ -146,6 +148,7 @@ page-register-one-of-three {
         position: absolute;
         top:0;
         right: .5em;
+        z-index: 5;
     }
 
     .down-menu ul{
@@ -190,6 +193,9 @@ page-register-one-of-three {
         color: #000;
         margin-top: 0;
     }
-
+    .err_msg{
+        padding: 0 1.2em;
+        color: #e03133;
+    }
 }
 

@@ -8,7 +8,8 @@ import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-p
 import {HttpClient,  HttpHeaders} from '@angular/common/http';
 import { server_url } from '../../environments/environment'
 import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
-
+// FormBuilder
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @IonicPage()
@@ -19,7 +20,8 @@ import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of
 
 
 export class RegisterOneOfThreePage {
-  public todo = {
+  public registerForm: FormGroup;
+  public registerInfo: any = {
     first_name: "",
     last_name: "",
     password: "",
@@ -30,13 +32,25 @@ export class RegisterOneOfThreePage {
     hospital:"",
     other_speciality: ""
   }
-
+  public submitAttempt: boolean = false;
   countries : any[] = countries;
   server_url: any = server_url;
 
 
   //
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private fb: FormBuilder) {
+    this.registerForm = this.fb.group({
+      firstName: ['', Validators.compose([Validators.required])],
+      lastName: ['', Validators.compose([Validators.required])],
+      pseudo: ['', Validators.compose([Validators.required])],
+      password: ['', Validators.compose([Validators.required])],
+      confirmPassword: ['', Validators.compose([Validators.required])],
+      email: ['', Validators.compose([Validators.required])],
+      phone: ['', Validators.compose([Validators.required])],
+      country: ['', Validators.compose([Validators.required])],
+      hospital: [''],
+      qualification: ['', Validators.compose([Validators.required])],
+    });
   }
 
   /** Request Http **/
@@ -48,7 +62,7 @@ export class RegisterOneOfThreePage {
       'Access-Control-Allow-Origin': '*'
     });
     try{
-      this.http.post(this.server_url+'/users', JSON.stringify(this.todo), {headers: httpHeaders}).subscribe(data => {
+      this.http.post(this.server_url+'/users', JSON.stringify(this.registerInfo), {headers: httpHeaders}).subscribe(data => {
         console.log(data);
         if((typeof data) == "object"){
           if(status == "true"){
@@ -72,7 +86,23 @@ export class RegisterOneOfThreePage {
   }
 
   goToRegisterTwoOfThree(){
-    this.navCtrl.push(RegisterTwoOfThreePage);
+    
+    this.registerInfo = {
+      first_name: this.registerForm.controls.firstName.value,
+      last_name: this.registerForm.controls.lastName.value,
+      password: this.registerForm.controls.password.value,
+      pass_conf: this.registerForm.controls.confirmPassword.value,
+      email: this.registerForm.controls.email.value,
+      cell_phone: this.registerForm.controls.phone.value,
+      country: this.registerForm.controls.country.value,
+      hospital:this.registerForm.controls.hospital.value,
+      other_speciality: '',
+    }
+    console.log(this.registerForm.controls);
+    console.log(this.registerInfo);
+    if(this.registerForm.valid){
+      this.navCtrl.push(RegisterTwoOfThreePage);
+    }
   }
 
   navToUploadCoverPhoto(){
@@ -89,14 +119,16 @@ export class RegisterOneOfThreePage {
 
   /*Methods for the html dom modification */
   openMenu(){
-    document.getElementById('qualificationInputMenu').style.bottom = '0';
+    document.getElementById('qualificationInputMenu').style.display = 'flex';
   }
 
   closeMenu(){
-    document.getElementById('qualificationInputMenu').style.bottom = '-100vh';
+    document.getElementById('qualificationInputMenu').style.display = 'none';
   }
 
   selectQualification(qualification){
+    this.registerForm.controls['qualification'].setValue(document.getElementById('qualificationInput').innerHTML);
+    this.registerInfo.other_speciality = this.registerForm.controls['qualification'].value;
     document.getElementById('qualificationInput').innerHTML = qualification;
     this.closeMenu();
   }
@@ -106,8 +138,8 @@ export class RegisterOneOfThreePage {
   }
 
   saveOtherSpeciality() {
-    if(this.todo.other_speciality != '') {
-      this.selectQualification(this.todo.other_speciality);
+    if(this.registerInfo.other_speciality != '') {
+      this.selectQualification(this.registerInfo.other_speciality);
       var btnClose = document.getElementById("btn-modal-close") as any;
       btnClose.click();
     }
@@ -115,6 +147,6 @@ export class RegisterOneOfThreePage {
 
   cancelOtherSpeciality() {
     this.selectQualification('Select qualification');
-    this.todo.other_speciality = "";
+    this.registerInfo.other_speciality = "";
   }
 }
