@@ -2,7 +2,7 @@
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Injectable } from '@angular/core';
 
-import { User, Auth } from '../../types';
+import { User, Auth, File } from '../../types';
 
 const my_database = 'data.db';
 
@@ -54,6 +54,31 @@ export class DataProvider {
   public clearProfile() {
     this.storage.setItem('profile', null)
     this.storage.setItem('authorization', null)
+  }
+
+  /*  save, get, remove file in localstorage */
+
+  public saveFile(file_content: any, file_url: string): void {
+    const file = {file_content: file_content, file_url: file_url};
+    this.storage.setItem('file', JSON.stringify(file));
+  }
+
+  public getFile(): Promise<any> {
+    return Promise.all([this.storage.getItem('file')]).then((res: Array<any>) => {
+      if (res[0]) {
+        const file: any = JSON.parse(res[0]);
+        return file;
+      } else {
+        return null
+      }
+    }).catch((e: any) => {
+      console.info(e)
+      return null;
+    })
+  }
+
+  public clearFile() {
+    this.storage.setItem('file', null)
   }
 
   /*** SIMPLE GET AND SET ***/

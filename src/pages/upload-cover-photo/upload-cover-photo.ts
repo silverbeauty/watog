@@ -34,8 +34,8 @@ export class UploadCoverPhotoPage {
 
         this.base64Image = 'data:image/jpeg;base64,' +imageData;
 
-      this.restProvider.login(email, password).then((auth: Auth) => {
-        console.info('Login Response:', auth)
+      this.restProvider.sendFile(this.base64Image).then((file: File) => {
+        console.info('Send File Response:', file)
         // Save profil
         this.dataProvider.saveProfile(auth);
         this.navCtrl.push(DashboardPage)
