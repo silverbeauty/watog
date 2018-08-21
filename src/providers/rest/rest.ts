@@ -76,4 +76,6 @@ export class RestProvider {
         });
     })
   }
+
+  public sendPhoto(photo: any): Promise
 }
