@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { CameraProvider } from '../../providers/camera/camera';
-import {Auth} from "../../types";
+import {Auth, resFile} from "../../types";
 import {DashboardPage} from "../dashboard/dashboard";
 import { DataProvider, RestProvider } from '../../providers';
 
@@ -34,13 +34,13 @@ export class UploadCoverPhotoPage {
 
         this.base64Image = 'data:image/jpeg;base64,' +imageData;
 
-      this.restProvider.sendFile(this.base64Image).then((file: File) => {
-        console.info('Send File Response:', file)
-        // Save profil
-        this.dataProvider.saveProfile(auth);
-        this.navCtrl.push(DashboardPage)
+      this.restProvider.sendFile(this.base64Image).then((res_file: resFile) => {
+        console.info('Send File Response:', res_file)
+        // Save file
+        this.dataProvider.saveFile(this.base64Image, res_file.url);
+
       }).catch((error) => {
-        this.data.error = 'Invalid email or password';
+        alert(error);
       })
 
         alert(this.base64Image);

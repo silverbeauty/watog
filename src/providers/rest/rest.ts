@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
-import { User, Auth, File } from '../../types';
+import { User, Auth, resFile } from '../../types';
 
 import { server_url } from '../../environments/environment'
 
@@ -76,12 +76,12 @@ export class RestProvider {
     })
   }
 
-  public sendFile(file: any): Promise<File>{
+  public sendFile(file: any): Promise<resFile>{
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/file', JSON.stringify({file: file }), { headers: jsonHeader })
         .subscribe((res: any) => {
           if (res.status) {
-            resolve(res.data as File);
+            resolve(res.data as resFile);
           } else {
             reject('Save file failed!')
           }

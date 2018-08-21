@@ -8,15 +8,7 @@ const my_database = 'data.db';
 
 @Injectable()
 export class DataProvider {
-
-  //private db: SQLiteObject;
-  private Firstname: string;
-  private Password: string;
-  private Email: string;
-  private Country: string;
-  private Hospital: string;
-  private Phone: number;
-  private arr: any;
+  
 
   //public sqlite: SQLite, private storage: Storage
 
