@@ -20,13 +20,14 @@ import { User, Auth } from '../types';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = DashboardPage;
+  rootPage:any = LoginPage;
 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public dataProvider: DataProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+
       this.dataProvider.getProfile().then((auth: Auth) => {
         if (auth) {
           if (auth.proof_of_status) {

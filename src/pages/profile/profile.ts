@@ -41,8 +41,11 @@ export class ProfilePage {
       this.proffesion = data.hospital;
       this.location = data.country;
       this.fullname = this.name + ' ' + this.lastname;
+      
     })
   }
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
