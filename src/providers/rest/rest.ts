@@ -15,7 +15,6 @@ const jsonHeader = new HttpHeaders({
 export class RestProvider {
 
   apiUrl: any = server_url;
-
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
@@ -77,5 +76,19 @@ export class RestProvider {
     })
   }
 
-  public sendPhoto(photo: any): Promise
+  public sendFile(file: any): Promise<any>{
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file }), { headers: jsonHeader })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data as User);
+          } else {
+            reject('Save file failed!')
+          }
+        }, (err) => {
+          console.info('Send file Failed:', err)
+          reject(err);
+        });
+    })
+  }
 }
