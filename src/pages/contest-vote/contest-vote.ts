@@ -4,6 +4,11 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { VoteRandomPage } from '../vote-random/vote-random';
+import { LoginPage } from '../login/login';
+
+import { DataProvider } from '../../providers/data/data';
+import { RestProvider } from '../../providers/rest/rest';
+import { User, Auth } from '../../types';
 
 /**
  * Generated class for the ContestVotePage page.
@@ -19,8 +24,12 @@ import { VoteRandomPage } from '../vote-random/vote-random';
 })
 export class ContestVotePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ public data = {
+    name: '',
+    error: null
   }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestVotePage');
@@ -43,7 +52,15 @@ export class ContestVotePage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
+  onClickSearch() {
+    console.info('Search:', this.data.name)
+
+    this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
+      console.info(users)
+    })
+  }
 }
