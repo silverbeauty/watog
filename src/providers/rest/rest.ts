@@ -6,7 +6,6 @@ import { User, Auth } from '../../types';
 
 import { server_url } from '../../environments/environment'
 
-
 const jsonHeader = new HttpHeaders({
   'Content-Type':  'application/json'
 });
@@ -15,7 +14,8 @@ const jsonHeader = new HttpHeaders({
 export class RestProvider {
 
   apiUrl: any = server_url;
-
+  public static token: String;
+  
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
@@ -48,6 +48,7 @@ export class RestProvider {
         .subscribe((res: any) => {
           if (res.status) {
             const  { user, token } = res.data;
+            RestProvider.token = token; // Set token
             const auth: Auth = user as Auth;
             auth.token = token;
             resolve(auth);
@@ -62,6 +63,22 @@ export class RestProvider {
   }
 
   public signUp(user: User): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data as User);
+          } else {
+            reject('Sign Up failed!')
+          }
+        }, (err) => {
+          console.info('SignUp Failed:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public queryUsers(name: string): Promise<Array<User>> {
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
         .subscribe((res: any) => {
