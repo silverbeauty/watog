@@ -37,6 +37,7 @@ export class RegisterOneOfThreePage {
 
   //
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+
   }
 
   /** Request Http **/

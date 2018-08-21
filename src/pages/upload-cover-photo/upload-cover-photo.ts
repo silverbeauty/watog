@@ -15,6 +15,7 @@ import { DataProvider, RestProvider } from '../../providers';
 export class UploadCoverPhotoPage {
   public base64Image: any;
   public chooseImg: any;
+  public image: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public restProvider: RestProvider, public dataProvider: DataProvider) {
     this.base64Image = "../../assets/imgs/appareil.png";
@@ -26,7 +27,7 @@ export class UploadCoverPhotoPage {
   }
 
   gotToRegister(){
-    this.navCtrl.push(RegisterOneOfThreePage);
+    this.navCtrl.push(RegisterOneOfThreePage, {image: this.image, from: 'cover-photo'});
   }
 
   TakeaPicture(){
@@ -38,6 +39,7 @@ export class UploadCoverPhotoPage {
         console.info('Send File Response:', res_file)
         // Save file
         this.dataProvider.saveFile(this.base64Image, res_file.url);
+        this.image = this.base64Image;
 
       }).catch((error) => {
         alert(error);
