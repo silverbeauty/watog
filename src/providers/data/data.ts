@@ -3,6 +3,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { Injectable } from '@angular/core';
 
 import { User, Auth } from '../../types';
+import { RestProvider } from '../rest/rest';
 
 const my_database = 'data.db';
 
@@ -32,6 +33,9 @@ export class DataProvider {
   public getProfile(): Promise<Auth> {
     return Promise.all([this.storage.getItem('authorization'), this.storage.getItem('profile')]).then((res: Array<any>) => {
       if (res[0]) {
+        // Set token to RestProvider
+        RestProvider.token = res[0];
+
         const profile: object = JSON.parse(res[1]);
         if (profile) {
           const auth: Auth = profile as Auth;
