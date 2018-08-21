@@ -27,7 +27,7 @@ export class UploadCoverPhotoPage {
   }
 
   gotToRegister(){
-    this.navCtrl.push(RegisterOneOfThreePage, {image: this.image, from: 'cover-photo'});
+    this.navCtrl.push(RegisterOneOfThreePage, {image: this.image, from: 'picture_cover'});
   }
 
   TakeaPicture(){

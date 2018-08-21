@@ -28,15 +28,31 @@ export class RegisterOneOfThreePage {
     cell_phone: null,
     country: "",
     hospital:"",
-    other_speciality: ""
+    other_speciality: "",
+    picture_profile: "",
+    picture_cover: ""
+  }
+  public image = {
+    from: "",
+    image_link: ""
   }
 
   countries : any[] = countries;
   server_url: any = server_url;
-
-
+  profile_image: string = "../../assets/imgs/rio.jpg";
   //
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+    const params = this.navParams.data;
+    if(params.image_link){
+      this.image = params;
+      if(this.image.from == 'picture_profile'){
+        this.profile_image = this.image.image_link;
+      }else if(this.image.from == 'picture_cover'){
+
+      }else{
+        alert('Image from Unknown Page')
+      }
+    }
 
   }
 

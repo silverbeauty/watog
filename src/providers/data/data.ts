@@ -2,13 +2,13 @@
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Injectable } from '@angular/core';
 
-import { User, Auth, File } from '../../types';
+import { User, Auth } from '../../types';
 
 const my_database = 'data.db';
 
 @Injectable()
 export class DataProvider {
-  
+
 
   //public sqlite: SQLite, private storage: Storage
 

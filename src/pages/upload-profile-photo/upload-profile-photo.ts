@@ -33,7 +33,7 @@ export class UploadProfilePhotoPage {
   }
 
   gotToRegister(){
-    this.navCtrl.push(RegisterOneOfThreePage, {image: this.image, from: 'profile-photo'});
+    this.navCtrl.push(RegisterOneOfThreePage, {image: this.image, from: 'picture_profile'});
   }
 
   TakeaPicture(){
