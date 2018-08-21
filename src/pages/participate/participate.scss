@@ -45,4 +45,52 @@ page-participate {
         color: white;
     }
 
+    h1{
+        color: #525252;
+        margin: .5em;
+        font-weight: 900;
+        font-size: 1.8em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .main{
+        background-color: white;
+        color: #525252;
+        margin: 1em;
+        padding: 1.5em;
+        border-radius: 1em;
+    }
+
+    .divider{
+        border-right: 1px solid #dce4e7;
+        margin-top: .2em;
+        margin-bottom: 1em;
+    }
+
+    .main .col{
+        text-align: center;
+    }
+
+    .main .col img{
+        height: 75px;
+        width: auto;
+        box-shadow: 0 .5em .7em .1em #dce4e7;
+        margin-bottom: 1em;
+    }
+
+    .main .col p{
+        font-size: 1em;
+    }
+
+    .btn-back{
+        background-color: #a96ba7;
+        color: white;
+        font-size: 1.1em;
+        font-weight: 200;
+        padding: .7em;
+        margin-top: 1em;
+        border-radius: 30em;
+        width: 90vw;
+    }
 }

@@ -62,6 +62,10 @@ export class ParticipatePage {
     this.navCtrl.push(BestHumanitaryPhotoPage);
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
   logout(){
     console.log('not implemented yet');
   }
