@@ -1,4 +1,4 @@
-page-accomplishments-to-date {
+page-vote-random {
     .navbar{
         background-color: #775576;
     }
@@ -45,44 +45,47 @@ page-accomplishments-to-date {
         color: white;
     }
 
-    .title {
-        text-align: center;
-        color: #525252;
+    .vote-card{
+        margin: 1em;
+        background-color: white;
     }
 
-    h3{
-        margin-top: 1em;
-        margin-bottom: 1em;
+
+    .vote-card-img{
+        background-image: url('../../assets/imgs/Watog.jpg');
+        height: 45vh;
+        background-position: center top;
+        background-size: cover;
+        position: relative;
     }
 
-    .card.info-box {
-        border-radius: 10px;
-        .card-content {
-            padding: 2em;
-            font-size: 1em;
-            color: #555;
-        }
-    }
-
-    .btn-next{
-        background-color: #a96ba7;
-        color: white;
-        font-size: 1.2em;
-        font-weight: 200;
-        padding: .7em;
-        margin-top: 2em;
-        border-radius: 20em;
+    .vote-card-legend{
+        position: absolute;
+        bottom: 0;
+        background-color: black;
+        opacity: .7;
         width: 100%;
+        padding: 1em;
+        font-weight: 200;
     }
 
-    .btn-back{
-        background-color: #dce4e7;
-        color: black;
-        font-size: 1.2em;
-        font-weight: 200;
-        padding: .7em;
+    .vote-card img{
+        height: 5vh;
+    }
+
+    .vote-card .btn{
+        background-color: white;
+    }
+
+    .vote-card-description{
         margin-top: 2em;
-        border-radius: 20em;
-        width: 100%;
+    }
+
+    .vote-card-description .btn{
+        font-size: 1.2em;
+    }
+
+    .btn-dislike img{
+        transform: rotate(180deg);
     }
 }

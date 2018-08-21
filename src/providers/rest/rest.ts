@@ -44,12 +44,12 @@ export class RestProvider {
 
   public login(email: string, password: string): Promise<Auth> {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/users/login', JSON.stringify({email, password}), { headers: jsonHeader })
+      this.http.post(this.apiUrl+'/user/login', JSON.stringify({email, password}), { headers: jsonHeader })
         .subscribe((res: any) => {
           if (res.status) {
             const  { user, token } = res.data;
             const auth: Auth = user as Auth;
-            auth.token =token;
+            auth.token = token;
             resolve(auth);
           } else {
             reject ('Invalid email or password')
@@ -63,7 +63,7 @@ export class RestProvider {
 
   public signUp(user: User): Promise<User> {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/users', JSON.stringify(user), { headers: jsonHeader })
+      this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as User);

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { VoteRandomPage } from '../vote-random/vote-random';
 
 /**
  * Generated class for the ContestVotePage page.
@@ -35,6 +36,10 @@ export class ContestVotePage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goToVoteRandom(){
+    this.navCtrl.push(VoteRandomPage);
   }
 
   logout(){

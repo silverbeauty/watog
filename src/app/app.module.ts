@@ -46,6 +46,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { EnterTokenPage } from '../pages/enter-token/enter-token';
+import { VoteRandomPage } from '../pages/vote-random/vote-random';
 
 
 	/*Provider*/
@@ -89,7 +90,8 @@ import { CameraProvider } from '../providers/camera/camera';
   	SettingsPage,
   	ChangePasswordPage,
   	EditProfilePage,
-  	EnterTokenPage
+	EnterTokenPage,
+	VoteRandomPage
   ],
   imports: [
     BrowserModule,
@@ -129,7 +131,8 @@ import { CameraProvider } from '../providers/camera/camera';
   	SettingsPage,
   	ChangePasswordPage,
   	EditProfilePage,
-  	EnterTokenPage
+	EnterTokenPage,
+	VoteRandomPage
   ],
   providers: [
     StatusBar,

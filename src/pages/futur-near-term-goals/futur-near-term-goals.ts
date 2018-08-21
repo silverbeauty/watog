@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 
 /**
  * Generated class for the FuturNearTermGoalsPage page.
@@ -35,6 +36,10 @@ export class FuturNearTermGoalsPage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goToWhatIsWatog(){
+    this.navCtrl.push(WhatIsWatogPage);
   }
 
   logout(){

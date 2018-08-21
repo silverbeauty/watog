@@ -49,13 +49,40 @@ page-organization {
         color: #525252;
     }
 
+    h3{
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
     .card.info-box {
         border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
         .card-content {
-            padding: 20px;
-            font-size: 12px;
+            padding: 2em;
+            font-size: 1em;
             color: #555;
         }
     }
+
+    .btn-next{
+        background-color: #a96ba7;
+        color: white;
+        font-size: 1.2em;
+        font-weight: 200;
+        padding: .7em;
+        margin-top: 2em;
+        border-radius: 20em;
+        width: 100%;
+    }
+
+    .btn-back{
+        background-color: #dce4e7;
+        color: black;
+        font-size: 1.2em;
+        font-weight: 200;
+        padding: .7em;
+        margin-top: 2em;
+        border-radius: 20em;
+        width: 100%;
+    }
+
 }

@@ -44,4 +44,31 @@ page-contest {
         background-position: center top;
         color: white;
     }
+
+    .logo{
+        margin-top: 4em;
+    }
+
+    .main{
+        background-color: white;
+        color: #525252;
+        margin: 2em;
+        margin-top: 4em;
+        border-radius: 1em;
+        text-align: center;
+    }
+
+    .main img{
+        height: 10em;
+    }
+
+    .main .divider{
+        border-left: 1px solid #ddd;
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+
+    .main p{
+        font-size: 1.3em;
+    }
 }
