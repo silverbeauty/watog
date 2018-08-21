@@ -15,4 +15,9 @@
         </div>
       </div>
     </div>
+
+    <div *ngFor="let user of data.users" class="searched-list-item">
+      <img class="profile" alt="profile icon" src="user.picture_profile">
+      {{user.first_name}} {{user.last_name}}
+    </div>
 </ion-content>

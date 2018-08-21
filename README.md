@@ -33,7 +33,7 @@ $ npm install --save @ionic-native/image-picker
 
 ### Browser
 
-- `npm run start:dev`   
+- `npm start`   
 
 ### Android  
 

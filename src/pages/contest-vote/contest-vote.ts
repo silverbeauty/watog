@@ -63,7 +63,9 @@ export class ContestVotePage {
     DataProvider.searchUserName = this.data.name;
 
     this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
-      console.info(users)
+      DataProvider.searchedUsers = users;
+      DataProvider.searchUserOffset = 0;
+      this.navCtrl.push(ContestSearchResultsPage);
     })
   }
 }
