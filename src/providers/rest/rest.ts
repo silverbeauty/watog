@@ -14,7 +14,7 @@ const jsonHeader = new HttpHeaders({
 export class RestProvider {
 
   apiUrl: any = server_url;
-  public static token: String;
+  public static token: string;
   
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
@@ -79,11 +79,14 @@ export class RestProvider {
   }
 
   public queryUsers(name: string): Promise<Array<User>> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token
+    });
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
+      this.http.get(this.apiUrl + '/user?name=' + name, { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            resolve(res.data as User);
+            resolve(res.data as Array<User>);
           } else {
             reject('Sign Up failed!')
           }
