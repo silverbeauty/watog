@@ -5,6 +5,7 @@ import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { VoteRandomPage } from '../vote-random/vote-random';
 import { LoginPage } from '../login/login';
+import { ContestSearchResultsPage } from '../contest-search-results/contest-search-results';
 
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
@@ -58,6 +59,8 @@ export class ContestVotePage {
 
   onClickSearch() {
     console.info('Search:', this.data.name)
+    // Set recent search
+    DataProvider.searchUserName = this.data.name;
 
     this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
       console.info(users)

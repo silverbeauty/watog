@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import { User, Auth } from '../../types';
+import { DataProvider } from '../data/data';
 
 import { server_url } from '../../environments/environment'
 
@@ -13,7 +14,7 @@ const jsonHeader = new HttpHeaders({
 @Injectable()
 export class RestProvider {
 
-  apiUrl: any = server_url;
+  apiUrl: any = 'http://localhost:3000/api'//server_url;
   public static token: string;
   
   constructor(public http: HttpClient) {
@@ -78,12 +79,12 @@ export class RestProvider {
     })
   }
 
-  public queryUsers(name: string): Promise<Array<User>> {
+  public queryUsers(name: string, offset: number = 0, limit: number = 10): Promise<Array<User>> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token
     });
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl + '/user?name=' + name, { headers })
+      this.http.get(this.apiUrl + '/user?offset=' + offset + '&limit=' + limit +'&name=' + name, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Array<User>);

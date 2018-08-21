@@ -21,6 +21,11 @@ export class DataProvider {
 
   //public sqlite: SQLite, private storage: Storage
 
+  public static searchUserName: string;
+  public static searchedUsers: Array<User> = [];
+  public static searchUserLimit = 10;
+  public static searchUserOffset = 0;
+
   constructor(private storage: NativeStorage) {}
 
 
