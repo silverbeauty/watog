@@ -33,15 +33,12 @@ $ npm install --save @ionic-native/image-picker
 
 ### Browser
 
-- `ionic cordova run browser` 
-Or  
-
 - `npm run start:dev`   
 
 ### Android  
 
-- `ionic cordova run android`  
+- `npm run android`  
 
 ### iOS
-This platform should be added by `ionic cordova platform add browser`  
-- `ionic cordova run ios`  
+This platform should be added by `ionic cordova platform add ios`
+- `npm run ios`  
