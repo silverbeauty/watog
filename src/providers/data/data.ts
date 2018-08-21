@@ -29,6 +29,11 @@ export class DataProvider {
     this.storage.setItem('authorization', auth.token);
   }
 
+  public removeProfile(): void{
+    this.storage.remove('profile');
+    this.storage.remove('authorization');
+  }
+
   public getProfile(): Promise<Auth> {
     return Promise.all([this.storage.getItem('authorization'), this.storage.getItem('profile')]).then((res: Array<any>) => {
       if (res[0]) {

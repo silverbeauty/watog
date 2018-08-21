@@ -57,7 +57,6 @@ export class ProfilePage {
   }
 
   logout(){
-    console.log('not implemented yet');
   }
 
 }
