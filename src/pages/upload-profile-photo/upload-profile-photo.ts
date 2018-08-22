@@ -44,7 +44,7 @@ export class UploadProfilePhotoPage {
         console.info('Send File Response:', res_file)
         // Save file
         //this.dataProvider.saveFile(this.base64Image, res_file.url);
-        this.image = this.base64Image;
+        this.image = res_file.url;
 
       }).catch((error) => {
         alert(error);

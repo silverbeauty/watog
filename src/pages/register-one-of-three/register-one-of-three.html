@@ -58,7 +58,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="pseudo icon"></span>
                 </div>
-                <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="user.Pseudo" name="Pseudo" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="user.pseudo" name="Pseudo" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -147,7 +147,7 @@
             </button>
           </div>
           <div class="modal-body p-4">
-                <ion-input type="text" class="form-control font-weight-light" [(ngModel)]="todo.other_speciality" name="other_speciality" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" [(ngModel)]="user.other_speciality" name="other_speciality" [ngModelOptions]="{standalone: true}"></ion-input>
           </div>
           <div class="modal-footer">
               <button ion-button round color="light" class="text-uppercase mr-3" data-dismiss="modal" (click)="cancelOtherSpeciality()">Cancel</button>
