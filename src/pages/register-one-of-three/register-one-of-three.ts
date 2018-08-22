@@ -33,7 +33,9 @@ export class RegisterOneOfThreePage {
     pseudo: '',
     picture_profile: '',
     picture_cover: '',
-    other_speciality: ''
+    other_speciality: '',
+    proof_of_status_date:'',
+    proof_of_status: ''
   }
   public image = {
     from: "",

@@ -25,7 +25,6 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-<<<<<<< HEAD
       this.dataProvider.getProfile().then((auth: Auth) => {
         if (auth) {
           if (auth.proof_of_status) {
@@ -41,9 +40,6 @@ export class MyApp {
       }).catch((e: any) => {
         this.rootPage = DashboardPage; // Go to login page
       })
-
-=======
->>>>>>> ionic-front/master
       statusBar.styleDefault();
       splashScreen.hide();
     });
