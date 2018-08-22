@@ -1,12 +1,9 @@
-import { Injectable } from '@angular/core';
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, UrlSerializer} from 'ionic-angular';
+import {IonicPage, NavController, NavParams } from 'ionic-angular';
 import { countries } from '../../models/model';
 import { LoginPage } from '../login/login';
 import { UploadCoverPhotoPage } from '../upload-cover-photo/upload-cover-photo';
 import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
-import {HttpClient,  HttpHeaders} from '@angular/common/http';
-import { server_url } from '../../environments/environment'
 import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
 import {DashboardPage} from "../dashboard/dashboard";
 import {Auth, User} from "../../types";
@@ -45,7 +42,7 @@ export class RegisterOneOfThreePage {
   countries : any[] = countries;
   profile_image: string = "../../assets/imgs/rio.jpg";
   //
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, public restProvider: RestProvider, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
     if(params.image_link){
       this.image = params;
