@@ -24,6 +24,7 @@
         <div class="row">
           <div class="col-4 justify-content-right">
             <div id="profil-picture">
+              <img [src]="profile_image">
               <!--Image is the css property background-image: url(...);-->
             </div>
           </div>
@@ -45,49 +46,49 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="login logo"></span>
                 </div>
-                <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First Name*" [(ngModel)]="todo.first_name" name="first_name" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First Name*" [(ngModel)]="user.first_name" name="first_name" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="password logo"></span>
                 </div>
-                <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" [(ngModel)]="todo.last_name" name="last_name" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" [(ngModel)]="user.last_name" name="last_name" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="pseudo icon"></span>
                 </div>
-                <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="todo.Pseudo" name="Pseudo" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="user.pseudo" name="Pseudo" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Password.png" alt="password logo"></span>
                 </div>
-                <ion-input type="password" class="form-control font-weight-light" id="PasswordInput" aria-describedby="passwd-picture" placeholder="Password*" [(ngModel)]="todo.password" name="Pass" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="password" class="form-control font-weight-light" id="PasswordInput" aria-describedby="passwd-picture" placeholder="Password*" [(ngModel)]="user.password" name="Pass" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Password.png" alt="password logo"></span>
                 </div>
-                <ion-input type="password" class="form-control font-weight-light" id="ConfirmPasswordInput" aria-describedby="passwd-picture" placeholder="Confirm Password*" [(ngModel)]="todo.pass_conf" name="pass_conf" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="password" class="form-control font-weight-light" id="ConfirmPasswordInput" aria-describedby="passwd-picture" placeholder="Confirm Password*" [(ngModel)]="user.pass_conf" name="pass_conf" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Mail02.png" alt="password logo"></span>
                 </div>
-                <ion-input type="email" class="form-control font-weight-light" id="EmailInput" aria-describedby="passwd-picture" placeholder="Email*" [(ngModel)]="todo.email" name="email" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="email" class="form-control font-weight-light" id="EmailInput" aria-describedby="passwd-picture" placeholder="Email*" [(ngModel)]="user.email" name="email" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Phone.png" alt="password logo"></span>
                 </div>
-                <ion-input type="number" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" placeholder="Cell Phone*" [(ngModel)]="todo.cell_phone" name="cell_phone" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="number" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" placeholder="Cell Phone*" [(ngModel)]="user.cell_phone" name="cell_phone" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Location.png" alt="password logo"></span>
                 </div>
-              <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" name="country" [(ngModel)]="todo.country" [ngModelOptions]="{standalone: true}" >
+              <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" name="country" [(ngModel)]="user.country" [ngModelOptions]="{standalone: true}" >
                 <ion-option *ngFor="let item of countries" value="{{item}}">{{item}}</ion-option>
               </ion-select>
             </div>
@@ -95,7 +96,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="../../assets/icon/Hopital.png" alt="password logo"></span>
                 </div>
-                <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="todo.hospital" name="hospital" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="user.hospital" name="hospital" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
 
             <div class="text-center div-link-qualif">
@@ -146,7 +147,7 @@
             </button>
           </div>
           <div class="modal-body p-4">
-                <ion-input type="text" class="form-control font-weight-light" [(ngModel)]="todo.other_speciality" name="other_speciality" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" [(ngModel)]="user.other_speciality" name="other_speciality" [ngModelOptions]="{standalone: true}"></ion-input>
           </div>
           <div class="modal-footer">
               <button ion-button round color="light" class="text-uppercase mr-3" data-dismiss="modal" (click)="cancelOtherSpeciality()">Cancel</button>
