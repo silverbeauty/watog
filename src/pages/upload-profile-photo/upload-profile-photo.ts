@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { CameraProvider } from '../../providers/camera/camera';
-import {Auth, resFile} from "../../types";
 import {resFile} from "../../types";
 import { DataProvider, RestProvider } from '../../providers';
 
@@ -44,7 +43,7 @@ export class UploadProfilePhotoPage {
       this.restProvider.sendFile(this.base64Image).then((res_file: resFile) => {
         console.info('Send File Response:', res_file)
         // Save file
-        this.dataProvider.saveFile(this.base64Image, res_file.url);
+        //this.dataProvider.saveFile(this.base64Image, res_file.url);
         this.image = this.base64Image;
 
       }).catch((error) => {

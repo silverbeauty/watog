@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, UrlSerializer} from 'ionic-angular';
 import { countries } from '../../models/model';
 import { LoginPage } from '../login/login';
 import { UploadCoverPhotoPage } from '../upload-cover-photo/upload-cover-photo';
@@ -8,6 +8,9 @@ import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-p
 import {HttpClient,  HttpHeaders} from '@angular/common/http';
 import { server_url } from '../../environments/environment'
 import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
+import {DashboardPage} from "../dashboard/dashboard";
+import {Auth, User} from "../../types";
+import { DataProvider, RestProvider } from '../../providers';
 
 
 
@@ -19,19 +22,7 @@ import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of
 
 
 export class RegisterOneOfThreePage {
-  public todo = {
-    first_name: "",
-    last_name: "",
-    password: "",
-    pass_conf: "",
-    email: "",
-    cell_phone: null,
-    country: "",
-    hospital:"",
-    other_speciality: "",
-    picture_profile: "",
-    picture_cover: ""
-  }
+  public user:User;
   public image = {
     from: "",
     image_link: ""
@@ -41,7 +32,7 @@ export class RegisterOneOfThreePage {
   server_url: any = server_url;
   profile_image: string = "../../assets/imgs/rio.jpg";
   //
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
     if(params.image_link){
       this.image = params;
@@ -79,6 +70,23 @@ export class RegisterOneOfThreePage {
         }
       })
     } catch (e){console.log("http.post returned :" + e);}
+
+
+    console.log('Signup Form Data:', this.user)
+
+    const { email, password } = this.user;
+    if (email && password) {
+      this.restProvider.signUp(this.user).then((auth: Auth) => {
+        console.info('Login Response:', auth)
+        // Save profil
+        this.dataProvider.saveProfile(auth);
+        this.navCtrl.push(DashboardPage)
+      }).catch((error) => {
+        alert('Invalid email or password');
+      })
+    } else {
+      alert('Please enter email and password');
+    }
 
   }
 
