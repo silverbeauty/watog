@@ -80,11 +80,17 @@ page-register-one-of-three {
         height: 75px;
         width: 75px;
         border-radius: 50%;
-        background-image: url(../../assets/imgs/rio.jpg);
+        //background-image: url(../../assets/imgs/rio.jpg);
         background-position: center;
         background-size: cover;
         float: right;
         box-shadow: 1px 2px 10px #3a2239;
+
+        img{
+          height: 75px;
+          width: 75px;
+          border-radius: 50%;
+        }
     }
 
     .profile-picture-description p{
