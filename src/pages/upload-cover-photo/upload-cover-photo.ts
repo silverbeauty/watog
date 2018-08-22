@@ -57,6 +57,16 @@ export class UploadCoverPhotoPage {
         for (var i = 0; i < results.length; i++) {
           this.chooseImg = results[i];
         }
+
+        this.restProvider.sendFile(this.chooseImg).then((res_file: resFile) => {
+          console.info('Send File Response:', res_file)
+          // Save file
+          //this.dataProvider.saveFile(this.base64Image, res_file.url);
+          this.image = res_file.url;
+
+        }).catch((error) => {
+          alert(error);
+        })
       },(err) => {
           alert("Error"+ err)
       });
