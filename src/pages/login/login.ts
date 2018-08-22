@@ -72,5 +72,5 @@ export class LoginPage {
       }
     })
   }
-  
+
 }

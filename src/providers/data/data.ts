@@ -44,6 +44,11 @@ export class DataProvider {
     }
   }
 
+  public removeProfile(): void{
+    this.storage.remove('profile');
+    this.storage.remove('authorization');
+  }
+
   public getProfile(): Promise<Auth> {
 
     // Mock for desktop
