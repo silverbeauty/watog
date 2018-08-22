@@ -28,6 +28,7 @@ export class DataProvider {
   public static searchedUsers: Array<User> = [];
   public static searchUserLimit = 10;
   public static searchUserOffset = 0;
+  public static firstRun: boolean = true;
 
   constructor(private storage: NativeStorage) {}
 
