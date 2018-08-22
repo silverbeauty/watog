@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
-import { User, Auth } from '../../types';
 import { DataProvider } from '../data/data';
+import { User, Auth, resFile } from '../../types';
 
 import { server_url } from '../../environments/environment'
+
 
 const jsonHeader = new HttpHeaders({
   'Content-Type':  'application/json'
@@ -16,7 +17,7 @@ export class RestProvider {
 
   apiUrl: string = server_url;
   public static token: string;
-  
+
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
@@ -99,6 +100,22 @@ export class RestProvider {
           }
         }, (err) => {
           console.info('SignUp Failed:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public sendFile(file: any): Promise<resFile>{
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file }), { headers: jsonHeader })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data as resFile);
+          } else {
+            reject('Save file failed!')
+          }
+        }, (err) => {
+          console.info('Send file Failed:', err)
           reject(err);
         });
     })

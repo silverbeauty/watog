@@ -25,6 +25,24 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+<<<<<<< HEAD
+=======
+      this.dataProvider.getProfile().then((auth: Auth) => {
+        if (auth) {
+          if (auth.proof_of_status) {
+            this.rootPage = RegisterThreeOfThreePage; // proof_of_status not uploaded
+          } else if (!auth.sms_verified_date && !auth.email_verified_date){
+            this.rootPage = RegisterTwoOfThreePage; // verified
+          } else {
+            this.rootPage = DashboardPage; // proof_of_status not uploaded
+          }
+        } else {
+          this.rootPage = DashboardPage; // Go to login page
+        }
+      }).catch((e: any) => {
+        this.rootPage = DashboardPage; // Go to login page
+      })
+>>>>>>> ionic-front/master
       statusBar.styleDefault();
       splashScreen.hide();
     });
