@@ -95,8 +95,8 @@ export class DataProvider {
 
   public clearProfile() {
     if (this.isBrowser) {
-      window.localStorage.setItem('profile', null);
-      window.localStorage.setItem('authorization', null);
+      window.localStorage.removeItem('profile');
+      window.localStorage.removeItem('authorization');
       return 
     }
     this.storage.setItem('profile', null)
