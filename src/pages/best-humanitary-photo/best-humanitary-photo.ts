@@ -47,7 +47,7 @@ export class BestHumanitaryPhotoPage {
   }
 
   goNext(){
-    var consent = document.getElementById("consentCertified");
+    var consent = <HTMLInputElement> document.getElementById("consentCertified");
     if(consent.checked == true){
       this.goToContestSubmit();
     } else {
