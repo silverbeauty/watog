@@ -4,6 +4,12 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { VoteRandomPage } from '../vote-random/vote-random';
+import { LoginPage } from '../login/login';
+import { ContestSearchResultsPage } from '../contest-search-results/contest-search-results';
+
+import { DataProvider } from '../../providers/data/data';
+import { RestProvider } from '../../providers/rest/rest';
+import { User, Auth } from '../../types';
 
 /**
  * Generated class for the ContestVotePage page.
@@ -19,8 +25,12 @@ import { VoteRandomPage } from '../vote-random/vote-random';
 })
 export class ContestVotePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ public data = {
+    name: '',
+    error: null
   }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestVotePage');
@@ -43,7 +53,25 @@ export class ContestVotePage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
+  onClickSearch() {
+    console.info('Search:', this.data.name)
+    // Set recent search
+    DataProvider.searchUserName = this.data.name;
+
+    this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
+      DataProvider.searchedUsers = users;
+      DataProvider.searchUserOffset = 0;
+      this.navCtrl.push(ContestSearchResultsPage);
+    }).catch((err: any) => {
+      this.data.error = 'Failed to search, you can try again!'
+    }) 
+  }
+
+  checkFocus() {
+    this.data.error = null;
+  }
 }

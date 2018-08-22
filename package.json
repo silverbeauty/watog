@@ -9,7 +9,8 @@
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
-    "start:dev": "ionic-app-scripts serve --address 0.0.0.0 --port 8100 --livereload-port 35729 --dev-logger-port 53703 --nobrowser --iscordovaserve --platform browser --target cordova"
+    "android": "ionic cordova run android",
+    "ios": "ionic cordova run ios"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",

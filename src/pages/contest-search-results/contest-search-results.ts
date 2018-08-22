@@ -3,6 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { LoginPage } from '../login/login';
+
+import { DataProvider } from '../../providers/data/data';
+import { RestProvider } from '../../providers/rest/rest';
+import { User, Auth } from '../../types';
 
 /**
  * Generated class for the ContestSearchResultsPage page.
@@ -18,7 +23,12 @@ import { SettingsPage } from '../settings/settings';
 })
 export class ContestSearchResultsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public data = {
+    users: []
+  }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+    this.data.users = DataProvider.searchedUsers
   }
 
   ionViewDidLoad() {
@@ -38,7 +48,8 @@ export class ContestSearchResultsPage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
 }
