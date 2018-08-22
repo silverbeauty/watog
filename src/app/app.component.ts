@@ -10,7 +10,7 @@ import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-
 import { RegisterTwoOfThreePage } from '../pages/register-two-of-three/register-two-of-three';
 import { RegisterThreeOfThreePage } from '../pages/register-three-of-three/register-three-of-three';
 
- import { DashboardPage } from '../pages/dashboard/dashboard';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 //import { SettingsPage } from '../pages/settings/settings';
 import { DataProvider, RestProvider } from '../providers';
 import { User, Auth } from '../types';
