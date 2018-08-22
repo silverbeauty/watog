@@ -14,7 +14,7 @@ const jsonHeader = new HttpHeaders({
 @Injectable()
 export class RestProvider {
 
-  apiUrl: any = 'http://localhost:3000/api'//server_url;
+  apiUrl: string = server_url;
   public static token: string;
   
   constructor(public http: HttpClient) {
