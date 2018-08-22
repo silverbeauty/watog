@@ -131,8 +131,8 @@ import { CameraProvider } from '../providers/camera/camera';
   	SettingsPage,
   	ChangePasswordPage,
   	EditProfilePage,
-	EnterTokenPage,
-	VoteRandomPage
+  	EnterTokenPage,
+  	VoteRandomPage
   ],
   providers: [
     StatusBar,

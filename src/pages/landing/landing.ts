@@ -1,8 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LoginPage } from '../login/login';
 
-import { DataProvider } from '../../providers/data/data';
+import { LoginPage } from '../login/login';
+import { HomePage } from '../home/home';
+import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
+import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
+import { RegisterThreeOfThreePage } from '../register-three-of-three/register-three-of-three';
+import { DashboardPage } from '../dashboard/dashboard';
+import { DataProvider, RestProvider } from '../../providers';
+import { User, Auth } from '../../types';
 
 @IonicPage()
 @Component({
@@ -11,12 +17,40 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class LandingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LandingPage');
     //console.log(this.data);
+    console.info('Rest:', this.dataProvider)
+
+    if (DataProvider.firstRun) {
+      DataProvider.firstRun = false;
+      this.dataProvider.getProfile().then((auth: Auth) => {
+        if (auth) {
+          RestProvider.token = auth.token; // Set auth token
+          return this.restProvider.getProfile()          
+        } else {
+          throw "No Token In the Storage";
+        }
+ // fetch profile again
+      }).then((auth: Auth) => {
+        if (auth.proof_of_status) {
+          if (!auth.sms_verified_date && !auth.email_verified_date) { // Email or cell_phone is not verified
+            this.navCtrl.push(RegisterThreeOfThreePage); // proof_of_status not uploaded
+          } else {
+            this.navCtrl.push(DashboardPage)
+          }
+        } else {
+          this.navCtrl.push(RegisterTwoOfThreePage)
+        }
+      }).catch((e: any) => {
+        console.error(e)
+        this.dataProvider.clearProfile() // Clear profile and token
+        this.navCtrl.push(LoginPage)
+      })
+    }
   }
 
   navigateToLogin(){

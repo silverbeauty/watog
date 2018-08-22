@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import { User, Auth } from '../../types';
+import { DataProvider } from '../data/data';
 
 import { server_url } from '../../environments/environment'
-
 
 const jsonHeader = new HttpHeaders({
   'Content-Type':  'application/json'
@@ -14,8 +14,9 @@ const jsonHeader = new HttpHeaders({
 @Injectable()
 export class RestProvider {
 
-  apiUrl: any = server_url;
-
+  apiUrl: string = server_url;
+  public static token: string;
+  
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
@@ -48,6 +49,7 @@ export class RestProvider {
         .subscribe((res: any) => {
           if (res.status) {
             const  { user, token } = res.data;
+            RestProvider.token = token; // Set token
             const auth: Auth = user as Auth;
             auth.token = token;
             resolve(auth);
@@ -56,6 +58,31 @@ export class RestProvider {
           }
         }, (err) => {
           console.info('Login Failed:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public getProfile(): Promise<Auth> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl+'/user/me', { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            const  user = res.data;
+            const auth: Auth = user as Auth;
+            auth.token = RestProvider.token;
+            resolve(auth);
+          } else {
+            console.error('Failed to load profile:', res)
+            reject ('Failed to load profile')
+          }
+        }, (err) => {
+          console.info('Failed to load profile:', err)
           reject(err);
         });
     })
@@ -72,6 +99,25 @@ export class RestProvider {
           }
         }, (err) => {
           console.info('SignUp Failed:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public queryUsers(name: string, offset: number = 0, limit: number = 10): Promise<Array<User>> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token
+    });
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl + '/user?offset=' + offset + '&limit=' + limit +'&name=' + name, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data as Array<User>);
+          } else {
+            reject('Failed to search!')
+          }
+        }, (err) => {
+          console.info('Search User Failed:', err)
           reject(err);
         });
     })
