@@ -35,7 +35,6 @@ export class RegisterOneOfThreePage {
     picture_cover: '',
     other_speciality: ''
   }
-  public user_profile: User;
   public image = {
     from: "",
     image_link: ""
