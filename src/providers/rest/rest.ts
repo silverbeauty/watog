@@ -89,10 +89,10 @@ export class RestProvider {
           if (res.status) {
             resolve(res.data as Array<User>);
           } else {
-            reject('Sign Up failed!')
+            reject('Failed to search!')
           }
         }, (err) => {
-          console.info('SignUp Failed:', err)
+          console.info('Search User Failed:', err)
           reject(err);
         });
     })
