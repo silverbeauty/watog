@@ -18,8 +18,8 @@ export class UploadCoverPhotoPage {
   public image: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public restProvider: RestProvider, public dataProvider: DataProvider) {
-    this.base64Image = "../../assets/imgs/appareil.png";
-    this.chooseImg = "../../assets/imgs/on_your_computer.png";
+    this.base64Image = "assets/imgs/appareil.png";
+    this.chooseImg = "assets/imgs/on_your_computer.png";
   }
 
   ionViewDidLoad() {

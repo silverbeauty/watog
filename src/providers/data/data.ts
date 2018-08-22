@@ -110,7 +110,7 @@ export class DataProvider {
 
   /*  save, get, remove file in localstorage */
 
-  public saveFile(file_content: any, file_url: string): void {
+/*  public saveFile(file_content: any, file_url: string): void {
     const file = {file_content: file_content, file_url: file_url};
     this.storage.setItem('file', JSON.stringify(file));
   }
@@ -131,7 +131,7 @@ export class DataProvider {
 
   public clearFile() {
     this.storage.setItem('file', null)
-  }
+  }*/
 
   /*** SIMPLE GET AND SET ***/
 
