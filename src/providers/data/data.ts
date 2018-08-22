@@ -26,7 +26,7 @@ export class DataProvider {
 
   public static searchUserName: string;
   public static searchedUsers: Array<User> = [];
-  public static searchUserLimit = 10;
+  public static searchUserLimit = 1000; // TODO: it should be 10 in the future for infinite scroll
   public static searchUserOffset = 0;
   public static firstRun: boolean = true;
 
