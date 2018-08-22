@@ -43,6 +43,10 @@ export class BestGroupPhotoWithTheWatogLogoPage {
     this.navCtrl.push(ContestSubmitPage);
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
   logout(){
     console.log('not implemented yet');
   }

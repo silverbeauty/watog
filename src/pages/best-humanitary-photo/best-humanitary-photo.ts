@@ -42,6 +42,19 @@ export class BestHumanitaryPhotoPage {
     this.navCtrl.push(ContestSubmitPage);
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
+  goNext(){
+    var consent = document.getElementById("consentCertified");
+    if(consent.checked == true){
+      this.goToContestSubmit();
+    } else {
+      document.getElementById("certifyConsent").style.backgroundColor = "#e40046";
+    }
+  }
+
   logout(){
     console.log('not implemented yet');
   }

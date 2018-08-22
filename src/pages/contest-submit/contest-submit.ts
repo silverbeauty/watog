@@ -42,6 +42,10 @@ export class ContestSubmitPage {
     this.navCtrl.push(ContestSubmitedPage);
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
   logout(){
     console.log('not implemented yet');
   }

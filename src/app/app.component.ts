@@ -35,10 +35,10 @@ export class MyApp {
             this.rootPage = DashboardPage; // proof_of_status not uploaded
           }
         } else {
-          this.rootPage = LoginPage; // Go to login page
+          this.rootPage = DashboardPage; // Go to login page
         }
       }).catch((e: any) => {
-        this.rootPage = LoginPage; // Go to login page
+        this.rootPage = DashboardPage; // Go to login page
       })
 
       statusBar.styleDefault();

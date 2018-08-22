@@ -45,4 +45,41 @@ page-contest-submited {
         color: white;
     }
 
+    .ok-img{
+        margin-top: 3em;
+    }
+
+    .main{
+        background-color: #775576;
+        padding: 1em;
+        margin-top: 2em;
+    }
+    
+    .main h1{
+        font-size: 1.6em;
+        font-weight: 900;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 1em;
+    }
+
+    .main p{
+        font-size: 1.4em;
+        padding: 0;
+        margin: 0;
+    }
+
+    .return-home{
+        background: white;
+        color: black;
+        margin: 4em;
+        padding: 1em;
+        border-radius: 1em;
+    }
+
+    .return-home p{
+        margin: 0;
+        padding: 0;
+        margin-top: 1em;
+    }
 }

@@ -15,5 +15,48 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-lg btn-primary" (click)="goToContestSubmited()">Post</button>
+    <h1>Upload your image :</h1>
+    <section class="upload">
+      <div class="container">
+        <div class="row pictures">
+          <div class="col">
+            <a href="#">
+              <img src="../../assets/imgs/appareil.png" alt="camera">
+              <p class="font-weight-light text-center">Take a Picture</p>
+            </a>
+          </div>
+          <div class="divider"></div>
+          <div class="col">
+            <a href="#">
+              <img src="../../assets/imgs/on_your_computer.png" alt="On your computer">
+              <p class="font-weight-light text-center">On your device</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="description">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p><span class="bold">Description</span> <span class="thin">(English Only)</span></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <textarea name="description" id="" cols="30" rows="10" placeholder="Description goes here"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="pt-4 pb-4">
+      <div class="row">
+        <div class="col-5 offset-1 text-center" (click)="goBack()">
+          <button class="btn btn-back">BACK</button>
+        </div>
+        <div class="col-5 text-center" (click)="goToContestSubmited()">
+          <button class="btn btn-next">NEXT</button>
+        </div>
+      </div>
+    </div>
 </ion-content>

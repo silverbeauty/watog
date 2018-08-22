@@ -45,4 +45,70 @@ page-contest-submit {
         color: white;
     }
 
+    h1{
+        margin: 1em;
+        color: #525252;
+        font-weight: 900;
+    }
+
+    .pictures{
+        background: white;
+        color: black;
+        margin: .5em;
+        border-radius: 1em;
+        text-align: center;
+    }
+
+    .pictures a{
+        color: black !important;
+        text-decoration: none;
+    }
+
+    .pictures img{
+        height: 15vh;
+    }
+    
+    .divider{
+        border-left: 1px solid #ddd;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .description{
+        background-color: white;
+        color: #525252;
+        margin: 1em;
+        margin-top: 3em;
+        padding: 1em;
+        border-radius: 1em;
+    }
+
+    .description .bold{
+        font-size: 1.3em;
+        font-weight: 800;
+    }
+
+    .description .thin{
+        font-weight: 200;
+    }
+
+    .description textarea{
+        width: 100%;
+        border-width: 1px 0 0 0;
+        border-color: #dce4e7;
+        padding-top: 1em;
+        font-weight: 200;
+    }
+
+    .btn{
+        font-size: 1.1em;
+        padding: .5em;
+        width: 100%;
+        border-radius: 10em;
+    }
+
+    .btn-next{
+        background-color: #a96ba7;
+        color: white;
+    }
 }
