@@ -21,23 +21,25 @@ import { User, Auth } from '../types';
 export class MyApp {
   rootPage:any = DashboardPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public dataProvider: DataProvider) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public dataProvider: DataProvider, public restProvider: RestProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.dataProvider.getProfile().then((auth: Auth) => {
-        if (auth) {
-          if (auth.proof_of_status) {
+        RestProvider.token = auth.token; // Set auth token
+        return this.restProvider.getProfile() // fetch profile again
+      }).then((auth: Auth) => {
+        if (auth.proof_of_status) {
+          if (!auth.sms_verified_date && !auth.email_verified_date) { // Email or cell_phone is not verified
             this.rootPage = RegisterThreeOfThreePage; // proof_of_status not uploaded
-          } else if (!auth.sms_verified_date && !auth.email_verified_date){
-            this.rootPage = RegisterTwoOfThreePage; // verified
           } else {
-            this.rootPage = DashboardPage; // proof_of_status not uploaded
+            this.rootPage = DashboardPage;
           }
         } else {
-          this.rootPage = LoginPage; // Go to login page
+          this.rootPage = RegisterTwoOfThreePage; // verified
         }
       }).catch((e: any) => {
+        this.dataProvider.clearProfile() // Clear profile and token
         this.rootPage = LoginPage; // Go to login page
       })
 
