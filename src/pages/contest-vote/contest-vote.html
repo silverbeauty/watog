@@ -20,7 +20,8 @@
         <div class="input-group-prepend">
             <span class="input-group-text"><img src="../../assets/icon/Groupe 2.png" alt="pseudo icon"></span>
         </div>
-        <ion-input [(ngModel)]="data.name" type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Search" name="Pseudo">
+        <ion-input [(ngModel)]="data.name" (ionFocus)="checkFocus()"
+          type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Search" name="Pseudo">
           
         </ion-input>
     </div>
@@ -44,6 +45,7 @@
         </tr>
       </tbody>
     </table>
+    <div ion-text class="danger text-center" *ngIf="data.error">{{data.error}}</div>
     <div class="text-center">
       <button class="btn btn-search" (click)="onClickSearch()">SEARCH</button>
     </div>

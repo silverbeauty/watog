@@ -66,6 +66,12 @@ export class ContestVotePage {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
       this.navCtrl.push(ContestSearchResultsPage);
-    })
+    }).catch((err: any) => {
+      this.data.error = 'Failed to search, you can try again!'
+    }) 
+  }
+
+  checkFocus() {
+    this.data.error = null;
   }
 }
