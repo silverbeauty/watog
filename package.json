@@ -81,13 +81,10 @@
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-file": {},
       "cordova-plugin-file-opener2": {},
-<<<<<<< HEAD
-      "cordova-plugin-document-viewer": {}
-=======
+      "cordova-plugin-document-viewer": {},
       "cordova-android-support-gradle-release": {
         "ANDROID_SUPPORT_VERSION": "27.+"
       }
->>>>>>> ionic-front/master
     },
     "platforms": [
       "browser",
