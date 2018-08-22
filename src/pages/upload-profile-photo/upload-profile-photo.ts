@@ -51,7 +51,8 @@ export class UploadProfilePhotoPage {
       })
 
       alert(this.base64Image);
-    });
+    })
+    .catch(err => console.log(err));
   }
 
   navToGallery(){
@@ -75,7 +76,8 @@ export class UploadProfilePhotoPage {
       },(err) => {
 
           alert("Error"+ err)
-      });
+      })
+      .catch(err => console.log(err));
   }
 
 }

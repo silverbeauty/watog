@@ -55,7 +55,6 @@ export class RegisterOneOfThreePage {
         alert('Image from Unknown Page')
       }
     }
-
   }
 
   /** Request Http **/

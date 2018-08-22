@@ -47,7 +47,8 @@ export class UploadCoverPhotoPage {
 
         alert(this.base64Image);
 
-    });
+    })
+    .catch(err => console.log(err));
   }
 
   navToGallery(){
@@ -69,6 +70,7 @@ export class UploadCoverPhotoPage {
         })
       },(err) => {
           alert("Error"+ err)
-      });
+      })
+      .catch(err => console.log(err));
   }
 }
