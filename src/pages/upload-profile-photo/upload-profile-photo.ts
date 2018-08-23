@@ -4,6 +4,8 @@ import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of
 import { CameraProvider } from '../../providers/camera/camera';
 import {resFile} from "../../types";
 import { DataProvider, RestProvider } from '../../providers';
+import { FileOpener } from '@ionic-native/file-opener';
+
 
 /**
  * Generated class for the UploadProfilePhotoPage page.
@@ -22,9 +24,17 @@ export class UploadProfilePhotoPage {
   public chooseImg: any;
   public image: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cam: CameraProvider, public restProvider: RestProvider, public dataProvider: DataProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public cam: CameraProvider,
+    public restProvider: RestProvider,
+    public dataProvider: DataProvider,
+    private fileOpener: FileOpener
+  ) {
     this.base64Image = "../../assets/imgs/appareil.png";
     this.chooseImg = "../../assets/imgs/on_your_computer.png";
+
   }
 
   ionViewDidLoad() {
@@ -50,7 +60,8 @@ export class UploadProfilePhotoPage {
         alert(error);
       })
 
-      alert(this.base64Image);
+      //alert(this.base64Image);
+
     })
     .catch(err => console.log(err));
   }
@@ -81,3 +92,10 @@ export class UploadProfilePhotoPage {
   }
 
 }
+/*
+      this.restProvider.sendFile(this.base64Image).then((res_file: resFile) => {
+        console.info('Send File Response:', res_file)
+        // Save file
+        //this.dataProvider.saveFile(this.base64Image, res_file.url);
+        this.image = res_file.url;
+*/
