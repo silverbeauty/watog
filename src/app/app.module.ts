@@ -7,7 +7,7 @@ import { SQLite } from '@ionic-native/sqlite';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera } from '@ionic-native/camera';
-import { Base64 } from '@ionic-native/base64';
+
 
 //import { AlertController } from 'ionic-angular';
 
@@ -27,7 +27,7 @@ import { BestPhotoWithTheWatogLogoPage } from '../pages/best-photo-with-the-wato
 import { BestSurgicalImagePage } from '../pages/best-surgical-image/best-surgical-image';
 import { BestUltrasoundImagePage } from '../pages/best-ultrasound-image/best-ultrasound-image';
 import { ContestPage } from '../pages/contest/contest';
-import { ContestSearchPage } from '../pages/contest-search/contest-search';
+import { ContestVoteSearchDetailPage } from '../pages/contest-vote-search-detail/contest-vote-search-detail';
 import { ContestSearchResultsPage } from '../pages/contest-search-results/contest-search-results';
 import { ContestSubmitPage } from '../pages/contest-submit/contest-submit';
 import { ContestSubmitedPage } from '../pages/contest-submited/contest-submited';
@@ -72,7 +72,7 @@ import { CameraProvider } from '../providers/camera/camera';
   	BestSurgicalImagePage,
   	BestUltrasoundImagePage,
   	ContestPage,
-  	ContestSearchPage,
+  	ContestVoteSearchDetailPage,
   	ContestSearchResultsPage,
   	ContestSubmitPage,
   	ContestSubmitedPage,
@@ -113,7 +113,7 @@ import { CameraProvider } from '../providers/camera/camera';
   	BestSurgicalImagePage,
   	BestUltrasoundImagePage,
   	ContestPage,
-  	ContestSearchPage,
+  	ContestVoteSearchDetailPage,
   	ContestSearchResultsPage,
   	ContestSubmitPage,
   	ContestSubmitedPage,
@@ -132,7 +132,7 @@ import { CameraProvider } from '../providers/camera/camera';
   	ChangePasswordPage,
   	EditProfilePage,
   	EnterTokenPage,
-  	VoteRandomPage
+	VoteRandomPage
   ],
   providers: [
     StatusBar,
@@ -146,8 +146,7 @@ import { CameraProvider } from '../providers/camera/camera';
     NativeStorage,
     ImagePicker,
     CameraProvider,
-    Camera,
-    Base64
+    Camera
   ]
 })
 export class AppModule {}

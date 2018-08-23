@@ -3,15 +3,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { VoteRandomPage } from '../vote-random/vote-random';
 import { LoginPage } from '../login/login';
 
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
 import { User, Auth } from '../../types';
-import { ContestVoteSearchDetailPage } from '../contest-vote-search-detail/contest-vote-search-detail';
 
 /**
- * Generated class for the ContestSearchResultsPage page.
+ * Generated class for the ContestVoteSearchDetailPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -19,21 +19,16 @@ import { ContestVoteSearchDetailPage } from '../contest-vote-search-detail/conte
 
 @IonicPage()
 @Component({
-  selector: 'page-contest-search-results',
-  templateUrl: 'contest-search-results.html',
+  selector: 'page-contest-vote-search-detail',
+  templateUrl: 'contest-vote-search-detail.html',
 })
-export class ContestSearchResultsPage {
+export class ContestVoteSearchDetailPage {
 
-  public data = {
-    users: []
-  }
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
-    this.data.users = DataProvider.searchedUsers
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContestSearchResultsPage');
+    console.log('ionViewDidLoad ContestVoteSearchDetailPage');
   }
 
   goToDashboard(){
@@ -48,8 +43,16 @@ export class ContestSearchResultsPage {
     this.navCtrl.push(SettingsPage);
   }
 
-  goToSearch(){
-    this.navCtrl.push(ContestVoteSearchDetailPage);
+  goToVoteRandom(){
+    this.navCtrl.push(VoteRandomPage);
+  }
+
+  goBack(){
+    this.navCtrl.pop();
+  }
+
+  goChange(){
+    this.navCtrl.push(VoteRandomPage);
   }
 
   logout(){

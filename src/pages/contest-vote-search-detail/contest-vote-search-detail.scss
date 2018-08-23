@@ -1,4 +1,4 @@
-page-contest-search-results {
+page-contest-vote-search-detail {
     .navbar{
         background-color: #775576;
     }
@@ -40,28 +40,44 @@ page-contest-search-results {
     }
 
     .body{
-        background-image: url(../../assets/imgs/rio.jpg);
+        background-color: white;
         background-position: center top;
         color: white;
     }
 
-    .item{
-        width: auto;
-        margin: 1.5em;
-        border-radius: 1em;
+    .photo{
+        background-image: url("../../assets/imgs/Watog.jpg");
+        background-position: center;
+        background-size: cover;
+        height: 50vh;
     }
 
-    .avatar {
-        background-color: #a96ba7cc;
+    .banner{
+        background-color: #a96ba7;
+        width: 100%;
+        text-align: center;
+        padding: 1em;
+        font-size: 1.5em;
+        font-weight: 400;
     }
 
-    .toolbar-background{
-        background: none;
+    .banner p{
+        padding: 0;
+        margin: 0;
     }
 
-    .toolbar-title{
-        margin: auto;
-        font-weight: 900;
-        font-size: 1.7em;
+    .btn-back, .btn-next{
+        font-size: 1em;
+        font-weight: 200;
+        padding: .7em;
+        width: 100%;
+        border-radius: 10em;
+        margin-top: 3em;
+        margin-bottom: 1em;
+    }
+
+    .btn-next{
+        color: white;
+        background: #775576;
     }
 }

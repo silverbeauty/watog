@@ -68,7 +68,10 @@ export class ContestVotePage {
       this.navCtrl.push(ContestSearchResultsPage);
     }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
-    }) 
+    })
+    
+    //added a route to the result page
+    this.navCtrl.push(ContestSearchResultsPage);
   }
 
   checkFocus() {
