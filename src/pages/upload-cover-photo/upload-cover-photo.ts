@@ -5,6 +5,7 @@ import { CameraProvider } from '../../providers/camera/camera';
 import {Auth, resFile} from "../../types";
 import {DashboardPage} from "../dashboard/dashboard";
 import { DataProvider, RestProvider } from '../../providers';
+import { FileOpener } from '@ionic-native/file-opener';
 
 
 @IonicPage()
@@ -17,7 +18,7 @@ export class UploadCoverPhotoPage {
   public chooseImg: any;
   public image: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public restProvider: RestProvider, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public restProvider: RestProvider, public dataProvider: DataProvider, private fileOpener: FileOpener) {
     this.base64Image = "../../assets/imgs/appareil.png";
     this.chooseImg = "../../assets/imgs/on_your_computer.png";
   }
@@ -33,7 +34,7 @@ export class UploadCoverPhotoPage {
   TakeaPicture(){
     this.cam.photo(this.base64Image).then((imageData) => {
 
-        this.base64Image = 'data:image/jpeg;base64,' +imageData;
+      this.base64Image = 'data:image/jpeg;base64,' +imageData;
 
       this.restProvider.sendFile(this.base64Image).then((res_file: resFile) => {
         console.info('Send File Response:', res_file)
@@ -45,7 +46,7 @@ export class UploadCoverPhotoPage {
         alert(error);
       })
 
-        alert(this.base64Image);
+      //alert(this.base64Image);
 
     })
     .catch(err => console.log(err));
