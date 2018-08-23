@@ -4,6 +4,8 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
+import { LoginPage } from '../login/login';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the FuturNearTermGoalsPage page.
@@ -19,7 +21,7 @@ import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 })
 export class FuturNearTermGoalsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -43,7 +45,8 @@ export class FuturNearTermGoalsPage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
 }

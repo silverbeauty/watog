@@ -30,7 +30,7 @@ export class LandingPage {
       this.dataProvider.getProfile().then((auth: Auth) => {
         if (auth) {
           RestProvider.token = auth.token; // Set auth token
-          return this.restProvider.getProfile()          
+          return this.restProvider.getProfile()
         } else {
           throw "No Token In the Storage";
         }

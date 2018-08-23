@@ -5,6 +5,7 @@ import { ProfilePage } from '../profile/profile';
 import { LoginPage } from '../login/login';
 import { SettingsPage } from '../settings/settings';
 import { ContestSubmitedPage } from '../contest-submited/contest-submited';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the ContestSubmitPage page.
@@ -23,7 +24,7 @@ export class ContestSubmitPage {
     description: ""
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider:DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -55,7 +56,8 @@ export class ContestSubmitPage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
 }

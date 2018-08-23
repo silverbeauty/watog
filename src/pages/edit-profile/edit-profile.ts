@@ -46,7 +46,7 @@ export class EditProfilePage {
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
     private http: HttpClient, public profil: DataProvider,
-    public rest : RestProvider
+    public rest : RestProvider, public dataProvider: DataProvider
   ) {
       this.promise = Promise.all([this.profil.get()]);
       this.promise.then(res => {
@@ -103,7 +103,8 @@ export class EditProfilePage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
 }

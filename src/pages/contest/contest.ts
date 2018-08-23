@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { LoginPage } from '../login/login';
 
 /* Providers */
 import { DataProvider } from '../../providers/data/data';
@@ -24,7 +25,7 @@ import { ModalPrinciplesPage } from '../modal-principles/modal-principles';
 export class ContestPage {
   public data: DataProvider;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalController: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalController: ModalController, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -53,6 +54,7 @@ export class ContestPage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 }
