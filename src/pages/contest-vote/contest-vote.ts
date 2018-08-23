@@ -34,6 +34,7 @@ export class ContestVotePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestVotePage');
+    Promise.all([this.rest.queryUsers()]).
   }
 
   goToDashboard(){
@@ -68,7 +69,7 @@ export class ContestVotePage {
       this.navCtrl.push(ContestSearchResultsPage);
     }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
-    }) 
+    })
   }
 
   checkFocus() {
