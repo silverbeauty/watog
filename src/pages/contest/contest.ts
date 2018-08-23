@@ -6,8 +6,8 @@ import { SettingsPage } from '../settings/settings';
 
 /* Providers */
 import { DataProvider } from '../../providers/data/data';
-import { ParticipatePage } from '../participate/participate';
-import { ContestVotePage } from '../contest-vote/contest-vote';
+import { VoteModalPage } from '../vote-modal/vote-modal';
+import { ModalPrinciplesPage } from '../modal-principles/modal-principles';
 
 /**
  * Generated class for the ContestPage page.
@@ -45,11 +45,11 @@ export class ContestPage {
 
   goToParticipate(){
     //First show a modal
-    this.navCtrl.push(ParticipatePage);
+    this.navCtrl.push(ModalPrinciplesPage);
   }
 
   goToVote(){
-    this.navCtrl.push(ContestVotePage);
+    this.navCtrl.push(VoteModalPage);
   }
 
   logout(){

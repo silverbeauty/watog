@@ -56,7 +56,7 @@ export class ContestVoteSearchDetailPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
+    //this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
   }
 
