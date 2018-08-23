@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -24,7 +24,7 @@ import { ContestVotePage } from '../contest-vote/contest-vote';
 export class ContestPage {
   public data: DataProvider;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalController: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -55,5 +55,4 @@ export class ContestPage {
   logout(){
     console.log('not implemented yet');
   }
-
 }
