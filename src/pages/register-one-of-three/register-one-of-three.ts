@@ -36,7 +36,8 @@ export class RegisterOneOfThreePage {
   }
   public image = {
     from: "",
-    image_link: ""
+    image_url: "",
+    image_local: ""
   }
 
   countries : any[] = countries;
@@ -44,13 +45,13 @@ export class RegisterOneOfThreePage {
   //
   constructor(public navCtrl: NavController, public navParams: NavParams,  public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
-    if(params.image_link){
+    if(params.image_local){
       this.image = params;
       if(this.image.from == 'picture_profile'){
-        this.profile_image = this.image.image_link;
-        this.user.picture_profile = this.image.image_link;
+        this.profile_image = this.image.image_local;
+        this.user.picture_profile = this.image.image_url;
       }else if(this.image.from == 'picture_cover'){
-        this.user.picture_cover = this.image.image_link;
+        this.user.picture_cover = this.image.image_url;
       }else{
         alert('Image from Unknown Page')
       }
