@@ -19,7 +19,7 @@ import { User, Auth } from '../types';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LandingPage;
+  rootPage:any = LoginPage;
 
   constructor(public app: App, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public dataProvider: DataProvider, public restProvider: RestProvider) {
     platform.ready().then(() => {
