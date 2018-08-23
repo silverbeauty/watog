@@ -45,7 +45,23 @@ page-contest-search-results {
         color: white;
     }
 
+    .item{
+        width: auto;
+        margin: 1.5em;
+        border-radius: 1em;
+    }
+
     .avatar {
         background-color: #a96ba7cc;
+    }
+
+    .toolbar-background{
+        background: none;
+    }
+
+    .toolbar-title{
+        margin: auto;
+        font-weight: 900;
+        font-size: 1.7em;
     }
 }

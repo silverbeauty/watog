@@ -4,7 +4,9 @@ import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of
 import { CameraProvider } from '../../providers/camera/camera';
 import {resFile} from "../../types";
 import { DataProvider, RestProvider } from '../../providers';
-import { Base64 } from '@ionic-native/base64';
+import { FileOpener } from '@ionic-native/file-opener';
+
+
 /**
  * Generated class for the UploadProfilePhotoPage page.
  *
@@ -18,15 +20,21 @@ import { Base64 } from '@ionic-native/base64';
   templateUrl: 'upload-profile-photo.html',
 })
 export class UploadProfilePhotoPage {
-  public image_base64: any;
-  public image_choose: any;
-  public image_url: any;
-  public image_local: any;
+  public base64Image: any;
+  public chooseImg: any;
+  public image: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cam: CameraProvider, public restProvider: RestProvider, private base64: Base64) {
-    this.image_base64 = "assets/imgs/appareil.png";
-    this.image_choose = "assets/imgs/on_your_computer.png";
-    this.image_local ="assets/imgs/rio.jpg";
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public cam: CameraProvider,
+    public restProvider: RestProvider,
+    public dataProvider: DataProvider,
+    private fileOpener: FileOpener
+  ) {
+    this.base64Image = "../../assets/imgs/appareil.png";
+    this.chooseImg = "../../assets/imgs/on_your_computer.png";
+
   }
 
   ionViewDidLoad() {
@@ -34,48 +42,60 @@ export class UploadProfilePhotoPage {
   }
 
   gotToRegister(){
-    this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url, image_local:this.image_local , from: 'picture_profile'});
+    this.navCtrl.push(RegisterOneOfThreePage, {image: this.image, from: 'picture_profile'});
   }
 
   TakeaPicture(){
-    this.cam.photo().then((imageData) => {
+    this.cam.photo(this.base64Image).then((imageData) => {
 
-      this.image_local = 'data:image/jpeg;base64,' +imageData;
-      this.restProvider.sendFile(this.image_base64).then((res_file: resFile) => {
+      this.base64Image = 'data:image/jpeg;base64,' +imageData;
+
+      this.restProvider.sendFile(this.base64Image).then((res_file: resFile) => {
         console.info('Send File Response:', res_file)
-        console.log(res_file.url);
-        this.image_url = res_file.url;
-        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url, image_local: this.image_local, from: 'picture_profile'});
+        // Save file
+        //this.dataProvider.saveFile(this.base64Image, res_file.url);
+        this.image = res_file.url;
+
       }).catch((error) => {
         alert(error);
       })
-    });
+
+      //alert(this.base64Image);
+
+    })
+    .catch(err => console.log(err));
   }
 
-  navToGallery() {
+  navToGallery(){
     this.cam.choosePicture()
       .then((results) => {
 
         for (var i = 0; i < results.length; i++) {
-
-          this.base64.encodeFile(results[i]).then((base64File: string) => {
-            this.image_local = results[i];
-          }, (err) => {
-            console.log(err);
-          });
+          this.chooseImg = results[i];
         }
 
-        this.restProvider.sendFile(this.image_local).then((res_file: resFile) => {
+        this.restProvider.sendFile(this.chooseImg).then((res_file: resFile) => {
           console.info('Send File Response:', res_file)
           // Save file
-          this.image_url = res_file.url;
-          this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url, image_local: this.image_local, from: 'picture_profile'});
-        }, (err) => {
+          //this.dataProvider.saveFile(this.base64Image, res_file.url);
+          this.image = res_file.url;
 
-          alert("Send File Error" + err)
-        });
-      }, (err) => {
-        alert("Choose Picture Error" + err)
-      });
+        }).catch((error) => {
+          alert(error);
+        })
+
+      },(err) => {
+
+          alert("Error"+ err)
+      })
+      .catch(err => console.log(err));
   }
+
 }
+/*
+      this.restProvider.sendFile(this.base64Image).then((res_file: resFile) => {
+        console.info('Send File Response:', res_file)
+        // Save file
+        //this.dataProvider.saveFile(this.base64Image, res_file.url);
+        this.image = res_file.url;
+*/

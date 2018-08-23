@@ -8,6 +8,7 @@ import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
 import { User, Auth } from '../../types';
+import { ContestVoteSearchDetailPage } from '../contest-vote-search-detail/contest-vote-search-detail';
 
 /**
  * Generated class for the ContestSearchResultsPage page.
@@ -45,6 +46,10 @@ export class ContestSearchResultsPage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goToSearch(){
+    this.navCtrl.push(ContestVoteSearchDetailPage);
   }
 
   logout(){

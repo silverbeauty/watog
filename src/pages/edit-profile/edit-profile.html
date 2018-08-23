@@ -45,43 +45,43 @@
           </div>
       <div class="container">
         <div class="row">
-          <div class="col-md">  
-            <form (ngSubmit)="logForm()">
+          <div class="col-md">
+            <form (ngSubmit)="setCurrentUser()">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="login logo"></span>
                     </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First Name*" name="first_name"  ></ion-input>
+                    <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First name" name="first_name" value="{{ todo.first_name }}"></ion-input>
                 </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="password logo"></span>
                     </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" name="last_name"  ></ion-input>
+                    <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" name="last_name" value="{{ todo.last_name }}" ></ion-input>
                 </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="pseudo icon"></span>
                     </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" name="Pseudo"  ></ion-input>
+                    <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" name="Pseudo"  value="{{ todo.Pseudo }}"></ion-input>
                 </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="../../assets/icon/Mail02.png" alt="password logo"></span>
                     </div>
-                    <ion-input type="email" class="form-control font-weight-light" id="EmailInput" aria-describedby="passwd-picture" placeholder="Email*" name="email"  ></ion-input>
+                    <ion-input type="email" class="form-control font-weight-light" id="EmailInput" aria-describedby="passwd-picture" placeholder="Email*" name="email"  value="{{ todo.email }}"></ion-input>
                 </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="../../assets/icon/Phone.png" alt="password logo"></span>
                     </div>
-                    <ion-input type="number" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" placeholder="Cell Phone*" name="cell_phone"  ></ion-input>
+                    <ion-input type="number" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" placeholder="Cell Phone*" name="cell_phone"  value="{{ todo.cell_phone }}"></ion-input>
                 </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="../../assets/icon/Location.png" alt="password logo"></span>
                     </div>
-                  <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" name="country" >
+                  <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" name="country">
                     <ion-option *ngFor="let item of countries" value="{{item}}">{{item}}</ion-option>
                   </ion-select>
                 </div>
@@ -89,9 +89,9 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="../../assets/icon/Hopital.png" alt="password logo"></span>
                     </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" name="hospital"  ></ion-input>
+                    <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" name="hospital"  value="{{ todo.hospital }}"></ion-input>
                 </div>
-  
+
               <div class="text-center div-btn-submit">
                 <button type="submit" class="btn btn-submit btn-md">EDIT PROFILE</button>
               </div>
