@@ -8,6 +8,6 @@ import { ContestPage } from './contest';
   ],
   imports: [
     IonicPageModule.forChild(ContestPage),
-  ],
+  ]
 })
 export class ContestPageModule {}

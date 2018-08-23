@@ -47,6 +47,9 @@ import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { EnterTokenPage } from '../pages/enter-token/enter-token';
 import { VoteRandomPage } from '../pages/vote-random/vote-random';
+import { VoteModalPage } from '../pages/vote-modal/vote-modal';
+import { ModalPrinciplesPage } from '../pages/modal-principles/modal-principles';
+import { ModalContestPage } from '../pages/modal-contest/modal-contest';
 
 
 	/*Provider*/
@@ -91,7 +94,10 @@ import { CameraProvider } from '../providers/camera/camera';
   	ChangePasswordPage,
   	EditProfilePage,
 	EnterTokenPage,
-	VoteRandomPage
+	VoteRandomPage,
+	VoteModalPage,
+	ModalContestPage,
+	ModalPrinciplesPage
   ],
   imports: [
     BrowserModule,
@@ -132,7 +138,10 @@ import { CameraProvider } from '../providers/camera/camera';
   	ChangePasswordPage,
   	EditProfilePage,
   	EnterTokenPage,
-	VoteRandomPage
+	VoteRandomPage,
+	VoteModalPage,
+	ModalContestPage,
+	ModalPrinciplesPage
   ],
   providers: [
     StatusBar,

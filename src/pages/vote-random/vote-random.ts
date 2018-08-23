@@ -4,6 +4,11 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 
+import { DataProvider } from '../../providers/data/data';
+import { RestProvider } from '../../providers/rest/rest';
+import { User, Auth } from '../../types';
+import { ContestVoteSearchDetailPage } from '../contest-vote-search-detail/contest-vote-search-detail';
+
 /**
  * Generated class for the VoteRandomPage page.
  *
@@ -18,7 +23,8 @@ import { SettingsPage } from '../settings/settings';
 })
 export class VoteRandomPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+    console.log(DataProvider.searchedUsers)
   }
 
   ionViewDidLoad() {
@@ -30,7 +36,8 @@ export class VoteRandomPage {
   }
 
   goToProfilePage(){
-    this.navCtrl.push(ProfilePage);
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
   goToSettingsPage(){
@@ -38,7 +45,8 @@ export class VoteRandomPage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
 }
