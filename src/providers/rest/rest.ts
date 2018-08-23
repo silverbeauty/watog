@@ -106,8 +106,12 @@ export class RestProvider {
   }
 
   public sendFile(file: any): Promise<resFile>{
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'multipart/form-data'
+    });
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file }), { headers: jsonHeader })
+      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file}), { headers: headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as resFile);

@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
-import { Platform, NavController, App } from 'ionic-angular';
+import { Platform, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LandingPage } from '../pages/landing/landing';
-import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
-import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-one-of-three';
+//import { HomePage } from '../pages/home/home';
+//import { LoginPage } from '../pages/login/login';
+//import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-one-of-three';
 import { RegisterTwoOfThreePage } from '../pages/register-two-of-three/register-two-of-three';
 import { RegisterThreeOfThreePage } from '../pages/register-three-of-three/register-three-of-three';
 
 import { DashboardPage } from '../pages/dashboard/dashboard';
 //import { SettingsPage } from '../pages/settings/settings';
 import { DataProvider, RestProvider } from '../providers';
-import { User, Auth } from '../types';
+import {  Auth } from '../types';
 
 @Component({
   templateUrl: 'app.html'
