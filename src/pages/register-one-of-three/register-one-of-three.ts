@@ -34,6 +34,7 @@ export class RegisterOneOfThreePage {
     proof_of_status_date:'',
     proof_of_status: ''
   }
+  
   public image = {
     from: "",
     image_link: ""
