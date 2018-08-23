@@ -50,15 +50,16 @@ export class UploadProfilePhotoPage {
 
       this.base64Image = 'data:image/jpeg;base64,' +imageData;
 
-      this.restProvider.sendFile(this.base64Image).then((res_file: resFile) => {
-        console.info('Send File Response:', res_file)
-        // Save file
-        //this.dataProvider.saveFile(this.base64Image, res_file.url);
-        this.image = res_file.url;
-
-      }).catch((error) => {
-        alert(error);
-      })
+      if(this.base64Image != "../../assets/imgs/appareil.png"){
+        this.restProvider.sendFile(this.base64Image).then((res_file: resFile) => {
+          console.info('Send File Response:', res_file)
+          // Save file
+          //this.dataProvider.saveFile(this.base64Image, res_file.url);
+          this.image = res_file.url;
+        }).catch((error) => {
+          alert(error);
+        })
+     }
 
       //alert(this.base64Image);
 
