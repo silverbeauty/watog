@@ -29,6 +29,13 @@ $ ionic cordova plugin add cordova-plugin-telerik-imagepicker --variable PHOTO_L
 $ npm install --save @ionic-native/image-picker
 ```  
 
+- Base64
+
+```
+sionic cordova plugin add com-badrit-base64
+npm install --save @ionic-native/base64
+```
+
 ## How to run
 
 ### Browser

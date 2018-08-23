@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 
 import { IonicPage, NavController, NavParams } from 'ionic-angular'
 
@@ -10,7 +10,7 @@ import { DashboardPage } from '../dashboard/dashboard';
 
 /** Provider **/
 import { DataProvider, RestProvider } from '../../providers';
-import { User, Auth } from '../../types';
+import { Auth } from '../../types';
 
 
 @IonicPage()
