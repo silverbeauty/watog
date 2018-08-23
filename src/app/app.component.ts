@@ -4,8 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LandingPage } from '../pages/landing/landing';
-//import { HomePage } from '../pages/home/home';
-//import { LoginPage } from '../pages/login/login';
+import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
 //import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-one-of-three';
 import { RegisterTwoOfThreePage } from '../pages/register-two-of-three/register-two-of-three';
 import { RegisterThreeOfThreePage } from '../pages/register-three-of-three/register-three-of-three';
