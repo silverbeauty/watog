@@ -10,7 +10,7 @@ export class CameraProvider {
   constructor(public camera: Camera, private imagePicker: ImagePicker) {
   }
 
-  photo(){
+  photo(Image:any){
 
     const options: CameraOptions = {
       quality: 70,
