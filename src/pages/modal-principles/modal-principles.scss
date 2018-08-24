@@ -1,0 +1,79 @@
+page-modal-principles {
+    .body{
+        background-image: url('../../assets/imgs/rio.jpg');
+        background-position: center;
+        background-size: cover;
+    }
+
+    .main{
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        padding: 1.5em;
+    }
+
+    .main:before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #525252;
+        opacity: .5;
+        z-index: -1;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .main-inside{
+        background: white;
+        border-radius: 1em;
+    }
+
+    .title{
+        background: #774576;
+        color: white;
+        border-top-left-radius: 1em;
+        border-top-right-radius: 1em;
+        text-align: center;
+        padding: 1em;
+    }
+
+    .title h1{
+        padding: 0;
+        margin: 0;
+        font-size: 1.4em;
+        font-weight: 400;
+    }
+
+    .main ol{
+        margin-top: 3em;
+    }
+
+    .main li{
+        margin: 1em;
+        font-size: 1.2em;
+    }
+
+    .btn-next{
+        margin: 3em;
+        padding-left: 2em;
+        padding-right: 2em;
+        background: white;
+        box-shadow: 0 0 15px 1px #dce4e7;
+    }
+
+    .btn-next img{
+        height: 70px;
+    }
+
+    .btn-next p{
+        font-size: 1.5em;
+    }
+
+    .big-purple{
+        font-weight: 900;
+        color: #a96ba7;
+    }
+}

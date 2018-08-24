@@ -4,6 +4,8 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { FuturNearTermGoalsPage } from '../futur-near-term-goals/futur-near-term-goals';
+import { LoginPage } from '../login/login';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the AccomplishmentsToDatePage page.
@@ -19,7 +21,7 @@ import { FuturNearTermGoalsPage } from '../futur-near-term-goals/futur-near-term
 })
 export class AccomplishmentsToDatePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -47,7 +49,8 @@ export class AccomplishmentsToDatePage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
 }

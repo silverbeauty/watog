@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <img src="assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="img-fluid">
+                    <img src="../../assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="img-fluid">
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     <form (ngSubmit)="onSubmit()">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="login-picture"><img src="assets/icon/Profil.png" alt="login logo"></span>
+                                <span class="input-group-text" id="login-picture"><img src="../../assets/icon/Profil.png" alt="login logo"></span>
                             </div>
                             <ion-input type="email" class="form-control font-weight-light" id="login-input" aria-describedby="login-picture" [(ngModel)]="data.email" name="title" placeholder="Email" (focus)="invalidate()"></ion-input>
                         </div>
@@ -24,7 +24,7 @@
 
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="passwd-picture"><img src="assets/icon/Password.png" alt="password logo"></span>
+                                <span class="input-group-text" id="passwd-picture"><img src="../../assets/icon/Password.png" alt="password logo"></span>
                             </div>
                             <ion-input type="password" class="form-control font-weight-light" id="password-input" aria-describedby="passwd-picture" placeholder="Password" name="Pass" [(ngModel)]="data.password" (focus)="invalidate()"></ion-input>
                         </div>

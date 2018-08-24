@@ -1,4 +1,5 @@
 <ion-content class="body">
+  <form (ngSubmit)="logForm()">
     <div class="navbar">
       <a href="#" (click)="goToDashboard()"><img src="../../assets/icon/Menu.png" alt="Menu icon"></a>
       <h1>Contest Submit</h1>
@@ -36,18 +37,18 @@
       </div>
     </section>
     <section class="description">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <p><span class="bold">Description</span> <span class="thin">(English Only)</span></p>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <p><span class="bold">Description</span> <span class="thin">(English Only)</span></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <ion-textarea name="description" id="" cols="30" rows="10" [(ngModel)]="photo.description" placeholder="Description goes here"></ion-textarea>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <textarea name="description" id="" cols="30" rows="10" placeholder="Description goes here"></textarea>
-          </div>
-        </div>
-      </div>
     </section>
     <div class="pt-4 pb-4">
       <div class="row">
@@ -55,8 +56,9 @@
           <button class="btn btn-back">BACK</button>
         </div>
         <div class="col-5 text-center" (click)="goToContestSubmited()">
-          <button class="btn btn-next">NEXT</button>
+          <button type="submit" class="btn btn-next">NEXT</button>
         </div>
       </div>
     </div>
+  </form>
 </ion-content>

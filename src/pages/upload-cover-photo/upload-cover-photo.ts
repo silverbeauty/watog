@@ -5,7 +5,7 @@ import { CameraProvider } from '../../providers/camera/camera';
 import {Auth, resFile} from "../../types";
 import {DashboardPage} from "../dashboard/dashboard";
 import { DataProvider, RestProvider } from '../../providers';
-import {Base64} from "@ionic-native/base64";
+import { FileOpener } from '@ionic-native/file-opener';
 
 
 @IonicPage()

@@ -34,24 +34,24 @@ export class RegisterOneOfThreePage {
     proof_of_status_date:'',
     proof_of_status: ''
   }
+  
   public image = {
     from: "",
-    image_url: "",
-    image_local: ""
+    image_link: ""
   }
 
   countries : any[] = countries;
-  profile_image: string = "assets/imgs/rio.jpg";
+  profile_image: string = "../../assets/imgs/rio.jpg";
   //
   constructor(public navCtrl: NavController, public navParams: NavParams,  public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
     if(params.image_local){
       this.image = params;
       if(this.image.from == 'picture_profile'){
-        this.profile_image = this.image.image_local;
-        this.user.picture_profile = this.image.image_url;
+        this.profile_image = this.image.image_link;
+        this.user.picture_profile = this.image.image_link;
       }else if(this.image.from == 'picture_cover'){
-        this.user.picture_cover = this.image.image_url;
+        this.user.picture_cover = this.image.image_link;
       }else{
         alert('Image from Unknown Page')
       }

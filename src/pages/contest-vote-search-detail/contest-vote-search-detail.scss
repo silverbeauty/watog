@@ -1,0 +1,83 @@
+page-contest-vote-search-detail {
+    .navbar{
+        background-color: #775576;
+    }
+
+    .navbar h1{
+        color: white;
+        font-size: 1.2em;
+        font-weight: 200;
+        margin: 0;
+    }
+
+    .btn-profile{
+        background-color: #775576;
+    }
+
+    .btn-profile img{
+        height: 2em;
+    }
+
+    .dropdown-menu{
+        padding: 2em;        
+    }
+
+    .dropdown-item{
+        font-size: 1.5em;
+        font-weight: 200;
+        text-align: left;
+        padding-right: 5em;
+    }
+
+    .dropdown-item img{
+        height: 1.2em;
+        padding-right: 1em;
+    }
+
+    .dropdown-menu-right{
+        right: 0;
+        left: auto;
+    }
+
+    .body{
+        background-color: white;
+        background-position: center top;
+        color: white;
+    }
+
+    .photo{
+        background-image: url("../../assets/imgs/Watog.jpg");
+        background-position: center;
+        background-size: cover;
+        height: 50vh;
+    }
+
+    .banner{
+        background-color: #a96ba7;
+        width: 100%;
+        text-align: center;
+        padding: 1em;
+        font-size: 1.5em;
+        font-weight: 400;
+    }
+
+    .banner p{
+        padding: 0;
+        margin: 0;
+    }
+
+    .btn-back, .btn-next{
+        font-size: 1em;
+        font-weight: 200;
+        padding: .7em;
+        width: 100%;
+        border-radius: 10em;
+        margin-top: 3em;
+        margin-bottom: 1em;
+    }
+
+    .btn-next{
+        color: white;
+        background: #775576;
+    }
+}

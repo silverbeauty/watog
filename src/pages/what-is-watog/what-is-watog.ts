@@ -7,6 +7,8 @@ import { MissionOfWatogPage } from '../mission-of-watog/mission-of-watog';
 import { OrganizationPage } from '../organization/organization';
 import { AccomplishmentsToDatePage } from '../accomplishments-to-date/accomplishments-to-date';
 import { FuturNearTermGoalsPage } from '../futur-near-term-goals/futur-near-term-goals';
+import { LoginPage } from '../login/login';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the WhatIsWatogPage page.
@@ -22,7 +24,7 @@ import { FuturNearTermGoalsPage } from '../futur-near-term-goals/futur-near-term
 })
 export class WhatIsWatogPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -42,7 +44,8 @@ export class WhatIsWatogPage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
   goToMission(){
