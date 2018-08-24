@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User, Auth, resFile } from '../../types';
-
+import 'rxjs/add/operator/timeout';
 import { server_url } from '../../environments/environment'
 
 
@@ -90,6 +90,7 @@ export class RestProvider {
 
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
+        .timeout(30000)
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as User);
