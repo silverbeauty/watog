@@ -45,7 +45,7 @@ export class RegisterOneOfThreePage {
   //
   constructor(public navCtrl: NavController, public navParams: NavParams,  public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
-    if(params.image_local){
+    if(params.image_url){
       this.image = params;
       if(this.image.from == 'picture_profile'){
         this.profile_image = this.image.image_local;

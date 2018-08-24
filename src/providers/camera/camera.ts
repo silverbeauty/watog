@@ -7,10 +7,11 @@ import { ImagePicker } from '@ionic-native/image-picker';
 export class CameraProvider {
   //public path: string;
 
-  constructor(public camera: Camera, private imagePicker: ImagePicker) {
+  cameraImage: any;
+  constructor(public camera: Camera) {
   }
 
-  photo(){
+/*  photo(){
 
     const options: CameraOptions = {
       quality: 70,
@@ -33,5 +34,27 @@ export class CameraProvider {
     }
 
     return this.imagePicker.getPictures(options)
+  }*/
+
+  public selectImage(sourceType, dataOption: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let cameraOptions: CameraOptions = {
+        sourceType: sourceType, //this.camera.PictureSourceType.PHOTOLIBRARY,
+        destinationType: dataOption,
+        quality: 100,
+        encodingType: this.camera.EncodingType.JPEG,
+        correctOrientation: true,
+        allowEdit: true,
+        saveToPhotoAlbum: false,
+        targetWidth: 512,
+        targetHeight: 512
+      };
+
+      this.camera.getPicture(cameraOptions).then((data) => {
+        this.cameraImage =  data; resolve(this.cameraImage);
+      }).catch(err=>{
+        reject(err);
+      });
+    });
   }
 }

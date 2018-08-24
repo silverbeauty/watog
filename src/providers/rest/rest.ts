@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import 'rxjs/add/operator/map';
-
-import { DataProvider } from '../data/data';
+import { Observable } from "rxjs/Rx";
 import { User, Auth, resFile } from '../../types';
 
 import { server_url } from '../../environments/environment'
@@ -90,6 +88,7 @@ export class RestProvider {
   }
 
   public signUp(user: User): Promise<User> {
+
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
         .subscribe((res: any) => {
@@ -106,17 +105,16 @@ export class RestProvider {
   }
 
   public sendFile(file: any): Promise<resFile>{
-
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file}), { headers: jsonHeader })
+      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file}), { headers: jsonHeader }).timeout(15000)
         .subscribe((res: any) => {
           if (res.status) {
+            console.log(res);
             resolve(res.data as resFile);
           } else {
             reject('Save file failed!')
           }
         }, (err) => {
-          console.info('Send file Failed:', err)
           reject(err);
         });
     })
