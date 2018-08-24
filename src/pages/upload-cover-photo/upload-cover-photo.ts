@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { CameraProvider } from '../../providers/camera/camera';
-import {Auth, resFile} from "../../types";
-import {DashboardPage} from "../dashboard/dashboard";
-import { DataProvider, RestProvider } from '../../providers';
-import { FileOpener } from '@ionic-native/file-opener';
+import { resFile} from "../../types";
+import {  RestProvider } from '../../providers';
+
 
 
 @IonicPage()
