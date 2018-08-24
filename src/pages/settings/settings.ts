@@ -4,6 +4,8 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { EditProfilePage } from '../edit-profile/edit-profile';
 import { ChangePasswordPage } from '../change-password/change-password';
+import { LoginPage } from '../login/login';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the SettingsPage page.
@@ -19,7 +21,7 @@ import { ChangePasswordPage } from '../change-password/change-password';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -43,7 +45,8 @@ export class SettingsPage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
   goBack(){

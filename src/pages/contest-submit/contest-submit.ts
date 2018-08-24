@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
+import { LoginPage } from '../login/login';
 import { SettingsPage } from '../settings/settings';
 import { ContestSubmitedPage } from '../contest-submited/contest-submited';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the ContestSubmitPage page.
@@ -18,12 +20,19 @@ import { ContestSubmitedPage } from '../contest-submited/contest-submited';
   templateUrl: 'contest-submit.html',
 })
 export class ContestSubmitPage {
+  public photo: any = {
+    description: ""
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider:DataProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestSubmitPage');
+  }
+
+  logForm(){
+    console.log(this.photo.description);
   }
 
   goToDashboard(){
@@ -47,7 +56,8 @@ export class ContestSubmitPage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
 }

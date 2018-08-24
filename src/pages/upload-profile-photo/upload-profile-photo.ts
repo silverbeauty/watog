@@ -4,7 +4,9 @@ import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of
 import { CameraProvider } from '../../providers/camera/camera';
 import {resFile} from "../../types";
 import { DataProvider, RestProvider } from '../../providers';
-import { Base64 } from '@ionic-native/base64';
+import { FileOpener } from '@ionic-native/file-opener';
+
+
 /**
  * Generated class for the UploadProfilePhotoPage page.
  *
@@ -64,4 +66,12 @@ export class UploadProfilePhotoPage {
       alert("Take a picture error! :" + err);
     });
   }
+
 }
+/*
+      this.restProvider.sendFile(this.base64Image).then((res_file: resFile) => {
+        console.info('Send File Response:', res_file)
+        // Save file
+        //this.dataProvider.saveFile(this.base64Image, res_file.url);
+        this.image = res_file.url;
+*/

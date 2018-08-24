@@ -6,9 +6,9 @@ import { SettingsPage } from '../settings/settings';
 import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
 import { countries } from '../../models/model';
 import {HttpClient,  HttpHeaders} from '@angular/common/http';
-import { server_url } from '../../environments/environment'
-import { DataProvider } from '../../providers';
-
+import { server_url } from '../../environments/environment';
+import { DataProvider, RestProvider } from '../../providers';
+import { ElementRef } from '@angular/core';
 
 /**
  * Generated class for the EditProfilePage page.
@@ -16,6 +16,7 @@ import { DataProvider } from '../../providers';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
 
 @IonicPage()
 @Component({
@@ -26,6 +27,7 @@ export class EditProfilePage {
   public todo = {
     first_name: "",
     last_name: "",
+    pseudo: "",
     password: "",
     pass_conf: "",
     email: "",
@@ -36,22 +38,52 @@ export class EditProfilePage {
   }
 
   public promise : any;
+  private getMe : any ;
   countries : any[] = countries;
   server_url: any = server_url;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, public profil: DataProvider) {
-    this.promise = Promise.all([this.profil.get()]);
-    this.promise.then(res => {
-      return JSON.parse(res);
-    })
-    .then(data => {
-      this.todo.password = data.password;
-      this.todo.pass_conf = data.password;
-    })
-  }
+
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams,
+    private http: HttpClient, public profil: DataProvider,
+    public rest : RestProvider, public dataProvider: DataProvider
+  ) {
+      this.promise = Promise.all([this.profil.get()]);
+      this.promise.then(res => {
+        return JSON.parse(res);
+      })
+      .then(data => {
+        this.todo.password = data.password;
+        this.todo.pass_conf = data.password;
+      })
+    }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditProfilePage');
+    Promise.all([this.rest.getProfile()]).then(tab => {
+      console.log(tab)
+      let data = tab[0];
+      this.todo.first_name = data.first_name;
+      this.todo.last_name = data.last_name;
+      this.todo.email = data.email;
+      this.todo.cell_phone = data.cell_phone;
+      this.todo.country = data.country;
+      this.todo.hospital = data.hospital;
+    })
+  }
+
+  setCurrentUser(name, lastname, pseudo, email, phone, country, hospital){
+    Promise.all([this.rest.getProfile()]).then(tab => {
+        let data = tab[0];
+        data.first_name = name;
+        data.last_name = lastname;
+        data.email = email;
+        data.cell_phone = phone;
+        data.country = country;
+        data.hospital = hospital;
+        console.log(data)
+    })
+
   }
 
   goToDashboard(){
@@ -70,32 +102,24 @@ export class EditProfilePage {
     this.navCtrl.pop();
   }
 
-  logForm(){
-
-    const httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': '*'
-    });
-    try{
-      this.http.post(this.server_url+'/users/me', JSON.stringify(this.todo), {headers: httpHeaders}).subscribe(data => {
-        console.log(data);
-        if((typeof data) == "object"){
-          if(status == "true"){
-            alert('true');
-          }else{
-            alert('false');
-          }
-        }
-        else{
-          console.log("data is not define");
-        }
-      })
-    } catch (e){console.log("http.post returned :" + e);}
-
-  }
-
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
 }
+
+/****
+
+
+this.todo.password  = data.
+this.todo.pass_conf  = data.
+this.todo.other_speciality = data.
+let NAME = document.querySelector("input[name='first_name']");
+let SURNAME = document.querySelector("input[name='last_name']");
+let EMAIL = document.querySelector("input[name='email']");
+let PHONE = document.querySelector("input[name='cell_phone']");
+let COUNTRY = document.querySelector("input[name='country']");
+let HOSPITAL = document.querySelector("input[name='hospital']");
+
+****/

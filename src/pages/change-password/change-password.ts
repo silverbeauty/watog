@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { LoginPage } from '../login/login';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the ChangePasswordPage page.
@@ -18,7 +20,7 @@ import { SettingsPage } from '../settings/settings';
 })
 export class ChangePasswordPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider:DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -42,7 +44,8 @@ export class ChangePasswordPage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
 }

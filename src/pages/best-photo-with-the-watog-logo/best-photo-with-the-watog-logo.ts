@@ -4,6 +4,8 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { ContestSubmitPage } from '../contest-submit/contest-submit';
+import { LoginPage } from '../login/login';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the BestPhotoWithTheWatogLogoPage page.
@@ -19,7 +21,7 @@ import { ContestSubmitPage } from '../contest-submit/contest-submit';
 })
 export class BestPhotoWithTheWatogLogoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -56,7 +58,8 @@ export class BestPhotoWithTheWatogLogoPage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
 }
