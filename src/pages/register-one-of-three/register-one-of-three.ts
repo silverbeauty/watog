@@ -42,7 +42,7 @@ export class RegisterOneOfThreePage {
   }
 
   countries : any[] = countries;
-  profile_image: string = "../../assets/imgs/rio.jpg";
+  profile_image: string = "assets/imgs/rio.jpg";
   //
   constructor(public navCtrl: NavController, public navParams: NavParams,  public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
