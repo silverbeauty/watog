@@ -46,8 +46,8 @@ export class CameraProvider {
         correctOrientation: true,
         allowEdit: true,
         saveToPhotoAlbum: false,
-        targetWidth: 512,
-        targetHeight: 512
+        targetWidth: 320,
+        targetHeight: 320
       };
 
       this.camera.getPicture(cameraOptions).then((data) => {
