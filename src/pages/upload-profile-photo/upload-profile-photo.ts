@@ -3,8 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { CameraProvider } from '../../providers/camera/camera';
 import {resFile} from "../../types";
-import { DataProvider, RestProvider } from '../../providers';
-import { FileOpener } from '@ionic-native/file-opener';
+import {  RestProvider } from '../../providers';
 
 
 /**
@@ -49,7 +48,6 @@ export class UploadProfilePhotoPage {
         alert("Send file to server error!");
       })
     }, err => {
-      alert("Take a picture error! :" + err);
     });
   }
 
@@ -63,7 +61,6 @@ export class UploadProfilePhotoPage {
         alert("Send file to server error! :" + error);
       })
     }, err => {
-      alert("Take a picture error! :" + err);
     });
   }
 

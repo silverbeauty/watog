@@ -90,7 +90,6 @@ export class RestProvider {
 
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
-        .timeout(30000)
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as User);
@@ -107,6 +106,7 @@ export class RestProvider {
   public sendFile(file: any): Promise<resFile>{
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/file', JSON.stringify({file: file}), { headers: jsonHeader })
+        .timeout(30000)
         .subscribe((res: any) => {
           if (res.status) {
             console.log(res);
