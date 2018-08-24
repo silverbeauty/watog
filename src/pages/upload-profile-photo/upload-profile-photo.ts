@@ -45,6 +45,7 @@ export class UploadProfilePhotoPage {
         this.image_url = res_file.url;
         this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  image_local: this.image_local, from: 'picture_profile'});
       }).catch((error) => {
+        alert("Send file to server error!");
       })
     }, err => {
     });
@@ -57,6 +58,7 @@ export class UploadProfilePhotoPage {
         this.image_url = res_file.url;
         this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  image_local: this.image_local, from: 'picture_profile'});
       }).catch((error) => {
+        alert("Send file to server error!");
       })
     }, err => {
     });
