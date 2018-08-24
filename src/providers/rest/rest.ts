@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from "rxjs/Rx";
 import { User, Auth, resFile } from '../../types';
 
 import { server_url } from '../../environments/environment'
@@ -106,7 +105,7 @@ export class RestProvider {
 
   public sendFile(file: any): Promise<resFile>{
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file}), { headers: jsonHeader }).timeout(15000)
+      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file}), { headers: jsonHeader })
         .subscribe((res: any) => {
           if (res.status) {
             console.log(res);

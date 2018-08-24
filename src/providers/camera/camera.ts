@@ -41,7 +41,7 @@ export class CameraProvider {
       let cameraOptions: CameraOptions = {
         sourceType: sourceType, //this.camera.PictureSourceType.PHOTOLIBRARY,
         destinationType: dataOption,
-        quality: 100,
+        quality: 70,
         encodingType: this.camera.EncodingType.JPEG,
         correctOrientation: true,
         allowEdit: true,
