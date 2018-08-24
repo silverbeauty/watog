@@ -1,7 +1,7 @@
 <ion-content class="body">
     <div class="navbar">
       <a (click)="gotToRegister()"><i class="fa fa-angle-left"></i></a>
-      <img src="../../assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
+      <img src="assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
     </div>
     <section class="position">
       <div class="container">
@@ -23,14 +23,14 @@
         <div class="row pictures">
           <div class="col">
             <a href="#" (click)="TakeaPicture()">
-              <img [src]=base64Image alt="camera" />
+              <img [src]=image_base64 alt="camera" />
               <p class="font-weight-light text-center">Take a Picture</p>
             </a>
           </div>
           <div class="divider"></div>
           <div class="col">
             <a href="#" (click)="navToGallery()">
-              <img [src]=chooseImg alt="On your computer" />
+              <img [src]=image_choose alt="On your computer" />
               <p class="font-weight-light text-center">On your device</p>
             </a>
           </div>
