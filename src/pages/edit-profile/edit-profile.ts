@@ -9,6 +9,7 @@ import {HttpClient,  HttpHeaders} from '@angular/common/http';
 import { server_url } from '../../environments/environment';
 import { DataProvider, RestProvider } from '../../providers';
 import { ElementRef } from '@angular/core';
+import {LoginPage} from "../login/login";
 
 /**
  * Generated class for the EditProfilePage page.
