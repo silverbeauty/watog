@@ -109,7 +109,6 @@ export class RestProvider {
         .timeout(30000)
         .subscribe((res: any) => {
           if (res.status) {
-            alert('true');
             resolve(res.data as resFile);
           } else {
             reject('Save file failed!')
