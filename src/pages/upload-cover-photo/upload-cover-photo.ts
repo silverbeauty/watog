@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { CameraProvider } from '../../providers/camera/camera';
-import {Auth, resFile} from "../../types";
-import {DashboardPage} from "../dashboard/dashboard";
-import { DataProvider, RestProvider } from '../../providers';
-import { FileOpener } from '@ionic-native/file-opener';
+import { resFile} from "../../types";
+import {  RestProvider } from '../../providers';
+
 
 
 @IonicPage()
@@ -14,13 +13,13 @@ import { FileOpener } from '@ionic-native/file-opener';
   templateUrl: 'upload-cover-photo.html',
 })
 export class UploadCoverPhotoPage {
-  public base64Image: any;
-  public chooseImg: any;
-  public image: any;
+  public image_base64: any;
+  public image_choose: any;
+  public image_url: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public restProvider: RestProvider, public dataProvider: DataProvider, private fileOpener: FileOpener) {
-    this.base64Image = "../../assets/imgs/appareil.png";
-    this.chooseImg = "../../assets/imgs/on_your_computer.png";
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public restProvider: RestProvider) {
+    this.image_base64 = "assets/imgs/appareil.png";
+    this.image_choose = "assets/imgs/on_your_computer.png";
   }
 
   ionViewDidLoad() {
@@ -28,50 +27,33 @@ export class UploadCoverPhotoPage {
   }
 
   gotToRegister(){
-    this.navCtrl.push(RegisterOneOfThreePage, {image: this.image, from: 'picture_cover'});
+    this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  from: 'picture_cover'});
   }
 
   TakeaPicture(){
-    this.cam.photo(this.base64Image).then((imageData) => {
-
-      this.base64Image = 'data:image/jpeg;base64,' +imageData;
-
-      this.restProvider.sendFile(this.base64Image).then((res_file: resFile) => {
-        console.info('Send File Response:', res_file)
-        // Save file
-        //this.dataProvider.saveFile(this.base64Image, res_file.url);
-        this.image = res_file.url;
-
+    this.cam.selectImage(1, 0).then(resp => {
+      this.image_url = "data:image/jpeg;base64," + resp;
+      this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
+        this.image_url = res_file.url;
+        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  from: 'picture_cover'});
       }).catch((error) => {
-        alert(error);
+        alert("Send file to server error!");
       })
-
-      //alert(this.base64Image);
-
-    })
-    .catch(err => console.log(err));
+    }, err => {
+    });
   }
 
-  navToGallery(){
-    this.cam.choosePicture()
-      .then((results) => {
-
-        for (var i = 0; i < results.length; i++) {
-          this.chooseImg = results[i];
-        }
-
-        this.restProvider.sendFile(this.chooseImg).then((res_file: resFile) => {
-          console.info('Send File Response:', res_file)
-          // Save file
-          //this.dataProvider.saveFile(this.base64Image, res_file.url);
-          this.image = res_file.url;
-
-        }).catch((error) => {
-          alert(error);
-        })
-      },(err) => {
-          alert("Error"+ err)
+  navToGallery() {
+    this.cam.selectImage(0, 0).then(resp => {
+      this.image_url = "data:image/jpeg;base64," + resp;
+      this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
+        this.image_url = res_file.url;
+        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  from: 'picture_cover'});
+      }).catch((error) => {
+        alert("Send file to server error!");
       })
-      .catch(err => console.log(err));
+    }, err => {
+    });
+
   }
 }
