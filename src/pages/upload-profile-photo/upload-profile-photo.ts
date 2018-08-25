@@ -92,10 +92,4 @@ export class UploadProfilePhotoPage {
   }
 
 }
-/*
-      this.restProvider.sendFile(this.base64Image).then((res_file: resFile) => {
-        console.info('Send File Response:', res_file)
-        // Save file
-        //this.dataProvider.saveFile(this.base64Image, res_file.url);
-        this.image = res_file.url;
-*/
+
