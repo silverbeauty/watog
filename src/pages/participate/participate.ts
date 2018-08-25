@@ -8,6 +8,8 @@ import { BestSurgicalImagePage } from '../best-surgical-image/best-surgical-imag
 import { BestPhotoWithTheWatogLogoPage } from '../best-photo-with-the-watog-logo/best-photo-with-the-watog-logo';
 import { BestGroupPhotoWithTheWatogLogoPage } from '../best-group-photo-with-the-watog-logo/best-group-photo-with-the-watog-logo';
 import { BestHumanitaryPhotoPage } from '../best-humanitary-photo/best-humanitary-photo';
+import { LoginPage } from '../login/login';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the ParticipatePage page.
@@ -23,7 +25,7 @@ import { BestHumanitaryPhotoPage } from '../best-humanitary-photo/best-humanitar
 })
 export class ParticipatePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -67,7 +69,8 @@ export class ParticipatePage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
 }

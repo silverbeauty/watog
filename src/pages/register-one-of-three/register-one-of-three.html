@@ -1,7 +1,7 @@
 <ion-content class="body">
   <div class="navbar">
     <a (click)="goToLogin()"><i class="fa fa-angle-left"></i></a>
-    <img src="../../assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
+    <img src="assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
   </div>
   <section class="position">
     <div class="container">
@@ -38,55 +38,55 @@
       <div class="row">
         <div class="col-md">
           <div class="text-center div-upload-cover-photo">
-            <a href="#" (click)="navToUploadCoverPhoto()" class="btn btn-info upload-cover-photo"><p class="font-weight-light">Upload cover photo</p><img src="../../assets/icon/Upload.png" alt=""></a>
+            <a href="#" (click)="navToUploadCoverPhoto()" class="btn btn-info upload-cover-photo"><p class="font-weight-light">Upload cover photo</p><img src="assets/icon/Upload.png" alt=""></a>
           </div>
 
           <form (ngSubmit)="logForm()">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="login logo"></span>
+                    <span class="input-group-text"><img src="assets/icon/Profil.png" alt="login logo"></span>
                 </div>
                 <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First Name*" [(ngModel)]="user.first_name" name="first_name" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="password logo"></span>
+                    <span class="input-group-text"><img src="assets/icon/Profil.png" alt="password logo"></span>
                 </div>
                 <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" [(ngModel)]="user.last_name" name="last_name" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="../../assets/icon/Profil.png" alt="pseudo icon"></span>
+                    <span class="input-group-text"><img src="assets/icon/Profil.png" alt="pseudo icon"></span>
                 </div>
                 <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="user.pseudo" name="Pseudo" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="../../assets/icon/Password.png" alt="password logo"></span>
+                    <span class="input-group-text"><img src="assets/icon/Password.png" alt="password logo"></span>
                 </div>
                 <ion-input type="password" class="form-control font-weight-light" id="PasswordInput" aria-describedby="passwd-picture" placeholder="Password*" [(ngModel)]="user.password" name="Pass" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="../../assets/icon/Password.png" alt="password logo"></span>
+                    <span class="input-group-text"><img src="assets/icon/Password.png" alt="password logo"></span>
                 </div>
                 <ion-input type="password" class="form-control font-weight-light" id="ConfirmPasswordInput" aria-describedby="passwd-picture" placeholder="Confirm Password*" [(ngModel)]="user.pass_conf" name="pass_conf" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="../../assets/icon/Mail02.png" alt="password logo"></span>
+                    <span class="input-group-text"><img src="assets/icon/Mail02.png" alt="password logo"></span>
                 </div>
                 <ion-input type="email" class="form-control font-weight-light" id="EmailInput" aria-describedby="passwd-picture" placeholder="Email*" [(ngModel)]="user.email" name="email" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="../../assets/icon/Phone.png" alt="password logo"></span>
+                    <span class="input-group-text"><img src="assets/icon/Phone.png" alt="password logo"></span>
                 </div>
                 <ion-input type="number" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" placeholder="Cell Phone*" [(ngModel)]="user.cell_phone" name="cell_phone" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="../../assets/icon/Location.png" alt="password logo"></span>
+                    <span class="input-group-text"><img src="assets/icon/Location.png" alt="password logo"></span>
                 </div>
               <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" name="country" [(ngModel)]="user.country" [ngModelOptions]="{standalone: true}" >
                 <ion-option *ngFor="let item of countries" value="{{item}}">{{item}}</ion-option>
@@ -94,7 +94,7 @@
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="../../assets/icon/Hopital.png" alt="password logo"></span>
+                    <span class="input-group-text"><img src="assets/icon/Hopital.png" alt="password logo"></span>
                 </div>
                 <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="user.hospital" name="hospital" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>

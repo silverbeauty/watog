@@ -5,6 +5,8 @@ import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { OrganizationPage } from '../organization/organization';
 import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
+import { LoginPage } from '../login/login';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the MissionOfWatogPage page.
@@ -20,7 +22,7 @@ import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 })
 export class MissionOfWatogPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -48,7 +50,8 @@ export class MissionOfWatogPage {
   }
 
   logout(){
-    console.log('not implemented yet');
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
   }
 
 }
