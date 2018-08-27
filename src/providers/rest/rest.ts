@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User, Auth, resFile, Category } from '../../types';
 import 'rxjs/add/operator/timeout';
+import 'rxjs/add/observable/of';
 import { server_url } from '../../environments/environment'
 
 

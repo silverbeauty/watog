@@ -47,7 +47,7 @@ export class EditProfilePage {
   public promise : any;
   private getMe : any ;
   countries : any[] = countries;
-
+  public profile_image : any;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams, public profil: DataProvider, public rest : RestProvider, public data: DataProvider) {
@@ -59,19 +59,20 @@ export class EditProfilePage {
         this.user.password = data.password;
         this.user.pass_conf = data.password;
       })*/
-    Promise.all([this.data.getProfile()]).then(data => {
-      let data = data as Auth;
+    Promise.all([this.data.getProfile()]).then(tab => {
+      let data = tab[0];
       this.user.first_name = data.first_name;
       this.user.last_name = data.last_name;
       this.user.email = data.email;
       this.user.cell_phone = data.cell_phone;
       this.user.country = data.country;
       this.user.hospital = data.hospital;
-      this.user.pseudo
+      this.user.pseudo = data.pseudo;
+      this.profile_image = data.picture_profile;
     })
     }
 
-  ionViewDidLoad() {
+/*  ionViewDidLoad() {
     console.log('ionViewDidLoad EditProfilePage');
     Promise.all([this.rest.getProfile()]).then(tab => {
       console.log(tab)
@@ -84,7 +85,7 @@ export class EditProfilePage {
       this.todo.hospital = data.hospital;
       this.todo.
     })
-  }
+  }*/
 
   setCurrentUser(name, lastname, pseudo, email, phone, country, hospital){
     Promise.all([this.rest.getProfile()]).then(tab => {
@@ -117,7 +118,7 @@ export class EditProfilePage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
+    this.data.clearProfile();
     this.navCtrl.push(LoginPage);
   }
 
