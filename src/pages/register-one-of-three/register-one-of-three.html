@@ -58,7 +58,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><img src="assets/icon/Profil.png" alt="pseudo icon"></span>
                 </div>
-                <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="user.pseudo" name="Pseudo" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="user.user_name" name="Pseudo" [ngModelOptions]="{standalone: true}"></ion-input>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -104,7 +104,7 @@
             </div>
 
             <div class="text-center div-btn-submit">
-              <button type="submit" class="btn btn-submit btn-md" (click)="goToRegisterTwoOfThree()">NEXT</button>
+              <button type="submit" class="btn btn-submit btn-md">NEXT</button>
             </div>
           </form>
         </div>

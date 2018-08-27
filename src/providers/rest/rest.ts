@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User, Auth, resFile } from '../../types';
+import { User, Auth, resFile, Category } from '../../types';
 import 'rxjs/add/operator/timeout';
 import { server_url } from '../../environments/environment'
 
@@ -89,7 +89,7 @@ export class RestProvider {
   public signUp(user: User): Promise<User> {
 
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
+      this.http.post(this.apiUrl+'/user', user, { headers: jsonHeader })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as User);
@@ -136,5 +136,24 @@ export class RestProvider {
           reject(err);
         });
     })
+  }
+
+  public createCategory(category: any): Promise<Array<Category>> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token
+    });
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl + '/category', category, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data as Array<Category>);
+          } else {
+            reject('Failed to search!')
+          }
+        }, (err) => {
+          console.info('Search User Failed:', err)
+          reject(err);
+        });
+    });
   }
 }

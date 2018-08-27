@@ -25,14 +25,14 @@
       <div class="container">
         <div class="row pictures">
           <div class="col">
-            <a href="#">
+            <a href="#" (click)="TakeaPicture()">
               <img src="../../assets/imgs/appareil.png" alt="camera">
               <p class="font-weight-light text-center">Take a Picture</p>
             </a>
           </div>
           <div class="divider"></div>
           <div class="col">
-            <a href="#">
+            <a href="#" (click)="navToGallery()">
               <img src="../../assets/imgs/on_your_computer.png" alt="On your computer">
               <p class="font-weight-light text-center">On your device</p>
             </a>
@@ -41,6 +41,6 @@
       </div>
     </section>
     <div class="text-center">
-      <button class="btn btn-next" (click)="goToRegisterThreeOfThree()">NEXT</button>
+      <button class="btn btn-next" (click)="sendDoc()">NEXT</button>
     </div>
   </ion-content>
