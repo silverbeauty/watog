@@ -14,12 +14,15 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 //import { SettingsPage } from '../pages/settings/settings';
 import { DataProvider, RestProvider } from '../providers';
 import { User, Auth } from '../types';
+import { timer } from 'rxjs/observable/timer';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage:any = LoginPage;
+
+  showSplash = true;
 
   constructor(public app: App, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public dataProvider: DataProvider, public restProvider: RestProvider) {
     platform.ready().then(() => {
@@ -42,8 +45,11 @@ export class MyApp {
       })
       statusBar.styleDefault();
       splashScreen.hide();
+
+      timer(3000).subscribe(() => this.showSplash = false)
     });
   }
+
 }
 
 /*this.dataProvider.getProfile().then((auth: Auth) => {
