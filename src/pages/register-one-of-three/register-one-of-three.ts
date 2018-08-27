@@ -27,6 +27,7 @@ export class RegisterOneOfThreePage {
     country: '',
     hospital: '',
     pass_conf: '',
+    password: '',
     user_name: '',
     job: '',
     picture_profile: '',

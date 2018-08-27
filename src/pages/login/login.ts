@@ -49,9 +49,9 @@ export class LoginPage {
 
   onSubmit() {
     //console.log('Login Form Data:', this.data)
-
     const { email, password } = this.data;
     if (email && password) {
+      console.log('here')
       this.restProvider.login(email, password).then((auth: Auth) => {
         //console.info('Login Response:', auth)
         // Save profil

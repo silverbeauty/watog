@@ -6,7 +6,9 @@ import { server_url } from '../../environments/environment'
 
 
 const jsonHeader = new HttpHeaders({
-  'Content-Type':  'application/json'
+  'Content-Type':  'application/json',
+
+
 });
 
 @Injectable()
@@ -86,6 +88,15 @@ export class RestProvider {
     })
   }
 
+  public setProfile(user: User){
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'/users').retry(3).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
   public signUp(user: User): Promise<User> {
 
     return new Promise((resolve, reject) => {

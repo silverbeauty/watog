@@ -3,14 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
-import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
 import { countries } from '../../models/model';
-import {HttpClient,  HttpHeaders} from '@angular/common/http';
-import { server_url } from '../../environments/environment';
 import { DataProvider, RestProvider } from '../../providers';
 import { ElementRef } from '@angular/core';
-import {LoginPage} from "../login/login";
-
+import { LoginPage } from "../login/login";
+import { Auth } from "../../types"
 /**
  * Generated class for the EditProfilePage page.
  *
@@ -25,38 +22,53 @@ import {LoginPage} from "../login/login";
   templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
-  public todo = {
-    first_name: "",
-    last_name: "",
-    pseudo: "",
-    password: "",
-    pass_conf: "",
-    email: "",
-    cell_phone: null,
-    country: "",
-    hospital:"",
-    other_speciality: ""
+  public user = {
+    id: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    cell_phone: '',
+    country: '',
+    pseudo: '',
+    hospital: '',
+    password: '',
+    pass_conf: '',
+    user_name: '',
+    job: '',
+    picture_profile: '',
+    picture_cover: '',
+    proof_of_status_date:'',
+    proof_of_status: '',
+    token: '',
+    sms_verified_date: '',
+    email_verified_date: '',
   }
 
   public promise : any;
   private getMe : any ;
   countries : any[] = countries;
-  server_url: any = server_url;
 
 
   constructor(
-    public navCtrl: NavController, public navParams: NavParams,
-    private http: HttpClient, public profil: DataProvider,
-    public rest : RestProvider, public dataProvider: DataProvider
-  ) {
-      this.promise = Promise.all([this.profil.get()]);
+    public navCtrl: NavController, public navParams: NavParams, public profil: DataProvider, public rest : RestProvider, public data: DataProvider) {
+      /*this.promise = Promise.all([this.profil.get()]);
       this.promise.then(res => {
         return JSON.parse(res);
       })
       .then(data => {
-        this.todo.password = data.password;
-        this.todo.pass_conf = data.password;
-      })
+        this.user.password = data.password;
+        this.user.pass_conf = data.password;
+      })*/
+    Promise.all([this.data.getProfile()]).then(data => {
+      let data = data as Auth;
+      this.user.first_name = data.first_name;
+      this.user.last_name = data.last_name;
+      this.user.email = data.email;
+      this.user.cell_phone = data.cell_phone;
+      this.user.country = data.country;
+      this.user.hospital = data.hospital;
+      this.user.pseudo
+    })
     }
 
   ionViewDidLoad() {
@@ -70,6 +82,7 @@ export class EditProfilePage {
       this.todo.cell_phone = data.cell_phone;
       this.todo.country = data.country;
       this.todo.hospital = data.hospital;
+      this.todo.
     })
   }
 
