@@ -156,4 +156,23 @@ export class RestProvider {
         });
     });
   }
+
+  public queryCategories(offset: number = 0, limit: number = 1000): Promise<Array<Category>> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token
+    });
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl + '/category?offset=' + offset + '&limit=' + limit, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data as Array<Category>);
+          } else {
+            reject('Failed to query categories!')
+          }
+        }, (err) => {
+          console.info('Failed to query categories:', err)
+          reject(err);
+        });
+    })
+  }
 }
