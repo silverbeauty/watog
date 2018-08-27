@@ -7,7 +7,7 @@ import { SQLite } from '@ionic-native/sqlite';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera } from '@ionic-native/camera';
-
+import { FileOpener } from '@ionic-native/file-opener';
 
 //import { AlertController } from 'ionic-angular';
 
@@ -155,7 +155,8 @@ import { CameraProvider } from '../providers/camera/camera';
     NativeStorage,
     ImagePicker,
     CameraProvider,
-    Camera
+    Camera,
+    FileOpener
   ]
 })
 export class AppModule {}

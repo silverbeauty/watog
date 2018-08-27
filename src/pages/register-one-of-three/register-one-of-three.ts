@@ -27,10 +27,10 @@ export class RegisterOneOfThreePage {
     country: '',
     hospital: '',
     pass_conf: '',
-    pseudo: '',
+    user_name: '',
+    job: '',
     picture_profile: '',
     picture_cover: '',
-    other_speciality: '',
     proof_of_status_date:'',
     proof_of_status: ''
   }
@@ -42,7 +42,7 @@ export class RegisterOneOfThreePage {
   }
 
   countries : any[] = countries;
-  profile_image: string = "assets/imgs/rio.jpg";
+  public profile_image: string = "assets/imgs/rio.jpg";
   //
   constructor(public navCtrl: NavController, public navParams: NavParams,  public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
@@ -62,12 +62,11 @@ export class RegisterOneOfThreePage {
   /** Request Http **/
 
   logForm(){
-
+    this.user.job = this.getQualifiction();
     this.restProvider.signUp(this.user as User).then((auth: Auth) => {
-      console.info('Login Response:', auth)
       // Save profile
       this.dataProvider.saveProfile(auth);
-      this.navCtrl.push(DashboardPage)
+      this.navCtrl.push(RegisterTwoOfThreePage);
     }).catch((error) => {
       alert('Invalid input');
     })
@@ -79,12 +78,8 @@ export class RegisterOneOfThreePage {
     this.navCtrl.push(LoginPage);
   }
 
-  goToRegisterTwoOfThree(){
-    this.navCtrl.push(RegisterTwoOfThreePage);
-  }
-
   navToUploadCoverPhoto(){
-    this.navCtrl.push(UploadCoverPhotoPage);
+    alert("Unavailable service");
   }
 
   navToUploadProfilePhoto(){
@@ -93,6 +88,7 @@ export class RegisterOneOfThreePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterOneOfThreePage');
+    this.user.picture_profile = this.profile_image;
   }
 
   /*Methods for the html dom modification */
@@ -109,20 +105,24 @@ export class RegisterOneOfThreePage {
     this.closeMenu();
   }
 
+  getQualifiction(){
+    return document.getElementById('qualificationInput').innerHTML;
+  }
+
   specifyQualification(){
     alert('test');
   }
 
   saveOtherSpeciality() {
-    if(this.user.other_speciality != '') {
-      this.selectQualification(this.user.other_speciality);
-      var btnClose = document.getElementById("btn-modal-close") as any;
-      btnClose.click();
-    }
+      if(this.user.job != '') {
+        this.selectQualification(this.user.job);
+        var btnClose = document.getElementById("btn-modal-close") as any;
+        btnClose.click();
+      }
   }
 
   cancelOtherSpeciality() {
     this.selectQualification('Select qualification');
-    this.user.other_speciality = "";
+    this.user.job = "";
   }
 }

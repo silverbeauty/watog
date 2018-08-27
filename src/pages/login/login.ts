@@ -48,12 +48,12 @@ export class LoginPage {
   }
 
   onSubmit() {
-    console.log('Login Form Data:', this.data)
+    //console.log('Login Form Data:', this.data)
 
     const { email, password } = this.data;
     if (email && password) {
       this.restProvider.login(email, password).then((auth: Auth) => {
-        console.info('Login Response:', auth)
+        //console.info('Login Response:', auth)
         // Save profil
         this.dataProvider.saveProfile(auth);
         this.navCtrl.push(DashboardPage)

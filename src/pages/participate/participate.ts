@@ -9,7 +9,7 @@ import { BestPhotoWithTheWatogLogoPage } from '../best-photo-with-the-watog-logo
 import { BestGroupPhotoWithTheWatogLogoPage } from '../best-group-photo-with-the-watog-logo/best-group-photo-with-the-watog-logo';
 import { BestHumanitaryPhotoPage } from '../best-humanitary-photo/best-humanitary-photo';
 import { LoginPage } from '../login/login';
-import { DataProvider } from '../../providers/data/data';
+import { DataProvider, RestProvider } from '../../providers';
 
 /**
  * Generated class for the ParticipatePage page.
@@ -24,8 +24,22 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'participate.html',
 })
 export class ParticipatePage {
+  public photo = {
+    "types":[
+      {'type':'Ultrasound'},
+      {'type':'Watog_logo'},
+      {'type':'Humanitary'},
+      {'type':'Surgical'},
+      {'type':'best_OB_GYN_Watog_logo'}
+    ]
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
+    this.photo.types.forEach(category => {    
+      Promise.all([this.restProvider.createCategory(category)]).then((data) => {
+        console.log(data)
+      })
+    })
   }
 
   ionViewDidLoad() {

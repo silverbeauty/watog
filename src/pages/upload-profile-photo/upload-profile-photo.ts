@@ -19,15 +19,15 @@ import {  RestProvider } from '../../providers';
   templateUrl: 'upload-profile-photo.html',
 })
 export class UploadProfilePhotoPage {
-  public image_base64: any;
-  public image_choose: any;
-  public image_url: any;
-  public image_local: any;
+  public image_base64_p: any;
+  public image_choose_p: any;
+  public image_url_p: any;
+  public image_local_p: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cam: CameraProvider, public restProvider: RestProvider) {
-    this.image_base64 = "assets/imgs/appareil.png";
-    this.image_choose = "assets/imgs/on_your_computer.png";
-    this.image_local="assets/imgs/rio.jpg";
+    this.image_base64_p = "assets/imgs/appareil.png";
+    this.image_choose_p = "assets/imgs/on_your_computer.png";
+    this.image_local_p = "assets/imgs/rio.jpg";
   }
 
   ionViewDidLoad() {
@@ -35,37 +35,56 @@ export class UploadProfilePhotoPage {
   }
 
   gotToRegister(){
-    this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url, image_local: this.image_local, from: 'picture_profile'});
+    this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url_p, image_local: this.image_local_p, from: 'picture_profile'});
   }
 
   TakeaPicture(){
     this.cam.selectImage(1, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;
-      this.restProvider.sendFile(this.image_local).then((res_file: resFile) => {
-        this.image_url = res_file.url;
-        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  image_local: this.image_local, from: 'picture_profile'});
-      }).catch((error) => {
-        alert("Send file to server error!");
-      })
+      this.image_local_p = "data:image/jpeg;base64," + resp;
+      this.navCtrl.push(RegisterOneOfThreePage, {image_local: this.image_local_p, from: 'picture_profile'});
     }, err => {
+      alert("error send parm, pictures of profile camera not save")
     });
   }
 
   navToGallery() {
     this.cam.selectImage(0, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;
-      this.restProvider.sendFile(this.image_local).then((res_file: resFile) => {
-        this.image_url = res_file.url;
-        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  image_local: this.image_local, from: 'picture_profile'});
-      }).catch((error) => {
-        alert("Send file to server error!");
-      })
+      this.image_local_p = "data:image/jpeg;base64," + resp;
+      this.navCtrl.push(RegisterOneOfThreePage, {image_local: this.image_local_p, from: 'picture_profile'});
     }, err => {
+      alert("error send param, picture of profile not selected")
     });
   }
 
 }
 /*
+
+navToGallery() {
+  this.cam.selectImage(0, 0).then(resp => {
+    this.image_local_p = "data:image/jpeg;base64," + resp;
+    this.restProvider.sendFile(this.image_local_p).then((res_file: resFile) => {
+      this.image_url_p = res_file.url;
+      this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url_p,  image_local: this.image_local_p, from: 'picture_profile'});
+    }).catch((error) => {
+      alert("Send file to server error!");
+    })
+  }, err => {
+  });
+}
+
+TakeaPicture(){
+  this.cam.selectImage(1, 0).then(resp => {
+    this.image_local_p = "data:image/jpeg;base64," + resp;
+    this.restProvider.sendFile(this.image_local_p).then((res_file: resFile) => {
+      this.image_url_p = res_file.url;
+      this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url_p,  image_local: this.image_local_p, from: 'picture_profile'});
+    }).catch((error) => {
+      alert("Send file to server error!");
+    })
+  }, err => {
+  });
+}
+
       this.restProvider.sendFile(this.base64Image).then((res_file: resFile) => {
         console.info('Send File Response:', res_file)
         // Save file

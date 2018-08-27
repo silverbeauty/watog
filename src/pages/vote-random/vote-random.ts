@@ -37,7 +37,6 @@ export class VoteRandomPage {
   }
 
   goToProfilePage(){
-    this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
   }
 

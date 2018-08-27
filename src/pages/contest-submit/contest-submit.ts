@@ -6,6 +6,10 @@ import { LoginPage } from '../login/login';
 import { SettingsPage } from '../settings/settings';
 import { ContestSubmitedPage } from '../contest-submited/contest-submited';
 import { DataProvider } from '../../providers/data/data';
+import { CameraProvider } from '../../providers/camera/camera';
+import { resFile } from "../../types";
+import {  RestProvider } from '../../providers';
+
 
 /**
  * Generated class for the ContestSubmitPage page.
@@ -21,10 +25,13 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class ContestSubmitPage {
   public photo: any = {
+    base64Image: "",
     description: ""
   }
+  public image_url: any;
+  public image_local: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider:DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public dataProvider:DataProvider, public restProvider: RestProvider) {
   }
 
   ionViewDidLoad() {
@@ -58,6 +65,24 @@ export class ContestSubmitPage {
   logout(){
     this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
+  }
+
+  TakeaPicture(){
+    this.cam.selectImage(1, 0).then(resp => {
+      this.image_local = "data:image/jpeg;base64," + resp;
+      alert("picture saved")
+    }, err => {
+      alert("error send parm, pictures of profile camera not save")
+    });
+  }
+
+  navToGallery() {
+    this.cam.selectImage(0, 0).then(resp => {
+      this.image_local = "data:image/jpeg;base64," + resp;
+      alert("picture saved")
+    }, err => {
+      alert("error send param, picture of profile not selected")
+    });
   }
 
 }

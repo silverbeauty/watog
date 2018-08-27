@@ -4,8 +4,9 @@ import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
+import { Auth, User, Category } from "../../types";
 
-import { DataProvider } from '../../providers/data/data';
+import { DataProvider, RestProvider } from '../../providers';
 import { ContestPage } from '../contest/contest';
 
 /**
@@ -22,11 +23,9 @@ import { ContestPage } from '../contest/contest';
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardPage');
   }
 
   goToProfilePage(){

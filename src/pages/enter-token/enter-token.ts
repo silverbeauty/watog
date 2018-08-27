@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
+import { RegisterThreeOfThreePage } from '../register-three-of-three/register-three-of-three';
 
 /**
  * Generated class for the EnterTokenPage page.
@@ -29,6 +30,10 @@ export class EnterTokenPage {
 
   goToDashboard(){
     this.navCtrl.push(DashboardPage);
+  }
+
+  goBackRegisterConf(){
+    this.navCtrl.push(RegisterThreeOfThreePage);
   }
 
 }
