@@ -4,7 +4,7 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
-import { DataProvider } from '../../providers/data/data';
+import { DataProvider, RestProvider } from '../../providers';
 
 /**
  * Generated class for the ChangePasswordPage page.
@@ -19,12 +19,20 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'change-password.html',
 })
 export class ChangePasswordPage {
+  public promise : any;
+  public passwd = {
+    old_password: "",
+    new_password: ""
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider:DataProvider) {
+  constructor(public navCtrl: NavController, public rest : RestProvider, public navParams: NavParams, public dataProvider:DataProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChangePasswordPage');
+  }
+
+  logForm(){
   }
 
   goToDashboard(){

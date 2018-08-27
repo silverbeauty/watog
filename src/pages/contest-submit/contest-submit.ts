@@ -31,6 +31,12 @@ export class ContestSubmitPage {
   public image_url: any;
   public image_local: any;
 
+  public submit = {
+    category_id: 1,
+    picture: "",
+    description:""
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public dataProvider:DataProvider, public restProvider: RestProvider) {
   }
 
@@ -40,6 +46,7 @@ export class ContestSubmitPage {
 
   logForm(){
     console.log(this.photo.description);
+    this.restProvider.postADoc(this.submit).then(data => console.log(data));
   }
 
   goToDashboard(){

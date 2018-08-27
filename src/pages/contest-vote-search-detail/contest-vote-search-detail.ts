@@ -24,7 +24,7 @@ import { User, Auth } from '../../types';
 })
 export class ContestVoteSearchDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public rest: RestProvider) {
   }
 
   ionViewDidLoad() {

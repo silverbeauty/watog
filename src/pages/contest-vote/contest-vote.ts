@@ -34,6 +34,7 @@ export class ContestVotePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestVotePage');
+
   }
 
   goToDashboard(){
@@ -49,18 +50,6 @@ export class ContestVotePage {
   }
 
   goToVoteRandom(){
-    console.info('Search: All')
-    // Set recent search
-    DataProvider.searchUserName = "";
-
-    this.restProvider.queryUsers(DataProvider.searchUserName).then((users: Array<User>) => {
-      DataProvider.searchedUsers = users;
-      DataProvider.searchUserOffset = 0;
-      this.navCtrl.push(VoteRandomPage);
-    }).catch((err: any) => {
-      this.data.error = 'Failed to search, you can try again!'
-    })
-    //added a route to the result page
     this.navCtrl.push(VoteRandomPage);
   }
 
@@ -81,8 +70,6 @@ export class ContestVotePage {
     }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
     })
-    //added a route to the result page
-    this.navCtrl.push(ContestSearchResultsPage);
   }
 
   checkFocus() {

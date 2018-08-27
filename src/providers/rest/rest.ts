@@ -86,6 +86,50 @@ export class RestProvider {
     })
   }
 
+  public postADoc(file: any): Promise<File> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/post', file ,{ headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(file as File);
+          } else {
+            console.error('Failed to load send doc:', res)
+            reject ('Failed to send doc')
+          }
+        }, (err) => {
+          console.info('Failed to send doc:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public getAllPost(): Promise<File> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl+'/post', { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data);
+          } else {
+            console.error('Failed to load send doc:', res)
+            reject ('Failed to send doc')
+          }
+        }, (err) => {
+          console.info('Failed to send doc:', err)
+          reject(err);
+        });
+    })
+  }
+
   public signUp(user: User): Promise<User> {
 
     return new Promise((resolve, reject) => {
@@ -156,4 +200,5 @@ export class RestProvider {
         });
     });
   }
+
 }

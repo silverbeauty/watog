@@ -28,14 +28,14 @@ export class EditProfilePage {
   public todo = {
     first_name: "",
     last_name: "",
-    pseudo: "",
+    user_name: "",
     password: "",
     pass_conf: "",
     email: "",
     cell_phone: null,
     country: "",
     hospital:"",
-    other_speciality: ""
+    job: ""
   }
 
   public promise : any;
@@ -73,7 +73,7 @@ export class EditProfilePage {
     })
   }
 
-  setCurrentUser(name, lastname, pseudo, email, phone, country, hospital){
+  setCurrentUser(name, lastname, user_name, email, phone, country, hospital){
     Promise.all([this.rest.getProfile()]).then(tab => {
         let data = tab[0];
         data.first_name = name;
@@ -115,7 +115,7 @@ export class EditProfilePage {
 
 this.todo.password  = data.
 this.todo.pass_conf  = data.
-this.todo.other_speciality = data.
+this.todo.job = data.
 let NAME = document.querySelector("input[name='first_name']");
 let SURNAME = document.querySelector("input[name='last_name']");
 let EMAIL = document.querySelector("input[name='email']");
