@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, isDevMode } from '@angular/core';
+
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
@@ -92,12 +93,18 @@ export class ContestSubmitPage {
   }
 
   navToGallery() {
-    this.cam.selectImage(0, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;
-      alert("picture saved")
-    }, err => {
-      alert("error send param, picture of profile not selected")
-    });
-  }
+    if (isDevMode) {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.click();
 
+    } else {
+      this.cam.selectImage(0, 0).then(resp => {
+        this.image_local = "data:image/jpeg;base64," + resp;
+        alert("picture saved")
+      }, err => {
+        alert("error send param, picture of profile not selected")
+      });
+    }
+  }
 }
