@@ -11,6 +11,7 @@ export class User {
   public proof_of_status_date: string;
   public picture_profile: string;
   public picture_cover: string;
+  public pseudo: string;
 }
 
 export class Auth extends User {

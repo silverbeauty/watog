@@ -27,12 +27,14 @@ export class RegisterOneOfThreePage {
     country: '',
     hospital: '',
     pass_conf: '',
+    password: '',
     user_name: '',
     job: '',
     picture_profile: '',
     picture_cover: '',
     proof_of_status_date:'',
-    proof_of_status: ''
+    proof_of_status: '',
+    pseudo: ''
   }
 
   public image = {
