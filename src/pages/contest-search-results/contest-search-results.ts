@@ -30,10 +30,12 @@ export class ContestSearchResultsPage {
   public cpt = {
     id: 0,
     inc: function(){
-      this.id++;
+      this.id = this.id+1;
       return this.id;
     }
   }
+  public element: any;
+  public index: number;
 
   constructor(public navCtrl: NavController, public restProvider: RestProvider, public navParams: NavParams, public dataProvider: DataProvider) {
     //this.data.users =
@@ -69,7 +71,18 @@ export class ContestSearchResultsPage {
 
   goToSearch(){
     let users = document.querySelectorAll("#allUser");
-    this.navCtrl.push(ContestVoteSearchDetailPage, {user: this.data.users, from: 'users_profile'});
+    let i = 0;
+    users.forEach(user => {
+      user.addEventListener("click", () => {
+        this.element = user;
+      })
+      if(user == this.element){
+        this.index = i;
+        console.log(i)
+        this.navCtrl.push(ContestVoteSearchDetailPage, {user: this.data.users[this.index], from: 'currentUser'});
+      }
+      i++;
+    })
   }
 
   logout(){
