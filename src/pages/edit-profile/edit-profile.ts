@@ -7,7 +7,8 @@ import { countries } from '../../models/model';
 import { DataProvider, RestProvider } from '../../providers';
 import { ElementRef } from '@angular/core';
 import { LoginPage } from "../login/login";
-import { Auth } from "../../types"
+import {Auth, User} from "../../types"
+import {RegisterTwoOfThreePage} from "../register-two-of-three/register-two-of-three";
 /**
  * Generated class for the EditProfilePage page.
  *
@@ -49,8 +50,7 @@ export class EditProfilePage {
   countries : any[] = countries;
   public profile_image : any;
 
-  constructor(
-    public navCtrl: NavController, public navParams: NavParams, public profil: DataProvider, public rest : RestProvider, public data: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public profil: DataProvider, public restProvider : RestProvider, public dataProvider: DataProvider) {
       /*this.promise = Promise.all([this.profil.get()]);
       this.promise.then(res => {
         return JSON.parse(res);
@@ -59,35 +59,37 @@ export class EditProfilePage {
         this.user.password = data.password;
         this.user.pass_conf = data.password;
       })*/
-    Promise.all([this.data.getProfile()]).then(tab => {
-      let data = tab[0];
-      this.user.first_name = data.first_name;
-      this.user.last_name = data.last_name;
-      this.user.email = data.email;
-      this.user.cell_phone = data.cell_phone;
-      this.user.country = data.country;
-      this.user.hospital = data.hospital;
-      this.user.pseudo = data.pseudo;
-      this.profile_image = data.picture_profile;
-    })
+
     }
 
-/*  ionViewDidLoad() {
+  ionViewDidLoad() {
     console.log('ionViewDidLoad EditProfilePage');
-    Promise.all([this.rest.getProfile()]).then(tab => {
-      console.log(tab)
-      let data = tab[0];
-      this.todo.first_name = data.first_name;
-      this.todo.last_name = data.last_name;
-      this.todo.email = data.email;
-      this.todo.cell_phone = data.cell_phone;
-      this.todo.country = data.country;
-      this.todo.hospital = data.hospital;
-      this.todo.
+    this.dataProvider.getProfile().then((auth: Auth) => {
+      // Set as publidc data
+
+      this.user.first_name = auth.first_name;
+      this.user.last_name = auth.last_name;
+      this.user.email = auth.email;
+      this.user.cell_phone = auth.cell_phone;
+      this.user.country = auth.country;
+      this.user.hospital = auth.hospital;
+ //     this.user.pseudo = auth.pseudo;
+      this.profile_image = auth.picture_profile;
+
+    }).catch((error) => {
+      alert('Invalid input');
     })
-  }*/
+  }
 
   setCurrentUser(name, lastname, pseudo, email, phone, country, hospital){
+/*
+    this.restProvider.signUp(this.user as User).then((auth: Auth) => {
+      // Save profile
+      this.dataProvider.saveProfile(auth);
+      this.navCtrl.push(RegisterTwoOfThreePage);
+    }).catch((error) => {
+      alert('Invalid input');
+    })
     Promise.all([this.rest.getProfile()]).then(tab => {
         let data = tab[0];
         data.first_name = name;
@@ -98,6 +100,7 @@ export class EditProfilePage {
         data.hospital = hospital;
         console.log(data)
     })
+*/
 
   }
 
@@ -118,7 +121,7 @@ export class EditProfilePage {
   }
 
   logout(){
-    this.data.clearProfile();
+    this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
   }
 

@@ -51,10 +51,10 @@ export class LoginPage {
     //console.log('Login Form Data:', this.data)
     const { email, password } = this.data;
     if (email && password) {
-      console.log('here')
       this.restProvider.login(email, password).then((auth: Auth) => {
         //console.info('Login Response:', auth)
         // Save profil
+        console.log('auth',auth);
         this.dataProvider.saveProfile(auth);
         this.navCtrl.push(DashboardPage)
       }).catch((error) => {

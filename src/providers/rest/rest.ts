@@ -74,7 +74,7 @@ export class RestProvider {
       this.http.get(this.apiUrl+'/user/me', { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            const  user = res.data;
+            const user = res.data;
             const auth: Auth = user as Auth;
             auth.token = RestProvider.token;
             resolve(auth);
@@ -89,7 +89,7 @@ export class RestProvider {
     })
   }
 
-  public setProfile(user: User){
+/*  public setProfile(user: User){
     return new Promise(resolve => {
       this.http.get(this.apiUrl+'/users').retry(3).subscribe(data => {
         resolve(data);
@@ -97,7 +97,7 @@ export class RestProvider {
         console.log(err);
       });
     });
-  }
+  }*/
   public signUp(user: User): Promise<User> {
 
     return new Promise((resolve, reject) => {
