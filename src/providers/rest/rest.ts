@@ -85,7 +85,30 @@ export class RestProvider {
         });
     })
   }
+  public setProfile(user: User): Promise<Auth> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
 
+    return new Promise((resolve, reject) => {
+      this.http.put(this.apiUrl+'/user/me', user, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            const  user = res.data;
+            const auth: Auth = user as Auth;
+            auth.token = RestProvider.token;
+            resolve(auth);
+          } else {
+            console.error('Failed to update profile:', res)
+            reject ('Failed to update profile')
+          }
+        }, (err) => {
+          console.info('Failed to update profile:', err)
+          reject(err);
+        });
+    })
+  }
   public postADoc(file: any): Promise<File> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
@@ -130,13 +153,13 @@ export class RestProvider {
     })
   }
 
-  public signUp(user: User): Promise<User> {
+  public signUp(user: User): Promise<Auth> {
 
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/user', user, { headers: jsonHeader })
         .subscribe((res: any) => {
           if (res.status) {
-            resolve(res.data as User);
+            resolve(res.data as Auth);
           } else {
             reject('Sign Up failed!')
           }

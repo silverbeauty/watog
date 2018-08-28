@@ -25,7 +25,7 @@ export class ProfilePage {
   public proffesion: string;
   public location: string;
   public fullname: string;
-  public photo_profil: string = "../../assets/imgs/rio.jpg";
+  public photo_profil: string = "../assets/imgs/rio.jpg";
 
   public best_rank: string = "2nd";
   public votes: number = 335;

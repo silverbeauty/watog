@@ -81,12 +81,10 @@ export class DataProvider {
     return Promise.all([this.storage.getItem('authorization'), this.storage.getItem('profile')]).then((res: Array<any>) => {
       if (res[0]) {
         // Set token to RestProvider
-        RestProvider.token = res[0];
 
         const profile: object = JSON.parse(res[1]);
         if (profile) {
-          const auth: Auth = profile as Auth;
-          auth.token = res[0];
+          const auth = profile as Auth;
           return auth
         } else {
           const auth = new Auth()
@@ -97,6 +95,7 @@ export class DataProvider {
         return null
       }
     }).catch((e: any) => {
+      alert('failed')
       console.info(e)
       return null;
     })
