@@ -27,18 +27,23 @@ import {Auth, User} from "../../types";
 })
 export class EditProfilePage {
   public user = {
-    first_name: "",
-    last_name: "",
-    user_name: "",
-    password: "",
-    pass_conf: "",
-    email: "",
-    cell_phone: null,
-    country: "",
-    hospital:"",
-    job: "",
-    profile_image: ""
+    first_name: '',
+    last_name: '',
+    email: '',
+    cell_phone: '',
+    country: '',
+    hospital: '',
+    pass_conf: '',
+    password: '',
+    user_name: '',
+    job: '',
+    picture_profile: '',
+    picture_cover: '',
+    proof_of_status_date:'',
+    proof_of_status: '',
+    pseudo: ''
   }
+
   public profile_image: string = "assets/imgs/rio.jpg";
   public promise : any;
   private getMe : any ;
@@ -75,7 +80,7 @@ export class EditProfilePage {
         this.user.cell_phone = data.cell_phone;
         this.user.country = data.country;
         this.user.hospital = data.hospital;
-        this.user.profile_image = data.profile_image;
+        this.user.picture_profile = data.picture_profile;
         this.profile_image = data.profile_image;
       })
   }
