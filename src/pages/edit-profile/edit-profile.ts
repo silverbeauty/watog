@@ -10,6 +10,7 @@ import { server_url } from '../../environments/environment';
 import { DataProvider, RestProvider } from '../../providers';
 import { ElementRef } from '@angular/core';
 import {LoginPage} from "../login/login";
+import {Auth, User} from "../../types";
 
 /**
  * Generated class for the EditProfilePage page.
@@ -25,7 +26,7 @@ import {LoginPage} from "../login/login";
   templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
-  public todo = {
+  public user = {
     first_name: "",
     last_name: "",
     user_name: "",
@@ -35,9 +36,10 @@ export class EditProfilePage {
     cell_phone: null,
     country: "",
     hospital:"",
-    job: ""
+    job: "",
+    profile_image: ""
   }
-
+  public profile_image: string = "assets/imgs/rio.jpg";
   public promise : any;
   private getMe : any ;
   countries : any[] = countries;
@@ -47,44 +49,46 @@ export class EditProfilePage {
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
     private http: HttpClient, public profil: DataProvider,
-    public rest : RestProvider, public dataProvider: DataProvider
+    public restProvider : RestProvider, public dataProvider: DataProvider
   ) {
       this.promise = Promise.all([this.profil.get()]);
       this.promise.then(res => {
         return JSON.parse(res);
       })
       .then(data => {
-        this.todo.password = data.password;
-        this.todo.pass_conf = data.password;
+        this.profile_image = data.profile_image;
+        this.user.password = data.password;
+        this.user.pass_conf = data.password;
       })
     }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditProfilePage');
-    Promise.all([this.rest.getProfile()]).then(tab => {
-      console.log(tab)
-      let data = tab[0];
-      this.todo.first_name = data.first_name;
-      this.todo.last_name = data.last_name;
-      this.todo.email = data.email;
-      this.todo.cell_phone = data.cell_phone;
-      this.todo.country = data.country;
-      this.todo.hospital = data.hospital;
+    this.promise = Promise.all([this.profil.get()]);
+    this.promise.then(res => {
+      return JSON.parse(res);
     })
+      .then(data => {
+        this.user.first_name = data.first_name;
+        this.user.last_name = data.last_name;
+        this.user.email = data.email;
+        this.user.cell_phone = data.cell_phone;
+        this.user.country = data.country;
+        this.user.hospital = data.hospital;
+        this.user.profile_image = data.profile_image;
+        this.profile_image = data.profile_image;
+      })
   }
 
-  setCurrentUser(name, lastname, user_name, email, phone, country, hospital){
-    Promise.all([this.rest.getProfile()]).then(tab => {
-        let data = tab[0];
-        data.first_name = name;
-        data.last_name = lastname;
-        data.email = email;
-        data.cell_phone = phone;
-        data.country = country;
-        data.hospital = hospital;
-        console.log(data)
-    })
+  setCurrentUser(){
 
+    this.restProvider.setProfile(this.user as User).then((auth: Auth) => {
+      // Set profile
+      this.dataProvider.saveProfile(auth);
+      this.navCtrl.push(RegisterTwoOfThreePage);
+    }).catch((error) => {
+      alert('Invalid input');
+    })
   }
 
   goToDashboard(){

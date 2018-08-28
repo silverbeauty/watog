@@ -29,7 +29,6 @@ export class SelectionPage {
     console.log(DataProvider.searchedUsers)
     const params = this.navParams.data;
     this.imageInfo = params.user;
-    params = null;
     this.userInfo = this.imageInfo.User;
   }
 
