@@ -29,15 +29,17 @@ export class ContestSubmitPage {
     description: ""
   }
   public image_url: any;
-  public image_local: any;
+  public image_local: string = null;
 
   public submit = {
-    category_id: 1,
+    category_id: null,
     picture: "",
     description:""
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public dataProvider:DataProvider, public restProvider: RestProvider) {
+    this.submit.category_id = this.navParams.data.id;
+    console.log(this.submit)
   }
 
   ionViewDidLoad() {
@@ -62,7 +64,13 @@ export class ContestSubmitPage {
   }
 
   goToContestSubmited(){
-    this.navCtrl.push(ContestSubmitedPage);
+    if(this.image_local){
+      this.submit.picture = this.image_local;
+      this.navCtrl.push(ContestSubmitedPage);
+    }
+    else{
+      alert("please selected a picture");
+    }
   }
 
   goBack(){

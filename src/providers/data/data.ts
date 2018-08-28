@@ -2,7 +2,7 @@
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Injectable } from '@angular/core';
 
-import { User, Auth } from '../../types';
+import { Auth, User } from '../../types';
 import { RestProvider } from '../rest/rest';
 
 const my_database = 'data.db';
@@ -22,7 +22,7 @@ export class DataProvider {
   //public sqlite: SQLite, private storage: Storage
 
   public static searchUserName: string;
-  public static searchedUsers: Array<User> = [];
+  public static searchedUsers: Array<any> = [];
   public static searchUserLimit = 1000; // TODO: it should be 10 in the future for infinite scroll
   public static searchUserOffset = 0;
   public static firstRun: boolean = true;

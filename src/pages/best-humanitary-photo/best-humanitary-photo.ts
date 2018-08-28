@@ -20,8 +20,10 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'best-humanitary-photo.html',
 })
 export class BestHumanitaryPhotoPage {
+  public passParam: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+    this.passParam = this.navParams.data
   }
 
   ionViewDidLoad() {
@@ -41,7 +43,7 @@ export class BestHumanitaryPhotoPage {
   }
 
   goToContestSubmit(){
-    this.navCtrl.push(ContestSubmitPage);
+    this.navCtrl.push(ContestSubmitPage, { id: this.passParam.id , from: this.passParam.from });
   }
 
   goBack(){
