@@ -8,7 +8,6 @@ import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
 import { User, Auth } from '../../types';
-import { ContestVoteSearchDetailPage } from '../contest-vote-search-detail/contest-vote-search-detail';
 
 /**
  * Generated class for the VoteRandomPage page.
@@ -23,13 +22,21 @@ import { ContestVoteSearchDetailPage } from '../contest-vote-search-detail/conte
   templateUrl: 'vote-random.html',
 })
 export class VoteRandomPage {
+  public allUser: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
     console.log(DataProvider.searchedUsers)
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad VoteRandomPage');
+  /*  let myCard = document.getElementById("cardImg")
+    myCard.style.cssText=`
+    background-image: url('../../assets/imgs/Watog.jpg');
+  `;*/
+    Promise.all([this.restProvider.getAllPost()]).then(data => {
+      this.allUser = data[0]
+      console.log(this.allUser)
+    });
   }
 
   goToDashboard(){

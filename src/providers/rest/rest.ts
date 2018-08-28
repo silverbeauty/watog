@@ -2,14 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User, Auth, resFile, Category } from '../../types';
 import 'rxjs/add/operator/timeout';
-import 'rxjs/add/observable/of';
 import { server_url } from '../../environments/environment'
 
 
 const jsonHeader = new HttpHeaders({
-  'Content-Type':  'application/json',
-
-
+  'Content-Type':  'application/json'
 });
 
 @Injectable()
@@ -74,7 +71,7 @@ export class RestProvider {
       this.http.get(this.apiUrl+'/user/me', { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            const user = res.data;
+            const  user = res.data;
             const auth: Auth = user as Auth;
             auth.token = RestProvider.token;
             resolve(auth);
@@ -89,15 +86,50 @@ export class RestProvider {
     })
   }
 
-/*  public setProfile(user: User){
-    return new Promise(resolve => {
-      this.http.get(this.apiUrl+'/users').retry(3).subscribe(data => {
-        resolve(data);
-      }, err => {
-        console.log(err);
-      });
+  public postADoc(file: any): Promise<File> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
     });
-  }*/
+
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/post', file ,{ headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(file as File);
+          } else {
+            console.error('Failed to load send doc:', res)
+            reject ('Failed to send doc')
+          }
+        }, (err) => {
+          console.info('Failed to send doc:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public getAllPost(): Promise<File> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl+'/post', { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data);
+          } else {
+            console.error('Failed to load send doc:', res)
+            reject ('Failed to send doc')
+          }
+        }, (err) => {
+          console.info('Failed to send doc:', err)
+          reject(err);
+        });
+    })
+  }
+
   public signUp(user: User): Promise<User> {
 
     return new Promise((resolve, reject) => {
@@ -167,5 +199,24 @@ export class RestProvider {
           reject(err);
         });
     });
+  }
+
+  public queryCategories(offset: number = 0, limit: number = 1000): Promise<Array<Category>> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token
+    });
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl + '/category?offset=' + offset + '&limit=' + limit, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data as Array<Category>);
+          } else {
+            reject('Failed to query categories!')
+          }
+        }, (err) => {
+          console.info('Failed to query categories:', err)
+          reject(err);
+        });
+    })
   }
 }

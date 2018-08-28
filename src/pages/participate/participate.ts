@@ -24,22 +24,9 @@ import { DataProvider, RestProvider } from '../../providers';
   templateUrl: 'participate.html',
 })
 export class ParticipatePage {
-  public photo = {
-    "types":[
-      {'type':'Ultrasound'},
-      {'type':'Watog_logo'},
-      {'type':'Humanitary'},
-      {'type':'Surgical'},
-      {'type':'best_OB_GYN_Watog_logo'}
-    ]
-  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
-    this.photo.types.forEach(category => {    
-      Promise.all([this.restProvider.createCategory(category)]).then((data) => {
-        console.log(data)
-      })
-    })
+
   }
 
   ionViewDidLoad() {
@@ -59,23 +46,28 @@ export class ParticipatePage {
   }
 
   goToBestUltrasoundImage(){
-    this.navCtrl.push(BestUltrasoundImagePage);
+    let myCategorieId = 1;
+    this.navCtrl.push(BestUltrasoundImagePage, { id: myCategorieId , from: 'Ultrasound' });
   }
 
   goToBestSurgicalImage(){
-    this.navCtrl.push(BestSurgicalImagePage);
+    let myCategorieId = 5;
+    this.navCtrl.push(BestSurgicalImagePage, { id: myCategorieId , from: 'Surgical' });
   }
 
   goToBestPhotoWithWatogLogo(){
-    this.navCtrl.push(BestPhotoWithTheWatogLogoPage);
+    let myCategorieId = 2;
+    this.navCtrl.push(BestPhotoWithTheWatogLogoPage, { id: myCategorieId , from: 'Watog_logo' });
   }
 
   gotToBestGroupPhotoWithTheWatogLogo(){
-    this.navCtrl.push(BestGroupPhotoWithTheWatogLogoPage);
+    let myCategorieId = 4;
+    this.navCtrl.push(BestGroupPhotoWithTheWatogLogoPage, { id: myCategorieId , from: 'best_OB_GYN_Watog_logo' });
   }
 
   goToBestHumanitaryPhoto(){
-    this.navCtrl.push(BestHumanitaryPhotoPage);
+    let myCategorieId = 3;
+    this.navCtrl.push(BestHumanitaryPhotoPage, { id: myCategorieId , from: 'Humanitary' });
   }
 
   goBack(){
@@ -88,3 +80,24 @@ export class ParticipatePage {
   }
 
 }
+
+/******
+Create categories only for the admin
+
+public photo = {
+  "types":[
+    {'type':'Ultrasound'},
+    {'type':'Watog_logo'},
+    {'type':'Humanitary'},
+    {'type':'Surgical'},
+    {'type':'best_OB_GYN_Watog_logo'}
+  ]
+}
+
+this.photo.types.forEach(category => {
+  Promise.all([this.restProvider.createCategory(category)]).then((data) => {
+    console.log(data)
+  })
+})
+
+*******/

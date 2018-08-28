@@ -3,12 +3,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
+import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
 import { countries } from '../../models/model';
+import {HttpClient,  HttpHeaders} from '@angular/common/http';
+import { server_url } from '../../environments/environment';
 import { DataProvider, RestProvider } from '../../providers';
 import { ElementRef } from '@angular/core';
-import { LoginPage } from "../login/login";
-import {Auth, User} from "../../types"
-import {RegisterTwoOfThreePage} from "../register-two-of-three/register-two-of-three";
+import {LoginPage} from "../login/login";
+
 /**
  * Generated class for the EditProfilePage page.
  *
@@ -23,73 +25,55 @@ import {RegisterTwoOfThreePage} from "../register-two-of-three/register-two-of-t
   templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
-  public user = {
-    id: '',
-    first_name: '',
-    last_name: '',
-    email: '',
-    cell_phone: '',
-    country: '',
-    pseudo: '',
-    hospital: '',
-    password: '',
-    pass_conf: '',
-    user_name: '',
-    job: '',
-    picture_profile: '',
-    picture_cover: '',
-    proof_of_status_date:'',
-    proof_of_status: '',
-    token: '',
-    sms_verified_date: '',
-    email_verified_date: '',
+  public todo = {
+    first_name: "",
+    last_name: "",
+    user_name: "",
+    password: "",
+    pass_conf: "",
+    email: "",
+    cell_phone: null,
+    country: "",
+    hospital:"",
+    job: ""
   }
 
   public promise : any;
   private getMe : any ;
   countries : any[] = countries;
-  public profile_image : any;
+  server_url: any = server_url;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public profil: DataProvider, public restProvider : RestProvider, public dataProvider: DataProvider) {
-      /*this.promise = Promise.all([this.profil.get()]);
+
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams,
+    private http: HttpClient, public profil: DataProvider,
+    public rest : RestProvider, public dataProvider: DataProvider
+  ) {
+      this.promise = Promise.all([this.profil.get()]);
       this.promise.then(res => {
         return JSON.parse(res);
       })
       .then(data => {
-        this.user.password = data.password;
-        this.user.pass_conf = data.password;
-      })*/
-
+        this.todo.password = data.password;
+        this.todo.pass_conf = data.password;
+      })
     }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditProfilePage');
-    this.dataProvider.getProfile().then((auth: Auth) => {
-      // Set as publidc data
-
-      this.user.first_name = auth.first_name;
-      this.user.last_name = auth.last_name;
-      this.user.email = auth.email;
-      this.user.cell_phone = auth.cell_phone;
-      this.user.country = auth.country;
-      this.user.hospital = auth.hospital;
- //     this.user.pseudo = auth.pseudo;
-      this.profile_image = auth.picture_profile;
-
-    }).catch((error) => {
-      alert('Invalid input');
+    Promise.all([this.rest.getProfile()]).then(tab => {
+      console.log(tab)
+      let data = tab[0];
+      this.todo.first_name = data.first_name;
+      this.todo.last_name = data.last_name;
+      this.todo.email = data.email;
+      this.todo.cell_phone = data.cell_phone;
+      this.todo.country = data.country;
+      this.todo.hospital = data.hospital;
     })
   }
 
-  setCurrentUser(name, lastname, pseudo, email, phone, country, hospital){
-/*
-    this.restProvider.signUp(this.user as User).then((auth: Auth) => {
-      // Save profile
-      this.dataProvider.saveProfile(auth);
-      this.navCtrl.push(RegisterTwoOfThreePage);
-    }).catch((error) => {
-      alert('Invalid input');
-    })
+  setCurrentUser(name, lastname, user_name, email, phone, country, hospital){
     Promise.all([this.rest.getProfile()]).then(tab => {
         let data = tab[0];
         data.first_name = name;
@@ -100,7 +84,6 @@ export class EditProfilePage {
         data.hospital = hospital;
         console.log(data)
     })
-*/
 
   }
 
@@ -132,7 +115,7 @@ export class EditProfilePage {
 
 this.todo.password  = data.
 this.todo.pass_conf  = data.
-this.todo.other_speciality = data.
+this.todo.job = data.
 let NAME = document.querySelector("input[name='first_name']");
 let SURNAME = document.querySelector("input[name='last_name']");
 let EMAIL = document.querySelector("input[name='email']");
