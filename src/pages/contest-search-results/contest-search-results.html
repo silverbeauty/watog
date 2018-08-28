@@ -21,19 +21,12 @@
       </ion-title>
     </ion-navbar>
     <ion-list>
-      <ion-item *ngFor="let user of data.users">
+      <ion-item id="allUser" *ngFor="let user of data.users" (click)="goToSearch()">
         <ion-avatar item-start>
           <img [src]="user.picture_profile || '../../assets/icon/Profil.png'" class="avatar">
         </ion-avatar>
         <h2>{{user.first_name}} {{user.last_name}}</h2>
         <p>{{user.hospital}}</p>
-      </ion-item>
-      <ion-item (click)="goToSearch()">
-        <ion-avatar item-start>
-          <img src="../../assets/imgs/gugus_50_shades_of_purple.png" class="avatar">
-        </ion-avatar>
-        <h2>Test</h2>
-        <p>Test</p>
       </ion-item>
     </ion-list>
 </ion-content>

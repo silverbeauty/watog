@@ -34,7 +34,7 @@ export class ContestVotePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestVotePage');
-
+    Promise.all([this.restProvider.queryCategories()]).then(data => console.log("des data",data))
   }
 
   goToDashboard(){

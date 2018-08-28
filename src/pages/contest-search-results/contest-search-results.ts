@@ -27,13 +27,32 @@ export class ContestSearchResultsPage {
   public data = {
     users: []
   }
+  public cpt = {
+    id: 0,
+    inc: function(){
+      this.id++;
+      return this.id;
+    }
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
-    this.data.users = DataProvider.searchedUsers
+  constructor(public navCtrl: NavController, public restProvider: RestProvider, public navParams: NavParams, public dataProvider: DataProvider) {
+    //this.data.users =
+    //console.log(DataProvider.searchedUsers)
+    Promise.all([this.restProvider.getAllPost()]).then(data => {
+      //console.log("first", data)
+      data[0].forEach(mesId => {
+        DataProvider.searchedUsers.forEach(user =>{
+          if(user.id == mesId.user_id){
+            this.data.users.push(mesId.User)
+          }
+        })
+      })
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestSearchResultsPage');
+
   }
 
   goToDashboard(){
@@ -49,7 +68,8 @@ export class ContestSearchResultsPage {
   }
 
   goToSearch(){
-    this.navCtrl.push(ContestVoteSearchDetailPage);
+    let users = document.querySelectorAll("#allUser");
+    this.navCtrl.push(ContestVoteSearchDetailPage, {user: this.data.users, from: 'users_profile'});
   }
 
   logout(){

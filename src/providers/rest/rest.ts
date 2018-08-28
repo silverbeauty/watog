@@ -201,8 +201,6 @@ export class RestProvider {
     });
   }
 
-<<<<<<< HEAD
-=======
   public queryCategories(offset: number = 0, limit: number = 1000): Promise<Array<Category>> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token
@@ -221,5 +219,4 @@ export class RestProvider {
         });
     })
   }
->>>>>>> origin/master
 }
