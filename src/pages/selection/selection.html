@@ -15,10 +15,10 @@
       </div>
     </div>
   </div>
-  <div class="vote-card" *ngFor="let user of allUser">
-    <div id="cardImg" class="vote-card-img" [ngStyle]="{'background-image':'url(' + user.picture + ')'}">
+  <div class="vote-card" *ngIf="imageInfo">
+    <div id="cardImg" class="vote-card-img" [ngStyle]="{'background-image':'url(' + imageInfo.picture + ')'}">
       <div class="vote-card-legend">
-        <p>{{ user.description }}</p>
+        <p>{{ imageInfo.description }}</p>
       </div>
     </div>
     <div class="container vote-card-description">
@@ -26,7 +26,7 @@
         <div class="col text-center">
           <button class="btn btn-like">
             <img src="../../assets/imgs/Like.png" alt="heart icon">
-            <p id="like-count">{{ user.up_vote_count }}</p>
+            <p id="like-count">{{ imageInfo.up_vote_count }}</p>
           </button>
         </div>
         <div class="col text-center">
@@ -37,7 +37,7 @@
         <div class="col text-center">
           <button class="btn btn-dislike">
             <img src="../../assets/imgs/LikeWATOG.png" alt="Dislike icon">
-            <p id="dislike-count">{{ user.down_vote_count }}</p>
+            <p id="dislike-count">{{ imageInfo.down_vote_count }}</p>
           </button>
         </div>
       </div>

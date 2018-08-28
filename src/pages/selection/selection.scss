@@ -1,4 +1,4 @@
-page-contest-vote-search-detail {
+page-selection {
     .navbar{
         background-color: #775576;
     }
@@ -40,43 +40,51 @@ page-contest-vote-search-detail {
     }
 
     .body{
-        background-color: white;
+        background-image: url(../../assets/imgs/rio.jpg);
         background-position: center top;
         color: white;
     }
 
-    .photo{
-        background-position: center;
+    .vote-card{
+        margin: 1em;
+        background-color: white;
+    }
+
+
+    .vote-card-img{
+        height: 45vh;
+        background-position: center top;
         background-size: cover;
-        height: 50vh;
+        position: relative;
     }
 
-    .banner{
-        background-color: #a96ba7;
+    .vote-card-legend{
+        position: absolute;
+        bottom: 0;
+        background-color: black;
+        opacity: .7;
         width: 100%;
-        text-align: center;
         padding: 1em;
-        font-size: 1.5em;
-        font-weight: 400;
-    }
-
-    .banner p{
-        padding: 0;
-        margin: 0;
-    }
-
-    .btn-back, .btn-next{
-        font-size: 1em;
         font-weight: 200;
-        padding: .7em;
-        width: 100%;
-        border-radius: 10em;
-        margin-top: 3em;
-        margin-bottom: 1em;
     }
 
-    .btn-next{
-        color: white;
-        background: #775576;
+    .vote-card img{
+        height: 5vh;
+    }
+
+    .vote-card .btn{
+        background-color: white;
+    }
+
+    .vote-card-description{
+        margin-top: 2em;
+    }
+
+    .vote-card-description .btn{
+        font-size: 1.2em;
+    }
+
+    .btn-dislike img{
+        transform: rotate(180deg);
     }
 }

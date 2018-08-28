@@ -21,8 +21,10 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'best-group-photo-with-the-watog-logo.html',
 })
 export class BestGroupPhotoWithTheWatogLogoPage {
+  public passParam: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+    this.passParam = this.navParams.data
   }
 
   ionViewDidLoad() {
@@ -42,7 +44,7 @@ export class BestGroupPhotoWithTheWatogLogoPage {
   }
 
   goToContestSubmit(){
-    this.navCtrl.push(ContestSubmitPage);
+    this.navCtrl.push(ContestSubmitPage, { id: this.passParam.id , from: this.passParam.from });
   }
 
   goBack(){
