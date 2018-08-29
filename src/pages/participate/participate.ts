@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -10,6 +11,7 @@ import { BestGroupPhotoWithTheWatogLogoPage } from '../best-group-photo-with-the
 import { BestHumanitaryPhotoPage } from '../best-humanitary-photo/best-humanitary-photo';
 import { LoginPage } from '../login/login';
 import { DataProvider, RestProvider } from '../../providers';
+import { Category } from '../../types';
 
 /**
  * Generated class for the ParticipatePage page.
@@ -25,12 +27,15 @@ import { DataProvider, RestProvider } from '../../providers';
 })
 export class ParticipatePage {
 
+  public categories: Array<Category>
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticipatePage');
+
   }
 
   goToDashboard(){
