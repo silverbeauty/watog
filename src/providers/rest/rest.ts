@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User, Auth, resFile, Category, File, Resp } from '../../types';
+import { User, Auth, resFile, Category, File, Resp, Post } from '../../types';
 import 'rxjs/add/operator/timeout';
 import { server_url } from '../../environments/environment'
 
@@ -85,6 +85,11 @@ export class RestProvider {
         });
     })
   }
+  public setProfile(user: User): Promise<Auth> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
 
   public postADoc(file: File): Promise<Array<File>> {
     const headers = new HttpHeaders({
@@ -150,13 +155,13 @@ export class RestProvider {
     })
   }
 
-  public signUp(user: User): Promise<User> {
+  public signUp(user: User): Promise<Auth> {
 
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/user', JSON.stringify({user: user}), { headers: jsonHeader })
         .subscribe((res: any) => {
           if (res.status) {
-            resolve(res.data as User);
+            resolve(res.data as Auth);
           } else {
             reject('Sign Up failed!')
           }
@@ -230,6 +235,26 @@ export class RestProvider {
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Array<Category>);
+          } else {
+            reject('Failed to query categories!')
+          }
+        }, (err) => {
+          console.info('Failed to query categories:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public createVote(post_id: number, commend: boolean): Promise<Post> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl + `/post/` + post_id + '/vote', { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data as Post);
           } else {
             reject('Failed to query categories!')
           }

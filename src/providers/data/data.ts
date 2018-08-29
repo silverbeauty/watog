@@ -19,6 +19,8 @@ export class DataProvider {
   private Phone: number;
   private arr: any;
 
+  public isBrowser = document.URL.startsWith('http');
+
   //public sqlite: SQLite, private storage: Storage
 
   public static searchUserName: string;
@@ -32,20 +34,31 @@ export class DataProvider {
 
   public saveProfile(auth: Auth): void {
     const profile = auth as User;
+    if (this.isBrowser) {
+      window.localStorage.setItem('profile', JSON.stringify(profile));
+      window.localStorage.setItem('authorization', auth.token);
+      return
+    }
+
     this.storage.setItem('profile', JSON.stringify(profile));
     this.storage.setItem('authorization', auth.token);
-
   }
 
-  public removeProfile(): void{
+  public removeProfile(): void {
+    if (this.isBrowser) {
+      window.localStorage.removeItem('profile');
+      window.localStorage.removeItem('authorization');
+      return
+    }
     this.storage.remove('profile');
     this.storage.remove('authorization');
   }
 
   public getProfile(): Promise<Auth> {
-
-    return Promise.all([this.storage.getItem('authorization'), this.storage.getItem('profile')]).then((res: Array<any>) => {
-      if (res[0]) {
+    if (this.isBrowser) {
+      return new Promise((resolve, reject) => {
+        const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('profile')]
+        if (res[0]) {
         // Set token to RestProvider
         RestProvider.token = res[0];
 
@@ -53,6 +66,25 @@ export class DataProvider {
         if (profile) {
           const auth: Auth = profile as Auth;
           auth.token = res[0];
+          resolve(auth);
+        } else {
+          const auth = new Auth()
+          auth.token = res[0];
+          resolve(auth);
+        }
+        } else {
+          resolve(null)
+        }
+      })
+    }
+
+    return Promise.all([this.storage.getItem('authorization'), this.storage.getItem('profile')]).then((res: Array<any>) => {
+      if (res[0]) {
+        // Set token to RestProvider
+
+        const profile: object = JSON.parse(res[1]);
+        if (profile) {
+          const auth = profile as Auth;
           return auth
         } else {
           const auth = new Auth()
@@ -63,12 +95,19 @@ export class DataProvider {
         return null
       }
     }).catch((e: any) => {
+      alert('failed')
       console.info(e)
       return null;
     })
    }
 
   public clearProfile() {
+    if (this.isBrowser) {
+      window.localStorage.removeItem('profile');
+      window.localStorage.removeItem('authorization');
+      return
+    }
+
     this.storage.setItem('profile', null)
     this.storage.setItem('authorization', null)
   }
