@@ -1,4 +1,4 @@
-# Watog Ionic Mobile App 
+# Watog Ionic Mobile App
 
 ## Dependencies
 
@@ -44,4 +44,7 @@ sudo ionic cordova plugin add cordova-plugin-nativestorage
 
 ### iOS
 This platform should be added by `ionic cordova platform add ios`
-- `npm run ios`  
+- `npm run ios`
+
+### Google phone error
+npm install --save-prod google-libphonenumber

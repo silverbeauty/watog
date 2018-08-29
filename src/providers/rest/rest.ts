@@ -192,8 +192,12 @@ export class RestProvider {
   }
 
   public sendFile(file: any): Promise<resFile>{
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file}), { headers: jsonHeader })
+      this.http.post(this.apiUrl+'/file', file, { headers })
         .timeout(30000)
         .subscribe((res: any) => {
           if (res.status) {

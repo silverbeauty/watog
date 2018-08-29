@@ -31,18 +31,18 @@ export class ContestSubmitPage {
     description: ""
   }
   public image_url: any;
-  public image_local: string;
+  public image_local: string = null;
 
   public submit = {
-    category_id: null,
+    category_id: 1,
     picture: "",
-    description:""
+    description:"ssedtcj"
   }
 
   public file_name: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public dataProvider:DataProvider, public restProvider: RestProvider) {
-    this.submit.category_id = this.navParams.data.id;
+    //this.submit.category_id = this.navParams.data.id;
   }
 
   ionViewDidLoad() {
@@ -52,12 +52,16 @@ export class ContestSubmitPage {
   logForm(){
     const myCat = "?category_id="+this.submit.category_id;
 
+    this.goToContestSubmited();
+
     this.restProvider.postADoc(this.submit).then((data) =>{
-      console.log("post doc: ",data)
+      console.log(data)
     });
     this.restProvider.getAllPost(myCat).then(data => {
-      console.log("get all post: ",data)
+      console.log(data)
     })
+    console.log(this.submit)
+    this.navCtrl.push(ContestSubmitedPage);
   }
 
   goToDashboard(){
@@ -72,19 +76,15 @@ export class ContestSubmitPage {
     this.navCtrl.push(SettingsPage);
   }
 
-  goToContestSubmited(image_local){
+  goToContestSubmited(){
     //console.log('ionViewDidLoad ContestSubmitPage');
-    this.restProvider.sendFile(image_local)
-      .then((res_file: resFile) => {
-        this.submit.picture = "salut"
-        //res_file.url;
-        alert(JSON.stringify(this.submit))
-      })
-      .catch(err => {
-        alert("image local not send")
-      })
-    console.log("pic Submit", this.submit.picture)
-    this.navCtrl.push(ContestSubmitedPage);
+    this.file_name = "data:image/jpeg;base64,"+"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
+    this.restProvider.sendFile(this.file_name).then((res_file: resFile) => {
+      this.submit.picture = res_file.url;
+      console.log("pic, ", this.submit.picture)
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
   goBack(){
@@ -103,7 +103,6 @@ export class ContestSubmitPage {
     }, err => {
       alert("error send parm, pictures of profile camera not save")
     });
-    this.goToContestSubmited(this.image_local);
   }
 
   navToGallery() {
@@ -120,6 +119,5 @@ export class ContestSubmitPage {
         alert("error send param, picture of profile not selected")
       });
     }
-    this.goToContestSubmited(this.image_local);
   }
 }
