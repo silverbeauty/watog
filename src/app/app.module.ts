@@ -59,7 +59,6 @@ import { RestProvider } from '../providers/rest/rest';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CameraProvider } from '../providers/camera/camera';
 
-
 @NgModule({
   declarations: [
     MyApp,
