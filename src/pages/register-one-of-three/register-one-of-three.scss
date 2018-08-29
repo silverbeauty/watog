@@ -40,6 +40,14 @@ page-register-one-of-three {
         padding: 1.2em;
     }
 
+    .validation-errors{
+
+      .error-message{
+        padding: 1.5em;
+        text-align: center;
+      }
+    }
+
     .input-group-text{
         background-color: white;
         border-radius: 50em;
