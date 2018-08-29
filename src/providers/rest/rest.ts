@@ -85,11 +85,30 @@ export class RestProvider {
         });
     })
   }
+
   public setProfile(user: User): Promise<Auth> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
     });
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl+'/user/me', { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            const  user = res.data;
+            const auth: Auth = user as Auth;
+            auth.token = RestProvider.token;
+            resolve(auth);
+          } else {
+            console.error('Failed to load profile:', res)
+            reject ('Failed to load profile')
+          }
+        }, (err) => {
+          console.info('Failed to load profile:', err)
+          reject(err);
+        });
+    })
+  }
 
   public postADoc(file: File): Promise<Array<File>> {
     const headers = new HttpHeaders({
