@@ -9,6 +9,7 @@ import { DataProvider } from '../../providers/data/data';
 import { CameraProvider } from '../../providers/camera/camera';
 import { resFile } from "../../types";
 import {  RestProvider } from '../../providers';
+import { Auth, File } from "../../types";
 
 
 /**
@@ -32,23 +33,33 @@ export class ContestSubmitPage {
   public image_local: string = null;
 
   public submit = {
-    category_id: null,
+    category_id: 1,
     picture: "",
-    description:""
+    description:"ssedtcj"
   }
 
+  public file_name: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public dataProvider:DataProvider, public restProvider: RestProvider) {
-    this.submit.category_id = this.navParams.data.id;
-    console.log(this.submit)
+    //this.submit.category_id = this.navParams.data.id;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContestSubmitPage');
+
   }
 
   logForm(){
+    const myCat = "?category_id="+this.submit.category_id;
     console.log(this.photo.description);
-    this.restProvider.postADoc(this.submit).then(data => console.log(data));
+    const datas = this.submit;
+    console.log(datas)
+    this.restProvider.postADoc(this.submit).then((data) =>{
+      console.log(data)
+    });
+    this.restProvider.getAllPost(myCat).then(data => {
+      console.log(data)
+    })
+    console.log(this.submit)
   }
 
   goToDashboard(){
@@ -64,8 +75,13 @@ export class ContestSubmitPage {
   }
 
   goToContestSubmited(){
+    //console.log('ionViewDidLoad ContestSubmitPage');
+    //this.file_name = "data:image/jpeg;base64,"+"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
     if(this.image_local){
-      this.submit.picture = this.image_local;
+      this.restProvider.sendFile(this.image_local).then((res_file: resFile) => {
+        this.submit.picture = res_file.url;
+        console.log("pic, ", this.submit.picture)
+      })
       this.navCtrl.push(ContestSubmitedPage);
     }
     else{

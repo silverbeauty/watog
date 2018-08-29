@@ -1,6 +1,6 @@
 export * from './user'
 export * from './response-file'
 export * from './category'
-export * from './pass'
+export * from './resp'
 export * from './file'
 export * from './objUser'

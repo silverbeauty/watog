@@ -24,7 +24,7 @@
     <div class="container vote-card-description">
       <div class="row">
         <div class="col text-center">
-          <button class="btn btn-like">
+          <button class="btn btn-like" (click)=voteUp(user)>
             <img src="../../assets/imgs/Like.png" alt="heart icon">
             <p id="like-count">{{ user.up_vote_count }}</p>
           </button>
@@ -35,7 +35,7 @@
           </button>
         </div>
         <div class="col text-center">
-          <button class="btn btn-dislike">
+          <button class="btn btn-dislike" (click)=voteDown(user)>
             <img src="../../assets/imgs/LikeWATOG.png" alt="Dislike icon">
             <p id="dislike-count">{{ user.down_vote_count }}</p>
           </button>

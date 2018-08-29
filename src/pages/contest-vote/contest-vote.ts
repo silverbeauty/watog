@@ -66,7 +66,7 @@ export class ContestVotePage {
     this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
-      this.navCtrl.push(ContestSearchResultsPage);
+      this.navCtrl.push(ContestSearchResultsPage, { users: users });
     }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
     })

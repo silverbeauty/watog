@@ -42,29 +42,17 @@ export class ContestSearchResultsPage {
   public page: any;
   public infoUser: any = null;
   public promise: any;
+  public info: any = [];
+  public myUsers: any;
 
   constructor(public navCtrl: NavController, public restProvider: RestProvider, public navParams: NavParams, public dataProvider: DataProvider) {
+    const Users = this.navParams.data;
+    this.myUsers = Users.users;
+    console.log(this.myUsers)
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestSearchResultsPage');
-    this.promise = Promise.all([this.restProvider.getAllPost()])
-    this.promise.then(data => {
-      //console.log("first", data)
-      this.picture = data[0]
-      this.infoUser = DataProvider.searchedUsers;
-      console.log("pic: ", this.picture)
-      if(this.picture && this.infoUser){
-        this.picture.forEach(mesId => {
-          this.infoUser.forEach(user =>{
-            if(user.id == mesId.user_id){
-              this.data.users.push(mesId.User)
-            }
-          })
-        })
-      }
-      return this.data.users;
-    });
   }
 
   goToDashboard(){
@@ -79,26 +67,9 @@ export class ContestSearchResultsPage {
     this.navCtrl.push(SettingsPage);
   }
 
-  goToSearch(){
-    this.promise.then(() => {
-      let users = Array.from(document.querySelectorAll("#allUser"));
-      let collectUser: any = [];
-      for (let usr in users){
-        collectUser.push(usr);
-      }
-      let i = 0;
-      users.forEach(user => {
-        user.addEventListener("click", () => {
-          this.element = user;
-        })
-        if(user == this.element && this.picture){
-          this.index = i;
-          console.log(i)
-          this.navCtrl.push(this.goToSearchPage(), {user: this.picture[this.index], from: 'currentUser'});
-        }
-        i++;
-      })
-    });
+  public goToSearch(user){
+    console.log(user)
+    this.navCtrl.push(this.goToSearchPage(), {user: user, from: 'currentUser'});
   }
 
   goToSearchPage(): any{
@@ -115,3 +86,26 @@ export class ContestSearchResultsPage {
   }
 
 }
+
+/***
+
+let monTab = [];
+let otherTab = [];
+const end = this.picture.length - 1
+this.picture = data[0]
+this.infoUser = DataProvider.searchedUsers;
+console.log("pic: ", this.picture)
+if(this.picture && this.infoUser){
+  this.picture.forEach(mesId => {
+    this.infoUser.forEach(user =>{
+      if(user.id == mesId.user_id){
+        //A
+        this.data.users.push(mesId.User)
+        this.info.push(mesId)
+        console.log("derniere element: ",this.picture[0])
+      }
+    })
+  })
+}
+
+***/

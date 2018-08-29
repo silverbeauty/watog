@@ -24,17 +24,49 @@ import { User, Auth } from '../../types';
 export class SelectionPage {
   public userInfo: any;
   public imageInfo: any = null;
+  public currentUser: any;
+  public vote: any = {
+    commend: true
+  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
-    console.log(DataProvider.searchedUsers)
-    const params = this.navParams.data;
-    this.imageInfo = params.user;
-    params = null;
-    this.userInfo = this.imageInfo.User;
+    const params = this.navParams.data.user;
+    this.currentUser = params;
+    const mySearch = "?user_id=" + this.currentUser.id;
+    this.restProvider.getAllPost(mySearch).then(data => {
+      this.imageInfo = data;
+      console.log(data)
+    })
   }
 
   ionViewDidLoad() {
+    console.log(DataProvider.searchedUsers)
+  }
 
+  getUser(user){
+    console.log(user)
+  }
+
+  voteUp(img){
+    this.vote.commend = true;
+    this.Voted(img.id)
+  }
+
+  voteDown(img){
+    this.vote.commend = false;
+    this.Voted(img.id)
+  }
+
+  Voted(id: number){
+    //this.vote check to user ng
+    const makeVote = "/"+ id +"/vote"
+    console.log("vote: ", this.vote)
+    this.restProvider.Voted(this.vote, makeVote).then(data => {
+      this.navCtrl.push(SelectionPage, { user: this.currentUser })
+    })
+    .catch( err => {
+      console.log("You have already voted")
+    })
   }
 
   goToDashboard(){
