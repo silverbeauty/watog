@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -11,7 +10,6 @@ import { BestGroupPhotoWithTheWatogLogoPage } from '../best-group-photo-with-the
 import { BestHumanitaryPhotoPage } from '../best-humanitary-photo/best-humanitary-photo';
 import { LoginPage } from '../login/login';
 import { DataProvider, RestProvider } from '../../providers';
-import { Category } from '../../types';
 
 /**
  * Generated class for the ParticipatePage page.
@@ -27,25 +25,12 @@ import { Category } from '../../types';
 })
 export class ParticipatePage {
 
-  public categories: Array<Category>;
-  public rows: Array<number> = [];
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
-    this.restProvider.queryCategories().then((categories: Array<Category>) => {
-      this.categories = categories;
-      const rowCount = Math.round(categories.length / 2); 
 
-      for (let i = 0; i < rowCount; i ++) {
-        this.rows[i] = i;
-      }
-
-      console.info('Categories fetched:', categories);
-    })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParticipatePage');
-
   }
 
   goToDashboard(){
