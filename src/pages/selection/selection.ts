@@ -23,7 +23,7 @@ import { User, Auth } from '../../types';
 })
 export class SelectionPage {
   public userInfo: any;
-  public imageInfo: any = null;
+  public imageInfo: any = [];
   public currentUser: any;
   public vote: any = {
     commend: true
@@ -32,16 +32,30 @@ export class SelectionPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
     const params = this.navParams.data.user;
     this.currentUser = params;
-    const mySearch = "?user_id=" + this.currentUser.id;
-    this.restProvider.getAllPost(mySearch).then(data => {
-      this.imageInfo = data;
-      console.log(data)
-    })
   }
 
   ionViewDidLoad() {
     console.log(DataProvider.searchedUsers)
+    let cat1 = this.restProvider.getAllPost("?user_id=" + this.currentUser.id);
+    //let cat2 = this.restProvider.getAllPost("?category_id=2&user_id=" + this.currentUser.id);
+    //let cat3 = this.restProvider.getAllPost("?category_id=3&user_id=" + this.currentUser.id);
+    //let cat4 = this.restProvider.getAllPost("?category_id=4&user_id=" + this.currentUser.id);
+    //let cat5 = this.restProvider.getAllPost("?category_id=5&user_id=" + this.currentUser.id);
+
+    Promise.all([cat1]).then(data => {
+        console.log("ma promise: ", data)
+        for (let element in data){
+          for(let all in data[element]){
+            this.imageInfo.push(data[element][all]);
+          }
+        }
+        console.log(this.imageInfo)
+    })
+    .catch(err => {
+      console.log("Error", err)
+    })
   }
+
 
   getUser(user){
     console.log(user)

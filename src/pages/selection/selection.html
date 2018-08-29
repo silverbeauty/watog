@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="vote-card" *ngFor="let user of imageInfo" (click)="getUser(user)">
-    <div id="cardImg" class="vote-card-img" [ngStyle]="{'background-image':'url(' + imageInfo.picture + ')'}">
+    <div id="cardImg" class="vote-card-img" [ngStyle]="{'background-image':'url(' + user.picture + ')'}">
       <div class="vote-card-legend">
         <p>{{ user.description }}</p>
       </div>

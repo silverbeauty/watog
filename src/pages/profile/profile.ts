@@ -42,7 +42,11 @@ export class ProfilePage {
     this.promise.then(res => {
       return JSON.parse(res);
     })
-    .then(data => {
+    .catch(err => {
+      console.log('Another codova err')
+    })
+
+    this.promise.then(data => {
       console.log(JSON.stringify(data))
       this.userId = data.id;
       this.name = data.first_name;
@@ -53,10 +57,14 @@ export class ProfilePage {
       this.photo_profil = data.picture_profile;
       document.getElementById('profile-picture').setAttribute("style", `background-image: url(${ this.photo_profil });`);
 
-      const myProfil = "?user_id=" + data.id;
+      const myProfil = "?user_id=" + this.userId;
 
       this.restProvider.getAllPost(myProfil).then(data => {
+        console.log("getpost", data)
         this.me = data;
+      })
+      .catch(err => {
+        console.log('Is just cordova')
       })
     })
   }

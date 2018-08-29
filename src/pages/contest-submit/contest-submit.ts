@@ -61,6 +61,7 @@ export class ContestSubmitPage {
       console.log(data)
     })
     console.log(this.submit)
+    this.navCtrl.push(ContestSubmitedPage);
   }
 
   goToDashboard(){
@@ -83,7 +84,6 @@ export class ContestSubmitPage {
         this.submit.picture = res_file.url;
         console.log("pic, ", this.submit.picture)
       })
-      this.navCtrl.push(ContestSubmitedPage);
     }
     else{
       alert("please selected a picture");
