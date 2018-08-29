@@ -40,8 +40,7 @@ export class EditProfilePage {
     picture_profile: '',
     picture_cover: '',
     proof_of_status_date:'',
-    proof_of_status: '',
-    pseudo: ''
+    proof_of_status: ''
   }
 
   public profile_image: string = "assets/imgs/rio.jpg";
