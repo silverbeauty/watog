@@ -27,10 +27,20 @@ import { Category } from '../../types';
 })
 export class ParticipatePage {
 
-  public categories: Array<Category>
+  public categories: Array<Category>;
+  public rows: Array<number> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
+    this.restProvider.queryCategories().then((categories: Array<Category>) => {
+      this.categories = categories;
+      const rowCount = Math.round(categories.length / 2); 
 
+      for (let i = 0; i < rowCount; i ++) {
+        this.rows[i] = i;
+      }
+
+      console.info('Categories fetched:', categories);
+    })
   }
 
   ionViewDidLoad() {
