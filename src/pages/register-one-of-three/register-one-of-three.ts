@@ -64,8 +64,7 @@ export class RegisterOneOfThreePage {
     this.matching_passwords_group = new FormGroup({
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
-        Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+        Validators.required
       ])),
       confirm_password: new FormControl('', Validators.required)
     }, (formGroup: FormGroup) => {
@@ -195,8 +194,7 @@ export class RegisterOneOfThreePage {
     ],
     'password': [
       { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 5 characters long.' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
+      { type: 'minlength', message: 'Password must be at least 5 characters long.' }
     ],
     'confirm_password': [
       { type: 'required', message: 'Confirm password is required' }
