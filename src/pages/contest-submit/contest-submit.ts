@@ -104,13 +104,13 @@ export class ContestSubmitPage {
     //console.log('ionViewDidLoad ContestSubmitPage');
     alert(JSON.stringify(img))
     this.state.isUploading = true;
-    this.restProvider.sendFile(img)
+    const strImage = this.image_local;
+    this.restProvider.sendFile(this.image_local)
       .then((res_file: resFile) => {
-        alert(JSON.stringify(res_file.url))
-        //this.dataProvider.setVariable("picture_up", res_file.url)
-        this.submit.picture = res_file.url
         this.state.isUploading = false;
-        console.log(this.submit)
+        if (this.image_local === strImage) {
+          this.submit.picture = res_file.url          
+        }
       })
       .catch(err => {
         this.state.isUploading = false;
@@ -161,6 +161,7 @@ export class ContestSubmitPage {
   }
 
   closeLocalImage () {
+    this.state.isUploading = false;
     this.image_local = ''
     this.submit.picture = ''
   }
