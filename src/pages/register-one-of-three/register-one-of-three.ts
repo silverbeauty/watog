@@ -124,7 +124,7 @@ export class RegisterOneOfThreePage {
   }
 
   navToUploadCoverPhoto(){
-    alert("Unavailable service");
+    this.navCtrl.push(UploadCoverPhotoPage);
   }
 
   navToUploadProfilePhoto(){
