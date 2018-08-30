@@ -182,11 +182,10 @@ export class RestProvider {
           if (res.status) {
             resolve(res.data as Auth);
           } else {
-            reject('Sign Up failed!')
+            reject('SignUp Failed:')
           }
         }, (err) => {
-          console.info('SignUp Failed:', err)
-          reject(err);
+          reject('SignUp Failed:')
         });
     })
   }

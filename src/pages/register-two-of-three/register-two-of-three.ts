@@ -54,6 +54,9 @@ export class RegisterTwoOfThreePage {
   }
 
   sendDoc(){
+    this.navCtrl.push(RegisterThreeOfThreePage);
+
+
     if(this.image_local){
       this.restProvider.sendFile(this.image_local).then((res_file: resFile) => {
         console.log(JSON.stringify(res_file))
