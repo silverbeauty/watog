@@ -124,7 +124,7 @@ export class RegisterOneOfThreePage {
   }
 
   navToUploadCoverPhoto(){
-    this.navCtrl.push(UploadCoverPhotoPage);
+    alert('Unable to upload cover photo')
   }
 
   navToUploadProfilePhoto(){

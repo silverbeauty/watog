@@ -177,7 +177,7 @@ export class RestProvider {
   public signUp(user: User): Promise<Auth> {
 
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/user', JSON.stringify({user: user}), { headers: jsonHeader })
+      this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Auth);
