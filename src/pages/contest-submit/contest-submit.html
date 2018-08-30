@@ -39,7 +39,7 @@
         </div>
         <div class="row preview" *ngIf="submit.picture">
           <div class="col">
-            <img class="preview_image" [src]="submit.picture">
+            <img class="preview_image" [src]="image_local">
             <button type="button" ion-button icon-only clear style="color: white;" (click)="closeLocalImage()">
               <ion-icon ios="ios-close-circle" md="md-close"></ion-icon>
             </button>
