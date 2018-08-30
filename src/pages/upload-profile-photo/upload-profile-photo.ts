@@ -22,12 +22,12 @@ export class UploadProfilePhotoPage {
   public image_base64: any;
   public image_choose: any;
   public image_url: any;
-  public image_local: any;
+  profile_selected: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cam: CameraProvider, public restProvider: RestProvider) {
     this.image_base64 = "assets/imgs/appareil.png";
     this.image_choose = "assets/imgs/on_your_computer.png";
-    this.image_local="assets/imgs/rio.jpg";
+    this.image_url="assets/imgs/rio.jpg";
   }
 
   ionViewDidLoad() {
@@ -35,15 +35,16 @@ export class UploadProfilePhotoPage {
   }
 
   gotToRegister(){
-    this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url, image_local: this.image_local, from: 'picture_profile'});
+    this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url, profile_selected: this.profile_selected, from: 'picture_profile'});
   }
 
   TakeaPicture(){
     this.cam.selectImage(1, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;
-      this.restProvider.sendFile(this.image_local).then((res_file: resFile) => {
+      this.image_url = "data:image/jpeg;base64," + resp;
+      this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
         this.image_url = res_file.url;
-        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  image_local: this.image_local, from: 'picture_profile'});
+        this.profile_selected = true;
+        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  profile_selected: this.profile_selected, from: 'picture_profile'});
       }).catch((error) => {
         alert("Send file to server error!");
       })
@@ -53,10 +54,11 @@ export class UploadProfilePhotoPage {
 
   navToGallery() {
     this.cam.selectImage(0, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;
-      this.restProvider.sendFile(this.image_local).then((res_file: resFile) => {
+      this.image_url = "data:image/jpeg;base64," + resp;
+      this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
         this.image_url = res_file.url;
-        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  image_local: this.image_local, from: 'picture_profile'});
+        this.profile_selected = true;
+        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  profile_selected: this.profile_selected, from: 'picture_profile'});
       }).catch((error) => {
         alert("Send file to server error!");
       })
