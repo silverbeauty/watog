@@ -38,6 +38,7 @@ export class UploadCoverPhotoPage {
         this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  from: 'picture_cover'});
       }).catch((error) => {
         alert("Send file to server error!");
+        alert(JSON.stringify(error))
       })
     }, err => {
     });
@@ -51,6 +52,7 @@ export class UploadCoverPhotoPage {
         this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  from: 'picture_cover'});
       }).catch((error) => {
         alert("Send file to server error!");
+        alert(JSON.stringify(error))
       })
     }, err => {
     });

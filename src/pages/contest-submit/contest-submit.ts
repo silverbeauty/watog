@@ -42,7 +42,7 @@ export class ContestSubmitPage {
   public file_name: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public dataProvider:DataProvider, public restProvider: RestProvider) {
-    //this.submit.category_id = this.navParams.data.id;
+    this.submit.category_id = this.navParams.data.id;
   }
 
   ionViewDidLoad() {
@@ -51,17 +51,15 @@ export class ContestSubmitPage {
 
   logForm(){
     const myCat = "?category_id="+this.submit.category_id;
-
-    this.goToContestSubmited();
-
-    this.restProvider.postADoc(this.submit).then((data) =>{
-      console.log(data)
-    });
-    this.restProvider.getAllPost(myCat).then(data => {
-      console.log(data)
-    })
-    console.log(this.submit)
-    this.navCtrl.push(ContestSubmitedPage);
+      alert(JSON.stringify(this.submit))
+      this.restProvider.postADoc(this.submit).then((data) =>{
+        alert(JSON.stringify(data))
+      });
+      this.restProvider.getAllPost(myCat).then(data => {
+        console.log(data)
+      })
+      console.log(this.submit)
+      this.navCtrl.push(ContestSubmitedPage);
   }
 
   goToDashboard(){
@@ -78,13 +76,7 @@ export class ContestSubmitPage {
 
   goToContestSubmited(){
     //console.log('ionViewDidLoad ContestSubmitPage');
-    this.file_name = "data:image/jpeg;base64,"+"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-    this.restProvider.sendFile(this.file_name).then((res_file: resFile) => {
-      this.submit.picture = res_file.url;
-      console.log("pic, ", this.submit.picture)
-    }).catch(err => {
-      console.log(err)
-    })
+
   }
 
   goBack(){
@@ -98,26 +90,37 @@ export class ContestSubmitPage {
 
   TakeaPicture(){
     this.cam.selectImage(1, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;
-      alert("picture saved")
+      this.image_url = "data:image/jpeg;base64," + resp;
+      this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
+        this.submit.picture = res_file.url;
+      }).catch((error) => {
+        alert("Send file to server error!");
+        alert(JSON.stringify(error))
+      })
     }, err => {
-      alert("error send parm, pictures of profile camera not save")
     });
   }
 
   navToGallery() {
-    if (isDevMode) {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.click();
-
-    } else {
-      this.cam.selectImage(0, 0).then(resp => {
-        this.image_local = "data:image/jpeg;base64," + resp;
-        alert("picture saved")
-      }, err => {
-        alert("error send param, picture of profile not selected")
-      });
-    }
+    this.cam.selectImage(0, 0).then(resp => {
+      this.image_url = "data:image/jpeg;base64," + resp;
+      this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
+        this.submit.picture = res_file.url;
+      }).catch((error) => {
+        alert("Send file to server error!");
+        alert(JSON.stringify(error))
+      })
+    }, err => {
+    });
   }
 }
+/***
+
+if (isDevMode) {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.click();
+
+} else {
+
+**/

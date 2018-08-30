@@ -42,7 +42,7 @@ export class RegisterTwoOfThreePage {
       console.log("param not send")
     });
   }
-
+/*
   navToGallery() {
     this.cam.selectImage(0, 0).then(resp => {
       this.image_local = "data:image/jpeg;base64," + resp;
@@ -66,5 +66,5 @@ export class RegisterTwoOfThreePage {
     else{
       alert("Please selected proof of your status")
     }
-  }
+  }*/
 }
