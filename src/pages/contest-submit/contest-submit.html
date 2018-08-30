@@ -37,7 +37,7 @@
         <div class="row pictures" *ngIf="state.isUploading">
           <h3>Uploading photo....</h3>
         </div>
-        <div class="row preview" *ngIf="submit.picture">
+        <div class="row preview" *ngIf="!!image_local">
           <div class="col">
             <img class="preview_image" [src]="image_local">
             <button type="button" ion-button icon-only clear style="color: white;" (click)="closeLocalImage()">
