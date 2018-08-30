@@ -19,7 +19,7 @@
     <h1>Upload your image :</h1>
     <section class="upload">
       <div class="container">
-        <div class="row pictures">
+        <div class="row pictures" *ngIf="!state.isUploading && !image_local">
           <div class="col">
             <a href="#" (click)="TakeaPicture()">
               <img src="../../assets/imgs/appareil.png" alt="camera">
@@ -32,6 +32,17 @@
               <img src="../../assets/imgs/on_your_computer.png" alt="On your computer">
               <p class="font-weight-light text-center">On your device</p>
             </a>
+          </div>
+        </div>
+        <div class="row pictures" *ngIf="state.isUploading">
+          <h3>Uploading photo....</h3>
+        </div>
+        <div class="row preview" *ngIf="submit.picture">
+          <div class="col">
+            <img class="preview_image" [src]="submit.picture">
+            <button type="button" ion-button icon-only clear style="color: white;" (click)="closeLocalImage()">
+              <ion-icon ios="ios-close-circle" md="md-close"></ion-icon>
+            </button>
           </div>
         </div>
       </div>

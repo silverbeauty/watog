@@ -66,6 +66,7 @@ export class ContestSubmitPage {
 
     this.state.isPosting = true;
     this.restProvider.postADoc(this.submit).then((data) =>{
+      console.info('Posted:', data)
       this.state.isPosting = false;
       this.navCtrl.push(ContestSubmitedPage);
     });
@@ -135,12 +136,12 @@ export class ContestSubmitPage {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-          console.log(reader.result);
           self.image_local = reader.result.toString();
           self.uploadPhoto();
         };
         reader.onerror = (error) => {
           console.error(error);
+          alert('Failed to open file!')
         };
       };
     } else {
@@ -151,5 +152,10 @@ export class ContestSubmitPage {
         alert("error send param, picture of profile not selected")
       });
     }
+  }
+
+  closeLocalImage () {
+    this.image_local = ''
+    this.submit.picture = ''
   }
 }
