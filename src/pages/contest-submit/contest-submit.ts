@@ -126,7 +126,12 @@ export class ContestSubmitPage {
     if (isDevMode) {
       const input = document.createElement('input');
       input.type = 'file';
+      input.accept = 'image/png, image/jpeg';
+      input.multiple = false;
       input.click();
+      input.onchange = function(e) {
+        console.info('Files:', input.files)
+      };
 
     } else {
       this.cam.selectImage(0, 0).then(resp => {
