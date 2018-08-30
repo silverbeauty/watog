@@ -167,6 +167,7 @@ export class ContestSubmitPage {
   }
 
   closeLocalImage () {
+    this.state.isUploading = false;
     this.image_local = ''
     this.submit.picture = ''
   }
