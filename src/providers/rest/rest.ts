@@ -116,7 +116,7 @@ export class RestProvider {
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/post', file,{ headers })
+      this.http.post(this.apiUrl+'/post', JSON.stringify({file: file}),{ headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Array<File>);
@@ -177,7 +177,7 @@ export class RestProvider {
   public signUp(user: User): Promise<Auth> {
 
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/user', JSON.stringify({user: user}), { headers: jsonHeader })
+      this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Auth);
@@ -287,3 +287,25 @@ export class RestProvider {
     })
   }
 }
+/**
+public postADoc(file: any): Promise<Array<File>> {
+  const headers = new HttpHeaders({
+    'Authorization':  RestProvider.token,
+    'Content-Type': 'application/json'
+  });
+  return new Promise((resolve, reject) => {
+    this.http.post(this.apiUrl+'/post', file,{ headers })
+      .subscribe((res: any) => {
+        if (res.status) {
+          resolve(res.data as Array<File>);
+        } else {
+          console.error('Failed to load send doc:', res)
+          reject ('Failed to send doc')
+        }
+      }, (err) => {
+        console.info('Failed to send doc:', err)
+        reject(err);
+      });
+  })
+}
+**/
