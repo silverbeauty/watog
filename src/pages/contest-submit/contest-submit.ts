@@ -96,10 +96,13 @@ export class ContestSubmitPage {
   uploadPhoto() {
     //console.log('ionViewDidLoad ContestSubmitPage');
     this.state.isUploading = true;
+    const strImage = this.image_local;
     this.restProvider.sendFile(this.image_local)
       .then((res_file: resFile) => {
         this.state.isUploading = false;
-        this.submit.picture = res_file.url
+        if (this.image_local === strImage) {
+          this.submit.picture = res_file.url          
+        }
       })
       .catch(err => {
         this.state.isUploading = false;
