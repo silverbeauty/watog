@@ -37,8 +37,7 @@ export class RegisterOneOfThreePage {
 
   public image = {
     from: "",
-    image_link: "",
-    image_local: "",
+    image_url: "",
     profile_selected: false
   }
 
@@ -52,11 +51,11 @@ export class RegisterOneOfThreePage {
   //
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
-    if(params.image_link){
+    if(params.image_url){
       this.image = params;
       if(this.image.from == 'picture_profile'){
-        this.profile_image = this.image.image_link;
-        this.user.picture_profile = this.image.image_link;
+        this.profile_image = this.image.image_url;
+        this.user.picture_profile = this.image.image_url;
         this.profile_selected = this.image.profile_selected;
       } else{
         alert('Image from Unknown Page')
