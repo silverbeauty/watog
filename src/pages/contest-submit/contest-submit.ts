@@ -1,6 +1,6 @@
 import { Component, isDevMode } from '@angular/core';
 
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { LoginPage } from '../login/login';
@@ -27,37 +27,58 @@ import { Auth, File } from "../../types";
 })
 export class ContestSubmitPage {
   public photo: any = {
-    base64Image: "",
-    description: ""
+    base64Image: '',
+    description: ''
   }
   public image_url: any;
   public image_local: string;
 
   public submit = {
     category_id: null,
-    picture: "",
-    description:""
+    picture: '',
+    description: ''
+  }
+
+  public state = {
+    isUploading: false,
+    isPosting: false
   }
 
   public file_name: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public dataProvider:DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public cam : CameraProvider, public dataProvider:DataProvider, public restProvider: RestProvider) {
     this.submit.category_id = this.navParams.data.id;
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() {}
 
-  }
+  onSubmit(){
 
-  logForm(){
-    const myCat = "?category_id="+this.submit.category_id;
+    if (!this.submit.picture) {
+      let alert = this.alertCtrl.create({
+        title: 'No photo uploaded',
+        subTitle: 'Please upload a photo first',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+      return;
+    }
 
+    this.state.isPosting = true;
     this.restProvider.postADoc(this.submit).then((data) =>{
-      console.log("post doc: ",data)
+      console.info('Posted:', data)
+      this.state.isPosting = false;
+      this.navCtrl.push(ContestSubmitedPage);
+    }).catch((e) => {
+      let alert = this.alertCtrl.create({
+        title: 'Error',
+        subTitle: 'Sorry, failed to post your Photo to Watog!',
+        buttons: ['Cancel', { text: 'Retry', handler: () => {
+          this.onSubmit();
+        }}]
+      });
+      alert.present();
     });
-    this.restProvider.getAllPost(myCat).then(data => {
-      console.log("get all post: ",data)
-    })
   }
 
   goToDashboard(){
@@ -72,19 +93,25 @@ export class ContestSubmitPage {
     this.navCtrl.push(SettingsPage);
   }
 
-  goToContestSubmited(image_local){
+  uploadPhoto() {
     //console.log('ionViewDidLoad ContestSubmitPage');
-    this.restProvider.sendFile(image_local)
+    this.state.isUploading = true;
+    this.restProvider.sendFile(this.image_local)
       .then((res_file: resFile) => {
-        this.submit.picture = "salut"
-        //res_file.url;
-        alert(JSON.stringify(this.submit))
+        this.state.isUploading = false;
+        this.submit.picture = res_file.url
       })
       .catch(err => {
-        alert("image local not send")
-      })
-    console.log("pic Submit", this.submit.picture)
-    this.navCtrl.push(ContestSubmitedPage);
+        this.state.isUploading = false;
+        let alert = this.alertCtrl.create({
+          title: 'Failed to upload',
+          subTitle: 'Failed to upload photo',
+          buttons: ['Cancel', { text: 'Retry', handler: () => {
+            this.uploadPhoto();
+          }}]
+        });
+        alert.present();
+      });
   }
 
   goBack(){
@@ -99,27 +126,45 @@ export class ContestSubmitPage {
   TakeaPicture(){
     this.cam.selectImage(1, 0).then(resp => {
       this.image_local = "data:image/jpeg;base64," + resp;
-      alert("picture saved")
+      this.uploadPhoto()
     }, err => {
       alert("error send parm, pictures of profile camera not save")
     });
-    this.goToContestSubmited(this.image_local);
   }
 
   navToGallery() {
     if (isDevMode) {
       const input = document.createElement('input');
       input.type = 'file';
+      input.accept = 'image/png, image/jpeg';
+      input.multiple = false;
       input.click();
-
+      const self = this;
+      input.onchange = function(e) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          self.image_local = reader.result.toString();
+          self.uploadPhoto();
+        };
+        reader.onerror = (error) => {
+          console.error(error);
+          alert('Failed to open file!')
+        };
+      };
     } else {
       this.cam.selectImage(0, 0).then(resp => {
         this.image_local = "data:image/jpeg;base64," + resp;
-        alert("picture saved")
+        this.uploadPhoto()
       }, err => {
         alert("error send param, picture of profile not selected")
       });
     }
-    this.goToContestSubmited(this.image_local);
+  }
+
+  closeLocalImage () {
+    this.image_local = ''
+    this.submit.picture = ''
   }
 }
