@@ -44,6 +44,10 @@ export class DataProvider {
     this.storage.setItem('authorization', auth.token);
   }
 
+  public setVariable(str: string, obj: any): void{
+    this.storage.setItem(str, obj);
+  }
+
   public removeProfile(): void {
     if (this.isBrowser) {
       window.localStorage.removeItem('profile');

@@ -59,6 +59,17 @@ page-contest-submit {
         text-align: center;
     }
 
+    .preview {
+        margin: .5em;
+        text-align: center;
+        max-height: 10em;
+        background: none;
+    }
+
+    .preview_image {
+        max-height: 8em;
+    }
+
     .pictures a{
         color: black !important;
         text-decoration: none;
