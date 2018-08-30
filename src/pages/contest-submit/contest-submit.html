@@ -1,5 +1,5 @@
 <ion-content class="body">
-  <form (ngSubmit)="logForm()">
+  <form (ngSubmit)="onSubmit()">
     <div class="navbar">
       <a href="#" (click)="goToDashboard()"><img src="../../assets/icon/Menu.png" alt="Menu icon"></a>
       <h1>Contest Submit</h1>
@@ -45,7 +45,7 @@
           </div>
           <div class="row">
             <div class="col">
-              <ion-textarea name="description" id="" cols="30" rows="10" [(ngModel)]="photo.description" placeholder="Description goes here"></ion-textarea>
+              <ion-textarea name="description" id="" cols="30" rows="10" [(ngModel)]="submit.description" placeholder="Description goes here"></ion-textarea>
             </div>
           </div>
         </div>
