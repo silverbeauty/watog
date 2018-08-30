@@ -85,16 +85,19 @@ export class ContestSubmitPage {
 
   uploadPhoto() {
     //console.log('ionViewDidLoad ContestSubmitPage');
+    this.state.isUploading = true;
     this.restProvider.sendFile(this.image_local)
       .then((res_file: resFile) => {
+        this.state.isUploading = false;
         this.submit.picture = res_file.url
       })
       .catch(err => {
+        this.state.isUploading = false;
         let alert = this.alertCtrl.create({
           title: 'Failed to upload',
           subTitle: 'Failed to upload photo',
           buttons: ['Cancel', { text: 'Retry', handler: () => {
-            this.uploadPhoto()         
+            this.uploadPhoto();
           }}]
         });
         alert.present();
