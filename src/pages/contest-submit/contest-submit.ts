@@ -69,6 +69,15 @@ export class ContestSubmitPage {
       console.info('Posted:', data)
       this.state.isPosting = false;
       this.navCtrl.push(ContestSubmitedPage);
+    }).catch((e) => {
+      let alert = this.alertCtrl.create({
+        title: 'Error',
+        subTitle: 'Sorry, failed to post your Photo to Watog!',
+        buttons: ['Cancel', { text: 'Retry', handler: () => {
+          this.onSubmit();
+        }}]
+      });
+      alert.present();
     });
   }
 
