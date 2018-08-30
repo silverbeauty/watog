@@ -129,10 +129,20 @@ export class ContestSubmitPage {
       input.accept = 'image/png, image/jpeg';
       input.multiple = false;
       input.click();
+      const self = this;
       input.onchange = function(e) {
-        console.info('Files:', input.files)
+        const file = input.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          console.log(reader.result);
+          self.image_local = reader.result.toString();
+          self.uploadPhoto();
+        };
+        reader.onerror = (error) => {
+          console.error(error);
+        };
       };
-
     } else {
       this.cam.selectImage(0, 0).then(resp => {
         this.image_local = "data:image/jpeg;base64," + resp;
