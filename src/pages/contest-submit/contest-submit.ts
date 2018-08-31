@@ -109,7 +109,7 @@ export class ContestSubmitPage {
       .then((res_file: resFile) => {
         this.state.isUploading = false;
         if (this.image_local === strImage) {
-          this.submit.picture = res_file.url    
+          this.submit.picture = res_file.url
         }
       })
       .catch(err => {
