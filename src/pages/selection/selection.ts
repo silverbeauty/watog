@@ -36,7 +36,7 @@ export class SelectionPage {
 
   ionViewDidLoad() {
     console.log(DataProvider.searchedUsers)
-    let cat1 = this.restProvider.getAllPost("?user_id=" + this.currentUser.id);
+    let cat1 = this.restProvider.getAllPost("?user_id=" + this.currentUser.id + "&limit=1000");
     //let cat2 = this.restProvider.getAllPost("?category_id=2&user_id=" + this.currentUser.id);
     //let cat3 = this.restProvider.getAllPost("?category_id=3&user_id=" + this.currentUser.id);
     //let cat4 = this.restProvider.getAllPost("?category_id=4&user_id=" + this.currentUser.id);

@@ -31,7 +31,7 @@ export class ContestSubmitPage {
     description: ''
   }
   public image_url: any;
-  public image_local: string;
+  public image_local: string = null;
 
   public submit = {
     category_id: null,
@@ -48,6 +48,8 @@ export class ContestSubmitPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public cam : CameraProvider, public dataProvider:DataProvider, public restProvider: RestProvider) {
     this.submit.category_id = this.navParams.data.id;
+    //this.dataProvider.setVariable("category_id_up", this.navParams.data.id)
+    console.log("ma cat: ", this.submit.category_id)
   }
 
   ionViewDidLoad() {}
@@ -61,24 +63,29 @@ export class ContestSubmitPage {
         buttons: ['Dismiss']
       });
       alert.present();
-      return;
+      //return;
     }
-
+    alert(JSON.stringify(this.submit))
     this.state.isPosting = true;
     this.restProvider.postADoc(this.submit).then((data) =>{
       console.info('Posted:', data)
       this.state.isPosting = false;
       this.navCtrl.push(ContestSubmitedPage);
     }).catch((e) => {
+      console.log(JSON.stringify(e))
       let alert = this.alertCtrl.create({
         title: 'Error',
         subTitle: 'Sorry, failed to post your Photo to Watog!',
-        buttons: ['Cancel', { text: 'Retry', handler: () => {
-          this.onSubmit();
-        }}]
+        buttons: [
+          { text: 'Cancel', handler: () =>{
+            this.closeLocalImage()
+          }},
+          { text: 'Retry', handler: () => {
+            this.onSubmit();
+          }}]
       });
       alert.present();
-    });
+    })
   }
 
   goToDashboard(){
@@ -93,15 +100,16 @@ export class ContestSubmitPage {
     this.navCtrl.push(SettingsPage);
   }
 
-  uploadPhoto() {
+  uploadPhoto(img) {
     //console.log('ionViewDidLoad ContestSubmitPage');
+    alert(JSON.stringify(img))
     this.state.isUploading = true;
     const strImage = this.image_local;
     this.restProvider.sendFile(this.image_local)
       .then((res_file: resFile) => {
         this.state.isUploading = false;
         if (this.image_local === strImage) {
-          this.submit.picture = res_file.url          
+          this.submit.picture = res_file.url
         }
       })
       .catch(err => {
@@ -109,8 +117,12 @@ export class ContestSubmitPage {
         let alert = this.alertCtrl.create({
           title: 'Failed to upload',
           subTitle: 'Failed to upload photo',
-          buttons: ['Cancel', { text: 'Retry', handler: () => {
-            this.uploadPhoto();
+          buttons: [
+          { text: 'Cancel', handler: () =>{
+            this.closeLocalImage()
+          }},
+          { text: 'Retry', handler: () => {
+            this.uploadPhoto(img)
           }}]
         });
         alert.present();
@@ -127,43 +139,25 @@ export class ContestSubmitPage {
   }
 
   TakeaPicture(){
-    this.cam.selectImage(1, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;
-      this.uploadPhoto()
+    let myCam = this.cam.selectImage(1, 0).then(resp => {
+      return this.image_local = "data:image/jpeg;base64," + resp;
     }, err => {
-      alert("error send parm, pictures of profile camera not save")
     });
+    myCam.then(data => {
+      this.uploadPhoto(data)
+    })
   }
 
   navToGallery() {
-    if (isDevMode) {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = 'image/png, image/jpeg';
-      input.multiple = false;
-      input.click();
-      const self = this;
-      input.onchange = function(e) {
-        const file = input.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          self.image_local = reader.result.toString();
-          self.uploadPhoto();
-        };
-        reader.onerror = (error) => {
-          console.error(error);
-          alert('Failed to open file!')
-        };
-      };
-    } else {
-      this.cam.selectImage(0, 0).then(resp => {
-        this.image_local = "data:image/jpeg;base64," + resp;
-        this.uploadPhoto()
+
+      let myCam = this.cam.selectImage(0, 0).then(resp => {
+        return this.image_local = "data:image/jpeg;base64," + resp;
       }, err => {
         alert("error send param, picture of profile not selected")
       });
-    }
+      myCam.then(data => {
+        this.uploadPhoto(data)
+      })
   }
 
   closeLocalImage () {
@@ -172,3 +166,35 @@ export class ContestSubmitPage {
     this.submit.picture = ''
   }
 }
+/***
+
+if (isDevMode) {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/png, image/jpeg';
+  input.multiple = false;
+  input.click();
+  const self = this;
+  input.onchange = function(e) {
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      self.image_local = reader.result.toString();
+      self.uploadPhoto();
+    };
+    reader.onerror = (error) => {
+      console.error(error);
+      alert('Failed to open file!')
+    };
+  };
+} else {
+
+if (isDevMode) {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.click();
+
+} else {
+
+**/

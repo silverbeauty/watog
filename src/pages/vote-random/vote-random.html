@@ -17,6 +17,10 @@
   </div>
   <div class="vote-card" *ngFor="let user of allUser">
     <div id="cardImg" class="vote-card-img" [ngStyle]="{'background-image':'url(' + user.picture + ')'}">
+      <div class="separate">
+        <div id="profile-picture" class="container-fluid"></div>
+        <p id="avant">{{ user.User.user_name }}</p>
+      </div>
       <div class="vote-card-legend">
         <p>{{ user.description }}</p>
       </div>

@@ -44,6 +44,10 @@ export class DataProvider {
     this.storage.setItem('authorization', auth.token);
   }
 
+  public setVariable(str: string, obj: any): void{
+    this.storage.setItem(str, obj);
+  }
+
   public removeProfile(): void {
     if (this.isBrowser) {
       window.localStorage.removeItem('profile');
@@ -106,15 +110,21 @@ export class DataProvider {
       window.localStorage.removeItem('authorization');
       return
     }
-
-    this.storage.setItem('profile', null)
-    this.storage.setItem('authorization', null)
+    else{
+      this.storage.setItem('profile', null)
+      this.storage.setItem('authorization', null)
+    }
   }
 
   /*** SIMPLE GET AND SET ***/
 
   get(){
-    return this.storage.getItem('profile');
+    if (this.isBrowser) {
+      return window.localStorage.getItem('profile');
+    }
+    else{
+      return this.storage.getItem('profile');
+    }
   }
 
 }

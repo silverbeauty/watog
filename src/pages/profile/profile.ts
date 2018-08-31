@@ -38,42 +38,38 @@ export class ProfilePage {
   public new_votes: number = 128;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public profil: DataProvider, public restProvider: RestProvider) {
-    this.promise = Promise.all([this.profil.get()]);
-    this.promise.then(res => {
-      return JSON.parse(res);
-    })
-    .catch(err => {
-      console.log('Another codova err')
-    })
 
-    this.promise.then(data => {
-      console.log(JSON.stringify(data))
-      this.userId = data.id;
-      this.name = data.first_name;
-      this.lastname = data.last_name;
-      this.proffesion = data.hospital;
-      this.location = data.country;
-      this.fullname = this.name + ' ' + this.lastname;
-      this.photo_profil = data.picture_profile;
-      document.getElementById('profile-picture').setAttribute("style", `background-image: url(${ this.photo_profil });`);
-
-      const myProfil = "?user_id=" + this.userId;
-
-      this.restProvider.getAllPost(myProfil).then(data => {
-        console.log("getpost", data)
-        this.me = data;
-      })
-      .catch(err => {
-        console.log('Is just cordova')
-      })
-    })
   }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
-    console.log(`background-image: url(${ this.photo_profil });`)
-    //document.getElementById('profile-picture').setAttribute("style", `background-image: url(${ this.photo_profil });`);
+    this.promise = Promise.all([this.profil.get()]);
+     this.promise.then(res => {
+       let data = JSON.parse(res)
+       console.log(data)
+       this.userId = data.id;
+       this.name = data.first_name;
+       this.lastname = data.last_name;
+       this.proffesion = data.hospital;
+       this.location = data.country;
+       this.fullname = this.name + ' ' + this.lastname;
+       this.photo_profil = data.picture_profile;
+       document.getElementById('profile-picture').setAttribute("style", `background-image: url(${ this.photo_profil });`);
+
+       const myProfil = "?user_id=" + this.userId;
+
+       this.restProvider.getAllPost(myProfil).then(data => {
+         console.log("getpost", data)
+         this.me = data;
+       })
+       .catch(err => {
+         console.log('Is just cordova')
+       })
+     })
+     .catch(err =>{
+       console.log(err)
+     })
   }
 
   voteUp(img){
@@ -112,3 +108,14 @@ export class ProfilePage {
   }
 
 }
+/*
+const myProfil = "?user_id=" + this.userId;
+
+this.restProvider.getAllPost(myProfil).then(data => {
+  console.log("getpost", data)
+  this.me = data;
+})
+.catch(err => {
+  console.log('Is just cordova')
+})
+*/
