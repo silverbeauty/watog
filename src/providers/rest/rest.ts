@@ -193,6 +193,7 @@ export class RestProvider {
 
   public sendFile(file: any): Promise<resFile>{
     const headers = new HttpHeaders({
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
