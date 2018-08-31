@@ -5,6 +5,7 @@ import { SettingsPage } from '../settings/settings';
 import { DataProvider, RestProvider } from '../../providers';
 import { User, Auth } from '../../types';
 import { LoginPage } from '../login/login';
+import { ProfilesLoadPage } from '../profiles-load/profiles-load';
 
 
 @IonicPage()
@@ -80,7 +81,7 @@ export class ProfilePage {
     const makeVote = "/"+ id +"/vote"
     console.log("vote: ", this.vote)
     this.restProvider.Voted(this.vote, makeVote).then(data => {
-      this.navCtrl.push(ProfilePage)
+      this.navCtrl.push(ProfilesLoadPage)
     })
     .catch( err => {
       console.log("You have already voted")
