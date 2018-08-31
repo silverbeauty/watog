@@ -27,7 +27,7 @@ export class UploadCoverPhotoPage {
   }
 
   gotToRegister(){
-    this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  from: 'picture_cover'});
+    this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url });
   }
 
   TakeaPicture(){
@@ -35,7 +35,7 @@ export class UploadCoverPhotoPage {
       this.image_url = "data:image/jpeg;base64," + resp;
       this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
         this.image_url = res_file.url;
-        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  from: 'picture_cover'});
+        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url });
       }).catch((error) => {
         alert("Send file to server error!");
       })
@@ -48,7 +48,7 @@ export class UploadCoverPhotoPage {
       this.image_url = "data:image/jpeg;base64," + resp;
       this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
         this.image_url = res_file.url;
-        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  from: 'picture_cover'});
+        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url });
       }).catch((error) => {
         alert("Send file to server error!");
       })

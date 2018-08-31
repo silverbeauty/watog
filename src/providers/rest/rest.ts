@@ -92,7 +92,7 @@ export class RestProvider {
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl+'/user/me', { headers })
+      this.http.put(this.apiUrl+'/user/me', { headers })
         .subscribe((res: any) => {
           if (res.status) {
             const  user = res.data;

@@ -141,11 +141,11 @@ page-register-one-of-three {
         width: 100%;
         position: fixed;
         z-index: 1;
-        bottom: -100vh;
+        bottom: 0px;
         background-color: white;
         overflow-y: hidden;
-        padding-top: 1em;
         color: black;
+        display: none;
     }
 
     .down-menu a{
@@ -182,15 +182,15 @@ page-register-one-of-three {
         padding: 1.2em;
     }
 
-    .div-link-qualif a{
-        background: white;
+    a#qualificationInput{
+        text-align: center;
         color: black!important;
         border: none;
         text-decoration: none;
-        font-size: 1.2em;
-        border-radius: 50px;
-        padding: .7em;
         width: 100%;
+        input{
+          padding-left: 37%;
+        }
     }
     .select-icon{
         display: none;
@@ -199,7 +199,6 @@ page-register-one-of-three {
     .form-control.select{
         padding: 10px;
     }
-
     .modal-title  {
         color: #000;
         margin-top: 0;
