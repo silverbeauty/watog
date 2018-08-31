@@ -82,7 +82,8 @@ export class EditProfilePage {
     this.restProvider.setProfile(this.user as User).then((auth: Auth) => {
       // Set profile
       this.dataProvider.saveProfile(auth);
-      this.navCtrl.push(RegisterTwoOfThreePage);
+      alert('Profile Updated')
+      this.navCtrl.push(SettingsPage);
     }).catch((error) => {
       alert('Invalid input');
     })
