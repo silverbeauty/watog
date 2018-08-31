@@ -18,28 +18,6 @@ export class RestProvider {
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
-/*
-  getUsers() {
-    return new Promise(resolve => {
-      this.http.get(this.apiUrl+'/users').retry(3).subscribe(data => {
-        resolve(data);
-      }, err => {
-        console.log(err);
-      });
-    });
-  }
-
-  addUser(data) {
-    return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/users', JSON.stringify(data))
-        .subscribe(res => {
-          resolve(res);
-        }, (err) => {
-          reject(err);
-        });
-    });
-  }
-*/
 
   public login(email: string, password: string): Promise<Auth> {
     return new Promise((resolve, reject) => {
@@ -193,7 +171,6 @@ export class RestProvider {
 
   public sendFile(file: any): Promise<resFile>{
     const headers = new HttpHeaders({
-      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
