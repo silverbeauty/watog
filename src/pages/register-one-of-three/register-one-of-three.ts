@@ -37,8 +37,8 @@ export class RegisterOneOfThreePage {
 
   public image = {
     from: "",
-    image_link: "",
-    image_local: ""
+    image_url: "",
+    profile_selected: false
   }
 
   validations_form: FormGroup;
@@ -46,18 +46,18 @@ export class RegisterOneOfThreePage {
   country_phone_group: FormGroup;
 
   countries : any[] = countries;
+  public profile_selected: boolean = false;
   public profile_image: string = "assets/imgs/rio.jpg";
   //
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
-    if(params.image_local){
+    if(params.image_url){
       this.image = params;
       if(this.image.from == 'picture_profile'){
-        this.profile_image = this.image.image_local;
-        this.user.picture_profile = this.image.image_link;
-      }else if(this.image.from == 'picture_cover'){
-        this.user.picture_cover = this.image.image_link;
-      }else{
+        this.profile_image = this.image.image_url;
+        this.user.picture_profile = this.image.image_url;
+        this.profile_selected = this.image.profile_selected;
+      } else{
         alert('Image from Unknown Page')
       }
     }
@@ -81,6 +81,9 @@ export class RegisterOneOfThreePage {
     });
 
     this.validations_form = this.formBuilder.group({
+      profile_selected: ['', Validators.compose([
+        Validators.requiredTrue
+      ])],
       first_name: ['', Validators.compose([
         Validators.required
       ])],
@@ -123,11 +126,10 @@ export class RegisterOneOfThreePage {
     this.navCtrl.push(LoginPage);
   }
 
-  navToUploadCoverPhoto(){
-    alert("Unavailable service");
-  }
 
   navToUploadProfilePhoto(){
+    alert('You will lose your pre-entered profile field value!')
+
     this.navCtrl.push(UploadProfilePhotoPage);
   }
 
@@ -172,6 +174,9 @@ export class RegisterOneOfThreePage {
   }
 
   validation_messages = {
+    'profile_selected': [
+      { type: 'required', message: 'Profile picture is required.' }
+    ],
     'user_name': [
       { type: 'required', message: 'Username is required.' },
       { type: 'minlength', message: 'Username must be at least 5 characters long.' },
@@ -204,6 +209,7 @@ export class RegisterOneOfThreePage {
     ],
     'hospital': [
       { type: 'required', message: 'Hospital is required.' }
-    ]
+    ],
+
   };
 }

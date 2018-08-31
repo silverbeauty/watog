@@ -16,7 +16,6 @@ export class UploadCoverPhotoPage {
   public image_base64: any;
   public image_choose: any;
   public image_url: any;
-  public image_local: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public restProvider: RestProvider) {
     this.image_base64 = "assets/imgs/appareil.png";
@@ -33,22 +32,30 @@ export class UploadCoverPhotoPage {
 
   TakeaPicture(){
     this.cam.selectImage(1, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;
-      this.navCtrl.push(RegisterOneOfThreePage, {image_local: this.image_local, from: 'picture_profile'});
-      alert("picture saved")
+      this.image_url = "data:image/jpeg;base64," + resp;
+      this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
+        this.image_url = res_file.url;
+        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  from: 'picture_cover'});
+      }).catch((error) => {
+        alert("Send file to server error!");
+        alert(JSON.stringify(error))
+      })
     }, err => {
-      alert("error send parm, pictures of profile camera not save")
     });
   }
 
   navToGallery() {
     this.cam.selectImage(0, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;
-      this.navCtrl.push(RegisterOneOfThreePage, {image_local: this.image_local, from: 'picture_profile'});
-      alert("picture saved")
+      this.image_url = "data:image/jpeg;base64," + resp;
+      this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
+        this.image_url = res_file.url;
+        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  from: 'picture_cover'});
+      }).catch((error) => {
+        alert("Send file to server error!");
+        alert(JSON.stringify(error))
+      })
     }, err => {
-      alert("error send param, picture of profile not selected")
     });
-  }
 
+  }
 }

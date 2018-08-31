@@ -32,14 +32,13 @@ export class VoteRandomPage {
   }
 
   ionViewDidLoad() {
-    let cat1 = this.restProvider.getAllPost("?category_id=1");
-    let cat2 = this.restProvider.getAllPost("?category_id=2");
-    let cat3 = this.restProvider.getAllPost("?category_id=3");
-    let cat4 = this.restProvider.getAllPost("?category_id=4");
-    let cat5 = this.restProvider.getAllPost("?category_id=5");
+    //let cat1 = this.restProvider.getAllPost("?limit=1");
+    //let cat2 = this.restProvider.getAllPost("?category_id=2");
+    //let cat3 = this.restProvider.getAllPost("?category_id=3");
+    //let cat4 = this.restProvider.getAllPost("?category_id=4");
+    //let cat5 = this.restProvider.getAllPost("?category_id=5&limit");
 
-
-    Promise.all([cat1, cat2, cat3, cat4, cat5]).then(data => {
+    Promise.all([this.restProvider.getAllPost("?limit=100000")]).then(data => {
       console.log("ma promise: ", data)
       for (let element in data){
         for(let all in data[element]){

@@ -1,5 +1,5 @@
 <ion-content class="body">
-  <form (ngSubmit)="logForm()">
+  <form (ngSubmit)="onSubmit()">
     <div class="navbar">
       <a href="#" (click)="goToDashboard()"><img src="../../assets/icon/Menu.png" alt="Menu icon"></a>
       <h1>Contest Submit</h1>
@@ -19,7 +19,7 @@
     <h1>Upload your image :</h1>
     <section class="upload">
       <div class="container">
-        <div class="row pictures">
+        <div class="row pictures" *ngIf="!state.isUploading && !image_local">
           <div class="col">
             <a href="#" (click)="TakeaPicture()">
               <img src="../../assets/imgs/appareil.png" alt="camera">
@@ -34,6 +34,17 @@
             </a>
           </div>
         </div>
+        <div class="row pictures" *ngIf="state.isUploading">
+          <h3>Uploading photo....</h3>
+        </div>
+        <div class="row preview" *ngIf="!!image_local">
+          <div class="col">
+            <img class="preview_image" [src]="image_local">
+            <button type="button" ion-button icon-only clear style="color: white;" (click)="closeLocalImage()">
+              <ion-icon ios="ios-close-circle" md="md-close"></ion-icon>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
     <section class="description">
@@ -45,7 +56,7 @@
           </div>
           <div class="row">
             <div class="col">
-              <ion-textarea name="description" id="" cols="30" rows="10" [(ngModel)]="photo.description" placeholder="Description goes here"></ion-textarea>
+              <ion-textarea name="description" id="" cols="30" rows="10" [(ngModel)]="submit.description" placeholder="Description goes here"></ion-textarea>
             </div>
           </div>
         </div>
@@ -55,7 +66,7 @@
         <div class="col-5 offset-1 text-center" (click)="goBack()">
           <button class="btn btn-back">BACK</button>
         </div>
-        <div class="col-5 text-center" (click)="goToContestSubmited()">
+        <div class="col-5 text-center">
           <button type="submit" class="btn btn-next">NEXT</button>
         </div>
       </div>

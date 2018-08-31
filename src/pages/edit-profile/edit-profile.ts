@@ -85,7 +85,6 @@ export class EditProfilePage {
   }
 
   setCurrentUser(){
-
     this.restProvider.setProfile(this.user as User).then((auth: Auth) => {
       // Set profile
       this.dataProvider.saveProfile(auth);
