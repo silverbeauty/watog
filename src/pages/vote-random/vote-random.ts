@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,  AlertController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
-
+import { ProfilesLoadPage } from '../profiles-load/profiles-load';
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
 import { User, Auth } from '../../types';
@@ -23,11 +23,17 @@ import { User, Auth } from '../../types';
 })
 export class VoteRandomPage {
   public allUser: any =  [];
+  public str: string = "";
+  public description: string = "";
   public vote: any = {
     commend: true
   }
+  public report: any = {
+    type: "",
+    description: ""
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     console.log(DataProvider.searchedUsers)
   }
 
@@ -47,6 +53,30 @@ export class VoteRandomPage {
       }
       console.log(this.allUser)
     });
+  }
+
+  reported(img){
+    let alert = this.alertCtrl.create({
+      title: 'Spam',
+      subTitle: 'Dou you really want report this picture ?',
+      buttons: [
+        { text: 'Spam', handler: () =>{
+          this.vote.type = 'spam'
+        }},
+        { text: 'violence', handler: () => {
+          this.vote.type = 'violence'
+        }},
+        { text: 'sex', handler: () => {
+          this.vote.type = 'sex'
+        }},
+        { text: 'other', handler: () => {
+          this.vote.type = 'other'
+        }}]
+    });
+    alert.present();
+    console.log(this.vote)
+    this.vote.description = this.description;
+    this.Voted(img.id)
   }
 
   voteUp(img){
@@ -69,6 +99,11 @@ export class VoteRandomPage {
     .catch( err => {
       console.log("You have already voted")
     })
+  }
+
+  goToSearch(user){
+    console.log(user)
+    this.navCtrl.push(ProfilesLoadPage , {user: user, from: 'randomUser'});
   }
 
   goToDashboard(){

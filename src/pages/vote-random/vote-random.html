@@ -17,7 +17,7 @@
   </div>
   <div class="vote-card" *ngFor="let user of allUser">
     <div id="cardImg" class="vote-card-img" [ngStyle]="{'background-image':'url(' + user.picture + ')'}">
-      <div class="separate">
+      <div class="separate" (click)="goToSearch(user)">
         <div id="profile-picture" class="container-fluid"></div>
         <p id="avant">{{ user.User.user_name }}</p>
       </div>
@@ -34,7 +34,7 @@
           </button>
         </div>
         <div class="col text-center">
-          <button class="btn btn-report">
+          <button class="btn btn-report" (click)="reported(user)">
             <img src="../../assets/imgs/ContenuIndesirable.png" alt="Report icon">
           </button>
         </div>

@@ -1,0 +1,137 @@
+page-profiles-load {
+  .navbar{
+      background-color: #775576;
+  }
+
+  .navbar h1{
+      color: white;
+      font-size: 1.2em;
+      font-weight: 200;
+      margin: 0;
+  }
+
+  .btn-profile{
+      background-color: #775576;
+  }
+
+  .btn-profile img{
+      height: 2em;
+  }
+
+  .dropdown-menu{
+      padding: 2em;
+  }
+
+  .dropdown-item{
+      font-size: 1.5em;
+      font-weight: 200;
+      text-align: left;
+      padding-right: 5em;
+  }
+
+  .dropdown-item img{
+      height: 1.2em;
+      padding-right: 1em;
+  }
+
+  .dropdown-menu-right{
+      right: 0;
+      left: auto;
+  }
+
+  .body{
+      background-image: url("../assets/imgs/rio.jpg");
+      background-position: center top;
+      color: white;
+  }
+
+  .profile-info{
+      padding: 1em;
+      text-align: center;
+  }
+
+  #profile-picture{
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      background-position: center;
+      background-size: cover;
+      box-shadow: 1px 2px 10px #525252;
+      margin-top: 1em;
+      margin-bottom: 1em;
+  }
+
+  .profile-info h2{
+      font-size: 1.3em;
+      font-weight: 800;
+      padding-bottom: 0;
+      margin-bottom: 0;
+  }
+
+  .profile-info p{
+      font-size: .9em;
+      font-weight: 100;
+  }
+
+  .infos-banner{
+      background-color: #dce4e7;
+      color: black;
+      font-weight: 200;
+      text-align: center;
+      margin-bottom: 3em;
+  }
+
+  .infos-banner h3{
+      font-size: 1.25em;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      font-weight: 400;
+  }
+
+  .infos-banner p{
+      font-size: .8em;
+  }
+
+  .divider{
+      border-left: 1px solid #ccc;
+      margin-top: 1em;
+      margin-bottom: 1em;
+  }
+
+  .photo{
+      height: 50vw;
+      width: 50vw;
+      //background-image: url("../../assets/imgs/camera_roll_2.png");
+      background-position: center;
+      background-size: cover;
+      margin: auto;
+      margin-bottom: 3em;
+      position: relative;
+  }
+
+  .photo .votes{
+      background: white;
+      color: black;
+      opacity: .7;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: .5em;
+  }
+
+  .photo .votes p{
+      padding: 0;
+      margin: 0;
+  }
+
+  .photo .votes .like img{
+      height: 30px;
+      padding: 0;
+  }
+
+  .photo .votes .dislike img{
+      height: 28px;
+      transform: rotate(180deg);
+      padding: 0;
+  }
+}

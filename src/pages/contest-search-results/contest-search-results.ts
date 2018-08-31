@@ -4,7 +4,7 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
-
+import { ProfilesLoadPage } from '../profiles-load/profiles-load';
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
 import { User, Auth } from '../../types';
@@ -69,15 +69,7 @@ export class ContestSearchResultsPage {
 
   public goToSearch(user){
     console.log(user)
-    this.navCtrl.push(this.goToSearchPage(), {user: user, from: 'currentUser'});
-  }
-
-  goToSearchPage(): any{
-    this.page = SelectionPage;
-    if(this.userAlreadyVoted){
-      this.page = ContestVoteSearchDetailPage;
-    }
-    return this.page
+    this.navCtrl.push(ProfilesLoadPage, {user: user, from: 'contestUser'});
   }
 
   logout(){
