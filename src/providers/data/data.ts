@@ -99,7 +99,6 @@ export class DataProvider {
         return null
       }
     }).catch((e: any) => {
-      alert('failed')
       console.info(e)
       return null;
     })

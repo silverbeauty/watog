@@ -112,11 +112,11 @@ export class RegisterOneOfThreePage {
   register(){
     this.user.job = this.getQualifiction();
     this.restProvider.signUp(this.user as User).then((auth: Auth) => {
-      // Save profile
+      // Save Profile
       this.dataProvider.saveProfile(auth);
       this.navCtrl.push(RegisterTwoOfThreePage);
     }).catch((error) => {
-      alert('Invalid input');
+      alert(error);
     })
   }
 
@@ -129,7 +129,6 @@ export class RegisterOneOfThreePage {
 
   navToUploadProfilePhoto(){
     alert('You will lose your pre-entered profile field value!')
-
     this.navCtrl.push(UploadProfilePhotoPage);
   }
 
