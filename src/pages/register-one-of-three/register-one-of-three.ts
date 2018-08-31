@@ -110,10 +110,9 @@ export class RegisterOneOfThreePage {
   /** Request Http **/
 
   register(){
-    this.navCtrl.push(RegisterTwoOfThreePage);
     this.user.job = this.getQualifiction();
     this.restProvider.signUp(this.user as User).then((auth: Auth) => {
-      // Save profile
+      // Save Profile
       this.dataProvider.saveProfile(auth);
       this.navCtrl.push(RegisterTwoOfThreePage);
     }).catch((error) => {

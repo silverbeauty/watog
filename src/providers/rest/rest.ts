@@ -174,25 +174,13 @@ export class RestProvider {
     })
   }
 
-  public signUp(user: User): Promise<Auth> {
+  public sendProfilePhoto(file: any): Promise<resFile>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
 
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
-        .subscribe((res: any) => {
-          if (res.status) {
-            resolve(res.data as Auth);
-          } else {
-            reject('SignUp Failed:')
-          }
-        }, (err) => {
-          reject('SignUp Failed:')
-        });
-    })
-  }
-
-  public sendFile(file: any): Promise<resFile>{
-    return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file}), { headers: jsonHeader })
+      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file}), { headers })
         .timeout(30000)
         .subscribe((res: any) => {
           if (res.status) {
@@ -202,6 +190,66 @@ export class RestProvider {
           }
         }, (err) => {
           reject(err);
+        });
+    })
+  }
+
+  public sendFile(file: any): Promise<resFile>{
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file}), { headers })
+        .timeout(30000)
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data as resFile);
+          } else {
+            reject('Save file failed!')
+          }
+        }, (err) => {
+          reject(err);
+        });
+    })
+  }
+
+  public signUp(user: User): Promise<Auth> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
+        .subscribe((res: any) => {
+          if (res.status) {
+            const  { user, token } = res.data;
+            RestProvider.token = token; // Set token
+            const auth: Auth = user as Auth;
+            auth.token = token;
+            resolve(auth);
+          } else {
+            reject('SignUp Failed:')
+          }
+        }, (err) => {
+          reject('SignUp Failed:')
+        });
+    })
+  }
+
+  public sendProofPhoto(file: any): Promise<Auth>{
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/file/verify', JSON.stringify({file: file}), { headers: jsonHeader })
+        .timeout(30000)
+        .subscribe((res: any) => {
+          if (res.status) {
+            const  { user, token } = res.data;
+            RestProvider.token = token; // Set token
+            const auth: Auth = user as Auth;
+            auth.token = token;
+            resolve(auth);
+          } else {
+            reject('Save File Failed:')
+          }
+        }, (err) => {
+          reject('Save File Failed:');
         });
     })
   }

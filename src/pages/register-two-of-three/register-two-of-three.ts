@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { RegisterThreeOfThreePage } from '../register-three-of-three/register-three-of-three';
-import { resFile } from "../../types";
-import {  RestProvider } from '../../providers';
+import {Auth, resFile} from "../../types";
+import {DataProvider, RestProvider} from '../../providers';
 import { CameraProvider } from '../../providers/camera/camera';
 
 /**
@@ -22,7 +22,7 @@ export class RegisterTwoOfThreePage {
   public image_url: any;
   public image_local: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public cam : CameraProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, public cam : CameraProvider) {
   }
 
   ionViewDidLoad() {
@@ -54,13 +54,10 @@ export class RegisterTwoOfThreePage {
   }
 
   sendDoc(){
-    this.navCtrl.push(RegisterThreeOfThreePage);
-
-
     if(this.image_local){
-      this.restProvider.sendFile(this.image_local).then((res_file: resFile) => {
-        console.log(JSON.stringify(res_file))
-        this.image_url = res_file.url
+      this.restProvider.sendProofPhoto(this.image_local).then((auth: Auth) => {
+        // Save Profile
+        this.dataProvider.saveProfile(auth);
         this.navCtrl.push(RegisterThreeOfThreePage);
       }).catch((error) => {
         alert("Send file to server error!")
