@@ -127,4 +127,11 @@ page-edit-profile {
         margin-top: 1.1em;
         font-size: .9em;
     }
+    .select-icon{
+      display: none;
+    }
+
+    .form-control.select{
+      padding: 10px;
+    }
 }

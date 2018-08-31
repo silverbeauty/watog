@@ -11,6 +11,7 @@ import { DataProvider, RestProvider } from '../../providers';
 import { ElementRef } from '@angular/core';
 import {LoginPage} from "../login/login";
 import {Auth, User} from "../../types";
+import {UploadProfilePhotoPage} from "../upload-profile-photo/upload-profile-photo";
 
 /**
  * Generated class for the EditProfilePage page.
@@ -33,7 +34,6 @@ export class EditProfilePage {
     cell_phone: '',
     country: '',
     hospital: '',
-    pass_conf: '',
     password: '',
     user_name: '',
     job: '',
@@ -43,55 +43,55 @@ export class EditProfilePage {
     proof_of_status: ''
   }
 
+  public image = {
+    image_url: "",
+    profile_selected: false
+  }
+
   public profile_image: string = "assets/imgs/rio.jpg";
   public promise : any;
-  private getMe : any ;
   countries : any[] = countries;
-  server_url: any = server_url;
 
 
-  constructor(
-    public navCtrl: NavController, public navParams: NavParams,
-    private http: HttpClient, public profil: DataProvider,
-    public restProvider : RestProvider, public dataProvider: DataProvider
-  ) {
-      this.promise = Promise.all([this.profil.get()]);
-      this.promise.then(res => {
-        return JSON.parse(res);
-      })
-      .then(data => {
-        this.profile_image = data.profile_image;
-        this.user.password = data.password;
-        this.user.pass_conf = data.password;
-      })
+  constructor( public navCtrl: NavController, public navParams: NavParams, public restProvider : RestProvider, public dataProvider: DataProvider) {
+    this.dataProvider.getProfile().then((profile: Auth) => {
+      this.profile_image = profile.picture_profile;
+    })
+    const params = this.navParams.data;
+    if(params.image_url) {
+      this.image = params;
+      this.profile_image = this.image.image_url;
+      this.user.picture_profile = this.image.image_url;
     }
+  }
+
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EditProfilePage');
-    this.promise = Promise.all([this.profil.get()]);
-    this.promise.then(res => {
-      return JSON.parse(res);
+    this.dataProvider.getProfile().then((profile: Auth) => {
+      this.user.first_name = profile.first_name;
+      this.user.last_name = profile.last_name;
+      //this.user.email = data.email;
+      this.user.user_name = profile.user_name;
+      this.user.cell_phone = profile.cell_phone;
+      this.user.country = profile.country;
+      this.user.hospital = profile.hospital;
     })
-      .then(data => {
-        this.user.first_name = data.first_name;
-        this.user.last_name = data.last_name;
-        this.user.email = data.email;
-        this.user.cell_phone = data.cell_phone;
-        this.user.country = data.country;
-        this.user.hospital = data.hospital;
-        this.user.picture_profile = data.picture_profile;
-        this.profile_image = data.profile_image;
-      })
   }
 
   setCurrentUser(){
     this.restProvider.setProfile(this.user as User).then((auth: Auth) => {
       // Set profile
       this.dataProvider.saveProfile(auth);
-      this.navCtrl.push(RegisterTwoOfThreePage);
+      alert('Profile Updated')
+      this.navCtrl.push(SettingsPage);
     }).catch((error) => {
       alert('Invalid input');
     })
+  }
+
+  navToUploadProfilePhoto(){
+    alert('You will lose your pre-entered profile field value!')
+    this.navCtrl.push(UploadProfilePhotoPage);
   }
 
   goToDashboard(){

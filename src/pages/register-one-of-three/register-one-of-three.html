@@ -103,7 +103,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="assets/icon/Password.png" alt="password logo"></span>
                     </div>
-                    <ion-input type="password" class="form-control font-weight-light" id="ConfirmPasswordInput" aria-describedby="passwd-picture" placeholder="Confirm Password*" [(ngModel)]="user.pass_conf" formControlName="confirm_password"></ion-input>
+                    <ion-input type="password" class="form-control font-weight-light" id="ConfirmPasswordInput" aria-describedby="passwd-picture" placeholder="Confirm Password*" [(ngModel)]="pass_conf" formControlName="confirm_password"></ion-input>
                 </div>
                 <div class="validation-errors">
                   <ng-container *ngFor="let validation of validation_messages.confirm_password">
@@ -169,14 +169,21 @@
                   </div>
                 </ng-container>
               </div>
-              <div class="text-center div-link-qualif">
-                <a href="#" (click)="openMenu()" id="qualificationInput" class="btn font-weight-light"> Select qualification </a>
+              <div class="input-group">
+                <a href="#" (click)="openMenu()" id="qualificationInput">
+                  <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Select qualification" [(ngModel)]="user.job" formControlName="job" contenteditable="false"></ion-input>
+                </a>
               </div>
-
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.job">
+                  <div class="error-message" *ngIf="validations_form.get('job').hasError(validation.type) && (validations_form.get('job').dirty || validations_form.get('job').touched)">
+                    {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
               <div class="text-center div-btn-submit">
                 <button type="submit" class="btn btn-submit btn-md" [disabled]="!validations_form.valid">NEXT</button>
               </div>
-
           </div>
         </div>
       </div>

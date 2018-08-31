@@ -25,7 +25,6 @@ export class RegisterOneOfThreePage {
     cell_phone: '',
     country: '',
     hospital: '',
-    pass_conf: '',
     password: '',
     user_name: '',
     job: '',
@@ -36,7 +35,6 @@ export class RegisterOneOfThreePage {
   }
 
   public image = {
-    from: "",
     image_url: "",
     profile_selected: false
   }
@@ -48,18 +46,15 @@ export class RegisterOneOfThreePage {
   countries : any[] = countries;
   public profile_selected: boolean = false;
   public profile_image: string = "assets/imgs/rio.jpg";
+  pass_conf: string = "";
   //
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
     if(params.image_url){
       this.image = params;
-      if(this.image.from == 'picture_profile'){
-        this.profile_image = this.image.image_url;
-        this.user.picture_profile = this.image.image_url;
-        this.profile_selected = this.image.profile_selected;
-      } else{
-        alert('Image from Unknown Page')
-      }
+      this.profile_image = this.image.image_url;
+      this.user.picture_profile = this.image.image_url;
+      this.profile_selected = this.image.profile_selected;
     }
     this.matching_passwords_group = new FormGroup({
       password: new FormControl('', Validators.compose([
@@ -103,6 +98,9 @@ export class RegisterOneOfThreePage {
       matching_passwords: this.matching_passwords_group,
       hospital: ['', Validators.compose([
         Validators.required
+      ])],
+      job: ['', Validators.compose([
+        Validators.required
       ])]
     });
   }
@@ -110,10 +108,9 @@ export class RegisterOneOfThreePage {
   /** Request Http **/
 
   register(){
-    this.user.job = this.getQualifiction();
     this.restProvider.signUp(this.user as User).then((auth: Auth) => {
       // Save Profile
-      this.dataProvider.saveProfile(auth);
+      //this.dataProvider.saveProfile(auth);
       this.navCtrl.push(RegisterTwoOfThreePage);
     }).catch((error) => {
       alert(error);
@@ -139,24 +136,16 @@ export class RegisterOneOfThreePage {
 
   /*Methods for the html dom modification */
   openMenu(){
-    document.getElementById('qualificationInputMenu').style.bottom = '0';
+    document.getElementById('qualificationInputMenu').style.display = 'block';
   }
 
   closeMenu(){
-    document.getElementById('qualificationInputMenu').style.bottom = '-100vh';
+    document.getElementById('qualificationInputMenu').style.display = 'none';
   }
 
   selectQualification(qualification){
-    document.getElementById('qualificationInput').innerHTML = qualification;
+    this.user.job = qualification;
     this.closeMenu();
-  }
-
-  getQualifiction(){
-    return document.getElementById('qualificationInput').innerHTML;
-  }
-
-  specifyQualification(){
-    alert('test');
   }
 
   saveOtherSpeciality() {
@@ -209,6 +198,8 @@ export class RegisterOneOfThreePage {
     'hospital': [
       { type: 'required', message: 'Hospital is required.' }
     ],
-
+    'job': [
+      { type: 'required', message: 'Job is required.' }
+    ]
   };
 }
