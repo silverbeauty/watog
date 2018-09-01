@@ -264,7 +264,7 @@ export class RestProvider {
           }
         }, (err) => {
           console.info('Failed to Send Verification request!')
-          reject(err);
+          reject('Failed to Send Verification request!');
         });
     })
   }

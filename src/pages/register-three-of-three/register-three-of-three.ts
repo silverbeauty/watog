@@ -44,7 +44,7 @@ export class RegisterThreeOfThreePage {
       this.restProvider.sendVerifyRequest( url_verify, sel_verify)
       this.navCtrl.push(EnterTokenPage, { sel_verify: sel_verify});
     }).catch((error)=>{
-
+        alert('Failed to Send Verification request!')
     });
   }
 

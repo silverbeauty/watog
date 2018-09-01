@@ -37,5 +37,4 @@ export class EnterTokenPage {
   goBackRegisterConf(){
     this.navCtrl.push(RegisterThreeOfThreePage);
   }
-
 }
