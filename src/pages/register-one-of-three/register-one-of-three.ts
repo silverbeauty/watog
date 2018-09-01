@@ -108,11 +108,17 @@ export class RegisterOneOfThreePage {
   /** Request Http **/
 
   register(){
-    this.restProvider.signUp(this.user as User).then((auth: Auth) => {
+    this.restProvider.signUp(this.user as User).then((user: User) => {
       // Save Profile
       //this.dataProvider.saveProfile(auth);
       this.navCtrl.push(RegisterTwoOfThreePage);
-    }).catch((error) => {
+      const email = user.email;
+      const password = user.password;
+      this.restProvider.login(email,password)
+    }).then(
+
+    )
+    .catch((error) => {
       alert(error);
     })
   }

@@ -16,6 +16,7 @@ import { EnterTokenPage } from '../enter-token/enter-token';
 })
 export class RegisterThreeOfThreePage {
 
+  public sel_verific: string = 'email'
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -28,7 +29,7 @@ export class RegisterThreeOfThreePage {
   }
 
   goToEnterToken(){
-    this.navCtrl.push(EnterTokenPage);
+    this.navCtrl.push(EnterTokenPage, {verify: this.sel_verific});
   }
 
 }

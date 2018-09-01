@@ -21,13 +21,13 @@
     <p class="title">Choose Validation</p>
     <form>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="validationRadios" id="emailValidation" value="email" checked>
+        <input class="form-check-input" type="radio" name="validationRadios" id="emailValidation" value="email"  [(ngModel)]="sel_verific"  checked>
         <label class="form-check-label" for="emailValidation">
           Email Validation
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="validationRadios" id="smsValidation" value="sms">
+        <input class="form-check-input" type="radio" name="validationRadios" id="smsValidation" value="sms"  [(ngModel)]="sel_verific" >
         <label class="form-check-label" for="smsValidation">
           SMS Validation
         </label>
