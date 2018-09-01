@@ -18,6 +18,14 @@ import { RegisterThreeOfThreePage } from '../register-three-of-three/register-th
 export class EnterTokenPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    const params = this.navParams.data;
+    if(params.sel_verific == 'email'){
+
+    }else if(params.sel_verific == 'sms'){
+
+    }else{
+      alert('Unknown Params')
+    }
   }
 
   ionViewDidLoad() {

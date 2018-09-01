@@ -1,7 +1,7 @@
 <ion-content class="body">
   <div class="navbar">
     <a (click)="goBack()"><i class="fa fa-angle-left"></i></a>
-    <img src="../../assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
+    <img src="assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
   </div>
   <section class="position">
     <div class="container">
@@ -21,13 +21,13 @@
     <p class="title">Choose Validation</p>
     <form>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="validationRadios" id="emailValidation" value="email"  [(ngModel)]="sel_verific"  checked>
+        <input class="form-check-input" type="radio" name="validationRadios" id="emailValidation" value="email"  [(ngModel)]="url_verify"  checked>
         <label class="form-check-label" for="emailValidation">
           Email Validation
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="validationRadios" id="smsValidation" value="sms"  [(ngModel)]="sel_verific" >
+        <input class="form-check-input" type="radio" name="validationRadios" id="smsValidation" value="sms"  [(ngModel)]="url_verify" >
         <label class="form-check-label" for="smsValidation">
           SMS Validation
         </label>

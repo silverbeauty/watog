@@ -111,14 +111,19 @@ export class RegisterOneOfThreePage {
     this.restProvider.signUp(this.user as User).then((user: User) => {
       // Save Profile
       //this.dataProvider.saveProfile(auth);
-      this.navCtrl.push(RegisterTwoOfThreePage);
+      //this.navCtrl.push(RegisterTwoOfThreePage);
       const email = user.email;
-      const password = user.password;
+      const password = this.user.password;
       return {email, password}
     }).then((data)=>{
-
-    })
-    .catch((error) => {
+        this.restProvider.login(data.email, data.password).then((auth: Auth) =>{
+          // Save Profile
+          this.dataProvider.saveProfile(auth);
+          this.navCtrl.push(RegisterTwoOfThreePage);
+        }).catch((error)=>{
+          alert(error)
+        })
+    }).catch((error) => {
       alert(error);
     })
   }

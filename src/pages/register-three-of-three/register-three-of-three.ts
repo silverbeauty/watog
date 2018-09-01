@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EnterTokenPage } from '../enter-token/enter-token';
+import { DataProvider, RestProvider} from "../../providers";
+import {Auth} from "../../types";
 
 /**
  * Generated class for the RegisterThreeOfThreePage page.
@@ -16,8 +18,8 @@ import { EnterTokenPage } from '../enter-token/enter-token';
 })
 export class RegisterThreeOfThreePage {
 
-  public sel_verific: string = 'email'
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public url_verify: string = 'email';
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider : RestProvider, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -29,7 +31,17 @@ export class RegisterThreeOfThreePage {
   }
 
   goToEnterToken(){
-    this.navCtrl.push(EnterTokenPage, {verify: this.sel_verific});
+    this.dataProvider.getProfile().then((profile: Auth) => {
+      if(this.url_verify == 'email'){
+        const sel_verify = profile.email;
+        return sel_verify;
+      }else{
+        const sel_verify = profile.cell_phone;
+      }).then((data){
+
+      }
+  }).catch()
+    this.navCtrl.push(EnterTokenPage, {url_verify: this.url_verify, sel_verify: });
   }
 
 }

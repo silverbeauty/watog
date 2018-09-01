@@ -86,7 +86,7 @@ export class RestProvider {
     })
   }
 
-  public setProfile(user: User): Promise<Auth> {
+  public setProfile(user: User): Promise<User> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
@@ -96,9 +96,7 @@ export class RestProvider {
         .subscribe((res: any) => {
           if (res.status) {
             const  user = res.data;
-            const auth: Auth = user as Auth;
-            auth.token = RestProvider.token;
-            resolve(auth);
+            resolve(user);
           } else {
             console.error('Failed to load profile:', res)
             reject ('Failed to load profile')
@@ -248,6 +246,16 @@ export class RestProvider {
         }, (err) => {
           reject('Save File Failed:');
         });
+    })
+  }
+
+  public sendVerifyRequest(sel_verific: string, ): Promise<boolean>{
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve,reject)=>{
+      this.http.post(this.apiUrl+'')
     })
   }
 
