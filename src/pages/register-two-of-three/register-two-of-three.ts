@@ -57,7 +57,6 @@ export class RegisterTwoOfThreePage {
     if(this.image_local){
       this.restProvider.sendProofPhoto(this.image_local).then((auth: Auth) => {
         // Save Profile
-        this.dataProvider.saveProfile(auth);
         this.navCtrl.push(RegisterThreeOfThreePage);
       }).catch((error) => {
         alert("Send file to server error!")

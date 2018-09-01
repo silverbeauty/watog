@@ -26,6 +26,7 @@ export class LandingPage {
     console.info('Rest:', this.dataProvider)
 
     if (DataProvider.firstRun) {
+      console.log('here')
       DataProvider.firstRun = false;
       this.dataProvider.getProfile().then((auth: Auth) => {
         if (auth) {

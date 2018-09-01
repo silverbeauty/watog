@@ -64,7 +64,7 @@ export class RestProvider {
     })
   }
 
-  public setProfile(user: User): Promise<Auth> {
+  public setProfile(user: User): Promise<User> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
@@ -74,9 +74,7 @@ export class RestProvider {
         .subscribe((res: any) => {
           if (res.status) {
             const  user = res.data;
-            const auth: Auth = user as Auth;
-            auth.token = RestProvider.token;
-            resolve(auth);
+            resolve(user);
           } else {
             console.error('Failed to load profile:', res)
             reject ('Failed to load profile')
@@ -193,16 +191,13 @@ export class RestProvider {
     })
   }
 
-  public signUp(user: User): Promise<Auth> {
+  public signUp(user: User): Promise<User> {
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
         .subscribe((res: any) => {
           if (res.status) {
-            const  { user, token } = res.data;
-            RestProvider.token = token; // Set token
-            const auth: Auth = user as Auth;
-            auth.token = token;
-            resolve(auth);
+            const user:User = res.data;
+            resolve(user);
           } else {
             reject('SignUp Failed:')
           }
@@ -228,6 +223,26 @@ export class RestProvider {
           }
         }, (err) => {
           reject('Save File Failed:');
+        });
+    })
+  }
+
+  public sendVerifyRequest(url_verify: string, sel_verify: string): Promise<String>{
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve,reject)=>{
+      this.http.post(this.apiUrl+'/user/verify/'+ url_verify, {headers})
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve('Success');
+          } else {
+            reject('Failed to Send Verification request!')
+          }
+        }, (err) => {
+          console.info('Failed to Send Verification request!')
+          reject('Failed to Send Verification request!');
         });
     })
   }

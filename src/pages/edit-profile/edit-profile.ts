@@ -79,11 +79,11 @@ export class EditProfilePage {
   }
 
   setCurrentUser(){
-    this.restProvider.setProfile(this.user as User).then((auth: Auth) => {
+    this.restProvider.setProfile(this.user as User).then((user: User) => {
       // Set profile
-      this.dataProvider.saveProfile(auth);
       alert('Profile Updated')
-      this.navCtrl.push(SettingsPage);
+      this.dataProvider.removeProfile()
+      this.navCtrl.push(LoginPage);
     }).catch((error) => {
       alert('Invalid input');
     })

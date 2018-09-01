@@ -29,7 +29,7 @@
           <div class="text-center">
             <p>Enter code (Token)</p>
           </div>
-          <ion-input type="text" class="form-control font-weight-light" id="tokenInput" aria-describedby="token-picture" placeholder="Token" name="token"></ion-input>
+          <ion-input type="text" class="form-control font-weight-light" id="tokenInput" aria-describedby="token-picture" placeholder="Token" name="token"  [(ngModel)]="token" ></ion-input>
 
           <div class="text-center div-btn-submit">
             <button type="submit" class="btn btn-submit btn-md" (click)="goToDashboard()">REGISTER</button>
