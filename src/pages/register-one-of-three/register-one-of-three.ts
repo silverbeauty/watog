@@ -114,10 +114,10 @@ export class RegisterOneOfThreePage {
       this.navCtrl.push(RegisterTwoOfThreePage);
       const email = user.email;
       const password = user.password;
-      this.restProvider.login(email,password)
-    }).then(
+      return {email, password}
+    }).then((data)=>{
 
-    )
+    })
     .catch((error) => {
       alert(error);
     })
