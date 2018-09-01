@@ -37,11 +37,15 @@ export class RegisterThreeOfThreePage {
         return sel_verify;
       }else{
         const sel_verify = profile.cell_phone;
-      }).then((data){
-
       }
-  }).catch()
-    this.navCtrl.push(EnterTokenPage, {url_verify: this.url_verify, sel_verify: });
+    }).then((data)=>{
+      const url_verify = this.url_verify;
+      const sel_verify = data;
+      this.restProvider.sendVerifyRequest( url_verify, sel_verify)
+      this.navCtrl.push(EnterTokenPage, { sel_verify: sel_verify});
+    }).catch((error)=>{
+
+    });
   }
 
 }

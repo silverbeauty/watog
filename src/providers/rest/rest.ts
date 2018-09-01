@@ -249,13 +249,23 @@ export class RestProvider {
     })
   }
 
-  public sendVerifyRequest(sel_verific: string, ): Promise<boolean>{
+  public sendVerifyRequest(url_verify: string, sel_verify: string): Promise<String>{
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve,reject)=>{
-      this.http.post(this.apiUrl+'')
+      this.http.post(this.apiUrl+'/user/verify/'+ url_verify, {headers})
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve('Success');
+          } else {
+            reject('Failed to Send Verification request!')
+          }
+        }, (err) => {
+          console.info('Failed to Send Verification request!')
+          reject(err);
+        });
     })
   }
 
