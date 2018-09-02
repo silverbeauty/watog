@@ -75,11 +75,5 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    this.dataProvider.getProfile().then((profile: Auth) => {
-      if (profile) {
-        this.navCtrl.push(DashboardPage)
-      }
-    })
   }
-
 }
