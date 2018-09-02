@@ -11,13 +11,13 @@ const my_database = 'data.db';
 export class DataProvider {
 
   //private db: SQLiteObject;
-  private Firstname: string;
+/*  private Firstname: string;
   private Password: string;
   private Email: string;
   private Country: string;
   private Hospital: string;
   private Phone: number;
-  private arr: any;
+  private arr: any;*/
 
   public isBrowser = document.URL.startsWith('http');
 
@@ -33,24 +33,33 @@ export class DataProvider {
 
 
   public saveProfile(auth: Auth): void {
-    const profile = auth as User;
+    const user = auth as User;
     if (this.isBrowser) {
-      window.localStorage.setItem('profile', JSON.stringify(profile));
+      window.localStorage.setItem('user', JSON.stringify(user));
       window.localStorage.setItem('authorization', auth.token);
       return
     }
 
-    this.storage.setItem('profile', JSON.stringify(profile));
+    this.storage.setItem('user', JSON.stringify(user));
     this.storage.setItem('authorization', auth.token);
+  }
+
+  public saveUser(user: User): void{
+    const profile_user:User= user;
+    if(this.isBrowser) {
+      window.localStorage.setItem('user', JSON.stringify(profile_user));
+      return
+    }
+    this.storage.setItem('user', JSON.stringify(profile_user));
   }
 
   public removeProfile(): void {
     if (this.isBrowser) {
-      window.localStorage.removeItem('profile');
+      window.localStorage.removeItem('user');
       window.localStorage.removeItem('authorization');
       return
     }
-    this.storage.remove('profile');
+    this.storage.remove('user');
     this.storage.remove('authorization');
   }
 
@@ -78,7 +87,7 @@ export class DataProvider {
       })
     }
 
-    return Promise.all([this.storage.getItem('authorization'), this.storage.getItem('profile')]).then((res: Array<any>) => {
+    return Promise.all([this.storage.getItem('authorization'), this.storage.getItem('user')]).then((res: Array<any>) => {
       if (res[0]) {
         // Set token to RestProvider
 
@@ -102,20 +111,22 @@ export class DataProvider {
 
   public clearProfile() {
     if (this.isBrowser) {
-      window.localStorage.removeItem('profile');
+      window.localStorage.removeItem('user');
       window.localStorage.removeItem('authorization');
       return
     }
 
-    this.storage.setItem('profile', null)
+    this.storage.setItem('user', null)
     this.storage.setItem('authorization', null)
   }
 
   /*** SIMPLE GET AND SET ***/
 
+
   get(){
-    return this.storage.getItem('profile');
+    return this.storage.getItem('user');
   }
+
 
 }
 

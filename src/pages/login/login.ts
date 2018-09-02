@@ -11,6 +11,8 @@ import { DashboardPage } from '../dashboard/dashboard';
 /** Provider **/
 import { DataProvider, RestProvider } from '../../providers';
 import { User, Auth } from '../../types';
+import {RegisterTwoOfThreePage} from "../register-two-of-three/register-two-of-three";
+import {RegisterThreeOfThreePage} from "../register-three-of-three/register-three-of-three";
 
 
 @IonicPage()
@@ -52,11 +54,18 @@ export class LoginPage {
     const { email, password } = this.data;
     if (email && password) {
       this.restProvider.login(email, password).then((auth: Auth) => {
-        //console.info('Login Response:', auth)
         // Save profil
         console.log('auth',auth);
-        this.dataProvider.saveProfile(auth);
-        this.navCtrl.push(DashboardPage)
+        this.dataProvider.saveProfile(auth)
+        if (auth.proof_of_status) {
+          if (!auth.sms_verified_date && !auth.email_verified_date) { // Email or cell_phone is not verified
+            this.navCtrl.push(RegisterThreeOfThreePage); // proof_of_status not uploaded
+          } else {
+            this.navCtrl.push(DashboardPage)
+          }
+        } else {
+          this.navCtrl.push(RegisterTwoOfThreePage)
+        }
       }).catch((error) => {
         this.data.error = 'Invalid email or password';
       })
