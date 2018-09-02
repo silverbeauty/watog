@@ -51,6 +51,7 @@ import { VoteModalPage } from '../pages/vote-modal/vote-modal';
 import { ModalPrinciplesPage } from '../pages/modal-principles/modal-principles';
 import { ModalContestPage } from '../pages/modal-contest/modal-contest';
 import { SelectionPage } from '../pages/selection/selection';
+import { ProfilesLoadPage } from '../pages/profiles-load/profiles-load';
 
 	/*Provider*/
 import { DataProvider } from '../providers/data/data';
@@ -97,7 +98,8 @@ import { CameraProvider } from '../providers/camera/camera';
   	VoteModalPage,
   	ModalContestPage,
   	ModalPrinciplesPage,
-    SelectionPage
+    SelectionPage,
+    ProfilesLoadPage
   ],
   imports: [
     BrowserModule,
@@ -142,7 +144,8 @@ import { CameraProvider } from '../providers/camera/camera';
   	VoteModalPage,
   	ModalContestPage,
   	ModalPrinciplesPage,
-    SelectionPage
+    SelectionPage,
+    ProfilesLoadPage
   ],
   providers: [
     StatusBar,

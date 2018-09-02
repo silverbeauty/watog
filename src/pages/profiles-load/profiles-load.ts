@@ -5,16 +5,15 @@ import { SettingsPage } from '../settings/settings';
 import { DataProvider, RestProvider } from '../../providers';
 import { User, Auth } from '../../types';
 import { LoginPage } from '../login/login';
-import { ProfilesLoadPage } from '../profiles-load/profiles-load';
 
 
 @IonicPage()
 @Component({
-  selector: 'page-profile',
-  templateUrl: 'profile.html',
+  selector: 'page-profiles-load',
+  templateUrl: 'profiles-load.html',
 })
-export class ProfilePage {
-  public promise : any;
+export class ProfilesLoadPage {
+  public userP : any;
 
   public name: string;
   public lastname: string;
@@ -33,37 +32,39 @@ export class ProfilePage {
   public new_votes: number = 128;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public profil: DataProvider, public restProvider: RestProvider) {
+    const params = this.navParams.data;
+    if(params.from == 'randomUser'){
+      this.userP = params.user.User;
+      console.log(this.userP)
+    }
+    else if(params.from == 'contestUser'){
+      this.userP = params.user;
+      console.log(this.userP)
+    }
 
   }
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
-    this.promise = Promise.all([this.profil.get()]);
-     this.promise.then(res => {
-       let data = JSON.parse(res)
-       console.log(data)
-       this.userId = data.id;
-       this.name = data.first_name;
-       this.lastname = data.last_name;
-       this.proffesion = data.hospital;
-       this.location = data.country;
-       this.fullname = this.name + ' ' + this.lastname;
-       this.photo_profil = data.picture_profile;
 
-       const myProfil = "?user_id=" + this.userId;
+    this.userId = this.userP.id;
+    this.name = this.userP.first_name;
+    this.lastname = this.userP.last_name;
+    this.proffesion = this.userP.hospital;
+    this.location = this.userP.country;
+    this.fullname = this.name + ' ' + this.lastname;
+    this.photo_profil = this.userP.picture_profile;
+    //document.getElementById('profile-picture').setAttribute("style", `background-image: url(${ this.photo_profil });`);
 
-       this.restProvider.getAllPost(myProfil).then(data => {
-         console.log("getpost", data)
-         this.me = data;
-       })
-       .catch(err => {
-         console.log('Is just cordova')
-       })
-     })
-     .catch(err =>{
-       console.log(err)
-     })
+    const myProfil = "?user_id=" + this.userId;
+
+    this.restProvider.getAllPost(myProfil).then(data => {
+     console.log("getpost", data)
+     this.me = data;
+    })
+    .catch(err => {
+     console.log('Is just cordova')
+   })
   }
 
   voteUp(img){
@@ -80,8 +81,8 @@ export class ProfilePage {
     //this.vote check to user ng
     const makeVote = "/"+ id +"/vote"
     console.log("vote: ", this.vote)
-    this.restProvider.Voted(this.vote, makeVote).then(data => {
-      this.navCtrl.push(ProfilesLoadPage)
+    this.restProvider.Voted(this.vote, makeVote).then(userP => {
+      this.navCtrl.push(ProfilePage)
     })
     .catch( err => {
       console.log("You have already voted")
@@ -102,14 +103,3 @@ export class ProfilePage {
   }
 
 }
-/*
-const myProfil = "?user_id=" + this.userId;
-
-this.restProvider.getAllPost(myProfil).then(data => {
-  console.log("getpost", data)
-  this.me = data;
-})
-.catch(err => {
-  console.log('Is just cordova')
-})
-*/
