@@ -1,29 +1,29 @@
 page-enter-token {
     .body{
-        background-image: url(../../assets/imgs/rio.jpg);
+        background-image: url('../assets/imgs/rio.jpg');
         background-position: center top;
         color: white;
     }
-    
+
     .navbar a i{
         color: white;
         font-size: 4em;
     }
-    
+
     a{
         color: white !important;
         text-decoration: underline;
     }
-    
+
     .bold{
         font-weight: 600;
     }
-    
+
     .img-fluid-height{
         height: 5em;
         margin: auto;
     }
-    
+
     .text-huge{
         font-size: 2.3em;
     }

@@ -80,10 +80,11 @@ export class EditProfilePage {
 
   setCurrentUser(){
     this.restProvider.setProfile(this.user as User).then((user: User) => {
-      // Set profile
+      // Save profile
+      const profile_user: User = user;
+      this.dataProvider.saveUser(profile_user);
       alert('Profile Updated')
-      this.dataProvider.removeProfile()
-      this.navCtrl.push(LoginPage);
+      this.navCtrl.push(SettingsPage);
     }).catch((error) => {
       alert('Invalid input');
     })

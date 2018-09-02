@@ -6,7 +6,7 @@ import { UploadCoverPhotoPage } from '../upload-cover-photo/upload-cover-photo';
 import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
 import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
 import {DashboardPage} from "../dashboard/dashboard";
-import {Auth, User} from "../../types";
+import {Auth, ObjUser} from "../../types";
 import { DataProvider, RestProvider, PhoneValidator, PasswordValidator} from '../../providers';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
@@ -21,17 +21,15 @@ export class RegisterOneOfThreePage {
   public user = {
     first_name: '',
     last_name: '',
+    user_name: '',
     email: '',
     cell_phone: '',
     country: '',
     hospital: '',
     password: '',
-    user_name: '',
     job: '',
     picture_profile: '',
-    picture_cover: '',
-    proof_of_status_date:'',
-    proof_of_status: ''
+    picture_cover: ''
   }
 
   public image = {
@@ -108,7 +106,7 @@ export class RegisterOneOfThreePage {
   /** Request Http **/
 
   register(){
-    this.restProvider.signUp(this.user as User).then((user: User) => {
+    this.restProvider.signUp(this.user as ObjUser).then((user: ObjUser) => {
       // Save Profile
       //this.dataProvider.saveProfile(auth);
       //this.navCtrl.push(RegisterTwoOfThreePage);

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User, Auth, resFile, Category, File, Resp, Post } from '../../types';
+import { User, ObjUser, Auth, resFile, Category, File, Resp, Post } from '../../types';
 import 'rxjs/add/operator/timeout';
 import { server_url } from '../../environments/environment'
 
@@ -191,7 +191,7 @@ export class RestProvider {
     })
   }
 
-  public signUp(user: User): Promise<User> {
+  public signUp(user: ObjUser): Promise<User> {
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
         .subscribe((res: any) => {
@@ -207,22 +207,22 @@ export class RestProvider {
     })
   }
 
-  public sendProofPhoto(file: any): Promise<Auth>{
+  public sendProofPhoto(file: any): Promise<User>{
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/file/verify', JSON.stringify({file: file}), { headers: jsonHeader })
-        .timeout(30000)
+      this.http.post(this.apiUrl+'/file/verify', JSON.stringify({file: file}), { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            const  { user, token } = res.data;
-            RestProvider.token = token; // Set token
-            const auth: Auth = user as Auth;
-            auth.token = token;
-            resolve(auth);
+            const user:User = res.data;
+            resolve(user);
           } else {
             reject('Save File Failed:')
           }
         }, (err) => {
-          reject('Save File Failed:');
+          reject('Save File Failed:')
         });
     })
   }

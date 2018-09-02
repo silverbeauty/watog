@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { RegisterThreeOfThreePage } from '../register-three-of-three/register-three-of-three';
-import {Auth, resFile} from "../../types";
+import {Auth, User, resFile} from "../../types";
 import {DataProvider, RestProvider} from '../../providers';
 import { CameraProvider } from '../../providers/camera/camera';
 
@@ -55,8 +55,9 @@ export class RegisterTwoOfThreePage {
 
   sendDoc(){
     if(this.image_local){
-      this.restProvider.sendProofPhoto(this.image_local).then((auth: Auth) => {
-        // Save Profile
+      this.restProvider.sendProofPhoto(this.image_local).then((user: User) => {
+        const profile_user:User = user;
+        this.dataProvider.saveUser(profile_user);
         this.navCtrl.push(RegisterThreeOfThreePage);
       }).catch((error) => {
         alert("Send file to server error!")
