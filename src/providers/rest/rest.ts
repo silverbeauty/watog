@@ -227,22 +227,42 @@ export class RestProvider {
     })
   }
 
-  public sendVerifyRequest(url_verify: string, sel_verify: string): Promise<String>{
+  public sendVerifyRequest(url_verify: string): Promise<String>{
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve,reject)=>{
-      this.http.post(this.apiUrl+'/user/verify/'+ url_verify, {headers})
+      this.http.post(this.apiUrl+'/user/verify/'+ url_verify,  {}, {headers})
         .subscribe((res: any) => {
           if (res.status) {
-            resolve('Success');
+            resolve('Send Success');
           } else {
             reject('Failed to Send Verification request!')
           }
         }, (err) => {
           console.info('Failed to Send Verification request!')
           reject('Failed to Send Verification request!');
+        });
+    })
+  }
+
+  public sendVerifyCode(url_verify: string, code_verify: string): Promise<User>{
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve,reject)=>{
+      this.http.get(this.apiUrl+'/user/verify/'+ url_verify + '/' + code_verify,   {headers})
+        .subscribe((res: any) => {
+          if (res.status) {
+            const user:User = res.data;
+            resolve(user);
+          } else {
+            reject('Verification Code Not Correct!')
+          }
+        }, (err) => {
+          reject('Verification Code Send Failed:')
         });
     })
   }
