@@ -32,6 +32,7 @@ export class HideHeaderDirective {
   }
 
   onContentScroll(event){
+    console.log(event.scrollTop, this.previousScroll);
     if(event.scrollTop > this.previousScroll){
       this.renderer.setElementStyle(this.header, "top", "-56px")
       this.renderer.setElementStyle(this.scrollContent, "margin-top", "0px")
@@ -39,6 +40,7 @@ export class HideHeaderDirective {
       this.renderer.setElementStyle(this.header, "top", "0px");
       this.renderer.setElementStyle(this.scrollContent, "margin-top", "56px")
     }
+    this.previousScroll = event.scrollTop;
   }
 
 }
