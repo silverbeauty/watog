@@ -67,14 +67,8 @@ export class EditProfilePage {
 
 
   ionViewDidLoad() {
-    this.dataProvider.getProfile().then((profile: Auth) => {
-      this.user.first_name = profile.first_name;
-      this.user.last_name = profile.last_name;
-      //this.user.email = data.email;
-      this.user.user_name = profile.user_name;
-      this.user.cell_phone = profile.cell_phone;
-      this.user.country = profile.country;
-      this.user.hospital = profile.hospital;
+    this.dataProvider.getProfile().then((profile: User) => {
+      this.user = profile;
     })
   }
 

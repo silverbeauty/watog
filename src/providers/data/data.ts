@@ -63,10 +63,10 @@ export class DataProvider {
     this.storage.remove('authorization');
   }
 
-  public getProfile(): Promise<Auth> {
+  public getProfile(): Promise<User> {
     if (this.isBrowser) {
       return new Promise((resolve, reject) => {
-        const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('profile')]
+        const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
         if (res[0]) {
         // Set token to RestProvider
         RestProvider.token = res[0];
