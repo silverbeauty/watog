@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EnterTokenPage } from '../enter-token/enter-token';
 import { DataProvider, RestProvider} from "../../providers";
-import {Auth} from "../../types";
+import {Auth, ObjUser} from "../../types";
+import {RegisterTwoOfThreePage} from "../register-two-of-three/register-two-of-three";
 
 /**
  * Generated class for the RegisterThreeOfThreePage page.
@@ -31,21 +32,13 @@ export class RegisterThreeOfThreePage {
   }
 
   goToEnterToken(){
-    this.dataProvider.getProfile().then((profile: Auth) => {
-      if(this.url_verify == 'email'){
-        const sel_verify = profile.email;
-        return sel_verify;
-      }else{
-        const sel_verify = profile.cell_phone;
-      }
-    }).then((data)=>{
-      const url_verify = this.url_verify;
-      const sel_verify = data;
-      this.restProvider.sendVerifyRequest( url_verify, sel_verify)
-      this.navCtrl.push(EnterTokenPage, { sel_verify: sel_verify});
-    }).catch((error)=>{
-        alert('Failed to Send Verification request!')
-    });
+    const url_verify = this.url_verify;
+    this.restProvider.sendVerifyRequest( url_verify).then((data) => {
+      alert(data);
+      this.navCtrl.push(EnterTokenPage, { url_verify: url_verify});
+    }).catch((error) => {
+      alert(error);
+    })
   }
 
 }

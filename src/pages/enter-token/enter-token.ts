@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { RegisterThreeOfThreePage } from '../register-three-of-three/register-three-of-three';
+import {DataProvider, RestProvider} from "../../providers";
+import {User} from "../../types";
 
 /**
  * Generated class for the EnterTokenPage page.
@@ -17,9 +19,12 @@ import { RegisterThreeOfThreePage } from '../register-three-of-three/register-th
 })
 export class EnterTokenPage {
   public url_verify: string = 'email';
-  public token: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public code_verify: string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
+    if(params.url_verify){
+      this.url_verify = params.url_verify;
+    }
   }
 
   ionViewDidLoad() {
@@ -31,7 +36,15 @@ export class EnterTokenPage {
   }
 
   goToDashboard(){
-    this.navCtrl.push(DashboardPage);
+    const url_verify = this.url_verify;
+    const code_verify = this.code_verify
+    this.restProvider.sendVerifyCode(url_verify, code_verify ).then((user: User) => {
+      const profile_user:User = user;
+      this.dataProvider.saveUser(profile_user);
+      this.navCtrl.push(DashboardPage);
+    }).catch((error) => {
+      alert(error)
+    })
   }
 
   goBackRegisterConf(){
