@@ -60,6 +60,9 @@ import { RestProvider } from '../providers/rest/rest';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CameraProvider } from '../providers/camera/camera';
 
+// Directives
+import { HideHeaderDirective } from '../directives/scroll-hide';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -99,7 +102,8 @@ import { CameraProvider } from '../providers/camera/camera';
   	ModalContestPage,
   	ModalPrinciplesPage,
     SelectionPage,
-    ProfilesLoadPage
+    ProfilesLoadPage,
+    HideHeaderDirective
   ],
   imports: [
     BrowserModule,
