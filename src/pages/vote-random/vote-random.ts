@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,  AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams,  AlertController, Content } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -22,6 +22,7 @@ import { User, Auth } from '../../types';
   templateUrl: 'vote-random.html',
 })
 export class VoteRandomPage {
+  @ViewChild(Content) content: Content;
   public allUser: any =  [];
   public str: string = "";
   public description: string = "";
@@ -32,9 +33,25 @@ export class VoteRandomPage {
     type: "",
     description: ""
   }
+  showBack: boolean = true;
+  previousScroll: number = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     console.log(DataProvider.searchedUsers)
+  }
+
+  ngAfterViewInit() {
+    this.content.ionScroll.subscribe((event) => {
+      console.log(event);
+      if (event.scrollTop > this.previousScroll) {
+        this.showBack = false;
+        console.log(false);
+      } else {
+        this.showBack = true;
+        console.log(true);
+      }
+      this.previousScroll = event.scrollTop;
+    });
   }
 
   ionViewDidLoad() {
@@ -116,6 +133,10 @@ export class VoteRandomPage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goBack() {
+    this.navCtrl.pop();
   }
 
   logout(){
