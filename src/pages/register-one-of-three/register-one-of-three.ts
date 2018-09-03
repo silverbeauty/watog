@@ -6,9 +6,10 @@ import { UploadCoverPhotoPage } from '../upload-cover-photo/upload-cover-photo';
 import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
 import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
 import {DashboardPage} from "../dashboard/dashboard";
-import {Auth, ObjUser} from "../../types";
+import {Auth, ObjUser, Country} from "../../types";
 import { DataProvider, RestProvider, PhoneValidator, PasswordValidator} from '../../providers';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+
 
 @IonicPage()
 @Component({
@@ -41,7 +42,7 @@ export class RegisterOneOfThreePage {
   matching_passwords_group: FormGroup;
   country_phone_group: FormGroup;
 
-  countries : any[] = countries;
+  countries : Country[];
   public profile_selected: boolean = false;
   public profile_image: string = "assets/imgs/rio.jpg";
   pass_conf: string = "";
@@ -54,6 +55,15 @@ export class RegisterOneOfThreePage {
       this.user.picture_profile = this.image.image_url;
       this.profile_selected = this.image.profile_selected;
     }
+  }
+  ionViewWillLoad() {
+    this.countries = [
+      new Country('UY', 'Uruguay'),
+      new Country('US', 'United States'),
+      new Country('AR', 'Argentina')
+    ];
+
+
     this.matching_passwords_group = new FormGroup({
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
@@ -106,6 +116,8 @@ export class RegisterOneOfThreePage {
   /** Request Http **/
 
   register(){
+    console.log(this.user.cell_phone);
+    /*
     this.restProvider.signUp(this.user as ObjUser).then((user: ObjUser) => {
       // Save Profile
       //this.dataProvider.saveProfile(auth);
@@ -123,7 +135,7 @@ export class RegisterOneOfThreePage {
         })
     }).catch((error) => {
       alert(error);
-    })
+    })*/
   }
 
   /** Navigation **/

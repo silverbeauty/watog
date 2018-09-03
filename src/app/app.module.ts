@@ -9,6 +9,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera } from '@ionic-native/camera';
 import { FileOpener } from '@ionic-native/file-opener';
 
+
 //import { AlertController } from 'ionic-angular';
 
 	/*Components*/
@@ -59,6 +60,7 @@ import { DistantDataBaseProvider } from '../providers/distant-data-base/distant-
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CameraProvider } from '../providers/camera/camera';
+import { ValidatorsModule } from '../providers/validator/validators.module';
 
 @NgModule({
   declarations: [
@@ -104,7 +106,8 @@ import { CameraProvider } from '../providers/camera/camera';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ValidatorsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
