@@ -98,10 +98,12 @@ export class DataProvider {
         const profile: object = JSON.parse(res[1]);
         if (profile) {
           const auth = profile as Auth;
+          DataProvider.auth = auth;
           return auth
         } else {
           const auth = new Auth()
           auth.token = res[0];
+          DataProvider.auth = auth;
           return auth;
         }
       } else {

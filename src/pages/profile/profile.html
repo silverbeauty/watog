@@ -16,48 +16,58 @@
       </div>
     </div>
     <section class="profile-info">
-      <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + photo_profil + ')'}"></div>
-      <h2 id="pseudo">{{ fullname }}</h2>
+      <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + auth.picture_profile + ')'}"></div>
+      <h2 id="pseudo">{{ auth.first_name + ' ' + auth.last_name }}</h2>
       <p id="qualification">{{ proffesion }}</p>
-      <p id="location"><img src="assets/icon/LocationWhite.png" alt="location icon">{{ location }}</p>
+      <p id="location"><img src="assets/icon/LocationWhite.png" alt="location icon"><div>{{ auth.country }} {{ auth.state }}</div></p>
     </section>
     <section class="infos-banner">
       <div class="container">
         <div class="row">
           <div class="col">
-            <h3 id="best-rank">{{ best_rank }}</h3>
+            <h3 id="best-rank">{{ auth.vote_rank }}</h3>
             <p>Best Rank</p>
           </div>
           <div class="divider"></div>
           <div class="col">
-            <h3 id="votes">{{ votes }}</h3>
-            <p>Votes</p>
+            <h3 id="votes">{{ auth.up_vote_count }}</h3>
+            <p>Votes(total)</p>
           </div>
           <div class="divider"></div>
           <div class="col">
-            <h3 id="new-votes">{{ new_votes }}</h3>
-            <p>New votes</p>
+            <h3 id="new-votes">{{ auth.week_vote_count }}</h3>
+            <p>New votes(This week)</p>
           </div>
         </div>
       </div>
     </section>
-    <section class="photo text-center">
-      <!--Image is the background image of #photo1-->
-      <div *ngFor="let info of me">
-        <div id="photo1" class="photo" [ngStyle]="{'background-image':'url(' + info.picture + ')'}">
-          <div class="votes">
-            <div class="row">
-              <div class="col text-center like" (click)=voteUp(info)>
-                <img src="../../assets/imgs/Like.png" alt="like img">
-                <p id="photo1-like-count">{{ info.up_vote_count }}</p>
-              </div>
-              <div class="col text-center dislike" (click)=voteDown(info)>
-                <img src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
-                <p id="photo1-dislike-count">{{ info.down_vote_count }}</p>
-              </div>
+    <section class="photo-section">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="grid-container">
+              <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[1].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[1]"></div>
+              <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[2].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[2]"></div>
+              <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[3].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[3]"></div>
+              <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[4].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[4]"></div>
             </div>
           </div>
-        </div>
+          <div class="col">
+            <div id="photo1" class="grid-item-double" [ngStyle]="{'background-image':'url(' + auth.good_posts[0].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[0]"></div>
+            <div class="votes">
+                <div class="row">
+                  <div class="col text-center like" (click)=voteUp(info)>
+                    <img class="vote-img-hand" src="../../assets/imgs/Like.png" alt="like img">
+                    <p id="photo1-like-count">{{ auth.good_posts[1].up_vote_count }}</p>
+                  </div>
+                  <div class="col text-center dislike" (click)=voteDown(info)>
+                    <img class="vote-img-heart" src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
+                    <p id="photo1-dislike-count">{{ auth.good_posts[1].down_vote_count }}</p>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>  
       </div>
     </section>
 </ion-content>

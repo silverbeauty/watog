@@ -17,7 +17,7 @@ export class ProfilePage {
   public auth: Auth
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
-
+    this.auth = DataProvider.auth
   }
 
 
@@ -26,9 +26,16 @@ export class ProfilePage {
     
     // Load local profile
     this.auth = DataProvider.auth;
-
+    if (!this.auth.picture_profile) {
+      this.auth.picture_profile = 'assets/icon/Profil.png';
+    }
+    // Load profile by API
     this.restProvider.getProfile().then( (auth: Auth) => {
       this.auth = auth;
+      if (!this.auth.picture_profile) {
+        this.auth.picture_profile = 'assets/icon/Profil.png';
+      }
+      // Save profile
       return this.dataProvider.saveProfile(auth);
     }).catch(err => {
       console.error(err)

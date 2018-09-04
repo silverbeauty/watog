@@ -98,15 +98,55 @@ page-profile {
         margin-bottom: 1em;
     }
 
-    .photo{
-        height: 50vw;
-        width: 50vw;
+    .photo-small {
+        height: 20vw;
+        width: 20vw;
         //background-image: url("../../assets/imgs/camera_roll_2.png");
         background-position: center;
         background-size: cover;
-        margin: auto;
         margin-bottom: 3em;
         position: relative;
+    }
+
+    .photo-col {
+        display: inline-flex;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto;
+      width: 46vw;
+      height: 46vw;
+      padding-left: 2vw;
+    }
+
+    .grid-item {
+        width: 23vw;
+        height: 23vw;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .grid-item-double {
+        width: 46vw;
+        height: 46vw;
+        background-position: center;
+        background-size: cover;
+        margin-bottom: -14vw;
+    }
+
+    .vote-img-hand {
+        width: 12vw;
+    }
+
+    .vote-img-heart {
+        width: 7.5vw;
+    }
+
+    .votes {
+        background: #ffffff2b;
+        width: 46vw;
+        height: 14vw;
     }
 
     .photo .votes{
