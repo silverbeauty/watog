@@ -9,6 +9,8 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera } from '@ionic-native/camera';
 import { FileOpener } from '@ionic-native/file-opener';
 import { DocumentViewer } from '@ionic-native/document-viewer';
+import { File } from '@ionic-native/file';
+import { FileTransfer } from '@ionic-native/file-transfer';
 //import { AlertController } from 'ionic-angular';
 
 	/*Components*/
@@ -167,7 +169,9 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
     CameraProvider,
     Camera,
     FileOpener,
-    DocumentViewer
+    File,
+    DocumentViewer,
+    FileTransfer
   ]
 })
 export class AppModule {}
