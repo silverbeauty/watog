@@ -57,25 +57,22 @@ export class RegisterOneOfThreePage {
       this.profile_image = this.image.image_url;
       this.user.picture_profile = this.image.image_url;
       this.profile_selected = this.image.profile_selected;
-      if(this.profile_selected){
-        this.promise = Promise.all([this.dataProvider.getObjUser()]);
-        this.promise.then(res => {
-          var data  = JSON.parse(res);
-          this.user.first_name = data.first_name;
-          this.user.last_name = data.last_name;
-          this.user.user_name = data.user_name;
-          this.user.email = data.email;
-          this.user.cell_phone = data.cell_phone;
-          this.user.password = data.password;
-          this.pass_conf = data.password;
-          this.user.country = data.country;
-          this.user.hospital = data.hospital;
-          this.user.job = data.job;
-        })
-          .catch(err =>{
-            console.log(err)
-          })
-      }
+      this.promise = Promise.all([this.dataProvider.getObjUser()]);
+      this.promise.then(res => {
+        var data  = JSON.parse(res);
+        console.log(data.first_name);
+        this.user.first_name = data.first_name;
+        this.user.last_name = data.last_name;
+        this.user.user_name = data.user_name;
+        this.user.email = data.email;
+        this.user.cell_phone = data.cell_phone;
+        this.user.password = data.password;
+        this.pass_conf = data.password;
+        this.user.country = data.country;
+        this.user.hospital = data.hospital;
+        this.user.job = data.job;
+      }).catch(err =>{
+        console.log(err)})
     }
   }
   ionViewWillLoad() {
@@ -181,6 +178,7 @@ export class RegisterOneOfThreePage {
 
 
   navToUploadProfilePhoto(){
+    this.dataProvider.saveObjUser(this.user as ObjUser);
     this.navCtrl.push(UploadProfilePhotoPage);
   }
 
@@ -218,9 +216,6 @@ export class RegisterOneOfThreePage {
   }
 
   validation_messages = {
-    'profile_selected': [
-      { type: 'required', message: 'Profile picture is required.' }
-    ],
     'user_name': [
       { type: 'required', message: 'Username is required.' },
       { type: 'minlength', message: 'Username must be at least 5 characters long.' },
