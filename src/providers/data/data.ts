@@ -2,8 +2,9 @@
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Injectable } from '@angular/core';
 
-import { Auth, User } from '../../types';
+import { Auth, User, ObjUser } from '../../types';
 import { RestProvider } from '../rest/rest';
+import {resolveDefinition} from "@angular/core/src/view/util";
 
 const my_database = 'data.db';
 
@@ -61,6 +62,23 @@ export class DataProvider {
     }
     this.storage.remove('user');
     this.storage.remove('authorization');
+  }
+
+  public saveObjUser(user: ObjUser): void{
+    const profile_user:ObjUser= user;
+    if(this.isBrowser) {
+      window.localStorage.setItem('obj_user', JSON.stringify(profile_user));
+      return
+    }
+    this.storage.setItem('obj_user', JSON.stringify(profile_user));
+  }
+
+  public getObjUser(){
+    if (this.isBrowser) {
+      return window.localStorage.getItem('obj_user');
+    } else{
+      return this.storage.getItem('obj_user');
+    }
   }
 
   public getProfile(): Promise<User> {

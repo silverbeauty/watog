@@ -47,6 +47,7 @@ export class RegisterOneOfThreePage {
   public profile_selected: boolean = false;
   public profile_image: string = "assets/imgs/rio.jpg";
   public country: Country = new Country("FR", "France")
+  public promise : any;
   pass_conf: string = "";
   //
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider) {
@@ -56,6 +57,25 @@ export class RegisterOneOfThreePage {
       this.profile_image = this.image.image_url;
       this.user.picture_profile = this.image.image_url;
       this.profile_selected = this.image.profile_selected;
+      if(this.profile_selected){
+        this.promise = Promise.all([this.dataProvider.getObjUser()]);
+        this.promise.then(res => {
+          var data  = JSON.parse(res);
+          this.user.first_name = data.first_name;
+          this.user.last_name = data.last_name;
+          this.user.user_name = data.user_name;
+          this.user.email = data.email;
+          this.user.cell_phone = data.cell_phone;
+          this.user.password = data.password;
+          this.pass_conf = data.password;
+          this.user.country = data.country;
+          this.user.hospital = data.hospital;
+          this.user.job = data.job;
+        })
+          .catch(err =>{
+            console.log(err)
+          })
+      }
     }
   }
   ionViewWillLoad() {
@@ -86,10 +106,10 @@ export class RegisterOneOfThreePage {
       phone: phone
     });
 
+   /* profile_selected: ['', Validators.compose([
+      Validators.requiredTrue
+    ])],*/
     this.validations_form = this.formBuilder.group({
-      profile_selected: ['', Validators.compose([
-        Validators.requiredTrue
-      ])],
       first_name: ['', Validators.compose([
         Validators.required
       ])],
@@ -128,6 +148,11 @@ export class RegisterOneOfThreePage {
       this.user.cell_phone = (this.user.cell_phone.slice(0,-1))
     }
     this.user.country = this.country.name;
+    if(this.profile_selected != true){
+      this.dataProvider.saveObjUser(this.user as ObjUser);
+      alert("You have to choose profile picture!");
+      this.navCtrl.push(UploadProfilePhotoPage);
+    }
     this.restProvider.signUp(this.user as ObjUser).then((user: ObjUser) => {
       // Save Profile
       //this.dataProvider.saveProfile(auth);
@@ -156,18 +181,7 @@ export class RegisterOneOfThreePage {
 
 
   navToUploadProfilePhoto(){
-    let alert = this.alertCtrl.create({
-      title: 'warning',
-      subTitle: 'You will lose your pre-entered profile field value!',
-      buttons: [
-        { text: 'Cancel', handler: () =>{
-          console.log('Cancel clicked');
-        }},
-        { text: 'Continue', handler: () => {
-          this.navCtrl.push(UploadProfilePhotoPage);
-        }}]
-      });
-      alert.present();
+    this.navCtrl.push(UploadProfilePhotoPage);
   }
 
   ionViewDidLoad() {
