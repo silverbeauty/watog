@@ -37,7 +37,8 @@ export class BestUltrasoundImagePage {
       title: 'My PDF',
       openWith:{enabled:true}
     }
-    this.document.viewDocument('assets/docs/watog_contest_consent.pdf', 'application/pdf', options)
+    alert('here')
+    this.document.viewDocument('www/assets/docs/watog_contest_consent.pdf', 'application/pdf', options);
   }
 
   goToDashboard(){
