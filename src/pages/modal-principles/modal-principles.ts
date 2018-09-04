@@ -27,7 +27,7 @@ export class ModalPrinciplesPage {
     this.navCtrl.push(ModalContestPage);
   }
 
-  goToLanding() {
-    this.navCtrl.setRoot(LandingPage);
+  goBack() {
+    this.navCtrl.pop();
   }
 }

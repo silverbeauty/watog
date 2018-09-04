@@ -216,9 +216,6 @@ export class RegisterOneOfThreePage {
   }
 
   validation_messages = {
-    'profile_selected': [
-      { type: 'required', message: 'Profile picture is required.' }
-    ],
     'user_name': [
       { type: 'required', message: 'Username is required.' },
       { type: 'minlength', message: 'Username must be at least 5 characters long.' },
