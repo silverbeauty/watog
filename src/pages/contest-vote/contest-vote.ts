@@ -37,6 +37,10 @@ export class ContestVotePage {
     Promise.all([this.restProvider.queryCategories()]).then(data => console.log("des data",data))
   }
 
+  goBack() {
+    this.navCtrl.pop();
+  }
+
   goToDashboard(){
     this.navCtrl.push(DashboardPage);
   }
