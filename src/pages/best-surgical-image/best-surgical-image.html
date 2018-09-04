@@ -4,7 +4,7 @@
       <h1>Surgical Image</h1>
       <div class="btn-group">
         <button type="button" class="btn btn-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="../../assets/icon/Profil02.png" alt="profile icon">
+          <img src="assets/icon/Profil02.png" alt="profile icon">
         </button>
         <div class="dropdown-menu dropdown-menu-right">
           <button type="button" class="dropdown-item" (click)="goToProfilePage()"><img src="../../assets/icon/Profil.png" alt="profile icon"> Profile</button>
@@ -23,10 +23,10 @@
       <p>-You wish to make known a surgical technique or a surgical procedure for wich you had access to and/org could observe and/or use</p>
       <p>This category is for you. Please take note that this image may be published on social networks and in WATOG publishing media.You will fin below the document to be signed by the patient concerned to ensure that his/her consent has been obtained before this image's publication</p>
     </div>
-    <div class="container">
+    <div class="container" (click)="readLocalPdf()">
       <div class="row document">
         <div class="col-2">
-          <img src="../../assets/imgs/Document.png" alt="">
+          <img src="assets/imgs/Document.png" alt="">
         </div>
         <div class="divider"></div>
         <div class="col">
