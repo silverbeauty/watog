@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform, NavController, App } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -11,6 +11,9 @@ import { RegisterTwoOfThreePage } from '../pages/register-two-of-three/register-
 import { RegisterThreeOfThreePage } from '../pages/register-three-of-three/register-three-of-three';
 
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { WhatIsWatogPage } from '../pages/what-is-watog/what-is-watog';
+import { ModalPrinciplesPage } from '../pages/modal-principles/modal-principles';
+import { VoteModalPage } from '../pages/vote-modal/vote-modal';
 //import { SettingsPage } from '../pages/settings/settings';
 import { DataProvider, RestProvider } from '../providers';
 import { User, Auth } from '../types';
@@ -22,7 +25,7 @@ import { timer } from 'rxjs/observable/timer';
 })
 export class MyApp {
   rootPage:any = LandingPage;
-
+  @ViewChild(Nav) nav: Nav;
   showSplash = false;
 
   constructor(public app: App, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public dataProvider: DataProvider, public restProvider: RestProvider) {
@@ -30,6 +33,16 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+
+  goToPage(x: string) {
+    if(x === 'watog') {
+      this.nav.push(WhatIsWatogPage);
+    } else if(x === 'princ') {
+      this.nav.push(ModalPrinciplesPage);
+    } else if(x === 'vote') {
+      this.nav.push(VoteModalPage);
+    }
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ModalContestPage } from '../modal-contest/modal-contest';
-
+import { LandingPage } from '../landing/landing';
 /**
  * Generated class for the ModalPrinciplesPage page.
  *
@@ -27,4 +27,7 @@ export class ModalPrinciplesPage {
     this.navCtrl.push(ModalContestPage);
   }
 
+  goToLanding() {
+    this.navCtrl.setRoot(LandingPage);
+  }
 }

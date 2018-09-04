@@ -72,7 +72,7 @@ page-vote-random {
     }
 
     #avant{
-      font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+      font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
       text-transform: capitalize;
       color: black;
       float: left;
@@ -121,5 +121,9 @@ page-vote-random {
 
     .btn-dislike img{
         transform: rotate(180deg);
+    }
+
+    .back-s {
+      font-size: 2em;
     }
 }

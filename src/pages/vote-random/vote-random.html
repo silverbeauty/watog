@@ -1,4 +1,4 @@
-<ion-content class="body">
+<ion-header #head>
   <div class="navbar">
     <a href="#" (click)="goToDashboard()"><img src="../../assets/icon/Menu.png" alt="Menu icon"></a>
       <h1>Contest Vote Random</h1>
@@ -14,6 +14,11 @@
         <button type="button" class="dropdown-item" (click)="logout()"><img src="../../assets/icon/Logout.png" alt="profile icon"> Logout</button>
       </div>
     </div>
+  </div>
+</ion-header>
+<ion-content padding hide-header [header]="head" class="body">
+  <div *ngIf="showBack">
+    <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
   </div>
   <div class="vote-card" *ngFor="let user of allUser">
     <div id="cardImg" class="vote-card-img" [ngStyle]="{'background-image':'url(' + user.picture + ')'}">

@@ -27,4 +27,8 @@ export class ModalContestPage {
     this.navCtrl.push(ParticipatePage);
   }
 
+  goBack() {
+    this.navCtrl.pop();
+  }
+
 }
