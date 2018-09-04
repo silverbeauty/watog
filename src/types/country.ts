@@ -4,7 +4,7 @@ export class Country {
   iso: string;
   name: string;
   code: string;
-  sample_phone: string;
+  sample_phone: string ;
   phone_mask: Array<Object>;
 
   constructor (iso: string, name: string) {
@@ -43,7 +43,6 @@ export class Country {
         // Replace any digit with a digit RegExp
         return (_digit_reg_exp.test(char)) ? _digit_reg_exp : char;
       });
-
     return _mask;
   }
 }
