@@ -111,7 +111,6 @@ export class VoteRandomPage {
     const makeVote = "/"+ id +"/vote"
     console.log("vote: ", this.vote)
     this.restProvider.Voted(this.vote, makeVote).then(data => {
-      this.getData();
       //this.navCtrl.push(VoteRandomPage)
     })
     .catch( err => {

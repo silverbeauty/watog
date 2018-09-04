@@ -60,7 +60,6 @@ export class RegisterOneOfThreePage {
       this.promise = Promise.all([this.dataProvider.getObjUser()]);
       this.promise.then(res => {
         var data  = JSON.parse(res);
-        console.log(data.first_name);
         this.user.first_name = data.first_name;
         this.user.last_name = data.last_name;
         this.user.user_name = data.user_name;
@@ -72,7 +71,8 @@ export class RegisterOneOfThreePage {
         this.user.hospital = data.hospital;
         this.user.job = data.job;
       }).catch(err =>{
-        console.log(err)})
+        console.log(err)
+      })
     }
   }
   ionViewWillLoad() {
