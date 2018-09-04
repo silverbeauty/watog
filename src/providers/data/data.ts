@@ -29,11 +29,13 @@ export class DataProvider {
   public static searchUserLimit = 1000; // TODO: it should be 10 in the future for infinite scroll
   public static searchUserOffset = 0;
   public static firstRun: boolean = true;
+  public static auth: Auth;
 
   constructor(private storage: NativeStorage) {}
 
 
   public saveProfile(auth: Auth): void {
+    DataProvider.auth = auth;
     const user = auth as User;
     if (this.isBrowser) {
       window.localStorage.setItem('user', JSON.stringify(user));
@@ -93,10 +95,12 @@ export class DataProvider {
         if (profile) {
           const auth: Auth = profile as Auth;
           auth.token = res[0];
+          DataProvider.auth = auth;
           resolve(auth);
         } else {
           const auth = new Auth()
           auth.token = res[0];
+          DataProvider.auth = auth;
           resolve(auth);
         }
         } else {
@@ -112,10 +116,12 @@ export class DataProvider {
         const profile: object = JSON.parse(res[1]);
         if (profile) {
           const auth = profile as Auth;
+          DataProvider.auth = auth;
           return auth
         } else {
           const auth = new Auth()
           auth.token = res[0];
+          DataProvider.auth = auth;
           return auth;
         }
       } else {
