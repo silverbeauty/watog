@@ -42,7 +42,7 @@ export class RegisterOneOfThreePage {
   matching_passwords_group: FormGroup;
   country_phone_group: FormGroup;
 
-  countries : Country[];
+  countries: Country[];
   public profile_selected: boolean = false;
   public profile_image: string = "assets/imgs/rio.jpg";
   pass_conf: string = "";
@@ -58,11 +58,13 @@ export class RegisterOneOfThreePage {
   }
   ionViewWillLoad() {
     this.countries = [
-      new Country('UY', 'Uruguay'),
-      new Country('US', 'United States'),
-      new Country('AR', 'Argentina')
-    ];
-
+      new Country(countries[0].code, countries[0].name)
+    ]
+    for(var i = 1; i < countries.length; i ++){
+      const County = new Country(countries[i].code, countries[i].name)
+      this.countries.push(County);
+      console.log(this.countries[i])
+    }
 
     this.matching_passwords_group = new FormGroup({
       password: new FormControl('', Validators.compose([
@@ -153,6 +155,7 @@ export class RegisterOneOfThreePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterOneOfThreePage');
     this.user.picture_profile = this.profile_image;
+    this.user.country = "France";
   }
 
   /*Methods for the html dom modification */

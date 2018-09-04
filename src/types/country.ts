@@ -4,7 +4,7 @@ export class Country {
   iso: string;
   name: string;
   code: string;
-  sample_phone: string;
+  sample_phone: string ;
   phone_mask: Array<Object>;
 
   constructor (iso: string, name: string) {
