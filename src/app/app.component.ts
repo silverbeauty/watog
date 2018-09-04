@@ -16,6 +16,7 @@ import { DataProvider, RestProvider } from '../providers';
 import { User, Auth } from '../types';
 import { timer } from 'rxjs/observable/timer';
 
+
 @Component({
   templateUrl: 'app.html'
 })

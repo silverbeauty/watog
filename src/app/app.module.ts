@@ -8,7 +8,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera } from '@ionic-native/camera';
 import { FileOpener } from '@ionic-native/file-opener';
-
+import { DocumentViewer } from '@ionic-native/document-viewer';
 //import { AlertController } from 'ionic-angular';
 
 	/*Components*/
@@ -160,7 +160,8 @@ import { CameraProvider } from '../providers/camera/camera';
     ImagePicker,
     CameraProvider,
     Camera,
-    FileOpener
+    FileOpener,
+    DocumentViewer
   ]
 })
 export class AppModule {}
