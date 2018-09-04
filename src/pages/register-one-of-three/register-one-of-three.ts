@@ -42,9 +42,11 @@ export class RegisterOneOfThreePage {
   matching_passwords_group: FormGroup;
   country_phone_group: FormGroup;
 
+
   countries: Country[];
   public profile_selected: boolean = false;
   public profile_image: string = "assets/imgs/rio.jpg";
+  public country: Country = new Country("FR", "France")
   pass_conf: string = "";
   //
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider) {
@@ -114,10 +116,18 @@ export class RegisterOneOfThreePage {
     });
   }
 
+  checkFocus(){
+    if(this.user.cell_phone.lastIndexOf('_')!=-1){
+      this.user.cell_phone = (this.user.cell_phone.slice(0,-1))
+    }
+  }
   /** Request Http **/
 
   register(){
-    console.log(this.user.cell_phone)
+    if(this.user.cell_phone.lastIndexOf('_')!=-1){
+      this.user.cell_phone = (this.user.cell_phone.slice(0,-1))
+    }
+    this.user.country = this.country.name;
     this.restProvider.signUp(this.user as ObjUser).then((user: ObjUser) => {
       // Save Profile
       //this.dataProvider.saveProfile(auth);
