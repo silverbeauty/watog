@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { countries } from '../../models/model';
 import { LoginPage } from '../login/login';
 import { UploadCoverPhotoPage } from '../upload-cover-photo/upload-cover-photo';
@@ -49,7 +49,7 @@ export class RegisterOneOfThreePage {
   public country: Country = new Country("FR", "France")
   pass_conf: string = "";
   //
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
     if(params.image_url){
       this.image = params;
@@ -156,8 +156,18 @@ export class RegisterOneOfThreePage {
 
 
   navToUploadProfilePhoto(){
-    alert('You will lose your pre-entered profile field value!')
-    this.navCtrl.push(UploadProfilePhotoPage);
+    let alert = this.alertCtrl.create({
+      title: 'warning',
+      subTitle: 'You will lose your pre-entered profile field value!',
+      buttons: [
+        { text: 'Cancel', handler: () =>{
+          console.log('Cancel clicked');
+        }},
+        { text: 'Continue', handler: () => {
+          this.navCtrl.push(UploadProfilePhotoPage);
+        }}]
+      });
+      alert.present();
   }
 
   ionViewDidLoad() {

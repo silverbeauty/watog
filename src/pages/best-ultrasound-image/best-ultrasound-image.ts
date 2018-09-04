@@ -6,6 +6,7 @@ import { SettingsPage } from '../settings/settings';
 import { ContestSubmitPage } from '../contest-submit/contest-submit';
 import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
+import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
 
 /**
  * Generated class for the BestUltrasoundImagePage page.
@@ -21,6 +22,8 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class BestUltrasoundImagePage {
   public passParam: any;
+  public document: DocumentViewer;
+  public pdfSrc :string = "assets/docs/watog_contest_consent.pdf"
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
     this.passParam = this.navParams.data
@@ -28,6 +31,14 @@ export class BestUltrasoundImagePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BestUltrasoundImagePage');
+  }
+
+  readLocalPdf(){
+    const options: DocumentViewerOptions = {
+      title: 'My PDF',
+      openWith:{enabled:true}
+    }
+    this.document.viewDocument('assets/docs/watog_contest_consent.pdf', 'application/pdf', options)
   }
 
   goToDashboard(){
