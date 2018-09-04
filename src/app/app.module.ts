@@ -8,12 +8,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera } from '@ionic-native/camera';
 import { FileOpener } from '@ionic-native/file-opener';
-<<<<<<< HEAD
 import { DocumentViewer } from '@ionic-native/document-viewer';
-=======
-
-
->>>>>>> origin/master
 //import { AlertController } from 'ionic-angular';
 
 	/*Components*/

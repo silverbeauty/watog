@@ -48,3 +48,7 @@ This platform should be added by `ionic cordova platform add ios`
 
 ### Google phone error
 npm install --save-prod google-libphonenumber
+
+### TextMaskModule
+
+npm i angular2-text-mask --save
