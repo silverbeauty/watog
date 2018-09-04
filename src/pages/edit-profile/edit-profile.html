@@ -75,7 +75,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="assets/icon/Phone.png" alt="password logo"></span>
                     </div>
-                    <ion-input type="number" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" placeholder="Cell Phone*" name="cell_phone"  value="{{ user.cell_phone }}"></ion-input>
+                    <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" placeholder="Cell Phone*" name="cell_phone"  [(ngModel)]= "user.cell_phone"></ion-input>
                 </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -89,7 +89,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="assets/icon/Hopital.png" alt="password logo"></span>
                     </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" name="hospital"  value="{{ user.hospital }}"></ion-input>
+                    <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" name="hospital"  [(ngModel)]="user.hospital"></ion-input>
                 </div>
 
               <div class="text-center div-btn-submit">

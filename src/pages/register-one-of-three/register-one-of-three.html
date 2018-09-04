@@ -139,14 +139,14 @@
                     <span class="input-group-text"><img src="assets/icon/Location.png" alt="password logo"></span>
                   </div>
                   <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" formControlName="country" [(ngModel)]="user.country" >
-                    <ion-option *ngFor="let item of countries" value="{{item}}">{{item}}</ion-option>
+                    <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
                   </ion-select>
                 </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="assets/icon/Phone.png" alt="password logo"></span>
                     </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" placeholder="Phone Number*" [(ngModel)]="user.cell_phone" formControlName="phone"></ion-input>
+                    <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" [textMask]="{mask: validations_form.value.country_phone.country.phone_mask}" placeholder="{{ validations_form.value.country_phone.country.sample_phone }}" [(ngModel)]="user.cell_phone" formControlName="phone"></ion-input>
                 </div>
                 <div class="validation-errors">
                   <ng-container *ngFor="let validation of validation_messages.phone">
@@ -182,7 +182,7 @@
                 </ng-container>
               </div>
               <div class="text-center div-btn-submit">
-                <button type="submit" class="btn btn-submit btn-md" [disabled]="!validations_form.valid">NEXT</button>
+                <button type="submit" class="btn btn-submit btn-md" >NEXT</button>
               </div>
           </div>
         </div>
