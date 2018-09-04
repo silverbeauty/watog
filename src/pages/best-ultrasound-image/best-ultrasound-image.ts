@@ -22,10 +22,9 @@ import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-vi
 })
 export class BestUltrasoundImagePage {
   public passParam: any;
-  public document: DocumentViewer;
   public pdfSrc :string = "assets/docs/watog_contest_consent.pdf"
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, private document: DocumentViewer) {
     this.passParam = this.navParams.data
   }
 
