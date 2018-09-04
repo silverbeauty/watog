@@ -138,7 +138,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><img src="assets/icon/Location.png" alt="password logo"></span>
                   </div>
-                  <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" formControlName="country" [(ngModel)]="user.country">
+                  <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" formControlName="country" [(ngModel)]="country">
                     <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
                   </ion-select>
                 </div>
@@ -160,7 +160,7 @@
                   <div class="input-group-prepend">
                       <span class="input-group-text"><img src="assets/icon/Hopital.png" alt="password logo"></span>
                   </div>
-                  <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="user.hospital" formControlName="hospital"></ion-input>
+                  <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="user.hospital" formControlName="hospital" (ionFocus)="checkFocus()"></ion-input>
               </div>
               <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.hospital">
