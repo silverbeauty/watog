@@ -9,6 +9,10 @@ page-landing {
         margin-top: 8vh;
     }
 
+    .order {
+      order: 1
+    }
+
     .purple{
         color: #a96ba7;
     }
@@ -40,7 +44,7 @@ page-landing {
     ion-slide{
         padding: 1em;
     }
-    
+
     ion-slide h1{
         font-weight: bold;
     }
@@ -60,7 +64,7 @@ page-landing {
     .swiper-pagination {
         margin-bottom: 10px;
     }
-    
+
     .swiper-pagination-bullet {
         height: 10px;
         width: 10px;
@@ -70,5 +74,5 @@ page-landing {
     .swiper-pagination-bullet-active {
         background: #764576;
         opacity: 1;
-    }   
+    }
 }

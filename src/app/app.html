@@ -4,5 +4,13 @@
      <div class="double-bounce2"></div>
    </div>
 </div>
-
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="mycontent">
+  <ion-content>
+    <ion-list>
+      <button class="btn-s" menuToggle (click)="goToPage('watog')" ion-button block>What is WATOG</button>
+      <button class="btn-ss" menuToggle (click)="goToPage('princ')" ion-button block>Participate</button>
+      <button class="btn-ss" menuToggle (click)="goToPage('vote')" ion-button block>Vote</button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

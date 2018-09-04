@@ -66,6 +66,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CameraProvider } from '../providers/camera/camera';
 import { ValidatorsModule } from '../providers/validator/validators.module';
 
+// Directives
+import { HideHeaderDirective } from '../directives/scroll-hide';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -105,7 +108,8 @@ import { ValidatorsModule } from '../providers/validator/validators.module';
   	ModalContestPage,
   	ModalPrinciplesPage,
     SelectionPage,
-    ProfilesLoadPage
+    ProfilesLoadPage,
+    HideHeaderDirective
   ],
   imports: [
     BrowserModule,
