@@ -19,25 +19,25 @@
   </section>
   <form (ngSubmit)="register()" [formGroup]="validations_form">
     <section class="sign-in">
-      <div class="upload-profil-picture container-fluid" (click)="navToUploadProfilePhoto()">
+      <div class="upload-profil-picture container-fluid checked" (click)="navToUploadProfilePhoto()">
         <div class="container">
           <div class="row">
             <div class="col-4 justify-content-right">
               <div id="profil-picture">
                 <img [src]="profile_image">
-                <ion-checkbox [(ngModel)]="profile_selected" formControlName="profile_selected" style="display:none;">
-                </ion-checkbox>
+                <!--<ion-checkbox [(ngModel)]="profile_selected" formControlName="profile_selected" style="display:none;">
+                </ion-checkbox>-->
               </div>
-              <div class="validation-errors">
+            </div>
+            <div class="col-8" class="profile-picture-description align-middle">
+              <p class="font-weight-light">Upload a profile picture <br> (optional)</p>
+              <!--<div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.profile_selected">
                   <div class="error-message" *ngIf="validations_form.get('profile_selected').hasError(validation.type) && (validations_form.get('profile_selected').dirty || validations_form.get('profile_selected').touched)">
                     {{ validation.message }}
                   </div>
                 </ng-container>
-              </div>
-            </div>
-            <div class="col-8" class="profile-picture-description align-middle">
-              <p class="font-weight-light">Upload a profile picture <br> (optional)</p>
+              </div>-->
             </div>
           </div>
         </div>
@@ -182,7 +182,7 @@
                 </ng-container>
               </div>
               <div class="text-center div-btn-submit">
-                <button type="submit" class="btn btn-submit btn-md" >NEXT</button>
+                <button type="submit" class="btn btn-submit btn-md" [disabled]="!validations_form.valid">NEXT</button>
               </div>
           </div>
         </div>
