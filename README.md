@@ -29,6 +29,15 @@ $ ionic cordova plugin add cordova-plugin-telerik-imagepicker --variable PHOTO_L
 $ npm install --save @ionic-native/image-picker
 
 ```  
+- File Document Viewer
+
+# Cordova Plugins
+ionic cordova plugin add cordova-plugin-file
+ionic cordova plugin add cordova-plugin-file-transfer
+ionic cordova plugin add cordova-plugin-document-viewer
+ 
+# Ionic Native packages
+npm install --save @ionic-native/file @ionic-native/document-viewer @ionic-native/file-transfer
 
 sudo ionic cordova plugin add cordova-plugin-nativestorage
 

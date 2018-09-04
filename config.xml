@@ -96,9 +96,9 @@
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Watog needs to access the photos to upload images." />
     </plugin>
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
-    <engine name="browser" spec="5.0.4" />
-    <engine name="android" spec="7.0.0" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
     <plugin name="cordova-plugin-document-viewer" spec="^0.9.10" />
+    <engine name="browser" spec="5.0.4" />
+    <engine name="android" spec="7.0.0" />
 </widget>
