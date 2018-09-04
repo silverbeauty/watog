@@ -8,8 +8,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera } from '@ionic-native/camera';
 import { FileOpener } from '@ionic-native/file-opener';
-
-
+import { DocumentViewer } from '@ionic-native/document-viewer';
 //import { AlertController } from 'ionic-angular';
 
 	/*Components*/
@@ -62,6 +61,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CameraProvider } from '../providers/camera/camera';
 import { ValidatorsModule } from '../providers/validator/validators.module';
 
+// Directives
+import { HideHeaderDirective } from '../directives/scroll-hide';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -101,7 +103,8 @@ import { ValidatorsModule } from '../providers/validator/validators.module';
   	ModalContestPage,
   	ModalPrinciplesPage,
     SelectionPage,
-    ProfilesLoadPage
+    ProfilesLoadPage,
+    HideHeaderDirective
   ],
   imports: [
     BrowserModule,
@@ -163,7 +166,8 @@ import { ValidatorsModule } from '../providers/validator/validators.module';
     ImagePicker,
     CameraProvider,
     Camera,
-    FileOpener
+    FileOpener,
+    DocumentViewer
   ]
 })
 export class AppModule {}
