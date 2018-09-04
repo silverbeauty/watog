@@ -63,7 +63,6 @@ export class RegisterOneOfThreePage {
     for(var i = 1; i < countries.length; i ++){
       const County = new Country(countries[i].code, countries[i].name)
       this.countries.push(County);
-      console.log(this.countries[i])
     }
 
     this.matching_passwords_group = new FormGroup({
@@ -118,8 +117,7 @@ export class RegisterOneOfThreePage {
   /** Request Http **/
 
   register(){
-    console.log(this.user.cell_phone);
-    /*
+    console.log(this.user.cell_phone)
     this.restProvider.signUp(this.user as ObjUser).then((user: ObjUser) => {
       // Save Profile
       //this.dataProvider.saveProfile(auth);
@@ -137,7 +135,7 @@ export class RegisterOneOfThreePage {
         })
     }).catch((error) => {
       alert(error);
-    })*/
+    })
   }
 
   /** Navigation **/

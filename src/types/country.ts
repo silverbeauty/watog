@@ -43,7 +43,6 @@ export class Country {
         // Replace any digit with a digit RegExp
         return (_digit_reg_exp.test(char)) ? _digit_reg_exp : char;
       });
-
     return _mask;
   }
 }
