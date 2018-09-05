@@ -83,14 +83,3 @@ export class ProfilePage {
   }
 
 }
-/*
-const myProfil = "?user_id=" + this.userId;
-
-this.restProvider.getAllPost(myProfil).then(data => {
-  console.log("getpost", data)
-  this.me = data;
-})
-.catch(err => {
-  console.log('Is just cordova')
-})
-*/

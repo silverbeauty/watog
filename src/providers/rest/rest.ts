@@ -128,7 +128,7 @@ export class RestProvider {
     })
   }
 
-  public getAllPost(str: string): Promise<File> {
+  public queryPost(str: string): Promise<File> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
