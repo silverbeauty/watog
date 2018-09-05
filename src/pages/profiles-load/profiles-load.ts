@@ -12,81 +12,26 @@ import { LoginPage } from '../login/login';
   selector: 'page-profiles-load',
   templateUrl: 'profiles-load.html',
 })
+
 export class ProfilesLoadPage {
-  public userP : any;
+  public user: User
 
-  public name: string;
-  public lastname: string;
-  public proffesion: string;
-  public location: string;
-  public fullname: string;
-  public photo_profil: string;
-  public userId: number;
-  public vote: any = {
-    commend: true
-  }
-
-  public me: any;
-  public best_rank: string = "2nd";
-  public votes: number = 335;
-  public new_votes: number = 128;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public profil: DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
     const params = this.navParams.data;
     if(params.from == 'randomUser'){
-      this.userP = params.user.User;
-      console.log(this.userP)
+      this.user = params.user.User;
+    } else if(params.from == 'contestUser'){
+      this.user = params.user;
     }
-    else if(params.from == 'contestUser'){
-      this.userP = params.user;
-      console.log(this.userP)
-    }
-
   }
 
 
   ionViewDidLoad() {
-
-    this.userId = this.userP.id;
-    this.name = this.userP.first_name;
-    this.lastname = this.userP.last_name;
-    this.proffesion = this.userP.hospital;
-    this.location = this.userP.country;
-    this.fullname = this.name + ' ' + this.lastname;
-    this.photo_profil = this.userP.picture_profile;
-    //document.getElementById('profile-picture').setAttribute("style", `background-image: url(${ this.photo_profil });`);
-
-    const myProfil = "?user_id=" + this.userId;
-
-    this.restProvider.getAllPost(myProfil).then(data => {
-     console.log("getpost", data)
-     this.me = data;
-    })
-    .catch(err => {
-     console.log('Is just cordova')
-   })
-  }
-
-  voteUp(img){
-    this.vote.commend = true;
-    this.Voted(img.id)
-  }
-
-  voteDown(img){
-    this.vote.commend = false;
-    this.Voted(img.id)
-  }
-
-  Voted(id: number){
-    //this.vote check to user ng
-    const makeVote = "/"+ id +"/vote"
-    console.log("vote: ", this.vote)
-    this.restProvider.Voted(this.vote, makeVote).then(userP => {
-      
-    })
-    .catch( err => {
-      console.log("You have already voted")
-    })
+    console.log('ionViewDidLoad ProfilesLoadPage');
+    // Use default avatar
+    if (!this.user.picture_profile) {
+      this.user.picture_profile = 'assets/icon/Profil.png';
+    }
   }
 
   goToDashboard(){
@@ -97,13 +42,9 @@ export class ProfilesLoadPage {
     this.navCtrl.push(SettingsPage);
   }
 
-  goBack() {
-    this.navCtrl.pop();
-  }
-
   logout(){
-    this.profil.clearProfile();
+    this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
   }
-
 }
+
