@@ -86,7 +86,6 @@ export class ProfilePage {
       console.log("You have already voted")
     })
   }
-*/
 
   goToBestPhoto(){
     this.navCtrl.push(BestPhotoPage);

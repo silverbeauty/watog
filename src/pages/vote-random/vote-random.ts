@@ -75,7 +75,7 @@ export class VoteRandomPage {
         }
       }
       console.log(this.allUser)
-    });*/
+    });
   }
 
   reported(img){
@@ -114,7 +114,7 @@ export class VoteRandomPage {
 
   Voted(id: number){
     //this.vote check to user ng
-  /*  const makeVote = "/"+ id +"/vote"
+    const makeVote = "/"+ id +"/vote"
     console.log("vote: ", this.vote)
     this.restProvider.Voted(this.vote, makeVote).then(user => {
       //this.navCtrl.push(VoteRandomPage)
@@ -129,11 +129,11 @@ export class VoteRandomPage {
           this.allUser[i].down_vote_count = data.down_vote_count.toString();
         }
       }
-      
+
     })
     .catch( err => {
       console.log("You have already voted")
-    })*/
+    })
   }
 
   goToSearch(user){
