@@ -7,6 +7,7 @@ import { ContestSubmitPage } from '../contest-submit/contest-submit';
 import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
 import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
+import {File} from "@ionic-native/file";
 
 /**
  * Generated class for the BestHumanitaryPhotoPage page.
@@ -23,7 +24,7 @@ import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-view
 export class BestHumanitaryPhotoPage {
   public passParam: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, private document: DocumentViewer) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, private document: DocumentViewer, private file: File) {
     this.passParam = this.navParams.data
   }
 
@@ -32,27 +33,11 @@ export class BestHumanitaryPhotoPage {
   }
   readLocalPdf(){
     const options: DocumentViewerOptions = {
-      title: 'My PDF'
+      title: 'My PDF',
+      openWith: { enabled: true }
     }
-    this.document.viewDocument('assets/docs/watog_contest_consent.pdf', 'application/pdf', options);
-    /*
-    private transfer: FileTransfer,
-    ,
-      openWith:{enabled:true}
-    let path = null;
-
-    if (this.platform.is('ios')) {
-      path = this.file.documentsDirectory;
-    } else if (this.platform.is('android')) {
-      path = this.file.dataDirectory;
-    }
-
-    const transfer = this.transfer.create();
-    transfer.download('https://devdactic.com/html/5-simple-hacks-LBT.pdf', path + 'myfile.pdf').then(entry => {
-      let url = entry.toURL();
-      this.document.viewDocument(url, 'application/pdf', {});
-    });
-    */
+    const filePath = this.file.applicationDirectory + 'www/assets/docs/watog_contest_consent.pdf'
+    this.document.viewDocument(filePath, 'application/pdf', options);
   }
 
   goToDashboard(){

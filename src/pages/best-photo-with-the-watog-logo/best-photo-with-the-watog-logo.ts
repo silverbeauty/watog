@@ -6,6 +6,8 @@ import { SettingsPage } from '../settings/settings';
 import { ContestSubmitPage } from '../contest-submit/contest-submit';
 import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
+import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
+import {File} from "@ionic-native/file";
 
 /**
  * Generated class for the BestPhotoWithTheWatogLogoPage page.
@@ -22,12 +24,21 @@ import { DataProvider } from '../../providers/data/data';
 export class BestPhotoWithTheWatogLogoPage {
   public passParam: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider , private document: DocumentViewer, private file: File) {
     this.passParam = this.navParams.data
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BestPhotoWithTheWatogLogoPage');
+  }
+
+  readLocalPdf(){
+    const options: DocumentViewerOptions = {
+      title: 'My PDF',
+      openWith: { enabled: true }
+    }
+    const filePath = this.file.applicationDirectory + 'www/assets/docs/watog_contest_consent.pdf'
+    this.document.viewDocument(filePath, 'application/pdf', options);
   }
 
   goToDashboard(){

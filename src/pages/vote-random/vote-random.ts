@@ -35,9 +35,12 @@ export class VoteRandomPage {
   }
   showBack: boolean = true;
   previousScroll: number = 0;
+  public rando: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     console.log(DataProvider.searchedUsers)
+    this.rando = this.restProvider.getAllPost("?random&limit=100000");
+    this.getData();
   }
 
   ngAfterViewInit() {
@@ -55,7 +58,12 @@ export class VoteRandomPage {
   }
 
   ionViewDidLoad() {
-    Promise.all([this.restProvider.queryPost("?random&limit=100000")]).then(data => {
+    Promise.all([this.restProvider.queryPost("?random&limit=100000")]).then(data => {});
+  }
+
+  getData(){
+    Promise.all([this.rando]).then(data => {
+      this.allUser = [];
       console.log("ma promise: ", data)
       for (let element in data){
         for(let all in data[element]){
@@ -102,14 +110,26 @@ export class VoteRandomPage {
 
   Voted(id: number){
     //this.vote check to user ng
-    const makeVote = "/"+ id +"/vote"
+  /*  const makeVote = "/"+ id +"/vote"
     console.log("vote: ", this.vote)
-    this.restProvider.Voted(this.vote, makeVote).then(data => {
+    this.restProvider.Voted(this.vote, makeVote).then(user => {
       //this.navCtrl.push(VoteRandomPage)
+      this.getData();
+      let data = user;
+      let users = this.allUser;
+      console.log("a user: ", data)
+
+      for(let i in users){
+        if(this.allUser[i].id === data.id){
+          this.allUser[i].up_vote_count = data.up_vote_count.toString();
+          this.allUser[i].down_vote_count = data.down_vote_count.toString();
+        }
+      }
+      
     })
     .catch( err => {
       console.log("You have already voted")
-    })
+    })*/
   }
 
   goToSearch(user){

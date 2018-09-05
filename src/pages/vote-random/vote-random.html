@@ -21,6 +21,7 @@
     <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
   </div>
   <div class="vote-card" *ngFor="let user of allUser">
+    <h2 class="text-center titre">Category: </h2>
     <div id="cardImg" class="vote-card-img" [ngStyle]="{'background-image':'url(' + user.picture + ')'}">
       <div class="separate" (click)="goToSearch(user)">
         <div id="profile-picture" class="container-fluid"></div>
@@ -33,7 +34,7 @@
     <div class="container vote-card-description">
       <div class="row">
         <div class="col text-center">
-          <button class="btn btn-like" (click)=voteUp(user)>
+          <button class="btn btn-like" (click)="voteUp(user)">
             <img src="../../assets/imgs/Like.png" alt="heart icon">
             <p id="like-count">{{ user.up_vote_count }}</p>
           </button>
@@ -44,7 +45,7 @@
           </button>
         </div>
         <div class="col text-center">
-          <button class="btn btn-dislike" (click)=voteDown(user)>
+          <button class="btn btn-dislike" (click)="voteDown(user)">
             <img src="../../assets/imgs/LikeWATOG.png" alt="Dislike icon">
             <p id="dislike-count">{{ user.down_vote_count }}</p>
           </button>

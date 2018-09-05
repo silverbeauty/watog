@@ -140,12 +140,12 @@ page-register-one-of-three {
     .down-menu{
         width: 100%;
         position: fixed;
-        z-index: 1;
+        z-index: 0;
         bottom: 0px;
+        display: block;
         background-color: white;
         overflow-y: hidden;
         color: black;
-        display: none;
     }
 
     .down-menu a{
@@ -189,7 +189,7 @@ page-register-one-of-three {
         text-decoration: none;
         width: 100%;
         input{
-          padding-left: 37%;
+          padding-left: 10%;
         }
     }
     .select-icon{

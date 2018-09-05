@@ -75,7 +75,6 @@
                   </div>
                 </ng-container>
               </div>
-
               <div formGroupName="matching_passwords">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -181,7 +180,7 @@
     </section>
   </form>
 
-  <div id="qualificationInputMenu" class="down-menu">
+  <div id="qualificationInputMenu" class="down-menu" *ngIf="isShow()">
     <a href="#" (click)="closeMenu()" class="btn-close">X</a>
     <div class="container">
       <div class="row">
