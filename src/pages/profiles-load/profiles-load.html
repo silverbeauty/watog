@@ -1,7 +1,7 @@
 <ion-content class="body">
     <div class="navbar">
       <a href="#" (click)="goToDashboard()"><img src="assets/icon/Menu.png" alt="Menu icon"></a>
-      <h1>Profile</h1>
+      <h1>Vote</h1>
       <div class="btn-group">
         <button type="button" class="btn btn-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img src="assets/icon/Profil02.png" alt="profile icon">
@@ -18,58 +18,42 @@
     <div>
       <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
     </div>
-    <section class="profile-info">
+    <!--section class="profile-info">
       <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + photo_profil + ')'}"></div>
-      <h2 id="pseudo">{{ fullname }}</h2>
-      <p id="qualification">{{ proffesion }}</p>
-      <p id="location"><img src="assets/icon/LocationWhite.png" alt="location icon">{{ location }}</p>
+      <h2 id="pseudo">{{ user.first_name }} {{ user.last_name }}</h2>
+      <p id="qualification">{{ user.job }}</p>
+      <p id="location"><img src="assets/icon/LocationWhite.png" alt="location icon">{{ user.state }} {{ user.country }}</p>
     </section>
     <section class="infos-banner">
       <div class="container">
         <div class="row">
           <div class="col">
-            <h3 id="best-rank">{{ best_rank }}</h3>
+            <h3 id="best-rank">{{ 200 }}</h3>
             <p>Best Rank</p>
           </div>
           <div class="divider"></div>
           <div class="col">
-            <h3 id="votes">{{ votes }}</h3>
+            <h3 id="votes">{{ 100 }}</h3>
             <p>Votes</p>
           </div>
           <div class="divider"></div>
           <div class="col">
-            <h3 id="new-votes">{{ new_votes }}</h3>
+            <h3 id="new-votes">{{ 100 }}</h3>
             <p>New votes</p>
           </div>
         </div>
       </div>
-    </section>
-    <section class="photo text-center">
-      <!--Image is the background image of #photo1-->
-      <div *ngFor="let info of me">
-        <div id="photo1" class="photo" [ngStyle]="{'background-image':'url(' + info.picture + ')'}">
-          <div class="votes">
-            <div class="row">
-              <div class="col text-center like">
-                <button class="btn btn-like" (click)="voteUp(info)">
-                  <img src="../../assets/imgs/Like.png" alt="like img">
-                  <p id="photo1-like-count">{{ info.up_vote_count }}</p>
-                </button>
-              </div>
-              <div class="col text-center">
-                <button class="btn btn-report" (click)="reported(info)">
-                  <img src="../../assets/imgs/ContenuIndesirable.png" alt="Report icon">
-                </button>
-              </div>
-              <div class="col text-center dislike" (click)="voteDown(info)">
-                <button class="btn btn-dislike" (click)=voteDown(user)>
-                  <img src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
-                  <p id="photo1-dislike-count">{{ info.down_vote_count }}</p>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+    </section-->
+    <section class="posts">
+      <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)">
+        <div swing-card #postCard class="post_img" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts" [ngStyle]="{'background-image':'url(' + post.picture + ')'}" ></div>
       </div>
     </section>
+    <div class="notif text-center">
+      <h3>You already rated this photo!</h3>
+    </div>
+
+    <div class="toolbar">
+    </div>
+
 </ion-content>

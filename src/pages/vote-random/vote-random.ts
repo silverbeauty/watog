@@ -58,11 +58,7 @@ export class VoteRandomPage {
   }
 
   ionViewDidLoad() {
-    //let cat1 = this.restProvider.getAllPost("?limit=1");
-    //let cat2 = this.restProvider.getAllPost("?category_id=2");
-    //let cat3 = this.restProvider.getAllPost("?category_id=3");
-    //let cat4 = this.restProvider.getAllPost("?category_id=4");
-    //let cat5 = this.restProvider.getAllPost("?category_id=5&limit");
+    Promise.all([this.restProvider.queryPost("?random&limit=100000")]).then(data => {});
   }
 
   getData(){
@@ -75,7 +71,7 @@ export class VoteRandomPage {
         }
       }
       console.log(this.allUser)
-    });*/
+    });
   }
 
   reported(img){
