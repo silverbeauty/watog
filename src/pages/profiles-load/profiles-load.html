@@ -50,13 +50,22 @@
         <div id="photo1" class="photo" [ngStyle]="{'background-image':'url(' + info.picture + ')'}">
           <div class="votes">
             <div class="row">
-              <div class="col text-center like" (click)=voteUp(info)>
-                <img src="../../assets/imgs/Like.png" alt="like img">
-                <p id="photo1-like-count">{{ info.up_vote_count }}</p>
+              <div class="col text-center like">
+                <button class="btn btn-like" (click)="voteUp(info)">
+                  <img src="../../assets/imgs/Like.png" alt="like img">
+                  <p id="photo1-like-count">{{ info.up_vote_count }}</p>
+                </button>
               </div>
-              <div class="col text-center dislike" (click)=voteDown(info)>
-                <img src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
-                <p id="photo1-dislike-count">{{ info.down_vote_count }}</p>
+              <div class="col text-center">
+                <button class="btn btn-report" (click)="reported(info)">
+                  <img src="../../assets/imgs/ContenuIndesirable.png" alt="Report icon">
+                </button>
+              </div>
+              <div class="col text-center dislike" (click)="voteDown(info)">
+                <button class="btn btn-dislike" (click)=voteDown(user)>
+                  <img src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
+                  <p id="photo1-dislike-count">{{ info.down_vote_count }}</p>
+                </button>
               </div>
             </div>
           </div>

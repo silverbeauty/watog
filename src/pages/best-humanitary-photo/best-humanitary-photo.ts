@@ -33,7 +33,8 @@ export class BestHumanitaryPhotoPage {
   }
   readLocalPdf(){
     const options: DocumentViewerOptions = {
-      title: 'My PDF'
+      title: 'My PDF',
+      openWith: { enabled: true }
     }
     const filePath = this.file.applicationDirectory + 'www/assets/docs/watog_contest_consent.pdf'
     this.document.viewDocument(filePath, 'application/pdf', options);
