@@ -21,6 +21,7 @@
     <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
   </div>
   <div class="vote-card" *ngFor="let user of allUser">
+    <h2 class="text-center titre">Category: </h2>
     <div id="cardImg" class="vote-card-img" [ngStyle]="{'background-image':'url(' + user.picture + ')'}">
       <div class="separate" (click)="goToSearch(user)">
         <div id="profile-picture" class="container-fluid"></div>

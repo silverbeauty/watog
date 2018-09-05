@@ -129,6 +129,7 @@ export class VoteRandomPage {
           this.allUser[i].down_vote_count = data.down_vote_count.toString();
         }
       }
+      
     })
     .catch( err => {
       console.log("You have already voted")
