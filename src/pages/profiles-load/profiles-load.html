@@ -15,6 +15,9 @@
         </div>
       </div>
     </div>
+    <div>
+      <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
+    </div>
     <section class="profile-info">
       <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + photo_profil + ')'}"></div>
       <h2 id="pseudo">{{ fullname }}</h2>

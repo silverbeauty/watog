@@ -61,12 +61,7 @@ export class VoteRandomPage {
     //let cat4 = this.restProvider.getAllPost("?category_id=4");
     //let cat5 = this.restProvider.getAllPost("?category_id=5&limit");
 
-    this.getData();
-  }
-
-  getData() {
-    Promise.all([this.restProvider.getAllPost("?limit=100000")]).then(data => {
-      this.allUser = []; //Needed for updates
+    Promise.all([this.restProvider.getAllPost("?random&limit=100000")]).then(data => {
       console.log("ma promise: ", data)
       for (let element in data){
         for(let all in data[element]){
@@ -116,7 +111,6 @@ export class VoteRandomPage {
     const makeVote = "/"+ id +"/vote"
     console.log("vote: ", this.vote)
     this.restProvider.Voted(this.vote, makeVote).then(data => {
-      this.getData();
       //this.navCtrl.push(VoteRandomPage)
     })
     .catch( err => {

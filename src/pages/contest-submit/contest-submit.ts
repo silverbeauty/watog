@@ -26,6 +26,7 @@ import { Auth, File } from "../../types";
   templateUrl: 'contest-submit.html',
 })
 export class ContestSubmitPage {
+  public backPage: any;
   public photo: any = {
     base64Image: '',
     description: ''

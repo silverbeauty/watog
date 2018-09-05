@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -7,6 +7,7 @@ import { ContestSubmitPage } from '../contest-submit/contest-submit';
 import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
+/*import { FileTransfer } from '@ionic-native/file-transfer';*/
 
 /**
  * Generated class for the BestUltrasoundImagePage page.
@@ -22,10 +23,9 @@ import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-vi
 })
 export class BestUltrasoundImagePage {
   public passParam: any;
-  public document: DocumentViewer;
   public pdfSrc :string = "assets/docs/watog_contest_consent.pdf"
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, private document: DocumentViewer) {
     this.passParam = this.navParams.data
   }
 
@@ -35,10 +35,27 @@ export class BestUltrasoundImagePage {
 
   readLocalPdf(){
     const options: DocumentViewerOptions = {
-      title: 'My PDF',
-      openWith:{enabled:true}
+      title: 'My PDF'
     }
-    this.document.viewDocument('assets/docs/watog_contest_consent.pdf', 'application/pdf', options)
+    this.document.viewDocument('assets/docs/watog_contest_consent.pdf', 'application/pdf', options);
+    /*
+    private transfer: FileTransfer,
+    ,
+      openWith:{enabled:true}
+    let path = null;
+
+    if (this.platform.is('ios')) {
+      path = this.file.documentsDirectory;
+    } else if (this.platform.is('android')) {
+      path = this.file.dataDirectory;
+    }
+
+    const transfer = this.transfer.create();
+    transfer.download('https://devdactic.com/html/5-simple-hacks-LBT.pdf', path + 'myfile.pdf').then(entry => {
+      let url = entry.toURL();
+      this.document.viewDocument(url, 'application/pdf', {});
+    });
+    */
   }
 
   goToDashboard(){
