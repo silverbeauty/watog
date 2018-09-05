@@ -32,6 +32,7 @@ $ npm install --save @ionic-native/image-picker
 - File Document Viewer
 
 # Cordova Plugins
+
 ionic cordova plugin add cordova-plugin-file
 ionic cordova plugin add cordova-plugin-file-transfer
 ionic cordova plugin add cordova-plugin-document-viewer
