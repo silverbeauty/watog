@@ -39,7 +39,7 @@ export class VoteRandomPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     console.log(DataProvider.searchedUsers)
-    this.rando = this.restProvider.getAllPost("?random&limit=100000");
+    this.rando = this.restProvider.queryPost("?random&limit=100000");
     this.getData();
   }
 
