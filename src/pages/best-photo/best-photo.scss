@@ -67,7 +67,7 @@ page-best-photo {
   .photo-img{
     img{
       width: 100%;
-      height: 75vh;
+      height: 80vh;
     }
   }
 
@@ -76,11 +76,11 @@ page-best-photo {
   }
 
   .vote-img-heart {
-    width: 12vw;
+    width: 24vw;
   }
 
   .vote-img-hand {
-    width: 7.5vw;
+    width: 14vw;
     -moz-transform: scale(-1, -1);
     -o-transform: scale(-1, -1);
     -webkit-transform: scaleX(-1, -1);
@@ -117,5 +117,12 @@ page-best-photo {
     height: 28px;
     transform: rotate(180deg);
     padding: 0;
+  }
+
+  #photo1-like-count{
+    color:black;
+  }
+  #photo1-dislike-count{
+    color:black;
   }
 }
