@@ -152,4 +152,22 @@ page-profiles-load {
     margin-top: 5vw;
     margin-left: 10vw;
   }
+
+  .notif {
+    position: absolute;
+    height: 100px;
+    background: #a96ba7cc;
+    width: 100%;
+    bottom: 40vw;
+    color: white;
+    font-weight: 400;
+  }
+
+  .toolbar {
+    position: absolute;
+    height: 40vw;
+    background: white;
+    width: 100%;
+    bottom: 0px;
+  }
 }
