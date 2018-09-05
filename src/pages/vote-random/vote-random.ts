@@ -38,6 +38,7 @@ export class VoteRandomPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     console.log(DataProvider.searchedUsers)
+    const random = this.restProvider.getAllPost("?random&limit=100000");
   }
 
   ngAfterViewInit() {
@@ -61,7 +62,7 @@ export class VoteRandomPage {
     //let cat4 = this.restProvider.getAllPost("?category_id=4");
     //let cat5 = this.restProvider.getAllPost("?category_id=5&limit");
 
-    Promise.all([this.restProvider.getAllPost("?random&limit=100000")]).then(data => {
+    Promise.all([this.random]).then(data => {
       console.log("ma promise: ", data)
       for (let element in data){
         for(let all in data[element]){
@@ -112,6 +113,15 @@ export class VoteRandomPage {
     console.log("vote: ", this.vote)
     this.restProvider.Voted(this.vote, makeVote).then(data => {
       //this.navCtrl.push(VoteRandomPage)
+      console.log("a user: ", data)
+      if(data){
+        for(let i in this.allUser){
+          if(this.allUser[i].id == data.id){
+            this.allUser[i].up_vote_count = data.up_vote_count;
+            this.allUser[i].down_vote_count = data.down_vote_count;
+          }
+        }
+      }
     })
     .catch( err => {
       console.log("You have already voted")
