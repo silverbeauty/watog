@@ -62,7 +62,7 @@ export class VoteRandomPage {
     //let cat4 = this.restProvider.getAllPost("?category_id=4");
     //let cat5 = this.restProvider.getAllPost("?category_id=5&limit");
 
-    Promise.all([this.random]).then(data => {
+/*    Promise.all([this.random]).then(data => {
       console.log("ma promise: ", data)
       for (let element in data){
         for(let all in data[element]){
@@ -70,7 +70,7 @@ export class VoteRandomPage {
         }
       }
       console.log(this.allUser)
-    });
+    });*/
   }
 
   reported(img){
@@ -109,7 +109,7 @@ export class VoteRandomPage {
 
   Voted(id: number){
     //this.vote check to user ng
-    const makeVote = "/"+ id +"/vote"
+  /*  const makeVote = "/"+ id +"/vote"
     console.log("vote: ", this.vote)
     this.restProvider.Voted(this.vote, makeVote).then(data => {
       //this.navCtrl.push(VoteRandomPage)
@@ -125,7 +125,7 @@ export class VoteRandomPage {
     })
     .catch( err => {
       console.log("You have already voted")
-    })
+    })*/
   }
 
   goToSearch(user){

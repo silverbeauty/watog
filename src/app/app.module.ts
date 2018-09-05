@@ -54,8 +54,8 @@ import { ModalPrinciplesPage } from '../pages/modal-principles/modal-principles'
 import { ModalContestPage } from '../pages/modal-contest/modal-contest';
 import { SelectionPage } from '../pages/selection/selection';
 import { ProfilesLoadPage } from '../pages/profiles-load/profiles-load';
-
-	/*Provider*/
+import { BestPhotoPage} from "../pages/best-photo/best-photo";
+/*Provider*/
 import { DataProvider } from '../providers/data/data';
 import { DistantDataBaseProvider } from '../providers/distant-data-base/distant-data-base';
 import { RestProvider } from '../providers/rest/rest';
@@ -106,6 +106,7 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
   	ModalPrinciplesPage,
     SelectionPage,
     ProfilesLoadPage,
+    BestPhotoPage,
     HideHeaderDirective
   ],
   imports: [
@@ -153,7 +154,8 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
   	ModalContestPage,
   	ModalPrinciplesPage,
     SelectionPage,
-    ProfilesLoadPage
+    ProfilesLoadPage,
+    BestPhotoPage
   ],
   providers: [
     StatusBar,
@@ -170,8 +172,7 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
     Camera,
     FileOpener,
     File,
-    DocumentViewer,
-    FileTransfer
+    DocumentViewer
   ]
 })
 export class AppModule {}

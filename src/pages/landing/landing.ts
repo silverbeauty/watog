@@ -39,6 +39,7 @@ export class LandingPage {
           if (!auth.sms_verified_date && !auth.email_verified_date) { // Email or cell_phone is not verified
             this.navCtrl.push(RegisterThreeOfThreePage); // proof_of_status not uploaded
           } else {
+            this.dataProvider.saveProfile(auth)
             this.navCtrl.push(DashboardPage)
           }
         } else {
