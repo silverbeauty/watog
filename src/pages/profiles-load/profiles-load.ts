@@ -82,7 +82,7 @@ export class ProfilesLoadPage {
     const makeVote = "/"+ id +"/vote"
     console.log("vote: ", this.vote)
     this.restProvider.Voted(this.vote, makeVote).then(userP => {
-      this.navCtrl.push(ProfilesLoadPage)
+      
     })
     .catch( err => {
       console.log("You have already voted")
@@ -95,6 +95,10 @@ export class ProfilesLoadPage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goBack() {
+    this.navCtrl.pop();
   }
 
   logout(){

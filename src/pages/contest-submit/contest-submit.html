@@ -62,14 +62,14 @@
         </div>
     </section>
     <div class="pt-4 pb-4">
-      <div class="row">
-        <div class="col-5 offset-1 text-center" (click)="goBack()">
-          <button class="btn btn-back">BACK</button>
-        </div>
+      <div class="row next">
         <div class="col-5 text-center">
           <button type="submit" class="btn btn-next">NEXT</button>
         </div>
       </div>
     </div>
   </form>
+  <div class="col-5 offset-1 text-center" (click)="goBack()">
+    <button class="btn btn-back">BACK</button>
+  </div>
 </ion-content>

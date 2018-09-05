@@ -26,5 +26,8 @@ export class VoteModalPage {
   goToVote(){
     this.navCtrl.push(ContestVotePage);
   }
+  goBack() {
+    this.navCtrl.pop();
+  }
 
 }

@@ -18,12 +18,13 @@ export class ProfilePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
     this.auth = DataProvider.auth
+    console.log(this.auth)
   }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
-    
+
     // Load local profile
     this.auth = DataProvider.auth;
     if (!this.auth.picture_profile) {

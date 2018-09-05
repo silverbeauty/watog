@@ -19,7 +19,7 @@ page-contest-submit {
     }
 
     .dropdown-menu{
-        padding: 2em;        
+        padding: 2em;
     }
 
     .dropdown-item{
@@ -78,7 +78,7 @@ page-contest-submit {
     .pictures img{
         height: 15vh;
     }
-    
+
     .divider{
         border-left: 1px solid #ddd;
         margin-top: 1em;
@@ -121,5 +121,12 @@ page-contest-submit {
     .btn-next{
         background-color: #a96ba7;
         color: white;
+    }
+    .next{
+      position: absolute;
+      margin-top: 15px;
+      margin-left: 50%;
+      width: 100%;
+      float: right;
     }
 }

@@ -46,7 +46,7 @@
     "cordova-plugin-file-opener2": "^2.0.19",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-ionic-keyboard": "^2.1.2",
-    "cordova-plugin-ionic-webview": "^2.1.0",
+    "cordova-plugin-ionic-webview": "^2.1.1",
     "cordova-plugin-nativestorage": "^2.3.2",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-telerik-imagepicker": "^2.2.2",
