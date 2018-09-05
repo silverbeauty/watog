@@ -49,6 +49,7 @@ export class RegisterOneOfThreePage {
   public country: Country = new Country("FR", "France")
   public promise : any;
   pass_conf: string = "";
+  public show: boolean = false;
   //
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
@@ -171,6 +172,9 @@ export class RegisterOneOfThreePage {
   }
 
   /** Navigation **/
+  isShow(){
+    return this.show;
+  }
 
   goToLogin(){
     this.navCtrl.push(LoginPage);
@@ -186,15 +190,16 @@ export class RegisterOneOfThreePage {
     console.log('ionViewDidLoad RegisterOneOfThreePage');
     this.user.picture_profile = this.profile_image;
     this.user.country = "France";
+    this.show = false;
   }
 
   /*Methods for the html dom modification */
   openMenu(){
-    document.getElementById('qualificationInputMenu').style.display = 'block';
+    this.show = true;
   }
 
   closeMenu(){
-    document.getElementById('qualificationInputMenu').style.display = 'none';
+    this.show = false;
   }
 
   selectQualification(qualification){
