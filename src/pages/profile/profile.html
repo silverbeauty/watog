@@ -52,20 +52,20 @@
               <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[4].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[4]"></div>
             </div>
           </div>
-          <div class="col">
-            <div id="photo1" class="grid-item-double" [ngStyle]="{'background-image':'url(' + auth.good_posts[0].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[0]"></div>
+          <div class="col" *ngIf="auth && auth.good_posts && auth.good_posts[0]">
+            <div id="photo1" class="grid-item-double" [ngStyle]="{'background-image':'url(' + auth.good_posts[0].picture + ')'}"></div>
             <div class="votes">
-                <div class="row">
-                  <div class="col text-center like" (click)=voteUp(info)>
-                    <img class="vote-img-hand" src="../../assets/imgs/Like.png" alt="like img">
-                    <p id="photo1-like-count">{{ auth.good_posts[1].up_vote_count }}</p>
-                  </div>
-                  <div class="col text-center dislike" (click)=voteDown(info)>
-                    <img class="vote-img-heart" src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
-                    <p id="photo1-dislike-count">{{ auth.good_posts[1].down_vote_count }}</p>
-                  </div>
+              <div class="row">
+                <div class="col text-center like" (click)=voteUp(info)>
+                  <img class="vote-img-heart" src="../../assets/imgs/Like.png" alt="like img">
+                  <p id="photo1-like-count">{{ auth.good_posts[0].up_vote_count }}</p>
+                </div>
+                <div class="col text-center dislike" (click)=voteDown(info)>
+                  <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
+                  <p id="photo1-dislike-count">{{ auth.good_posts[0].down_vote_count }}</p>
                 </div>
               </div>
+            </div>
           </div>
         </div>  
       </div>
