@@ -39,7 +39,7 @@ export class VoteRandomPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     console.log(DataProvider.searchedUsers)
-    this.rando = this.restProvider.getAllPost("?random&limit=100000");
+    this.rando = this.restProvider.queryPost("?random&limit=100000");
     this.getData();
   }
 
@@ -58,11 +58,7 @@ export class VoteRandomPage {
   }
 
   ionViewDidLoad() {
-    //let cat1 = this.restProvider.getAllPost("?limit=1");
-    //let cat2 = this.restProvider.getAllPost("?category_id=2");
-    //let cat3 = this.restProvider.getAllPost("?category_id=3");
-    //let cat4 = this.restProvider.getAllPost("?category_id=4");
-    //let cat5 = this.restProvider.getAllPost("?category_id=5&limit");
+    Promise.all([this.restProvider.queryPost("?random&limit=100000")]).then(data => {});
   }
 
   getData(){

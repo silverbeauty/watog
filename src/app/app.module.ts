@@ -11,6 +11,8 @@ import { FileOpener } from '@ionic-native/file-opener';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
+import { SwingModule } from 'angular2-swing';
+
 //import { AlertController } from 'ionic-angular';
 
 	/*Components*/
@@ -113,7 +115,8 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    ValidatorsModule
+    ValidatorsModule,
+    SwingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

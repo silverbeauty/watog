@@ -33,12 +33,12 @@ $ npm install --save @ionic-native/image-picker
 
 # Cordova Plugins
 
-ionic cordova plugin add cordova-plugin-file
-ionic cordova plugin add cordova-plugin-file-transfer
-ionic cordova plugin add cordova-plugin-document-viewer
- 
+sudo ionic cordova plugin add cordova-plugin-file
+sudo ionic cordova plugin add cordova-plugin-file-transfer
+sudo ionic cordova plugin add cordova-plugin-document-viewer
+
 # Ionic Native packages
-npm install --save @ionic-native/file @ionic-native/document-viewer @ionic-native/file-transfer
+sudo npm install --save @ionic-native/file @ionic-native/document-viewer @ionic-native/file-transfer
 
 sudo ionic cordova plugin add cordova-plugin-nativestorage
 
@@ -61,4 +61,8 @@ npm install --save-prod google-libphonenumber
 
 ### TextMaskModule
 
-npm i angular2-text-mask --save
+sudo npm i angular2-text-mask --save
+
+###Angular2-swing
+
+sudo npm install ionic-swing --save
