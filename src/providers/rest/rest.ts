@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User, ObjUser, Auth, resFile, Category, File, Resp, Post } from '../../types';
+import { User, ObjUser, Auth, resFile, Category, File, Resp, Post, UserResp } from '../../types';
 import 'rxjs/add/operator/timeout';
 import { server_url } from '../../environments/environment'
 
@@ -107,7 +107,7 @@ export class RestProvider {
     })
   }
 
-  public Voted(resp: Resp, str: string): Promise<Array<Resp>> {
+  public Voted(resp: Resp, str: string): Promise<UserResp> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
@@ -116,7 +116,7 @@ export class RestProvider {
       this.http.post(this.apiUrl+'/post'+str, resp ,{ headers })
         .subscribe((res: any) => {
           if (res.status) {
-            resolve(res.data as Array<Resp>);
+            resolve(res.data as UserResp);
           } else {
             console.error('Failed to load send doc:', res)
             reject ('Failed to send doc')

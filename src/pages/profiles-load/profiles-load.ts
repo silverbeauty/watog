@@ -60,7 +60,7 @@ export class ProfilesLoadPage {
 
     this.restProvider.getAllPost(myProfil).then(data => {
      console.log("getpost", data)
-     this.me = data;
+     this.me = data
     })
     .catch(err => {
      console.log('Is just cordova')
@@ -81,8 +81,7 @@ export class ProfilesLoadPage {
     //this.vote check to user ng
     const makeVote = "/"+ id +"/vote"
     console.log("vote: ", this.vote)
-    this.restProvider.Voted(this.vote, makeVote).then(userP => {
-      
+    this.restProvider.Voted(this.vote, makeVote).then(pics => {
     })
     .catch( err => {
       console.log("You have already voted")

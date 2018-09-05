@@ -66,14 +66,14 @@ export class ContestSubmitPage {
       alert.present();
       //return;
     }
-    alert(JSON.stringify(this.submit))
+    //alert(JSON.stringify(this.submit))
     this.state.isPosting = true;
     this.restProvider.postADoc(this.submit).then((data) =>{
       console.info('Posted:', data)
       this.state.isPosting = false;
       this.navCtrl.push(ContestSubmitedPage);
     }).catch((e) => {
-      console.log(JSON.stringify(e))
+      //console.log(JSON.stringify(e))
       let alert = this.alertCtrl.create({
         title: 'Error',
         subTitle: 'Sorry, failed to post your Photo to Watog!',
@@ -103,7 +103,7 @@ export class ContestSubmitPage {
 
   uploadPhoto(img) {
     //console.log('ionViewDidLoad ContestSubmitPage');
-    alert(JSON.stringify(img))
+    //alert(JSON.stringify(img))
     this.state.isUploading = true;
     const strImage = this.image_local;
     this.restProvider.sendFile(this.image_local)
@@ -154,7 +154,7 @@ export class ContestSubmitPage {
       let myCam = this.cam.selectImage(0, 0).then(resp => {
         return this.image_local = "data:image/jpeg;base64," + resp;
       }, err => {
-        alert("error send param, picture of profile not selected")
+        console.log("error send param, picture of profile not selected")
       });
       myCam.then(data => {
         this.uploadPhoto(data)
