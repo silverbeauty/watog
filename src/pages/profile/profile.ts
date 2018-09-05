@@ -29,15 +29,17 @@ export class ProfilePage {
     this.auth = DataProvider.auth;
     if (!this.auth.picture_profile) {
       // Load profile by API
-      this.dataProvider.getProfile().then( (auth: Auth) => {
-        this.auth = auth;
-        if (!this.auth.picture_profile) {
-          this.auth.picture_profile = 'assets/icon/Profil.png';
-        }
-      }).catch(err => {
-        console.error(err)
-      })
+      this.auth.picture_profile = 'assets/icon/Profil.png';
     }
+    this.restProvider.getProfile().then( (auth: Auth) => {
+      this.auth = auth;
+      if (!this.auth.picture_profile) {
+        this.auth.picture_profile = 'assets/icon/Profil.png';
+      }
+      this.dataProvider.saveProfile(auth);
+    }).catch(err => {
+      console.error(err)
+    })
   }
 /*
   voteUp(img){
