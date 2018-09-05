@@ -135,12 +135,16 @@ page-profile {
         margin-bottom: -14vw;
     }
 
-    .vote-img-hand {
+    .vote-img-heart {
         width: 12vw;
     }
 
-    .vote-img-heart {
+    .vote-img-hand {
         width: 7.5vw;
+        -moz-transform: scale(-1, -1);
+        -o-transform: scale(-1, -1);
+        -webkit-transform: scaleX(-1, -1);
+        transform: scale(-1, -1);
     }
 
     .votes {

@@ -330,20 +330,41 @@ export class RestProvider {
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl + `/post/` + post_id + '/vote', { headers })
+      this.http.post(this.apiUrl + `/post/` + post_id + '/vote', JSON.stringify({commend}),{ headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Post);
           } else {
-            reject('Failed to query categories!')
+            reject('Failed to vote!')
           }
         }, (err) => {
-          console.info('Failed to query categories:', err)
+          console.info('Failed to vote:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public cancelVote(post_id: number): Promise<Post> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl + `/post/` + post_id + '/vote/cancel', null,{  headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data as Post);
+          } else {
+            reject('Failed to cancel vote!')
+          }
+        }, (err) => {
+          console.info('Failed to cancel vote:', err)
           reject(err);
         });
     })
   }
 }
+
 /**
 public postADoc(file: any): Promise<Array<File>> {
   const headers = new HttpHeaders({
