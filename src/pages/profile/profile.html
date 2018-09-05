@@ -53,7 +53,7 @@
             </div>
           </div>
           <div class="col" *ngIf="auth && auth.good_posts && auth.good_posts[0]">
-            <div id="photo1" class="grid-item-double" [ngStyle]="{'background-image':'url(' + auth.good_posts[0].picture + ')'}"></div>
+            <div id="photo1" class="grid-item-double" [ngStyle]="{'background-image':'url(' + auth.good_posts[0].picture + ')'}" (click)="goToBestPhoto()"></div>
             <div class="votes">
               <div class="row">
                 <div class="col text-center like">
