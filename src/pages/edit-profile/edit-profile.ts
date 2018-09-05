@@ -7,11 +7,12 @@ import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of
 import { countries } from '../../models/model';
 import {HttpClient,  HttpHeaders} from '@angular/common/http';
 import { server_url } from '../../environments/environment';
-import { DataProvider, RestProvider } from '../../providers';
+import {DataProvider, PasswordValidator, PhoneValidator, RestProvider} from '../../providers';
 import { ElementRef } from '@angular/core';
 import {LoginPage} from "../login/login";
-import {Auth, User} from "../../types";
+import {Auth, Country, User} from "../../types";
 import {UploadProfilePhotoPage} from "../upload-profile-photo/upload-profile-photo";
+import {FormControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 /**
  * Generated class for the EditProfilePage page.
@@ -50,10 +51,12 @@ export class EditProfilePage {
 
   public profile_image: string = "assets/imgs/rio.jpg";
   public promise : any;
-  countries : any[] = countries;
+  countries: Country[];
+  public country: Country = new Country("FR", "France");
+  validations_form: FormGroup;
+  country_phone_group: FormGroup;
 
-
-  constructor( public navCtrl: NavController, public navParams: NavParams, public restProvider : RestProvider, public dataProvider: DataProvider) {
+  constructor( public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public restProvider : RestProvider, public dataProvider: DataProvider) {
     this.dataProvider.getProfile().then((profile: Auth) => {
       this.profile_image = profile.picture_profile;
     })
@@ -72,7 +75,47 @@ export class EditProfilePage {
     })
   }
 
+  ionViewWillLoad() {
+    this.countries = [
+      new Country(countries[0].code, countries[0].name)
+    ]
+    for(var i = 1; i < countries.length; i ++){
+      const County = new Country(countries[i].code, countries[i].name)
+      this.countries.push(County);
+    }
+
+    let country = new FormControl(this.countries[0], Validators.required);
+    let phone = new FormControl('', Validators.compose([
+      Validators.required,
+      PhoneValidator.validCountryPhone(country)
+    ]));
+    this.country_phone_group = new FormGroup({
+      country: country,
+      phone: phone
+    });
+    this.validations_form = this.formBuilder.group({
+      first_name: ['', Validators.compose([
+        Validators.required
+      ])],
+      last_name: ['', Validators.compose([
+        Validators.required
+      ])],
+      user_name:  ['', Validators.compose([
+        Validators.required,
+        Validators.maxLength(25),
+        Validators.minLength(5),
+      ])],
+      country_phone: this.country_phone_group,
+      hospital: ['', Validators.compose([
+        Validators.required
+      ])]
+    });
+  }
   setCurrentUser(){
+    if(this.user.cell_phone.lastIndexOf('_')!=-1){
+      this.user.cell_phone = (this.user.cell_phone.slice(0,-1))
+    }
+    this.user.country = this.country.name;
     this.restProvider.setProfile(this.user as User).then((user: User) => {
       // Save profile
       const profile_user: User = user;
@@ -110,19 +153,32 @@ export class EditProfilePage {
     this.navCtrl.push(LoginPage);
   }
 
+  checkFocus(){
+    if(this.user.cell_phone.lastIndexOf('_')!=-1){
+      this.user.cell_phone = (this.user.cell_phone.slice(0,-1))
+    }
+  }
+
+  validation_messages = {
+    'user_name': [
+      { type: 'required', message: 'Username is required.' },
+      { type: 'minlength', message: 'Username must be at least 5 characters long.' },
+      { type: 'maxlength', message: 'Username cannot be more than 25 characters long.' },
+      { type: 'pattern', message: 'Your username must contain only numbers and letters.' }
+    ],
+    'first_name': [
+      { type: 'required', message: 'First Name is required.' }
+    ],
+    'last_name': [
+      { type: 'required', message: 'Last name is required.' }
+    ],
+    'phone': [
+      { type: 'required', message: 'Phone is required.' },
+      { type: 'validCountryPhone', message: 'Phone incorrect for the country selected' }
+    ],
+    'hospital': [
+      { type: 'required', message: 'Hospital is required.' }
+    ]
+  };
+
 }
-
-/****
-
-
-this.todo.password  = data.
-this.todo.pass_conf  = data.
-this.todo.job = data.
-let NAME = document.querySelector("input[name='first_name']");
-let SURNAME = document.querySelector("input[name='last_name']");
-let EMAIL = document.querySelector("input[name='email']");
-let PHONE = document.querySelector("input[name='cell_phone']");
-let COUNTRY = document.querySelector("input[name='country']");
-let HOSPITAL = document.querySelector("input[name='hospital']");
-
-****/

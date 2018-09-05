@@ -6,7 +6,7 @@ import { DataProvider, RestProvider } from '../../providers';
 import { User, Auth } from '../../types';
 import { LoginPage } from '../login/login';
 import { ProfilesLoadPage } from '../profiles-load/profiles-load';
-
+import { BestPhotoPage } from '../best-photo/best-photo'
 
 @IonicPage()
 @Component({
@@ -30,19 +30,16 @@ export class ProfilePage {
     // Load local profile
     this.auth = DataProvider.auth;
     if (!this.auth.picture_profile) {
-      this.auth.picture_profile = 'assets/icon/Profil.png';
+      // Load profile by API
+      this.dataProvider.getProfile().then( (auth: Auth) => {
+        this.auth = auth;
+        if (!this.auth.picture_profile) {
+          this.auth.picture_profile = 'assets/icon/Profil.png';
+        }
+      }).catch(err => {
+        console.error(err)
+      })
     }
-    // Load profile by API
-    this.restProvider.getProfile().then( (auth: Auth) => {
-      this.auth = auth;
-      if (!this.auth.picture_profile) {
-        this.auth.picture_profile = 'assets/icon/Profil.png';
-      }
-      // Save profile
-      return this.dataProvider.saveProfile(auth);
-    }).catch(err => {
-      console.error(err)
-    })
   }
 
   reported(img){
@@ -89,7 +86,11 @@ export class ProfilePage {
       console.log("You have already voted")
     })
   }
+*/
 
+  goToBestPhoto(){
+    this.navCtrl.push(BestPhotoPage);
+  }
   goToDashboard(){
     this.navCtrl.push(DashboardPage);
   }
