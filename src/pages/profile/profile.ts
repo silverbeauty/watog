@@ -65,6 +65,10 @@ export class ProfilePage {
     })
   }
 */
+  goBack(){
+    this.navCtrl.pop();
+  }
+
   goToDashboard(){
     this.navCtrl.push(DashboardPage);
   }
