@@ -63,6 +63,6 @@ npm install --save-prod google-libphonenumber
 
 sudo npm i angular2-text-mask --save
 
-###Angular2-swing
+### Angular2-swing
 
 sudo npm install ionic-swing --save

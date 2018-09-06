@@ -327,6 +327,25 @@ export class RestProvider {
     });
   }
 
+  public getCategory(id: number): Promise<Array<Category>> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token
+    });
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl + '/category/'+ id, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data as Array<Category>);
+          } else {
+            reject('Failed to search!')
+          }
+        }, (err) => {
+          console.info('Search User Failed:', err)
+          reject(err);
+        });
+    });
+  }
+
   public queryCategories(offset: number = 0, limit: number = 1000): Promise<Array<Category>> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token

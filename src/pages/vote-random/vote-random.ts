@@ -23,6 +23,8 @@ import { User, Auth } from '../../types';
 })
 export class VoteRandomPage {
   @ViewChild(Content) content: Content;
+  public category: string;
+  public allCategory: any;
   public allUser: any =  [];
   public str: string = "";
   public description: string = "";
@@ -41,6 +43,9 @@ export class VoteRandomPage {
     console.log(DataProvider.searchedUsers)
     this.rando = this.restProvider.queryPost("?random&limit=100000");
     this.getData();
+    this.restProvider.queryCategories().then(data => {
+      this.allCategory = data;
+    })
   }
 
   ngAfterViewInit() {
@@ -68,6 +73,12 @@ export class VoteRandomPage {
       for (let element in data){
         for(let all in data[element]){
           this.allUser.push(data[element][all]);
+          this.restProvider.getCategory(this.allUser[all].category_id).then(datas => {
+            console.log(datas)
+            if(datas.hasOwnProperty(type)){
+              //this.allUser[all].category = datas.type;
+            }
+          })
         }
       }
       console.log(this.allUser)
@@ -125,7 +136,6 @@ export class VoteRandomPage {
           this.allUser[i].down_vote_count = data.down_vote_count.toString();
         }
       }
-
     })
     .catch( err => {
       console.log("You have already voted")
