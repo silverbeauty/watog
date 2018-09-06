@@ -49,11 +49,46 @@
         <div swing-card #postCard class="post_img" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts" [ngStyle]="{'background-image':'url(' + post.picture + ')'}" ></div>
       </div>
     </section>
-    <div class="notif text-center">
+    <section class="description text-center" *ngIf="activeIndex > -1">
+      {{posts[activeIndex].description}}
+    </section>
+    <div class="notif text-center" *ngIf="isVoted()">
       <h3>You already rated this photo!</h3>
+      <!--img class="vote-img-heart" src="../../assets/imgs/Like.png" alt="like img" *ngIf="isVoted().commend"-->
+      <ion-icon name="heart-outline" *ngIf="isVoted().commend" style="font-size: 3em;"></ion-icon>
+
+      <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img" *ngIf="!(isVoted().commend)">
     </div>
 
-    <div class="toolbar">
-    </div>
+    <div class="toolbar container">
+      
+      <div class="row change-cancel" *ngIf="isVoted()">
+        <div class="col text-center">
+          <button ion-button round color="light" (click)="changeVote()">Change</button>
+        </div>
+        <div class="col text-center">
+          <button class="cancel" ion-button round (click)="cancelVote()">Cancel</button>
+        </div>
+      </div>
 
+      <div class="row change-cancel"  *ngIf="!isVoted() && activeIndex > -1">
+        <div class="col text-center dislike">
+          <button class="btn btn-dislike btn-rate" (click)="votePost(false)">
+            <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
+            <p id="photo1-dislike-count">{{ posts[activeIndex].down_vote_count }}</p>
+          </button>
+        </div>
+        <div class="col text-center">
+          <button class="btn btn-report btn-rate">
+            <img class="vote-img-report" src="../../assets/imgs/ContenuIndesirable.png" alt="Report icon">
+          </button>
+        </div>
+        <div class="col text-center like" (click)="votePost(true)">
+          <button class="btn btn-like btn-rate">
+            <img class="vote-img-heart" src="../../assets/imgs/Like.png" alt="like img">
+            <p id="photo1-like-count">{{ posts[activeIndex].up_vote_count }}</p>
+          </button>
+        </div>
+      </div>
+    </div>
 </ion-content>

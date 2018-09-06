@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DashboardPage} from "../dashboard/dashboard";
-import {ProfilesLoadPage} from "../profiles-load/profiles-load";
+import {ProfilePage} from "../profile/profile";
 import {SettingsPage} from "../settings/settings";
 import {LoginPage} from "../login/login";
 
@@ -45,17 +45,14 @@ export class BestPhotoPage {
     }
     // Load profile by API
   }
-  goToSearch(user){
-    console.log(user)
-    this.navCtrl.push(ProfilesLoadPage , {user: user, from: 'randomUser'});
-  }
+
 
   goToDashboard(){
     this.navCtrl.push(DashboardPage);
   }
 
   goToProfilePage(){
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.push(ProfilePage);
   }
 
   goToSettingsPage(){

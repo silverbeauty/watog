@@ -17,8 +17,8 @@
   </div>
 </ion-header>
 <ion-content hide-header [header]="head" class="body">
-  <div *ngIf="showBack">
-    <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
+  <div class="nav-back">
+    <a (click)="goBack()"><i class="fa fa-angle-left"></i></a>
   </div>
   <div class="photo-section">
     <div class="container">

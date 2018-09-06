@@ -57,18 +57,18 @@
             <div class="votes">
               <div class="row">
                 <div class="col text-center like">
-                  <button class="btn btn-like" (click)="voteUp(user)">
+                  <button class="btn btn-like">
                     <img class="vote-img-heart" src="../../assets/imgs/Like.png" alt="like img">
                     <p id="photo1-like-count">{{ auth.good_posts[0].up_vote_count }}</p>
                   </button>
                 </div>
                 <div class="col text-center">
-                  <button class="btn btn-report" (click)="reported(user)">
+                  <button class="btn btn-report">
                     <img src="../../assets/imgs/ContenuIndesirable.png" alt="Report icon">
                   </button>
                 </div>
                 <div class="col text-center dislike">
-                  <button class="btn btn-dislike" (click)=voteDown(user)>
+                  <button class="btn btn-dislike">
                     <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
                     <p id="photo1-dislike-count">{{ auth.good_posts[0].down_vote_count }}</p>
                   </button>
