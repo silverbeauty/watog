@@ -1,4 +1,10 @@
 page-futur-near-term-goals {
+    .scroll-content {
+        display: flex;
+        flex-direction: column;
+        overflow-y: hidden !important;
+    }
+
     .navbar{
         background-color: #775576;
     }
@@ -56,6 +62,7 @@ page-futur-near-term-goals {
     }
 
     .card.info-box {
+        overflow: scroll;
         border-radius: 10px;
         .card-content {
             padding: 2em;
@@ -70,7 +77,7 @@ page-futur-near-term-goals {
         font-size: 1.2em;
         font-weight: 200;
         padding: .7em;
-        margin-top: 2em;
+        margin: 1em 0;
         border-radius: 20em;
         width: 90vw;
     }

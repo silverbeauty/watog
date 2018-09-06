@@ -1,4 +1,10 @@
 page-organization {
+    .scroll-content {
+        display: flex;
+        flex-direction: column;
+        overflow-y: hidden !important;
+    }
+
     .navbar{
         background-color: #775576;
     }
@@ -55,6 +61,7 @@ page-organization {
     }
 
     .card.info-box {
+        overflow: auto;
         border-radius: 10px;
         .card-content {
             padding: 2em;
@@ -69,7 +76,6 @@ page-organization {
         font-size: 1.2em;
         font-weight: 200;
         padding: .7em;
-        margin-top: 2em;
         border-radius: 20em;
         width: 100%;
     }
@@ -80,7 +86,6 @@ page-organization {
         font-size: 1.2em;
         font-weight: 200;
         padding: .7em;
-        margin-top: 2em;
         border-radius: 20em;
         width: 100%;
     }

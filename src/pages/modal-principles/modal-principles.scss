@@ -10,20 +10,7 @@ page-modal-principles {
         z-index: 1;
         margin: 0;
         padding: 1.5em;
-    }
-
-    .main:before{
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #525252;
-        opacity: .5;
-        z-index: -1;
-        height: 100vh;
-        width: 100vw;
+        background-color: rgba(82, 82, 82, 0.5);
     }
 
     .main-inside{
