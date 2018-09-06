@@ -1,224 +1,204 @@
 page-profiles-load {
-  .navbar{
-      background-color: #775576;
-  }
-
-  .navbar h1{
-      color: white;
-      font-size: 1.2em;
-      font-weight: 200;
-      margin: 0;
-  }
-
-  .btn-profile{
-      background-color: #775576;
-  }
-
-  .btn-profile img{
-      height: 2em;
-  }
-
-  .dropdown-menu{
-      padding: 2em;
-  }
-
-  .dropdown-item{
-      font-size: 1.5em;
-      font-weight: 200;
-      text-align: left;
-      padding-right: 5em;
-  }
-
-  .dropdown-item img{
-      height: 1.2em;
-      padding-right: 1em;
-  }
-
-  .dropdown-menu-right{
-      right: 0;
-      left: auto;
-  }
-
-  .body{
-      background-image: url("../assets/imgs/rio.jpg");
-      background-position: center top;
-      color: white;
-  }
-
-  .profile-info{
-      text-align: center;
-  }
-
-  #profile-picture{
-      height: 100px;
-      width: 100px;
-      border-radius: 50%;
-      background-position: center;
-      background-size: cover;
-      box-shadow: 1px 2px 10px #525252;
-      margin-top: 1em;
-      margin-bottom: 1em;
-  }
-
-  .profile-info h2{
-      font-size: 1.3em;
-      font-weight: 800;
-      padding-bottom: 0;
-      margin-bottom: 0;
-  }
-
-  .profile-info p{
-      font-size: .9em;
-      font-weight: 100;
-  }
-
-  .infos-banner{
-      background-color: #dce4e7;
-      color: black;
-      font-weight: 200;
-      text-align: center;
-      margin-bottom: 3em;
-  }
-
-  .infos-banner h3{
-      font-size: 1.25em;
-      padding-bottom: 0;
-      margin-bottom: 0;
-      font-weight: 400;
-  }
-
-  .infos-banner p{
-      font-size: .8em;
-  }
-
-  .divider{
-      border-left: 1px solid #ccc;
-      margin-top: 1em;
-      margin-bottom: 1em;
-  }
-
-  .photo{
-      height: 50vw;
-      width: 50vw;
-      //background-image: url("../../assets/imgs/camera_roll_2.png");
-      background-position: center;
-      background-size: cover;
-      margin: auto;
-      margin-bottom: 3em;
-      position: relative;
-  }
-
-  .photo .votes{
-      background: white;
-      color: black;
-      opacity: .7;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      padding: .5em;
-  }
-
-  .photo .votes p{
-      padding: 0;
-      margin: 0;
-  }
-
-  .photo .votes .like img{
-      height: 30px;
-      padding: 0;
-  }
-
-  .photo .votes .dislike img{
-      height: 28px;
-      transform: rotate(180deg);
-      padding: 0;
-  }
-  .back-s {
-    font-size: 2em;
-    margin-left: 10px;
-    margin-top: 5px;
-  }
-
-  .post_img {
-    background-position: center;
-    background-size: cover;
-    width: 80vw;
-    height: 80vw;
-    position: absolute;
-  }
-
-  .stack {
-    position: absolute;
-    margin-top: 5vw;
-    margin-left: 10vw;
-  }
-
-  .direction {
-    position: absolute;
-    height: 16vw;
-    background: none;
-    width: 100%;
-    bottom: 56vw;
-    color: white;
-    font-weight: 400;
-    padding-top: 1vw;
-    z-index: 2;
-    margin: 0px !important;
-    font-size: 20px;
-  }
-
-  .notif {
-    position: absolute;
-    height: 16vw;
-    background: #ffffff3d;
-    width: 100%;
-    bottom: 40vw;
-    color: white;
-    font-weight: 400;
-    padding-top: 1vw;
-    box-shadow: 0 0px 7px #0000005c;
-    z-index: 2;
-  }
-
-  .toolbar {
-    position: absolute;
-    height: 40vw;
-    background: white;
-    width: 100%;
-    bottom: 0px;
-    .change-cancel {
-      width: 100%;
-      margin: 0px !important;
-
-      button {
-        width: 80%;
-      }
+    .navbar {
+        background-color: #775576;
     }
-
-    .cancel {
-      background: #774576;
+    .navbar h1 {
+        color: white;
+        font-size: 1.2em;
+        font-weight: 200;
+        margin: 0;
     }
-
-  }
-
-  .vote-img-heart {
-    width: 30vw;
-  }
-
-  .vote-img-hand {
-    width: 9.5vw;
-    -moz-transform: scale(-1, -1);
-    -o-transform: scale(-1, -1);
-    -webkit-transform: scaleX(-1, -1);
-    transform: scale(-1, -1);
-  }
-
-  .btn-rate {
-    background: none;
-    outline: none;
-  }
-
-  .vote-img-report {
-    width: 14vw;
-  }
+    .btn-profile {
+        background-color: #775576;
+    }
+    .btn-profile img {
+        height: 2em;
+    }
+    .dropdown-menu {
+        padding: 2em;
+    }
+    .dropdown-item {
+        font-size: 1.5em;
+        font-weight: 200;
+        text-align: left;
+        padding-right: 5em;
+    }
+    .dropdown-item img {
+        height: 1.2em;
+        padding-right: 1em;
+    }
+    .dropdown-menu-right {
+        right: 0;
+        left: auto;
+    }
+    .body {
+        background-image: url("../assets/imgs/rio.jpg");
+        background-position: center top;
+        color: white;
+    }
+    .profile-info {
+        text-align: center;
+    }
+    #profile-picture {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        background-position: center;
+        background-size: cover;
+        box-shadow: 1px 2px 10px #525252;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+    .profile-info h2 {
+        font-size: 1.3em;
+        font-weight: 800;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+    .profile-info p {
+        font-size: .9em;
+        font-weight: 100;
+    }
+    .infos-banner {
+        background-color: #dce4e7;
+        color: black;
+        font-weight: 200;
+        text-align: center;
+        margin-bottom: 3em;
+    }
+    .infos-banner h3 {
+        font-size: 1.25em;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        font-weight: 400;
+    }
+    .infos-banner p {
+        font-size: .8em;
+    }
+    .divider {
+        border-left: 1px solid #ccc;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+    .photo {
+        height: 50vw;
+        width: 50vw; //background-image: url("../../assets/imgs/camera_roll_2.png");
+        background-position: center;
+        background-size: cover;
+        margin: auto;
+        margin-bottom: 3em;
+        position: relative;
+    }
+    .photo .votes {
+        background: white;
+        color: black;
+        opacity: .7;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: .5em;
+    }
+    .photo .votes p {
+        padding: 0;
+        margin: 0;
+    }
+    .photo .votes .like img {
+        height: 30px;
+        padding: 0;
+    }
+    .photo .votes .dislike img {
+        height: 28px;
+        transform: rotate(180deg);
+        padding: 0;
+    }
+    .back-s {
+        font-size: 2em;
+        margin-left: 10px;
+        margin-top: 5px;
+    }
+    .post_img {
+        background-position: center;
+        background-size: cover;
+        width: 80vw;
+        height: 110vw;
+        position: absolute;
+    }
+    .stack {
+        position: absolute;
+        margin-top: 5vw;
+        margin-left: 10vw;
+    }
+    .direction {
+        position: absolute;
+        height: 17vw;
+        background: none;
+        width: 100%;
+        bottom: 20vw;
+        color: white;
+        font-weight: 400;
+        padding-top: 1vw;
+        z-index: 2;
+        margin: 0px !important;
+        font-size: 20px;
+    }
+    .notif {
+        position: absolute;
+        height: 16vw;
+        background: #ffffff3d;
+        width: 100%;
+        bottom: 40vw;
+        color: white;
+        font-weight: 400;
+        padding-top: 1vw;
+        box-shadow: 0 0px 7px #0000005c;
+        z-index: 2;
+    }
+    .toolbar {
+        position: absolute;
+        height: 20vw;
+        background: white;
+        width: 100%;
+        bottom: 0px;
+        display: block;
+        .change-cancel {
+            width: 100%;
+            margin: 0px !important;
+            button {
+                width: 80%;
+            }
+        }
+        .cancel {
+            background: #774576;
+        }
+    }
+    .vote-img-heart {
+        width: 30vw;
+    }
+    .vote-img-hand {
+        width: 9.5vw;
+        -moz-transform: scale(-1, -1);
+        -o-transform: scale(-1, -1);
+        -webkit-transform: scaleX(-1, -1);
+        transform: scale(-1, -1);
+    }
+    .btn-rate {
+        background: none;
+        outline: none;
+    }
+    .vote-img-report {
+        width: 14vw;
+    }
+    #photo1-vote-score {
+        color: black;
+    }
+    #photo1-vote-ranking {
+        color: black;
+    }
+    .description {
+        color: black;
+        padding-top: 10px;
+    }
+    .btn-icon {
+        width: 40px;
+    }
 }

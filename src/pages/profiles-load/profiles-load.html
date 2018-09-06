@@ -46,44 +46,38 @@
       </div>
     </section-->
     <section class="posts">
-      <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)">
+      <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" (swipe)="swipeEvent($event)">
         <div swing-card #postCard class="post_img" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts" [ngStyle]="{'background-image':'url(' + post.picture + ')'}" ></div>
       </div>
     </section>
-    <section class="description text-center" *ngIf="activeIndex > -1">
-      {{posts[activeIndex].description}}
-    </section>
-    <div class="row direction text-center">
+    <div class="row direction text-center" *ngIf="showImage === false">
       <div class="col">
-        <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon> Dislike
+        <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon> Dislike        
       </div>
       <div class="col">
         Like <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
       </div>
     </div>
-    <div class="notif text-center" *ngIf="isVoted()">
-      <img class="vote-img-heart" src="../../assets/imgs/Like.png" alt="like img" *ngIf="isVoted().commend">
-      <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img" *ngIf="!(isVoted().commend)">
+    <div class="row direction text-center" *ngIf="showImage === true">
+      <div class="col">
+        <img src="/assets/imgs/dislike_btn.png" class="btn-icon">
+      </div>
+      <div class="col">
+        <img src="/assets/imgs/like_btn.png" class="btn-icon">
+      </div>
     </div>
+    
 
     <div class="toolbar container">
+      <div class="description text-center" *ngIf="activeIndex > -1">
+        {{posts[activeIndex].description}}
+      </div>
       <div class="row change-cancel"  *ngIf="activeIndex > -1">
-        <div class="col text-center dislike">
-          <button class="btn btn-dislike btn-rate" (click)="votePost(false)">
-            <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
-            <p id="photo1-dislike-count">{{ posts[activeIndex].down_vote_count }}</p>
-          </button>
+        <div class="col text-center">
+          <p id="photo1-vote-score">Vote Score: {{ posts[activeIndex].vote_score.toFixed(2) }}</p>
         </div>
         <div class="col text-center">
-          <button class="btn btn-report btn-rate">
-            <img class="vote-img-report" src="../../assets/imgs/ContenuIndesirable.png" alt="Report icon">
-          </button>
-        </div>
-        <div class="col text-center like" (click)="votePost(true)">
-          <button class="btn btn-like btn-rate">
-            <img class="vote-img-heart" src="../../assets/imgs/Like.png" alt="like img">
-            <p id="photo1-like-count">{{ posts[activeIndex].up_vote_count }}</p>
-          </button>
+          <p id="photo1-vote-ranking">Vote Ranking: {{ posts[activeIndex].rank }}</p>
         </div>
       </div>
     </div>

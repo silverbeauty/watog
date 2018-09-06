@@ -1,5 +1,11 @@
 page-dashboard {
     /*BEGIN TOOLBAR CSS*/
+
+    .scroll-content {
+        display: flex;
+        flex-direction: column;
+        overflow-y: hidden !important;
+    }
     .navbar{
         background-color: #775576;
     }
@@ -42,7 +48,7 @@ page-dashboard {
     /*END TOOLBAR CSS*/
 
     .contest, .about{
-        height: 48%;
+        flex: 1;
         margin: 0;
         position: relative;
     }
