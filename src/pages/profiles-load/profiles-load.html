@@ -52,26 +52,21 @@
     <section class="description text-center" *ngIf="activeIndex > -1">
       {{posts[activeIndex].description}}
     </section>
+    <div class="row direction text-center">
+      <div class="col">
+        <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon> Dislike
+      </div>
+      <div class="col">
+        Like <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+      </div>
+    </div>
     <div class="notif text-center" *ngIf="isVoted()">
-      <h3>You already rated this photo!</h3>
-      <!--img class="vote-img-heart" src="../../assets/imgs/Like.png" alt="like img" *ngIf="isVoted().commend"-->
-      <ion-icon name="heart-outline" *ngIf="isVoted().commend" style="font-size: 3em;"></ion-icon>
-
+      <img class="vote-img-heart" src="../../assets/imgs/Like.png" alt="like img" *ngIf="isVoted().commend">
       <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img" *ngIf="!(isVoted().commend)">
     </div>
 
-    <div class="toolbar container container-property">
-
-      <div class="row change-cancel" *ngIf="isVoted()">
-        <div class="col text-center">
-          <button ion-button round color="light" (click)="changeVote()">Change</button>
-        </div>
-        <div class="col text-center">
-          <button class="cancel" ion-button round (click)="cancelVote()">Cancel</button>
-        </div>
-      </div>
-
-      <div class="row change-cancel"  *ngIf="!isVoted() && activeIndex > -1">
+    <div class="toolbar container">
+      <div class="row change-cancel"  *ngIf="activeIndex > -1">
         <div class="col text-center dislike">
           <button class="btn btn-dislike btn-rate" (click)="votePost(false)">
             <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
