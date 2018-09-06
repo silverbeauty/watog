@@ -29,6 +29,7 @@ export class ProfilesLoadPage {
   public user: User;
   public posts: Array<Post> = [];
   public stackConfig: any;
+  public activeIndex: number = -1;
 
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
@@ -56,6 +57,7 @@ export class ProfilesLoadPage {
     // Query posts here
     this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
       this.posts = posts;
+      this.activeIndex = posts.length - 1;
       console.info('Posts Fetched:', this.posts)
     });
   }
@@ -70,6 +72,79 @@ export class ProfilesLoadPage {
 
   onThrowOut(event) {
     console.info('Event:', event)
+    const className = event.target.classList[1];
+    const id = parseInt(className.substring('Post:'.length)); // Cut `Post:`
+    this.activeIndex = this.activeIndex - 1;
+
+    let commend = true;
+    const direction = event.throwDirection.toString()
+    if (direction === `Symbol(LEFT)`) { // down vote
+      commend = false;
+    } else {
+      commend = true;
+    }
+    this.restProvider.votePost(id, commend).then((post: Post) => {
+      console.info('Voted post:', post)
+      this.popPost()
+    }).catch((e) => {
+      console.error(e)
+    })
+  }
+
+  isVoted() {
+    if (this.activeIndex < 0) {
+      return null;
+    }
+    const post = this.posts[this.activeIndex];
+    if (!post.Votes) {
+      return false;
+    }
+    const index = post.Votes.findIndex(v => v.user_id === DataProvider.auth.id);
+    if (index > -1) {
+      return post.Votes[index];
+    } else {
+      return null
+    }
+  }
+
+  changeVote() {
+    const curVote = this.isVoted();
+
+    if (!curVote) { // If not voted
+      console.info('not voted!')
+      return
+    }
+    const post = this.posts[this.activeIndex];
+
+    // Revert vote
+    this.restProvider.votePost(post.id, !curVote.commend).then((post: Post) => {
+      console.info('Changed vote:', post)
+      this.popPost()
+    }).catch((e) => {
+      console.error(e)
+    })
+  }
+
+  cancelVote() {
+    if (!this.isVoted()) { // If not voted
+      console.info('not voted!')
+      return
+    }
+
+    const post = this.posts[this.activeIndex];
+
+    // Revert vote
+    this.restProvider.cancelVotePost(post.id).then((post: Post) => {
+      console.info('Canceled vote:', post)
+      this.popPost()
+    }).catch((e) => {
+      console.error(e)
+    })
+  }
+
+  popPost() {
+    this.activeIndex --;
+    this.posts.pop();
   }
 
   goBack(){

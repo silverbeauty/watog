@@ -12,4 +12,5 @@ export class Post {
 	updatedAt: Date
 	downVotes: Array<Vote>
 	upVotes: Array<Vote>
+	Votes: Array<Vote>
 }
