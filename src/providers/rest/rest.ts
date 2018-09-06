@@ -149,7 +149,7 @@ export class RestProvider {
     })
   }
 
-  public cancelVotePost(id: number, commend: boolean = true): Promise<Post> {
+  public cancelVotePost(id: number): Promise<Post> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'

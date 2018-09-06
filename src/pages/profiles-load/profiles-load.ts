@@ -117,7 +117,7 @@ export class ProfilesLoadPage {
 
     // Revert vote
     this.restProvider.votePost(post.id, !curVote.commend).then((post: Post) => {
-      console.info('Voted post:', post)
+      console.info('Changed vote:', post)
     }).catch((e) => {
       console.error(e)
     })
@@ -133,7 +133,7 @@ export class ProfilesLoadPage {
 
     // Revert vote
     this.restProvider.cancelVotePost(post.id).then((post: Post) => {
-      console.info('Voted post:', post)
+      console.info('Canceled vote:', post)
     }).catch((e) => {
       console.error(e)
     })
