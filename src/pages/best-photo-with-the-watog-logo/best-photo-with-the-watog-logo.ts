@@ -4,6 +4,7 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { ContestSubmitPage } from '../contest-submit/contest-submit';
+import { ParticipatePage } from "../participate/participate"
 import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
 import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
@@ -38,7 +39,7 @@ export class BestPhotoWithTheWatogLogoPage {
   }
 
   uploadWatogLogo(){
-    this.navCtrl.push(UploadWatogLogoPage);
+    this.navCtrl.push(UploadWatogLogoPage, {from: "BestPhotoWithTheWatogLogoPage"});
   }
 
   goToDashboard(){
@@ -58,7 +59,7 @@ export class BestPhotoWithTheWatogLogoPage {
   }
 
   goBack(){
-    this.navCtrl.pop();
+    this.navCtrl.push(ParticipatePage);
   }
 
   goNext(){
