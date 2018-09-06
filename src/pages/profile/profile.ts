@@ -89,7 +89,8 @@ export class ProfilePage {
     })
   }
 
-  goToBestPhoto(){
+  goToBestPhoto(i){
+    console.log(i)
     this.navCtrl.push(BestPhotoPage);
   }
 

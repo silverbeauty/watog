@@ -46,14 +46,14 @@
         <div class="row">
           <div class="col">
             <div class="grid-container">
-              <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[1].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[1]"></div>
-              <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[2].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[2]"></div>
-              <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[3].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[3]"></div>
-              <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[4].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[4]"></div>
+              <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[1].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[1]" (click)="goToBestPhoto(1)"></div>
+              <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[2].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[2]" (click)="goToBestPhoto(2)"></div>
+              <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[3].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[3]" (click)="goToBestPhoto(3)"></div>
+              <div id="photo1" class="grid-item" [ngStyle]="{'background-image':'url(' + auth.good_posts[4].picture + ')'}" *ngIf="auth && auth.good_posts && auth.good_posts[4]" (click)="goToBestPhoto(4)"></div>
             </div>
           </div>
           <div class="col" *ngIf="auth && auth.good_posts && auth.good_posts[0]">
-            <div id="photo1" class="grid-item-double" [ngStyle]="{'background-image':'url(' + auth.good_posts[0].picture + ')'}" (click)="goToBestPhoto()"></div>
+            <div id="photo1" class="grid-item-double" [ngStyle]="{'background-image':'url(' + auth.good_posts[0].picture + ')'}" (click)="goToBestPhoto(0)"></div>
             <div class="votes">
               <div class="row">
                 <div class="col text-center like">
