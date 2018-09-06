@@ -156,7 +156,12 @@ export class ProfilesLoadPage {
 
   popPost() {
     this.activeIndex --;
+    if (this.activeIndex < 0) {
+      this.goBack();
+      return;
+    }
     this.posts.pop();
+
   }
 
   goBack(){
