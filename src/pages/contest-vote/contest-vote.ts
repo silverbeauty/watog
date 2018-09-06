@@ -6,6 +6,7 @@ import { SettingsPage } from '../settings/settings';
 import { VoteRandomPage } from '../vote-random/vote-random';
 import { LoginPage } from '../login/login';
 import { ContestSearchResultsPage } from '../contest-search-results/contest-search-results';
+import { ProfilesLoadPage } from '../profiles-load/profiles-load';
 
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
@@ -25,7 +26,7 @@ import { User, Auth } from '../../types';
 })
 export class ContestVotePage {
 
- public data = {
+  public data = {
     name: '',
     error: null
   }
@@ -54,7 +55,19 @@ export class ContestVotePage {
   }
 
   goToVoteRandom(){
-    this.navCtrl.push(VoteRandomPage);
+    Promise.all([this.restProvider.queryPost("?limit=100000")]).then(data => {
+      let allUser = []; //Needed for updates
+      console.log("ma promise: ", data)
+      for (let element in data){
+        for(let all in data[element]){
+          allUser.push(data[element][all]);
+        }
+      }
+      console.log(allUser)
+      const randomNum = Math.floor(Math.random() * allUser.length); 
+      this.navCtrl.push(ProfilesLoadPage, {user: allUser[randomNum], from: 'contestUser'});
+    });
+    // this.navCtrl.push(VoteRandomPage);
   }
 
   logout(){
@@ -70,7 +83,9 @@ export class ContestVotePage {
     this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
-      this.navCtrl.push(ContestSearchResultsPage, { users: users });
+      // this.navCtrl.push(ContestSearchResultsPage, { users: users });
+      const randomNum = Math.floor(Math.random() * users.length); 
+      this.navCtrl.push(ProfilesLoadPage, {user: users[randomNum], from: 'contestUser'});
     }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
     })
