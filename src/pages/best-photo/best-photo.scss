@@ -131,6 +131,7 @@ page-best-photo {
   .photo .votes p{
     padding: 0;
     margin: 0;
+    color: black;
   }
 
   .photo .votes .like img{
@@ -144,11 +145,10 @@ page-best-photo {
     padding: 0;
   }
 
-  #photo1-like-count{
+  #photo1-vote-score{
     color:black;
   }
-  #photo1-dislike-count{
+  #photo1-vote-ranking{
     color:black;
   }
-
 }

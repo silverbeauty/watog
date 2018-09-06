@@ -39,6 +39,14 @@
               <p id="photo1-dislike-count">{{ auth.good_posts[selected].down_vote_count }}</p>
             </div>
           </div>
+          <div class="row">
+            <div class="col text-center">
+              <p id="photo1-vote-score">Vote Score: {{ auth.good_posts[selected].vote_score.toFixed(2) }}</p>
+            </div>
+            <div class="col text-center">
+              <p id="photo1-vote-ranking">Vote Ranking: {{ auth.good_posts[selected].rank }}</p>
+            </div>
+          </div>
         </div>
     </div>
   </div>
