@@ -20,11 +20,11 @@ import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
-  selector: 'page-profiles-load',
-  templateUrl: 'profiles-load.html',
+  selector: 'modal-change-vote',
+  templateUrl: 'modal-change-vote.html',
 })
 
-export class ProfilesLoadPage {
+export class ModalChangeVotePage {
 
   public user: User;
   public posts: Array<Post> = [];

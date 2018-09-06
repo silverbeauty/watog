@@ -45,6 +45,7 @@ import { RegisterThreeOfThreePage } from '../pages/register-three-of-three/regis
 import { RegisterTwoOfThreePage } from '../pages/register-two-of-three/register-two-of-three';
 import { UploadCoverPhotoPage } from '../pages/upload-cover-photo/upload-cover-photo';
 import { UploadProfilePhotoPage } from '../pages/upload-profile-photo/upload-profile-photo';
+import { UploadWatogLogoPage} from "../pages/upload-watog-logo/upload-watog-logo";
 import { WhatIsWatogPage } from '../pages/what-is-watog/what-is-watog';
 import { SettingsPage } from '../pages/settings/settings';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
@@ -57,6 +58,8 @@ import { ModalContestPage } from '../pages/modal-contest/modal-contest';
 import { SelectionPage } from '../pages/selection/selection';
 import { ProfilesLoadPage } from '../pages/profiles-load/profiles-load';
 import { BestPhotoPage} from "../pages/best-photo/best-photo";
+import { ModalChangeVotePage } from '../pages/modal-change-vote/modal-change-vote';
+
 /*Provider*/
 import { DataProvider } from '../providers/data/data';
 import { DistantDataBaseProvider } from '../providers/distant-data-base/distant-data-base';
@@ -97,6 +100,7 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
   	RegisterTwoOfThreePage,
   	UploadCoverPhotoPage,
   	UploadProfilePhotoPage,
+    UploadWatogLogoPage,
   	WhatIsWatogPage,
   	SettingsPage,
   	ChangePasswordPage,
@@ -109,6 +113,7 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
     SelectionPage,
     ProfilesLoadPage,
     BestPhotoPage,
+    ModalChangeVotePage,
     HideHeaderDirective
   ],
   imports: [
@@ -147,6 +152,7 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
   	RegisterTwoOfThreePage,
   	UploadCoverPhotoPage,
   	UploadProfilePhotoPage,
+    UploadWatogLogoPage,
   	WhatIsWatogPage,
   	SettingsPage,
   	ChangePasswordPage,
@@ -158,7 +164,8 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
   	ModalPrinciplesPage,
     SelectionPage,
     ProfilesLoadPage,
-    BestPhotoPage
+    BestPhotoPage,
+    ModalChangeVotePage
   ],
   providers: [
     StatusBar,

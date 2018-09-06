@@ -18,32 +18,6 @@
     <div>
       <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
     </div>
-    <!--section class="profile-info">
-      <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + photo_profil + ')'}"></div>
-      <h2 id="pseudo">{{ user.first_name }} {{ user.last_name }}</h2>
-      <p id="qualification">{{ user.job }}</p>
-      <p id="location"><img src="assets/icon/LocationWhite.png" alt="location icon">{{ user.state }} {{ user.country }}</p>
-    </section>
-    <section class="infos-banner">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <h3 id="best-rank">{{ 200 }}</h3>
-            <p>Best Rank</p>
-          </div>
-          <div class="divider"></div>
-          <div class="col">
-            <h3 id="votes">{{ 100 }}</h3>
-            <p>Votes</p>
-          </div>
-          <div class="divider"></div>
-          <div class="col">
-            <h3 id="new-votes">{{ 100 }}</h3>
-            <p>New votes</p>
-          </div>
-        </div>
-      </div>
-    </section-->
     <section class="posts">
       <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)">
         <div swing-card #postCard class="post_img" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts" [ngStyle]="{'background-image':'url(' + post.picture + ')'}" ></div>

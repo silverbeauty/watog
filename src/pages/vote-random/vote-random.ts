@@ -8,6 +8,8 @@ import { ProfilesLoadPage } from '../profiles-load/profiles-load';
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
 import { User, Auth } from '../../types';
+import { ModalChangeVotePage } from '../modal-change-vote/modal-change-vote';
+
 
 /**
  * Generated class for the VoteRandomPage page.
@@ -38,6 +40,8 @@ export class VoteRandomPage {
   showBack: boolean = true;
   previousScroll: number = 0;
   public rando: any;
+  public exec: boolean = false;
+  public me: Auth;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     console.log(DataProvider.searchedUsers)
@@ -46,6 +50,7 @@ export class VoteRandomPage {
     this.restProvider.queryCategories().then(data => {
       this.allCategory = data;
     })
+    this.me = DataProvider.auth
   }
 
   ngAfterViewInit() {
@@ -75,8 +80,8 @@ export class VoteRandomPage {
           this.allUser.push(data[element][all]);
           this.restProvider.getCategory(this.allUser[all].category_id).then(datas => {
             console.log(datas)
-            if(datas.hasOwnProperty(type)){
-              //this.allUser[all].category = datas.type;
+            if(datas.hasOwnProperty('type')){
+              this.allUser[all].category = datas.type;
             }
           })
         }
@@ -110,11 +115,13 @@ export class VoteRandomPage {
   }
 
   voteUp(img){
+    this.VoteCancel(img)
     this.vote.commend = true;
     this.Voted(img.id)
   }
 
   voteDown(img){
+    this.VoteCancel(img)
     this.vote.commend = false;
     this.Voted(img.id)
   }
@@ -140,6 +147,33 @@ export class VoteRandomPage {
     .catch( err => {
       console.log("You have already voted")
     })
+  }
+
+  VoteCancel(img){
+
+    for(let i in this.allCategory){
+      if(this.allCategory[i].id == img.category_id){
+          let alert = this.alertCtrl.create({
+            title: 'Warning',
+            subTitle: 'You have already voted do you want cancel you vote ?',
+            buttons: [
+              { text: 'Cancel', handler: () =>{
+                console.log("Cancel")
+              }},
+              { text: 'Yes, Sure', handler: () => {
+                this.alreadyVoted(img.id);
+              }}]
+          });
+          alert.present();
+        }
+    }
+  }
+
+  alreadyVoted(imgC){
+    this.restProvider.cancelVotePost(imgC).then(data => {
+      alert("Like removed")
+    })
+    .catch( err => console.log(err))
   }
 
   goToSearch(user){

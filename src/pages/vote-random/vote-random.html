@@ -20,7 +20,7 @@
   <div *ngIf="showBack">
     <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
   </div>
-  <div class="vote-card" *ngFor="let user of allUser">
+  <div class="vote-card" *ngFor="let user of allUser; let i = index">
     <h2 class="text-center titre">Category: {{ user.category }}</h2>
     <div id="cardImg" class="vote-card-img" [ngStyle]="{'background-image':'url(' + user.picture + ')'}">
       <div class="separate" (click)="goToSearch(user)">
