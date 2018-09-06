@@ -62,21 +62,21 @@
       </div>
     </div>
     <div class="notif text-center" *ngIf="isVoted()">
-      <img class="vote-img-heart" src="../../assets/imgs/Like.png" alt="like img" *ngIf="isVoted().commend">
-      <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img" *ngIf="!(isVoted().commend)">
+      <img class="vote-img-heart" src="assets/imgs/Like.png" alt="like img" *ngIf="isVoted().commend">
+      <img class="vote-img-hand" src="assets/imgs/LikeWATOG.png" alt="dislike img" *ngIf="!(isVoted().commend)">
     </div>
 
     <div class="toolbar container">
       <div class="row change-cancel"  *ngIf="activeIndex > -1">
         <div class="col text-center dislike">
           <button class="btn btn-dislike btn-rate" (click)="votePost(false)">
-            <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
+            <img class="vote-img-hand" src="assets/imgs/LikeWATOG.png" alt="dislike img">
             <p id="photo1-dislike-count">{{ posts[activeIndex].down_vote_count }}</p>
           </button>
         </div>
         <div class="col text-center">
           <button class="btn btn-report btn-rate">
-            <img class="vote-img-report" src="../../assets/imgs/ContenuIndesirable.png" alt="Report icon">
+            <img class="vote-img-report" src="assets/imgs/ContenuIndesirable.png" alt="Report icon">
           </button>
         </div>
         <div class="col text-center like" (click)="votePost(true)">
@@ -84,6 +84,14 @@
             <img class="vote-img-heart" src="../../assets/imgs/Like.png" alt="like img">
             <p id="photo1-like-count">{{ posts[activeIndex].up_vote_count }}</p>
           </button>
+        </div>
+      </div>
+      <div class="row change-cancel"  *ngIf="activeIndex > -1">
+        <div class="col text-center">
+          <p id="photo1-vote-score">Vote Score: {{ posts[activeIndex].vote_score.toFixed(2) }}</p>
+        </div>
+        <div class="col text-center">
+          <p id="photo1-vote-ranking">Vote Ranking: {{ posts[activeIndex].rank }}</p>
         </div>
       </div>
     </div>

@@ -186,6 +186,7 @@ page-profiles-load {
     background: white;
     width: 100%;
     bottom: 0px;
+    display: block;
     .change-cancel {
       width: 100%;
       margin: 0px !important;
@@ -220,5 +221,11 @@ page-profiles-load {
 
   .vote-img-report {
     width: 14vw;
+  }
+  #photo1-vote-score{
+    color:black;
+  }
+  #photo1-vote-ranking{
+    color:black;
   }
 }
