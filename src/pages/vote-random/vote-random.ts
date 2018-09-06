@@ -45,12 +45,6 @@ export class VoteRandomPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     console.log(DataProvider.searchedUsers)
-    this.rando = this.restProvider.queryPost("?random&limit=100000");
-    this.getData();
-    this.restProvider.queryCategories().then(data => {
-      this.allCategory = data;
-    })
-    this.me = DataProvider.auth
   }
 
   ngAfterViewInit() {
@@ -68,22 +62,22 @@ export class VoteRandomPage {
   }
 
   ionViewDidLoad() {
-    Promise.all([this.restProvider.queryPost("?random&limit=100000")]).then(data => {});
+    //let cat1 = this.restProvider.getAllPost("?limit=1");
+    //let cat2 = this.restProvider.getAllPost("?category_id=2");
+    //let cat3 = this.restProvider.getAllPost("?category_id=3");
+    //let cat4 = this.restProvider.getAllPost("?category_id=4");
+    //let cat5 = this.restProvider.getAllPost("?category_id=5&limit");
+
+    this.getData();
   }
 
-  getData(){
-    Promise.all([this.rando]).then(data => {
-      this.allUser = [];
+  getData() {
+    Promise.all([this.restProvider.queryPost("?limit=100000")]).then(data => {
+      this.allUser = []; //Needed for updates
       console.log("ma promise: ", data)
       for (let element in data){
         for(let all in data[element]){
           this.allUser.push(data[element][all]);
-          this.restProvider.getCategory(this.allUser[all].category_id).then(datas => {
-            console.log(datas)
-            if(datas.hasOwnProperty('type')){
-              this.allUser[all].category = datas.type;
-            }
-          })
         }
       }
       console.log(this.allUser)
@@ -115,13 +109,11 @@ export class VoteRandomPage {
   }
 
   voteUp(img){
-    this.VoteCancel(img)
     this.vote.commend = true;
     this.Voted(img.id)
   }
 
   voteDown(img){
-    this.VoteCancel(img)
     this.vote.commend = false;
     this.Voted(img.id)
   }
@@ -130,50 +122,13 @@ export class VoteRandomPage {
     //this.vote check to user ng
     const makeVote = "/"+ id +"/vote"
     console.log("vote: ", this.vote)
-    this.restProvider.Voted(this.vote, makeVote).then(user => {
-      //this.navCtrl.push(VoteRandomPage)
+    this.restProvider.Voted(this.vote, makeVote).then(data => {
       this.getData();
-      let data = user;
-      let users = this.allUser;
-      console.log("a user: ", data)
-
-      for(let i in users){
-        if(this.allUser[i].id === data.id){
-          this.allUser[i].up_vote_count = data.up_vote_count.toString();
-          this.allUser[i].down_vote_count = data.down_vote_count.toString();
-        }
-      }
+      //this.navCtrl.push(VoteRandomPage)
     })
     .catch( err => {
       console.log("You have already voted")
     })
-  }
-
-  VoteCancel(img){
-
-    for(let i in this.allCategory){
-      if(this.allCategory[i].id == img.category_id){
-          let alert = this.alertCtrl.create({
-            title: 'Warning',
-            subTitle: 'You have already voted do you want cancel you vote ?',
-            buttons: [
-              { text: 'Cancel', handler: () =>{
-                console.log("Cancel")
-              }},
-              { text: 'Yes, Sure', handler: () => {
-                this.alreadyVoted(img.id);
-              }}]
-          });
-          alert.present();
-        }
-    }
-  }
-
-  alreadyVoted(imgC){
-    this.restProvider.cancelVotePost(imgC).then(data => {
-      alert("Like removed")
-    })
-    .catch( err => console.log(err))
   }
 
   goToSearch(user){

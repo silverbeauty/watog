@@ -60,8 +60,8 @@
       <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img" *ngIf="!(isVoted().commend)">
     </div>
 
-    <div class="toolbar container">
-      
+    <div class="toolbar container container-property">
+
       <div class="row change-cancel" *ngIf="isVoted()">
         <div class="col text-center">
           <button ion-button round color="light" (click)="changeVote()">Change</button>

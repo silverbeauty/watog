@@ -23,7 +23,7 @@ export class VoteModalPage {
     console.log('ionViewDidLoad VoteModalPage');
   }
 
-  goToVote(){
+  goToVote() {
     this.navCtrl.push(ContestVotePage);
   }
   goBack() {
