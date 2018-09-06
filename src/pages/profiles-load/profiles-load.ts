@@ -13,6 +13,7 @@ import {
 
 import { DashboardPage } from '../dashboard/dashboard';
 import { SettingsPage } from '../settings/settings';
+import { ProfilePage } from '../profile/profile';
 import { DataProvider, RestProvider } from '../../providers';
 import { User, Auth, Post } from '../../types';
 import { LoginPage } from '../login/login';
@@ -160,6 +161,10 @@ export class ProfilesLoadPage {
 
   goBack(){
     this.navCtrl.pop();
+  }
+
+  goToProfilePage() {
+    this.navCtrl.push(ProfilePage);
   }
 
   goToDashboard(){
