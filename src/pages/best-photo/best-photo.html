@@ -24,6 +24,9 @@
     <div class="container">
         <div id="photo-img" class="photo-img">
           <img [src]="auth.good_posts[0].picture">
+          <div class="vote-card-legend">
+            <p>{{ auth.good_posts[0].description }}</p>
+          </div>
         </div>
         <div class="votes">
           <div class="row">
