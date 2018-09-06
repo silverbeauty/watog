@@ -19,7 +19,7 @@ import {RegisterTwoOfThreePage} from "../register-two-of-three/register-two-of-t
 })
 export class RegisterThreeOfThreePage {
 
-  public url_verify: string = 'email';
+  public url_verify: string = 'sms';
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider : RestProvider, public dataProvider: DataProvider) {
   }
 

@@ -23,20 +23,20 @@
   <div class="photo-section">
     <div class="container">
         <div id="photo-img" class="photo-img">
-          <img [src]="auth.good_posts[0].picture">
+          <img [src]="auth.good_posts[selected].picture">
           <div class="vote-card-legend">
-            <p>{{ auth.good_posts[0].description }}</p>
+            <p>{{ auth.good_posts[selected].description }}</p>
           </div>
         </div>
         <div class="votes">
           <div class="row">
             <div class="col text-center like" (click)=voteUp(info)>
               <img class="vote-img-heart" src="assets/imgs/Like.png" alt="like img">
-              <p id="photo1-like-count">{{ auth.good_posts[0].up_vote_count }}</p>
+              <p id="photo1-like-count">{{ auth.good_posts[selected].up_vote_count }}</p>
             </div>
             <div class="col text-center dislike" (click)=voteDown(info)>
               <img class="vote-img-hand" src="assets/imgs/LikeWATOG.png" alt="dislike img">
-              <p id="photo1-dislike-count">{{ auth.good_posts[0].down_vote_count }}</p>
+              <p id="photo1-dislike-count">{{ auth.good_posts[selected].down_vote_count }}</p>
             </div>
           </div>
         </div>

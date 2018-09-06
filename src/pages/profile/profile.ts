@@ -88,8 +88,10 @@ export class ProfilePage {
     })
   }
 
-  goToBestPhoto(){
-    this.navCtrl.push(BestPhotoPage);
+  goToBestPhoto(i){
+    console.log(i)
+    const selected: number = i;
+    this.navCtrl.push(BestPhotoPage, { "selected": selected});
   }
 
   goToDashboard(){
