@@ -72,10 +72,10 @@
       </div>
 
       <div class="row change-cancel"  *ngIf="!isVoted() && activeIndex > -1">
-        <div class="col text-center like" (click)="votePost(true)">
-          <button class="btn btn-like btn-rate">
-            <img class="vote-img-heart" src="../../assets/imgs/Like.png" alt="like img">
-            <p id="photo1-like-count">{{ posts[activeIndex].up_vote_count }}</p>
+        <div class="col text-center dislike">
+          <button class="btn btn-dislike btn-rate" (click)="votePost(false)">
+            <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
+            <p id="photo1-dislike-count">{{ posts[activeIndex].down_vote_count }}</p>
           </button>
         </div>
         <div class="col text-center">
@@ -83,13 +83,12 @@
             <img class="vote-img-report" src="../../assets/imgs/ContenuIndesirable.png" alt="Report icon">
           </button>
         </div>
-        <div class="col text-center dislike">
-          <button class="btn btn-dislike btn-rate" (click)="votePost(false)">
-            <img class="vote-img-hand" src="../../assets/imgs/LikeWATOG.png" alt="dislike img">
-            <p id="photo1-dislike-count">{{ posts[activeIndex].down_vote_count }}</p>
+        <div class="col text-center like" (click)="votePost(true)">
+          <button class="btn btn-like btn-rate">
+            <img class="vote-img-heart" src="../../assets/imgs/Like.png" alt="like img">
+            <p id="photo1-like-count">{{ posts[activeIndex].up_vote_count }}</p>
           </button>
         </div>
       </div>
     </div>
-
 </ion-content>

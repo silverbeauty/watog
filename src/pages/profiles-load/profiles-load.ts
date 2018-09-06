@@ -79,9 +79,9 @@ export class ProfilesLoadPage {
     let commend = true;
     const direction = event.throwDirection.toString()
     if (direction === `Symbol(LEFT)`) { // down vote
-      commend = true;
-    } else {
       commend = false;
+    } else {
+      commend = true;
     }
     this.restProvider.votePost(id, commend).then((post: Post) => {
       console.info('Voted post:', post)
