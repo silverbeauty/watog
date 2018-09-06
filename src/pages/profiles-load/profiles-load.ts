@@ -85,6 +85,7 @@ export class ProfilesLoadPage {
     }
     this.restProvider.votePost(id, commend).then((post: Post) => {
       console.info('Voted post:', post)
+      this.popPost()
     }).catch((e) => {
       console.error(e)
     })
@@ -118,6 +119,7 @@ export class ProfilesLoadPage {
     // Revert vote
     this.restProvider.votePost(post.id, !curVote.commend).then((post: Post) => {
       console.info('Changed vote:', post)
+      this.popPost()
     }).catch((e) => {
       console.error(e)
     })
@@ -134,9 +136,15 @@ export class ProfilesLoadPage {
     // Revert vote
     this.restProvider.cancelVotePost(post.id).then((post: Post) => {
       console.info('Canceled vote:', post)
+      this.popPost()
     }).catch((e) => {
       console.error(e)
     })
+  }
+
+  popPost() {
+    this.activeIndex --;
+    this.posts.pop();
   }
 
   goBack(){

@@ -155,7 +155,7 @@ page-profiles-load {
 
   .notif {
     position: absolute;
-    height: 16vw;
+    height: 24vw;
     background: #a96ba7cc;
     width: 100%;
     bottom: 40vw;
@@ -185,5 +185,17 @@ page-profiles-load {
       background: #774576;
     }
 
+  }
+
+  .vote-img-heart {
+    width: 12vw;
+  }
+
+  .vote-img-hand {
+    width: 7.5vw;
+    -moz-transform: scale(-1, -1);
+    -o-transform: scale(-1, -1);
+    -webkit-transform: scaleX(-1, -1);
+    transform: scale(-1, -1);
   }
 }
