@@ -56,10 +56,10 @@
     <div class="toolbar">
       <div class="row change-cancel" *ngIf="isVoted()">
         <div class="col text-center">
-          <button ion-button round color="light">Change</button>
+          <button ion-button round color="light" (click)="changeVote()">Change</button>
         </div>
         <div class="col text-center">
-          <button class="cancel" ion-button round color="#774576">Cancel</button>
+          <button class="cancel" ion-button round (click)="cancelVote()">Cancel</button>
         </div>
       </div>
     </div>

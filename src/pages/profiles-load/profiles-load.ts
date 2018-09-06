@@ -92,14 +92,51 @@ export class ProfilesLoadPage {
 
   isVoted() {
     if (this.activeIndex < 0) {
-      return false;
+      return null;
     }
     const post = this.posts[this.activeIndex];
     if (!post.Votes) {
       return false;
     }
     const index = post.Votes.findIndex(v => v.user_id === DataProvider.auth.id);
-    return index > -1;
+    if (index > -1) {
+      return post.Votes[index];
+    } else {
+      return null
+    }
+  }
+
+  changeVote() {
+    const curVote = this.isVoted();
+
+    if (!curVote) { // If not voted
+      console.info('not voted!')
+      return
+    }
+    const post = this.posts[this.activeIndex];
+
+    // Revert vote
+    this.restProvider.votePost(post.id, !curVote.commend).then((post: Post) => {
+      console.info('Voted post:', post)
+    }).catch((e) => {
+      console.error(e)
+    })
+  }
+
+  cancelVote() {
+    if (!this.isVoted()) { // If not voted
+      console.info('not voted!')
+      return
+    }
+
+    const post = this.posts[this.activeIndex];
+
+    // Revert vote
+    this.restProvider.cancelVotePost(post.id).then((post: Post) => {
+      console.info('Voted post:', post)
+    }).catch((e) => {
+      console.error(e)
+    })
   }
 
   goBack(){
