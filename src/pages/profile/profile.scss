@@ -3,6 +3,10 @@ page-profile {
         background-color: #775576;
     }
 
+    .scroll-content {
+        overflow-y: hidden !important;
+    }
+
     .navbar h1{
         color: white;
         font-size: 1.2em;
