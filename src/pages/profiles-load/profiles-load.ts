@@ -31,6 +31,7 @@ export class ProfilesLoadPage {
   public posts: Array<Post> = [];
   public stackConfig: any;
   public activeIndex: number = -1;
+  public showImage: boolean = false;
 
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
@@ -90,6 +91,14 @@ export class ProfilesLoadPage {
     }).catch((e) => {
       console.error(e)
     })
+  }
+
+  voteUp(flag) {
+    this.showImage = true;
+  }
+
+  swipeEvent(e){
+    this.showImage = true;
   }
 
   isVoted() {
