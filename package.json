@@ -40,6 +40,7 @@
     "cordova-android": "7.0.0",
     "cordova-android-support-gradle-release": "^1.4.4",
     "cordova-browser": "5.0.4",
+    "cordova-ios": "4.5.5",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-document-viewer": "^0.9.10",
@@ -47,7 +48,7 @@
     "cordova-plugin-file-opener2": "^2.0.19",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-ionic-keyboard": "^2.1.2",
-    "cordova-plugin-ionic-webview": "^2.1.1",
+    "cordova-plugin-ionic-webview": "^2.1.2",
     "cordova-plugin-nativestorage": "^2.3.2",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-telerik-imagepicker": "^2.2.2",
@@ -96,7 +97,8 @@
     },
     "platforms": [
       "browser",
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
