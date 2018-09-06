@@ -58,6 +58,9 @@ export class BestPhotoPage {
     this.navCtrl.push(SettingsPage);
   }
 
+  goBack() {
+    this.navCtrl.pop();
+  }
 
   logout(){
     this.dataProvider.clearProfile();
