@@ -153,10 +153,24 @@ page-profiles-load {
     margin-left: 10vw;
   }
 
+  .direction {
+    position: absolute;
+    height: 16vw;
+    background: none;
+    width: 100%;
+    bottom: 56vw;
+    color: white;
+    font-weight: 400;
+    padding-top: 1vw;
+    z-index: 2;
+    margin: 0px !important;
+    font-size: 20px;
+  }
+
   .notif {
     position: absolute;
-    height: 24vw;
-    background: #a96ba7cc;
+    height: 16vw;
+    background: #ffffff3d;
     width: 100%;
     bottom: 40vw;
     color: white;
