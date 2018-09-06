@@ -134,7 +134,7 @@ export class RestProvider {
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/post/'+id, { commend } ,{ headers })
+      this.http.post(this.apiUrl+'/post/' + id + '/vote', { commend } ,{ headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Post);

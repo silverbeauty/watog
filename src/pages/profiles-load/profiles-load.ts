@@ -75,6 +75,19 @@ export class ProfilesLoadPage {
     const className = event.target.classList[1];
     const id = parseInt(className.substring('Post:'.length)); // Cut `Post:`
     this.activeIndex = this.activeIndex - 1;
+
+    let commend = true;
+    const direction = event.throwDirection.toString()
+    if (direction === `Symbol(LEFT)`) { // down vote
+      commend = false;
+    } else {
+      commend = true;
+    }
+    this.restProvider.votePost(id, commend).then((post: Post) => {
+      console.info('Voted post:', post)
+    }).catch((e) => {
+      console.error(e)
+    })
   }
 
   isVoted() {
