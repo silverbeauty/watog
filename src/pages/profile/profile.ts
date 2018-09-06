@@ -23,7 +23,6 @@ export class ProfilePage {
     console.log(this.auth)
   }
 
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
 

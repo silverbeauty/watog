@@ -29,6 +29,7 @@ export class ProfilesLoadPage {
   public user: User;
   public posts: Array<Post> = [];
   public stackConfig: any;
+  public activeIndex: number = -1;
 
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
@@ -56,6 +57,7 @@ export class ProfilesLoadPage {
     // Query posts here
     this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
       this.posts = posts;
+      this.activeIndex = posts.length - 1;
       console.info('Posts Fetched:', this.posts)
     });
   }
@@ -70,6 +72,21 @@ export class ProfilesLoadPage {
 
   onThrowOut(event) {
     console.info('Event:', event)
+    const className = event.target.classList[1];
+    const id = parseInt(className.substring('Post:'.length)); // Cut `Post:`
+    this.activeIndex = this.activeIndex - 1;
+  }
+
+  isVoted() {
+    if (this.activeIndex < 0) {
+      return false;
+    }
+    const post = this.posts[this.activeIndex];
+    if (!post.Votes) {
+      return false;
+    }
+    const index = post.Votes.findIndex(v => v.user_id === DataProvider.auth.id);
+    return index > -1;
   }
 
   goBack(){
