@@ -155,12 +155,15 @@ page-profiles-load {
 
   .notif {
     position: absolute;
-    height: 100px;
+    height: 16vw;
     background: #a96ba7cc;
     width: 100%;
     bottom: 40vw;
     color: white;
     font-weight: 400;
+    padding-top: 1vw;
+    box-shadow: 0 0px 7px #0000005c;
+    z-index: 2;
   }
 
   .toolbar {
@@ -169,5 +172,18 @@ page-profiles-load {
     background: white;
     width: 100%;
     bottom: 0px;
+    .change-cancel {
+      width: 100%;
+      margin: 0px !important;
+
+      button {
+        width: 80%;
+      }
+    }
+
+    .cancel {
+      background: #774576;
+    }
+
   }
 }
