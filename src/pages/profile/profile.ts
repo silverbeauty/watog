@@ -91,7 +91,8 @@ export class ProfilePage {
 
   goToBestPhoto(i){
     console.log(i)
-    this.navCtrl.push(BestPhotoPage);
+    const selected: number = i;
+    this.navCtrl.push(BestPhotoPage, { "selected": selected});
   }
 
   goToDashboard(){
