@@ -142,6 +142,17 @@ export class ProfilesLoadPage {
     })
   }
 
+  votePost( commend: boolean = true) {
+    const post = this.posts[this.activeIndex];
+    // Revert vote
+    this.restProvider.votePost(post.id, commend).then((post: Post) => {
+      console.info('Changed vote:', post)
+      this.popPost()
+    }).catch((e) => {
+      console.error(e)
+    })
+  }
+
   popPost() {
     this.activeIndex --;
     this.posts.pop();

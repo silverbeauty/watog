@@ -188,14 +188,23 @@ page-profiles-load {
   }
 
   .vote-img-heart {
-    width: 12vw;
+    width: 30vw;
   }
 
   .vote-img-hand {
-    width: 7.5vw;
+    width: 9.5vw;
     -moz-transform: scale(-1, -1);
     -o-transform: scale(-1, -1);
     -webkit-transform: scaleX(-1, -1);
     transform: scale(-1, -1);
+  }
+
+  .btn-rate {
+    background: none;
+    outline: none;
+  }
+
+  .vote-img-report {
+    width: 14vw;
   }
 }

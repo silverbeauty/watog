@@ -146,11 +146,11 @@ export class RegisterOneOfThreePage {
       this.user.cell_phone = (this.user.cell_phone.slice(0,-1))
     }
     this.user.country = this.country.name;
-    if(this.profile_selected != true){
+    /*if(this.profile_selected != true){
       this.dataProvider.saveObjUser(this.user as ObjUser);
       alert("You have to choose profile picture!");
       this.navCtrl.push(UploadProfilePhotoPage);
-    }
+    }*/
     this.restProvider.signUp(this.user as ObjUser).then((user: ObjUser) => {
       // Save Profile
       //this.dataProvider.saveProfile(auth);

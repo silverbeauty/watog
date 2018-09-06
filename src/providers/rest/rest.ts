@@ -331,12 +331,12 @@ export class RestProvider {
     })
   }
 
-  public queryUsers(name: string, offset: number = 0, limit: number = 10): Promise<Array<User>> {
+  public queryUsers(name: string, not_me: boolean = true, offset: number = 0, limit: number = 1000): Promise<Array<User>> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token
     });
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl + '/user?offset=' + offset + '&limit=' + limit +'&name=' + name, { headers })
+      this.http.get(this.apiUrl + '/user?' + (not_me ? 'not_me&' : '') + 'offset=' + offset + '&limit=' + limit +'&name=' + name, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Array<User>);
