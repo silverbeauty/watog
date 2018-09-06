@@ -27,6 +27,7 @@ export class MyApp {
   rootPage:any = LandingPage;
   @ViewChild(Nav) nav: Nav;
   showSplash = false;
+  
 
   constructor(public app: App, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public dataProvider: DataProvider, public restProvider: RestProvider) {
     platform.ready().then(() => {
