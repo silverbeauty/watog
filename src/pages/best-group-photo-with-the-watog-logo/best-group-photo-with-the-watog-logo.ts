@@ -6,6 +6,7 @@ import { SettingsPage } from '../settings/settings';
 import { ContestSubmitPage } from '../contest-submit/contest-submit';
 import { LoginPage } from '../login/login';
 import { UploadWatogLogoPage} from "../upload-watog-logo/upload-watog-logo";
+import { ParticipatePage } from "../participate/participate"
 import { DataProvider } from '../../providers/data/data';
 import {File} from "@ionic-native/file";
 import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
@@ -39,7 +40,7 @@ export class BestGroupPhotoWithTheWatogLogoPage {
   }
 
   uploadWatogLogo(){
-    this.navCtrl.push(UploadWatogLogoPage);
+    this.navCtrl.push(UploadWatogLogoPage, {from: "BestGroupPhotoWithTheWatogLogoPage"});
   }
 
 
@@ -60,7 +61,7 @@ export class BestGroupPhotoWithTheWatogLogoPage {
   }
 
   goBack(){
-    this.navCtrl.pop();
+    this.navCtrl.push(ParticipatePage);
   }
 
   logout(){
