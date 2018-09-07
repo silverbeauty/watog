@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ImageViewerController } from 'ionic-img-viewer';
 
 import { DashboardPage } from '../dashboard/dashboard';
@@ -9,7 +9,7 @@ import { VoteRandomPage } from '../vote-random/vote-random';
 import { LoginPage } from '../login/login';
 import { ContestSearchResultsPage } from '../contest-search-results/contest-search-results';
 import { ProfilesLoadPage } from '../profiles-load/profiles-load';
-
+import { ImageModalPage } from '../imge-modal/img-modal';
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
 import {User, Auth, Post} from '../../types';
@@ -38,21 +38,26 @@ export class ContestVotePage {
   public mySearch: any;
   public random: any;
   public picture_url: any;
+  public bestPicsByChat: any;
+  public isVisible: boolean = false;
   _imageViewerCtrl: ImageViewerController;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, imageViewerCtrl: ImageViewerController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, imageViewerCtrl: ImageViewerController, public modalCtrl: ModalController) {
     this._imageViewerCtrl = imageViewerCtrl;
+    const bestCat1 = this.restProvider.queryBestPost('1');
+    const bestCat2 = this.restProvider.queryBestPost('2');
+    const bestCat3 = this.restProvider.queryBestPost('3');
+    const bestCat4 = this.restProvider.queryBestPost('4');
+    const bestCat5 = this.restProvider.queryBestPost('5');
+    Promise.all([bestCat1, bestCat2, bestCat3, bestCat4, bestCat5]).then(data => {
+      console.log(data)
+      this.bestPicsByChat = data;
+    })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestVotePage');
-    Promise.all([this.restProvider.queryCategories()]).then(data => {
-      console.log(data)
-      console.log(data[0])
-      console.log(data[0][0])
-      const user = data[0][0].User;
-      this.picture_url = user.picture_profile;
-    })
+    Promise.all([this.restProvider.queryCategories()]).then(data => console.log(data))
   }
 
   goBack() {
@@ -206,5 +211,13 @@ export class ContestVotePage {
     imageViewer.present();
  
     setTimeout(() => imageViewer.dismiss(), 3000);
+  }
+
+  showImageGallery() {
+    console.log(this.bestPicsByChat);
+    this.isVisible = true;
+    let imgModal = this.modalCtrl.create(ImageModalPage, { images: this.bestPicsByChat });
+    imgModal.present();
+    setTimeout(() => imgModal.dismiss(), 8000);
   }
 }

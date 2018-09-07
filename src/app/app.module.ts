@@ -61,6 +61,7 @@ import { BestPhotoPage} from "../pages/best-photo/best-photo";
 import { ModalChangeVotePage } from '../pages/modal-change-vote/modal-change-vote';
 import {ContestSearchResultKeywordPage} from "../pages/contest-search-result-keyword/contest-search-result-keyword";
 import {ContestSearchResultUsersPage} from "../pages/contest-search-result-users/contest-search-result-users";
+import {ImageModalPage} from '../pages/imge-modal/img-modal';
 
 /*Provider*/
 import { DataProvider } from '../providers/data/data';
@@ -119,6 +120,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     ProfilesLoadPage,
     BestPhotoPage,
     ModalChangeVotePage,
+    ImageModalPage,
     HideHeaderDirective,
     ZoomPanDirective
   ],
@@ -174,7 +176,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     SelectionPage,
     ProfilesLoadPage,
     BestPhotoPage,
-    ModalChangeVotePage
+    ModalChangeVotePage,
+    ImageModalPage
   ],
   providers: [
     StatusBar,
