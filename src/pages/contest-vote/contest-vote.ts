@@ -10,7 +10,7 @@ import { ProfilesLoadPage } from '../profiles-load/profiles-load';
 
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
-import { User, Auth } from '../../types';
+import { User, Auth, Post } from '../../types';
 
 /**
  * Generated class for the ContestVotePage page.
@@ -31,11 +31,18 @@ export class ContestVotePage {
     error: null
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {}
+  public mySearch: any;
+  public random: any;
+  public searchByName: any;
+  public searchByKey: any;
+  public allSearchUser: any = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {
+    this.random = this.restProvider.queryPost("?limit=100000&random");
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestVotePage');
-    Promise.all([this.restProvider.queryCategories()]).then(data => console.log("des data",data))
   }
 
   goBack() {
@@ -55,7 +62,7 @@ export class ContestVotePage {
   }
 
   goToVoteRandom(){
-    Promise.all([this.restProvider.queryPost("?limit=100000")]).then(data => {
+    Promise.all([this.random]).then(data => {
       let allUser = []; //Needed for updates
       console.log("ma promise: ", data)
       for (let element in data){
@@ -64,7 +71,7 @@ export class ContestVotePage {
         }
       }
       console.log(allUser)
-      const randomNum = Math.floor(Math.random() * allUser.length); 
+      const randomNum = Math.floor(Math.random() * allUser.length);
       this.navCtrl.push(ProfilesLoadPage, {user: allUser[randomNum], from: 'contestUser'});
     });
     // this.navCtrl.push(VoteRandomPage);
@@ -79,15 +86,42 @@ export class ContestVotePage {
     console.info('Search:', this.data.name)
     // Set recent search
     DataProvider.searchUserName = this.data.name;
-
-    this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
-      DataProvider.searchedUsers = users;
-      DataProvider.searchUserOffset = 0;
-      // this.navCtrl.push(ContestSearchResultsPage, { users: users });
-      const randomNum = Math.floor(Math.random() * users.length); 
-      this.navCtrl.push(ProfilesLoadPage, {user: users[randomNum], from: 'contestUser'});
-    }).catch((err: any) => {
+    let uFirstname = this.data.name.split(' ')[0];
+    let uLastname = '';
+    if(this.data.name.includes(" ") && this.data.name.split(' ')[1].length > 0){
+      uLastname = this.data.name.split(' ')[1];
+    }
+    let myUsers = this.restProvider.queryUsers(uFirstname, uLastname)
+    myUsers.then((users: Array<User>) => {
+      console.log(users)
+      return users
+    }, err => {
       this.data.error = 'Failed to search, you can try again!'
+    })
+
+    //let uLastname = '';
+    myUsers.then(user => {
+      this.searchByKey = this.restProvider.searchByKey(this.data.name);
+      this.searchByName = this.restProvider.queryPost_(`?user_id=${user[0].id}`)
+      this.mySearch = Promise.all([this.searchByName,this.searchByKey,this.random]);
+
+      this.mySearch.then(data => {
+        let tab = [];
+        for(let i in data){
+          for(let element in data[i]){
+            console.log(data[i][element])
+            if(!tab.includes(data[i][element])){
+              tab.push(data[i][element])
+            }
+          }
+        }
+        console.log("my tab", tab)
+        console.log("mySearch: ", data)
+
+
+      }).catch((err: any) => {
+        this.data.error = 'Failed to search, you can try again!'
+      })
     })
   }
 
