@@ -138,20 +138,20 @@ export class ContestVotePage {
       this.data.error = 'Failed to search, you can try again!'
     })
 
-    myUsers.then(user => {
+    myUsers.then(users => {
+      console.log("my users daya: ", users)
       //const randomNum = Math.floor(Math.random() * user.length);
-      console.log("mon user:  ",user)
+      console.log("mon user:  ",users)
       this.searchByKey = this.restProvider.searchByKey(this.data.name);
-      this.searchByName = this.restProvider.queryPost_(`?user_id=${user[0].id}`)
-      this.mySearch = Promise.all([this.searchByName,this.searchByKey]);
+      this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}`)
+      const randomNum = this.restProvider.queryPost_("?random&limit=10000")
+      this.mySearch = Promise.all([this.searchByName,this.searchByKey,randomNum]);
 
       this.mySearch.then(data => {
         let tab: Array<any> = [];
         for(let i in data){
           for(let element in data[i]){
-            if(!tab.includes(data[i][element])){
-              tab.push(data[i][element])
-            }
+            tab.push(data[i][element])
           }
         }
         console.log("my tab", tab)
