@@ -65,21 +65,6 @@ export class ProfilesLoadPage {
       this.posts = params.user;
       this.activeIndex =  this.posts.length - 1;
     }
-    
-    // if(this.searchResults.length > 0) {
-    //   let allData = [];
-    //   this.searchResults.forEach(item => {
-    //     this.restProvider.queryPost_(`?user_id=${item.id}`).then((posts: Array<Post>) => {
-    //       allData.concat(posts);
-    //       this.posts = allData;
-    //       this.activeIndex =  this.posts.length - 1;
-    //       console.log(this.posts);
-    //     });
-    //   });
-    // }
-    
-
-    // Query posts here
 
   }
 
