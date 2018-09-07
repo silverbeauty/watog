@@ -120,7 +120,7 @@ export class ContestVotePage {
     // Set recent search
     DataProvider.searchUserName = this.data.name;
 
-    this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
+    this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
        // this.navCtrl.push(ContestSearchResultsPage, { users: users });
