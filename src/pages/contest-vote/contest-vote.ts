@@ -36,6 +36,7 @@ export class ContestVotePage {
   public searchByName: any;
   public searchByKey: any;
   public allSearchUser: any = [];
+  public posts: any =[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {
     this.random = this.restProvider.queryPost("?limit=100000&random");
@@ -125,7 +126,6 @@ export class ContestVotePage {
     }
     let myUsers = this.restProvider.queryUsers(uFirstname, uLastname)
     myUsers.then((users: Array<User>) => {
-      console.log(users)
       return users
     }, err => {
       this.data.error = 'Failed to search, you can try again!'
@@ -137,10 +137,9 @@ export class ContestVotePage {
       this.mySearch = Promise.all([this.searchByName,this.searchByKey,this.random]);
 
       this.mySearch.then(data => {
-        let tab: Array = [];
+        let tab: Array<any> = [];
         for(let i in data){
           for(let element in data[i]){
-            console.log(data[i][element])
             if(!tab.includes(data[i][element])){
               tab.push(data[i][element])
             }
@@ -148,7 +147,7 @@ export class ContestVotePage {
         }
         console.log("my tab", tab)
         console.log("mySearch: ", data)
-
+        this.navCtrl.push(ProfilesLoadPage, {post: tab, from: 'searchUser'});
 
       }).catch((err: any) => {
         this.data.error = 'Failed to search, you can try again!'
