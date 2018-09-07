@@ -98,14 +98,14 @@ export class ContestVotePage {
     }, err => {
       this.data.error = 'Failed to search, you can try again!'
     })
-    
+
     myUsers.then(user => {
       this.searchByKey = this.restProvider.searchByKey(this.data.name);
       this.searchByName = this.restProvider.queryPost_(`?user_id=${user[0].id}`)
       this.mySearch = Promise.all([this.searchByName,this.searchByKey,this.random]);
 
       this.mySearch.then(data => {
-        let tab = [];
+        let tab: Array = [];
         for(let i in data){
           for(let element in data[i]){
             console.log(data[i][element])
