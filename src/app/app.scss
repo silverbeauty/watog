@@ -135,6 +135,23 @@
   animation-delay: -1.0s;
 }
 
+#consentCertified {
+	position: relative;
+	top: 2px;
+}
+
+.take-picture-container {
+	height: 15vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.computer-img {
+		height: 12vh !important;
+	}
+}
+
+
 @-webkit-keyframes sk-bounce {
   0%, 100% { -webkit-transform: scale(0.0) }
   50% { -webkit-transform: scale(1.0) }

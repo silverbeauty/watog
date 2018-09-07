@@ -77,7 +77,8 @@ page-best-photo-with-the-watog-logo {
     }
 
     .document img{
-        height: 4em;
+        width: 3.5em;
+        object-fit: cover;
     }
 
     .divider{
@@ -108,5 +109,11 @@ page-best-photo-with-the-watog-logo {
     .btn-next{
         background-color: #a96ba7;
         color: white;
+    }
+
+    .click-logo {
+        align-items: center;
+        display: flex;
+        padding-left: 1em;
     }
 }

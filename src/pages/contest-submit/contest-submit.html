@@ -22,14 +22,18 @@
         <div class="row pictures" *ngIf="!state.isUploading && !image_local">
           <div class="col">
             <a href="#" (click)="TakeaPicture()">
-              <img src="../../assets/imgs/appareil.png" alt="camera">
+              <div class="take-picture-container">
+                <img class="camera-img" src="../../assets/imgs/appareil.png" alt="camera">
+              </div>              
               <p class="font-weight-light text-center">Take a Picture</p>
             </a>
           </div>
           <div class="divider"></div>
           <div class="col">
             <a href="#" (click)="navToGallery()">
-              <img src="../../assets/imgs/on_your_computer.png" alt="On your computer">
+              <div class="take-picture-container">
+                <img class="computer-img" src="../../assets/imgs/on_your_computer.png" alt="On your computer">
+              </div>              
               <p class="font-weight-light text-center">On your device</p>
             </a>
           </div>
