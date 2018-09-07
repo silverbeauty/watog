@@ -115,19 +115,28 @@ export class ContestVotePage {
     })
   }
 
-  onClickSearch() {
+  logout(){
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
+  }
+
+  onRandomClick() {
     console.info('Search:', this.data.name)
     // Set recent search
     DataProvider.searchUserName = this.data.name;
-    let uFirstname = this.data.name.split(' ')[0];
-    let uLastname = '';
-    if(this.data.name.includes(" ") && this.data.name.split(' ')[1].length > 0){
-      uLastname = this.data.name.split(' ')[1];
-    }
-    let myUsers = this.restProvider.queryUsers(uFirstname, uLastname)
-    myUsers.then((users: Array<User>) => {
-      return users
-    }, err => {
+
+    this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
+      DataProvider.searchedUsers = users;
+      DataProvider.searchUserOffset = 0;
+       // this.navCtrl.push(ContestSearchResultsPage, { users: users });
+       const randomNum = Math.floor(Math.random() * users.length);
+       console.log("users", users)
+       console.log("randomNum", randomNum)
+       this.restProvider.queryPost_(`?user_id=${users[randomNum].id}`).then((posts: Array<Post>) => {
+         this.posts = posts;
+         console.info('Posts Fetched:', this.posts)
+      });
+    }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
     })
 
