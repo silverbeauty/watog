@@ -62,7 +62,7 @@ export class ContestVotePage {
   }
 
   goToVoteRandom(){
-    Promise.all([this.random]).then(data => {
+    /*Promise.all([this.restProvider.queryPost("?limit=100000")]).then(data => {
       let allUser = []; //Needed for updates
       console.log("ma promise: ", data)
       for (let element in data){
@@ -73,8 +73,34 @@ export class ContestVotePage {
       console.log(allUser)
       const randomNum = Math.floor(Math.random() * allUser.length);
       this.navCtrl.push(ProfilesLoadPage, {user: allUser[randomNum], from: 'contestUser'});
-    });
+    });*/
     // this.navCtrl.push(VoteRandomPage);
+    this.data.name ="";
+    this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
+      DataProvider.searchedUsers = users;
+      DataProvider.searchUserOffset = 0;
+      // this.navCtrl.push(ContestSearchResultsPage, { users: users });
+      const randomNum = Math.floor(Math.random() * users.length);
+      console.log("users", users)
+      console.log("randomNum", randomNum)
+      this.restProvider.queryPost_(`?user_id=${users[randomNum].id}`).then((posts: Array<Post>) => {
+        this.posts = posts;
+        console.info('Posts Fetched:', this.posts)
+      });
+    }).catch((err: any) => {
+      this.data.error = 'Failed to search, you can try again!'
+    })
+
+    this.restProvider.queryPost_(`?keyword=${this.data.name}`).then((res: Array<Post>) => {
+      console.log("befor",this.posts)
+      this.posts = this.posts.concat(res);
+      console.log("posts", this.posts)
+      const randomNum = Math.floor(Math.random() * this.posts.length);
+      this.navCtrl.push(ProfilesLoadPage, { post: this.posts[randomNum], from: "contestUser" });
+    }).catch((e: any) => {
+      console.info(e)
+      return null;
+    })
   }
 
   logout(){

@@ -50,12 +50,14 @@ export class ProfilesLoadPage {
     }
 
     const params = this.navParams.data;
-    if(params.from == 'randomUser'){
+  /*  if(params.from == 'randomUser'){
       this.user = params.user.User;
     } else if(params.from == 'contestUser'){
-      this.user = params.user;
-    }
-
+      console.log("post", params.post.id);
+      this.posts = new Array(params.post);
+    }*/
+    this.posts = new Array(params.post);
+    console.log("post", params.post.id);
     // Query posts here
     this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
       this.posts = posts;
