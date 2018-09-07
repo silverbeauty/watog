@@ -245,7 +245,7 @@ export class RestProvider {
       this.http.get(this.apiUrl+'/post?order=vote_score&direction=DESC&limit=1&category_id='+str, { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            const post:Post = res.data;
+            const post:Post = res.data[0] as Post;
             const photo = post.picture;
             resolve(photo);
           } else {

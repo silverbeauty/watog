@@ -32,6 +32,7 @@ export class ProfilesLoadPage {
   public activeIndex: number = -1;
   public showImage: boolean = false;
   public searchResults: Array<any> = [];
+  public bestPicsByCat: Array<any>;
 
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
@@ -48,6 +49,18 @@ export class ProfilesLoadPage {
         return 800;
       }
     }
+
+    let bestCat1 = this.restProvider.queryBestPost('1');
+    let bestCat2 = this.restProvider.queryBestPost('2');
+    let bestCat3 = this.restProvider.queryBestPost('3');
+    let bestCat4 = this.restProvider.queryBestPost('4');
+    let bestCat5 = this.restProvider.queryBestPost('5');
+
+    Promise.all([bestCat1,bestCat2,bestCat3,bestCat4,bestCat5]).then(data => {
+      this.bestPicsByCat = data
+      console.log("All best photo by category : ", this.bestPicsByCat)
+    })
+
 
     const params = this.navParams.data;
     if(params.from == 'randomUser'){
@@ -196,4 +209,3 @@ export class ProfilesLoadPage {
     this.navCtrl.push(LoginPage);
   }
 }
-
