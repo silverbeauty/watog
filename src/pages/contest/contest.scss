@@ -64,19 +64,20 @@ page-contest {
 
     .icon-container {
         height: 10em;
-        width: 10em;
         display: flex;
         align-items: center;
         justify-content: center;
         .img-left {
             width: 100%;
             height: 100%;
+            object-fit: contain;
         }
 
         .img-right {
             width: 70%;
             height: 70%;
             margin-top: -25px;
+            object-fit: contain;
         }
     }
 
