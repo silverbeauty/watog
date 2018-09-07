@@ -64,7 +64,8 @@ export class ContestVotePage {
         }
       }
       console.log(allUser)
-      const randomNum = Math.floor(Math.random() * allUser.length); 
+      const randomNum = Math.floor(Math.random() * allUser.length);
+      console.log(randomNum);
       this.navCtrl.push(ProfilesLoadPage, {user: allUser[randomNum], from: 'contestUser'});
     });
     // this.navCtrl.push(VoteRandomPage);
