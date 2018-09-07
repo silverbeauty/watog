@@ -31,6 +31,10 @@ export class ContestVotePage {
     error: null
   }
   public posts: Array<Post> = [];
+  public searchByKey: any;
+  public searchByName: any;
+  public mySearch: any;
+  public random: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {}
 
@@ -102,25 +106,21 @@ export class ContestVotePage {
     // Set recent search
     DataProvider.searchUserName = this.data.name;
 
-    this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
+    let myUsers = this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
        // this.navCtrl.push(ContestSearchResultsPage, { users: users });
-       const randomNum = Math.floor(Math.random() * users.length);
-       console.log("users", users)
-       console.log("randomNum", randomNum)
-       this.restProvider.queryPost_(`?user_id=${users[randomNum].id}`).then((posts: Array<Post>) => {
-         this.posts = posts;
-         console.info('Posts Fetched:', this.posts)
-      });
+       return users
     }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
     })
 
     myUsers.then(user => {
+      //const randomNum = Math.floor(Math.random() * user.length);
+      console.log("mon user:  ",user)
       this.searchByKey = this.restProvider.searchByKey(this.data.name);
       this.searchByName = this.restProvider.queryPost_(`?user_id=${user[0].id}`)
-      this.mySearch = Promise.all([this.searchByName,this.searchByKey,this.random]);
+      this.mySearch = Promise.all([this.searchByName,this.searchByKey]);
 
       this.mySearch.then(data => {
         let tab: Array<any> = [];
