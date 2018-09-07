@@ -52,8 +52,13 @@ export class ProfilesLoadPage {
     const params = this.navParams.data;
     if(params.from == 'randomUser'){
       this.user = params.user.User;
+      this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
+        this.posts = posts;
+        this.activeIndex = posts.length - 1;
+        console.info('Posts Fetched:', this.posts)
+      });
     } else if(params.from == 'contestUser'){
-      this.user = params.user;
+      this.posts = new Array(params.post);
     } else if(params.from == 'searchUser') {
       this.posts = params.user;
       this.activeIndex =  this.posts.length - 1;
@@ -73,13 +78,7 @@ export class ProfilesLoadPage {
     
 
     // Query posts here
-    if(this.user && this.user.id) {
-      this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
-        this.posts = posts;
-        this.activeIndex = posts.length - 1;
-        console.info('Posts Fetched:', this.posts)
-      });
-    }
+
   }
 
   ionViewDidLoad() {

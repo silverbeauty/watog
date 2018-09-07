@@ -10,7 +10,7 @@ import { ProfilesLoadPage } from '../profiles-load/profiles-load';
 
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
-import { User, Auth, Post } from '../../types';
+import {User, Auth, Post} from '../../types';
 
 /**
  * Generated class for the ContestVotePage page.
@@ -30,6 +30,7 @@ export class ContestVotePage {
     name: '',
     error: null
   }
+  public posts: Array<Post> = [];
 
   public mySearch: any;
   public random: any;
@@ -118,6 +119,7 @@ export class ContestVotePage {
       }).catch((err: any) => {
         this.data.error = 'Failed to search, you can try again!'
       })
+
     })
   }
 
