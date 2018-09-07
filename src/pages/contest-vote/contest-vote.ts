@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ImageViewerController } from 'ionic-img-viewer';
+
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -35,12 +37,22 @@ export class ContestVotePage {
   public searchByName: any;
   public mySearch: any;
   public random: any;
+  public picture_url: any;
+  _imageViewerCtrl: ImageViewerController;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, imageViewerCtrl: ImageViewerController) {
+    this._imageViewerCtrl = imageViewerCtrl;
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestVotePage');
-    Promise.all([this.restProvider.queryCategories()]).then(data => console.log("des data",data))
+    Promise.all([this.restProvider.queryCategories()]).then(data => {
+      console.log(data)
+      console.log(data[0])
+      console.log(data[0][0])
+      const user = data[0][0].User;
+      this.picture_url = user.picture_profile;
+    })
   }
 
   goBack() {
@@ -186,5 +198,13 @@ export class ContestVotePage {
 
   checkFocus() {
     this.data.error = null;
+  }
+
+  presentImage(myImage) {
+    console.log(myImage)
+    const imageViewer = this._imageViewerCtrl.create(myImage);
+    imageViewer.present();
+ 
+    setTimeout(() => imageViewer.dismiss(), 3000);
   }
 }
