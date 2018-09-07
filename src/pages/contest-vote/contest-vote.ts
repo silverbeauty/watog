@@ -51,7 +51,6 @@ export class ContestVotePage {
     const bestCat4 = this.restProvider.queryBestPost('4');
     const bestCat5 = this.restProvider.queryBestPost('5');
     Promise.all([bestCat1, bestCat2, bestCat3, bestCat4, bestCat5]).then(data => {
-      console.log(data)
       this.bestPicsByChat = data;
     })
   }
@@ -215,7 +214,6 @@ export class ContestVotePage {
   }
 
   showImageGallery() {
-    console.log(this.bestPicsByChat);
     this.isVisible = true;
     let imgModal = this.modalCtrl.create(ImageModalPage, { images: this.bestPicsByChat });
     imgModal.present();

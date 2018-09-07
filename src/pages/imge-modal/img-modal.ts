@@ -19,7 +19,6 @@ export class ImageModalPage {
   public images: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(this.navParams.data)
     this.images = this.navParams.data.images;
   }
 
