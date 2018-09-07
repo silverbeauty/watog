@@ -41,9 +41,6 @@ export class ProfilePage {
     }).catch(err => {
       console.error(err)
     })
-    this.restProvider.queryBestPost('1').then((string:String)=>{
-      console.log('string',string);
-    })
   }
 
   reported(img){
