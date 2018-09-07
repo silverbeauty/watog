@@ -52,6 +52,7 @@ export class ContestVotePage {
     const bestCat5 = this.restProvider.queryBestPost('5');
     Promise.all([bestCat1, bestCat2, bestCat3, bestCat4, bestCat5]).then(data => {
       this.bestPicsByChat = data;
+      console.log("Allphoto",data);
     })
   }
 
