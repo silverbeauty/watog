@@ -235,6 +235,31 @@ export class RestProvider {
     })
   }
 
+  public queryBestPost(str: string): Promise<string>{
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl+'/post?order=vote_score&direction=DESC&limit=1&category_id='+str, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            const post:Post = res.data;
+            const photo = post.picture;
+            resolve(photo);
+          } else {
+            console.error('Failed to get best post:', res)
+            reject ('Failed to  get best post')
+          }
+        }, (err) => {
+          console.info('Failed to  get best post:', err)
+          reject(err);
+        });
+    })
+  }
+
+
   public sendProfilePhoto(file: any): Promise<resFile>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
