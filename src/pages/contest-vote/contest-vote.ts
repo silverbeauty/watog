@@ -11,6 +11,7 @@ import { ProfilesLoadPage } from '../profiles-load/profiles-load';
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
 import {User, Auth, Post} from '../../types';
+import {first} from "rxjs/operators";
 
 /**
  * Generated class for the ContestVotePage page.
@@ -70,7 +71,7 @@ export class ContestVotePage {
     });*/
     // this.navCtrl.push(VoteRandomPage);
     this.data.name ="";
-    this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
+    this.restProvider.queryUsers(this.data.name, "").then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
       // this.navCtrl.push(ContestSearchResultsPage, { users: users });
@@ -106,8 +107,13 @@ export class ContestVotePage {
     console.info('Search:', this.data.name)
     // Set recent search
     DataProvider.searchUserName = this.data.name;
-
-    this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
+    var names:string[] = this.data.name.split(' ');
+    var firstName = names[0];
+    var lastName =""
+    if(names.length != 1){
+      lastName = names[``]
+    }
+    this.restProvider.queryUsers(firstName, lastName).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
       // this.navCtrl.push(ContestSearchResultsPage, { users: users });
