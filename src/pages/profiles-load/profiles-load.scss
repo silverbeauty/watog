@@ -189,17 +189,18 @@ page-profiles-load {
         width: 14vw;
     }
     #photo1-vote-score {
-        color: black;
+        color: white;
     }
     #photo1-vote-ranking {
-        color: black;
+        color: white;
     }
     .description {
         color: black;
         padding-top: 10px;
     }
     .btn-icon {
-        width: 40px;
+        height: 40px;
+        object-fit: contain;
     }
     .posts {
         position: relative;
@@ -207,6 +208,31 @@ page-profiles-load {
     }
     .image-gallery {
         position: relative;
-        height: 65vh;
+        height: 73vh;
+    }
+
+    .action-area{
+        width: 80vw;
+        height: 110vw;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+
+        .main-actions {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 10vw;
+
+            div {
+                padding: 0.5em;
+                border-radius: 2em;
+                background-color: #a96ba7;
+                width: 5em;
+                text-align: center;
+            }
+        }
     }
 }
