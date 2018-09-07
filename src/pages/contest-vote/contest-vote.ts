@@ -41,6 +41,7 @@ export class ContestVotePage {
   public bestPicsByChat: any;
   public isVisible: boolean = false;
   _imageViewerCtrl: ImageViewerController;
+    public bestPicsByCat: Array<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, imageViewerCtrl: ImageViewerController, public modalCtrl: ModalController) {
     this._imageViewerCtrl = imageViewerCtrl;
@@ -209,7 +210,7 @@ export class ContestVotePage {
     console.log(myImage)
     const imageViewer = this._imageViewerCtrl.create(myImage);
     imageViewer.present();
- 
+
     setTimeout(() => imageViewer.dismiss(), 3000);
   }
 
