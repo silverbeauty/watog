@@ -197,8 +197,14 @@ page-profiles-load {
     .description {
         color: black;
         padding-top: 10px;
+        position: absolute;
+        left: 50%;
+        bottom: 0px;
     }
     .btn-icon {
         width: 40px;
+    }
+    .posts {
+        position: relative;
     }
 }
