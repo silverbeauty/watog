@@ -70,7 +70,7 @@ export class ContestVotePage {
     });*/
     // this.navCtrl.push(VoteRandomPage);
     this.data.name ="";
-    this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
+    this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
       // this.navCtrl.push(ContestSearchResultsPage, { users: users });
