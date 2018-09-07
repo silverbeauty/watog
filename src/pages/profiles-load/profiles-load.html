@@ -45,11 +45,18 @@
         </div>
       </div>
     </section-->
-    <section class="posts">
-      <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" (swipe)="swipeEvent($event)">
-        <div swing-card #postCard class="post_img" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts" [ngStyle]="{'background-image':'url(' + post.picture + ')'}" ></div>
+    <div class="image-gallery">
+      <section class="posts">
+        <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" (swipe)="swipeEvent($event)">
+          <div swing-card #postCard class="post_img" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts" [ngStyle]="{'background-image':'url(' + post.picture + ')'}" >
+          </div>
+        </div>      
+      </section>
+      <div class="description text-center" *ngIf="activeIndex > -1">
+        {{posts[activeIndex].description}}
       </div>
-    </section>
+    </div>
+    
     <div class="row direction text-center" *ngIf="showImage === false">
       <div class="col">
         <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon> Dislike
@@ -68,10 +75,7 @@
     </div>-->
 
 
-    <div class="toolbar container">
-      <div class="description text-center" *ngIf="activeIndex > -1">
-        {{posts[activeIndex].description}}
-      </div>
+    <div class="toolbar container">      
       <div class="row change-cancel"  *ngIf="activeIndex > -1">
         <div class="col text-center">
           <p id="photo1-vote-score">Vote Score: {{ posts[activeIndex].vote_score.toFixed(2) }}</p>

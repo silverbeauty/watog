@@ -130,10 +130,10 @@ page-profiles-load {
     }
     .direction {
         position: absolute;
-        height: 17vw;
+        height: 13vw;
         background: none;
         width: 100%;
-        bottom: 20vw;
+        bottom: 15vw;
         color: white;
         font-weight: 400;
         padding-top: 1vw;
@@ -155,7 +155,7 @@ page-profiles-load {
     }
     .toolbar {
         position: absolute;
-        height: 20vw;
+        height: 15vw;
         background: white;
         width: 100%;
         bottom: 0px;
@@ -200,5 +200,13 @@ page-profiles-load {
     }
     .btn-icon {
         width: 40px;
+    }
+    .posts {
+        position: relative;
+        height: 100%;
+    }
+    .image-gallery {
+        position: relative;
+        height: 65vh;
     }
 }

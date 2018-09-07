@@ -65,6 +65,8 @@ export class ProfilesLoadPage {
       this.activeIndex =  this.posts.length - 1;
     }
 
+    console.log(this.posts);
+
   }
 
   ionViewDidLoad() {
