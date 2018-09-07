@@ -67,11 +67,11 @@ export class ProfilesLoadPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilesLoadPage');
+/*    console.log('ionViewDidLoad ProfilesLoadPage');
     // Use default avatar
     if (this.user && !this.user.picture_profile) {
       this.user.picture_profile = 'assets/icon/Profil.png';
-    }
+    }*/
   }
 
   onThrowOut(event) {
