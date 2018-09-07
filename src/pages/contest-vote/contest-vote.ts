@@ -39,6 +39,7 @@ export class ContestVotePage {
   public random: any;
   public picture_url: any;
   _imageViewerCtrl: ImageViewerController;
+    public bestPicsByCat: Array<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, imageViewerCtrl: ImageViewerController) {
     this._imageViewerCtrl = imageViewerCtrl;
