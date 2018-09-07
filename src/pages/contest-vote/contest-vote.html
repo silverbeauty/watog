@@ -19,8 +19,7 @@
     <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
   </div>
   
-  <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + picture_url + ')'}">
-    <img class="profile-picture" [src]="picture_url" #myImage (click)="presentImage(myImage)">
+  <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + '' + ')'}" (click)="showImageGallery()" >
   </div>
   <h2>Vote For your Favorite Pictures !</h2>
   <div class="input-group">
