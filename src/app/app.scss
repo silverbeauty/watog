@@ -1,3 +1,61 @@
+.nav-custom-menu {
+	.scroll-content {
+		background-color: #efefef;
+	}
+}
+.menu-header{
+	height: 40px;
+	display: flex;
+	align-items: center;
+	background-color: #775576;
+	color: white;
+	text-transform: capitalize;
+	padding: 0 16px;
+
+	.profile_picture {
+		overflow: hidden;
+		height: 30px;
+		width: 30px;
+		border-radius: 50%;
+		margin-right: 0.5em;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+}
+.menu-list {
+	margin-top: 2rem;
+}
+
+.meun-item {
+	border: none !important;
+	background-color: #efefef;
+	.item-inner {
+		border-bottom: none !important;
+	}
+	.watog-icon {
+		width: 30px;
+		height: 30px;
+		margin-right: 20px !important;
+	}
+	.participate-icon {
+		width: 35px;
+		height: 35px;
+		margin-right: 15px !important;
+	}
+
+	.vote-icon {
+		width: 28px;
+		height: 28px;
+		margin-right: 22px !important;
+	}
+	img {
+		
+	}
+}
+
 .button {
 	font-size: 14px;
 	outline: 0 !important;

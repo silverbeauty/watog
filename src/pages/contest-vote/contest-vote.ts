@@ -32,11 +32,18 @@ export class ContestVotePage {
   }
   public posts: Array<Post> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {}
+  public mySearch: any;
+  public random: any;
+  public searchByName: any;
+  public searchByKey: any;
+  public allSearchUser: any = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {
+    this.random = this.restProvider.queryPost("?limit=100000&random");
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestVotePage');
-    Promise.all([this.restProvider.queryCategories()]).then(data => console.log("des data",data))
   }
 
   goBack() {
@@ -56,7 +63,7 @@ export class ContestVotePage {
   }
 
   goToVoteRandom(){
-    Promise.all([this.restProvider.queryPost("?limit=100000")]).then(data => {
+    Promise.all([this.random]).then(data => {
       let allUser = []; //Needed for updates
       console.log("ma promise: ", data)
       for (let element in data){
