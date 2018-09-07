@@ -49,7 +49,6 @@ export class ContestSearchResultsPage {
   public info: any = [];
   public myUsers: any;
   public keyword: any;
-  public show:boolean = true;
   Users = ContestSearchResultUsersPage;
   Keywords = ContestSearchResultKeywordPage;
 
@@ -80,19 +79,12 @@ export class ContestSearchResultsPage {
 
   public goToSearch(user){
     console.log(user)
-    this.show = false;
     this.navCtrl.push(ProfilesLoadPage, {user: user, from: 'contestUser'});
   }
 
   logout(){
     this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
-  }
-  switchTabs() {
-    this.navCtrl.parent.select(2);
-  }
-  isShow(){
-    return this.show;
   }
 }
 

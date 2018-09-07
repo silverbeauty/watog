@@ -1,4 +1,4 @@
-<ion-header #head>
+<!--<ion-header #head>
   <div class="navbar">
     <a href="#" (click)="goToDashboard()"><img src="../../assets/icon/Menu.png" alt="Menu icon"></a>
     <h1>Contest Search Result Description</h1>
@@ -21,7 +21,7 @@
     <ion-title>
       Your Search:
     </ion-title>
-  </ion-navbar>
+  </ion-navbar>-->
   <ion-list>
     <ion-item id="allKeyword" *ngFor="let post of keywords" (click)="goToSearch(post)" >
       <ion-avatar item-start>
@@ -30,4 +30,4 @@
       <p>{{post.description}}</p>
     </ion-item>
   </ion-list>
-</ion-content>
+<!--</ion-content>-->
