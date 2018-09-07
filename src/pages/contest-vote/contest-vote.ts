@@ -151,7 +151,13 @@ export class ContestVotePage {
     // Set recent search
     DataProvider.searchUserName = this.data.name;
 
-    this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
+    var names:string[] = this.data.name.split(' ');
+    var firstName = names[0];
+    var lastName =""
+    if(names.length != 1){
+      lastName = names[``]
+    }
+    this.restProvider.queryUsers(firstName, lastName).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
        // this.navCtrl.push(ContestSearchResultsPage, { users: users });
