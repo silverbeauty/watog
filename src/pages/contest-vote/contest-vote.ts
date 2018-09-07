@@ -10,7 +10,7 @@ import { ProfilesLoadPage } from '../profiles-load/profiles-load';
 
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
-import { User, Auth } from '../../types';
+import {User, Auth, Post} from '../../types';
 
 /**
  * Generated class for the ContestVotePage page.
@@ -30,6 +30,7 @@ export class ContestVotePage {
     name: '',
     error: null
   }
+  public posts: Array<Post> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {}
 
@@ -80,21 +81,27 @@ export class ContestVotePage {
     // Set recent search
     DataProvider.searchUserName = this.data.name;
 
- /*   this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
+    this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
-       this.navCtrl.push(ContestSearchResultsPage, { users: users });
-     /!* const randomNum = Math.floor(Math.random() * users.length);
-      this.navCtrl.push(ProfilesLoadPage, {user: users[randomNum], from: 'contestUser'});*!/
+       // this.navCtrl.push(ContestSearchResultsPage, { users: users });
+       const randomNum = Math.floor(Math.random() * users.length);
+       console.log("users", users)
+       console.log("randomNum", randomNum)
+       this.restProvider.queryPost_(`?user_id=${users[randomNum].id}`).then((posts: Array<Post>) => {
+         this.posts = posts;
+        console.info('Posts Fetched:', this.posts)
+      });
     }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
-    })*/
+    })
 
-    Promise.all([this.restProvider.queryUsers(this.data.name, true), this.restProvider.queryPost_(`?keyword=${this.data.name}`)]).then((res: Array<any>) => {
-      DataProvider.searchedUsers = res[0];
-      DataProvider.searchUserOffset = 0;
-      DataProvider.searchedKeyword = res[1];
-      this.navCtrl.push(ContestSearchResultsPage, { users: res[0], keyword: res[1] });
+    this.restProvider.queryPost_(`?keyword=${this.data.name}`).then((res: Array<Post>) => {
+      console.log("befor",this.posts)
+      this.posts = this.posts.concat(res);
+      console.log("posts", this.posts)
+      const randomNum = Math.floor(Math.random() * this.posts.length);
+      this.navCtrl.push(ProfilesLoadPage, { post: this.posts[randomNum], from: "contestUser" });
     }).catch((e: any) => {
       console.info(e)
       return null;

@@ -197,7 +197,7 @@ export class RestProvider {
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
     });
-
+    console.log("str", str);
     return new Promise((resolve, reject) => {
       this.http.get(this.apiUrl+'/post'+str, { headers })
         .subscribe((res: any) => {
