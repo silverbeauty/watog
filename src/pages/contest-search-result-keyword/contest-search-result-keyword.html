@@ -1,7 +1,7 @@
-<ion-header #head>
+<!--<ion-header #head>
   <div class="navbar">
     <a href="#" (click)="goToDashboard()"><img src="../../assets/icon/Menu.png" alt="Menu icon"></a>
-    <h1>Contest Search Result Users</h1>
+    <h1>Contest Search Result Description</h1>
     <div class="btn-group">
       <button type="button" class="btn btn-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src="../../assets/icon/Profil02.png" alt="profile icon">
@@ -21,9 +21,13 @@
     <ion-title>
       Your Search:
     </ion-title>
-  </ion-navbar>
-  <ion-tabs>
-    <ion-tab [root]="Users" [rootParams]="infoUser" tabTitle="Users" tabIcon="user"></ion-tab>
-    <ion-tab [root]="Keywords" [rootParams]="infoKeyword" tabTitle="Descriptions" tabIcon="chat"></ion-tab>
-  </ion-tabs>
-</ion-content>
+  </ion-navbar>-->
+  <ion-list>
+    <ion-item id="allKeyword" *ngFor="let post of keywords" (click)="goToSearch(post)" >
+      <ion-avatar item-start>
+        <img [src]="post.picture" class="avatar">
+      </ion-avatar>
+      <p>{{post.description}}</p>
+    </ion-item>
+  </ion-list>
+<!--</ion-content>-->

@@ -98,8 +98,7 @@ export class ContestVotePage {
     }, err => {
       this.data.error = 'Failed to search, you can try again!'
     })
-
-    //let uLastname = '';
+    
     myUsers.then(user => {
       this.searchByKey = this.restProvider.searchByKey(this.data.name);
       this.searchByName = this.restProvider.queryPost_(`?user_id=${user[0].id}`)
