@@ -55,14 +55,12 @@ export class ProfilesLoadPage {
       this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
         this.posts = posts;
         this.activeIndex = posts.length - 1;
-        console.info('Posts Fetched:', this.posts)
       });
     } else if(params.from == 'contestUser'){
-      this.posts = new Array(params.user);
-      console.log(this.posts);
-      this.activeIndex =  this.posts.length - 1;
+      this.posts = new Array(params.post);
+        this.activeIndex =  this.posts.length - 1;
     } else if(params.from == 'searchUser') {
-      this.posts = params.user;
+      this.posts = params.post;
       this.activeIndex =  this.posts.length - 1;
     }
 

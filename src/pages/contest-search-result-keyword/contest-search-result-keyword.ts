@@ -46,7 +46,7 @@ export class ContestSearchResultKeywordPage {
   }
 
   public goToSearch(post){
-    this.navCtrl.push(ProfilesLoadPage, {user: post, from: 'contestUser'});
+    this.navCtrl.push(ProfilesLoadPage, {post: post, from: 'contestUser'});
   }
 
   logout(){
