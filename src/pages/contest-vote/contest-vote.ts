@@ -42,17 +42,27 @@ export class ContestVotePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, imageViewerCtrl: ImageViewerController) {
     this._imageViewerCtrl = imageViewerCtrl;
+    let bestCat1 = this.restProvider.queryBestPost('1');
+    let bestCat2 = this.restProvider.queryBestPost('2');
+    let bestCat3 = this.restProvider.queryBestPost('3');
+    let bestCat4 = this.restProvider.queryBestPost('4');
+    let bestCat5 = this.restProvider.queryBestPost('5');
+
+    Promise.all([bestCat1,bestCat2,bestCat3,bestCat4,bestCat5]).then(data => {
+      this.bestPicsByCat = data
+      console.log("All best photo by category : ", this.bestPicsByCat)
+    })
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContestVotePage');
+  /*  console.log('ionViewDidLoad ContestVotePage');
     Promise.all([this.restProvider.queryCategories()]).then(data => {
       console.log(data)
       console.log(data[0])
       console.log(data[0][0])
       const user = data[0][0].User;
       this.picture_url = user.picture_profile;
-    })
+    })*/
   }
 
   goBack() {
@@ -204,7 +214,7 @@ export class ContestVotePage {
     console.log(myImage)
     const imageViewer = this._imageViewerCtrl.create(myImage);
     imageViewer.present();
- 
+
     setTimeout(() => imageViewer.dismiss(), 3000);
   }
 }
