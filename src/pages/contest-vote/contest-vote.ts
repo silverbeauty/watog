@@ -103,7 +103,7 @@ export class ContestVotePage {
     this.navCtrl.push(LoginPage);
   }
 
-  onRandomClick() {
+  onRandomSearch() {
     console.info('Search:', this.data.name)
     // Set recent search
     DataProvider.searchUserName = this.data.name;
