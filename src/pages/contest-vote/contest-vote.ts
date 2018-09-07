@@ -10,7 +10,7 @@ import { ProfilesLoadPage } from '../profiles-load/profiles-load';
 
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
-import { User, Auth, Post } from '../../types';
+import {User, Auth, Post} from '../../types';
 
 /**
  * Generated class for the ContestVotePage page.
@@ -30,6 +30,7 @@ export class ContestVotePage {
     name: '',
     error: null
   }
+  public posts: Array<Post> = [];
 
   public mySearch: any;
   public random: any;
@@ -86,41 +87,31 @@ export class ContestVotePage {
     console.info('Search:', this.data.name)
     // Set recent search
     DataProvider.searchUserName = this.data.name;
-    let uFirstname = this.data.name.split(' ')[0];
-    let uLastname = '';
-    if(this.data.name.includes(" ") && this.data.name.split(' ')[1].length > 0){
-      uLastname = this.data.name.split(' ')[1];
-    }
-    let myUsers = this.restProvider.queryUsers(uFirstname, uLastname)
-    myUsers.then((users: Array<User>) => {
-      console.log(users)
-      return users
-    }, err => {
+
+    this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
+      DataProvider.searchedUsers = users;
+      DataProvider.searchUserOffset = 0;
+       // this.navCtrl.push(ContestSearchResultsPage, { users: users });
+       const randomNum = Math.floor(Math.random() * users.length);
+       console.log("users", users)
+       console.log("randomNum", randomNum)
+       this.restProvider.queryPost_(`?user_id=${users[randomNum].id}`).then((posts: Array<Post>) => {
+         this.posts = posts;
+        console.info('Posts Fetched:', this.posts)
+      });
+    }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
     })
 
-    myUsers.then(user => {
-      this.searchByKey = this.restProvider.searchByKey(this.data.name);
-      this.searchByName = this.restProvider.queryPost_(`?user_id=${user[0].id}`)
-      this.mySearch = Promise.all([this.searchByName,this.searchByKey,this.random]);
-
-      this.mySearch.then(data => {
-        let tab: array = [];
-        for(let i in data){
-          for(let element in data[i]){
-            console.log(data[i][element])
-            if(!tab.includes(data[i][element])){
-              tab.push(data[i][element])
-            }
-          }
-        }
-        console.log("my tab", tab)
-        console.log("mySearch: ", data)
-
-
-      }).catch((err: any) => {
-        this.data.error = 'Failed to search, you can try again!'
-      })
+    this.restProvider.queryPost_(`?keyword=${this.data.name}`).then((res: Array<Post>) => {
+      console.log("befor",this.posts)
+      this.posts = this.posts.concat(res);
+      console.log("posts", this.posts)
+      const randomNum = Math.floor(Math.random() * this.posts.length);
+      this.navCtrl.push(ProfilesLoadPage, { post: this.posts[randomNum], from: "contestUser" });
+    }).catch((e: any) => {
+      console.info(e)
+      return null;
     })
   }
 
