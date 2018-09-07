@@ -4,12 +4,27 @@
      <div class="double-bounce2"></div>
    </div>
 </div>
-<ion-menu [content]="mycontent">
+<ion-menu class="nav-custom-menu" [content]="mycontent">
   <ion-content>
-    <ion-list>
-      <button class="btn-s" menuToggle (click)="goToPage('watog')" ion-button block>What is WATOG</button>
-      <button class="btn-ss" menuToggle (click)="goToPage('princ')" ion-button block>Participate</button>
-      <button class="btn-ss" menuToggle (click)="goToPage('vote')" ion-button block>Vote</button>
+    <div class="menu-header" *ngIf="user">
+      <div class="profile_picture">
+        <img [src]="user.picture_profile" />
+      </div>
+      {{ user.first_name + ' ' + user.last_name }}
+    </div>
+    <ion-list class="menu-list">
+      <ion-item menuToggle class="meun-item" (click)="goToPage('watog')">
+        <img class="watog-icon" src="assets/imgs/logo_Seul.png" item-start />
+        What is WATOG
+      </ion-item>
+      <ion-item menuToggle class="meun-item" (click)="goToPage('princ')">
+        <img class="participate-icon" src="assets/imgs/Participate.png" item-start />
+        Participate
+      </ion-item>
+      <ion-item menuToggle class="meun-item" (click)="goToPage('vote')">
+        <img class="vote-icon" src="assets/imgs/Vote.png" item-start />
+        Vote
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
