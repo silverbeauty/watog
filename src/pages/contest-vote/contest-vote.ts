@@ -200,7 +200,7 @@ export class ContestVotePage {
       this.posts = this.posts.concat(res);
       console.log("posts", this.posts)
       const randomNum = Math.floor(Math.random() * this.posts.length);
-      this.navCtrl.push(ProfilesLoadPage, { post: this.posts[randomNum], from: "contestUser" });
+      this.navCtrl.push(ProfilesLoadPage, { post: this.posts, from: "searchUser" });
     }).catch((e: any) => {
       console.info(e)
       return null;
