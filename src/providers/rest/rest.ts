@@ -107,6 +107,27 @@ export class RestProvider {
     })
   }
 
+  public searchByKey(keyword: string): Promise<Post> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl+'/post?keyword=' + keyword,{ headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data);
+          } else {
+            console.error('Failed to vote post:', res)
+            reject ('Failed to vote post')
+          }
+        }, (err) => {
+          console.info('Failed to vote post:', err)
+          reject(err);
+        });
+    })
+  }
+
   public Voted(resp: Resp, str: string): Promise<UserResp> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
@@ -197,7 +218,7 @@ export class RestProvider {
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
     });
-    console.log("str", str);
+
     return new Promise((resolve, reject) => {
       this.http.get(this.apiUrl+'/post'+str, { headers })
         .subscribe((res: any) => {
@@ -331,12 +352,16 @@ export class RestProvider {
     })
   }
 
-  public queryUsers(name: string, not_me: boolean = true, offset: number = 0, limit: number = 1000): Promise<Array<User>> {
+  public queryUsers(name: string, lastname: string = '', not_me: boolean = true, offset: number = 0, limit: number = 1000): Promise<Array<User>> {
+    let completeName = '&name=' + name +'&last_name=' + lastname;
+    if(lastname == '' || lastname == ' '){
+      completeName = '&name=' + name;
+    }
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token
     });
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl + '/user?' + (not_me ? 'not_me&' : '') + 'offset=' + offset + '&limit=' + limit +'&name=' + name, { headers })
+      this.http.get(this.apiUrl + '/user?' + (not_me ? 'not_me&' : '') + 'offset=' + offset + '&limit=' + limit + completeName , { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Array<User>);
