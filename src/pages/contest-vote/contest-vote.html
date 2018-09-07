@@ -19,7 +19,7 @@
     <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
   </div>
   <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + '' + ')'}"></div>
-  <h2>Vote For your Favorite Photos !</h2>
+  <h2>Vote For your Favorite Pictures !</h2>
   <div class="input-group">
     <div class="input-group-prepend">
       <span class="input-group-text"><img src="../../assets/icon/Groupe 2.png" alt="pseudo icon"></span>
@@ -35,10 +35,10 @@
     <button class="btn btn-search" (click)="onRandomClick()">SEARCH</button>
   </div>
   <section class="random">
-    <p>You will vote on other contestant's photos. Swipe right if you like them, left if you don't.</p>
-    <p>Your vote will be weighted by your status</p>
+    <p>You will vote for other participant's pictures. Swipe right if you like them, left if you don't.</p>
+    <p>Your vote will be weighted by your status.</p>
   </section>
   <div class="text-center">
-    <button class="btn btn-random" (click)="goToVoteRandom()">RANDOM</button>
+    <button class="btn btn-random" (click)="onSearchClick()">RANDOM</button>
   </div>
 </ion-content>

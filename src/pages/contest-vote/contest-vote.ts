@@ -97,6 +97,50 @@ export class ContestVotePage {
     })
   }
 
+  onSearchClick() {
+    console.info('Search:', this.data.name)
+    // Set recent search
+    DataProvider.searchUserName = this.data.name;
+
+    this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
+      DataProvider.searchedUsers = users;
+      DataProvider.searchUserOffset = 0;
+       // this.navCtrl.push(ContestSearchResultsPage, { users: users });
+       const randomNum = Math.floor(Math.random() * users.length);
+       console.log("users", users)
+       console.log("randomNum", randomNum)
+       this.restProvider.queryPost_(`?user_id=${users[randomNum].id}`).then((posts: Array<Post>) => {
+         this.posts = posts;
+         console.info('Posts Fetched:', this.posts)
+      });
+    }).catch((err: any) => {
+      this.data.error = 'Failed to search, you can try again!'
+    })
+
+    myUsers.then(user => {
+      this.searchByKey = this.restProvider.searchByKey(this.data.name);
+      this.searchByName = this.restProvider.queryPost_(`?user_id=${user[0].id}`)
+      this.mySearch = Promise.all([this.searchByName,this.searchByKey,this.random]);
+
+      this.mySearch.then(data => {
+        let tab: Array<any> = [];
+        for(let i in data){
+          for(let element in data[i]){
+            if(!tab.includes(data[i][element])){
+              tab.push(data[i][element])
+            }
+          }
+        }
+        console.log("my tab", tab)
+        console.log("mySearch: ", data)
+        this.navCtrl.push(ProfilesLoadPage, {post: tab, from: 'searchUser'});
+
+      }).catch((err: any) => {
+        this.data.error = 'Failed to search, you can try again!'
+      })
+    })
+  }
+
   logout(){
     this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
@@ -107,7 +151,7 @@ export class ContestVotePage {
     // Set recent search
     DataProvider.searchUserName = this.data.name;
 
-    this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
+    this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
        // this.navCtrl.push(ContestSearchResultsPage, { users: users });
