@@ -58,7 +58,9 @@ export class ProfilesLoadPage {
         console.info('Posts Fetched:', this.posts)
       });
     } else if(params.from == 'contestUser'){
-      this.posts = new Array(params.post);
+      this.posts = new Array(params.user);
+      console.log(this.posts);
+      this.activeIndex =  this.posts.length - 1;
     } else if(params.from == 'searchUser') {
       this.posts = params.user;
       this.activeIndex =  this.posts.length - 1;
