@@ -98,12 +98,7 @@ export class ContestVotePage {
     })
   }
 
-  logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
-  }
-
-  onRandomSearch() {
+  onClickSearch() {
     console.info('Search:', this.data.name)
     // Set recent search
     DataProvider.searchUserName = this.data.name;
