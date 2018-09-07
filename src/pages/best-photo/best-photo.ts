@@ -25,6 +25,7 @@ import { User, Auth } from '../../types';
 export class BestPhotoPage {
   public auth: Auth
   public selected: number;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
     this.auth = DataProvider.auth;
     this.selected = this.navParams.data.selected;

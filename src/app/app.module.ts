@@ -12,13 +12,13 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { SwingModule } from 'angular2-swing';
-
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 //import { AlertController } from 'ionic-angular';
 
-	/*Components*/
+  /*Components*/
 import { MyApp } from './app.component';
 
-	/*Pages*/
+  /*Pages*/
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-one-of-three';
@@ -72,6 +72,7 @@ import { ValidatorsModule } from '../providers/validator/validators.module';
 
 // Directives
 import { HideHeaderDirective } from '../directives/scroll-hide';
+import { ZoomPanDirective } from '../directives/photo-zoom';
 
 @NgModule({
   declarations: [
@@ -105,27 +106,29 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
   	UploadCoverPhotoPage,
   	UploadProfilePhotoPage,
     UploadWatogLogoPage,
-  	WhatIsWatogPage,
-  	SettingsPage,
-  	ChangePasswordPage,
-  	EditProfilePage,
-  	EnterTokenPage,
-  	VoteRandomPage,
-  	VoteModalPage,
-  	ModalContestPage,
-  	ModalPrinciplesPage,
+    WhatIsWatogPage,
+    SettingsPage,
+    ChangePasswordPage,
+    EditProfilePage,
+    EnterTokenPage,
+    VoteRandomPage,
+    VoteModalPage,
+    ModalContestPage,
+    ModalPrinciplesPage,
     SelectionPage,
     ProfilesLoadPage,
     BestPhotoPage,
     ModalChangeVotePage,
-    HideHeaderDirective
+    HideHeaderDirective,
+    ZoomPanDirective
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     ValidatorsModule,
-    SwingModule
+    SwingModule,
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -159,15 +162,15 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
   	UploadCoverPhotoPage,
   	UploadProfilePhotoPage,
     UploadWatogLogoPage,
-  	WhatIsWatogPage,
-  	SettingsPage,
-  	ChangePasswordPage,
-  	EditProfilePage,
-  	EnterTokenPage,
-  	VoteRandomPage,
-  	VoteModalPage,
-  	ModalContestPage,
-  	ModalPrinciplesPage,
+    WhatIsWatogPage,
+    SettingsPage,
+    ChangePasswordPage,
+    EditProfilePage,
+    EnterTokenPage,
+    VoteRandomPage,
+    VoteModalPage,
+    ModalContestPage,
+    ModalPrinciplesPage,
     SelectionPage,
     ProfilesLoadPage,
     BestPhotoPage,
