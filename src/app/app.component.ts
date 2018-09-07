@@ -27,13 +27,19 @@ export class MyApp {
   rootPage:any = LandingPage;
   @ViewChild(Nav) nav: Nav;
   showSplash = false;
+  user: any;
 
   constructor(public app: App, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public dataProvider: DataProvider, public restProvider: RestProvider) {
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+    this.dataProvider.getProfile().then((user)=> {
+      this.user = user;
+    });    
   }
+
+  
 
   goToPage(x: string) {
     if(x === 'watog') {

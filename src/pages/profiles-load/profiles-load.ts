@@ -18,7 +18,6 @@ import { DataProvider, RestProvider } from '../../providers';
 import { User, Auth, Post } from '../../types';
 import { LoginPage } from '../login/login';
 
-
 @IonicPage()
 @Component({
   selector: 'page-profiles-load',
@@ -32,6 +31,7 @@ export class ProfilesLoadPage {
   public stackConfig: any;
   public activeIndex: number = -1;
   public showImage: boolean = false;
+  public searchResults: Array<any> = [];
 
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
@@ -50,29 +50,28 @@ export class ProfilesLoadPage {
     }
 
     const params = this.navParams.data;
-  /*  if(params.from == 'randomUser'){
+    if(params.from == 'randomUser'){
       this.user = params.user.User;
       this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
         this.posts = posts;
         this.activeIndex = posts.length - 1;
-        console.info('Posts Fetched:', this.posts)
       });
     } else if(params.from == 'contestUser'){
-      console.log("post", params.post.id);
       this.posts = new Array(params.post);
-    }*/
-    this.posts = new Array(params.post);
-    console.log("post", params.post.id);
-    // Query posts here
+        this.activeIndex =  this.posts.length - 1;
+    } else if(params.from == 'searchUser') {
+      this.posts = params.post;
+      this.activeIndex =  this.posts.length - 1;
+    }
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilesLoadPage');
     // Use default avatar
-/*    if (!this.user.picture_profile) {
+    if (this.user && !this.user.picture_profile) {
       this.user.picture_profile = 'assets/icon/Profil.png';
-    }*/
+    }
   }
 
   onThrowOut(event) {
