@@ -18,7 +18,6 @@ import { DataProvider, RestProvider } from '../../providers';
 import { User, Auth, Post } from '../../types';
 import { LoginPage } from '../login/login';
 
-
 @IonicPage()
 @Component({
   selector: 'page-profiles-load',
@@ -32,6 +31,7 @@ export class ProfilesLoadPage {
   public stackConfig: any;
   public activeIndex: number = -1;
   public showImage: boolean = false;
+  public searchResults: Array<any> = [];
 
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
@@ -54,20 +54,38 @@ export class ProfilesLoadPage {
       this.user = params.user.User;
     } else if(params.from == 'contestUser'){
       this.user = params.user;
+    } else if(params.from == 'searchUser') {
+      this.posts = params.user;
+      this.activeIndex =  this.posts.length - 1;
     }
+    
+    // if(this.searchResults.length > 0) {
+    //   let allData = [];
+    //   this.searchResults.forEach(item => {
+    //     this.restProvider.queryPost_(`?user_id=${item.id}`).then((posts: Array<Post>) => {
+    //       allData.concat(posts);
+    //       this.posts = allData;
+    //       this.activeIndex =  this.posts.length - 1;
+    //       console.log(this.posts);
+    //     });
+    //   });
+    // }
+    
 
     // Query posts here
-    this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
-      this.posts = posts;
-      this.activeIndex = posts.length - 1;
-      console.info('Posts Fetched:', this.posts)
-    });
+    if(this.user && this.user.id) {
+      this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
+        this.posts = posts;
+        this.activeIndex = posts.length - 1;
+        console.info('Posts Fetched:', this.posts)
+      });
+    }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilesLoadPage');
     // Use default avatar
-    if (!this.user.picture_profile) {
+    if (this.user && !this.user.picture_profile) {
       this.user.picture_profile = 'assets/icon/Profil.png';
     }
   }
