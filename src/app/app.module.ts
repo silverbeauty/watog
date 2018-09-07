@@ -59,6 +59,8 @@ import { SelectionPage } from '../pages/selection/selection';
 import { ProfilesLoadPage } from '../pages/profiles-load/profiles-load';
 import { BestPhotoPage} from "../pages/best-photo/best-photo";
 import { ModalChangeVotePage } from '../pages/modal-change-vote/modal-change-vote';
+import {ContestSearchResultKeywordPage} from "../pages/contest-search-result-keyword/contest-search-result-keyword";
+import {ContestSearchResultUsersPage} from "../pages/contest-search-result-users/contest-search-result-users";
 
 /*Provider*/
 import { DataProvider } from '../providers/data/data';
@@ -91,6 +93,8 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
   	ContestSubmitPage,
   	ContestSubmitedPage,
   	ContestVotePage,
+    ContestSearchResultKeywordPage,
+    ContestSearchResultUsersPage,
   	FuturNearTermGoalsPage,
   	MissionOfWatogPage,
   	OrganizationPage,
@@ -140,6 +144,8 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
   	ContestPage,
   	ContestVoteSearchDetailPage,
   	ContestSearchResultsPage,
+    ContestSearchResultKeywordPage,
+    ContestSearchResultUsersPage,
   	ContestSubmitPage,
   	ContestSubmitedPage,
   	ContestVotePage,

@@ -19,7 +19,7 @@ page-contest-search-results {
     }
 
     .dropdown-menu{
-        padding: 2em;        
+        padding: 2em;
     }
 
     .dropdown-item{
@@ -63,5 +63,8 @@ page-contest-search-results {
         margin: auto;
         font-weight: 900;
         font-size: 1.7em;
+    }
+    .tabbar.show-tabbar{
+      display: flex;
     }
 }

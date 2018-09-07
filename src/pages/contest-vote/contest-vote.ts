@@ -64,7 +64,7 @@ export class ContestVotePage {
         }
       }
       console.log(allUser)
-      const randomNum = Math.floor(Math.random() * allUser.length); 
+      const randomNum = Math.floor(Math.random() * allUser.length);
       this.navCtrl.push(ProfilesLoadPage, {user: allUser[randomNum], from: 'contestUser'});
     });
     // this.navCtrl.push(VoteRandomPage);
@@ -80,14 +80,24 @@ export class ContestVotePage {
     // Set recent search
     DataProvider.searchUserName = this.data.name;
 
-    this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
+ /*   this.restProvider.queryUsers(this.data.name, true).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
-      // this.navCtrl.push(ContestSearchResultsPage, { users: users });
-      const randomNum = Math.floor(Math.random() * users.length); 
-      this.navCtrl.push(ProfilesLoadPage, {user: users[randomNum], from: 'contestUser'});
+       this.navCtrl.push(ContestSearchResultsPage, { users: users });
+     /!* const randomNum = Math.floor(Math.random() * users.length);
+      this.navCtrl.push(ProfilesLoadPage, {user: users[randomNum], from: 'contestUser'});*!/
     }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
+    })*/
+
+    Promise.all([this.restProvider.queryUsers(this.data.name, true), this.restProvider.queryPost_(`?keyword=${this.data.name}`)]).then((res: Array<any>) => {
+      DataProvider.searchedUsers = res[0];
+      DataProvider.searchUserOffset = 0;
+      DataProvider.searchedKeyword = res[1];
+      this.navCtrl.push(ContestSearchResultsPage, { users: res[0], keyword: res[1] });
+    }).catch((e: any) => {
+      console.info(e)
+      return null;
     })
   }
 
