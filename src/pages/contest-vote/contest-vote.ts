@@ -105,7 +105,7 @@ export class ContestVotePage {
       this.mySearch = Promise.all([this.searchByName,this.searchByKey,this.random]);
 
       this.mySearch.then(data => {
-        let tab = [];
+        let tab: any;
         for(let i in data){
           for(let element in data[i]){
             console.log(data[i][element])
