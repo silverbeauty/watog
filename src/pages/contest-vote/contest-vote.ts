@@ -102,7 +102,7 @@ export class ContestVotePage {
     this.navCtrl.push(LoginPage);
   }
 
-  onClickSearch() {
+  onClickSearch1() {
     console.info('Search:', this.data.name)
     // Set recent search
     DataProvider.searchUserName = this.data.name;
@@ -116,7 +116,7 @@ export class ContestVotePage {
        console.log("randomNum", randomNum)
        this.restProvider.queryPost_(`?user_id=${users[randomNum].id}`).then((posts: Array<Post>) => {
          this.posts = posts;
-        console.info('Posts Fetched:', this.posts)
+         console.info('Posts Fetched:', this.posts)
       });
     }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
