@@ -9,21 +9,18 @@ page-img-modal {
         position: relative;
         z-index: 1;
         margin: 0;
-        padding: 1.5em;
+        padding: 0;
         background-color: rgba(82, 82, 82, 0.5);
         min-height: 100vh;
         .main-inside{
             background: white;
-            border-radius: 1em;
-            height: 80vh;
+            height: calc(100vh - 50px);
         }
     }   
 
     .title{
         background: #774576;
         color: white;
-        border-top-left-radius: 1em;
-        border-top-right-radius: 1em;
         text-align: center;
         padding: 1em;
     }
@@ -33,5 +30,8 @@ page-img-modal {
         margin: 0;
         font-size: 1.4em;
         font-weight: 400;
+    }
+    img {
+        height: 100vh !important;
     }
 }

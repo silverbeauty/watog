@@ -57,7 +57,12 @@ export class ContestVotePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestVotePage');
-    Promise.all([this.restProvider.queryCategories()]).then(data => console.log(data))
+    Promise.all([this.restProvider.queryCategories()]).then(data =>{
+      console.log(data)
+      const images:any = data[0][0];
+      console.log(images)
+      this.picture_url = images.User.picture_profile;
+    })
   }
 
   goBack() {
