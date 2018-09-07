@@ -10,6 +10,9 @@ import { RestProvider } from '../../providers/rest/rest';
 import { User, Auth } from '../../types';
 import { ContestVoteSearchDetailPage } from '../contest-vote-search-detail/contest-vote-search-detail';
 import { SelectionPage } from '../selection/selection';
+import {ContestSearchResultKeywordPage} from "../contest-search-result-keyword/contest-search-result-keyword";
+import {ContestSearchResultUsersPageModule} from "../contest-search-result-users/contest-search-result-users.module";
+import {ContestSearchResultUsersPage} from "../contest-search-result-users/contest-search-result-users";
 
 /**
  * Generated class for the ContestSearchResultsPage page.
@@ -41,13 +44,20 @@ export class ContestSearchResultsPage {
   public userAlreadyVoted: any = false;
   public page: any;
   public infoUser: any = null;
+  public infoKeyword: any = null;
   public promise: any;
   public info: any = [];
   public myUsers: any;
+  public keyword: any;
+  Users = ContestSearchResultUsersPage;
+  Keywords = ContestSearchResultKeywordPage;
 
   constructor(public navCtrl: NavController, public restProvider: RestProvider, public navParams: NavParams, public dataProvider: DataProvider) {
-    const Users = this.navParams.data;
-    this.myUsers = Users.users;
+    const Params = this.navParams.data;
+    this.myUsers = Params.users;
+    this.keyword = Params.keyword;
+    this.infoUser = { users: this.myUsers }
+    this.infoKeyword = { keyword: this.keyword }
     console.log(this.myUsers)
   }
 
@@ -76,7 +86,6 @@ export class ContestSearchResultsPage {
     this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
   }
-
 }
 
 /***
