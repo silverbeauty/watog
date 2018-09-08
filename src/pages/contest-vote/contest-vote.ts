@@ -128,39 +128,45 @@ export class ContestVotePage {
     console.info('Search:', this.data.name)
     // Set recent search
     DataProvider.searchUserName = this.data.name;
+    let name = this.data.name.split(' ')[0]
+    let lastname = '';
+    if(this.data.name.includes(' ')){
+      lastname = this.data.name.split(' ')[1]
+    }
 
-    let myUsers = this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
+    this.restProvider.queryUsers(name, lastname).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
-       // this.navCtrl.push(ContestSearchResultsPage, { users: users });
-       return users
+
+      if(users.length != 0){
+        console.log("my users daya: ", users)
+        //const randomNum = Math.floor(Math.random() * user.length);
+        console.log("mon user:  ",users)
+        this.searchByKey = this.restProvider.searchByKey(this.data.name);
+        this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`)
+        const randomNum = this.restProvider.queryPost_("?random&limit=10000")
+        this.mySearch = Promise.all([this.searchByName,this.searchByKey,randomNum]);
+
+        this.mySearch.then(data => {
+          let tab: Array<any> = [];
+          for(let i in data){
+            for(let element in data[i]){
+              tab.push(data[i][element])
+            }
+          }
+          console.log("my tab", tab)
+          console.log("mySearch: ", data)
+          this.navCtrl.push(ProfilesLoadPage, {post: tab.reverse(), from: 'searchUser'});
+        }).catch((err: any) => {
+          this.data.error = 'Failed to search, you can try again!'
+        })
+
+      }
+      else{
+          this.data.error = 'Failed to search, you can try again!'
+      }
     }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
-    })
-
-    myUsers.then(users => {
-      console.log("my users daya: ", users)
-      //const randomNum = Math.floor(Math.random() * user.length);
-      console.log("mon user:  ",users)
-      this.searchByKey = this.restProvider.searchByKey(this.data.name);
-      this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}`)
-      const randomNum = this.restProvider.queryPost_("?random&limit=10000")
-      this.mySearch = Promise.all([this.searchByName,this.searchByKey,randomNum]);
-
-      this.mySearch.then(data => {
-        let tab: Array<any> = [];
-        for(let i in data){
-          for(let element in data[i]){
-            tab.push(data[i][element])
-          }
-        }
-        console.log("my tab", tab)
-        console.log("mySearch: ", data)
-        this.navCtrl.push(ProfilesLoadPage, {post: tab, from: 'searchUser'});
-
-      }).catch((err: any) => {
-        this.data.error = 'Failed to search, you can try again!'
-      })
     })
   }
 
