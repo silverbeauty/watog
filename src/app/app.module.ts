@@ -9,7 +9,6 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera } from '@ionic-native/camera';
 import { FileOpener } from '@ionic-native/file-opener';
 import { DocumentViewer } from '@ionic-native/document-viewer';
-import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { SwingModule } from 'angular2-swing';
@@ -195,8 +194,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     Camera,
     FileOpener,
     File,
-    DocumentViewer,
-    PhotoViewer
+    DocumentViewer
   ]
 })
 export class AppModule {}
