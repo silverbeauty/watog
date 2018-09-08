@@ -34,6 +34,8 @@ export class ProfilesLoadPage {
   public searchResults: Array<any> = [];
   public bestPicsByCat: Array<any>;
 
+  public isPressed: boolean = false;
+
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
@@ -197,5 +199,23 @@ export class ProfilesLoadPage {
   logout(){
     this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
+  }
+
+  pressed() {
+    console.log('pressed');
+  }
+
+  active() {
+    console.log('active');
+  }
+
+  onPress(event) {
+    // event.preventDefault();
+    this.isPressed = true;    
+  }
+
+  onCancelPress(event) {
+    // event.preventDefault();
+    this.isPressed = false;
   }
 }
