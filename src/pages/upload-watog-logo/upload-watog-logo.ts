@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { File } from '@ionic-native/file';
-import { PhotoViewer } from '@ionic-native/photo-viewer';
-
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { CameraProvider } from '../../providers/camera/camera';
 import { resFile} from "../../types";
@@ -29,7 +26,7 @@ export class UploadWatogLogoPage {
   public image_url: any;
   public page_link: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public restProvider: RestProvider, private photoViewer: PhotoViewer, private file: File) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cam : CameraProvider, public restProvider: RestProvider) {
     this.image_base64 = "assets/imgs/appareil.png";
     this.image_choose = "assets/imgs/on_your_computer.png";
     this.page_link = this.navParams.data.from;
@@ -74,22 +71,11 @@ export class UploadWatogLogoPage {
     }, err => {
     });
   }
-
   goBack(){
     if(this.page_link == "BestPhotoWithTheWatogLogoPage"){
       this.navCtrl.push(BestPhotoWithTheWatogLogoPage, {image_url: this.image_url });
     }else{
       this.navCtrl.push(BestGroupPhotoWithTheWatogLogoPage, {image_url: this.image_url });
     }
-  }
-
-  readLocalImage() {
-    var options = {
-      share: true, 
-      closeButton: false,
-      copyToReference: true
-    };
-    const filePath = this.file.applicationDirectory + 'www/assets/imgs/logo.png'
-    this.photoViewer.show(filePath, 'Logo', options);
   }
 }
