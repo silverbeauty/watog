@@ -127,31 +127,6 @@ page-profiles-load {
             width: 80%;
         }
     }
-    .action-area{
-        width: 80vw;
-        height: 110vw;
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.4);
-        z-index: 100;
-        display: flex;
-        align-items: center;
-
-        .main-actions {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            margin-top: 10vw;
-
-            div {
-                padding: 0.5em;
-                border-radius: 2em;
-                background-color: #a96ba7;
-                width: 5em;
-                text-align: center;
-            }
-        }
-    }
-
 }
 /**
 

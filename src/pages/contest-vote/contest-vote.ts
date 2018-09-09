@@ -37,6 +37,7 @@ export class ContestVotePage {
   public searchByName: any;
   public mySearch: any;
   public random: any;
+  public randomNum: any;
   public picture_url: any;
   public bestPicsByChat: any;
   public isVisible: boolean = false;
@@ -82,48 +83,6 @@ export class ContestVotePage {
     this.navCtrl.push(SettingsPage);
   }
 
-  goToVoteRandom(){
-    /*Promise.all([this.restProvider.queryPost("?limit=100000")]).then(data => {
-      let allUser = []; //Needed for updates
-      console.log("ma promise: ", data)
-      for (let element in data){
-        for(let all in data[element]){
-          allUser.push(data[element][all]);
-        }
-      }
-      console.log(allUser)
-      const randomNum = Math.floor(Math.random() * allUser.length);
-      this.navCtrl.push(ProfilesLoadPage, {user: allUser[randomNum], from: 'contestUser'});
-    });*/
-    // this.navCtrl.push(VoteRandomPage);
-    this.data.name ="";
-    this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
-      DataProvider.searchedUsers = users;
-      DataProvider.searchUserOffset = 0;
-      // this.navCtrl.push(ContestSearchResultsPage, { users: users });
-      const randomNum = Math.floor(Math.random() * users.length);
-      console.log("users", users)
-      console.log("randomNum", randomNum)
-      this.restProvider.queryPost_(`?user_id=${users[randomNum].id}`).then((posts: Array<Post>) => {
-        this.posts = posts;
-        console.info('Posts Fetched:', this.posts)
-      });
-    }).catch((err: any) => {
-      this.data.error = 'Failed to search, you can try again!'
-    })
-
-    this.restProvider.queryPost_(`?keyword=${this.data.name}`).then((res: Array<Post>) => {
-      console.log("befor",this.posts)
-      this.posts = this.posts.concat(res);
-      console.log("posts", this.posts)
-      const randomNum = Math.floor(Math.random() * this.posts.length);
-      this.navCtrl.push(ProfilesLoadPage, { post: this.posts[randomNum], from: "contestUser" });
-    }).catch((e: any) => {
-      console.info(e)
-      return null;
-    })
-  }
-
   onSearchClick() {
     console.info('Search:', this.data.name)
     // Set recent search
@@ -142,58 +101,68 @@ export class ContestVotePage {
         console.log("my users daya: ", users)
         //const randomNum = Math.floor(Math.random() * user.length);
         console.log("mon user:  ",users)
+
+        this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
         this.searchByKey = this.restProvider.searchByKey(this.data.name);
-        this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`)
-        const randomNum = this.restProvider.queryPost_("?random&limit=10000")
-        this.mySearch = Promise.all([this.searchByName,this.searchByKey,randomNum]);
-
-        this.mySearch.then(data => {
-          let tab: Array<any> = [];
-          console.log("voici data", data)
-          let dataLength = 0;
-          for(let n in data){
-            dataLength += data[n].length
-          }
-          console.log("voici data length: ", dataLength)
-          dataLength = dataLength - 1
-          for(let i in data){
-            for(let element in data[i]){
-              tab.push(data[i][element])
-              data[i][element].htmlId = dataLength;
-              console.log("tab no reverse",data[i][element])
-              dataLength --;
-            }
-          }
-          console.log("tab no reverse",tab)
-          let myTab = tab.reverse();
-          console.log("my tab", myTab)
-          console.log("mySearch: ", data)
-          this.navCtrl.push(ProfilesLoadPage, {post: myTab, from: 'searchUser'});
-        }).catch((err: any) => {
-          this.data.error = 'Failed to search, you can try again!'
-        })
-
+        this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
+        this.searchCallBack();
       }
       else{
           this.data.error = 'Failed to search, you can try again!'
+          this.searchCallBack(false)
       }
     }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
     })
+
+  }
+
+  onRandomClick() {
+    this.searchCallBack(false,true)
+  }
+
+  searchCallBack(active = true, random= false){
+      if(active){
+        this.mySearch = Promise.all([this.searchByName,this.searchByKey,this.randomNum]);
+      }
+      else if(random){
+        this.mySearch = Promise.all([this.randomNum]);
+        console.log("RANDOM")
+      }
+      else{
+        this.mySearch = Promise.all([this.searchByKey,this.randomNum]);
+      }
+
+      this.mySearch.then(data => {
+        let tab: Array<any> = [];
+        console.log("voici data", data)
+        let dataLength = 0;
+        for(let n in data){
+          dataLength += data[n].length;
+        }
+        console.log("voici data length: ", dataLength);
+        dataLength = dataLength - 1
+        for(let i in data){
+          for(let element in data[i]){
+            tab.push(data[i][element])
+            data[i][element].htmlId = dataLength;
+            console.log("tab no reverse",data[i][element])
+            dataLength --;
+          }
+        }
+        console.log("tab no reverse",tab)
+        let myTab = tab.reverse();
+        console.log("my tab", myTab)
+        console.log("mySearch: ", data)
+        this.navCtrl.push(ProfilesLoadPage, {post: myTab, from: 'searchUser'});
+      }).catch((err: any) => {
+        this.data.error = 'Failed to search, you can try again!'
+      })
   }
 
   logout(){
     this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
-  }
-
-  onRandomClick() {
-      const randomNum = this.restProvider.queryPost_("?random&limit=10000")
-      randomNum.then(data => {
-        this.posts = data;
-        console.log("mon random: ", this.posts)
-        this.navCtrl.push(ProfilesLoadPage, {post: data, from: 'searchUser'});
-      })
   }
 
   checkFocus() {

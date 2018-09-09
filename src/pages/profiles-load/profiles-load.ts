@@ -74,18 +74,15 @@ export class ProfilesLoadPage {
   }
 
   ionViewDidLoad() {
-/*    console.log('ionViewDidLoad ProfilesLoadPage');
-    // Use default avatar
-    if (this.user && !this.user.picture_profile) {
-      this.user.picture_profile = 'assets/icon/Profil.png';
-    }*/
-    const html = document.querySelector('.stack').lastChild.id;
+    console.log("ma swingCards : ", this.swingCards)
+    var html = document.querySelector('.stack').lastChild.id;
     if(typeof(html) === 'string'){
       this.visibleElement = html;
       this.currentPost = parseInt(html);
       console.log("mon post", this.currentPost)
       console.log("mon element", this.visibleElement)
       this.onInit = false;
+
     }
   }
 
@@ -150,7 +147,8 @@ export class ProfilesLoadPage {
 
     // Revert vote
     this.restProvider.votePost(post.id, !curVote.commend).then((post: Post) => {
-      const html = document.querySelector('.stack').lastChild.id;
+      console.log("ma swingCards 2 : ", this.swingCards)
+      var html = document.querySelector('.stack').lastChild.id;
       if(typeof(html) === 'string'){
         this.visibleElement = html;
         this.currentPost = parseInt(html);
@@ -158,6 +156,7 @@ export class ProfilesLoadPage {
         console.log("mon element", this.visibleElement)
         this.onInit = false;
       }
+
       console.info('Changed vote:', post)
       this.popPost()
     }).catch((e) => {
@@ -194,9 +193,10 @@ export class ProfilesLoadPage {
   }
 
   popPost() {
-    this.currentPost --;
-    this.activeIndex --;
-    if (this.currentPost < 0) {
+    if (this.currentPost > 0) {
+      this.currentPost --;
+    }
+    else{
       this.goBack();
       return;
     }
@@ -243,3 +243,8 @@ export class ProfilesLoadPage {
     this.isPressed = false;
   }
 }
+/***
+
+
+
+***/
