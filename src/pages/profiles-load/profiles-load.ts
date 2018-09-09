@@ -33,8 +33,10 @@ export class ProfilesLoadPage {
   public showImage: boolean = false;
   public searchResults: Array<any> = [];
   public bestPicsByCat: Array<any>;
-
+  public visibleElement: any;
+  public currentPost: number = 0;
   public isPressed: boolean = false;
+  public onInit : boolean = true;
 
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
@@ -67,7 +69,7 @@ export class ProfilesLoadPage {
       this.activeIndex =  this.posts.length - 1;
     }
 
-    console.log(this.posts);
+    console.log("les post",this.posts);
 
   }
 
@@ -77,6 +79,14 @@ export class ProfilesLoadPage {
     if (this.user && !this.user.picture_profile) {
       this.user.picture_profile = 'assets/icon/Profil.png';
     }*/
+    const html = document.querySelector('.stack').lastChild.id;
+    if(typeof(html) === 'string'){
+      this.visibleElement = html;
+      this.currentPost = parseInt(html);
+      console.log("mon post", this.currentPost)
+      console.log("mon element", this.visibleElement)
+      this.onInit = false;
+    }
   }
 
   onThrowOut(event) {
@@ -95,9 +105,14 @@ export class ProfilesLoadPage {
     this.restProvider.votePost(id, commend).then((post: Post) => {
       console.info('Voted post:', post)
       this.popPost()
-    }).catch((e) => {
-      console.error(e)
+    }).catch(err => {
+      console.log("My err: ",err)
     })
+  }
+
+  htmlId(){
+    console.log("mon post courrant", this.currentPost)
+    return this.currentPost;
   }
 
   voteUp(flag) {
@@ -109,10 +124,10 @@ export class ProfilesLoadPage {
   }
 
   isVoted() {
-    if (this.activeIndex < 0) {
+    if (this.currentPost < 0) {
       return null;
     }
-    const post = this.posts[this.activeIndex];
+    const post = this.posts[this.currentPost];
     if (!post.Votes) {
       return false;
     }
@@ -131,10 +146,18 @@ export class ProfilesLoadPage {
       console.info('not voted!')
       return
     }
-    const post = this.posts[this.activeIndex];
+    const post = this.posts[this.currentPost];
 
     // Revert vote
     this.restProvider.votePost(post.id, !curVote.commend).then((post: Post) => {
+      const html = document.querySelector('.stack').lastChild.id;
+      if(typeof(html) === 'string'){
+        this.visibleElement = html;
+        this.currentPost = parseInt(html);
+        console.log("mon post", this.currentPost)
+        console.log("mon element", this.visibleElement)
+        this.onInit = false;
+      }
       console.info('Changed vote:', post)
       this.popPost()
     }).catch((e) => {
@@ -148,7 +171,7 @@ export class ProfilesLoadPage {
       return
     }
 
-    const post = this.posts[this.activeIndex];
+    const post = this.posts[this.currentPost];
 
     // Revert vote
     this.restProvider.cancelVotePost(post.id).then((post: Post) => {
@@ -160,7 +183,7 @@ export class ProfilesLoadPage {
   }
 
   votePost( commend: boolean = true) {
-    const post = this.posts[this.activeIndex];
+    const post = this.posts[this.currentPost];
     // Revert vote
     this.restProvider.votePost(post.id, commend).then((post: Post) => {
       console.info('Changed vote:', post)
@@ -171,8 +194,9 @@ export class ProfilesLoadPage {
   }
 
   popPost() {
+    this.currentPost --;
     this.activeIndex --;
-    if (this.activeIndex < 0) {
+    if (this.currentPost < 0) {
       this.goBack();
       return;
     }
@@ -211,7 +235,7 @@ export class ProfilesLoadPage {
 
   onPress(event) {
     // event.preventDefault();
-    this.isPressed = true;    
+    this.isPressed = true;
   }
 
   onCancelPress(event) {

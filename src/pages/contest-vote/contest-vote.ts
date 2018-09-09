@@ -149,14 +149,26 @@ export class ContestVotePage {
 
         this.mySearch.then(data => {
           let tab: Array<any> = [];
+          console.log("voici data", data)
+          let dataLength = 0;
+          for(let n in data){
+            dataLength += data[n].length
+          }
+          console.log("voici data length: ", dataLength)
+          dataLength = dataLength - 1
           for(let i in data){
             for(let element in data[i]){
               tab.push(data[i][element])
+              data[i][element].htmlId = dataLength;
+              console.log("tab no reverse",data[i][element])
+              dataLength --;
             }
           }
-          console.log("my tab", tab)
+          console.log("tab no reverse",tab)
+          let myTab = tab.reverse();
+          console.log("my tab", myTab)
           console.log("mySearch: ", data)
-          this.navCtrl.push(ProfilesLoadPage, {post: tab.reverse(), from: 'searchUser'});
+          this.navCtrl.push(ProfilesLoadPage, {post: myTab, from: 'searchUser'});
         }).catch((err: any) => {
           this.data.error = 'Failed to search, you can try again!'
         })
@@ -176,41 +188,12 @@ export class ContestVotePage {
   }
 
   onRandomClick() {
-    console.info('Search:', this.data.name)
-    // Set recent search
-    DataProvider.searchUserName = this.data.name;
-
-    var names:string[] = this.data.name.split(' ');
-    var firstName = names[0];
-    var lastName =""
-    if(names.length != 1){
-      lastName = names[``]
-    }
-    this.restProvider.queryUsers(firstName, lastName).then((users: Array<User>) => {
-      DataProvider.searchedUsers = users;
-      DataProvider.searchUserOffset = 0;
-       // this.navCtrl.push(ContestSearchResultsPage, { users: users });
-       const randomNum = Math.floor(Math.random() * users.length);
-       console.log("users", users)
-       console.log("randomNum", randomNum)
-       this.restProvider.queryPost_(`?user_id=${users[randomNum].id}`).then((posts: Array<Post>) => {
-         this.posts = posts;
-         console.info('Posts Fetched:', this.posts)
-      });
-    }).catch((err: any) => {
-      this.data.error = 'Failed to search, you can try again!'
-    })
-
-    this.restProvider.queryPost_(`?keyword=${this.data.name}`).then((res: Array<Post>) => {
-      console.log("befor",this.posts)
-      this.posts = this.posts.concat(res);
-      console.log("posts", this.posts)
-      const randomNum = Math.floor(Math.random() * this.posts.length);
-      this.navCtrl.push(ProfilesLoadPage, { post: this.posts, from: "searchUser" });
-    }).catch((e: any) => {
-      console.info(e)
-      return null;
-    })
+      const randomNum = this.restProvider.queryPost_("?random&limit=10000")
+      randomNum.then(data => {
+        this.posts = data;
+        console.log("mon random: ", this.posts)
+        this.navCtrl.push(ProfilesLoadPage, {post: data, from: 'searchUser'});
+      })
   }
 
   checkFocus() {
@@ -232,3 +215,228 @@ export class ContestVotePage {
     setTimeout(() => imgModal.dismiss(), 8000);
   }
 }
+/***
+import { Component, EventEmitter, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import {
+  Direction,
+  StackConfig,
+  Stack,
+  Card,
+  ThrowEvent,
+  DragEvent,
+  SwingStackComponent,
+  SwingCardComponent } from 'angular2-swing';
+
+import { DashboardPage } from '../dashboard/dashboard';
+import { SettingsPage } from '../settings/settings';
+import { ProfilePage } from '../profile/profile';
+import { DataProvider, RestProvider } from '../../providers';
+import { User, Auth, Post } from '../../types';
+import { LoginPage } from '../login/login';
+
+@IonicPage()
+@Component({
+  selector: 'page-profiles-load',
+  templateUrl: 'profiles-load.html',
+})
+
+export class ProfilesLoadPage {
+
+  public user: User;
+  public posts: Array<Post> = [];
+  public stackConfig: any;
+  public activeIndex: number = -1;
+  public showImage: boolean = false;
+  public searchResults: Array<any> = [];
+  public bestPicsByCat: Array<any>;
+
+  public isPressed: boolean = false;
+
+  @ViewChild('postStacks') swingStack: SwingStackComponent;
+  @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
+    this.stackConfig = {
+      // Default setting only allows UP, LEFT and RIGHT so you can override this as below
+      allowedDirections: [Direction.LEFT, Direction.RIGHT],
+      // Now need to send offsetX and offsetY with element instead of just offset
+      throwOutConfidence: (offsetX, offsetY, element) => {
+        return Math.min(Math.max(Math.abs(offsetX) / (element.offsetWidth / 1.7), Math.abs(offsetY) / (element.offsetHeight / 2)), 1);
+      },
+      throwOutDistance: (d) => {
+        return 800;
+      }
+    }
+
+    const params = this.navParams.data;
+    if(params.from == 'randomUser'){
+      this.user = params.user.User;
+      this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
+        this.posts = posts;
+        this.activeIndex = posts.length - 1;
+      });
+    } else if(params.from == 'contestUser'){
+      this.posts = new Array(params.post);
+        this.activeIndex =  this.posts.length - 1;
+    } else if(params.from == 'searchUser') {
+      this.posts = params.post;
+      this.activeIndex =  this.posts.length - 1;
+    }
+
+    console.log(this.posts);
+
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ProfilesLoadPage');
+    // Use default avatar
+    if (this.user && !this.user.picture_profile) {
+      this.user.picture_profile = 'assets/icon/Profil.png';
+    }
+  }
+
+  onThrowOut(event) {
+    console.info('Event:', event)
+    const className = event.target.classList[1];
+    const id = parseInt(className.substring('Post:'.length)); // Cut `Post:`
+    this.activeIndex = this.activeIndex - 1;
+
+    let commend = true;
+    const direction = event.throwDirection.toString()
+    if (direction === `Symbol(LEFT)`) { // down vote
+      commend = false;
+    } else {
+      commend = true;
+    }
+    this.restProvider.votePost(id, commend).then((post: Post) => {
+      console.info('Voted post:', post)
+      this.popPost()
+    }).catch((e) => {
+      console.error(e)
+    })
+  }
+
+  voteUp(flag) {
+    this.showImage = true;
+  }
+
+  swipeEvent(e){
+    this.showImage = true;
+  }
+
+  isVoted() {
+    if (this.activeIndex < 0) {
+      return null;
+    }
+    const post = this.posts[this.activeIndex];
+    if (!post.Votes) {
+      return false;
+    }
+    const index = post.Votes.findIndex(v => v.user_id === DataProvider.auth.id);
+    if (index > -1) {
+      return post.Votes[index];
+    } else {
+      return null
+    }
+  }
+
+  changeVote() {
+    const curVote = this.isVoted();
+
+    if (!curVote) { // If not voted
+      console.info('not voted!')
+      return
+    }
+    const post = this.posts[this.activeIndex];
+
+    // Revert vote
+    this.restProvider.votePost(post.id, !curVote.commend).then((post: Post) => {
+      console.info('Changed vote:', post)
+      this.popPost()
+    }).catch((e) => {
+      console.error(e)
+    })
+  }
+
+  cancelVote() {
+    if (!this.isVoted()) { // If not voted
+      console.info('not voted!')
+      return
+    }
+
+    const post = this.posts[this.activeIndex];
+
+    // Revert vote
+    this.restProvider.cancelVotePost(post.id).then((post: Post) => {
+      console.info('Canceled vote:', post)
+      this.popPost()
+    }).catch((e) => {
+      console.error(e)
+    })
+  }
+
+  votePost( commend: boolean = true) {
+    const post = this.posts[this.activeIndex];
+    // Revert vote
+    this.restProvider.votePost(post.id, commend).then((post: Post) => {
+      console.info('Changed vote:', post)
+      this.popPost()
+    }).catch((e) => {
+      console.error(e)
+    })
+  }
+
+  popPost() {
+    this.activeIndex --;
+    if (this.activeIndex < 0) {
+      this.goBack();
+      return;
+    }
+    this.posts.pop();
+
+  }
+
+  goBack(){
+    this.navCtrl.pop();
+  }
+
+  goToProfilePage() {
+    this.navCtrl.push(ProfilePage);
+  }
+
+  goToDashboard(){
+    this.navCtrl.push(DashboardPage);
+  }
+
+  goToSettingsPage(){
+    this.navCtrl.push(SettingsPage);
+  }
+
+  logout(){
+    this.dataProvider.clearProfile();
+    this.navCtrl.push(LoginPage);
+  }
+
+  pressed() {
+    console.log('pressed');
+  }
+
+  active() {
+    console.log('active');
+  }
+
+  onPress(event) {
+    // event.preventDefault();
+    this.isPressed = true;
+  }
+
+  onCancelPress(event) {
+    // event.preventDefault();
+    this.isPressed = false;
+  }
+}
+
+
+***/
