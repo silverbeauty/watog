@@ -41,7 +41,7 @@ export class ProfilesLoadPage {
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public presentAlert: AlertController, public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     this.stackConfig = {
       // Default setting only allows UP, LEFT and RIGHT so you can override this as below
       allowedDirections: [Direction.LEFT, Direction.RIGHT],
@@ -176,7 +176,9 @@ export class ProfilesLoadPage {
     this.restProvider.reportPost(post.id, 'scam', 'test').then((report) => {
       console.info('Post reported:', report)
       this.presentAlert('', 'Thanks for your report!');
-    });
+    }).catch(() => {
+      alert("You are already reported this picture.")
+    })
   }
 
   votePost( commend: boolean = true) {
