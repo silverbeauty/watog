@@ -221,6 +221,25 @@ page-profiles-load {
       color: black;
       text-align: center;
     }
+
+    .direction {
+        position: absolute;
+        width: 100%;
+        bottom: 12vh;
+        margin: 0px !important;
+        height: 45px;
+        img {
+            width: 40px;
+        }
+        .btn-icon-left {
+            position: absolute;
+            left: 50px;
+        }
+        .btn-icon-right {
+            position: absolute;
+            right: 50px;
+        }
+    }
 }
 /**
 

@@ -129,7 +129,7 @@
                     <span class="input-group-text"><img src="assets/icon/Location.png" alt="password logo"></span>
                   </div>
                   <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" formControlName="country" [(ngModel)]="country">
-                    <ion-option *ngFor="let item of countries" [value]="item.name">{{item.name}}</ion-option>
+                    <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
                   </ion-select>
                 </div>
                 <div class="input-group">
@@ -151,14 +151,7 @@
                       <span class="input-group-text"><img src="assets/icon/Hopital.png" alt="password logo"></span>
                   </div>
                   <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="user.hospital" formControlName="hospital" (ionFocus)="checkFocus()"></ion-input>
-              </div>
-              <div class="validation-errors">
-                <ng-container *ngFor="let validation of validation_messages.hospital">
-                  <div class="error-message" *ngIf="validations_form.get('hospital').hasError(validation.type) && (validations_form.get('hospital').dirty || validations_form.get('hospital').touched)">
-                    {{ validation.message }}
-                  </div>
-                </ng-container>
-              </div>
+              </div>              
               <div class="input-group">
                 <a href="#" (click)="openMenu()" id="qualificationInput">
                   <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Select qualification" [(ngModel)]="user.job" formControlName="job" contenteditable="false"></ion-input>
@@ -215,11 +208,11 @@
             </button>
           </div>
           <div class="modal-body p-4">
-                <ion-input type="text" class="form-control font-weight-light" [(ngModel)]="user.other_speciality" name="other_speciality" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-input type="text" class="form-control font-weight-light" [(ngModel)]="other_speciality" name="other_speciality" [ngModelOptions]="{standalone: true}"></ion-input>
           </div>
           <div class="modal-footer">
               <button ion-button round color="light" class="text-uppercase mr-3" data-dismiss="modal" (click)="cancelOtherSpeciality()">Cancel</button>
-              <button ion-button round color="teal" class="text-uppercase" (click)="saveOtherSpeciality()">OK</button>
+              <button ion-button round color="teal" class="text-uppercase" data-dismiss="modal" (click)="saveOtherSpeciality()">OK</button>
           </div>
         </div>
       </div>

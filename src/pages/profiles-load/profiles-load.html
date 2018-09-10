@@ -74,7 +74,14 @@
             </div>
           </div>
         </section>
-
+        <div class="row direction">
+          <div class="col">
+            <img src="/assets/imgs/dislike_btn.png" class="btn-icon-left">
+          </div>
+          <div class="col">
+            <img src="/assets/imgs/like_btn.png" class="btn-icon-right">
+          </div>
+        </div>
         <div class="row change-cancel">
           <div class="col text-center">
             <p id="photo1-vote-score">Vote Score: {{ posts[currentPost].vote_score.toFixed(2) }}</p>
@@ -116,20 +123,4 @@
         </div>
       </div>
     </div>
-    <!-- <div class="row direction text-center" *ngIf="showImage === false">
-      <div class="col">
-        <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon> Dislike
-      </div>
-      <div class="col">
-        Like <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
-      </div>
-    </div> -->
-   <!-- <div class="row direction text-center" *ngIf="showImage === true">
-      <div class="col">
-        <img src="/assets/imgs/dislike_btn.png" class="btn-icon">
-      </div>
-      <div class="col">
-        <img src="/assets/imgs/like_btn.png" class="btn-icon">
-      </div>
-    </div> -->
 </ion-content>
