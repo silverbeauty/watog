@@ -6,6 +6,13 @@ page-upload-watog-logo {
     color: white;
   }
 
+  .container {
+    height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .navbar a i{
     color: white;
     font-size: 4em;

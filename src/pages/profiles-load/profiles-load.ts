@@ -74,32 +74,20 @@ export class ProfilesLoadPage {
   }
 
   ionViewDidLoad() {
-<<<<<<< HEAD
-    console.log("ma swingCards : ", this.swingCards)
-    var html = document.querySelector('.stack').lastChild.id;
+    console.log('ionViewDidLoad ProfilesLoadPage');
+    // Use default avatar
+    if (this.user && !this.user.picture_profile) {
+      this.user.picture_profile = 'assets/icon/Profil.png';
+    }
+    const lastChild: any = document.querySelector('.stack').lastChild;
+    const html = lastChild.id;
     if(typeof(html) === 'string'){
       this.visibleElement = html;
       this.currentPost = parseInt(html);
       console.log("mon post", this.currentPost)
       console.log("mon element", this.visibleElement)
       this.onInit = false;
-
     }
-=======
-/*    console.log('ionViewDidLoad ProfilesLoadPage');
-    // Use default avatar
-    if (this.user && !this.user.picture_profile) {
-      this.user.picture_profile = 'assets/icon/Profil.png';
-    }*/
-    // const html = document.querySelector('.stack').lastChild.id;
-    // if(typeof(html) === 'string'){
-    //   this.visibleElement = html;
-    //   this.currentPost = parseInt(html);
-    //   console.log("mon post", this.currentPost)
-    //   console.log("mon element", this.visibleElement)
-    //   this.onInit = false;
-    // }
->>>>>>> origin/master
   }
 
   onThrowOut(event) {
@@ -163,9 +151,8 @@ export class ProfilesLoadPage {
 
     // Revert vote
     this.restProvider.votePost(post.id, !curVote.commend).then((post: Post) => {
-<<<<<<< HEAD
-      console.log("ma swingCards 2 : ", this.swingCards)
-      var html = document.querySelector('.stack').lastChild.id;
+      const lastChild: any = document.querySelector('.stack').lastChild;
+      const html = lastChild.id;
       if(typeof(html) === 'string'){
         this.visibleElement = html;
         this.currentPost = parseInt(html);
@@ -173,17 +160,6 @@ export class ProfilesLoadPage {
         console.log("mon element", this.visibleElement)
         this.onInit = false;
       }
-
-=======
-      // const html = document.querySelector('.stack').lastChild.id;
-      // if(typeof(html) === 'string'){
-      //   this.visibleElement = html;
-      //   this.currentPost = parseInt(html);
-      //   console.log("mon post", this.currentPost)
-      //   console.log("mon element", this.visibleElement)
-      //   this.onInit = false;
-      // }
->>>>>>> origin/master
       console.info('Changed vote:', post)
       // this.popPost()
     }).catch((e) => {
