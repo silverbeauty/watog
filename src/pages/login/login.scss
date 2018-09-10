@@ -5,6 +5,10 @@ page-login {
         color: white;
     }
 
+    .scroll-content {
+        padding: 16px 0 !important;
+    }
+
     .navbar a i{
         color: white;
         font-size: 4em;
@@ -67,5 +71,25 @@ page-login {
 
     .alert-text {
         color: #dab9e2;
+    }
+    .footer-logo {
+        background-color: rgb(219, 228, 231);
+        padding: 15px;
+        p {
+            font-size: 12px;
+            text-align: center;
+            color: #000000cf;
+        }
+        .logo-image-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .labor-img {
+                width: 100px;
+            }
+            .baby-img {
+                width: 140px;
+            }
+        }
     }
 }

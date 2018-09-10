@@ -63,7 +63,7 @@ export class ProfilesLoadPage {
       });
     } else if(params.from == 'contestUser'){
       this.posts = new Array(params.post);
-        this.activeIndex =  this.posts.length - 1;
+      this.activeIndex = this.posts.length - 1;
     } else if(params.from == 'searchUser') {
       this.posts = params.post;
       this.activeIndex =  this.posts.length - 1;
@@ -129,7 +129,7 @@ export class ProfilesLoadPage {
     
     setTimeout(() => {
       justLiked.style.display = "none";
-      }, 1000);
+    }, 1000);
   }
 
   showJustdisliked(){
@@ -138,7 +138,7 @@ export class ProfilesLoadPage {
     
     setTimeout(() => {
       justDisliked.style.display = "none";
-      }, 1000);
+    }, 1000);
   }
 
   htmlId(){
@@ -282,8 +282,3 @@ export class ProfilesLoadPage {
     this.isPressed = false;
   }
 }
-/***
-
-
-
-***/
