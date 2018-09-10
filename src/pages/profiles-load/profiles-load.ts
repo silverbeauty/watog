@@ -93,15 +93,16 @@ export class ProfilesLoadPage {
     }
   }
 
-  ionViewDidLoad() {
-    console.log("ma swingCards : ", this.swingCards)
-    var el = document.querySelector('.stack').lastChild as HTMLElement
+  loadInfo(){
+    console.log("ma swingCards : ", this.swingCards);
+    var el = document.querySelector('.stack').lastChild as HTMLElement;
     var html = el.getAttributeNode("id").value;
     this.visibleElement = html;
     this.currentPost = parseInt(html);
-    console.log("mon post", this.currentPost)
-    console.log("mon element", this.visibleElement)
-    this.onInit = false;
+  }
+
+  ionViewDidLoad() {
+    this.loadInfo();
   }
 
   presentAlert(title, subTitle) {
@@ -127,16 +128,8 @@ export class ProfilesLoadPage {
       commend = true;
     }
     this.restProvider.votePost(id, commend).then((post: Post) => {
-      console.log("ma swingCards 2 : ", this.swingCards)
-      var el = document.querySelector('.stack').lastChild as HTMLElement
-      var html = el.getAttributeNode("id").value;
-      if(typeof(html) === 'string'){
-        this.visibleElement = html;
-        this.currentPost = parseInt(html);
-        console.log("mon post", this.currentPost)
-        console.log("mon element", this.visibleElement)
-        this.onInit = false;
-      }
+      console.log("mon post", this.currentPost)
+      console.log("mon element", this.visibleElement)
       console.info('Voted post:', post)
       this.popPost()
     }).catch(err => {
@@ -233,6 +226,7 @@ export class ProfilesLoadPage {
 
   popPost() {
     if (this.currentPost > 0) {
+      this.loadInfo();
       this.currentPost --;
     }
     else{

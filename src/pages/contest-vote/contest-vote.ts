@@ -93,7 +93,7 @@ export class ContestVotePage {
       lastname = this.data.name.split(' ')[1]
     }
 
-    this.restProvider.queryUsers(name, lastname).then((users: Array<User>) => {
+    this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
 
@@ -103,7 +103,9 @@ export class ContestVotePage {
         console.log("mon user:  ",users)
 
         this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
-        this.searchByKey = this.restProvider.searchByKey(this.data.name);
+        this.searchByKey = this.restProvider.searchByKey(this.data.name).then(data => {
+          return data.reverse();
+        });
         this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
         this.searchCallBack();
       }
@@ -111,7 +113,7 @@ export class ContestVotePage {
           this.searchCallBack(false)
       }
     }).catch((err: any) => {
-      this.data.error = 'Failed to search, you can try again!'
+      this.searchCallBack(false,true)
     })
 
   }
@@ -125,8 +127,8 @@ export class ContestVotePage {
         this.mySearch = Promise.all([this.searchByName,this.searchByKey,this.randomNum]);
         console.log("COMPLETE SEARCH")
       }
-      else if(random && !active){
-        this.mySearch = Promise.all([this.randomNum]);
+      else if(!active && random){
+        this.mySearch = Promise.all([this.randomNum, this.searchByKey]);
         console.log("RANDOM")
       }
       else{
