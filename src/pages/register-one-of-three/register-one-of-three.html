@@ -151,14 +151,7 @@
                       <span class="input-group-text"><img src="assets/icon/Hopital.png" alt="password logo"></span>
                   </div>
                   <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="user.hospital" formControlName="hospital" (ionFocus)="checkFocus()"></ion-input>
-              </div>
-              <div class="validation-errors">
-                <ng-container *ngFor="let validation of validation_messages.hospital">
-                  <div class="error-message" *ngIf="validations_form.get('hospital').hasError(validation.type) && (validations_form.get('hospital').dirty || validations_form.get('hospital').touched)">
-                    {{ validation.message }}
-                  </div>
-                </ng-container>
-              </div>
+              </div>              
               <div class="input-group">
                 <a href="#" (click)="openMenu()" id="qualificationInput">
                   <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Select qualification" [(ngModel)]="user.job" formControlName="job" contenteditable="false"></ion-input>

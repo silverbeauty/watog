@@ -41,7 +41,7 @@ export class ProfilesLoadPage {
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
-  constructor(public presentAlert: AlertController, public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     this.stackConfig = {
       // Default setting only allows UP, LEFT and RIGHT so you can override this as below
       allowedDirections: [Direction.LEFT, Direction.RIGHT],
