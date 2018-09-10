@@ -58,35 +58,39 @@ export class ProfilesLoadPage {
     if(params.from == 'randomUser'){
       this.user = params.user.User;
       this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
-        const catDic = {}
-        let isLoadedTwo = false;
-        posts.forEach(p => {
-          if (!catDic[p.category_id]) {
-            catDic[p.category_id] = 0;
-          }
-          catDic[p.category_id] ++;
-          if (catDic[p.category_id] >= 2) {
-            isLoadedTwo = true;
-          }
-        })
-
-        if (isLoadedTwo) {
-          this.presentAlert('', 'Multiple photos loaded for the same category!');
-        }
-
         this.posts = posts;
         this.activeIndex = posts.length - 1;
+        this.checkCategory()
       });
     } else if(params.from == 'contestUser'){
       this.posts = new Array(params.post);
         this.activeIndex =  this.posts.length - 1;
+        this.checkCategory()
     } else if(params.from == 'searchUser') {
       this.posts = params.post;
       this.activeIndex =  this.posts.length - 1;
+      this.checkCategory()
     }
-
     console.log("les post",this.posts);
+  }
 
+  checkCategory() {
+    const { posts } = this
+    const catDic = {}
+    let isLoadedTwo = false;
+    posts.forEach(p => {
+      if (!catDic[p.category_id]) {
+        catDic[p.category_id] = 0;
+      }
+      catDic[p.category_id] ++;
+      if (catDic[p.category_id] >= 2) {
+        isLoadedTwo = true;
+      }
+    })
+
+    if (isLoadedTwo) {
+      this.presentAlert('', 'Multiple photos loaded for the same category!');
+    }
   }
 
   ionViewDidLoad() {
@@ -205,6 +209,7 @@ export class ProfilesLoadPage {
   }
 
   onClickReport() {
+    // TODO: should report here - belows are just the test codes
     if (this.currentPost < 0) {
       return null;
     }
