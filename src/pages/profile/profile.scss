@@ -193,4 +193,22 @@ page-profile {
     .btn-like {
         background: none;
     }
+
+    .modal.show .modal-dialog{
+      margin: auto!important;
+    }
+
+    .modal-title {
+      color: black;
+    }
+
+    .modal-header span{
+      color: black;
+      width: 20px;
+    }
+
+    .modal-body p{
+      color: black;
+      text-align: center;
+    }
 }
