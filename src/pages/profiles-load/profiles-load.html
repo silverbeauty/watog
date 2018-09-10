@@ -63,6 +63,7 @@
           </div>
         </div>
       </div>
+      <button ion-button color="danger" (click)="onClickReport()">Report</button>
       <div class="toolbar">
         <div id="profile-picture" [ngStyle]="{'background-image':'url(' + posts[currentPost].User.picture_profile + ')'}"></div>
         <div class="username">{{ posts[currentPost].User.user_name }}</div>

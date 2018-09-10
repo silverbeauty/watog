@@ -179,6 +179,17 @@ export class ProfilesLoadPage {
     })
   }
 
+  onClickReport() {
+    if (this.currentPost < 0) {
+      return null;
+    }
+
+    const post = this.posts[this.currentPost];
+    this.restProvider.reportPost(post.id, 'scam', 'test').then((report) => {
+      console.info('Post reported:', report)
+    });
+  }
+
   votePost( commend: boolean = true) {
     const post = this.posts[this.currentPost];
     // Revert vote
