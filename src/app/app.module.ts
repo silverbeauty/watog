@@ -18,6 +18,7 @@ import { FileChooser } from '@ionic-native/file-chooser';
 import { FilePath } from '@ionic-native/file-path';
 import { FileTransferObject } from '@ionic-native/file-transfer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { EmailComposer } from '@ionic-native/email-composer';
 
   /*Components*/
 import { MyApp } from './app.component';
@@ -209,7 +210,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     FilePath,
     FileTransferObject,
     InAppBrowser,
-    PhotoViewer
+    PhotoViewer,
+    EmailComposer
   ]
 })
 export class AppModule {}
