@@ -518,6 +518,28 @@ export class RestProvider {
         });
     })
   }
+
+  public countPost(query: string): Promise<number> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl+'/post/count' + query, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data.count);
+          } else {
+            console.error('Failed to count posts:', res)
+            reject ('Failed to count posts:')
+          }
+        }, (err) => {
+          console.info('Failed to count posts:', err)
+          reject(err);
+        });
+    })
+  }
 }
 
 /**

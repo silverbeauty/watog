@@ -60,42 +60,20 @@ export class ProfilesLoadPage {
       this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
         this.posts = posts;
         this.activeIndex = posts.length - 1;
-        this.checkCategory()
       });
     } else if(params.from == 'contestUser'){
       this.posts = new Array(params.post);
         this.activeIndex =  this.posts.length - 1;
-        this.checkCategory()
     } else if(params.from == 'searchUser') {
       this.posts = params.post;
       this.activeIndex =  this.posts.length - 1;
-      this.checkCategory()
     }
     console.log("les post",this.posts);
   }
 
-  checkCategory() {
-    const { posts } = this
-    const catDic = {}
-    let isLoadedTwo = false;
-    posts.forEach(p => {
-      if (!catDic[p.category_id]) {
-        catDic[p.category_id] = 0;
-      }
-      catDic[p.category_id] ++;
-      if (catDic[p.category_id] >= 2) {
-        isLoadedTwo = true;
-      }
-    })
-
-    if (isLoadedTwo) {
-      this.presentAlert('', 'Loading multiple pictures for one single category is not allowed.!');
-    }
-  }
-
   loadInfo(){
-    console.log("ma swingCards : ", this.swingCards);
-    var el = document.querySelector('.stack').lastChild as HTMLElement;
+    console.log("ma swingCards : ", this.swingCards)
+    var el = document.querySelector('.stack').lastChild as HTMLElement
     var html = el.getAttributeNode("id").value;
     this.visibleElement = html;
     this.currentPost = parseInt(html);
@@ -103,15 +81,6 @@ export class ProfilesLoadPage {
 
   ionViewDidLoad() {
     this.loadInfo();
-  }
-
-  presentAlert(title, subTitle) {
-    let alert = this.alertCtrl.create({
-      title,
-      subTitle,
-      buttons: ['Dismiss']
-    });
-    alert.present();
   }
 
   onThrowOut(event) {
