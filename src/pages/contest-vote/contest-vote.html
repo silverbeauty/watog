@@ -18,9 +18,7 @@
   <div>
     <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
   </div>
-  
-  <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + picture_url + ')'}">
-    <img class="profile-picture" [src]="picture_url" #myImage (click)="presentImage(myImage)">
+  <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + picture_url + ')'}" (click)="showImageGallery()">
   </div>
   <h2>Vote For your Favorite Pictures !</h2>
   <div class="input-group">
@@ -39,7 +37,7 @@
   </div>
   <section class="random">
     <p>You will vote for other participant's pictures. Swipe right if you like them, left if you don't.</p>
-    <p>Your vote will be weighted by your status.</p>
+    <p class="weight-bold">A vote pondertation is applied depending on your status / profile.</p>
   </section>
   <div class="text-center">
     <button class="btn btn-random" (click)="onRandomClick()">RANDOM</button>

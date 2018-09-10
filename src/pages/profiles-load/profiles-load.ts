@@ -33,6 +33,10 @@ export class ProfilesLoadPage {
   public showImage: boolean = false;
   public searchResults: Array<any> = [];
   public bestPicsByCat: Array<any>;
+  public visibleElement: any;
+  public currentPost: number = 0;
+  public isPressed: boolean = false;
+  public onInit : boolean = true;
 
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
@@ -65,14 +69,19 @@ export class ProfilesLoadPage {
       this.activeIndex =  this.posts.length - 1;
     }
 
+    console.log("les post",this.posts);
+
   }
 
   ionViewDidLoad() {
-/*    console.log('ionViewDidLoad ProfilesLoadPage');
-    // Use default avatar
-    if (this.user && !this.user.picture_profile) {
-      this.user.picture_profile = 'assets/icon/Profil.png';
-    }*/
+    console.log("ma swingCards : ", this.swingCards)
+    var el = document.querySelector('.stack').lastChild as HTMLElement
+    var html = el.getAttributeNode("id").value;
+    this.visibleElement = html;
+    this.currentPost = parseInt(html);
+    console.log("mon post", this.currentPost)
+    console.log("mon element", this.visibleElement)
+    this.onInit = false;
   }
 
   onThrowOut(event) {
@@ -89,11 +98,26 @@ export class ProfilesLoadPage {
       commend = true;
     }
     this.restProvider.votePost(id, commend).then((post: Post) => {
+      console.log("ma swingCards 2 : ", this.swingCards)
+      var el = document.querySelector('.stack').lastChild as HTMLElement
+      var html = el.getAttributeNode("id").value;
+      if(typeof(html) === 'string'){
+        this.visibleElement = html;
+        this.currentPost = parseInt(html);
+        console.log("mon post", this.currentPost)
+        console.log("mon element", this.visibleElement)
+        this.onInit = false;
+      }
       console.info('Voted post:', post)
       this.popPost()
-    }).catch((e) => {
-      console.error(e)
+    }).catch(err => {
+      console.log("My err: ",err)
     })
+  }
+
+  htmlId(){
+    console.log("mon post courrant", this.currentPost)
+    return this.currentPost;
   }
 
   voteUp(flag) {
@@ -105,10 +129,10 @@ export class ProfilesLoadPage {
   }
 
   isVoted() {
-    if (this.activeIndex < 0) {
+    if (this.currentPost < 0) {
       return null;
     }
-    const post = this.posts[this.activeIndex];
+    const post = this.posts[this.currentPost];
     if (!post.Votes) {
       return false;
     }
@@ -127,12 +151,12 @@ export class ProfilesLoadPage {
       console.info('not voted!')
       return
     }
-    const post = this.posts[this.activeIndex];
+    const post = this.posts[this.currentPost];
 
     // Revert vote
     this.restProvider.votePost(post.id, !curVote.commend).then((post: Post) => {
       console.info('Changed vote:', post)
-      this.popPost()
+      // this.popPost()
     }).catch((e) => {
       console.error(e)
     })
@@ -144,7 +168,7 @@ export class ProfilesLoadPage {
       return
     }
 
-    const post = this.posts[this.activeIndex];
+    const post = this.posts[this.currentPost];
 
     // Revert vote
     this.restProvider.cancelVotePost(post.id).then((post: Post) => {
@@ -156,7 +180,7 @@ export class ProfilesLoadPage {
   }
 
   votePost( commend: boolean = true) {
-    const post = this.posts[this.activeIndex];
+    const post = this.posts[this.currentPost];
     // Revert vote
     this.restProvider.votePost(post.id, commend).then((post: Post) => {
       console.info('Changed vote:', post)
@@ -167,8 +191,10 @@ export class ProfilesLoadPage {
   }
 
   popPost() {
-    this.activeIndex --;
-    if (this.activeIndex < 0) {
+    if (this.currentPost > 0) {
+      this.currentPost --;
+    }
+    else{
       this.goBack();
       return;
     }
@@ -196,4 +222,27 @@ export class ProfilesLoadPage {
     this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
   }
+
+  pressed() {
+    console.log('pressed');
+  }
+
+  active() {
+    console.log('active');
+  }
+
+  onPress(event) {
+    // event.preventDefault();
+    this.isPressed = true;
+  }
+
+  onCancelPress(event) {
+    // event.preventDefault();
+    this.isPressed = false;
+  }
 }
+/***
+
+
+
+***/

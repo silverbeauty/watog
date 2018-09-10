@@ -11,6 +11,10 @@ import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-view
 import {File} from "@ionic-native/file";
 import {UploadWatogLogoPage} from "../upload-watog-logo/upload-watog-logo";
 
+import { FileChooser } from '@ionic-native/file-chooser';
+import { FileOpener } from '@ionic-native/file-opener';
+import { FilePath } from '@ionic-native/file-path';
+
 /**
  * Generated class for the BestPhotoWithTheWatogLogoPage page.
  *
@@ -27,7 +31,7 @@ export class BestPhotoWithTheWatogLogoPage {
   public passParam: any;
   public watog_logo_image: string = "assets/imgs/WATOG-quadri_logo_seul.png";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider , private document: DocumentViewer, private file: File) {
+  constructor(private fileChooser: FileChooser, private fileOpener: FileOpener, private filePath: FilePath, public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider , private document: DocumentViewer, private file: File) {
     this.passParam = this.navParams.data;
     if(this.passParam.image_url){
       this.watog_logo_image = this.passParam.image_url;
@@ -40,6 +44,19 @@ export class BestPhotoWithTheWatogLogoPage {
 
   uploadWatogLogo(){
     this.navCtrl.push(UploadWatogLogoPage, {from: "BestPhotoWithTheWatogLogoPage"});
+    // this.fileChooser.open().then(file => {
+    //   this.filePath.resolveNativePath(file).then(resolvedFilePath => {
+    //     this.fileOpener.open(resolvedFilePath + 'www/assets/imgs/WATOG-quadri_logo_seul.png', 'image/png').then(file => {
+    //       alert("It worked!")
+    //     }).catch(err => {
+    //       alert(JSON.stringify(err));
+    //     });
+    //   }).catch(err => {
+    //     alert(JSON.stringify(err));
+    //   });
+    // }).catch(err => {
+    //   alert(JSON.stringify(err));
+    // });
   }
 
   goToDashboard(){

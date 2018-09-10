@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="size-back">
       <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
     </div>
     <!--section class="profile-info">
@@ -45,40 +45,47 @@
         </div>
       </div>
     </section-->
-    <section class="posts">
-      <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" (swipe)="swipeEvent($event)">
-        <div swing-card #postCard class="post_img" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts" [ngStyle]="{'background-image':'url(' + post.picture + ')'}" ></div>
+    <div class="my_screen">
+      <div class="image-gallery">
+        <section class="posts">
+          <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" (swipe)="swipeEvent($event)">
+            <div [id]="post.htmlId" (press)="onPress($event)" swing-card #postCard class="post_img" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts" [ngStyle]="{'background-image':'url(' + post.picture + ')'}" >
+            </div>
+          </div>
+        </section>
+
+        <div class="row change-cancel">
+          <div class="col text-center">
+            <p id="photo1-vote-score">Vote Score: {{ posts[currentPost].vote_score.toFixed(2) }}</p>
+          </div>
+          <div class="col text-center">
+            <p id="photo1-vote-ranking">Vote Ranking: {{ posts[currentPost].rank }}</p>
+          </div>
+        </div>
       </div>
-    </section>
-    <div class="row direction text-center" *ngIf="showImage === false">
+      <div class="toolbar">
+        <div id="profile-picture" [ngStyle]="{'background-image':'url(' + posts[currentPost].User.picture_profile + ')'}"></div>
+        <div class="username">{{ posts[currentPost].User.user_name }}</div>
+        <div class="description">
+          {{posts[currentPost].description}}
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row direction text-center" *ngIf="showImage === false">
       <div class="col">
         <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon> Dislike
       </div>
       <div class="col">
         Like <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
       </div>
-    </div>
-<!--    <div class="row direction text-center" *ngIf="showImage === true">
+    </div> -->
+   <!-- <div class="row direction text-center" *ngIf="showImage === true">
       <div class="col">
         <img src="/assets/imgs/dislike_btn.png" class="btn-icon">
       </div>
       <div class="col">
         <img src="/assets/imgs/like_btn.png" class="btn-icon">
       </div>
-    </div>-->
-
-
-    <div class="toolbar container">
-      <div class="description text-center" *ngIf="activeIndex > -1">
-        {{posts[activeIndex].description}}
-      </div>
-      <div class="row change-cancel"  *ngIf="activeIndex > -1">
-        <div class="col text-center">
-          <p id="photo1-vote-score">Vote Score: {{ posts[activeIndex].vote_score.toFixed(2) }}</p>
-        </div>
-        <div class="col text-center">
-          <p id="photo1-vote-ranking">Vote Ranking: {{ posts[activeIndex].rank }}</p>
-        </div>
-      </div>
-    </div>
+    </div> -->
 </ion-content>

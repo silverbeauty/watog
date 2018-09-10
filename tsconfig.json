@@ -5,6 +5,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
+      "es2016",
+      "DOM.Iterable",
+      "DOM",
+      "dom.iterable",
       "dom",
       "es2015",
       "es7"

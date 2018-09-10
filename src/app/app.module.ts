@@ -9,11 +9,15 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera } from '@ionic-native/camera';
 import { FileOpener } from '@ionic-native/file-opener';
 import { DocumentViewer } from '@ionic-native/document-viewer';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { SwingModule } from 'angular2-swing';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
-//import { AlertController } from 'ionic-angular';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { FilePath } from '@ionic-native/file-path';
+import { FileTransferObject } from '@ionic-native/file-transfer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
   /*Components*/
 import { MyApp } from './app.component';
@@ -61,6 +65,7 @@ import { BestPhotoPage} from "../pages/best-photo/best-photo";
 import { ModalChangeVotePage } from '../pages/modal-change-vote/modal-change-vote';
 import {ContestSearchResultKeywordPage} from "../pages/contest-search-result-keyword/contest-search-result-keyword";
 import {ContestSearchResultUsersPage} from "../pages/contest-search-result-users/contest-search-result-users";
+import {ImageModalPage} from '../pages/imge-modal/img-modal';
 
 /*Provider*/
 import { DataProvider } from '../providers/data/data';
@@ -119,6 +124,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     ProfilesLoadPage,
     BestPhotoPage,
     ModalChangeVotePage,
+    ImageModalPage,
     HideHeaderDirective,
     ZoomPanDirective
   ],
@@ -174,7 +180,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     SelectionPage,
     ProfilesLoadPage,
     BestPhotoPage,
-    ModalChangeVotePage
+    ModalChangeVotePage,
+    ImageModalPage
   ],
   providers: [
     StatusBar,
@@ -191,7 +198,12 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     Camera,
     FileOpener,
     File,
-    DocumentViewer
+    DocumentViewer,
+    FileChooser,
+    FilePath,
+    FileTransferObject,
+    InAppBrowser,
+    PhotoViewer
   ]
 })
 export class AppModule {}
