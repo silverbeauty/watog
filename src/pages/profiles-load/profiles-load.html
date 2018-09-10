@@ -59,6 +59,11 @@
             <p id="photo1-vote-score">Vote Score: {{ posts[currentPost].vote_score.toFixed(2) }}</p>
           </div>
           <div class="col text-center">
+            <button class="report-button" (click)="onClickReport()">
+              <img src="assets/imgs/ContenuIndesirable.png" alt="profile icon">
+            </button>
+          </div>
+          <div class="col text-center">
             <p id="photo1-vote-ranking">Vote Ranking: {{ posts[currentPost].rank }}</p>
           </div>
         </div>
