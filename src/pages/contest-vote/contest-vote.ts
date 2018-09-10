@@ -87,13 +87,8 @@ export class ContestVotePage {
     console.info('Search:', this.data.name)
     // Set recent search
     DataProvider.searchUserName = this.data.name;
-    let name = this.data.name.split(' ')[0]
-    let lastname = '';
-    if(this.data.name.includes(' ')){
-      lastname = this.data.name.split(' ')[1]
-    }
 
-    this.restProvider.queryUsers(name, lastname).then((users: Array<User>) => {
+    this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
 
