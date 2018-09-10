@@ -41,7 +41,7 @@ export class ProfilesLoadPage {
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public presentAlert: AlertController, public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     this.stackConfig = {
       // Default setting only allows UP, LEFT and RIGHT so you can override this as below
       allowedDirections: [Direction.LEFT, Direction.RIGHT],
@@ -175,7 +175,12 @@ export class ProfilesLoadPage {
     const post = this.posts[this.currentPost];
     this.restProvider.reportPost(post.id, 'scam', 'test').then((report) => {
       console.info('Post reported:', report)
-      this.presentAlert('', 'Thanks for your report!');
+      let alert = this.alertCtrl.create({
+        title: '',
+        subTitle: ' Thanks for your report!',
+        buttons: ['OK']
+      });
+      alert.present();
     });
   }
 
