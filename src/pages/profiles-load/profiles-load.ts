@@ -1,5 +1,5 @@
-import { Component, EventEmitter, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, EventEmitter, ViewChild, ViewChildren, QueryList,  } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import {
   Direction,
@@ -41,7 +41,7 @@ export class ProfilesLoadPage {
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     this.stackConfig = {
       // Default setting only allows UP, LEFT and RIGHT so you can override this as below
       allowedDirections: [Direction.LEFT, Direction.RIGHT],
@@ -58,6 +58,22 @@ export class ProfilesLoadPage {
     if(params.from == 'randomUser'){
       this.user = params.user.User;
       this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
+        const catDic = {}
+        let isLoadedTwo = false;
+        posts.forEach(p => {
+          if (!catDic[p.category_id]) {
+            catDic[p.category_id] = 0;
+          }
+          catDic[p.category_id] ++;
+          if (catDic[p.category_id] >= 2) {
+            isLoadedTwo = true;
+          }
+        })
+
+        if (isLoadedTwo) {
+          this.presentAlert('', 'Multiple photos loaded for the same category!');
+        }
+
         this.posts = posts;
         this.activeIndex = posts.length - 1;
       });
@@ -82,6 +98,15 @@ export class ProfilesLoadPage {
     console.log("mon post", this.currentPost)
     console.log("mon element", this.visibleElement)
     this.onInit = false;
+  }
+
+  presentAlert(title, subTitle) {
+    let alert = this.alertCtrl.create({
+      title,
+      subTitle,
+      buttons: ['Dismiss']
+    });
+    alert.present();
   }
 
   onThrowOut(event) {
