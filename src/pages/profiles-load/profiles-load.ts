@@ -41,7 +41,7 @@ export class ProfilesLoadPage {
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public presentAlert: AlertController, public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     this.stackConfig = {
       // Default setting only allows UP, LEFT and RIGHT so you can override this as below
       allowedDirections: [Direction.LEFT, Direction.RIGHT],
@@ -60,57 +60,27 @@ export class ProfilesLoadPage {
       this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
         this.posts = posts;
         this.activeIndex = posts.length - 1;
-        this.checkCategory()
       });
     } else if(params.from == 'contestUser'){
       this.posts = new Array(params.post);
         this.activeIndex =  this.posts.length - 1;
-        this.checkCategory()
     } else if(params.from == 'searchUser') {
       this.posts = params.post;
       this.activeIndex =  this.posts.length - 1;
-      this.checkCategory()
     }
     console.log("les post",this.posts);
   }
 
-  checkCategory() {
-    const { posts } = this
-    const catDic = {}
-    let isLoadedTwo = false;
-    posts.forEach(p => {
-      if (!catDic[p.category_id]) {
-        catDic[p.category_id] = 0;
-      }
-      catDic[p.category_id] ++;
-      if (catDic[p.category_id] >= 2) {
-        isLoadedTwo = true;
-      }
-    })
-
-    if (isLoadedTwo) {
-      this.presentAlert('', 'Loading multiple pictures for one single category is not allowed.!');
-    }
-  }
-
-  ionViewDidLoad() {
+  loadInfo(){
     console.log("ma swingCards : ", this.swingCards)
     var el = document.querySelector('.stack').lastChild as HTMLElement
     var html = el.getAttributeNode("id").value;
     this.visibleElement = html;
     this.currentPost = parseInt(html);
-    console.log("mon post", this.currentPost)
-    console.log("mon element", this.visibleElement)
-    this.onInit = false;
   }
 
-  presentAlert(title, subTitle) {
-    let alert = this.alertCtrl.create({
-      title,
-      subTitle,
-      buttons: ['Dismiss']
-    });
-    alert.present();
+  ionViewDidLoad() {
+    this.loadInfo();
   }
 
   onThrowOut(event) {
@@ -127,16 +97,8 @@ export class ProfilesLoadPage {
       commend = true;
     }
     this.restProvider.votePost(id, commend).then((post: Post) => {
-      console.log("ma swingCards 2 : ", this.swingCards)
-      var el = document.querySelector('.stack').lastChild as HTMLElement
-      var html = el.getAttributeNode("id").value;
-      if(typeof(html) === 'string'){
-        this.visibleElement = html;
-        this.currentPost = parseInt(html);
-        console.log("mon post", this.currentPost)
-        console.log("mon element", this.visibleElement)
-        this.onInit = false;
-      }
+      console.log("mon post", this.currentPost)
+      console.log("mon element", this.visibleElement)
       console.info('Voted post:', post)
       this.popPost()
     }).catch(err => {
@@ -235,6 +197,7 @@ export class ProfilesLoadPage {
 
   popPost() {
     if (this.currentPost > 0) {
+      this.loadInfo();
       this.currentPost --;
     }
     else{

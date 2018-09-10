@@ -377,10 +377,18 @@ export class RestProvider {
     })
   }
 
-  public queryUsers(name: string, lastname: string = '', not_me: boolean = true, offset: number = 0, limit: number = 1000): Promise<Array<User>> {
-    let completeName = '&name=' + name +'&last_name=' + lastname;
-    if(lastname == '' || lastname == ' '){
-      completeName = '&name=' + name;
+  public queryUsers(keyword: string, not_me: boolean = true, offset: number = 0, limit: number = 1000): Promise<Array<User>> {
+    let name: string = keyword;
+    let lastname: string = null;
+    if(keyword.includes(" ")){
+        name = keyword.split(" ")[0];
+        if(keyword.split(" ")[1].length > 0){
+          lastname = keyword.split(" ")[1];
+        }
+    }
+    let completeName = '&name=' + name;
+    if(lastname != null){
+      completeName = '&name=' + name +'&last_name=' + lastname;
     }
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token
@@ -514,6 +522,28 @@ export class RestProvider {
           }
         }, (err) => {
           console.info('Failed to report post:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public countPost(query: string): Promise<number> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl+'/post/count' + query, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data.count);
+          } else {
+            console.error('Failed to count posts:', res)
+            reject ('Failed to count posts:')
+          }
+        }, (err) => {
+          console.info('Failed to count posts:', err)
           reject(err);
         });
     })

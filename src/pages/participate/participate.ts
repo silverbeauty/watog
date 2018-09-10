@@ -26,7 +26,7 @@ import { DataProvider, RestProvider } from '../../providers';
 export class ParticipatePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
-
+    
   }
 
   ionViewDidLoad() {
