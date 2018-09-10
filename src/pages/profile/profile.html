@@ -11,7 +11,7 @@
           <hr>
           <button type="button" class="dropdown-item" (click)="goToSettingsPage()"><img src="assets/icon/Gear.png" alt="profile icon"> Settings</button>
           <hr>
-          <button type="button" class="dropdown-item"  data-toggle="modal" data-target="#modal-logout"><img src="assets/icon/Logout.png" alt="profile icon"> Logout</button>
+          <button type="button" class="dropdown-item" (click)="logout()"><img src="assets/icon/Logout.png" alt="profile icon"> Logout</button>
         </div>
       </div>
     </div>
@@ -72,7 +72,7 @@
         </div>
         <div class="modal-footer">
           <button ion-button round color="light" class="text-uppercase mr-3" data-dismiss="modal">Cancel</button>
-          <button ion-button round color="teal" class="text-uppercase" (click)="logout()">OK</button>
+          <button ion-button round color="teal" class="text-uppercase" (click)="logout()" data-dismiss="modal">OK</button>
         </div>
       </div>
     </div>
