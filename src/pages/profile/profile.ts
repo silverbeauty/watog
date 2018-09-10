@@ -109,8 +109,6 @@ export class ProfilePage {
       console.log(data);
     });
     profileModal.present();
-    this.dataProvider.clearProfile();
-
   }
 }
 @Component({template:
