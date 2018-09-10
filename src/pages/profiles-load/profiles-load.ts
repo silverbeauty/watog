@@ -72,11 +72,16 @@ export class ProfilesLoadPage {
   }
 
   loadInfo(){
-    console.log("ma swingCards : ", this.swingCards)
-    var el = document.querySelector('.stack').lastChild as HTMLElement
-    var html = el.getAttributeNode("id").value;
-    this.visibleElement = html;
-    this.currentPost = parseInt(html);
+    try{
+      console.log("ma swingCards : ", this.swingCards)
+      var el = document.querySelector('.stack').lastChild as HTMLElement
+      var html = el.getAttributeNode("id").value;
+      this.visibleElement = html;
+      this.currentPost = parseInt(html);
+    }
+    catch{
+      console.log("The currentPost is undefined: block is not init or last element")
+    }
   }
 
   ionViewDidLoad() {
@@ -175,9 +180,14 @@ export class ProfilesLoadPage {
     const post = this.posts[this.currentPost];
     this.restProvider.reportPost(post.id, 'scam', 'test').then((report) => {
       console.info('Post reported:', report)
-      this.presentAlert('', 'Thanks for your report!');
+      let alert = this.alertCtrl.create({
+        title: '',
+        subTitle: ' Thanks for your report!',
+        buttons: ['OK']
+      });
+      alert.present();
     }).catch(err => {
-      alert("You are already reported this picture.")
+      console.log("Error",err);
     })
   }
 

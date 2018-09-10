@@ -34,7 +34,9 @@ export class ContestVotePage {
   }
   public posts: Array<Post> = [];
   public searchByKey: any;
+  public keyword: any;
   public searchByName: any;
+  public getName: any;
   public mySearch: any;
   public random: any;
   public randomNum: any;
@@ -87,49 +89,81 @@ export class ContestVotePage {
     console.info('Search:', this.data.name)
     // Set recent search
     DataProvider.searchUserName = this.data.name;
+    this.searchByName = null;
 
     this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
+      this.random = null;
+      this.keyword = null;
+      this.getName = null;
 
-      if(users.length != 0){
-        console.log("my users daya: ", users)
-        //const randomNum = Math.floor(Math.random() * user.length);
-        console.log("mon user:  ",users)
-
-        this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
-        this.searchByKey = this.restProvider.searchByKey(this.data.name);
-        this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
-        this.searchCallBack();
-      }
-      else{
-          this.searchCallBack(false)
-      }
-    }).catch((err: any) => {
-      this.data.error = 'Failed to search, you can try again!'
+      this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`).then(data => {
+        this.getName = data;
+      })
+      this.searchCallBack();
+    }).catch( err => {
+      console.log("no response");
     })
 
+    this.searchByKey = this.restProvider.searchByKey(this.data.name);
+    this.searchByKey.then(data => this.keyword = data);
+    console.log(this.keyword);
+
+    this.randomNum = this.restProvider.queryPost_("?random&limit=10000");
+    this.randomNum.then(data => this.random = data);
+    console.log(this.random);
+
+    if(this.getName){
+      if(this.keyword){
+        this.searchCallBack([this.getName,this.keyword,this.random])
+      }
+      else{
+        this.searchCallBack([this.getName,this.random])
+      }
+    }
+    else if(this.keyword){
+      this.searchCallBack([this.keyword,this.random])
+    }
+    else if(this.random){
+      this.searchCallBack([this.random])
+    }
+    else{
+      this.data.error = 'Failed to search, you can try again!'
+    }
+
   }
+
+  /**
+
+  .then(users => {
+    if(users.length != 0){
+      console.log("my users daya: ", users)
+      //const randomNum = Math.floor(Math.random() * user.length);
+      console.log("mon user:  ",users)
+
+      this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
+      this.searchByKey = this.restProvider.searchByKey(this.data.name);
+      this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
+      this.searchCallBack(true,false);
+    }
+    else{
+        this.searchCallBack(false,false)
+    }
+  })
+
+  **/
 
   onRandomClick() {
     this.searchCallBack(false,true)
   }
 
-  searchCallBack(active = true, random= false){
-      if(active){
-        this.mySearch = Promise.all([this.searchByName,this.searchByKey,this.randomNum]);
-        console.log("COMPLETE SEARCH")
-      }
-      else if(random && !active){
-        this.mySearch = Promise.all([this.randomNum]);
-        console.log("RANDOM")
-      }
-      else{
-        this.mySearch = Promise.all([this.searchByKey,this.randomNum]);
-        console.log("KEYWORD SEARCH")
-      }
+  searchCallBack(obj: Array<any>){
 
-      this.mySearch.then(data => {
+      let data = obj;
+      //Promise.all(obj);
+
+      //this.mySearch.then(data => {
         let tab: Array<any> = [];
         console.log("voici data", data)
         let dataLength = 0;
@@ -146,14 +180,13 @@ export class ContestVotePage {
             dataLength --;
           }
         }
+
         console.log("tab no reverse",tab)
         let myTab = tab.reverse();
         console.log("my tab", myTab)
         console.log("mySearch: ", data)
         this.navCtrl.push(ProfilesLoadPage, {post: myTab, from: 'searchUser'});
-      }).catch((err: any) => {
-        this.data.error = 'Failed to search, you can try again!'
-      })
+
   }
 
   logout(){
