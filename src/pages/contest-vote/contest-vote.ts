@@ -108,7 +108,6 @@ export class ContestVotePage {
         this.searchCallBack();
       }
       else{
-          this.data.error = 'Failed to search, you can try again!'
           this.searchCallBack(false)
       }
     }).catch((err: any) => {
@@ -124,13 +123,15 @@ export class ContestVotePage {
   searchCallBack(active = true, random= false){
       if(active){
         this.mySearch = Promise.all([this.searchByName,this.searchByKey,this.randomNum]);
+        console.log("COMPLETE SEARCH")
       }
-      else if(random){
+      else if(random && !active){
         this.mySearch = Promise.all([this.randomNum]);
         console.log("RANDOM")
       }
       else{
         this.mySearch = Promise.all([this.searchByKey,this.randomNum]);
+        console.log("KEYWORD SEARCH")
       }
 
       this.mySearch.then(data => {

@@ -16,6 +16,9 @@ import { SwingModule } from 'angular2-swing';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 //import { AlertController } from 'ionic-angular';
 
+import { FileChooser } from '@ionic-native/file-chooser';
+import { FilePath } from '@ionic-native/file-path';
+
   /*Components*/
 import { MyApp } from './app.component';
 
@@ -196,6 +199,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     FileOpener,
     File,
     DocumentViewer,
+    FileChooser,
+    FilePath,
     PhotoViewer
   ]
 })
