@@ -176,7 +176,7 @@ export class ProfilesLoadPage {
     this.restProvider.reportPost(post.id, 'scam', 'test').then((report) => {
       console.info('Post reported:', report)
       this.presentAlert('', 'Thanks for your report!');
-    }).catch(() => {
+    }).catch(err => {
       alert("You are already reported this picture.")
     })
   }
