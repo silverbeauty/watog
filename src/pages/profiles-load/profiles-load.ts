@@ -213,7 +213,12 @@ export class ProfilesLoadPage {
     const post = this.posts[this.currentPost];
     this.restProvider.reportPost(post.id, 'scam', 'test').then((report) => {
       console.info('Post reported:', report)
-      this.presentAlert('', 'Thanks for your report!');
+      let alert = this.alertCtrl.create({
+        title: '',
+        subTitle: ' Thanks for your report!',
+        buttons: ['OK']
+      });
+      alert.present();
     });
   }
 
