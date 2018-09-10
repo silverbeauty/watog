@@ -89,7 +89,7 @@ export class ProfilesLoadPage {
     })
 
     if (isLoadedTwo) {
-      this.presentAlert('', 'Multiple photos loaded for the same category!');
+      this.presentAlert('', 'Loading multiple pictures for one single category is not allowed.!');
     }
   }
 
