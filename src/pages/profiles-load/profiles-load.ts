@@ -71,25 +71,6 @@ export class ProfilesLoadPage {
     console.log("les post",this.posts);
   }
 
-  checkCategory() {
-    const { posts } = this
-    const catDic = {}
-    let isLoadedTwo = false;
-    posts.forEach(p => {
-      if (!catDic[p.category_id]) {
-        catDic[p.category_id] = 0;
-      }
-      catDic[p.category_id] ++;
-      if (catDic[p.category_id] >= 2) {
-        isLoadedTwo = true;
-      }
-    })
-
-    if (isLoadedTwo) {
-      this.presentAlert('', 'Loading multiple pictures for one single category is not allowed.!');
-    }
-  }
-
   ionViewDidLoad() {
     console.log("ma swingCards : ", this.swingCards)
     var el = document.querySelector('.stack').lastChild as HTMLElement
@@ -99,15 +80,6 @@ export class ProfilesLoadPage {
     console.log("mon post", this.currentPost)
     console.log("mon element", this.visibleElement)
     this.onInit = false;
-  }
-
-  presentAlert(title, subTitle) {
-    let alert = this.alertCtrl.create({
-      title,
-      subTitle,
-      buttons: ['Dismiss']
-    });
-    alert.present();
   }
 
   onThrowOut(event) {
