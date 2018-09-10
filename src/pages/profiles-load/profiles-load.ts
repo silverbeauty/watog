@@ -179,6 +179,15 @@ export class ProfilesLoadPage {
     });
   }
 
+  presentAlert(title, subTitle) {
+    let alert = this.alertCtrl.create({
+      title,
+      subTitle,
+      buttons: ['Dismiss']
+    });
+    alert.present();
+  }
+
   votePost( commend: boolean = true) {
     const post = this.posts[this.currentPost];
     // Revert vote
