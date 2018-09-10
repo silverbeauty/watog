@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User, ObjUser, Auth, resFile, Category, File, Resp, Post, UserResp } from '../../types';
+import { User, ObjUser, Auth, resFile, Category, File, Resp, Post, UserResp, Report } from '../../types';
 import 'rxjs/add/operator/timeout';
 import { server_url } from '../../environments/environment'
 
@@ -492,6 +492,28 @@ export class RestProvider {
           }
         }, (err) => {
           console.info('Failed to cancel vote:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public reportPost(post_id: number, type: string, description: string): Promise<Report> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl + `/post/` + post_id + '/report', {
+        type, description
+      }, {  headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data as Report);
+          } else {
+            reject('Failed to report post!')
+          }
+        }, (err) => {
+          console.info('Failed to report post:', err)
           reject(err);
         });
     })

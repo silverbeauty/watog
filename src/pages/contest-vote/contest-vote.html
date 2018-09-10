@@ -15,8 +15,8 @@
       </div>
     </div>
   </div>
-  <div>
-    <ion-icon (click)="goBack()" class="back-s" name="arrow-back"></ion-icon>
+  <div class="size-back" (click)="goBack()">
+    <ion-icon class="back-s" name="arrow-back"></ion-icon>
   </div>
   <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + picture_url + ')'}" (click)="showImageGallery()">
   </div>

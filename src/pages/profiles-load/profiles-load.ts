@@ -1,5 +1,5 @@
-import { Component, EventEmitter, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, EventEmitter, ViewChild, ViewChildren, QueryList,  } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import {
   Direction,
@@ -41,7 +41,7 @@ export class ProfilesLoadPage {
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     this.stackConfig = {
       // Default setting only allows UP, LEFT and RIGHT so you can override this as below
       allowedDirections: [Direction.LEFT, Direction.RIGHT],
@@ -60,17 +60,37 @@ export class ProfilesLoadPage {
       this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
         this.posts = posts;
         this.activeIndex = posts.length - 1;
+        this.checkCategory()
       });
     } else if(params.from == 'contestUser'){
       this.posts = new Array(params.post);
         this.activeIndex =  this.posts.length - 1;
+        this.checkCategory()
     } else if(params.from == 'searchUser') {
       this.posts = params.post;
       this.activeIndex =  this.posts.length - 1;
+      this.checkCategory()
     }
-
     console.log("les post",this.posts);
+  }
 
+  checkCategory() {
+    const { posts } = this
+    const catDic = {}
+    let isLoadedTwo = false;
+    posts.forEach(p => {
+      if (!catDic[p.category_id]) {
+        catDic[p.category_id] = 0;
+      }
+      catDic[p.category_id] ++;
+      if (catDic[p.category_id] >= 2) {
+        isLoadedTwo = true;
+      }
+    })
+
+    if (isLoadedTwo) {
+      this.presentAlert('', 'Loading multiple pictures for one single category is not allowed.!');
+    }
   }
 
   ionViewDidLoad() {
@@ -82,6 +102,15 @@ export class ProfilesLoadPage {
     console.log("mon post", this.currentPost)
     console.log("mon element", this.visibleElement)
     this.onInit = false;
+  }
+
+  presentAlert(title, subTitle) {
+    let alert = this.alertCtrl.create({
+      title,
+      subTitle,
+      buttons: ['Dismiss']
+    });
+    alert.present();
   }
 
   onThrowOut(event) {
@@ -177,6 +206,18 @@ export class ProfilesLoadPage {
     }).catch((e) => {
       console.error(e)
     })
+  }
+
+  onClickReport() {
+    // TODO: should report here - belows are just the test codes
+    if (this.currentPost < 0) {
+      return null;
+    }
+
+    const post = this.posts[this.currentPost];
+    this.restProvider.reportPost(post.id, 'scam', 'test').then((report) => {
+      console.info('Post reported:', report)
+    });
   }
 
   votePost( commend: boolean = true) {

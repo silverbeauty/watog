@@ -52,7 +52,7 @@
 		margin-right: 22px !important;
 	}
 	img {
-		
+
 	}
 }
 
@@ -171,3 +171,21 @@
     -webkit-transform: scale(1.0);
   }
 }
+.navbar a{
+  position: static;
+}
+.size-back{
+  width: 12vw;
+  height: 12vw;
+}
+/*.navbar a i{
+  color: white;
+  font-size: 10vw!important;
+  left: 5vw;
+  position: absolute;
+  top: 4px;
+}
+.back-s{
+  font-size: 8vw!important;
+  margin-left: 3vw!important;
+}*/
