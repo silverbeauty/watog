@@ -1,5 +1,5 @@
 import { Component, EventEmitter, ViewChild, ViewChildren, QueryList,  } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Modal } from 'ionic-angular';
 
 import {
   Direction,
@@ -41,7 +41,7 @@ export class ProfilesLoadPage {
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider, public presentAlert: AlertController) {
+  constructor(public presentAlert: AlertController, public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     this.stackConfig = {
       // Default setting only allows UP, LEFT and RIGHT so you can override this as below
       allowedDirections: [Direction.LEFT, Direction.RIGHT],
@@ -71,6 +71,20 @@ export class ProfilesLoadPage {
     console.log("les post",this.posts);
   }
 
+  showModal(){
+    let bool = true;
+
+    if(bool){
+      let modalFirst = document.getElementById("modal-first");
+      modalFirst.style.display = "block";
+    }
+  }
+
+  modalClose(){
+    let modalFirst = document.getElementById("modal-first");
+    modalFirst.style.display = "none";
+  }
+
   loadInfo(){
     console.log("ma swingCards : ", this.swingCards)
     var el = document.querySelector('.stack').lastChild as HTMLElement
@@ -81,6 +95,7 @@ export class ProfilesLoadPage {
 
   ionViewDidLoad() {
     this.loadInfo();
+    this.showModal();
   }
 
   onThrowOut(event) {
@@ -175,7 +190,12 @@ export class ProfilesLoadPage {
     const post = this.posts[this.currentPost];
     this.restProvider.reportPost(post.id, 'scam', 'test').then((report) => {
       console.info('Post reported:', report)
-      this.presentAlert('', 'Thanks for your report!');ss
+      let alert = this.alertCtrl.create({
+        title: '',
+        subTitle: ' Thanks for your report!',
+        buttons: ['OK']
+      });
+      alert.present();
     });
   }
 
