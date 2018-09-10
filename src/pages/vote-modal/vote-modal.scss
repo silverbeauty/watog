@@ -67,9 +67,16 @@ page-vote-modal {
     .warning-text {
         text-align: center;
         font-style: italic;
-        font-size: 12px;
+        font-size: .8em;
         color: #dc3545;
+        padding-left: 1em;
+        padding-right: 1em;
     }
+
+    .warning-text img{
+        height: .8em;
+    }
+
     .btn-back{
         background-color: #DCE4E7;
         color: black;

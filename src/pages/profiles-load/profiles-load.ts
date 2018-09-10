@@ -1,5 +1,5 @@
 import { Component, EventEmitter, ViewChild, ViewChildren, QueryList,  } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Modal } from 'ionic-angular';
 
 import {
   Direction,
@@ -41,7 +41,7 @@ export class ProfilesLoadPage {
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
-  constructor(public presentAlert: AlertController, public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     this.stackConfig = {
       // Default setting only allows UP, LEFT and RIGHT so you can override this as below
       allowedDirections: [Direction.LEFT, Direction.RIGHT],
@@ -86,6 +86,7 @@ export class ProfilesLoadPage {
 
   ionViewDidLoad() {
     this.loadInfo();
+    this.showModal();
   }
 
   onThrowOut(event) {
@@ -98,8 +99,10 @@ export class ProfilesLoadPage {
     const direction = event.throwDirection.toString()
     if (direction === `Symbol(LEFT)`) { // down vote
       commend = false;
+      this.showJustdisliked();
     } else {
       commend = true;
+      this.showJustLiked();
     }
     this.restProvider.votePost(id, commend).then((post: Post) => {
       console.log("mon post", this.currentPost)
@@ -109,6 +112,38 @@ export class ProfilesLoadPage {
     }).catch(err => {
       console.log("My err: ",err)
     })
+  }
+
+  showModal(){
+    let bool = true;
+
+    if(bool){
+      let modalFirst = document.getElementById("modal-first");
+      modalFirst.style.display = "block";
+    }
+  }
+
+  modalClose(){
+    let modalFirst = document.getElementById("modal-first");
+    modalFirst.style.display = "none";
+  }
+
+  showJustLiked(){
+    let justLiked = document.getElementById("just-liked");
+    justLiked.style.display = "block";
+    
+    setTimeout(() => {
+      justLiked.style.display = "none";
+      }, 1000);
+  }
+
+  showJustdisliked(){
+    let justDisliked = document.getElementById("just-disliked");
+    justDisliked.style.display = "block";
+    
+    setTimeout(() => {
+      justDisliked.style.display = "none";
+      }, 1000);
   }
 
   htmlId(){

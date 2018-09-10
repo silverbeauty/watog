@@ -18,6 +18,7 @@ import { FileChooser } from '@ionic-native/file-chooser';
 import { FilePath } from '@ionic-native/file-path';
 import { FileTransferObject } from '@ionic-native/file-transfer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { EmailComposer } from '@ionic-native/email-composer';
 
   /*Components*/
 import { MyApp } from './app.component';
@@ -63,9 +64,10 @@ import { SelectionPage } from '../pages/selection/selection';
 import { ProfilesLoadPage } from '../pages/profiles-load/profiles-load';
 import { BestPhotoPage} from "../pages/best-photo/best-photo";
 import { ModalChangeVotePage } from '../pages/modal-change-vote/modal-change-vote';
-import {ContestSearchResultKeywordPage} from "../pages/contest-search-result-keyword/contest-search-result-keyword";
-import {ContestSearchResultUsersPage} from "../pages/contest-search-result-users/contest-search-result-users";
-import {ImageModalPage} from '../pages/imge-modal/img-modal';
+import { ContestSearchResultKeywordPage } from "../pages/contest-search-result-keyword/contest-search-result-keyword";
+import { ContestSearchResultUsersPage } from "../pages/contest-search-result-users/contest-search-result-users";
+import { ImageModalPage } from '../pages/imge-modal/img-modal';
+import { ModalLogout } from '../pages/profile/profile';
 
 /*Provider*/
 import { DataProvider } from '../providers/data/data';
@@ -126,7 +128,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     ModalChangeVotePage,
     ImageModalPage,
     HideHeaderDirective,
-    ZoomPanDirective
+    ZoomPanDirective,
+    ModalLogout
   ],
   imports: [
     BrowserModule,
@@ -181,7 +184,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     ProfilesLoadPage,
     BestPhotoPage,
     ModalChangeVotePage,
-    ImageModalPage
+    ImageModalPage,
+    ModalLogout
   ],
   providers: [
     StatusBar,
@@ -203,7 +207,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     FilePath,
     FileTransferObject,
     InAppBrowser,
-    PhotoViewer
+    PhotoViewer,
+    EmailComposer
   ]
 })
 export class AppModule {}

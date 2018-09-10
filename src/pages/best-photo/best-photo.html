@@ -1,6 +1,6 @@
 <ion-header #head>
   <div class="navbar">
-    <a href="#" (click)="goToDashboard()"><img src="assets/icon/Menu.png" alt="Menu icon"></a>
+    <a href="#" (click)="goBack()" class="back_button"><i class="fa fa-angle-left"></i></a>
     <h1>Your Best Photo</h1>
     <div class="btn-group">
       <button type="button" class="btn btn-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -17,9 +17,6 @@
   </div>
 </ion-header>
 <ion-content hide-header [header]="head" class="body">
-  <div class="nav-back">
-    <a (click)="goBack()"><i class="fa fa-angle-left"></i></a>
-  </div>
   <div class="photo-section">
     <div class="container">
         <div id="photo-img" class="photo-img">
