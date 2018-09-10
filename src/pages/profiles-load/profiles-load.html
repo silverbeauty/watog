@@ -59,11 +59,15 @@
             <p id="photo1-vote-score">Vote Score: {{ posts[currentPost].vote_score.toFixed(2) }}</p>
           </div>
           <div class="col text-center">
+            <button class="report-button" (click)="onClickReport()">
+              <img src="assets/imgs/ContenuIndesirable.png" alt="profile icon">
+            </button>
+          </div>
+          <div class="col text-center">
             <p id="photo1-vote-ranking">Vote Ranking: {{ posts[currentPost].rank }}</p>
           </div>
         </div>
       </div>
-      <button ion-button color="danger" (click)="onClickReport()">Report</button>
       <div class="toolbar">
         <div id="profile-picture" [ngStyle]="{'background-image':'url(' + posts[currentPost].User.picture_profile + ')'}"></div>
         <div class="username">{{ posts[currentPost].User.user_name }}</div>

@@ -134,6 +134,14 @@ page-profiles-load {
     .slide-zoom{
       background: contain;
     }
+
+    .report-button {
+        background: none;
+        outline: none;
+        img {
+            width: 14vw;
+        }
+    }
 }
 /**
 
