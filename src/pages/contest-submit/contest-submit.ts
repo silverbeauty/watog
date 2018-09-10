@@ -8,10 +8,8 @@ import { SettingsPage } from '../settings/settings';
 import { ContestSubmitedPage } from '../contest-submited/contest-submited';
 import { DataProvider } from '../../providers/data/data';
 import { CameraProvider } from '../../providers/camera/camera';
-import { resFile } from "../../types";
 import {  RestProvider } from '../../providers';
-import { Auth, File } from "../../types";
-
+import { Auth, File, resFile } from "../../types";
 
 /**
  * Generated class for the ContestSubmitPage page.
@@ -48,12 +46,30 @@ export class ContestSubmitPage {
   public file_name: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public cam : CameraProvider, public dataProvider:DataProvider, public restProvider: RestProvider) {
+    const { id } = this.navParams.data
     this.submit.category_id = this.navParams.data.id;
     //this.dataProvider.setVariable("category_id_up", this.navParams.data.id)
     console.log("ma cat: ", this.submit.category_id)
+
+    // Check if photo was already posted
+    this.restProvider.countPost('?category_id=' + id + '&user_id=' + DataProvider.auth.id).then(count => {
+      if (count > 0) {
+        this.goBack()
+        this.presentAlert('', 'Loading multiple pictures for one single category is not allowed!')
+      }
+    })
   }
 
   ionViewDidLoad() {}
+
+  presentAlert(title, subTitle) {
+    let alert = this.alertCtrl.create({
+      title,
+      subTitle,
+      buttons: ['Dismiss']
+    });
+    alert.present();
+  }
 
   onSubmit(){
 
