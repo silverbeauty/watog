@@ -23,14 +23,47 @@ page-profiles-load {
         font-size: 1.5em;
         text-align: center;
         padding-top: 15vh;
+        position: absolute;
     }
 
     .modal-content img{
         height: 80px;
     }
 
+    .modal-content .tap{
+        position: relative;
+        margin: auto;
+        top: 20vh;
+    }
+
     .modal-content .dislike-img{
         transform: rotate(180deg);
+    }
+
+    #just-liked{
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        overflow: auto;
+        z-index: 8999;
+        margin: auto;
+        height: 100px;
+    }
+
+    #just-disliked{
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        overflow: auto;
+        z-index: 8999;
+        margin: auto;
+        height: 100px;
     }
 
     .navbar {

@@ -71,20 +71,6 @@ export class ProfilesLoadPage {
     console.log("les post",this.posts);
   }
 
-  showModal(){
-    let bool = true;
-
-    if(bool){
-      let modalFirst = document.getElementById("modal-first");
-      modalFirst.style.display = "block";
-    }
-  }
-
-  modalClose(){
-    let modalFirst = document.getElementById("modal-first");
-    modalFirst.style.display = "none";
-  }
-
   loadInfo(){
     console.log("ma swingCards : ", this.swingCards)
     var el = document.querySelector('.stack').lastChild as HTMLElement
@@ -108,8 +94,10 @@ export class ProfilesLoadPage {
     const direction = event.throwDirection.toString()
     if (direction === `Symbol(LEFT)`) { // down vote
       commend = false;
+      this.showJustdisliked();
     } else {
       commend = true;
+      this.showJustLiked();
     }
     this.restProvider.votePost(id, commend).then((post: Post) => {
       console.log("mon post", this.currentPost)
@@ -119,6 +107,38 @@ export class ProfilesLoadPage {
     }).catch(err => {
       console.log("My err: ",err)
     })
+  }
+
+  showModal(){
+    let bool = true;
+
+    if(bool){
+      let modalFirst = document.getElementById("modal-first");
+      modalFirst.style.display = "block";
+    }
+  }
+
+  modalClose(){
+    let modalFirst = document.getElementById("modal-first");
+    modalFirst.style.display = "none";
+  }
+
+  showJustLiked(){
+    let justLiked = document.getElementById("just-liked");
+    justLiked.style.display = "block";
+    
+    setTimeout(() => {
+      justLiked.style.display = "none";
+      }, 1000);
+  }
+
+  showJustdisliked(){
+    let justDisliked = document.getElementById("just-disliked");
+    justDisliked.style.display = "block";
+    
+    setTimeout(() => {
+      justDisliked.style.display = "none";
+      }, 1000);
   }
 
   htmlId(){

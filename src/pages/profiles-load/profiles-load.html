@@ -1,4 +1,5 @@
 <ion-content class="body">
+  <!--Modal that explains how to vote-->
   <div id="modal-first" (click)="modalClose()">
     <div class="modal-content">
       <div class="row">
@@ -11,8 +12,14 @@
           <img src="../../assets/imgs/Like.png" alt="like_btn">
         </div>
       </div>
+      <p class="tap">Tap to start</p>
     </div>
   </div>
+
+  <img src="../../assets/imgs/Like.png" alt="like_btn" id="just-liked" class="animated bounceInUp">
+  <img src="../../assets/imgs/disLikeWATOG.png" alt="dislike_btn" id="just-disliked" class="animated bounceInDown">
+
+
     <div class="navbar">
       <a href="#" (click)="goToDashboard()"><img src="assets/icon/Menu.png" alt="Menu icon"></a>
       <h1>Vote</h1>
