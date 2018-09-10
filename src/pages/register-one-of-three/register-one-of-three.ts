@@ -125,9 +125,7 @@ export class RegisterOneOfThreePage {
       ])],
       country_phone: this.country_phone_group,
       matching_passwords: this.matching_passwords_group,
-      hospital: ['', Validators.compose([
-        Validators.required
-      ])],
+      hospital: [''],
       job: ['', Validators.compose([
         Validators.required
       ])]
@@ -251,9 +249,7 @@ export class RegisterOneOfThreePage {
     'matching_passwords': [
       { type: 'areEqual', message: 'Password mismatch' }
     ],
-    'hospital': [
-      { type: 'required', message: 'Hospital is required.' }
-    ],
+    'hospital': [],
     'job': [
       { type: 'required', message: 'Job is required.' }
     ]
