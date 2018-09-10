@@ -38,6 +38,8 @@ export class RegisterOneOfThreePage {
     profile_selected: false
   }
 
+  public other_speciality: string;
+
   validations_form: FormGroup;
   matching_passwords_group: FormGroup;
   country_phone_group: FormGroup;
@@ -200,17 +202,18 @@ export class RegisterOneOfThreePage {
     this.show = false;
   }
 
-  selectQualification(qualification){
+  selectQualification(qualification) {
     this.user.job = qualification;
     this.closeMenu();
   }
 
   saveOtherSpeciality() {
-      if(this.user.job != '') {
-        this.selectQualification(this.user.job);
-        var btnClose = document.getElementById("btn-modal-close") as any;
-        btnClose.click();
-      }
+    this.user.job = this.other_speciality;
+    if(this.user.job != '') {
+      this.selectQualification(this.user.job);
+      var btnClose = document.getElementById("btn-modal-close") as any;
+      btnClose.click();
+    }
   }
 
   cancelOtherSpeciality() {
