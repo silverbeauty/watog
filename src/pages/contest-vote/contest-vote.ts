@@ -53,16 +53,13 @@ export class ContestVotePage {
     const bestCat5 = this.restProvider.queryBestPost('5');
     Promise.all([bestCat1, bestCat2, bestCat3, bestCat4, bestCat5]).then(data => {
       this.bestPicsByChat = data;
-      console.log("Allphoto",data);
     })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestVotePage');
     Promise.all([this.restProvider.queryCategories()]).then(data =>{
-      console.log(data)
       const images:any = data[0][0];
-      console.log(images)
       this.picture_url = images.User.picture_profile;
     })
   }
@@ -84,8 +81,6 @@ export class ContestVotePage {
   }
 
   onSearchClick() {
-    console.info('Search:', this.data.name)
-    // Set recent search
     DataProvider.searchUserName = this.data.name;
 
     this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
@@ -93,17 +88,13 @@ export class ContestVotePage {
       DataProvider.searchUserOffset = 0;
 
       if(users.length != 0){
-        console.log("my users daya: ", users)
-        //const randomNum = Math.floor(Math.random() * user.length);
-        console.log("mon user:  ",users)
-
         this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
         this.searchByKey = this.restProvider.searchByKey(this.data.name);
         this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
         this.searchCallBack();
       }
       else{
-          this.searchCallBack(false)
+        this.searchCallBack(false)
       }
     }).catch((err: any) => {
       this.data.error = 'Failed to search, you can try again!'
@@ -112,48 +103,39 @@ export class ContestVotePage {
   }
 
   onRandomClick() {
-    this.searchCallBack(false,true)
+    this.searchCallBack(false, true)
   }
 
-  searchCallBack(active = true, random= false){
-      if(active){
-        this.mySearch = Promise.all([this.searchByName,this.searchByKey,this.randomNum]);
-        console.log("COMPLETE SEARCH")
-      }
-      else if(random && !active){
-        this.mySearch = Promise.all([this.randomNum]);
-        console.log("RANDOM")
-      }
-      else{
-        this.mySearch = Promise.all([this.searchByKey,this.randomNum]);
-        console.log("KEYWORD SEARCH")
-      }
+  searchCallBack(active = true, random = false){
+    if(active) {
+      this.mySearch = Promise.all([this.searchByName, this.searchByKey, this.randomNum]);
+    }
+    else if(random && !active) {
+      this.mySearch = Promise.all([this.randomNum]);
+    }
+    else {
+      this.mySearch = Promise.all([this.searchByKey, this.randomNum]);
+    }
 
-      this.mySearch.then(data => {
-        let tab: Array<any> = [];
-        console.log("voici data", data)
-        let dataLength = 0;
-        for(let n in data){
-          dataLength += data[n].length;
+    this.mySearch.then(data => {
+      let tab: Array<any> = [];
+      let dataLength = 0;
+      for(let n in data){
+        dataLength += data[n].length;
+      }
+      dataLength = dataLength - 1;
+      for(let i in data){
+        for(let element in data[i]){
+          tab.push(data[i][element])
+          data[i][element].htmlId = dataLength;
+          dataLength --;
         }
-        console.log("voici data length: ", dataLength);
-        dataLength = dataLength - 1
-        for(let i in data){
-          for(let element in data[i]){
-            tab.push(data[i][element])
-            data[i][element].htmlId = dataLength;
-            console.log("tab no reverse",data[i][element])
-            dataLength --;
-          }
-        }
-        console.log("tab no reverse",tab)
-        let myTab = tab.reverse();
-        console.log("my tab", myTab)
-        console.log("mySearch: ", data)
-        this.navCtrl.push(ProfilesLoadPage, {post: myTab, from: 'searchUser'});
-      }).catch((err: any) => {
-        this.data.error = 'Failed to search, you can try again!'
-      })
+      }
+      let myTab = tab.reverse();
+      this.navCtrl.push(ProfilesLoadPage, {post: myTab, from: 'searchUser'});
+    }).catch((err: any) => {
+      this.data.error = 'Failed to search, you can try again!'
+    })
   }
 
   logout(){

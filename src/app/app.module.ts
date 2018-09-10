@@ -67,6 +67,7 @@ import { ContestSearchResultKeywordPage } from "../pages/contest-search-result-k
 import { ContestSearchResultUsersPage } from "../pages/contest-search-result-users/contest-search-result-users";
 import { ImageModalPage } from '../pages/imge-modal/img-modal';
 import { ModalLogout } from '../pages/profile/profile';
+import { PartnersPage } from '../pages/partners/partners';
 
 /*Provider*/
 import { DataProvider } from '../providers/data/data';
@@ -128,7 +129,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     ImageModalPage,
     HideHeaderDirective,
     ZoomPanDirective,
-    ModalLogout
+    ModalLogout,
+    PartnersPage
   ],
   imports: [
     BrowserModule,
@@ -184,7 +186,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     BestPhotoPage,
     ModalChangeVotePage,
     ImageModalPage,
-    ModalLogout
+    ModalLogout,
+    PartnersPage
   ],
   providers: [
     StatusBar,
