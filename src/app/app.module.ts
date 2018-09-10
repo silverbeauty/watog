@@ -13,15 +13,10 @@ import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { SwingModule } from 'angular2-swing';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
-//import { AlertController } from 'ionic-angular';
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
 import { FileChooser } from '@ionic-native/file-chooser';
-import { FileOpener } from '@ionic-native/file-opener';
 import { FilePath } from '@ionic-native/file-path';
+import { FileTransferObject } from '@ionic-native/file-transfer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
   /*Components*/
 import { MyApp } from './app.component';
@@ -204,7 +199,9 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     File,
     DocumentViewer,
     FileChooser,
-    FilePath
+    FilePath,
+    FileTransferObject,
+    InAppBrowser
   ]
 })
 export class AppModule {}

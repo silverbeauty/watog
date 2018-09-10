@@ -46,7 +46,7 @@ export class BestPhotoWithTheWatogLogoPage {
     //this.navCtrl.push(UploadWatogLogoPage, {from: "BestPhotoWithTheWatogLogoPage"});
     this.fileChooser.open().then(file => {
       this.filePath.resolveNativePath(file).then(resolvedFilePath => {
-        this.fileOpener.open(resolvedFilePath + 'www/assets/imgs/WATOG-quadri_logo_seul.png', 'image/png').then(file => {
+        this.fileOpener.open(this.file.applicationDirectory + 'assets/imgs/WATOG-quadri_logo_seul.png', 'image/png').then(file => {
           alert("It worked!")
         }).catch(err => {
           alert(JSON.stringify(err));
