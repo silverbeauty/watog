@@ -36,6 +36,7 @@ $ npm install --save @ionic-native/image-picker
 sudo ionic cordova plugin add cordova-plugin-file
 sudo ionic cordova plugin add cordova-plugin-file-transfer
 sudo ionic cordova plugin add cordova-plugin-document-viewer
+ionic cordova plugin add com-sarriaroman-photoviewer
 
 # Ionic Native packages
 sudo npm install --save @ionic-native/file @ionic-native/document-viewer @ionic-native/file-transfer
@@ -55,6 +56,12 @@ sudo ionic cordova plugin add cordova-plugin-nativestorage
 ### iOS
 This platform should be added by `ionic cordova platform add ios`
 - `npm run ios`
+
+please add it in plist file
+```
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>Our application needs permission to write photos...</string>
+```
 
 ### Google phone error
 npm install --save-prod google-libphonenumber
