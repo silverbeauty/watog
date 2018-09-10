@@ -209,14 +209,11 @@ export class ProfilesLoadPage {
   }
 
   onClickReport() {
-    // TODO: should report here - belows are just the test codes
-    if (this.currentPost < 0) {
-      return null;
-    }
 
     const post = this.posts[this.currentPost];
     this.restProvider.reportPost(post.id, 'scam', 'test').then((report) => {
       console.info('Post reported:', report)
+      this.presentAlert('', 'Thanks for your report!');
     });
   }
 
