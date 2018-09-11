@@ -45,7 +45,7 @@ export class RegisterOneOfThreePage {
   country_phone_group: FormGroup;
 
 
-  countries: Country[];
+  public countries: Country[];
   public profile_selected: boolean = false;
   public profile_image: string = "assets/imgs/rio.jpg";
   public country: Country = new Country("FR", "France")
@@ -182,6 +182,7 @@ export class RegisterOneOfThreePage {
 
 
   navToUploadProfilePhoto(){
+    this.user.country = this.country.name;
     this.dataProvider.saveObjUser(this.user as ObjUser);
     this.navCtrl.push(UploadProfilePhotoPage);
   }
