@@ -63,7 +63,7 @@ export class ProfilesLoadPage {
       });
     } else if(params.from == 'contestUser'){
       this.posts = new Array(params.post);
-        this.activeIndex =  this.posts.length - 1;
+      this.activeIndex = this.posts.length - 1;
     } else if(params.from == 'searchUser') {
       this.posts = params.post;
       this.activeIndex =  this.posts.length - 1;
@@ -131,19 +131,19 @@ export class ProfilesLoadPage {
   showJustLiked(){
     let justLiked = document.getElementById("just-liked");
     justLiked.style.display = "block";
-    
+
     setTimeout(() => {
       justLiked.style.display = "none";
-      }, 1000);
+    }, 1000);
   }
 
   showJustdisliked(){
     let justDisliked = document.getElementById("just-disliked");
     justDisliked.style.display = "block";
-    
+
     setTimeout(() => {
       justDisliked.style.display = "none";
-      }, 1000);
+    }, 1000);
   }
 
   htmlId(){
@@ -289,8 +289,3 @@ export class ProfilesLoadPage {
     this.isPressed = false;
   }
 }
-/***
-
-
-
-***/

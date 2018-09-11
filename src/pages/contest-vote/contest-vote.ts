@@ -36,10 +36,11 @@ export class ContestVotePage {
   public searchByKey: any;
   public keyword: any;
   public searchByName: any;
-  public getName: any;
+  public getName: any = null;
+  public user: Array<User> = null;
   public mySearch: any;
   public random: any;
-  public randomNum: any;
+  public randomNum: any = null;
   public picture_url: any;
   public bestPicsByChat: any;
   public isVisible: boolean = false;
@@ -55,16 +56,13 @@ export class ContestVotePage {
     const bestCat5 = this.restProvider.queryBestPost('5');
     Promise.all([bestCat1, bestCat2, bestCat3, bestCat4, bestCat5]).then(data => {
       this.bestPicsByChat = data;
-      console.log("Allphoto",data);
     })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContestVotePage');
     Promise.all([this.restProvider.queryCategories()]).then(data =>{
-      console.log(data)
       const images:any = data[0][0];
-      console.log(images)
       this.picture_url = images.User.picture_profile;
     })
   }
@@ -85,87 +83,75 @@ export class ContestVotePage {
     this.navCtrl.push(SettingsPage);
   }
 
+
   onSearchClick() {
-    console.info('Search:', this.data.name)
-    // Set recent search
     DataProvider.searchUserName = this.data.name;
     this.searchByName = null;
+    this.searchByKey = null;
+    this.getName = null;
+    this.randomNum = null;
+    this.searchByKey = this.restProvider.searchByKey(this.data.name);
+    this.randomNum = this.restProvider.queryPost_("?random&limit=10000");
+    this.user = null
 
     this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
-      this.random = null;
-      this.keyword = null;
-      this.getName = null;
+      this.user = users;
 
-      this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`).then(data => {
-        this.getName = data;
-      })
     }).catch( err => {
-      console.log("no response");
+      console.log("err")
     })
 
     this.searchByKey = this.restProvider.searchByKey(this.data.name);
     this.searchByKey.then(data => this.keyword = data);
-    console.log(this.keyword);
 
-    this.randomNum = this.restProvider.queryPost_("?random&limit=10000");
-    this.randomNum.then(data => this.random = data);
-    console.log(this.random);
+    this.searchByKey = this.restProvider.searchByKey(this.data.name);
 
-    if(this.getName){
-      if(this.keyword){
-        this.searchCallBack([this.getName,this.keyword,this.random])
-      }
-      else{
-        this.searchCallBack([this.getName,this.random])
-      }
+    if(this.user != null){
+        console.log("Mon user: ",this.user)
+        this.searchByName = this.restProvider.queryPost_(`?user_id=${this.user[0].id}&random&limit=1000`).then(data => { this.getName = data; });
+        if(this.getName){
+          this.searchCallBack([this.searchByName,this.randomNum]);
+        }
+        else{
+          this.user = null;
+        }
     }
-    else if(this.keyword){
-      this.searchCallBack([this.keyword,this.random])
-    }
-    else if(this.random){
-      this.searchCallBack([this.random])
+    else if(this.keyword != null){
+      this.searchCallBack([this.searchByKey,this.randomNum]);
     }
     else{
-      this.data.error = 'Failed to search, you can try again!'
+      this.searchCallBack([this.randomNum]);
     }
   }
 
   onRandomClick() {
-    this.searchCallBack([this.random]);
+    this.searchCallBack([this.randomNum]);
   }
 
-  searchCallBack(obj: Array<any>){
-
-      let data = obj;
-      //Promise.all(obj);
-
-      //this.mySearch.then(data => {
-        let tab: Array<any> = [];
-        console.log("voici data", data)
-        let dataLength = 0;
-        for(let n in data){
-          dataLength += data[n].length;
+  searchCallBack(obj: any[]){
+    let promise = Promise.all(obj);
+    promise.then(data => {
+      console.log("data of my promise: ", data)
+      let tab: Array<any> = [];
+      let dataLength = 0;
+      for(let n in data){
+        dataLength += data[n].length;
+      }
+      dataLength = dataLength - 1;
+      for(let i in data){
+        for(let element in data[i]){
+          tab.push(data[i][element])
+          data[i][element].htmlId = dataLength;
+          dataLength --;
         }
-        console.log("voici data length: ", dataLength);
-        dataLength = dataLength - 1
-        for(let i in data){
-          for(let element in data[i]){
-            tab.push(data[i][element])
-            data[i][element].htmlId = dataLength;
-            console.log("tab no reverse",data[i][element])
-            dataLength --;
-          }
-        }
-
-        console.log("tab no reverse",tab)
-        let myTab = tab.reverse();
-        console.log("my tab", myTab)
-        console.log("mySearch: ", data)
-        this.navCtrl.push(ProfilesLoadPage, {post: myTab, from: 'searchUser'});
-
+      }
+      let myTab = tab.reverse();
+      this.navCtrl.push(ProfilesLoadPage, {post: myTab, from: 'searchUser'});
+    })
   }
+
 
   logout(){
     this.dataProvider.clearProfile();

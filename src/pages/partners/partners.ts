@@ -3,16 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
-import { MissionOfWatogPage } from '../mission-of-watog/mission-of-watog';
-import { OrganizationPage } from '../organization/organization';
-import { AccomplishmentsToDatePage } from '../accomplishments-to-date/accomplishments-to-date';
-import { FuturNearTermGoalsPage } from '../futur-near-term-goals/futur-near-term-goals';
 import { LoginPage } from '../login/login';
-import { PartnersPage } from '../partners/partners';
 import { DataProvider } from '../../providers/data/data';
 
 /**
- * Generated class for the WhatIsWatogPage page.
+ * Generated class for the PartnersPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -20,16 +15,16 @@ import { DataProvider } from '../../providers/data/data';
 
 @IonicPage()
 @Component({
-  selector: 'page-what-is-watog',
-  templateUrl: 'what-is-watog.html',
+  selector: 'page-partners',
+  templateUrl: 'partners.html',
 })
-export class WhatIsWatogPage {
+export class PartnersPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WhatIsWatogPage');
+    console.log('ionViewDidLoad PartnersPage');
   }
 
   goToDashboard(){
@@ -48,26 +43,4 @@ export class WhatIsWatogPage {
     this.dataProvider.clearProfile();
     this.navCtrl.push(LoginPage);
   }
-
-  goToMission(){
-    this.navCtrl.push(MissionOfWatogPage);
-  }
-
-  goToOrganization(){
-    this.navCtrl.push(OrganizationPage);
-  }
-
-  goToAccomplishments(){
-    this.navCtrl.push(AccomplishmentsToDatePage);
-  }
-
-  goToFutur(){
-    this.navCtrl.push(FuturNearTermGoalsPage);
-  }
-
-  goToPartners() {
-    this.navCtrl.push(PartnersPage);
-  }
-
-
 }
