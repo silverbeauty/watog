@@ -120,7 +120,6 @@ export class ContestVotePage {
     console.log("data of my promise: ", data)
       let tab: Array<any> = [];
       let dataLength = 0;
-      let dataLength = 0;
 
       for(let i in data){
         tab.push(data[i])
