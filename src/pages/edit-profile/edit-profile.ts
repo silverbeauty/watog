@@ -57,14 +57,15 @@ export class EditProfilePage {
   country_phone_group: FormGroup;
 
   constructor( public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public restProvider : RestProvider, public dataProvider: DataProvider) {
-    this.dataProvider.getProfile().then((profile: Auth) => {
-      this.profile_image = profile.picture_profile;
-    })
     const params = this.navParams.data;
     if(params.image_url) {
       this.image = params;
       this.profile_image = this.image.image_url;
       this.user.picture_profile = this.image.image_url;
+    }else{
+      this.dataProvider.getProfile().then((profile: Auth) => {
+        this.profile_image = profile.picture_profile;
+      })
     }
   }
 

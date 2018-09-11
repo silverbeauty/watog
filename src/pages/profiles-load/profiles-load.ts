@@ -72,11 +72,16 @@ export class ProfilesLoadPage {
   }
 
   loadInfo(){
-    console.log("ma swingCards : ", this.swingCards)
-    var el = document.querySelector('.stack').lastChild as HTMLElement
-    var html = el.getAttributeNode("id").value;
-    this.visibleElement = html;
-    this.currentPost = parseInt(html);
+    try{
+      console.log("ma swingCards : ", this.swingCards)
+      var el = document.querySelector('.stack').lastChild as HTMLElement
+      var html = el.getAttributeNode("id").value;
+      this.visibleElement = html;
+      this.currentPost = parseInt(html);
+    }
+    catch{
+      console.log("The currentPost is undefined: block is not init or last element")
+    }
   }
 
   ionViewDidLoad() {
@@ -126,7 +131,7 @@ export class ProfilesLoadPage {
   showJustLiked(){
     let justLiked = document.getElementById("just-liked");
     justLiked.style.display = "block";
-    
+
     setTimeout(() => {
       justLiked.style.display = "none";
     }, 1000);
@@ -135,7 +140,7 @@ export class ProfilesLoadPage {
   showJustdisliked(){
     let justDisliked = document.getElementById("just-disliked");
     justDisliked.style.display = "block";
-    
+
     setTimeout(() => {
       justDisliked.style.display = "none";
     }, 1000);
@@ -216,7 +221,9 @@ export class ProfilesLoadPage {
         buttons: ['OK']
       });
       alert.present();
-    });
+    }).catch(err => {
+      console.log("Error",err);
+    })
   }
 
   votePost( commend: boolean = true) {

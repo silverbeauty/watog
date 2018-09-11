@@ -34,10 +34,13 @@ export class ContestVotePage {
   }
   public posts: Array<Post> = [];
   public searchByKey: any;
+  public keyword: any;
   public searchByName: any;
+  public getName: any = null;
+  public user: Array<User> = null;
   public mySearch: any;
   public random: any;
-  public randomNum: any;
+  public randomNum: any = null;
   public picture_url: any;
   public bestPicsByChat: any;
   public isVisible: boolean = false;
@@ -80,44 +83,57 @@ export class ContestVotePage {
     this.navCtrl.push(SettingsPage);
   }
 
+
   onSearchClick() {
     DataProvider.searchUserName = this.data.name;
+    this.searchByName = null;
+    this.searchByKey = null;
+    this.getName = null;
+    this.randomNum = null;
+    this.searchByKey = this.restProvider.searchByKey(this.data.name);
+    this.randomNum = this.restProvider.queryPost_("?random&limit=10000");
+    this.user = null
 
     this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
       DataProvider.searchedUsers = users;
       DataProvider.searchUserOffset = 0;
+      this.user = users;
 
-      if(users.length != 0){
-        this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
-        this.searchByKey = this.restProvider.searchByKey(this.data.name);
-        this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
-        this.searchCallBack();
-      }
-      else{
-        this.searchCallBack(false)
-      }
-    }).catch((err: any) => {
-      this.data.error = 'Failed to search, you can try again!'
+    }).catch( err => {
+      console.log("err")
     })
 
+    this.searchByKey = this.restProvider.searchByKey(this.data.name);
+    this.searchByKey.then(data => this.keyword = data);
+
+    this.searchByKey = this.restProvider.searchByKey(this.data.name);
+
+    if(this.user != null){
+        console.log("Mon user: ",this.user)
+        this.searchByName = this.restProvider.queryPost_(`?user_id=${this.user[0].id}&random&limit=1000`).then(data => { this.getName = data; });
+        if(this.getName){
+          this.searchCallBack([this.searchByName,this.randomNum]);
+        }
+        else{
+          this.user = null;
+        }
+    }
+    else if(this.keyword != null){
+      this.searchCallBack([this.searchByKey,this.randomNum]);
+    }
+    else{
+      this.searchCallBack([this.randomNum]);
+    }
   }
 
   onRandomClick() {
-    this.searchCallBack(false, true)
+    this.searchCallBack([this.randomNum]);
   }
 
-  searchCallBack(active = true, random = false){
-    if(active) {
-      this.mySearch = Promise.all([this.searchByName, this.searchByKey, this.randomNum]);
-    }
-    else if(random && !active) {
-      this.mySearch = Promise.all([this.randomNum]);
-    }
-    else {
-      this.mySearch = Promise.all([this.searchByKey, this.randomNum]);
-    }
-
-    this.mySearch.then(data => {
+  searchCallBack(obj: any[]){
+    let promise = Promise.all(obj);
+    promise.then(data => {
+      console.log("data of my promise: ", data)
       let tab: Array<any> = [];
       let dataLength = 0;
       for(let n in data){
@@ -133,10 +149,9 @@ export class ContestVotePage {
       }
       let myTab = tab.reverse();
       this.navCtrl.push(ProfilesLoadPage, {post: myTab, from: 'searchUser'});
-    }).catch((err: any) => {
-      this.data.error = 'Failed to search, you can try again!'
     })
   }
+
 
   logout(){
     this.dataProvider.clearProfile();
@@ -162,4 +177,3 @@ export class ContestVotePage {
     setTimeout(() => imgModal.dismiss(), 8000);
   }
 }
-
