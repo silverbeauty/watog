@@ -4,7 +4,7 @@ page-contest {
     }
 
     .scroll-content {
-        overflow-y: hidden !important;
+        overflow-y: auto !important;
     }
 
     .navbar h1{
@@ -50,14 +50,14 @@ page-contest {
     }
 
     .logo{
-        margin-top: 4em;
+        margin-top: 3em;
     }
 
     .main{
         background-color: white;
         color: #525252;
         margin: 2em;
-        margin-top: 4em;
+        margin-top: 3em;
         border-radius: 1em;
         text-align: center;
     }
@@ -89,5 +89,25 @@ page-contest {
 
     .main p{
         font-size: 1.3em;
+    }
+    .footer-logo {
+        background-color: rgb(219, 228, 231);
+        padding: 15px;
+        p {
+            font-size: 12px;
+            text-align: center;
+            color: #000000cf;
+        }
+        .logo-image-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .labor-img {
+                width: 100px;
+            }
+            .baby-img {
+                width: 140px;
+            }
+        }
     }
 }

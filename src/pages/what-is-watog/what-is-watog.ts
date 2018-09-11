@@ -8,6 +8,7 @@ import { OrganizationPage } from '../organization/organization';
 import { AccomplishmentsToDatePage } from '../accomplishments-to-date/accomplishments-to-date';
 import { FuturNearTermGoalsPage } from '../futur-near-term-goals/futur-near-term-goals';
 import { LoginPage } from '../login/login';
+import { PartnersPage } from '../partners/partners';
 import { DataProvider } from '../../providers/data/data';
 
 /**
@@ -62,6 +63,10 @@ export class WhatIsWatogPage {
 
   goToFutur(){
     this.navCtrl.push(FuturNearTermGoalsPage);
+  }
+
+  goToPartners() {
+    this.navCtrl.push(PartnersPage);
   }
 
 

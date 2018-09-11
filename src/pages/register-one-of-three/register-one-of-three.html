@@ -128,7 +128,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><img src="assets/icon/Location.png" alt="password logo"></span>
                   </div>
-                  <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="Country*" formControlName="country" [(ngModel)]="country">
+                  <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" formControlName="country" [(ngModel)]="country" okText="Ok" cancelText="Cancel">
                     <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
                   </ion-select>
                 </div>
@@ -151,7 +151,7 @@
                       <span class="input-group-text"><img src="assets/icon/Hopital.png" alt="password logo"></span>
                   </div>
                   <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="user.hospital" formControlName="hospital" (ionFocus)="checkFocus()"></ion-input>
-              </div>              
+              </div>
               <div class="input-group">
                 <a href="#" (click)="openMenu()" id="qualificationInput">
                   <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Select qualification" [(ngModel)]="user.job" formControlName="job" contenteditable="false"></ion-input>

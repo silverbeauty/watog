@@ -1,5 +1,5 @@
 import { Component, EventEmitter, ViewChild, ViewChildren, QueryList,  } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Modal } from 'ionic-angular';
 
 import {
   Direction,
@@ -63,7 +63,7 @@ export class ProfilesLoadPage {
       });
     } else if(params.from == 'contestUser'){
       this.posts = new Array(params.post);
-        this.activeIndex =  this.posts.length - 1;
+      this.activeIndex = this.posts.length - 1;
     } else if(params.from == 'searchUser') {
       this.posts = params.post;
       this.activeIndex =  this.posts.length - 1;
@@ -72,15 +72,21 @@ export class ProfilesLoadPage {
   }
 
   loadInfo(){
-    console.log("ma swingCards : ", this.swingCards)
-    var el = document.querySelector('.stack').lastChild as HTMLElement
-    var html = el.getAttributeNode("id").value;
-    this.visibleElement = html;
-    this.currentPost = parseInt(html);
+    try{
+      console.log("ma swingCards : ", this.swingCards)
+      var el = document.querySelector('.stack').lastChild as HTMLElement
+      var html = el.getAttributeNode("id").value;
+      this.visibleElement = html;
+      this.currentPost = parseInt(html);
+    }
+    catch{
+      console.log("The currentPost is undefined: block is not init or last element")
+    }
   }
 
   ionViewDidLoad() {
     this.loadInfo();
+    this.showModal();
   }
 
   onThrowOut(event) {
@@ -93,8 +99,10 @@ export class ProfilesLoadPage {
     const direction = event.throwDirection.toString()
     if (direction === `Symbol(LEFT)`) { // down vote
       commend = false;
+      this.showJustdisliked();
     } else {
       commend = true;
+      this.showJustLiked();
     }
     this.restProvider.votePost(id, commend).then((post: Post) => {
       console.log("mon post", this.currentPost)
@@ -104,6 +112,38 @@ export class ProfilesLoadPage {
     }).catch(err => {
       console.log("My err: ",err)
     })
+  }
+
+  showModal(){
+    let bool = true;
+
+    if(bool){
+      let modalFirst = document.getElementById("modal-first");
+      modalFirst.style.display = "block";
+    }
+  }
+
+  modalClose(){
+    let modalFirst = document.getElementById("modal-first");
+    modalFirst.style.display = "none";
+  }
+
+  showJustLiked(){
+    let justLiked = document.getElementById("just-liked");
+    justLiked.style.display = "block";
+
+    setTimeout(() => {
+      justLiked.style.display = "none";
+    }, 1000);
+  }
+
+  showJustdisliked(){
+    let justDisliked = document.getElementById("just-disliked");
+    justDisliked.style.display = "block";
+
+    setTimeout(() => {
+      justDisliked.style.display = "none";
+    }, 1000);
   }
 
   htmlId(){
@@ -181,7 +221,9 @@ export class ProfilesLoadPage {
         buttons: ['OK']
       });
       alert.present();
-    });
+    }).catch(err => {
+      console.log("Error",err);
+    })
   }
 
   votePost( commend: boolean = true) {
@@ -247,8 +289,3 @@ export class ProfilesLoadPage {
     this.isPressed = false;
   }
 }
-/***
-
-
-
-***/
