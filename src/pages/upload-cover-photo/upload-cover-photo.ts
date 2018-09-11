@@ -4,6 +4,7 @@ import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of
 import { CameraProvider } from '../../providers/camera/camera';
 import { resFile} from "../../types";
 import {  RestProvider } from '../../providers';
+import {EditProfilePage} from "../edit-profile/edit-profile";
 
 
 
@@ -26,8 +27,8 @@ export class UploadCoverPhotoPage {
     console.log('ionViewDidLoad UploadCoverPhotoPage');
   }
 
-  gotToRegister(){
-    this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url });
+  gotToProfile(){
+    this.navCtrl.push( EditProfilePage, {image_url: this.image_url });
   }
 
   TakeaPicture(){
@@ -35,7 +36,7 @@ export class UploadCoverPhotoPage {
       this.image_url = "data:image/jpeg;base64," + resp;
       this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
         this.image_url = res_file.url;
-        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url });
+        this.navCtrl.push( EditProfilePage, {image_url: this.image_url });
       }).catch((error) => {
         alert("Send file to server error!");
         alert(JSON.stringify(error))
@@ -49,7 +50,7 @@ export class UploadCoverPhotoPage {
       this.image_url = "data:image/jpeg;base64," + resp;
       this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
         this.image_url = res_file.url;
-        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url });
+        this.navCtrl.push( EditProfilePage, {image_url: this.image_url });
       }).catch((error) => {
         alert("Send file to server error!");
         alert(JSON.stringify(error))

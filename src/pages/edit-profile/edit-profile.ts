@@ -11,7 +11,7 @@ import {DataProvider, PasswordValidator, PhoneValidator, RestProvider} from '../
 import { ElementRef } from '@angular/core';
 import {LoginPage} from "../login/login";
 import {Auth, Country, User} from "../../types";
-import {UploadProfilePhotoPage} from "../upload-profile-photo/upload-profile-photo";
+import { UploadCoverPhotoPage } from "../upload-cover-photo/upload-cover-photo";
 import {FormControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 /**
@@ -128,8 +128,7 @@ export class EditProfilePage {
   }
 
   navToUploadProfilePhoto(){
-    alert('You will lose your pre-entered profile field value!')
-    this.navCtrl.push(UploadProfilePhotoPage);
+    this.navCtrl.push(UploadCoverPhotoPage);
   }
 
   goToDashboard(){
