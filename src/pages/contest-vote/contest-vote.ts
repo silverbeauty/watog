@@ -82,24 +82,36 @@ export class ContestVotePage {
 
   onSearchClick() {
     DataProvider.searchUserName = this.data.name;
+    // This is really a mess
+    // this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
+    //   DataProvider.searchedUsers = users;
+    //   DataProvider.searchUserOffset = 0;
 
-    this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
-      DataProvider.searchedUsers = users;
-      DataProvider.searchUserOffset = 0;
+    //   if(users.length != 0){
+    //     this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
+    //     this.searchByKey = this.restProvider.searchByKey(this.data.name);
+    //     this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
+    //     this.searchCallBack();
+    //   }
+    //   else{
+    //     this.searchCallBack(false)
+    //   }
+    // }).catch((err: any) => {
+    //   this.data.error = 'Failed to search, you can try again!'
+    // })
 
-      if(users.length != 0){
-        this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
-        this.searchByKey = this.restProvider.searchByKey(this.data.name);
-        this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
-        this.searchCallBack();
-      }
-      else{
-        this.searchCallBack(false)
-      }
-    }).catch((err: any) => {
-      this.data.error = 'Failed to search, you can try again!'
+    let query = '?random'
+    if (this.data.name) {
+      query += '&keyword=' + this.data.name
+    }
+
+    // TODO: the query posts API will reurn the results by excluding the requesting user
+    this.restProvider.queryPost_(query).then((posts) => {
+      const filtered: Array<Post> = posts.filter(p => {
+        return p.user_id !== DataProvider.auth.id
+      }); // Filter my post here
+      this.navCtrl.push(ProfilesLoadPage, {post: filtered, from: 'searchUser'});
     })
-
   }
 
   onRandomClick() {
