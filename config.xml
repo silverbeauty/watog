@@ -105,4 +105,5 @@
     <plugin name="cordova-plugin-filechooser" spec="^1.0.1" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
     <plugin name="com-sarriaroman-photoviewer" spec="^1.1.18" />
+    <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
 </widget>

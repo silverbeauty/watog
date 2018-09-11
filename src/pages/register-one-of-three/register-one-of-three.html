@@ -136,7 +136,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="assets/icon/Phone.png" alt="password logo"></span>
                     </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" [textMask]="{mask: validations_form.value.country_phone.country.phone_mask}" placeholder="{{ validations_form.value.country_phone.country.sample_phone }}" [(ngModel)]="user.cell_phone" formControlName="phone"></ion-input>
+                    <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" [textMask]="{mask: validations_form.value.country_phone.country.phone_mask}" placeholder="{{ validations_form.value.country_phone.country.sample_phone }}*" [(ngModel)]="user.cell_phone" formControlName="phone"></ion-input>
                 </div>
                 <div class="validation-errors">
                   <ng-container *ngFor="let validation of validation_messages.phone">
