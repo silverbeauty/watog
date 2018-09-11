@@ -92,9 +92,10 @@ page-contest {
     }
     
     .footer-sponsor{
-        background-color: rgba(219, 228, 231, .5);
+        background-color: rgb(219, 228, 231);
         color: #000;
         font-weight: 200;
+        font-size: .8em;
         text-align: center;
         padding: .5em;
         position: fixed;
@@ -102,8 +103,11 @@ page-contest {
         bottom: 0;
 
         .labor-img, .baby-img{
-            height: 4vh;
-            margin-right: .3em;
+            height: 6vh;
+        }
+
+        .baby-img{
+            margin-right: 2em;
         }
     }
 }
