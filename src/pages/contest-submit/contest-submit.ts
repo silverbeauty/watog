@@ -9,7 +9,7 @@ import { ContestSubmitedPage } from '../contest-submited/contest-submited';
 import { DataProvider } from '../../providers/data/data';
 import { CameraProvider } from '../../providers/camera/camera';
 import {  RestProvider } from '../../providers';
-import { Auth, File, resFile } from "../../types";
+import { Auth, resFile } from "../../types";
 
 /**
  * Generated class for the ContestSubmitPage page.

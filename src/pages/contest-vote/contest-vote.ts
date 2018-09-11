@@ -100,7 +100,10 @@ export class ContestVotePage {
 
     this.restProvider.queryPost(query).then((posts: Array<Post>) => {
       this.onReceivedPosts(posts)
-    })
+    }).catch((e) => {
+      console.error(e)
+      this.data.error = 'Failed to search photos! Please try again.'
+    }) 
   }
 
   onReceivedPosts(posts: Array<Post>){
