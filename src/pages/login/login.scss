@@ -11,7 +11,7 @@ page-login {
 
     .navbar a i{
         color: white;
-        font-size: 4em;
+        font-size: 3em;
     }
 
     a{
@@ -90,6 +90,22 @@ page-login {
             .baby-img {
                 width: 140px;
             }
+        }
+    }
+
+    .footer-sponsor{
+        background-color: rgba(219, 228, 231, .5);
+        color: #000;
+        font-weight: 200;
+        text-align: center;
+        padding: .5em;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+
+        .labor-img, .baby-img{
+            height: 4vh;
+            margin-right: .3em;
         }
     }
 }
