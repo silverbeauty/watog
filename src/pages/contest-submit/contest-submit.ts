@@ -10,6 +10,7 @@ import { DataProvider } from '../../providers/data/data';
 import { CameraProvider } from '../../providers/camera/camera';
 import {  RestProvider } from '../../providers';
 import { Auth, File, resFile } from "../../types";
+import {RegisterOneOfThreePage} from "../register-one-of-three/register-one-of-three";
 
 /**
  * Generated class for the ContestSubmitPage page.
@@ -54,7 +55,7 @@ export class ContestSubmitPage {
     // Check if photo was already posted
     this.restProvider.countPost('?category_id=' + id + '&user_id=' + DataProvider.auth.id).then(count => {
       if (count > 0) {
-        this.goBack()
+        /*this.goBack()*/
         this.presentAlert('', 'Loading multiple pictures for one single category is not allowed!')
       }
     })
@@ -127,6 +128,7 @@ export class ContestSubmitPage {
         this.state.isUploading = false;
         if (this.image_local === strImage) {
           this.submit.picture = res_file.url
+          alert(this.submit.picture)
         }
       })
       .catch(err => {
@@ -166,6 +168,17 @@ export class ContestSubmitPage {
   }
 
   navToGallery() {
+/*    this.cam.selectImage(0, 0).then(resp => {
+      this.image_url = "data:image/jpeg;base64," + resp;
+      this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
+        this.image_url = res_file.url;
+        this.profile_selected = true;
+        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  profile_selected: this.profile_selected });
+      }).catch((error) => {
+        alert("Send file to server error!");
+      })
+    }, err => {
+    });*/
 
       let myCam = this.cam.selectImage(0, 0).then(resp => {
         return this.image_local = "data:image/jpeg;base64," + resp;

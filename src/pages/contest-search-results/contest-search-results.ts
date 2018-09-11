@@ -10,9 +10,6 @@ import { RestProvider } from '../../providers/rest/rest';
 import { User, Auth } from '../../types';
 import { ContestVoteSearchDetailPage } from '../contest-vote-search-detail/contest-vote-search-detail';
 import { SelectionPage } from '../selection/selection';
-import {ContestSearchResultKeywordPage} from "../contest-search-result-keyword/contest-search-result-keyword";
-import {ContestSearchResultUsersPageModule} from "../contest-search-result-users/contest-search-result-users.module";
-import {ContestSearchResultUsersPage} from "../contest-search-result-users/contest-search-result-users";
 
 /**
  * Generated class for the ContestSearchResultsPage page.
@@ -49,8 +46,6 @@ export class ContestSearchResultsPage {
   public info: any = [];
   public myUsers: any;
   public keyword: any;
-  Users = ContestSearchResultUsersPage;
-  Keywords = ContestSearchResultKeywordPage;
 
   constructor(public navCtrl: NavController, public restProvider: RestProvider, public navParams: NavParams, public dataProvider: DataProvider) {
     const Params = this.navParams.data;
