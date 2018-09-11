@@ -92,7 +92,7 @@ export class ContestVotePage {
         DataProvider.searchedUsers = users;
         DataProvider.searchUserOffset = 0;
         console.log("ALL USR: ", users)
-        this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`).then(data => {
+        this.restProvider.queryPost(`?user_id=${users[0].id}&random&limit=1000`).then((data: Array<Post>) => {
           this.getName = data
           console.log(data)
           this.traitment(data)
@@ -116,7 +116,7 @@ export class ContestVotePage {
     }
   }
 
-  traitment(data){
+  traitment(data: Array<Post>){
     console.log("data of my promise: ", data)
       let tab: Array<any> = [];
       let dataLength = 0;
@@ -139,7 +139,7 @@ export class ContestVotePage {
   }
 
   onRandomClick() {
-    this.restProvider.queryPost("?limit=100000&random").then(data => {
+    this.restProvider.queryPost("?limit=100000&random").then((data: Array<Post>) => {
       this.traitment(data);
     })
   }

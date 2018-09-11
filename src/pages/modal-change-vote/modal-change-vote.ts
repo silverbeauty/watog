@@ -55,7 +55,7 @@ export class ModalChangeVotePage {
     }
 
     // Query posts here
-    this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
+    this.restProvider.queryPost(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
       this.posts = posts;
       this.activeIndex = posts.length - 1;
       console.info('Posts Fetched:', this.posts)
