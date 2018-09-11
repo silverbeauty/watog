@@ -94,19 +94,28 @@ export class ProfilesLoadPage {
     const direction = event.throwDirection.toString()
     if (direction === `Symbol(LEFT)`) { // down vote
       commend = false;
-      this.showJustdisliked();
     } else {
       commend = true;
-      this.showJustLiked();
     }
+    this.showVoting()
     this.restProvider.votePost(id, commend).then((post: Post) => {
       console.log("mon post", this.currentPost)
       console.log("mon element", this.visibleElement)
       console.info('Voted post:', post)
       this.popPost()
+
+      if (commend) { this.showJustLiked() } else { this.showJustdisliked() }
     }).catch(err => {
       console.log("My err: ",err)
     })
+  }
+
+  showVoting() {
+
+  }
+
+  hideVoting() {
+    
   }
 
   showModal(){
