@@ -101,7 +101,6 @@ export class ContestVotePage {
       this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`).then(data => {
         this.getName = data;
       })
-      this.searchCallBack();
     }).catch( err => {
       console.log("no response");
     })
@@ -131,31 +130,10 @@ export class ContestVotePage {
     else{
       this.data.error = 'Failed to search, you can try again!'
     }
-
   }
 
-  /**
-
-  .then(users => {
-    if(users.length != 0){
-      console.log("my users daya: ", users)
-      //const randomNum = Math.floor(Math.random() * user.length);
-      console.log("mon user:  ",users)
-
-      this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
-      this.searchByKey = this.restProvider.searchByKey(this.data.name);
-      this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
-      this.searchCallBack(true,false);
-    }
-    else{
-        this.searchCallBack(false,false)
-    }
-  })
-
-  **/
-
   onRandomClick() {
-    this.searchCallBack(false,true)
+    this.searchCallBack([this.random]);
   }
 
   searchCallBack(obj: Array<any>){
@@ -213,4 +191,3 @@ export class ContestVotePage {
     setTimeout(() => imgModal.dismiss(), 8000);
   }
 }
-
