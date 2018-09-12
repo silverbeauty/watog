@@ -98,7 +98,6 @@ export class ProfilesLoadPage {
       if (commend) { this.showJustLiked() } else { this.showJustdisliked() }
     }).catch(err => {
       this.hideVoting()
-      window.alert('Failed to vote!')
       console.log("My err: ",err)
     })
   }
