@@ -119,15 +119,12 @@ export class VoteRandomPage {
   }
 
   Voted(id: number){
-    //this.vote check to user ng
-    const makeVote = "/"+ id +"/vote"
-    console.log("vote: ", this.vote)
-    this.restProvider.Voted(this.vote, makeVote).then(data => {
+    this.restProvider.votePost(id, this.vote.commend).then(data => {
+      console.info('Voted:', data)
       this.getData();
-      //this.navCtrl.push(VoteRandomPage)
     })
     .catch( err => {
-      console.log("You have already voted")
+      console.info('Failed to vote:', err)
     })
   }
 
