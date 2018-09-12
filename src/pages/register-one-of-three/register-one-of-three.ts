@@ -48,11 +48,11 @@ export class RegisterOneOfThreePage {
   public countries: Country[];
   public profile_selected: boolean = false;
   public profile_image: string = "assets/imgs/rio.jpg";
-  public country: Country = new Country("FR", "France")
+  public country: Country = new Country("FR", "")
   public promise : any;
   pass_conf: string = "";
   public show: boolean = false;
-  //
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider) {
     const params = this.navParams.data;
     if(params.image_url){
