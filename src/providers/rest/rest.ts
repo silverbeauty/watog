@@ -128,27 +128,6 @@ export class RestProvider {
     })
   }
 
-  public Voted(resp: Resp, str: string): Promise<UserResp> {
-    const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
-      'Content-Type': 'application/json'
-    });
-    return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/post'+str, resp ,{ headers })
-        .subscribe((res: any) => {
-          if (res.status) {
-            resolve(res.data as UserResp);
-          } else {
-            console.error('Failed to load send doc:', res)
-            reject ('Failed to send doc')
-          }
-        }, (err) => {
-          console.info('Failed to send doc:', err)
-          reject(err);
-        });
-    })
-  }
-
   public votePost(id: number, commend: boolean = true): Promise<Post> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
