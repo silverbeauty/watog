@@ -38,7 +38,7 @@ export class RegisterTwoOfThreePage {
       this.image_local = "data:image/jpeg;base64," + resp;
       alert("picture saved")
     }, err => {
-      alert("error with select of picture")
+      console.log("error with select of picture")
       console.log("param not send")
     });
   }
@@ -48,7 +48,7 @@ export class RegisterTwoOfThreePage {
       this.image_local = "data:image/jpeg;base64," + resp;
       alert("picture saved")
     }, err => {
-      alert("error with select of picture")
+      console.log("error with select of picture")
       console.log("param not send")
     });
   }
