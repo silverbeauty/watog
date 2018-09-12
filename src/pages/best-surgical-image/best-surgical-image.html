@@ -11,7 +11,7 @@
           <hr>
           <button type="button" class="dropdown-item" (click)="goToSettingsPage()"><img src="../../assets/icon/Gear.png" alt="profile icon"> Settings</button>
           <hr>
-          <button type="button" class="dropdown-item" (click)="logout()"><img src="../../assets/icon/Logout.png" alt="profile icon"> Logout</button>
+          <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-logout-surgical"><img src="../../assets/icon/Logout.png" alt="profile icon"> Logout</button>
         </div>
       </div>
     </div>
@@ -49,3 +49,23 @@
       </div>
     </div>
 </ion-content>
+
+<div id="modal-logout-surgical" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title ">Confirm Logout</h5>
+        <button id="btn-modal-close" type="button" class="close hide" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-4">
+        <p>Do you really want to Logout?</p>
+      </div>
+      <div class="modal-footer">
+        <button ion-button round color="light" class="text-uppercase mr-3" data-dismiss="modal">Cancel</button>
+        <button ion-button round color="teal" class="text-uppercase" (click)="logout()" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
