@@ -180,7 +180,8 @@ export class RestProvider {
       this.http.get(this.apiUrl+'/post'+str, { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            resolve(res.data);
+                // Filter invalid pictures here
+            resolve(res.data.filter(p => !!p.picture));
           } else {
             console.error('Failed to load send doc:', res)
             reject ('Failed to send doc')
