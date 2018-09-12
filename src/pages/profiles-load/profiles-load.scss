@@ -144,7 +144,34 @@ page-profiles-load {
         //height: 100vh;
         width: $ratio;
         height: 80%;
+        border: 1px solid white;
+        border-radius: 7px;
     }
+
+    .post_img_div {
+        clear: both;
+        position: absolute;
+        margin: 0;
+        background-position: center;
+        background-size: cover;
+        //width: 80vh;
+        //height: 100vh;
+        width: $ratio;
+        height: 80%;
+        border: 1px solid white;
+        border-radius: 7px;
+        background: #775576;
+        text-align: center;
+        padding-top: 50%;
+        .picture {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0px;
+            top: 0px;
+        }
+    }
+
     .toolbar{
       position: absolute;
       bottom: 0;

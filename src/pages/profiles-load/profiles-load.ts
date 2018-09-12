@@ -54,6 +54,7 @@ export class ProfilesLoadPage {
     }
 
     const params = this.navParams.data;
+
     if(params.from == 'randomUser'){
       this.user = params.user.User;
       this.restProvider.queryPost(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
