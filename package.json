@@ -33,6 +33,7 @@
     "@ionic-native/file-transfer": "^4.12.2",
     "@ionic-native/image-picker": "^4.12.2",
     "@ionic-native/in-app-browser": "^4.12.2",
+    "@ionic-native/keyboard": "^4.12.2",
     "@ionic-native/native-storage": "^4.12.2",
     "@ionic-native/photo-viewer": "^4.12.2",
     "@ionic-native/splash-screen": "~4.11.0",
@@ -70,6 +71,7 @@
     "google-libphonenumber": "^2.0.15",
     "ionic-angular": "3.9.2",
     "ionic-img-viewer": "^2.9.0",
+    "ionic-plugin-keyboard": "^2.2.1",
     "ionic-swing": "^3.0.0",
     "ionicons": "3.0.0",
     "lint-fix": "^0.24.0",
@@ -111,7 +113,8 @@
       "cordova-plugin-filechooser": {},
       "cordova-plugin-inappbrowser": {},
       "com-sarriaroman-photoviewer": {},
-      "cordova-plugin-email-composer": {}
+      "cordova-plugin-email-composer": {},
+      "ionic-plugin-keyboard": {}
     },
     "platforms": [
       "browser",

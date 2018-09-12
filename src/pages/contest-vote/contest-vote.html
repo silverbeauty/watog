@@ -32,8 +32,10 @@
   </div>
   <!--Removed Suggestions as they will not be implemented-->
   <div ion-text class="danger text-center" *ngIf="data.error">{{data.error}}</div>
+  <div ion-text class="danger text-center" *ngIf="searching">Searching photos...</div>
+
   <div class="text-center">
-    <button class="btn btn-search" (click)="onSearchClick()">SEARCH</button>
+    <button class="btn btn-search" (click)="onSearchClick()" [disabled]="searching">SEARCH</button>
   </div>
   <section class="random">
     <p>You will vote for other participant's pictures.</p>
