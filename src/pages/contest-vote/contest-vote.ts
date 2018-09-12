@@ -47,6 +47,8 @@ export class ContestVotePage {
   _imageViewerCtrl: ImageViewerController;
     public bestPicsByCat: Array<any>;
 
+  public searching: boolean = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, imageViewerCtrl: ImageViewerController, public modalCtrl: ModalController) {
     this._imageViewerCtrl = imageViewerCtrl;
     const bestCat1 = this.restProvider.queryBestPost('1');
@@ -98,10 +100,12 @@ export class ContestVotePage {
       this.data.error = 'Please enter an username @USERNAME or a keyword #KEYWORD!'
       return
     }
-
+    this.searching = true;
     this.restProvider.queryPost(query).then((posts: Array<Post>) => {
+      this.searching = false;
       this.onReceivedPosts(posts)
     }).catch((e) => {
+      this.searching = false;
       console.error(e)
       this.data.error = 'Failed to search photos! Please try again.'
     }) 

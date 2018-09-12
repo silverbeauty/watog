@@ -88,13 +88,13 @@ export class ProfilesLoadPage {
     } else {
       commend = true;
     }
-    this.showVoting()
+    //this.showVoting()
+    this.popPost()
     this.restProvider.votePost(id, commend).then((post: Post) => {
       console.log("mon post", this.currentPost)
       console.log("mon element", this.visibleElement)
       console.info('Voted post:', post)
-      this.popPost()
-      this.hideVoting()
+      //this.hideVoting()
       if (commend) { this.showJustLiked() } else { this.showJustdisliked() }
     }).catch(err => {
       this.hideVoting()
@@ -127,15 +127,18 @@ export class ProfilesLoadPage {
 
   showJustLiked(){
     let justLiked = document.getElementById("just-liked");
+    if (!justLiked) return;
+
     justLiked.style.display = "block";
 
     setTimeout(() => {
-      justLiked.style.display = "none";
+      if (justLiked) justLiked.style.display = "none";
     }, 1000);
   }
 
   showJustdisliked(){
     let justDisliked = document.getElementById("just-disliked");
+    if (!justDisliked) return;
     justDisliked.style.display = "block";
 
     setTimeout(() => {
@@ -247,10 +250,10 @@ export class ProfilesLoadPage {
 
   votePost( commend: boolean = true) {
     const post = this.posts[this.currentPost];
+    this.popPost()
     // Revert vote
     this.restProvider.votePost(post.id, commend).then((post: Post) => {
       console.info('Changed vote:', post)
-      this.popPost()
     }).catch((e) => {
       console.error(e)
     })
