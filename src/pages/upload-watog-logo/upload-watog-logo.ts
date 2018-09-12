@@ -51,7 +51,7 @@ export class UploadWatogLogoPage {
         }
       }).catch((error) => {
         alert("Send file to server error!");
-        alert(JSON.stringify(error))
+        console.log(JSON.stringify(error))
       })
     }, err => {
     });
@@ -69,7 +69,7 @@ export class UploadWatogLogoPage {
         }
       }).catch((error) => {
         alert("Send file to server error!");
-        alert(JSON.stringify(error))
+        console.log(JSON.stringify(error))
       })
     }, err => {
     });

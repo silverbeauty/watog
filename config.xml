@@ -79,7 +79,7 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
         <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
-          <string>You can upload your offer/article picture using your camera</string>
+            <string>Camera usage description</string>
         </config-file>
     </platform>
     <allow-navigation href="http://192.168.27.107:8100" />
