@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DashboardPage } from '../dashboard/dashboard';
 import { EnterTokenPage } from '../enter-token/enter-token';
 import { DataProvider, RestProvider} from "../../providers";
 import {Auth, ObjUser} from "../../types";
@@ -28,7 +29,7 @@ export class RegisterThreeOfThreePage {
   }
 
   goBack(){
-    this.navCtrl.pop();
+    this.navCtrl.push(DashboardPage);
   }
 
   goToEnterToken(){

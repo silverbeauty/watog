@@ -61,6 +61,8 @@ please add it in plist file
 ```
 <key>NSPhotoLibraryAddUsageDescription</key>
 <string>Our application needs permission to write photos...</string>
+<key>NSCameraUsageDescription</key>
+<string>Camera usage description</string>
 ```
 
 ### Google phone error
