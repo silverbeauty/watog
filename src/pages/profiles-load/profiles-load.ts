@@ -207,8 +207,7 @@ export class ProfilesLoadPage {
     })
   }
 
-  onClickReport() {
-
+  reportPost() {
     const post = this.posts[this.currentPost];
     this.restProvider.reportPost(post.id, 'scam', 'test').then((report) => {
       console.info('Post reported:', report)
@@ -221,6 +220,29 @@ export class ProfilesLoadPage {
     }).catch(err => {
       console.log("Error",err);
     })
+  }
+
+  onClickReport() {
+    const alert = this.alertCtrl.create({
+      title: 'Confirm report',
+      message: 'Do you want to report this photo?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Report',
+          handler: () => {
+            this.reportPost()
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   votePost( commend: boolean = true) {
