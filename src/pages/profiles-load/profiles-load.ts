@@ -36,7 +36,7 @@ export class ProfilesLoadPage {
   public currentPost: number = -1;
   public isPressed: boolean = false;
   public onInit : boolean = true;
-
+  public voting : boolean = false;
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
@@ -94,19 +94,21 @@ export class ProfilesLoadPage {
       console.log("mon element", this.visibleElement)
       console.info('Voted post:', post)
       this.popPost()
-
+      this.hideVoting()
       if (commend) { this.showJustLiked() } else { this.showJustdisliked() }
     }).catch(err => {
+      this.hideVoting()
+      window.alert('Failed to vote!')
       console.log("My err: ",err)
     })
   }
 
   showVoting() {
-
+    this.voting = true;
   }
 
   hideVoting() {
-    
+    this.voting = false;
   }
 
   showModal(){
@@ -205,13 +207,12 @@ export class ProfilesLoadPage {
     })
   }
 
-  onClickReport() {
-
+  reportPost() {
     const post = this.posts[this.currentPost];
     this.restProvider.reportPost(post.id, 'scam', 'test').then((report) => {
       console.info('Post reported:', report)
       let alert = this.alertCtrl.create({
-        title: '',
+        title: 'Reported.',
         subTitle: ' Thanks for your report!',
         buttons: ['OK']
       });
@@ -219,6 +220,29 @@ export class ProfilesLoadPage {
     }).catch(err => {
       console.log("Error",err);
     })
+  }
+
+  onClickReport() {
+    const alert = this.alertCtrl.create({
+      title: 'Confirm report',
+      message: 'Do you want to report this photo?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Report',
+          handler: () => {
+            this.reportPost()
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   votePost( commend: boolean = true) {
