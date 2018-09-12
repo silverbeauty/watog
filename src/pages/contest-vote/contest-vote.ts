@@ -134,7 +134,7 @@ export class ContestVotePage {
   }
 
   onRandomClick() {
-    this.restProvider.queryPost("?limit=100000&random").then((data: Array<Post>) => {
+    this.restProvider.queryPost("?not_me&limit=100000&random").then((data: Array<Post>) => {
       this.onReceivedPosts(data);
     })
   }
