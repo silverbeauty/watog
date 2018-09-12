@@ -70,7 +70,7 @@
       <div class="image-gallery">
         <section class="posts">
           <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" (swipe)="swipeEvent($event)">
-            <div [id]="post.htmlId" (press)="onPress($event)" swing-card #postCard class="post_img" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts" [ngStyle]="{'background-image':'url(' + post.picture + ')'}" >
+            <div [id]="post.id" (press)="onPress($event)" swing-card #postCard class="post_img" [ngClass]="'Post:' + post.id" access-key="post.id" [ngStyle]="{'background-image':'url(' + post.picture + ')'}" *ngFor="let post of posts.slice(posts.length - 4, posts.length)">
             </div>
           </div>
         </section>
