@@ -37,12 +37,12 @@ export class LandingPage {
       }).then((auth: Auth) => {
         if (auth.proof_of_status) {
           if (!auth.sms_verified_date && !auth.email_verified_date) { // Email or cell_phone is not verified
-            this.navCtrl.push(RegisterThreeOfThreePage); // proof_of_status not uploaded
+            this.navCtrl.push(RegisterThreeOfThreePage); // Goto SMS/Email verify page
           } else {
             this.navCtrl.push(DashboardPage)
           }
         } else {
-          this.navCtrl.push(RegisterTwoOfThreePage)
+          this.navCtrl.push(RegisterTwoOfThreePage)  // proof_of_status not uploaded
         }
       }).catch((e: any) => {
         console.error(e)
