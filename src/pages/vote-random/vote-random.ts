@@ -122,8 +122,7 @@ export class VoteRandomPage {
     this.restProvider.votePost(id, this.vote.commend).then(data => {
       console.info('Voted:', data)
       this.getData();
-    })
-    .catch( err => {
+    }).catch( err => {
       console.info('Failed to vote:', err)
     })
   }
