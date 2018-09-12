@@ -83,12 +83,13 @@
             </div>
           </div>
         </section>
+        <div class="row voting" *ngIf="voting"> <div class="col text-center"> Voting now. Please wait for a few seconds...</div> </div>
         <div class="row change-cancel" *ngIf="posts.length > 0 && currentPost > -1">
           <div class="col text-center">
             <p id="photo1-vote-score">Vote Score: {{ posts[currentPost].vote_score.toFixed(2) }}</p>
           </div>
-          <div class="col text-center">
-            <button class="report-button" data-toggle="modal" data-target="#modal-report">
+          <div class="col text-center" (click)="onClickReport()">
+            <button class="report-button">
               <img src="assets/imgs/ContenuIndesirable.png" alt="profile icon">
             </button>
           </div>
@@ -102,25 +103,6 @@
         <div class="username">{{ posts[currentPost].User.user_name }}</div>
         <div class="description">
           {{posts[currentPost].description}}
-        </div>
-      </div>
-    </div>
-    <div id="modal-report" class="modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title ">Confirm report</h5>
-            <button id="btn-modal-close" type="button" class="close hide" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body p-4">
-            <p>Do you really want to report this picture?</p>
-          </div>
-          <div class="modal-footer">
-            <button ion-button round color="light" class="text-uppercase mr-3" data-dismiss="modal">Cancel</button>
-            <button ion-button round color="teal" class="text-uppercase" (click)="onClickReport()" data-dismiss="modal">OK</button>
-          </div>
         </div>
       </div>
     </div>

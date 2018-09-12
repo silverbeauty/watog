@@ -1,5 +1,6 @@
 export const countries:any[] =
   [
+  {"name": "", "code": "FR"},
   {"name": "Afghanistan", "code": "AF"},
   {"name": "land Islands", "code": "AX"},
   {"name": "Albania", "code": "AL"},
