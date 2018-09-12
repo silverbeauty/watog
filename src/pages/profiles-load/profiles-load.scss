@@ -165,6 +165,11 @@ page-profiles-load {
         padding-top: 50%;
         .picture {
             position: absolute;
+<<<<<<< HEAD
+=======
+            pointer-events:none;
+            width: 100%;
+>>>>>>> 6e9d60b3de2a5e49002d23d9d4861fd9df4bfb45
             height: 100%;
             width: 100%;
             left: 0px;
