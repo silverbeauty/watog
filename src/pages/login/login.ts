@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { IonicPage, NavController, NavParams } from 'ionic-angular'
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { Keyboard } from "@ionic-native/keyboard";
 
 /** Page **/
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
@@ -31,8 +32,11 @@ export class LoginPage {
 
 //public restProvider: RestProvider, public dataProvider: DataProvider, public http: HttpClient
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, public platform: Platform, public keyboard: Keyboard) {
     //this.data.getData();
+    platform.ready().then(() => {
+      keyboard.disableScroll(true);
+    });
   }
 
   navigateToRegister(){
