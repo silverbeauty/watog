@@ -60,6 +60,7 @@ page-best-ultrasound-image {
         font-size: 1em;
         border-radius: 1em;
         margin-top: 2em;
+        justify-content: center;
     }
 
     .col-2{
@@ -108,6 +109,10 @@ page-best-ultrasound-image {
     .btn-next{
         background-color: #a96ba7;
         color: white;
+    }
+
+    .btn-back{
+        background-color: #ddd;
     }
 
     #consentCertified {

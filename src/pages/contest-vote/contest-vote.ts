@@ -34,10 +34,13 @@ export class ContestVotePage {
   }
   public posts: Array<Post> = [];
   public searchByKey: any;
+  public keyword: any;
   public searchByName: any;
+  public getName: any = null;
+  public user: Array<User> = null;
   public mySearch: any;
   public random: any;
-  public randomNum: any;
+  public randomNum: any = null;
   public picture_url: any;
   public bestPicsByChat: any;
   public isVisible: boolean = false;
@@ -80,61 +83,55 @@ export class ContestVotePage {
     this.navCtrl.push(SettingsPage);
   }
 
+
   onSearchClick() {
     DataProvider.searchUserName = this.data.name;
+    let query = '?not_me&random&limit=1000&'
+    if(this.data.name[0] == '@'){
+      const username = this.data.name.split('@')[1];
+      query += 'user_name=' + username
+      console.log("query")
+    } else if (this.data.name[0] == '#') {
+      const keyword = this.data.name.split('#')[1];
+      query += 'keyword=' + keyword
+    } else{
+      this.data.error = 'Please enter an username @USERNAME or a keyword #KEYWORD!'
+      return
+    }
 
-    this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
-      DataProvider.searchedUsers = users;
-      DataProvider.searchUserOffset = 0;
+    this.restProvider.queryPost(query).then((posts: Array<Post>) => {
+      this.onReceivedPosts(posts)
+    }).catch((e) => {
+      console.error(e)
+      this.data.error = 'Failed to search photos! Please try again.'
+    }) 
+    // This is really a mess
+    // this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
+    //   DataProvider.searchedUsers = users;
+    //   DataProvider.searchUserOffset = 0;
 
-      if(users.length != 0){
-        this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
-        this.searchByKey = this.restProvider.searchByKey(this.data.name);
-        this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
-        this.searchCallBack();
-      }
-      else{
-        this.searchCallBack(false)
-      }
-    }).catch((err: any) => {
-      this.data.error = 'Failed to search, you can try again!'
-    })
+    //   if(users.length != 0){
+    //     this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
+    //     this.searchByKey = this.restProvider.searchByKey(this.data.name);
+    //     this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
+    //     this.searchCallBack();
+    //   }
+    //   else{
+    //     this.searchCallBack(false)
+    //   }
+    // }).catch((err: any) => {
+    //   this.data.error = 'Failed to search, you can try again!'
+    // })
+  }
 
+  onReceivedPosts(posts: Array<Post>){
+    console.log("data of my promise: ", posts)
+    this.navCtrl.push(ProfilesLoadPage, { post: posts, from: 'searchUser'});
   }
 
   onRandomClick() {
-    this.searchCallBack(false, true)
-  }
-
-  searchCallBack(active = true, random = false){
-    if(active) {
-      this.mySearch = Promise.all([this.searchByName, this.searchByKey, this.randomNum]);
-    }
-    else if(random && !active) {
-      this.mySearch = Promise.all([this.randomNum]);
-    }
-    else {
-      this.mySearch = Promise.all([this.searchByKey, this.randomNum]);
-    }
-
-    this.mySearch.then(data => {
-      let tab: Array<any> = [];
-      let dataLength = 0;
-      for(let n in data){
-        dataLength += data[n].length;
-      }
-      dataLength = dataLength - 1;
-      for(let i in data){
-        for(let element in data[i]){
-          tab.push(data[i][element])
-          data[i][element].htmlId = dataLength;
-          dataLength --;
-        }
-      }
-      let myTab = tab.reverse();
-      this.navCtrl.push(ProfilesLoadPage, {post: myTab, from: 'searchUser'});
-    }).catch((err: any) => {
-      this.data.error = 'Failed to search, you can try again!'
+    this.restProvider.queryPost("?limit=100000&random").then((data: Array<Post>) => {
+      this.onReceivedPosts(data);
     })
   }
 
@@ -162,4 +159,3 @@ export class ContestVotePage {
     setTimeout(() => imgModal.dismiss(), 8000);
   }
 }
-

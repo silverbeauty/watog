@@ -90,24 +90,24 @@ page-contest {
     .main p{
         font-size: 1.3em;
     }
-    .footer-logo {
+    
+    .footer-sponsor{
         background-color: rgb(219, 228, 231);
-        padding: 15px;
-        p {
-            font-size: 12px;
-            text-align: center;
-            color: #000000cf;
+        color: #000;
+        font-weight: 200;
+        font-size: .8em;
+        text-align: center;
+        padding: .5em;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+
+        .labor-img, .baby-img{
+            height: 6vh;
         }
-        .logo-image-section {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            .labor-img {
-                width: 100px;
-            }
-            .baby-img {
-                width: 140px;
-            }
+
+        .baby-img{
+            margin-right: 2em;
         }
     }
 }

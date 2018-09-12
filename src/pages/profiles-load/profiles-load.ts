@@ -29,12 +29,11 @@ export class ProfilesLoadPage {
   public user: User;
   public posts: Array<Post> = [];
   public stackConfig: any;
-  public activeIndex: number = -1;
   public showImage: boolean = false;
   public searchResults: Array<any> = [];
   public bestPicsByCat: Array<any>;
   public visibleElement: any;
-  public currentPost: number = 0;
+  public currentPost: number = -1;
   public isPressed: boolean = false;
   public onInit : boolean = true;
 
@@ -57,30 +56,21 @@ export class ProfilesLoadPage {
     const params = this.navParams.data;
     if(params.from == 'randomUser'){
       this.user = params.user.User;
-      this.restProvider.queryPost_(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
+      this.restProvider.queryPost(`?user_id=${this.user.id}`).then((posts: Array<Post>) => {
         this.posts = posts;
-        this.activeIndex = posts.length - 1;
+        this.currentPost = posts.length - 1;
       });
     } else if(params.from == 'contestUser'){
       this.posts = new Array(params.post);
-      this.activeIndex = this.posts.length - 1;
+      this.currentPost = this.posts.length - 1;
     } else if(params.from == 'searchUser') {
       this.posts = params.post;
-      this.activeIndex =  this.posts.length - 1;
+      this.currentPost =  this.posts.length - 1;
     }
     console.log("les post",this.posts);
   }
 
-  loadInfo(){
-    console.log("ma swingCards : ", this.swingCards)
-    var el = document.querySelector('.stack').lastChild as HTMLElement
-    var html = el.getAttributeNode("id").value;
-    this.visibleElement = html;
-    this.currentPost = parseInt(html);
-  }
-
   ionViewDidLoad() {
-    this.loadInfo();
     this.showModal();
   }
 
@@ -88,25 +78,34 @@ export class ProfilesLoadPage {
     console.info('Event:', event)
     const className = event.target.classList[1];
     const id = parseInt(className.substring('Post:'.length)); // Cut `Post:`
-    this.activeIndex = this.activeIndex - 1;
+    this.currentPost = this.currentPost - 1;
 
     let commend = true;
     const direction = event.throwDirection.toString()
     if (direction === `Symbol(LEFT)`) { // down vote
       commend = false;
-      this.showJustdisliked();
     } else {
       commend = true;
-      this.showJustLiked();
     }
+    this.showVoting()
     this.restProvider.votePost(id, commend).then((post: Post) => {
       console.log("mon post", this.currentPost)
       console.log("mon element", this.visibleElement)
       console.info('Voted post:', post)
       this.popPost()
+
+      if (commend) { this.showJustLiked() } else { this.showJustdisliked() }
     }).catch(err => {
       console.log("My err: ",err)
     })
+  }
+
+  showVoting() {
+
+  }
+
+  hideVoting() {
+    
   }
 
   showModal(){
@@ -126,7 +125,7 @@ export class ProfilesLoadPage {
   showJustLiked(){
     let justLiked = document.getElementById("just-liked");
     justLiked.style.display = "block";
-    
+
     setTimeout(() => {
       justLiked.style.display = "none";
     }, 1000);
@@ -135,7 +134,7 @@ export class ProfilesLoadPage {
   showJustdisliked(){
     let justDisliked = document.getElementById("just-disliked");
     justDisliked.style.display = "block";
-    
+
     setTimeout(() => {
       justDisliked.style.display = "none";
     }, 1000);
@@ -216,7 +215,9 @@ export class ProfilesLoadPage {
         buttons: ['OK']
       });
       alert.present();
-    });
+    }).catch(err => {
+      console.log("Error",err);
+    })
   }
 
   votePost( commend: boolean = true) {
@@ -231,16 +232,13 @@ export class ProfilesLoadPage {
   }
 
   popPost() {
-    if (this.currentPost > 0) {
-      this.loadInfo();
-      this.currentPost --;
-    }
-    else{
-      this.goBack();
-      return;
-    }
     this.posts.pop();
+    this.currentPost = this.posts.length - 1;
 
+    if (this.currentPost < 0) {
+      this.goBack();
+      return
+    }
   }
 
   goBack(){
