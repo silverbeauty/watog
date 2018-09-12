@@ -104,6 +104,23 @@ export class ContestVotePage {
       console.error(e)
       this.data.error = 'Failed to search photos! Please try again.'
     }) 
+    // This is really a mess
+    // this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
+    //   DataProvider.searchedUsers = users;
+    //   DataProvider.searchUserOffset = 0;
+
+    //   if(users.length != 0){
+    //     this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
+    //     this.searchByKey = this.restProvider.searchByKey(this.data.name);
+    //     this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
+    //     this.searchCallBack();
+    //   }
+    //   else{
+    //     this.searchCallBack(false)
+    //   }
+    // }).catch((err: any) => {
+    //   this.data.error = 'Failed to search, you can try again!'
+    // })
   }
 
   onReceivedPosts(posts: Array<Post>){
