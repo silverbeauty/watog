@@ -60,7 +60,8 @@ export class RegisterTwoOfThreePage {
         this.dataProvider.saveUser(profile_user);
         this.navCtrl.push(RegisterThreeOfThreePage);
       }).catch((error) => {
-        alert("Send file to server error!")
+        console.log("Send file to server error!")
+        console.log("error===>", error)
       })
     }
     else{
