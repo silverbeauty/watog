@@ -192,7 +192,7 @@ export class RestProvider {
     })
   }
 
-  public queryBestPost(str: string): Promise<string>{
+  public queryBestPost(str: string): Promise<string> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
@@ -202,9 +202,13 @@ export class RestProvider {
       this.http.get(this.apiUrl+'/post?order=vote_score&direction=DESC&limit=1&category_id='+str, { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            const post:Post = res.data[0] as Post;
-            const photo = post.picture;
-            resolve(photo);
+            if (res.data.length > 0) {
+              const post:Post = res.data[0] as Post;
+              const photo = post.picture;
+              resolve(photo);              
+            } else {
+              resolve('');
+            }
           } else {
             console.error('Failed to get best post:', res)
             reject ('Failed to  get best post')
