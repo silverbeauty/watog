@@ -154,19 +154,25 @@ page-profiles-load {
         margin: 0;
         background-position: center;
         background-size: cover;
-        //width: 80vh;
-        //height: 100vh;
         width: $ratio;
         height: 80%;
         border: 1px solid white;
         border-radius: 7px;
         background: #775576;
         text-align: center;
-        padding-top: 50%;
-        .picture {
+        overflow: hidden;
+        .loading {
+            margin-top: 50%;
             position: absolute;
-            pointer-events:none;
+            margin-left: auto;
+            margin-right: auto;
+            z-index: -1;
             width: 100%;
+            text-align: center;
+        }
+        .picture {
+            pointer-events:none;
+            max-width: inherit;
             height: 100%;
             width: 100%;
             left: 0px;
