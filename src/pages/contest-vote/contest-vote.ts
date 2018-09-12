@@ -86,61 +86,51 @@ export class ContestVotePage {
 
   onSearchClick() {
     DataProvider.searchUserName = this.data.name;
+    let query = '?not_me&random&limit=1000&'
     if(this.data.name[0] == '@'){
-      let username = this.data.name.split('@')[1];
-      this.restProvider.queryUsers(username).then((users: Array<User>) => {
-        DataProvider.searchedUsers = users;
-        DataProvider.searchUserOffset = 0;
-        console.log("ALL USR: ", users)
-        this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`).then(data => {
-          this.getName = data
-          console.log(data)
-          this.traitment(data)
-        })
-      }).catch( err => {
-        this.data.error = '@USERNAME not found, please try again!'
-      })
-    }
-    else if(this.data.name[0] == '#'){
-      let username = this.data.name.split('#')[1];
-      this.restProvider.searchByKey(username).then(data => {
-        this.keyword = data;
-        console.log(data)
-        this.traitment(data);
-      }).catch( err => {
-        this.data.error = '#KEYWORD not found, please try again!'
-      })
-    }
-    else{
+      const username = this.data.name.split('@')[1];
+      query += 'user_name=' + username
+    } else if (this.data.name[0] == '#') {
+      const keyword = this.data.name.split('#')[1];
+      query += 'keyword=' + keyword
+    } else{
       this.data.error = 'Please enter an username @USERNAME or a keyword #KEYWORD!'
+      return
     }
+
+    this.restProvider.queryPost(query).then((posts: Array<Post>) => {
+      this.onReceivedPosts(posts)
+    }).catch((e) => {
+      console.error(e)
+      this.data.error = 'Failed to search photos! Please try again.'
+    }) 
+    // This is really a mess
+    // this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
+    //   DataProvider.searchedUsers = users;
+    //   DataProvider.searchUserOffset = 0;
+
+    //   if(users.length != 0){
+    //     this.searchByName = this.restProvider.queryPost_(`?user_id=${users[0].id}&random&limit=1000`);
+    //     this.searchByKey = this.restProvider.searchByKey(this.data.name);
+    //     this.randomNum = this.restProvider.queryPost_("?random&limit=10000")
+    //     this.searchCallBack();
+    //   }
+    //   else{
+    //     this.searchCallBack(false)
+    //   }
+    // }).catch((err: any) => {
+    //   this.data.error = 'Failed to search, you can try again!'
+    // })
   }
 
-  traitment(data){
-    console.log("data of my promise: ", data)
-      let tab: Array<any> = [];
-      let dataLength = 0;
-
-      for(let i in data){
-        tab.push(data[i])
-      }
-
-      dataLength += tab.length;
-      dataLength = dataLength - 1;
-
-      for(let n in tab){
-        tab[n].htmlId = dataLength;
-        dataLength --;
-      }
-
-      console.log()
-      console.log("My real tab: ", tab)
-      this.navCtrl.push(ProfilesLoadPage, {post: tab, from: 'searchUser'});
+  onReceivedPosts(posts: Array<Post>){
+    console.log("data of my promise: ", posts)
+    this.navCtrl.push(ProfilesLoadPage, { post: posts, from: 'searchUser'});
   }
 
   onRandomClick() {
-    this.restProvider.queryPost("?limit=100000&random").then(data => {
-      this.traitment(data);
+    this.restProvider.queryPost("?limit=100000&random").then((data: Array<Post>) => {
+      this.onReceivedPosts(data);
     })
   }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User, ObjUser, Auth, resFile, Category, File, Resp, Post, UserResp, Report } from '../../types';
+import { User, ObjUser, Auth, resFile, Category, Resp, Post, UserResp, Report } from '../../types';
 import 'rxjs/add/operator/timeout';
 import { server_url } from '../../environments/environment'
 
@@ -86,7 +86,7 @@ export class RestProvider {
     })
   }
 
-  public postADoc(file: any): Promise<Array<File>> {
+  public postADoc(file: any): Promise<Array<Post>> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ export class RestProvider {
       this.http.post(this.apiUrl+'/post', file,{ headers })
         .subscribe((res: any) => {
           if (res.status) {
-            resolve(res.data as Array<File>);
+            resolve(res.data as Array<Post>);
           } else {
             console.error('Failed to load send doc:', res)
             reject ('Failed to send doc')
@@ -191,29 +191,7 @@ export class RestProvider {
     })
   }
 
-  public queryPost(str: string): Promise<Array<File>> {
-    const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
-      'Content-Type': 'application/json'
-    });
-
-    return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl+'/post'+str, { headers })
-        .subscribe((res: any) => {
-          if (res.status) {
-            resolve(res.data);
-          } else {
-            console.error('Failed to query file:', res)
-            reject ('Failed to query file')
-          }
-        }, (err) => {
-          console.info('Failed to send doc:', err)
-          reject(err);
-        });
-    })
-  }
-
-  public queryPost_(str: string): Promise<Array<Post>> {
+  public queryPost(str: string): Promise<Array<Post>> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
@@ -549,26 +527,3 @@ export class RestProvider {
     })
   }
 }
-
-/**
-public postADoc(file: any): Promise<Array<File>> {
-  const headers = new HttpHeaders({
-    'Authorization':  RestProvider.token,
-    'Content-Type': 'application/json'
-  });
-  return new Promise((resolve, reject) => {
-    this.http.post(this.apiUrl+'/post', file,{ headers })
-      .subscribe((res: any) => {
-        if (res.status) {
-          resolve(res.data as Array<File>);
-        } else {
-          console.error('Failed to load send doc:', res)
-          reject ('Failed to send doc')
-        }
-      }, (err) => {
-        console.info('Failed to send doc:', err)
-        reject(err);
-      });
-  })
-}
-**/
