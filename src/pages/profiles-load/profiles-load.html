@@ -70,19 +70,21 @@
       <div class="image-gallery">
         <section class="posts">
           <!-- This is a background card-->
-          <div class="stack">
-            <div [id]="post.id" (press)="onPress($event)" class="post_img" [ngStyle]="{'background-image':'url(' + post.picture + ')'}" *ngFor="let post of posts.slice(posts.length - 3, posts.length - 2)">
+          <div class="stack" *ngIf="posts.length > 1">
+            <div [id]="post.id" (press)="onPress($event)" class="post_img_div" *ngFor="let post of posts.slice(posts.length - 2, posts.length - 1)">
+              <img class="post_img" class="picture" [src]="post.picture">
             </div>
           </div>
 
           <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" (swipe)="swipeEvent($event)">
             <div [id]="post.id" (press)="onPress($event)" swing-card #postCard class="post_img_div" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts.slice(posts.length - 1, posts.length)">
               <p>Loading...</p>
+              {{post.picture}}
               <img class="post_img" class="picture" [src]="post.picture">
             </div>
           </div>
         </section>
-        <div class="row change-cancel">
+        <div class="row change-cancel" *ngIf="posts.length > 0 && currentPost > -1">
           <div class="col text-center">
             <p id="photo1-vote-score">Vote Score: {{ posts[currentPost].vote_score.toFixed(2) }}</p>
           </div>
@@ -96,7 +98,7 @@
           </div>
         </div>
       </div>
-      <div class="toolbar">
+      <div class="toolbar" *ngIf="posts.length > 0 && currentPost > -1">
         <div id="profile-picture" [ngStyle]="{'background-image':'url(' + posts[currentPost].User.picture_profile + ')'}"></div>
         <div class="username">{{ posts[currentPost].User.user_name }}</div>
         <div class="description">
