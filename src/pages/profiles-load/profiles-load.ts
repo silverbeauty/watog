@@ -36,7 +36,7 @@ export class ProfilesLoadPage {
   public currentPost: number = -1;
   public isPressed: boolean = false;
   public onInit : boolean = true;
-
+  public voting : boolean = false;
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
@@ -94,19 +94,21 @@ export class ProfilesLoadPage {
       console.log("mon element", this.visibleElement)
       console.info('Voted post:', post)
       this.popPost()
-
+      this.hideVoting()
       if (commend) { this.showJustLiked() } else { this.showJustdisliked() }
     }).catch(err => {
+      this.hideVoting()
+      window.alert('Failed to vote!')
       console.log("My err: ",err)
     })
   }
 
   showVoting() {
-
+    this.voting = true;
   }
 
   hideVoting() {
-    
+    this.voting = false;
   }
 
   showModal(){

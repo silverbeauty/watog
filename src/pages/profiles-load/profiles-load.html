@@ -83,6 +83,7 @@
             </div>
           </div>
         </section>
+        <div class="row voting" *ngIf="voting"> <div class="col text-center"> Voting now. Please wait for a few seconds...</div> </div>
         <div class="row change-cancel" *ngIf="posts.length > 0 && currentPost > -1">
           <div class="col text-center">
             <p id="photo1-vote-score">Vote Score: {{ posts[currentPost].vote_score.toFixed(2) }}</p>
