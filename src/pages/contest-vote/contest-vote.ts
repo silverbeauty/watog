@@ -90,6 +90,7 @@ export class ContestVotePage {
     if(this.data.name[0] == '@'){
       const username = this.data.name.split('@')[1];
       query += 'user_name=' + username
+      console.log("query")
     } else if (this.data.name[0] == '#') {
       const keyword = this.data.name.split('#')[1];
       query += 'keyword=' + keyword
