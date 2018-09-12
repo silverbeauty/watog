@@ -68,14 +68,12 @@ export class SelectionPage {
   }
 
   Voted(id: number){
-    //this.vote check to user ng
-    const makeVote = "/"+ id +"/vote"
     console.log("vote: ", this.vote)
-    this.restProvider.Voted(this.vote, makeVote).then(data => {
+    this.restProvider.votePost(id, this.vote.commend).then(data => {
       this.navCtrl.push(SelectionPage, { user: this.currentUser })
     })
     .catch( err => {
-      console.log("You have already voted")
+      console.error('Failed to vote:', err)
     })
   }
 

@@ -79,13 +79,11 @@ export class ProfilePage {
   }
 
   Voted(id: number){
-    const makeVote = "/"+ id +"/vote"
     console.log("vote: ", this.vote)
-    this.restProvider.Voted(this.vote, makeVote).then(data => {
-
-    })
-    .catch( err => {
-      console.log("You have already voted")
+    this.restProvider.votePost(id, this.vote.commend).then(data => {
+      console.info('Voted:', data)
+    }).catch( err => {
+      console.error('Failed to vote:', err)
     })
   }
 
