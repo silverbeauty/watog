@@ -64,8 +64,6 @@ import { SelectionPage } from '../pages/selection/selection';
 import { ProfilesLoadPage } from '../pages/profiles-load/profiles-load';
 import { BestPhotoPage} from "../pages/best-photo/best-photo";
 import { ModalChangeVotePage } from '../pages/modal-change-vote/modal-change-vote';
-import { ContestSearchResultKeywordPage } from "../pages/contest-search-result-keyword/contest-search-result-keyword";
-import { ContestSearchResultUsersPage } from "../pages/contest-search-result-users/contest-search-result-users";
 import { ImageModalPage } from '../pages/imge-modal/img-modal';
 import { ModalLogout } from '../pages/profile/profile';
 import { PartnersPage } from '../pages/partners/partners';
@@ -102,8 +100,6 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
   	ContestSubmitPage,
   	ContestSubmitedPage,
   	ContestVotePage,
-    ContestSearchResultKeywordPage,
-    ContestSearchResultUsersPage,
   	FuturNearTermGoalsPage,
   	MissionOfWatogPage,
   	OrganizationPage,
@@ -158,8 +154,6 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
   	ContestPage,
   	ContestVoteSearchDetailPage,
   	ContestSearchResultsPage,
-    ContestSearchResultKeywordPage,
-    ContestSearchResultUsersPage,
   	ContestSubmitPage,
   	ContestSubmitedPage,
   	ContestVotePage,

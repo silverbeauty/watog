@@ -69,7 +69,6 @@ export class EditProfilePage {
     }
   }
 
-
   ionViewDidLoad() {
     this.dataProvider.getProfile().then((profile: User) => {
       this.user = profile;
