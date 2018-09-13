@@ -31,6 +31,7 @@ export class DataProvider {
   public static searchedKeyword: Array<any> = [];
   public static firstRun: boolean = true;
   public static auth: Auth;
+  public static showAd: boolean = true;
 
   constructor(private storage: NativeStorage) {}
 

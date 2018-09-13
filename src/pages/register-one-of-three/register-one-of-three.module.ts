@@ -4,9 +4,6 @@ import { RegisterOneOfThreePage } from './register-one-of-three';
 
 
 @NgModule({
-  declarations: [
-    RegisterOneOfThreePage,
-  ],
   imports: [
     IonicPageModule.forChild(RegisterOneOfThreePage),
   ]

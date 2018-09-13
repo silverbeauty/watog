@@ -3,9 +3,6 @@ import { IonicPageModule } from 'ionic-angular';
 import { ParticipatePage } from './participate';
 
 @NgModule({
-  declarations: [
-    ParticipatePage,
-  ],
   imports: [
     IonicPageModule.forChild(ParticipatePage),
   ],

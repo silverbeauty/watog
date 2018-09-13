@@ -195,6 +195,7 @@ export class RegisterOneOfThreePage {
     console.log('ionViewDidLoad RegisterOneOfThreePage');
     this.user.picture_profile = this.profile_image;
     this.user.country = "France";
+    this.country = new Country("MH","");
     this.show = false;
   }
 
