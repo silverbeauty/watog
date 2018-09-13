@@ -108,7 +108,7 @@ export class ContestVotePage {
       this.searching = false;
       console.error(e)
       this.data.error = 'Failed to search photos! Please try again.'
-    }) 
+    })
     // This is really a mess
     // this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
     //   DataProvider.searchedUsers = users;
@@ -160,6 +160,6 @@ export class ContestVotePage {
     this.isVisible = true;
     let imgModal = this.modalCtrl.create(ImageModalPage, { images: this.bestPicsByChat });
     imgModal.present();
-    setTimeout(() => imgModal.dismiss(), 8000);
+    setTimeout(() => imgModal.dismiss(), 18000);
   }
 }

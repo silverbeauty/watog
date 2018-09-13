@@ -18,8 +18,7 @@
   <div class="size-back" (click)="goBack()">
     <ion-icon class="back-s" name="arrow-back"></ion-icon>
   </div>
-  <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + picture_url + ')'}" (click)="showImageGallery()">
-  </div>
+  <!--<div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + picture_url + ')'}" (click)="showImageGallery()"></div>-->
   <h2>Vote For your Favorite Pictures !</h2>
   <div class="input-group">
     <div class="input-group-prepend">
@@ -31,8 +30,8 @@
     </ion-input>
   </div>
   <!--Removed Suggestions as they will not be implemented-->
-  <div ion-text class="danger text-center" *ngIf="data.error">{{data.error}}</div>
-  <div ion-text class="danger text-center" *ngIf="searching">Searching photos...</div>
+  <div ion-text class="danger text-center" *ngIf="data.error && !searching">{{data.error}}</div>
+  <div ion-text class="danger text-center" *ngIf="searching && !data.error">Searching photos...</div>
 
   <div class="text-center">
     <button class="btn btn-search" (click)="onSearchClick()" [disabled]="searching">SEARCH</button>
@@ -43,7 +42,7 @@
   </section>
   <div class="text-center">
     <button class="btn btn-random" (click)="onRandomClick()">RANDOM</button>
-  </div>  
+  </div>
 </ion-content>
 <div id="modal-logout-content-vote" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -64,4 +63,3 @@
     </div>
   </div>
 </div>
-

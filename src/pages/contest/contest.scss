@@ -45,7 +45,8 @@ page-contest {
 
     .body{
         background-image: url(../../assets/imgs/rio.jpg);
-        background-position: center top;
+        background-position: center;
+        background-size: cover;
         color: white;
     }
 
@@ -53,11 +54,17 @@ page-contest {
         margin-top: 3em;
     }
 
+    .main-p{
+        text-align: center;
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+        margin-bottom: 0;
+    }
+
     .main{
         background-color: white;
         color: #525252;
         margin: 2em;
-        margin-top: 3em;
         border-radius: 1em;
         text-align: center;
     }
