@@ -5,8 +5,11 @@
         <h1>AD</h1>
       </div>
     </div>
-    <div class="text-center">
-      <h3> {{navParams.text}}</h3>
+    <div class="content text-center" >
+      <p> {{navParams.data.text}}</p>
+      <div class="button-area text-center">
+        <button ion-button (click)="onClickDismiss()">Dismiss</button>
+      </div>
     </div>
   </div>
 </ion-content>

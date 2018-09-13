@@ -1,23 +1,5 @@
 page-ad-modal {
-    .body{
-        background-image: url('../../assets/imgs/rio.jpg');
-        background-position: center;
-        background-size: cover;
-    }
-
-    .main{
-        position: relative;
-        z-index: 1;
-        margin: 0;
-        padding: 0;
-        background-color: rgba(82, 82, 82, 0.5);
-        min-height: 100vh;
-        .main-inside{
-            background: white;
-            height: calc(100vh - 50px);
-        }
-    }   
-
+    border: 1px solid lightgray;
     .title{
         background: #774576;
         color: white;
@@ -30,5 +12,16 @@ page-ad-modal {
         margin: 0;
         font-size: 1.4em;
         font-weight: 400;
+    }
+
+    .content {
+        padding-top: 1em;
+    }
+
+    .button-area {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
     }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { ContestVotePage } from '../contest-vote/contest-vote';
 
 /**
@@ -17,10 +17,15 @@ import { ContestVotePage } from '../contest-vote/contest-vote';
 
 export class AdModalPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+    console.info('navParams:', navParams)
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdModal');
+  }
+
+  onClickDismiss() {
+    this.viewCtrl.dismiss();
   }
 }
