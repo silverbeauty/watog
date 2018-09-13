@@ -130,6 +130,17 @@
   animation: sk-bounce 2.0s infinite ease-in-out;
 }
 
+.show-page{
+	height: 100vh;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+
+.swiper-pagination{
+	top: 2%;
+}
+
 .double-bounce2 {
   -webkit-animation-delay: -1.0s;
   animation-delay: -1.0s;

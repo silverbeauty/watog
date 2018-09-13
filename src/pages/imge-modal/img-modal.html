@@ -1,13 +1,10 @@
 <ion-content class="body">
   <div class="main">
     <div class="main-inside">
-      <div class="title">
-        <h1>Best Pictures</h1>
-      </div>
       <ion-slides pager="true">
-        <ion-slide *ngFor="let image of images" >
-          <img [src]="image">
-        </ion-slide>        
+        <ion-slide class="imgs" *ngFor="let image of images" >
+          <div [ngStyle]="{'background-image':'url(' + image + ')'}"></div>
+        </ion-slide>
       </ion-slides>
     </div>
   </div>
