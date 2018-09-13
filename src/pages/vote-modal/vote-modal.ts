@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { ContestVotePage } from '../contest-vote/contest-vote';
 
 /**
@@ -16,6 +16,8 @@ import { ContestVotePage } from '../contest-vote/contest-vote';
 })
 export class VoteModalPage {
 
+  @ViewChild(Slides) slides: Slides;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -28,6 +30,10 @@ export class VoteModalPage {
   }
   goBack() {
     this.navCtrl.pop();
+  }
+
+  onClickNext() {
+    this.slides.slideNext();
   }
 
 }
