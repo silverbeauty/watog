@@ -21,7 +21,7 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class WatogContactPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
