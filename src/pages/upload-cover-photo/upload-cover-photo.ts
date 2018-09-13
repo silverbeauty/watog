@@ -86,7 +86,7 @@ export class UploadCoverPhotoPage {
         this.navCtrl.push(EditProfilePage, {image_url: this.image_url});
       })
       .catch(err => {
-        let alert = this.alertCtrl.create({
+        /*let alert = this.alertCtrl.create({
           title: 'Failed to upload',
           subTitle: 'Failed to upload photo',
           buttons: [
@@ -97,7 +97,7 @@ export class UploadCoverPhotoPage {
                 this.uploadPhoto(img)
               }}]
         });
-        alert.present();
+        alert.present();*/
       });
   }
 }
