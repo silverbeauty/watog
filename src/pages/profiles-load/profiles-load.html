@@ -72,14 +72,14 @@
           <!-- This is a background card-->
           <div class="stack" *ngIf="posts.length > 1">
             <div [id]="post.id" (press)="onPress($event)" class="post_img_div" *ngFor="let post of posts.slice(posts.length - 2, posts.length - 1)">
-              <img class="post_img" class="picture" [src]="post.picture">
+              <img class="post_img" class="picture" [src]="post.picture" imageViewer>
             </div>
           </div>
 
           <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" (swipe)="swipeEvent($event)">
             <div [id]="post.id" (press)="onPress($event)" swing-card #postCard class="post_img_div" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts.slice(posts.length - 1, posts.length)">
               <p class="loading">Loading...</p>
-              <img class="picture" [src]="post.picture">
+              <img class="picture" [src]="post.picture" imageViewer>
             </div>
           </div>
         </section>
