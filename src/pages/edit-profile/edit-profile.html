@@ -1,134 +1,135 @@
 <ion-content class="body">
-    <div class="navbar">
-      <a href="#" (click)="goToDashboard()"><img src="assets/icon/Menu.png" alt="Menu icon"></a>
-      <h1>Edit Profile</h1>
-      <div class="btn-group">
-        <button type="button" class="btn btn-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="assets/icon/Profil02.png" alt="profile icon">
-        </button>
-        <div class="dropdown-menu dropdown-menu-right">
-          <button type="button" class="dropdown-item" (click)="goToProfilePage()"><img src="assets/icon/Profil.png" alt="profile icon"> Profile</button>
-          <hr>
-          <button type="button" class="dropdown-item" (click)="goToSettingsPage()"><img src="assets/icon/Gear.png" alt="profile icon"> Settings</button>
-          <hr>
-          <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-logout-profile"><img src="assets/icon/Logout.png" alt="profile icon"> Logout</button>
+  <div class="navbar">
+    <a href="#" (click)="goToDashboard()"><img src="assets/icon/Menu.png" alt="Menu icon"></a>
+    <h1>Edit Profile</h1>
+    <div class="btn-group">
+      <button type="button" class="btn btn-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src="assets/icon/Profil02.png" alt="profile icon">
+      </button>
+      <div class="dropdown-menu dropdown-menu-right">
+        <button type="button" class="dropdown-item" (click)="goToProfilePage()"><img src="assets/icon/Profil.png" alt="profile icon"> Profile</button>
+        <hr>
+        <button type="button" class="dropdown-item" (click)="goToSettingsPage()"><img src="assets/icon/Gear.png" alt="profile icon"> Settings</button>
+        <hr>
+        <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-logout-profile"><img src="assets/icon/Logout.png" alt="profile icon"> Logout</button>
+      </div>
+    </div>
+  </div>
+  <section class="second-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <img src="assets/icon/ArrowWhite.png" alt="arrow back" (click)="goBack()">
+        </div>
+        <div class="col">
+          <p>Edit Profile</p>
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </div>
+  </section>
+  <section class="sign-in">
+    <div class="upload-profil-picture container-fluid" (click)="navToUploadProfilePhoto()">
+      <div class="container">
+        <div class="row">
+          <div class="col-4 justify-content-right">
+            <div id="profil-picture">
+              <img [src]="profile_image">
+            </div>
+          </div>
+          <div class="col-8" class="profile-picture-description align-middle">
+            <p class="font-weight-light">Change Profile Picture</p>
+          </div>
         </div>
       </div>
     </div>
-    <section class="second-title">
-      <div class="container">
-        <div class="row">
-          <div class="col-2">
-              <img src="assets/icon/ArrowWhite.png" alt="arrow back" (click)="goBack()">
-          </div>
-          <div class="col">
-              <p>Edit Profile</p>
-          </div>
-          <div class="col-2"></div>
-        </div>
-      </div>
-    </section>
-    <section class="sign-in">
-        <div class="upload-profil-picture container-fluid" (click)="navToUploadProfilePhoto()">
-            <div class="container">
-              <div class="row">
-                <div class="col-4 justify-content-right">
-                  <div id="profil-picture">
-                    <img [src]="profile_image">
+    <div class="container">
+      <div class="row">
+        <div class="col-md">
+          <form (ngSubmit)="setCurrentUser()" [formGroup]="validations_form">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><img src="assets/icon/Profil.png" alt="login logo"></span>
+              </div>
+              <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First name" name="first_name" value="{{ user.first_name }}" formControlName="first_name"></ion-input>
+            </div>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.first_name">
+                <div class="error-message" *ngIf="validations_form.get('first_name').hasError(validation.type) && (validations_form.get('first_name').dirty || validations_form.get('first_name').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><img src="assets/icon/Profil.png" alt="password logo"></span>
+              </div>
+              <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" name="last_name" value="{{ user.last_name }}" formControlName="last_name"></ion-input>
+            </div>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.last_name">
+                <div class="error-message" *ngIf="validations_form.get('last_name').hasError(validation.type) && (validations_form.get('last_name').dirty || validations_form.get('last_name').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><img src="assets/icon/Profil.png" alt="pseudo icon"></span>
+              </div>
+              <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" name="user_name"  value="{{ user.user_name }}" formControlName="user_name"></ion-input>
+            </div>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.user_name">
+                <div class="error-message" *ngIf="validations_form.get('user_name').hasError(validation.type) && (validations_form.get('user_name').dirty || validations_form.get('user_name').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <div formGroupName="country_phone">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><img src="assets/icon/Location.png" alt="password logo"></span>
+                </div>
+                <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" placeholder="{{user.country}}" formControlName="country" [(ngModel)]="country" okText="Ok" cancelText="Cancel">
+                  <ion-option *ngFor="let item of countries" [value]="item" [selected]="item.name == user.country" >{{item.name}}</ion-option>
+                </ion-select>
+              </div>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><img src="assets/icon/Phone.png" alt="password logo"></span>
+                </div>
+                <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" [textMask]="{mask: validations_form.value.country_phone.country.phone_mask}" placeholder="{{ validations_form.value.country_phone.country.sample_phone }}" [(ngModel)]="user.cell_phone" formControlName="phone"></ion-input>
+              </div>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.phone">
+                  <div class="error-message" *ngIf="validations_form.get('country_phone').get('phone').hasError(validation.type) && (validations_form.get('country_phone').get('phone').dirty || validations_form.get('country_phone').get('phone').touched)">
+                    {{ validation.message }}
                   </div>
-                </div>
-                <div class="col-8" class="profile-picture-description align-middle">
-                  <p class="font-weight-light">Change Profile Picture</p>
-                </div>
+                </ng-container>
               </div>
             </div>
-          </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md">
-            <form (ngSubmit)="setCurrentUser()" [formGroup]="validations_form">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><img src="assets/icon/Profil.png" alt="login logo"></span>
-                    </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First name" name="first_name" value="{{ user.first_name }}" formControlName="first_name"></ion-input>
-                </div>
-                <div class="validation-errors">
-                  <ng-container *ngFor="let validation of validation_messages.first_name">
-                    <div class="error-message" *ngIf="validations_form.get('first_name').hasError(validation.type) && (validations_form.get('first_name').dirty || validations_form.get('first_name').touched)">
-                      {{ validation.message }}
-                    </div>
-                  </ng-container>
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><img src="assets/icon/Profil.png" alt="password logo"></span>
-                    </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" name="last_name" value="{{ user.last_name }}" formControlName="last_name"></ion-input>
-                </div>
-                <div class="validation-errors">
-                  <ng-container *ngFor="let validation of validation_messages.last_name">
-                    <div class="error-message" *ngIf="validations_form.get('last_name').hasError(validation.type) && (validations_form.get('last_name').dirty || validations_form.get('last_name').touched)">
-                      {{ validation.message }}
-                    </div>
-                  </ng-container>
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><img src="assets/icon/Profil.png" alt="pseudo icon"></span>
-                    </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" name="user_name"  value="{{ user.user_name }}" formControlName="user_name"></ion-input>
-                </div>
-                <div class="validation-errors">
-                  <ng-container *ngFor="let validation of validation_messages.user_name">
-                    <div class="error-message" *ngIf="validations_form.get('user_name').hasError(validation.type) && (validations_form.get('user_name').dirty || validations_form.get('user_name').touched)">
-                      {{ validation.message }}
-                    </div>
-                  </ng-container>
-                </div>
-                <div formGroupName="country_phone">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><img src="assets/icon/Location.png" alt="password logo"></span>
-                    </div>
-                    <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" formControlName="country" [(ngModel)]="country" okText="Ok" cancelText="Cancel">
-                      <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
-                    </ion-select>
-                  </div>
-                  <div class="input-group"><div class="input-group-prepend">
-                      <span class="input-group-text"><img src="assets/icon/Phone.png" alt="password logo"></span>
-                    </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" [textMask]="{mask: validations_form.value.country_phone.country.phone_mask}" placeholder="{{ validations_form.value.country_phone.country.sample_phone }}" [(ngModel)]="user.cell_phone" formControlName="phone"></ion-input>
-                  </div>
-                  <div class="validation-errors">
-                    <ng-container *ngFor="let validation of validation_messages.phone">
-                      <div class="error-message" *ngIf="validations_form.get('country_phone').get('phone').hasError(validation.type) && (validations_form.get('country_phone').get('phone').dirty || validations_form.get('country_phone').get('phone').touched)">
-                        {{ validation.message }}
-                      </div>
-                    </ng-container>
-                  </div>
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><img src="assets/icon/Hopital.png" alt="password logo"></span>
-                    </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" name="hospital"  [(ngModel)]="user.hospital" formControlName="hospital" (ionFocus)="checkFocus()"></ion-input>
-                </div>
-                <div class="validation-errors">
-                  <ng-container *ngFor="let validation of validation_messages.hospital">
-                    <div class="error-message" *ngIf="validations_form.get('hospital').hasError(validation.type) && (validations_form.get('hospital').dirty || validations_form.get('hospital').touched)">
-                      {{ validation.message }}
-                    </div>
-                  </ng-container>
-                </div>
-              <div class="text-center div-btn-submit">
-                <button type="submit" class="btn btn-submit btn-md" [disabled]="!validations_form.valid">EDIT PROFILE</button>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><img src="assets/icon/Hopital.png" alt="password logo"></span>
               </div>
-            </form>
-          </div>
+              <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" name="hospital"  [(ngModel)]="user.hospital" formControlName="hospital" (ionFocus)="checkFocus()"></ion-input>
+            </div>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.hospital">
+                <div class="error-message" *ngIf="validations_form.get('hospital').hasError(validation.type) && (validations_form.get('hospital').dirty || validations_form.get('hospital').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <div class="text-center div-btn-submit">
+              <button type="submit" class="btn btn-submit btn-md" [disabled]="!validations_form.valid">EDIT PROFILE</button>
+            </div>
+          </form>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 </ion-content>
 
 <div id="modal-logout-profile" class="modal" tabindex="-1" role="dialog">

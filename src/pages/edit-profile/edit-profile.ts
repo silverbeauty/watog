@@ -40,12 +40,12 @@ export class EditProfilePage {
     job: '',
     picture_profile: '',
     picture_cover: '',
-    proof_of_status_date:'',
+    proof_of_status_date: '',
     proof_of_status: ''
   }
 
   public image = {
-    image_url: "",
+    image_url: '',
     profile_selected: false
   }
 
@@ -83,6 +83,10 @@ export class EditProfilePage {
   }
 
   ionViewDidLoad() {
+    this.dataProvider.getProfile().then((profile: User) => {
+      this.user = profile;
+      console.log(this.user)
+    })
   }
 
   ionViewWillLoad() {
@@ -113,11 +117,15 @@ export class EditProfilePage {
       ])]
     });
   }
-  setCurrentUser(){
-    if(this.user.cell_phone.lastIndexOf('_')!=-1){
-      this.user.cell_phone = (this.user.cell_phone.slice(0,-1))
+  setCurrentUser() {
+    if(this.user.cell_phone.lastIndexOf('_') != -1) {
+      this.user.cell_phone = (this.user.cell_phone.slice(0, -1))
     }
     this.user.country = this.country.name;
+    this.user.first_name = this.validations_form.value.first_name;
+    this.user.last_name = this.validations_form.value.last_name;
+    this.user.user_name = this.validations_form.value.user_name;
+    this.user.hospital = this.validations_form.value.hospital;
     this.restProvider.setProfile(this.user as User).then((user: User) => {
       // Save profile
       const profile_user: User = user;
@@ -155,8 +163,8 @@ export class EditProfilePage {
   }
 
   checkFocus(){
-    if(this.user.cell_phone.lastIndexOf('_')!=-1){
-      this.user.cell_phone = (this.user.cell_phone.slice(0,-1))
+    if(this.user.cell_phone.lastIndexOf('_') != -1){
+      this.user.cell_phone = (this.user.cell_phone.slice(0, -1))
     }
   }
 
