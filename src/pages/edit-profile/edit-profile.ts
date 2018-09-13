@@ -52,7 +52,7 @@ export class EditProfilePage {
   public profile_image: string = "assets/imgs/rio.jpg";
   public promise : any;
   countries: Country[];
-  public country: Country = new Country("FR", "");
+  public country: Country = null;
   validations_form: FormGroup;
   country_phone_group: FormGroup;
 
@@ -62,29 +62,31 @@ export class EditProfilePage {
       this.image = params;
       this.profile_image = this.image.image_url;
       this.user.picture_profile = this.image.image_url;
-    }else{
-      this.dataProvider.getProfile().then((profile: Auth) => {
-        this.profile_image = profile.picture_profile;
-      })
     }
-  }
-
-  ionViewDidLoad() {
     this.dataProvider.getProfile().then((profile: User) => {
-      this.user = profile;
+      this.user = profile as User;
+      console.log(this.user);
+      this.countries = [
+        new Country(countries[0].code, countries[0].name)
+      ]
+      if(this.countries[0].name == this.user.country){
+        this.country = this.countries[0];
+      }
+      for(var i = 1; i < countries.length; i ++){
+        const County = new Country(countries[i].code, countries[i].name);
+        this.countries.push(County);
+        if(countries[i].name == this.user.country){
+          this.country = this.countries[i];
+        }
+      }
     })
   }
 
-  ionViewWillLoad() {
-    this.countries = [
-      new Country(countries[0].code, countries[0].name)
-    ]
-    for(var i = 1; i < countries.length; i ++){
-      const County = new Country(countries[i].code, countries[i].name)
-      this.countries.push(County);
-    }
+  ionViewDidLoad() {
+  }
 
-    let country = new FormControl(this.countries[0], Validators.required);
+  ionViewWillLoad() {
+    let country = new FormControl('', Validators.required);
     let phone = new FormControl('', Validators.compose([
       Validators.required,
       PhoneValidator.validCountryPhone(country)
