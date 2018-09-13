@@ -27,8 +27,10 @@ export class DashboardPage {
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {}
 
   ionViewDidLoad() {
-    let profileModal = this.modalCtrl.create(AdModalPage, { text: 'Post your pictures and win a full package for RIO (Flight, FIGO Pass, Hotel)!!' });
-   profileModal.present();
+    if (DataProvider.showAd) {
+      DataProvider.showAd = false;
+      this.presentAdModal();
+    }
   }
 
   goToProfilePage(){
@@ -53,7 +55,11 @@ export class DashboardPage {
   }
 
   presentAdModal() {
-
+    let profileModal = this.modalCtrl.create(AdModalPage, {
+      title: 'WATOG Contest',
+      text: 'Post your pictures and win a full package for RIO (Flight, FIGO Pass, Hotel)!!' 
+    });
+    profileModal.present();
   }
 
 }

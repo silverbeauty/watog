@@ -2,13 +2,13 @@
   <div class="main">
     <div class="main-inside">
       <div class="title">
-        <h1>AD</h1>
+        <h1>{{navParams.data.title}}</h1>
       </div>
     </div>
     <div class="content text-center" >
-      <p> {{navParams.data.text}}</p>
+      <p class="ad_text"> {{navParams.data.text}}</p>
       <div class="button-area text-center">
-        <button ion-button (click)="onClickDismiss()">Dismiss</button>
+        <button ion-button (click)="onClickDismiss()">Let's start!</button>
       </div>
     </div>
   </div>

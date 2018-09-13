@@ -15,7 +15,7 @@ page-ad-modal {
     }
 
     .content {
-        padding-top: 1em;
+        padding: 1em;
     }
 
     .button-area {
@@ -23,5 +23,8 @@ page-ad-modal {
         bottom: 0px;
         left: 0px;
         width: 100%;
+    }
+    .ad_text {
+        font-weight: bold;
     }
 }
