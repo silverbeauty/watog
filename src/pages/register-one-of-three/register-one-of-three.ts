@@ -48,7 +48,7 @@ export class RegisterOneOfThreePage {
   public countries: Country[];
   public profile_selected: boolean = false;
   public profile_image: string = "assets/imgs/rio.jpg";
-  public country: Country = new Country("FR", "")
+  public country: Country = new Country("MH","");
   public promise : any;
   pass_conf: string = "";
   public show: boolean = false;
@@ -191,6 +191,7 @@ export class RegisterOneOfThreePage {
     console.log('ionViewDidLoad RegisterOneOfThreePage');
     this.user.picture_profile = this.profile_image;
     this.user.country = "France";
+    this.country = new Country("MH","");
     this.show = false;
   }
 

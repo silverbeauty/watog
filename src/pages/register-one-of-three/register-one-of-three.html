@@ -128,7 +128,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><img src="assets/icon/Location.png" alt="password logo"></span>
                   </div>
-                  <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" formControlName="country" [(ngModel)]="country" okText="Ok" cancelText="Cancel">
+                  <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" formControlName="country" [(ngModel)]="country" placeholder = "Country*" okText="Ok" cancelText="Cancel">
                     <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
                   </ion-select>
                 </div>
