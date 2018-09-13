@@ -89,4 +89,11 @@ page-vote-modal {
         padding-left: 2em;
         z-index: 99999999;
     }
+    .arrow_area {
+        padding: 1em;
+        text-align: center;
+        .icon {
+            padding-left: 5px;
+        }
+    }
 }
