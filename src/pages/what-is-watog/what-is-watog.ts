@@ -10,6 +10,7 @@ import { FuturNearTermGoalsPage } from '../futur-near-term-goals/futur-near-term
 import { LoginPage } from '../login/login';
 import { PartnersPage } from '../partners/partners';
 import { DataProvider } from '../../providers/data/data';
+import { WatogContactPage } from '../watog-contact/watog-contact';
 
 /**
  * Generated class for the WhatIsWatogPage page.
@@ -67,6 +68,10 @@ export class WhatIsWatogPage {
 
   goToPartners() {
     this.navCtrl.push(PartnersPage);
+  }
+
+  goToContact(){
+    this.navCtrl.push(WatogContactPage);
   }
 
 
