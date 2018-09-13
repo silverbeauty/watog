@@ -52,7 +52,7 @@ export class EditProfilePage {
   public profile_image: string = "assets/imgs/rio.jpg";
   public promise : any;
   countries: Country[];
-  public country: Country = new Country("FR", "France");
+  public country: Country = new Country("FR", "");
   validations_form: FormGroup;
   country_phone_group: FormGroup;
 

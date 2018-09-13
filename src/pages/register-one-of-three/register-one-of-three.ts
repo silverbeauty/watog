@@ -48,7 +48,7 @@ export class RegisterOneOfThreePage {
   public countries: Country[];
   public profile_selected: boolean = false;
   public profile_image: string = "assets/imgs/rio.jpg";
-  public country: Country = new Country("MH","");
+  public country: Country = new Country("FR","");
   public promise : any;
   pass_conf: string = "";
   public show: boolean = false;
