@@ -70,6 +70,8 @@ import { ModalLogout } from '../pages/profile/profile';
 import { PartnersPage } from '../pages/partners/partners';
 import { AdModalPage } from '../pages/ad-modal/ad-modal';
 
+import { AccomplishmentsToDatePageModule } from '../pages/accomplishments-to-date/accomplishments-to-date.module';
+
 /*Provider*/
 import { DataProvider } from '../providers/data/data';
 import { DistantDataBaseProvider } from '../providers/distant-data-base/distant-data-base';
@@ -138,7 +140,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     IonicModule.forRoot(MyApp),
     ValidatorsModule,
     SwingModule,
-    IonicImageViewerModule
+    IonicImageViewerModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
