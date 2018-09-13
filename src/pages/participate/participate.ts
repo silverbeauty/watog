@@ -69,17 +69,16 @@ export class ParticipatePage {
 
   goToNextPage(categoryId: number, page, from) {
     const { id } = DataProvider.auth; // user id
-    return new Promise((resolve, reject) => {
-      return this.restProvider.queryPost(`?category_id=${categoryId}&user_id=${id}`)
-    }).then((posts: Array<Post>) => {
-      if (posts.length > 0) { // already uploaded
-        this.presentAlert()
-      } else {
-        this.navCtrl.push(page, { id: categoryId , from });
-      }
-    }).catch(e => {
-      this.presentRetry()
-    })
+    this.restProvider.queryPost(`?category_id=${categoryId}&user_id=${id}`)
+      .then((posts: Array<Post>) => {
+        if (posts.length > 0) { // already uploaded
+          this.presentAlert()
+        } else {
+          this.navCtrl.push(page, { id: categoryId , from });
+        }
+      }).catch(e => {
+        this.presentRetry()
+      })
   }
 
   presentRetry() {
