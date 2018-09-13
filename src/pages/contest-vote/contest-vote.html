@@ -30,7 +30,7 @@
     </ion-input>
   </div>
   <!--Removed Suggestions as they will not be implemented-->
-  <div ion-text class="danger text-center" *ngIf="data.error && !searching">{{data.error}}</div>
+  <div ion-text class="danger text-center" *ngIf="data.error">{{data.error}}</div>
   <div ion-text class="danger text-center" *ngIf="searching && !data.error">Searching photos...</div>
 
   <div class="text-center">
