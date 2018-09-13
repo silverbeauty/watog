@@ -102,7 +102,8 @@ page-profiles-load {
         width: 100vw;
         height: 100vh;
         background-image: url("../assets/imgs/rio.jpg");
-        background-position: center top;
+        background-position: center;
+        background-size: cover;
         color: white;
     }
     .btn-profile {
