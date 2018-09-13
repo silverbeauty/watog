@@ -48,7 +48,7 @@ export class RegisterOneOfThreePage {
   public countries: Country[];
   public profile_selected: boolean = false;
   public profile_image: string = "assets/imgs/rio.jpg";
-  public country: Country = new Country("FR", "")
+  public country: Country = null;
   public promise : any;
   pass_conf: string = "";
   public show: boolean = false;
@@ -77,8 +77,8 @@ export class RegisterOneOfThreePage {
         console.log(err)
       })
     }
-  }
-  ionViewWillLoad() {
+
+
     this.countries = [
       new Country(countries[0].code, countries[0].name)
     ]
@@ -86,6 +86,10 @@ export class RegisterOneOfThreePage {
       const County = new Country(countries[i].code, countries[i].name)
       this.countries.push(County);
     }
+    this.country = this.countries[71];
+  }
+  ionViewWillLoad() {
+
 
     this.matching_passwords_group = new FormGroup({
       password: new FormControl('', Validators.compose([

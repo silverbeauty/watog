@@ -47,7 +47,6 @@ export class DataProvider {
     this.storage.setItem('user', JSON.stringify(user));
     this.storage.setItem('authorization', auth.token);
   }
-
   public saveUser(user: User): void{
     const profile_user:User= user;
     if(this.isBrowser) {
@@ -151,7 +150,7 @@ export class DataProvider {
   get(){
     // if(this.isBrowser) {
     //   return new Promise((resolve, reject) => {
-    //     return 
+    //     return
     //   });
     // }
     return this.storage.getItem('user');
