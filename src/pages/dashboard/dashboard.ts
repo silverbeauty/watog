@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -8,6 +8,7 @@ import { Auth, User, Category } from "../../types";
 
 import { DataProvider, RestProvider } from '../../providers';
 import { ContestPage } from '../contest/contest';
+import { AdModalPage } from '../ad-modal/ad-modal';
 
 /**
  * Generated class for the DashboardPage page.
@@ -23,9 +24,11 @@ import { ContestPage } from '../contest/contest';
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {}
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {}
 
   ionViewDidLoad() {
+    let profileModal = this.modalCtrl.create(AdModalPage, { text: 'Post your pictures and win a full package for RIO (Flight, FIGO Pass, Hotel)!!' });
+   profileModal.present();
   }
 
   goToProfilePage(){
@@ -47,6 +50,10 @@ export class DashboardPage {
 
   goToContest(){
     this.navCtrl.push(ContestPage);
+  }
+
+  presentAdModal() {
+
   }
 
 }
