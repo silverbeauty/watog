@@ -99,35 +99,12 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><img src="assets/icon/Phone.png" alt="password logo"></span>
                 </div>
-                        <span class="input-group-text"><img src="assets/icon/Profil.png" alt="pseudo icon"></span>
-                    </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" name="user_name"  value="{{ user.user_name }}" formControlName="user_name"></ion-input>
-                </div>
-                <div class="validation-errors">
-                  <ng-container *ngFor="let validation of validation_messages.user_name">
-                    <div class="error-message" *ngIf="validations_form.get('user_name').hasError(validation.type) && (validations_form.get('user_name').dirty || validations_form.get('user_name').touched)">
-                      {{ validation.message }}
-                    </div>
-                  </ng-container>
-                </div>
-                <div formGroupName="country_phone">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><img src="assets/icon/Location.png" alt="password logo"></span>
-                    </div>
-                    <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" formControlName="country" [(ngModel)]="country" okText="Ok" cancelText="Cancel">
-                      <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
-                    </ion-select>
-                  </div>
-                  <div class="input-group"><div class="input-group-prepend">
-                      <span class="input-group-text"><img src="assets/icon/Phone.png" alt="password logo"></span>
-                    </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" [textMask]="{mask: validations_form.value.country_phone.country.phone_mask}" placeholder="{{ validations_form.value.country_phone.country.sample_phone }}" [(ngModel)]="user.cell_phone" formControlName="phone"></ion-input>
-                  </div>
-                  <div class="validation-errors">
-                    <ng-container *ngFor="let validation of validation_messages.phone">
-                      <div class="error-message" *ngIf="validations_form.get('country_phone').get('phone').hasError(validation.type) && (validations_form.get('country_phone').get('phone').dirty || validations_form.get('country_phone').get('phone').touched)">
-                        {{ validation.message }}
+                <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" [textMask]="{mask: validations_form.value.country_phone.country.phone_mask}" placeholder="{{ validations_form.value.country_phone.country.sample_phone }}" [(ngModel)]="user.cell_phone" formControlName="phone"></ion-input>
+              </div>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.phone">
+                  <div class="error-message" *ngIf="validations_form.get('country_phone').get('phone').hasError(validation.type) && (validations_form.get('country_phone').get('phone').dirty || validations_form.get('country_phone').get('phone').touched)">
+                    {{ validation.message }}
                   </div>
                 </ng-container>
               </div>
