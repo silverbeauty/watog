@@ -33,7 +33,7 @@
           <hr>
           <button type="button" class="dropdown-item" (click)="goToSettingsPage()"><img src="assets/icon/Gear.png" alt="profile icon"> Settings</button>
           <hr>
-          <button type="button" class="dropdown-item" (click)="logout()"><img src="assets/icon/Logout.png" alt="profile icon"> Logout</button>
+          <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-logout-profile-load"><img src="assets/icon/Logout.png" alt="profile icon"> Logout</button>
         </div>
       </div>
     </div>
@@ -72,14 +72,14 @@
           <!-- This is a background card-->
           <div class="stack" *ngIf="posts.length > 1">
             <div [id]="post.id" (press)="onPress($event)" class="post_img_div" *ngFor="let post of posts.slice(posts.length - 2, posts.length - 1)">
-              <img class="post_img" class="picture" [src]="post.picture">
+              <img class="post_img" class="picture" [src]="post.picture" imageViewer>
             </div>
           </div>
 
           <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" (swipe)="swipeEvent($event)">
             <div [id]="post.id" (press)="onPress($event)" swing-card #postCard class="post_img_div" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts.slice(posts.length - 1, posts.length)">
               <p class="loading">Loading...</p>
-              <img class="picture" [src]="post.picture">
+              <img class="picture" [src]="post.picture" imageViewer>
             </div>
           </div>
         </section>
@@ -107,3 +107,23 @@
       </div>
     </div>
 </ion-content>
+
+<div id="modal-logout-profile-load" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title ">Confirm Logout</h5>
+        <button id="btn-modal-close" type="button" class="close hide" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-4">
+        <p>Do you really want to Logout?</p>
+      </div>
+      <div class="modal-footer">
+        <button ion-button round color="light" class="text-uppercase mr-3" data-dismiss="modal">Cancel</button>
+        <button ion-button round color="teal" class="text-uppercase" (click)="logout()" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

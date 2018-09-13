@@ -3,9 +3,6 @@ import { IonicPageModule } from 'ionic-angular';
 import { VoteModalPage } from './vote-modal';
 
 @NgModule({
-  declarations: [
-    VoteModalPage,
-  ],
   imports: [
     IonicPageModule.forChild(VoteModalPage),
   ],

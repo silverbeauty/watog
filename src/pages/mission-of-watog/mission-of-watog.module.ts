@@ -3,9 +3,6 @@ import { IonicPageModule } from 'ionic-angular';
 import { MissionOfWatogPage } from './mission-of-watog';
 
 @NgModule({
-  declarations: [
-    MissionOfWatogPage,
-  ],
   imports: [
     IonicPageModule.forChild(MissionOfWatogPage),
   ],

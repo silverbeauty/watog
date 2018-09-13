@@ -3,9 +3,6 @@ import { IonicPageModule } from 'ionic-angular';
 import { VoteRandomPage } from './vote-random';
 
 @NgModule({
-  declarations: [
-    VoteRandomPage,
-  ],
   imports: [
     IonicPageModule.forChild(VoteRandomPage),
   ],

@@ -68,6 +68,10 @@ import { ModalChangeVotePage } from '../pages/modal-change-vote/modal-change-vot
 import { ImageModalPage } from '../pages/imge-modal/img-modal';
 import { ModalLogout } from '../pages/profile/profile';
 import { PartnersPage } from '../pages/partners/partners';
+import { AdModalPage } from '../pages/ad-modal/ad-modal';
+import { WatogContactPage } from '../pages/watog-contact/watog-contact';
+
+import { AccomplishmentsToDatePageModule } from '../pages/accomplishments-to-date/accomplishments-to-date.module';
 
 /*Provider*/
 import { DataProvider } from '../providers/data/data';
@@ -128,7 +132,9 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     HideHeaderDirective,
     ZoomPanDirective,
     ModalLogout,
-    PartnersPage
+    PartnersPage,
+    AdModalPage,
+    WatogContactPage
   ],
   imports: [
     BrowserModule,
@@ -136,7 +142,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     IonicModule.forRoot(MyApp),
     ValidatorsModule,
     SwingModule,
-    IonicImageViewerModule
+    IonicImageViewerModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -183,7 +189,9 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     ModalChangeVotePage,
     ImageModalPage,
     ModalLogout,
-    PartnersPage
+    PartnersPage,
+    AdModalPage,
+    WatogContactPage
   ],
   providers: [
     StatusBar,
