@@ -29,7 +29,7 @@ export class DashboardPage {
   ionViewDidLoad() {
     if (DataProvider.showAd) {
       DataProvider.showAd = false;
-      this.presentAdModal();
+      //this.presentAdModal();
     }
   }
 
@@ -55,10 +55,7 @@ export class DashboardPage {
   }
 
   presentAdModal() {
-    let profileModal = this.modalCtrl.create(AdModalPage, {
-      title: 'WATOG Contest',
-      text: 'Post your pictures and win a full package for RIO (Flight, FIGO Pass, Hotel)!!' 
-    });
+    let profileModal = this.modalCtrl.create(AdModalPage, {});
     profileModal.present();
   }
 

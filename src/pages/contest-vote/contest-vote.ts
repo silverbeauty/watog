@@ -160,6 +160,6 @@ export class ContestVotePage {
     this.isVisible = true;
     let imgModal = this.modalCtrl.create(ImageModalPage, { images: this.bestPicsByChat });
     imgModal.present();
-    setTimeout(() => imgModal.dismiss(), 8000);
+    setTimeout(() => imgModal.dismiss(), 18000);
   }
 }
