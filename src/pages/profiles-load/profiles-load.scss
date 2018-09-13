@@ -69,6 +69,8 @@ page-profiles-load {
     .navbar {
         background-color: #775576;
         height: 50px;
+        z-index: 999;
+
     }
     .navbar h1 {
         color: white;
@@ -91,12 +93,20 @@ page-profiles-load {
         left: auto;
     }
     .size-back{
-      height: 40px;
+        height: 40px;
+        display: block;
+        width: 100%;
+        z-index: 99;
+        opacity: 1;
+        position: relative;
     }
     .back-s {
         font-size: 2em;
         margin-left: 10px;
         margin-top: 5px;
+        height: 60px;
+        z-index: 99;
+        display: block;
     }
     .body {
         width: 100vw;
@@ -224,6 +234,7 @@ page-profiles-load {
         width: 100%;
         bottom: 0;
         margin: 0px !important;
+        display: block;
         button {
             width: 80%;
         }
