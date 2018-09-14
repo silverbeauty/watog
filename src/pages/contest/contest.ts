@@ -9,7 +9,7 @@ import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
 import { VoteModalPage } from '../vote-modal/vote-modal';
 import { ModalPrinciplesPage } from '../modal-principles/modal-principles';
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 /**
  * Generated class for the ContestPage page.
  *
@@ -25,7 +25,7 @@ import { ModalPrinciplesPage } from '../modal-principles/modal-principles';
 export class ContestPage {
   public data: DataProvider;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalController: ModalController, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -54,7 +54,7 @@ export class ContestPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 }

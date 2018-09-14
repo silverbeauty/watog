@@ -66,7 +66,7 @@ import { ProfilesLoadPage } from '../pages/profiles-load/profiles-load';
 import { BestPhotoPage} from "../pages/best-photo/best-photo";
 import { ModalChangeVotePage } from '../pages/modal-change-vote/modal-change-vote';
 import { ImageModalPage } from '../pages/imge-modal/img-modal';
-import { ModalLogout } from '../pages/profile/profile';
+import { ModalLogout } from '../pages/modal-logout/modal-logout';
 import { PartnersPage } from '../pages/partners/partners';
 import { AdModalPage } from '../pages/ad-modal/ad-modal';
 import { WatogContactPage } from '../pages/watog-contact/watog-contact';

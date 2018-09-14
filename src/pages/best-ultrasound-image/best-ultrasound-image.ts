@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform, ModalController} from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -9,6 +9,7 @@ import { DataProvider } from '../../providers/data/data';
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
+import { ModalLogout } from '../modal-logout/modal-logout';
 /*import { FileTransfer } from '@ionic-native/file-transfer';*/
 
 /**
@@ -27,7 +28,7 @@ export class BestUltrasoundImagePage {
   public passParam: any;
   public pdfSrc :string = "watog_contest_consent.pdf"
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, private document: DocumentViewer, public platform: Platform, private file: File, private fileOpener: FileOpener) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, private document: DocumentViewer, public platform: Platform, private file: File, private fileOpener: FileOpener, public modalCtrl: ModalController) {
     this.passParam = this.navParams.data
   }
 
@@ -120,8 +121,8 @@ export class BestUltrasoundImagePage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
 }

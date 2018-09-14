@@ -7,7 +7,7 @@ import { User, Auth } from '../../types';
 import { LoginPage } from '../login/login';
 import { ProfilesLoadPage } from '../profiles-load/profiles-load';
 import { BestPhotoPage } from '../best-photo/best-photo'
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 
 @IonicPage()
 @Component({
@@ -103,43 +103,6 @@ export class ProfilePage {
 
   logout(){
     let profileModal = this.modalCtrl.create( ModalLogout );
-    profileModal.onDidDismiss(data => {
-      console.log(data);
-    });
     profileModal.present();
-  }
-}
-@Component({template:
-  ' <div class="dialog" tabindex="-1" role="dialog">\n' +
-  '    <div class="modal-dialog modal-dialog-centered" role="document">\n' +
-  '      <div class="modal-content">\n' +
-  '        <div class="modal-header">\n' +
-  '          <h5 class="modal-title ">Confirm logout</h5>\n' +
-  '          <button id="btn-modal-close" type="button" class="close hide" data-dismiss="modal" aria-label="Close">\n' +
-  '            <span aria-hidden="true">&times;</span>\n' +
-  '          </button>\n' +
-  '        </div>\n' +
-  '        <div class="modal-body p-4">\n' +
-  '          <p>Are you sure to want to disconnect?</p>\n' +
-  '        </div>\n' +
-  '        <div class="modal-footer">\n' +
-  '          <button ion-button round color="light" class="text-uppercase mr-3" (click)="dismiss()">Cancel</button>\n' +
-  '          <button ion-button round color="teal" class="text-uppercase" (click)="logout()">OK</button>\n' +
-  '        </div>\n' +
-  '      </div>\n' +
-  '    </div>\n' +
-  '  </div>'})
-export class ModalLogout {
-
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public dataProvider: DataProvider) {
-
-  }
-
-  dismiss() {
-    this.viewCtrl.dismiss();
-  }
-  logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
   }
 }

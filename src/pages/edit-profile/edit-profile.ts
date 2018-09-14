@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -13,7 +13,7 @@ import {LoginPage} from "../login/login";
 import {Auth, Country, User} from "../../types";
 import { UploadCoverPhotoPage } from "../upload-cover-photo/upload-cover-photo";
 import {FormControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 /**
  * Generated class for the EditProfilePage page.
  *
@@ -56,7 +56,7 @@ export class EditProfilePage {
   validations_form: FormGroup;
   country_phone_group: FormGroup;
 
-  constructor( public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public restProvider : RestProvider, public dataProvider: DataProvider) {
+  constructor( public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public restProvider : RestProvider, public dataProvider: DataProvider, public modalCtrl: ModalController) {
     const params = this.navParams.data;
     if(params.image_url) {
       this.image = params;
@@ -158,8 +158,8 @@ export class EditProfilePage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
   checkFocus(){

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { ModalLogout } from '../modal-logout/modal-logout';
 
 /**
  * Generated class for the ContestSubmitedPage page.
@@ -21,7 +22,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
 })
 export class ContestSubmitedPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, private emailComposer: EmailComposer) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, private emailComposer: EmailComposer, public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -41,8 +42,8 @@ export class ContestSubmitedPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
   gotoInvite() {

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams,  AlertController, Content } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,  AlertController, Content, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -9,7 +9,7 @@ import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
 import { User, Auth } from '../../types';
 import { ModalChangeVotePage } from '../modal-change-vote/modal-change-vote';
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 
 /**
  * Generated class for the VoteRandomPage page.
@@ -43,7 +43,7 @@ export class VoteRandomPage {
   public exec: boolean = false;
   public me: Auth;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider, public modalCtrl: ModalController) {
     console.log(DataProvider.searchedUsers)
   }
 
@@ -149,8 +149,8 @@ export class VoteRandomPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
 }

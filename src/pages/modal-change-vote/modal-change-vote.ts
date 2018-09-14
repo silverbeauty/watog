@@ -1,5 +1,5 @@
 import { Component, EventEmitter, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 import {
   Direction,
@@ -16,7 +16,7 @@ import { SettingsPage } from '../settings/settings';
 import { DataProvider, RestProvider } from '../../providers';
 import { User, Auth, Post } from '../../types';
 import { LoginPage } from '../login/login';
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 
 @IonicPage()
 @Component({
@@ -34,7 +34,7 @@ export class ModalChangeVotePage {
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider, public modalCtrl: ModalController) {
     this.stackConfig = {
       // Default setting only allows UP, LEFT and RIGHT so you can override this as below
       allowedDirections: [Direction.LEFT, Direction.RIGHT],
@@ -160,8 +160,8 @@ export class ModalChangeVotePage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 }
 

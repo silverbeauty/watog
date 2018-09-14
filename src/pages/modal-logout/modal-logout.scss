@@ -1,0 +1,23 @@
+page-modal-logout {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    .body {
+        background: #ffffff;
+        width: 90%;
+        border-radius: 7px;
+        z-index: 99;
+    }
+    .modal-open-page {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        opacity: 0.6;
+        background: #343434;
+        z-index: -1;
+    }
+}
