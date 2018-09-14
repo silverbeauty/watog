@@ -32,6 +32,7 @@ export class ContestSubmitPage {
   }
   public image_url: any;
   public image_local: string = null;
+  public spam : boolean = true;
 
   public submit = {
     category_id: null,
@@ -50,7 +51,7 @@ export class ContestSubmitPage {
     const { id } = this.navParams.data
     this.submit.category_id = this.navParams.data.id;
     //this.dataProvider.setVariable("category_id_up", this.navParams.data.id)
-    console.log("ma cat: ", this.submit.category_id)
+    //console.log("ma cat: ", this.submit.category_id)
 
     // Check if photo was already posted
     this.restProvider.countPost('?category_id=' + id + '&user_id=' + DataProvider.auth.id).then(count => {
@@ -86,24 +87,24 @@ export class ContestSubmitPage {
     //alert(JSON.stringify(this.submit))
     this.state.isPosting = true;
     this.restProvider.postADoc(this.submit).then((data) =>{
-      console.info('Posted:', data)
+      //console.info('Posted:', data)
       this.state.isPosting = false;
       this.navCtrl.push(ContestSubmitedPage);
-    }).catch((e) => {
-      //console.log(JSON.stringify(e))
-      let alert = this.alertCtrl.create({
-        title: 'Error',
-        subTitle: 'Sorry, failed to post your Photo to Watog!',
-        buttons: [
+    }).catch(err => {
+      this.state.isUploading = false;
+      if(this.spam){
+        let alert = this.alertCtrl.create({
+          title: 'Failed to upload',
+          subTitle: 'Failed to upload photo',
+          buttons: [
           { text: 'Cancel', handler: () =>{
             this.closeLocalImage()
-          }},
-          { text: 'Retry', handler: () => {
-            this.onSubmit();
           }}]
-      });
-      alert.present();
-    })
+        });
+        alert.present();
+        this.spam = false;
+      }
+    });
   }
 
   goToDashboard(){
@@ -119,8 +120,6 @@ export class ContestSubmitPage {
   }
 
   uploadPhoto(img) {
-    //console.log('ionViewDidLoad ContestSubmitPage');
-    //alert(JSON.stringify(img))
     this.state.isUploading = true;
     setTimeout(() => { this.state.isUploading = false; }, 3000);
     const strImage = this.image_local;
@@ -129,23 +128,10 @@ export class ContestSubmitPage {
         this.state.isUploading = false;
         if (this.image_local === strImage) {
           this.submit.picture = res_file.url
-          alert(this.submit.picture)
         }
       })
       .catch(err => {
         this.state.isUploading = false;
-        let alert = this.alertCtrl.create({
-          title: 'Failed to upload',
-          subTitle: 'Failed to upload photo',
-          buttons: [
-          { text: 'Cancel', handler: () =>{
-            this.closeLocalImage()
-          }},
-          { text: 'Retry', handler: () => {
-            this.uploadPhoto(img)
-          }}]
-        });
-        alert.present();
       });
   }
 
@@ -169,18 +155,6 @@ export class ContestSubmitPage {
   }
 
   navToGallery() {
-/*    this.cam.selectImage(0, 0).then(resp => {
-      this.image_url = "data:image/jpeg;base64," + resp;
-      this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
-        this.image_url = res_file.url;
-        this.profile_selected = true;
-        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  profile_selected: this.profile_selected });
-      }).catch((error) => {
-        alert("Send file to server error!");
-      })
-    }, err => {
-    });*/
-
       let myCam = this.cam.selectImage(0, 0).then(resp => {
         return this.image_local = "data:image/jpeg;base64," + resp;
       }, err => {
@@ -229,3 +203,14 @@ if (isDevMode) {
 } else {
 
 **/
+/*    this.cam.selectImage(0, 0).then(resp => {
+      this.image_url = "data:image/jpeg;base64," + resp;
+      this.restProvider.sendFile(this.image_url).then((res_file: resFile) => {
+        this.image_url = res_file.url;
+        this.profile_selected = true;
+        this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  profile_selected: this.profile_selected });
+      }).catch((error) => {
+        alert("Send file to server error!");
+      })
+    }, err => {
+    });*/

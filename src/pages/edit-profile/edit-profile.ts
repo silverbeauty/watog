@@ -121,6 +121,7 @@ export class EditProfilePage {
     if(this.user.cell_phone.lastIndexOf('_') != -1) {
       this.user.cell_phone = (this.user.cell_phone.slice(0, -1))
     }
+    this.user.picture_profile = this.profile_image;
     this.user.country = this.country.name;
     this.user.first_name = this.validations_form.value.first_name;
     this.user.last_name = this.validations_form.value.last_name;
@@ -128,8 +129,7 @@ export class EditProfilePage {
     this.user.hospital = this.validations_form.value.hospital;
     this.restProvider.setProfile(this.user as User).then((user: User) => {
       // Save profile
-      const profile_user: User = user;
-      this.dataProvider.saveUser(profile_user);
+      this.dataProvider.saveUser(user);
       alert('Profile Updated')
       this.navCtrl.push(SettingsPage);
     }).catch((error) => {

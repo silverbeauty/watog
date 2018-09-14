@@ -28,10 +28,6 @@ export class RegisterThreeOfThreePage {
     console.log('ionViewDidLoad RegisterThreeOfThreePage');
   }
 
-  goBack(){
-    this.navCtrl.push(DashboardPage);
-  }
-
   goToEnterToken(){
     const url_verify = this.url_verify;
     this.restProvider.sendVerifyRequest( url_verify).then((data) => {
