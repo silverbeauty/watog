@@ -1,6 +1,6 @@
 import { Component, isDevMode } from '@angular/core';
 
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { LoginPage } from '../login/login';
@@ -10,6 +10,7 @@ import { DataProvider } from '../../providers/data/data';
 import { CameraProvider } from '../../providers/camera/camera';
 import {  RestProvider } from '../../providers';
 import { Auth, resFile } from "../../types";
+import { ModalLogout } from '../modal-logout/modal-logout';
 
 /**
  * Generated class for the ContestSubmitPage page.
@@ -45,7 +46,7 @@ export class ContestSubmitPage {
 
   public file_name: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public cam : CameraProvider, public dataProvider:DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public cam : CameraProvider, public dataProvider:DataProvider, public restProvider: RestProvider, public modalCtrl: ModalController) {
     const { id } = this.navParams.data
     this.submit.category_id = this.navParams.data.id;
     //this.dataProvider.setVariable("category_id_up", this.navParams.data.id)
@@ -153,8 +154,8 @@ export class ContestSubmitPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
   TakeaPicture(){

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -10,6 +10,7 @@ import { DataProvider } from '../../providers/data/data';
 import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
 import {File} from "@ionic-native/file";
 import {UploadWatogLogoPage} from "../upload-watog-logo/upload-watog-logo";
+import { ModalLogout } from '../modal-logout/modal-logout';
 
 import { FileChooser } from '@ionic-native/file-chooser';
 import { FileOpener } from '@ionic-native/file-opener';
@@ -31,7 +32,7 @@ export class BestPhotoWithTheWatogLogoPage {
   public passParam: any;
   public watog_logo_image: string = "assets/imgs/WATOG-quadri_logo_seul.png";
 
-  constructor(private fileChooser: FileChooser, private fileOpener: FileOpener, private filePath: FilePath, public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider , private document: DocumentViewer, private file: File) {
+  constructor(private fileChooser: FileChooser, private fileOpener: FileOpener, private filePath: FilePath, public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider , private document: DocumentViewer, private file: File, public modalCtrl: ModalController) {
     this.passParam = this.navParams.data;
     if(this.passParam.image_url){
       this.watog_logo_image = this.passParam.image_url;
@@ -89,8 +90,8 @@ export class BestPhotoWithTheWatogLogoPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
 }

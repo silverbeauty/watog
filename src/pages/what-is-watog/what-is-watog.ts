@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -11,7 +11,7 @@ import { LoginPage } from '../login/login';
 import { PartnersPage } from '../partners/partners';
 import { DataProvider } from '../../providers/data/data';
 import { WatogContactPage } from '../watog-contact/watog-contact';
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 /**
  * Generated class for the WhatIsWatogPage page.
  *
@@ -26,7 +26,7 @@ import { WatogContactPage } from '../watog-contact/watog-contact';
 })
 export class WhatIsWatogPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -46,8 +46,8 @@ export class WhatIsWatogPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
   goToMission(){

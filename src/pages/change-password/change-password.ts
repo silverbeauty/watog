@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
 import { DataProvider, RestProvider } from '../../providers';
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 /**
  * Generated class for the ChangePasswordPage page.
  *
@@ -25,7 +25,7 @@ export class ChangePasswordPage {
     new_password: ""
   }
 
-  constructor(public navCtrl: NavController, public rest : RestProvider, public navParams: NavParams, public dataProvider:DataProvider) {
+  constructor(public navCtrl: NavController, public rest : RestProvider, public navParams: NavParams, public dataProvider:DataProvider, public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -52,8 +52,8 @@ export class ChangePasswordPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
 }

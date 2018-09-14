@@ -9,7 +9,7 @@ import { Auth, User, Category } from "../../types";
 import { DataProvider, RestProvider } from '../../providers';
 import { ContestPage } from '../contest/contest';
 import { AdModalPage } from '../ad-modal/ad-modal';
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 /**
  * Generated class for the DashboardPage page.
  *
@@ -42,8 +42,8 @@ export class DashboardPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
   goToWhatIsWatog(){

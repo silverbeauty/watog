@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ProfilePage } from './profile';
+import { ModalLogout } from './modal-logout';
 
 @NgModule({
   imports: [
-    IonicPageModule.forChild(ProfilePage),
+    IonicPageModule.forChild(ModalLogout),
   ],
 })
-export class ProfilePageModule {}
+export class ModalLogoutModule {}

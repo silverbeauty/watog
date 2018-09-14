@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { AccomplishmentsToDatePage } from '../accomplishments-to-date/accomplishments-to-date';
 import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 /**
  * Generated class for the OrganizationPage page.
  *
@@ -21,7 +21,7 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class OrganizationPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -49,8 +49,8 @@ export class OrganizationPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
 }

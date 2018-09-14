@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -11,7 +11,7 @@ import { BestHumanitaryPhotoPage } from '../best-humanitary-photo/best-humanitar
 import { LoginPage } from '../login/login';
 import { DataProvider, RestProvider } from '../../providers';
 import { User, Auth, Post } from '../../types';
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 /**
  * Generated class for the ParticipatePage page.
  *
@@ -26,7 +26,7 @@ import { User, Auth, Post } from '../../types';
 })
 export class ParticipatePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider, public modalCtrl: ModalController) {
     
   }
 
@@ -105,8 +105,8 @@ export class ParticipatePage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
 }

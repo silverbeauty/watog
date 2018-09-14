@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -8,7 +8,7 @@ import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
 import { User, Auth } from '../../types';
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 /**
  * Generated class for the SelectionPage page.
  *
@@ -29,7 +29,7 @@ export class SelectionPage {
     commend: true
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider, public modalCtrl: ModalController) {
     const params = this.navParams.data.user;
     this.currentUser = params;
   }
@@ -90,8 +90,8 @@ export class SelectionPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
 }

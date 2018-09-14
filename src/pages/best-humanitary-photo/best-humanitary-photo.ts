@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { ContestSubmitPage } from '../contest-submit/contest-submit';
 import { LoginPage } from '../login/login';
+import { ModalLogout } from '../modal-logout/modal-logout';
 import { DataProvider } from '../../providers/data/data';
 import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
 import {File} from "@ionic-native/file";
@@ -24,7 +25,7 @@ import {File} from "@ionic-native/file";
 export class BestHumanitaryPhotoPage {
   public passParam: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, private document: DocumentViewer, private file: File) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, private document: DocumentViewer, private file: File, public modalCtrl: ModalController) {
     this.passParam = this.navParams.data
   }
 
@@ -70,8 +71,7 @@ export class BestHumanitaryPhotoPage {
   }
 
   logout(){
-      this.dataProvider.clearProfile();
-      this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
-
 }

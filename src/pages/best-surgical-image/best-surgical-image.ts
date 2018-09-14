@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -9,6 +9,7 @@ import { DataProvider } from '../../providers/data/data';
 import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
 import {File} from "@ionic-native/file";
 import { FileOpener } from '@ionic-native/file-opener';
+import { ModalLogout } from '../modal-logout/modal-logout';
 
 /**
  * Generated class for the BestSurgicalImagePage page.
@@ -25,7 +26,7 @@ import { FileOpener } from '@ionic-native/file-opener';
 export class BestSurgicalImagePage {
   public passParam: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, private document: DocumentViewer, private file: File, private fileOpener: FileOpener) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, private document: DocumentViewer, private file: File, private fileOpener: FileOpener, public modalCtrl: ModalController) {
     this.passParam = this.navParams.data
   }
 
@@ -73,8 +74,8 @@ export class BestSurgicalImagePage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
 }

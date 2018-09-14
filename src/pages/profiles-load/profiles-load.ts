@@ -1,5 +1,5 @@
 import { Component, EventEmitter, ViewChild, ViewChildren, QueryList,  } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Modal } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Modal, ModalController } from 'ionic-angular';
 
 import {
   Direction,
@@ -17,7 +17,7 @@ import { ProfilePage } from '../profile/profile';
 import { DataProvider, RestProvider } from '../../providers';
 import { User, Auth, Post } from '../../types';
 import { LoginPage } from '../login/login';
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 @IonicPage()
 @Component({
   selector: 'page-profiles-load',
@@ -42,7 +42,7 @@ export class ProfilesLoadPage {
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider, public modalCtrl: ModalController) {
     this.stackConfig = {
       // Default setting only allows UP, LEFT and RIGHT so you can override this as below
       allowedDirections: [Direction.LEFT, Direction.RIGHT],
@@ -287,8 +287,8 @@ export class ProfilesLoadPage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
   pressed() {

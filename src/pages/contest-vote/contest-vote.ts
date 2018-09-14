@@ -13,7 +13,7 @@ import { ImageModalPage } from '../imge-modal/img-modal';
 import { DataProvider } from '../../providers/data/data';
 import { RestProvider } from '../../providers/rest/rest';
 import {User, Auth, Post} from '../../types';
-
+import { ModalLogout } from '../modal-logout/modal-logout';
 /**
  * Generated class for the ContestVotePage page.
  *
@@ -153,8 +153,8 @@ export class ContestVotePage {
   }
 
   logout(){
-    this.dataProvider.clearProfile();
-    this.navCtrl.push(LoginPage);
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
   checkFocus() {
