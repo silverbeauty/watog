@@ -27,7 +27,7 @@ import { ModalLogout } from '../modal-logout/modal-logout';
 export class ParticipatePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider, public modalCtrl: ModalController) {
-    
+
   }
 
   ionViewDidLoad() {
@@ -71,10 +71,11 @@ export class ParticipatePage {
     const { id } = DataProvider.auth; // user id
     this.restProvider.queryPost(`?category_id=${categoryId}&user_id=${id}`)
       .then((posts: Array<Post>) => {
-        if (posts.length > 0) { // already uploaded
-          this.presentAlert()
-        } else {
+        console.log(posts);
+        if (posts.length == 0) { // already uploaded
           this.navCtrl.push(page, { id: categoryId , from });
+        } else {
+          this.presentAlert();
         }
       }).catch(e => {
         this.presentRetry()

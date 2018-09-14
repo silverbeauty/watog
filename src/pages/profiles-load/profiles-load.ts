@@ -38,6 +38,7 @@ export class ProfilesLoadPage {
   public onInit : boolean = true;
   public voting : boolean = false;
   public showButtonFlag: boolean = false;
+  public commend : boolean = null;
 
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
@@ -83,24 +84,24 @@ export class ProfilesLoadPage {
     const id = parseInt(className.substring('Post:'.length)); // Cut `Post:`
     this.currentPost = this.currentPost - 1;
 
-    let commend = true;
+    this.commend = true;
     const direction = event.throwDirection.toString()
     if (direction === `Symbol(LEFT)`) { // down vote
-      commend = false;
+      this.commend = false;
     } else {
-      commend = true;
+      this.commend = true;
     }
     //this.showVoting()
     this.popPost()
-    this.restProvider.votePost(id, commend).then((post: Post) => {
-      console.log("mon post", this.currentPost)
-      console.log("mon element", this.visibleElement)
-      console.info('Voted post:', post)
+    this.restProvider.votePost(id, this.commend).then((post: Post) => {
+      //console.log("mon post", this.currentPost)
+      //console.log("mon element", this.visibleElement)
+      //console.info('Voted post:', post)
       //this.hideVoting()
-      if (commend) { this.showJustLiked() } else { this.showJustdisliked() }
+      if (this.commend) { this.showJustLiked() } else { this.showJustdisliked() }
     }).catch(err => {
       this.hideVoting()
-      console.log("My err: ",err)
+      //console.log("My err: ",err)
     })
   }
 
