@@ -37,6 +37,8 @@ export class ProfilesLoadPage {
   public isPressed: boolean = false;
   public onInit : boolean = true;
   public voting : boolean = false;
+  public showButtonFlag: boolean = false;
+
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
 

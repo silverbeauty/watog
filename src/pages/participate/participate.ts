@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -10,6 +10,7 @@ import { BestGroupPhotoWithTheWatogLogoPage } from '../best-group-photo-with-the
 import { BestHumanitaryPhotoPage } from '../best-humanitary-photo/best-humanitary-photo';
 import { LoginPage } from '../login/login';
 import { DataProvider, RestProvider } from '../../providers';
+import { User, Auth, Post } from '../../types';
 
 /**
  * Generated class for the ParticipatePage page.
@@ -25,7 +26,7 @@ import { DataProvider, RestProvider } from '../../providers';
 })
 export class ParticipatePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public dataProvider: DataProvider, public restProvider: RestProvider) {
     
   }
 
@@ -46,28 +47,57 @@ export class ParticipatePage {
   }
 
   goToBestUltrasoundImage(){
-    let myCategorieId = 1;
-    this.navCtrl.push(BestUltrasoundImagePage, { id: myCategorieId , from: 'Ultrasound' });
+    this.goToNextPage(1, BestUltrasoundImagePage, 'Ultrasound')
   }
 
   goToBestSurgicalImage(){
     let myCategorieId = 5;
-    this.navCtrl.push(BestSurgicalImagePage, { id: myCategorieId , from: 'Surgical' });
+    this.goToNextPage(5, BestSurgicalImagePage, 'Surgical')
   }
 
   goToBestPhotoWithWatogLogo(){
-    let myCategorieId = 2;
-    this.navCtrl.push(BestPhotoWithTheWatogLogoPage, { id: myCategorieId , from: 'Watog_logo' });
+    this.goToNextPage(2, BestPhotoWithTheWatogLogoPage, 'Watog_logo');
   }
 
   gotToBestGroupPhotoWithTheWatogLogo(){
-    let myCategorieId = 4;
-    this.navCtrl.push(BestGroupPhotoWithTheWatogLogoPage, { id: myCategorieId , from: 'best_OB_GYN_Watog_logo' });
+    this.goToNextPage(4, BestGroupPhotoWithTheWatogLogoPage, 'best_OB_GYN_Watog_logo');
   }
 
   goToBestHumanitaryPhoto(){
-    let myCategorieId = 3;
-    this.navCtrl.push(BestHumanitaryPhotoPage, { id: myCategorieId , from: 'Humanitary' });
+    this.goToNextPage(3, BestHumanitaryPhotoPage, 'Humanitary');
+  }
+
+  goToNextPage(categoryId: number, page, from) {
+    const { id } = DataProvider.auth; // user id
+    this.restProvider.queryPost(`?category_id=${categoryId}&user_id=${id}`)
+      .then((posts: Array<Post>) => {
+        if (posts.length > 0) { // already uploaded
+          this.presentAlert()
+        } else {
+          this.navCtrl.push(page, { id: categoryId , from });
+        }
+      }).catch(e => {
+        this.presentRetry()
+      })
+  }
+
+  presentRetry() {
+    let alert = this.alertCtrl.create({
+      title: '',
+      subTitle: 'Failed to check your photos, please try again!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: '',
+      subTitle: 'You have already uploaded a photo for this category!',
+      buttons: ['Dismiss']
+    });
+    alert.present();
   }
 
   goBack(){

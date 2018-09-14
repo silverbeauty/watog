@@ -92,7 +92,7 @@ export class UploadProfilePhotoPage {
         this.navCtrl.push(RegisterOneOfThreePage, {image_url: this.image_url,  profile_selected: this.profile_selected });
       })
       .catch(err => {
-        let alert = this.alertCtrl.create({
+        /*let alert = this.alertCtrl.create({
           title: 'Failed to upload',
           subTitle: 'Failed to upload photo',
           buttons: [
@@ -103,7 +103,7 @@ export class UploadProfilePhotoPage {
                 this.uploadPhoto(img)
               }}]
         });
-        alert.present();
+        alert.present();*/
       });
   }
 }

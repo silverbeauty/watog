@@ -51,22 +51,22 @@ export class ContestVotePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, imageViewerCtrl: ImageViewerController, public modalCtrl: ModalController) {
     this._imageViewerCtrl = imageViewerCtrl;
-    const bestCat1 = this.restProvider.queryBestPost('1');
-    const bestCat2 = this.restProvider.queryBestPost('2');
-    const bestCat3 = this.restProvider.queryBestPost('3');
-    const bestCat4 = this.restProvider.queryBestPost('4');
-    const bestCat5 = this.restProvider.queryBestPost('5');
-    Promise.all([bestCat1, bestCat2, bestCat3, bestCat4, bestCat5]).then(data => {
-      this.bestPicsByChat = data;
-    })
+    //const bestCat1 = this.restProvider.queryBestPost('1');
+    //const bestCat2 = this.restProvider.queryBestPost('2');
+    //const bestCat3 = this.restProvider.queryBestPost('3');
+    //const bestCat4 = this.restProvider.queryBestPost('4');
+    //const bestCat5 = this.restProvider.queryBestPost('5');
+    //Promise.all([bestCat1, bestCat2, bestCat3, bestCat4, bestCat5]).then(data => {
+      //this.bestPicsByChat = data;
+    //})
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContestVotePage');
-    Promise.all([this.restProvider.queryCategories()]).then(data =>{
-      const images:any = data[0][0];
-      this.picture_url = images.User.picture_profile;
-    })
+    //console.log('ionViewDidLoad ContestVotePage');
+    //Promise.all([this.restProvider.queryCategories()]).then(data =>{
+      //const images:any = data[0][0];
+      //this.picture_url = images.User.picture_profile;
+    //})
   }
 
   goBack() {
@@ -103,12 +103,25 @@ export class ContestVotePage {
     this.searching = true;
     this.restProvider.queryPost(query).then((posts: Array<Post>) => {
       this.searching = false;
-      this.onReceivedPosts(posts)
+      if(posts.length != 0){
+        this.onReceivedPosts(posts)
+      }
+      else{
+        if (this.data.name[0] == '@'){
+          this.data.error = 'User not found';
+        }
+        else if (this.data.name[0] == '#'){
+          this.data.error = 'Keyword not found';
+        }
+        else{
+          this.data.error = 'Please enter an username @USERNAME or a keyword #KEYWORD!'
+        }
+      }
     }).catch((e) => {
       this.searching = false;
       console.error(e)
       this.data.error = 'Failed to search photos! Please try again.'
-    }) 
+    })
     // This is really a mess
     // this.restProvider.queryUsers(this.data.name).then((users: Array<User>) => {
     //   DataProvider.searchedUsers = users;
@@ -156,10 +169,10 @@ export class ContestVotePage {
     setTimeout(() => imageViewer.dismiss(), 3000);
   }
 
-  showImageGallery() {
-    this.isVisible = true;
-    let imgModal = this.modalCtrl.create(ImageModalPage, { images: this.bestPicsByChat });
-    imgModal.present();
-    setTimeout(() => imgModal.dismiss(), 8000);
-  }
+  //showImageGallery() {
+    //this.isVisible = true;
+    //let imgModal = this.modalCtrl.create(ImageModalPage, { images: this.bestPicsByChat });
+    //imgModal.present();
+    //setTimeout(() => imgModal.dismiss(), 18000);
+  //}
 }

@@ -121,6 +121,7 @@ export class ContestSubmitPage {
     //console.log('ionViewDidLoad ContestSubmitPage');
     //alert(JSON.stringify(img))
     this.state.isUploading = true;
+    setTimeout(() => { this.state.isUploading = false; }, 3000);
     const strImage = this.image_local;
     this.restProvider.sendFile(this.image_local)
       .then((res_file: resFile) => {
