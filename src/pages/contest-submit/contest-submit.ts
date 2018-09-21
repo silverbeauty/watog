@@ -91,6 +91,7 @@ export class ContestSubmitPage {
       this.state.isPosting = false;
       this.navCtrl.push(ContestSubmitedPage);
     }).catch(err => {
+      console.error(err)
       this.state.isUploading = false;
       if(this.spam){
         let alert = this.alertCtrl.create({
