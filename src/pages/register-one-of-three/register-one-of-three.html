@@ -1,3 +1,6 @@
+<div class="text-center div-btn-submit">
+  <button type="submit" class="btn btn-submit btn-md">NEXT</button>
+</div>
 <ion-content class="body">
   <div class="navbar">
     <a (click)="goToLogin()"><i class="fa fa-angle-left"></i></a>
@@ -163,9 +166,6 @@
                     {{ validation.message }}
                   </div>
                 </ng-container>
-              </div>
-              <div class="text-center div-btn-submit">
-                <button type="submit" class="btn btn-submit btn-md" [disabled]="!validations_form.valid">NEXT</button>
               </div>
           </div>
         </div>
