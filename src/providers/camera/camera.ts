@@ -35,11 +35,12 @@ export class CameraProvider {
 
     return this.imagePicker.getPictures(options)
   }*/
-
+ 
   public selectImage(sourceType, dataOption: number): Promise<any> {
-    return new Promise((resolve, reject) => {
+    const source = (sourceType === 0) ? this.camera.PictureSourceType.PHOTOLIBRARY : this.camera.PictureSourceType.CAMERA
+    return new Promise((resolve, reject) => {  
       let cameraOptions: CameraOptions = {
-        sourceType: sourceType, //this.camera.PictureSourceType.PHOTOLIBRARY,
+        sourceType: source,
         destinationType: dataOption,
         quality: 70,
         encodingType: this.camera.EncodingType.JPEG,
