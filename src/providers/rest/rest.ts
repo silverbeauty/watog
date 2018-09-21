@@ -101,7 +101,11 @@ export class RestProvider {
             reject ('Failed to send doc')
           }
         }, (err) => {
-          console.info('Failed to send doc:', err)
+          if (typeof err === 'object') {
+            console.info('Failed to send doc:', JSON.stringify(err))
+          } else {
+            console.info('Failed to send doc:', err)
+          }
           reject(err);
         });
     })

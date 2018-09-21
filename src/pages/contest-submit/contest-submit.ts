@@ -91,7 +91,8 @@ export class ContestSubmitPage {
       this.state.isPosting = false;
       this.navCtrl.push(ContestSubmitedPage);
     }).catch(err => {
-      this.state.isUploading = false;
+      console.error(err)
+      this.state.isPosting = false;
       if(this.spam){
         let alert = this.alertCtrl.create({
           title: 'Failed to upload',
