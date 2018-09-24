@@ -31,8 +31,8 @@ export class ContestSearchResultsPage {
   }
   public cpt = {
     id: 0,
-    inc: function(){
-      this.id = this.id+1;
+    inc: function () {
+      this.id = this.id + 1;
       return this.id;
     }
   }
@@ -61,25 +61,25 @@ export class ContestSearchResultsPage {
     console.log('ionViewDidLoad ContestSearchResultsPage');
   }
 
-  goToDashboard(){
+  goToDashboard() {
     this.navCtrl.push(DashboardPage);
   }
 
-  goToProfilePage(){
+  goToProfilePage() {
     this.navCtrl.push(ProfilePage);
   }
 
-  goToSettingsPage(){
+  goToSettingsPage() {
     this.navCtrl.push(SettingsPage);
   }
 
-  public goToSearch(user){
+  public goToSearch(user) {
     console.log(user)
-    this.navCtrl.push(ProfilesLoadPage, {post: user, from: 'contestUser'});
+    this.navCtrl.push(ProfilesLoadPage, { post: user, from: 'contestUser' });
   }
 
-  logout(){
-    let profileModal = this.modalCtrl.create( ModalLogout );
+  logout() {
+    let profileModal = this.modalCtrl.create(ModalLogout);
     profileModal.present();
   }
 }
