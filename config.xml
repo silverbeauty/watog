@@ -3,7 +3,7 @@
     <name>watogApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://172.20.1.153:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -107,6 +107,7 @@
     <plugin name="com-sarriaroman-photoviewer" spec="^1.1.18" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <allow-navigation href="http://172.20.1.153:8100" sessionid="9a2e72d9" />
     <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="7.0.0" />
     <engine name="ios" spec="4.5.5" />
