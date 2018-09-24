@@ -22,7 +22,7 @@
     <li><a href="#" (click)="inputQualification('Medical Doctor, Other Speciality')">Other: Please specify</a></li><hr>
   </ul>
   <ng-container *ngIf="showInputQualification">
-    <ion-input type="text" class="form-control font-weight-light" [(ngModel)]="other_speciality"></ion-input>
+    <ion-input type="text" class="form-control font-weight-light" [(ngModel)]="other_speciality" placeholder="Medical Doctor, Other Speciality"></ion-input>
     <div class="btn-group">
       <button ion-button round color="light" class="text-uppercase mr-3" (click)="cancelOtherSpeciality()">Cancel</button>
       <button ion-button round color="teal" class="text-uppercase" (click)="saveOtherSpeciality()">OK</button>
