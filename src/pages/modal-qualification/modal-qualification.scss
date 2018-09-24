@@ -1,0 +1,28 @@
+page-modal-qualification {
+    .form-control {
+        width: 90%;
+        margin: 0 auto;
+        font-size: 16px;
+        border-radius: 30px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .btn-group {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        padding: 15px;
+        li {
+            font-size: 16px;
+        }
+        hr {
+            height: 1px !important;
+        }
+    }
+}

@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+
 import { countries } from '../../models/model';
 import { LoginPage } from '../login/login';
 import { UploadCoverPhotoPage } from '../upload-cover-photo/upload-cover-photo';
 import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
 import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
-import {DashboardPage} from "../dashboard/dashboard";
-import {Auth, ObjUser, Country} from "../../types";
-import { DataProvider, RestProvider, PhoneValidator, PasswordValidator} from '../../providers';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-
+import { ModalQualification } from '../modal-qualification/modal-qualification';
+import { DashboardPage } from "../dashboard/dashboard";
+import { Auth, ObjUser, Country } from "../../types";
+import { DataProvider, RestProvider, PhoneValidator, PasswordValidator } from '../../providers';
 
 @IonicPage()
 @Component({
@@ -49,20 +50,20 @@ export class RegisterOneOfThreePage {
   public profile_selected: boolean = false;
   public profile_image: string = "assets/imgs/rio.jpg";
   public country: Country = null;
-  public promise : any;
-  pass_conf: string = "";
+  public promise: any;
+  public pass_conf: string = "";
   public show: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider, public modalCtrl: ModalController) {
     const params = this.navParams.data;
-    if(params.image_url){
+    if (params.image_url) {
       this.image = params;
       this.profile_image = this.image.image_url;
       this.user.picture_profile = this.image.image_url;
       this.profile_selected = this.image.profile_selected;
       this.promise = Promise.all([this.dataProvider.getObjUser()]);
       this.promise.then(res => {
-        var data  = JSON.parse(res);
+        let data = JSON.parse(res);
         this.user.first_name = data.first_name;
         this.user.last_name = data.last_name;
         this.user.user_name = data.user_name;
@@ -73,24 +74,22 @@ export class RegisterOneOfThreePage {
         this.user.country = data.country;
         this.user.hospital = data.hospital;
         this.user.job = data.job;
-      }).catch(err =>{
+      }).catch(err => {
         console.log(err)
       })
     }
 
-
     this.countries = [
       new Country(countries[0].code, countries[0].name)
     ]
-    for(var i = 1; i < countries.length; i ++){
+    for (var i = 1; i < countries.length; i++) {
       const County = new Country(countries[i].code, countries[i].name)
       this.countries.push(County);
     }
     this.country = this.countries[71];
   }
+
   ionViewWillLoad() {
-
-
     this.matching_passwords_group = new FormGroup({
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
@@ -110,9 +109,9 @@ export class RegisterOneOfThreePage {
       phone: phone
     });
 
-   /* profile_selected: ['', Validators.compose([
-      Validators.requiredTrue
-    ])],*/
+    /* profile_selected: ['', Validators.compose([
+       Validators.requiredTrue
+     ])],*/
     this.validations_form = this.formBuilder.group({
       first_name: ['', Validators.compose([
         Validators.required
@@ -120,7 +119,7 @@ export class RegisterOneOfThreePage {
       last_name: ['', Validators.compose([
         Validators.required
       ])],
-      user_name:  ['', Validators.compose([
+      user_name: ['', Validators.compose([
         Validators.required,
         Validators.maxLength(25),
         Validators.minLength(5),
@@ -138,16 +137,16 @@ export class RegisterOneOfThreePage {
     });
   }
 
-  checkFocus(){
-    if(this.user.cell_phone.lastIndexOf('_')!=-1){
-      this.user.cell_phone = (this.user.cell_phone.slice(0,-1))
+  checkFocus() {
+    if (this.user.cell_phone.lastIndexOf('_') != -1) {
+      this.user.cell_phone = (this.user.cell_phone.slice(0, -1))
     }
   }
   /** Request Http **/
 
-  register(){
-    if(this.user.cell_phone.lastIndexOf('_')!=-1){
-      this.user.cell_phone = (this.user.cell_phone.slice(0,-1))
+  register() {
+    if (this.user.cell_phone.lastIndexOf('_') != -1) {
+      this.user.cell_phone = (this.user.cell_phone.slice(0, -1))
     }
     this.user.country = this.country.name;
     /*if(this.profile_selected != true){
@@ -161,31 +160,30 @@ export class RegisterOneOfThreePage {
       //this.navCtrl.push(RegisterTwoOfThreePage);
       const email = user.email;
       const password = this.user.password;
-      return {email, password}
-    }).then((data)=>{
-        this.restProvider.login(data.email, data.password).then((auth: Auth) =>{
-          // Save Profile
-          this.dataProvider.saveProfile(auth);
-          this.navCtrl.push(RegisterTwoOfThreePage);
-        }).catch((error)=>{
-          alert(error)
-        })
+      return { email, password }
+    }).then((data) => {
+      this.restProvider.login(data.email, data.password).then((auth: Auth) => {
+        // Save Profile
+        this.dataProvider.saveProfile(auth);
+        this.navCtrl.push(RegisterTwoOfThreePage);
+      }).catch((error) => {
+        alert(error)
+      })
     }).catch((error) => {
       alert(error);
     })
   }
 
   /** Navigation **/
-  isShow(){
+  isShow() {
     return this.show;
   }
 
-  goToLogin(){
+  goToLogin() {
     this.navCtrl.push(LoginPage);
   }
 
-
-  navToUploadProfilePhoto(){
+  navToUploadProfilePhoto() {
     this.user.country = this.country.name;
     this.dataProvider.saveObjUser(this.user as ObjUser);
     this.navCtrl.push(UploadProfilePhotoPage);
@@ -195,36 +193,17 @@ export class RegisterOneOfThreePage {
     console.log('ionViewDidLoad RegisterOneOfThreePage');
     this.user.picture_profile = this.profile_image;
     this.user.country = "France";
-    this.country = new Country("MH","");
+    this.country = new Country("MH", "");
     this.show = false;
   }
 
   /*Methods for the html dom modification */
-  openMenu(){
-    this.show = true;
-  }
-
-  closeMenu(){
-    this.show = false;
-  }
-
-  selectQualification(qualification) {
-    this.user.job = qualification;
-    this.closeMenu();
-  }
-
-  saveOtherSpeciality() {
-    this.user.job = this.other_speciality;
-    if(this.user.job != '') {
-      this.selectQualification(this.user.job);
-      var btnClose = document.getElementById("btn-modal-close") as any;
-      btnClose.click();
-    }
-  }
-
-  cancelOtherSpeciality() {
-    this.selectQualification('Select qualification');
-    this.user.job = "";
+  openQualificationModal() {
+    let profileModal = this.modalCtrl.create(ModalQualification);
+    profileModal.onDidDismiss(data => {
+      this.user.job = data.other;
+    });
+    profileModal.present();
   }
 
   validation_messages = {
