@@ -183,7 +183,8 @@ export class RegisterOneOfThreePage {
     this.navCtrl.push(LoginPage);
   }
 
-  navToUploadProfilePhoto() {
+  navToUploadProfilePhoto(e) {
+    e.stopImmediatePropagation();
     this.user.country = this.country.name;
     this.dataProvider.saveObjUser(this.user as ObjUser);
     this.navCtrl.push(UploadProfilePhotoPage);
