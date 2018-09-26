@@ -217,6 +217,11 @@ page-register-one-of-three {
     .iagree {
         padding-left: 1em;
         font-size: 1em;
+
+        a {
+            font-weight: bold;
+            text-decoration: underline !important;
+        }
     }
 }
 

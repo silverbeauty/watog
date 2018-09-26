@@ -16,13 +16,12 @@ import { DataProvider, RestProvider, PhoneValidator, PasswordValidator } from '.
 @Component({
   selector: 'page-register-one-of-three',
   templateUrl: 'register-one-of-three.html',
-  queries: {
-    content: new ViewChild('content')
-  }
 })
 
-
 export class RegisterOneOfThreePage {
+
+  @ViewChild('content') content;
+
   public user = {
     first_name: '',
     last_name: '',
