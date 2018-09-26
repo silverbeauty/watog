@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+
 import { ContestVotePage } from '../contest-vote/contest-vote';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the VoteModalPage page.
@@ -18,7 +20,7 @@ export class VoteModalPage {
 
   @ViewChild(Slides) slides: Slides;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -36,4 +38,7 @@ export class VoteModalPage {
     this.slides.slideNext();
   }
 
+  showRules() {
+    this.dataProvider.showRules();
+  }
 }
