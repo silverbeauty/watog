@@ -1,7 +1,7 @@
 <div class="text-center div-btn-submit">
   <button type="submit" class="btn btn-submit btn-md" [disabled]="!validations_form.valid" (click)="register()" *ngIf="!isShow()">NEXT</button>
 </div>
-<ion-content class="body">
+<ion-content #content class="body">
   <div class="navbar">
     <a (click)="goToLogin()"><i class="fa fa-angle-left"></i></a>
     <img src="assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
@@ -156,10 +156,14 @@
                 <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="user.hospital" formControlName="hospital" (ionFocus)="checkFocus()"></ion-input>
               </div>
               <div class="input-group">
-                <a href="#" (click)="openMenu()" id="qualificationInput">
+                <a href="#" (click)="openQualificationModal()" id="qualificationInput">
                   <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Select qualification" [(ngModel)]="user.job" formControlName="job" contenteditable="false" disabled></ion-input>
                 </a>
               </div>
+              <div class="input-group">
+                <span class="iagree"> <ion-checkbox [(ngModel)]="agree" [ngModelOptions]="{standalone: true}" ></ion-checkbox> I agree with <a (click)="goToTerms()">WATOG Terms and Conditions</a></span>
+              </div>
+
               <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.job">
                   <div class="error-message" *ngIf="validations_form.get('job').hasError(validation.type) && (validations_form.get('job').dirty || validations_form.get('job').touched)">
