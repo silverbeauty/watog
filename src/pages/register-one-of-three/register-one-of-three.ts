@@ -146,6 +146,11 @@ export class RegisterOneOfThreePage {
       this.user.cell_phone = (this.user.cell_phone.slice(0, -1))
     }
   }
+
+  goToTerms() {
+    console.info('goToTerms')
+  }
+
   /** Request Http **/
 
   register() {
