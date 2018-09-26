@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
+import {File} from "@ionic-native/file";
 
 import { countries } from '../../models/model';
 import { LoginPage } from '../login/login';
@@ -57,7 +59,7 @@ export class RegisterOneOfThreePage {
   public show: boolean = false;
   public agree: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private file: File, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider, public modalCtrl: ModalController, private document: DocumentViewer) {
     const params = this.navParams.data;
     if (params.image_url) {
       this.image = params;
@@ -147,7 +149,12 @@ export class RegisterOneOfThreePage {
   }
 
   goToTerms() {
-    console.info('goToTerms')
+    const options: DocumentViewerOptions = {
+      title: 'WATOG Terms and Conditions',
+      openWith: { enabled: true }
+    }
+    const filePath = this.file.applicationDirectory + 'www/assets/docs/terms.pdf'
+    this.document.viewDocument(filePath, 'application/pdf', options);
   }
 
   /** Request Http **/
