@@ -1,6 +1,8 @@
 //import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Injectable } from '@angular/core';
+import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
+import {File} from "@ionic-native/file";
 
 import { Auth, User, ObjUser } from '../../types';
 import { RestProvider } from '../rest/rest';
@@ -33,8 +35,16 @@ export class DataProvider {
   public static auth: Auth;
   public static showAd: boolean = true;
 
-  constructor(private storage: NativeStorage) {}
+  constructor(private storage: NativeStorage, private documentViewer: DocumentViewer, private file: File) {}
 
+  public showRules() {
+    const options: DocumentViewerOptions = {
+      title: 'WATOG Contest Rules',
+      openWith: { enabled: true }
+    }
+    const filePath = this.file.applicationDirectory + 'www/assets/docs/rules.pdf'
+    this.documentViewer.viewDocument(filePath, 'application/pdf', options);
+  }
 
   public saveProfile(auth: Auth): void {
     DataProvider.auth = auth;

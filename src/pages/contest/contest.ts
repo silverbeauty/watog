@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
-import {File} from "@ionic-native/file";
 
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
@@ -28,7 +26,7 @@ import { ModalLogout } from '../modal-logout/modal-logout';
 export class ContestPage {
   public data: DataProvider;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public dataProvider: DataProvider, private document: DocumentViewer, private file: File) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -57,12 +55,7 @@ export class ContestPage {
   }
 
   showRules() {
-    const options: DocumentViewerOptions = {
-      title: 'WATOG Contest Rules',
-      openWith: { enabled: true }
-    }
-    const filePath = this.file.applicationDirectory + 'www/assets/docs/rules.pdf'
-    this.document.viewDocument(filePath, 'application/pdf', options);
+    this.dataProvider.showRules();
   }
 
   logout(){
