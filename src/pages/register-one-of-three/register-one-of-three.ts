@@ -151,6 +151,13 @@ export class RegisterOneOfThreePage {
   register() {
     if (!this.agree) {
       this.content.scrollToBottom(300);
+      let alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'You need to agree with WATOG Terms and Conditions.',
+        buttons: ['OK']
+      });
+      alert.present();
+      return;
     }
     if (this.user.cell_phone.lastIndexOf('_') != -1) {
       this.user.cell_phone = (this.user.cell_phone.slice(0, -1))
