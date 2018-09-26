@@ -52,7 +52,7 @@ export class EditProfilePage {
   public profile_image: string = "assets/imgs/rio.jpg";
   public promise : any;
   countries: Country[];
-  public country: Country = new Country("FR", "");;
+  public country: Country = new Country("FR", "France");;
   validations_form: FormGroup;
   country_phone_group: FormGroup;
 
@@ -82,12 +82,7 @@ export class EditProfilePage {
     })
   }
 
-  ionViewDidLoad() {
-    this.dataProvider.getProfile().then((profile: User) => {
-      this.user = profile;
-      console.log(this.user)
-    })
-  }
+  ionViewDidLoad() { }
 
   ionViewWillLoad() {
     let country = new FormControl('', Validators.required);
