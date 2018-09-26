@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ModalContestPage } from '../modal-contest/modal-contest';
 import { LandingPage } from '../landing/landing';
+import { DataProvider } from '../../providers/data/data';
+
 /**
  * Generated class for the ModalPrinciplesPage page.
  *
@@ -16,7 +18,7 @@ import { LandingPage } from '../landing/landing';
 })
 export class ModalPrinciplesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -29,5 +31,9 @@ export class ModalPrinciplesPage {
 
   goBack() {
     this.navCtrl.pop();
+  }
+
+  showRules() {
+    this.dataProvider.showRules();
   }
 }

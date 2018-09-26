@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
@@ -51,6 +52,10 @@ export class ContestPage {
 
   goToVote(){
     this.navCtrl.push(VoteModalPage);
+  }
+
+  showRules() {
+    this.dataProvider.showRules();
   }
 
   logout(){
