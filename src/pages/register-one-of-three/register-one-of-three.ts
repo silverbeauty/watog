@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 
@@ -16,6 +16,9 @@ import { DataProvider, RestProvider, PhoneValidator, PasswordValidator } from '.
 @Component({
   selector: 'page-register-one-of-three',
   templateUrl: 'register-one-of-three.html',
+  queries: {
+    content: new ViewChild('content')
+  }
 })
 
 
@@ -53,6 +56,7 @@ export class RegisterOneOfThreePage {
   public promise: any;
   public pass_conf: string = "";
   public show: boolean = false;
+  public agree: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider, public modalCtrl: ModalController) {
     const params = this.navParams.data;
@@ -145,6 +149,9 @@ export class RegisterOneOfThreePage {
   /** Request Http **/
 
   register() {
+    if (!this.agree) {
+      this.content.scrollToBottom(300);
+    }
     if (this.user.cell_phone.lastIndexOf('_') != -1) {
       this.user.cell_phone = (this.user.cell_phone.slice(0, -1))
     }
