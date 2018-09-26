@@ -70,6 +70,7 @@ import { ModalLogout } from '../pages/modal-logout/modal-logout';
 import { PartnersPage } from '../pages/partners/partners';
 import { AdModalPage } from '../pages/ad-modal/ad-modal';
 import { WatogContactPage } from '../pages/watog-contact/watog-contact';
+import { ModalQualification } from '../pages/modal-qualification/modal-qualification';
 
 import { AccomplishmentsToDatePageModule } from '../pages/accomplishments-to-date/accomplishments-to-date.module';
 
@@ -134,7 +135,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     ModalLogout,
     PartnersPage,
     AdModalPage,
-    WatogContactPage
+    WatogContactPage,
+    ModalQualification
   ],
   imports: [
     BrowserModule,
@@ -191,7 +193,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     ModalLogout,
     PartnersPage,
     AdModalPage,
-    WatogContactPage
+    WatogContactPage,
+    ModalQualification
   ],
   providers: [
     StatusBar,

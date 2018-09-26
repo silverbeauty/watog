@@ -40,10 +40,10 @@
         <div class="row">
           <div class="col-md">
               <div class="input-group">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text"><img src="assets/icon/Profil.png" alt="login logo"></span>
-                  </div>
-                  <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First Name*" [(ngModel)]="user.first_name" formControlName="first_name"></ion-input>
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><img src="assets/icon/Profil.png" alt="login logo"></span>
+                </div>
+                <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First Name*" [(ngModel)]="user.first_name" formControlName="first_name"></ion-input>
               </div>
               <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.first_name">
@@ -53,10 +53,10 @@
                 </ng-container>
               </div>
               <div class="input-group">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text"><img src="assets/icon/Profil.png" alt="password logo"></span>
-                  </div>
-                  <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" [(ngModel)]="user.last_name" formControlName="last_name"></ion-input>
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><img src="assets/icon/Profil.png" alt="password logo"></span>
+                </div>
+                <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" [(ngModel)]="user.last_name" formControlName="last_name"></ion-input>
               </div>
               <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.last_name">
@@ -66,10 +66,10 @@
                 </ng-container>
               </div>
               <div class="input-group">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text"><img src="assets/icon/Profil.png" alt="pseudo icon"></span>
-                  </div>
-                  <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="user.user_name" formControlName="user_name"></ion-input>
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><img src="assets/icon/Profil.png" alt="pseudo icon"></span>
+                </div>
+                <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="user.user_name" formControlName="user_name"></ion-input>
               </div>
               <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.user_name">
@@ -80,10 +80,10 @@
               </div>
               <div formGroupName="matching_passwords">
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><img src="assets/icon/Password.png" alt="password logo"></span>
-                    </div>
-                    <ion-input type="password" class="form-control font-weight-light" id="PasswordInput" aria-describedby="passwd-picture" placeholder="Password*" [(ngModel)]="user.password" formControlName="password"></ion-input>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><img src="assets/icon/Password.png" alt="password logo"></span>
+                  </div>
+                  <ion-input type="password" class="form-control font-weight-light" id="PasswordInput" aria-describedby="passwd-picture" placeholder="Password*" [(ngModel)]="user.password" formControlName="password"></ion-input>
                 </div>
                 <div class="validation-errors">
                   <ng-container *ngFor="let validation of validation_messages.password">
@@ -93,10 +93,10 @@
                   </ng-container>
                 </div>
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><img src="assets/icon/Password.png" alt="password logo"></span>
-                    </div>
-                    <ion-input type="password" class="form-control font-weight-light" id="ConfirmPasswordInput" aria-describedby="passwd-picture" placeholder="Confirm Password*" [(ngModel)]="pass_conf" formControlName="confirm_password"></ion-input>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><img src="assets/icon/Password.png" alt="password logo"></span>
+                  </div>
+                  <ion-input type="password" class="form-control font-weight-light" id="ConfirmPasswordInput" aria-describedby="passwd-picture" placeholder="Confirm Password*" [(ngModel)]="pass_conf" formControlName="confirm_password"></ion-input>
                 </div>
                 <div class="validation-errors">
                   <ng-container *ngFor="let validation of validation_messages.confirm_password">
@@ -114,10 +114,10 @@
                 </ng-container>
               </div>
               <div class="input-group">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text"><img src="assets/icon/Mail02.png" alt="password logo"></span>
-                  </div>
-                  <ion-input type="email" class="form-control font-weight-light" id="EmailInput" aria-describedby="passwd-picture" placeholder="Email*" [(ngModel)]="user.email" formControlName="email"></ion-input>
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><img src="assets/icon/Mail02.png" alt="password logo"></span>
+                </div>
+                <ion-input type="email" class="form-control font-weight-light" id="EmailInput" aria-describedby="passwd-picture" placeholder="Email*" [(ngModel)]="user.email" formControlName="email"></ion-input>
               </div>
               <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.email">
@@ -136,10 +136,10 @@
                   </ion-select>
                 </div>
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><img src="assets/icon/Phone.png" alt="password logo"></span>
-                    </div>
-                    <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" [textMask]="{mask: validations_form.value.country_phone.country.phone_mask}" placeholder="{{ validations_form.value.country_phone.country.sample_phone }}*" [(ngModel)]="user.cell_phone" formControlName="phone"></ion-input>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><img src="assets/icon/Phone.png" alt="password logo"></span>
+                  </div>
+                  <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" [textMask]="{mask: validations_form.value.country_phone.country.phone_mask}" placeholder="{{ validations_form.value.country_phone.country.sample_phone }}*" [(ngModel)]="user.cell_phone" formControlName="phone"></ion-input>
                 </div>
                 <div class="validation-errors">
                   <ng-container *ngFor="let validation of validation_messages.phone">
@@ -150,10 +150,10 @@
                 </div>
               </div>
               <div class="input-group">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text"><img src="assets/icon/Hopital.png" alt="password logo"></span>
-                  </div>
-                  <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="user.hospital" formControlName="hospital" (ionFocus)="checkFocus()"></ion-input>
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><img src="assets/icon/Hopital.png" alt="password logo"></span>
+                </div>
+                <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="user.hospital" formControlName="hospital" (ionFocus)="checkFocus()"></ion-input>
               </div>
               <div class="input-group">
                 <a href="#" (click)="openMenu()" id="qualificationInput">
@@ -172,49 +172,4 @@
       </div>
     </section>
   </form>
-
-  <div id="qualificationInputMenu" class="down-menu" *ngIf="isShow()">
-    <a href="#" (click)="closeMenu()" class="btn-close">X</a>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <ul class="font-weight-light">
-            <li><a href="#" (click)="selectQualification('Trainee or resident in OB/GYN')">Trainee or resident in OB/GYN</a></li>
-            <hr>
-            <li><a href="#" (click)="selectQualification('Fellow or Young OB/GYN')">Fellow or Young OB/GYN (Less than 10 years after entering OB/GYN residency</a></li>
-            <hr>
-            <li><a href="#" (click)="selectQualification('Confirmed OB/GYN')">Confirmed OB/GYN (More than 10 years after entering OB/GYN residency)</a></li>
-            <hr>
-            <li><a href="#" (click)="selectQualification('Medical Student')">Medical Student (Not OB/GYN yet)</a></li>
-            <hr>
-            <li><a href="#" (click)="selectQualification('Medical Doctor')">Medical Doctor, Other Speciality</a></li>
-            <hr>
-            <li><a href="#" (click)="selectQualification('Mid Wife')">Mid Wife</a></li>
-            <hr>
-            <li><a href="#" data-toggle="modal" data-target="#modal-other-speciality" (click)="selectQualification('Medical Doctor, Other Speciality')">Other: Please specify</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="modal-other-speciality" class="modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title ">Enter your qualification</h5>
-            <button id="btn-modal-close" type="button" class="close hide" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body p-4">
-            <ion-input type="text" class="form-control font-weight-light" [(ngModel)]="other_speciality" name="other_speciality" [ngModelOptions]="{standalone: true}"></ion-input>
-          </div>
-          <div class="modal-footer">
-              <button ion-button round color="light" class="text-uppercase mr-3" data-dismiss="modal" (click)="cancelOtherSpeciality()">Cancel</button>
-              <button ion-button round color="teal" class="text-uppercase" data-dismiss="modal" (click)="saveOtherSpeciality()">OK</button>
-          </div>
-        </div>
-      </div>
-    </div>
 </ion-content>

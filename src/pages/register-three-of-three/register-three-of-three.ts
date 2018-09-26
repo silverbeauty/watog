@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { EnterTokenPage } from '../enter-token/enter-token';
-import { DataProvider, RestProvider} from "../../providers";
-import {Auth, ObjUser} from "../../types";
-import {RegisterTwoOfThreePage} from "../register-two-of-three/register-two-of-three";
+import { DataProvider, RestProvider } from "../../providers";
+import { Auth, ObjUser } from "../../types";
+import { RegisterTwoOfThreePage } from "../register-two-of-three/register-two-of-three";
 
 /**
  * Generated class for the RegisterThreeOfThreePage page.
@@ -21,18 +21,18 @@ import {RegisterTwoOfThreePage} from "../register-two-of-three/register-two-of-t
 export class RegisterThreeOfThreePage {
 
   public url_verify: string = 'sms';
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider : RestProvider, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterThreeOfThreePage');
   }
 
-  goToEnterToken(){
+  goToEnterToken() {
     const url_verify = this.url_verify;
-    this.restProvider.sendVerifyRequest( url_verify).then((data) => {
+    this.restProvider.sendVerifyRequest(url_verify).then((data) => {
       alert(data);
-      this.navCtrl.push(EnterTokenPage, { url_verify: url_verify});
+      this.navCtrl.push(EnterTokenPage, { url_verify: url_verify });
     }).catch((error) => {
       alert(error);
     })

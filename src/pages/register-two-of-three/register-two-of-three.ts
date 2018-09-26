@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { RegisterThreeOfThreePage } from '../register-three-of-three/register-three-of-three';
-import {Auth, User, resFile} from "../../types";
-import {DataProvider, RestProvider} from '../../providers';
+import { Auth, User, resFile } from "../../types";
+import { DataProvider, RestProvider } from '../../providers';
 import { CameraProvider } from '../../providers/camera/camera';
 
 /**
@@ -22,18 +22,18 @@ export class RegisterTwoOfThreePage {
   public image_url: any;
   public image_local: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, public cam : CameraProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, public cam: CameraProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterTwoOfThreePage');
   }
 
-  goToRegister(){
+  goToRegister() {
     this.navCtrl.push(RegisterOneOfThreePage);
   }
 
-  TakeaPicture(){
+  TakeaPicture() {
     this.cam.selectImage(1, 0).then(resp => {
       this.image_local = "data:image/jpeg;base64," + resp;
       alert("picture saved")
@@ -53,10 +53,10 @@ export class RegisterTwoOfThreePage {
     });
   }
 
-  sendDoc(){
-    if(this.image_local){
+  sendDoc() {
+    if (this.image_local) {
       this.restProvider.sendProofPhoto(this.image_local).then((user: User) => {
-        const profile_user:User = user;
+        const profile_user: User = user;
         this.dataProvider.saveUser(profile_user);
         this.navCtrl.push(RegisterThreeOfThreePage);
       }).catch((error) => {
@@ -64,7 +64,7 @@ export class RegisterTwoOfThreePage {
         console.log("error===>", error)
       })
     }
-    else{
+    else {
       alert("Please selected proof of your status")
     }
   }
