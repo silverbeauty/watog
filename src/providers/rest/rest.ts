@@ -278,7 +278,18 @@ export class RestProvider {
             reject('SignUp Failed:')
           }
         }, (err) => {
-          reject('SignUp Failed:')
+          console.error('Signup Error', err)
+          let errStr: string = '';
+          if (err.error) {
+            const data = err.error;
+            if (Array.isArray(data.error)) {
+              const fields = data.error.filter(e => e.type === 'unique violation').map(e => e.path + ': ' + e.value);
+              if (fields.length > 0) {
+                errStr = fields.join(',') + ' already present in the app!'
+              }
+            }
+          }
+          reject(errStr ? errStr : 'Failed to sign up, please try again!') 
         });
     })
   }
