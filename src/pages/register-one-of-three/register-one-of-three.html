@@ -22,7 +22,7 @@
   </section>
   <form [formGroup]="validations_form">
     <section class="sign-in">
-      <div class="upload-profil-picture container-fluid checked" (click)="navToUploadProfilePhoto()">
+      <div class="upload-profil-picture container-fluid checked" (click)="navToUploadProfilePhoto($event)">
         <div class="container">
           <div class="row">
             <div class="col-4 justify-content-right">
@@ -39,121 +39,73 @@
       <div class="container">
         <div class="row">
           <div class="col-md">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><img src="assets/icon/Profil.png" alt="login logo"></span>
+            <div class="input-group">
+              <img src="assets/icon/Profil.png" alt="login logo">
+              <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First Name*" [(ngModel)]="user.first_name" formControlName="first_name" [ngClass]="{ 'is-invalid': validations_form.get('first_name').errors && (validations_form.get('first_name').dirty || validations_form.get('first_name').touched) }"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.first_name">
+                <div class="error-message" *ngIf="validations_form.get('first_name').hasError(validation.type) && (validations_form.get('first_name').dirty || validations_form.get('first_name').touched)">
+                  {{ validation.message }}
                 </div>
-                <ion-input type="text" class="form-control font-weight-light" id="FirstNameInput" aria-describedby="login-picture" placeholder="First Name*" [(ngModel)]="user.first_name" formControlName="first_name"></ion-input>
-              </div>
-              <div class="validation-errors">
-                <ng-container *ngFor="let validation of validation_messages.first_name">
-                  <div class="error-message" *ngIf="validations_form.get('first_name').hasError(validation.type) && (validations_form.get('first_name').dirty || validations_form.get('first_name').touched)">
+              </ng-container>
+            </div>
+            <div class="input-group">
+              <img src="assets/icon/Profil.png" alt="password logo">
+              <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" [(ngModel)]="user.last_name" formControlName="last_name" [ngClass]="{ 'is-invalid': validations_form.get('last_name').errors && (validations_form.get('last_name').dirty || validations_form.get('last_name').touched) }"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.last_name">
+                <div class="error-message" *ngIf="validations_form.get('last_name').hasError(validation.type) && (validations_form.get('last_name').dirty || validations_form.get('last_name').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <div class="input-group">
+              <img src="assets/icon/Profil.png" alt="pseudo icon">
+              <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="user.user_name" formControlName="user_name" [ngClass]="{ 'is-invalid': validations_form.get('user_name').errors && (validations_form.get('user_name').dirty || validations_form.get('user_name').touched) }"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.user_name">
+                <div class="error-message" *ngIf="validations_form.get('user_name').hasError(validation.type) && (validations_form.get('user_name').dirty || validations_form.get('user_name').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <div formGroupName="matching_passwords">
+              <div class="input-group">
+                <img src="assets/icon/Password.png" alt="password logo">
+                <ion-input type="password" class="form-control font-weight-light" id="PasswordInput" aria-describedby="passwd-picture" placeholder="Password*" [(ngModel)]="user.password" formControlName="password" [ngClass]="{ 'is-invalid': validations_form.get('matching_passwords').get('password').errors && (validations_form.get('matching_passwords').get('password').dirty || validations_form.get('matching_passwords').get('password').touched) }"></ion-input>
+                <ng-container *ngFor="let validation of validation_messages.password">
+                  <div class="error-message" *ngIf="validations_form.get('matching_passwords').get('password').hasError(validation.type) && (validations_form.get('matching_passwords').get('password').dirty || validations_form.get('matching_passwords').get('password').touched)">
                     {{ validation.message }}
                   </div>
                 </ng-container>
               </div>
               <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><img src="assets/icon/Profil.png" alt="password logo"></span>
-                </div>
-                <ion-input type="text" class="form-control font-weight-light" id="LastNameInput" aria-describedby="passwd-picture" placeholder="Last Name*" [(ngModel)]="user.last_name" formControlName="last_name"></ion-input>
-              </div>
-              <div class="validation-errors">
-                <ng-container *ngFor="let validation of validation_messages.last_name">
-                  <div class="error-message" *ngIf="validations_form.get('last_name').hasError(validation.type) && (validations_form.get('last_name').dirty || validations_form.get('last_name').touched)">
+                <img src="assets/icon/Password.png" alt="password logo">
+                <ion-input type="password" class="form-control font-weight-light" id="ConfirmPasswordInput" aria-describedby="passwd-picture" placeholder="Confirm Password*" [(ngModel)]="pass_conf" formControlName="confirm_password" [ngClass]="{ 'is-invalid': validations_form.get('matching_passwords').get('confirm_password').errors && (validations_form.get('matching_passwords').get('confirm_password').dirty || validations_form.get('matching_passwords').get('confirm_password').touched) }"></ion-input>
+                <ng-container *ngFor="let validation of validation_messages.confirm_password">
+                  <div class="error-message" *ngIf="validations_form.get('matching_passwords').get('confirm_password').hasError(validation.type) && (validations_form.get('matching_passwords').get('confirm_password').dirty || validations_form.get('matching_passwords').get('confirm_password').touched)">
                     {{ validation.message }}
                   </div>
                 </ng-container>
-              </div>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><img src="assets/icon/Profil.png" alt="pseudo icon"></span>
-                </div>
-                <ion-input type="text" class="form-control font-weight-light" id="PseudoInput" aria-describedby="pseudo-picture" placeholder="Pseudo*" [(ngModel)]="user.user_name" formControlName="user_name"></ion-input>
-              </div>
-              <div class="validation-errors">
-                <ng-container *ngFor="let validation of validation_messages.user_name">
-                  <div class="error-message" *ngIf="validations_form.get('user_name').hasError(validation.type) && (validations_form.get('user_name').dirty || validations_form.get('user_name').touched)">
-                    {{ validation.message }}
-                  </div>
-                </ng-container>
-              </div>
-              <div formGroupName="matching_passwords">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="assets/icon/Password.png" alt="password logo"></span>
-                  </div>
-                  <ion-input type="password" class="form-control font-weight-light" id="PasswordInput" aria-describedby="passwd-picture" placeholder="Password*" [(ngModel)]="user.password" formControlName="password"></ion-input>
-                </div>
-                <div class="validation-errors">
-                  <ng-container *ngFor="let validation of validation_messages.password">
-                    <div class="error-message" *ngIf="validations_form.get('matching_passwords').get('password').hasError(validation.type) && (validations_form.get('matching_passwords').get('password').dirty || validations_form.get('matching_passwords').get('password').touched)">
-                      {{ validation.message }}
-                    </div>
-                  </ng-container>
-                </div>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="assets/icon/Password.png" alt="password logo"></span>
-                  </div>
-                  <ion-input type="password" class="form-control font-weight-light" id="ConfirmPasswordInput" aria-describedby="passwd-picture" placeholder="Confirm Password*" [(ngModel)]="pass_conf" formControlName="confirm_password"></ion-input>
-                </div>
-                <div class="validation-errors">
-                  <ng-container *ngFor="let validation of validation_messages.confirm_password">
-                    <div class="error-message" *ngIf="validations_form.get('matching_passwords').get('confirm_password').hasError(validation.type) && (validations_form.get('matching_passwords').get('confirm_password').dirty || validations_form.get('matching_passwords').get('confirm_password').touched)">
-                      {{ validation.message }}
-                    </div>
-                  </ng-container>
-                </div>
-              </div>
-              <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.matching_passwords">
                   <div class="error-message" *ngIf="validations_form.get('matching_passwords').hasError(validation.type) && (validations_form.get('matching_passwords').get('confirm_password').dirty || validations_form.get('matching_passwords').get('confirm_password').touched)">
                     {{ validation.message }}
                   </div>
                 </ng-container>
               </div>
+            </div>
+            <div class="input-group">
+              <img src="assets/icon/Mail02.png" alt="password logo">
+              <ion-input type="email" class="form-control font-weight-light" id="EmailInput" aria-describedby="passwd-picture" placeholder="Email*" [(ngModel)]="user.email" formControlName="email" [ngClass]="{ 'is-invalid': validations_form.get('email').errors && (validations_form.get('email').dirty || validations_form.get('email').touched) }"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.email">
+                <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <div formGroupName="country_phone">
               <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><img src="assets/icon/Mail02.png" alt="password logo"></span>
-                </div>
-                <ion-input type="email" class="form-control font-weight-light" id="EmailInput" aria-describedby="passwd-picture" placeholder="Email*" [(ngModel)]="user.email" formControlName="email"></ion-input>
-              </div>
-              <div class="validation-errors">
-                <ng-container *ngFor="let validation of validation_messages.email">
-                  <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
-                    {{ validation.message }}
-                  </div>
-                </ng-container>
-              </div>
-              <div formGroupName="country_phone">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="assets/icon/Location.png" alt="password logo"></span>
-                  </div>
-                  <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" formControlName="country" [(ngModel)]="country" placeholder = "Country*" okText="Ok" cancelText="Cancel">
-                    <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
-                  </ion-select>
-                </div>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="assets/icon/Phone.png" alt="password logo"></span>
-                  </div>
-                  <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" [textMask]="{mask: validations_form.value.country_phone.country.phone_mask}" placeholder="{{ validations_form.value.country_phone.country.sample_phone }}*" [(ngModel)]="user.cell_phone" formControlName="phone"></ion-input>
-                </div>
-                <div class="validation-errors">
-                  <ng-container *ngFor="let validation of validation_messages.phone">
-                    <div class="error-message" *ngIf="validations_form.get('country_phone').get('phone').hasError(validation.type) && (validations_form.get('country_phone').get('phone').dirty || validations_form.get('country_phone').get('phone').touched)">
-                      {{ validation.message }}
-                    </div>
-                  </ng-container>
-                </div>
-              </div>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><img src="assets/icon/Hopital.png" alt="password logo"></span>
-                </div>
-                <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="user.hospital" formControlName="hospital" (ionFocus)="checkFocus()"></ion-input>
+                <img src="assets/icon/Location.png" alt="password logo">
+                <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" formControlName="country" [(ngModel)]="country" placeholder = "Country*" okText="Ok" cancelText="Cancel">
+                  <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
+                </ion-select>
               </div>
               <div class="input-group">
                 <a href="#" (click)="openQualificationModal()" id="qualificationInput">
@@ -171,6 +123,24 @@
                   </div>
                 </ng-container>
               </div>
+            </div>
+            <div class="input-group">
+              <img src="assets/icon/Hopital.png" alt="password logo">
+              <ion-input type="text" class="form-control font-weight-light" id="HospitalInput" aria-describedby="passwd-picture" placeholder="Hospital" [(ngModel)]="user.hospital" formControlName="hospital" (ionFocus)="checkFocus()"></ion-input>
+            </div>
+            <div class="input-group">
+              <a href="#" (click)="openQualificationModal()" id="qualificationInput">
+                <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Select qualification" [(ngModel)]="user.job" formControlName="job" contenteditable="false"></ion-input>
+              </a>
+              <ng-container *ngFor="let validation of validation_messages.job">
+                <div class="error-message" *ngIf="validations_form.get('job').hasError(validation.type) && (validations_form.get('job').dirty || validations_form.get('job').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <div class="input-group">
+              <button type="submit" class="btn btn-submit btn-md" [disabled]="!validations_form.valid" (click)="register()" *ngIf="!isShow()">NEXT</button>
+            </div>
           </div>
         </div>
       </div>
