@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { RegisterThreeOfThreePage } from '../register-three-of-three/register-three-of-three';
 import { Auth, User, resFile } from "../../types";
@@ -22,7 +23,7 @@ export class RegisterTwoOfThreePage {
   public image_url: any;
   public image_local: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, public cam: CameraProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, public cam: CameraProvider, public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -54,17 +55,21 @@ export class RegisterTwoOfThreePage {
   }
 
   sendDoc() {
+    const loader = this.loadingCtrl.create({ content: "Please wait..." });
+    loader.present();
     if (this.image_local) {
       this.restProvider.sendProofPhoto(this.image_local).then((user: User) => {
         const profile_user: User = user;
+        loader.dismiss();
         this.dataProvider.saveUser(profile_user);
         this.navCtrl.push(RegisterThreeOfThreePage);
       }).catch((error) => {
-        console.log("Send file to server error!")
-        console.log("error===>", error)
+        loader.dismiss();
+        alert("server error!")
       })
     }
     else {
+      loader.dismiss();
       alert("Please selected proof of your status")
     }
   }

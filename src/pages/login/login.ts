@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
 import { Keyboard } from "@ionic-native/keyboard";
 
 /** Page **/
@@ -32,7 +32,7 @@ export class LoginPage {
 
 //public restProvider: RestProvider, public dataProvider: DataProvider, public http: HttpClient
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, public platform: Platform, public keyboard: Keyboard) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, public platform: Platform, public keyboard: Keyboard, public loadingCtrl: LoadingController) {
     //this.data.getData();
     platform.ready().then(() => {
       keyboard.disableScroll(true);
@@ -56,6 +56,8 @@ export class LoginPage {
   onSubmit() {
     //console.log('Login Form Data:', this.data)
     const { email, password } = this.data;
+    const loader = this.loadingCtrl.create({ content: "Please wait..." });
+    loader.present();
     if (email && password) {
       this.restProvider.login(email, password).then((auth: Auth) => {
         // Save profil
@@ -63,17 +65,22 @@ export class LoginPage {
         this.dataProvider.saveProfile(auth)
         if (auth.proof_of_status) {
           if (!auth.sms_verified_date && !auth.email_verified_date) { // Email or cell_phone is not verified
+            loader.dismiss();
             this.navCtrl.push(RegisterThreeOfThreePage); // proof_of_status not uploaded
           } else {
+            loader.dismiss();
             this.navCtrl.push(DashboardPage)
           }
         } else {
+          loader.dismiss();
           this.navCtrl.push(RegisterTwoOfThreePage)
         }
       }).catch((error) => {
+        loader.dismiss();
         this.data.error = 'Invalid email or password';
       })
     } else {
+      loader.dismiss();
       this.data.error = 'Please enter email and password'
     }
   }
