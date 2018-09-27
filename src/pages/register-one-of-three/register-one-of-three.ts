@@ -162,12 +162,12 @@ export class RegisterOneOfThreePage {
   register() {
     if (!this.agree) {
       this.content.scrollToBottom(300);
-      let alert = this.alertCtrl.create({
+      let agreeAlert = this.alertCtrl.create({
         title: '',
         subTitle: 'You need to agree with WATOG Terms and Conditions.',
         buttons: ['OK']
       });
-      alert.present();
+      agreeAlert.present();
       return;
     }
     if (this.user.cell_phone.lastIndexOf('_') != -1) {
@@ -179,24 +179,20 @@ export class RegisterOneOfThreePage {
       alert("You have to choose profile picture!");
       this.navCtrl.push(UploadProfilePhotoPage);
     }*/
-    this.restProvider.signUp(this.user as ObjUser).then((user: ObjUser) => {
-      // Save Profile
-      //this.dataProvider.saveProfile(auth);
-      //this.navCtrl.push(RegisterTwoOfThreePage);
-      const email = user.email;
-      const password = this.user.password;
-      return { email, password }
-    }).then((data) => {
-      this.restProvider.login(data.email, data.password).then((auth: Auth) => {
-        // Save Profile
-        this.dataProvider.saveProfile(auth);
-        this.navCtrl.push(RegisterTwoOfThreePage);
+    this.restProvider.signUp(this.user as ObjUser)
+      .then((user: ObjUser) => {
+        const email = user.email;
+        const password = this.user.password;
+        // return { email, password }
+        this.restProvider.login(email, password).then((auth: Auth) => {
+          this.dataProvider.saveProfile(auth);
+          this.navCtrl.push(RegisterTwoOfThreePage);
+        }).catch((error) => {
+          alert(error)
+        })
       }).catch((error) => {
-        alert(error)
+        alert(error);
       })
-    }).catch((error) => {
-      alert(error);
-    })
   }
 
   /** Navigation **/
