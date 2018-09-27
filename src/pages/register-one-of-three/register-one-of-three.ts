@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
-import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
-import {File} from "@ionic-native/file";
+import { IonicPage, NavController, NavParams, AlertController, ModalController, LoadingController } from 'ionic-angular';
+import { DocumentViewer, DocumentViewerOptions } from "@ionic-native/document-viewer";
+import { File } from "@ionic-native/file";
 
 import { countries } from '../../models/model';
 import { LoginPage } from '../login/login';
@@ -39,7 +39,7 @@ export class RegisterOneOfThreePage {
   }
 
   public image = {
-    image_url: "",
+    image_url: '',
     profile_selected: false
   }
 
@@ -52,14 +52,14 @@ export class RegisterOneOfThreePage {
 
   public countries: Country[];
   public profile_selected: boolean = false;
-  public profile_image: string = "assets/imgs/rio.jpg";
+  public profile_image: string = 'assets/imgs/rio.jpg';
   public country: Country = null;
   public promise: any;
-  public pass_conf: string = "";
+  public pass_conf: string = '';
   public show: boolean = false;
   public agree: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private file: File, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider, public modalCtrl: ModalController, private document: DocumentViewer) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private file: File, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider, public modalCtrl: ModalController, private document: DocumentViewer, public loadingCtrl: LoadingController) {
     const params = this.navParams.data;
     if (params.image_url) {
       this.image = params;
@@ -160,6 +160,7 @@ export class RegisterOneOfThreePage {
   /** Request Http **/
 
   register() {
+    const loader = this.loadingCtrl.create({ content: "Please wait..." });
     if (!this.agree) {
       this.content.scrollToBottom(300);
       let agreeAlert = this.alertCtrl.create({
@@ -179,18 +180,22 @@ export class RegisterOneOfThreePage {
       alert("You have to choose profile picture!");
       this.navCtrl.push(UploadProfilePhotoPage);
     }*/
+    loader.present();
     this.restProvider.signUp(this.user as ObjUser)
       .then((user: ObjUser) => {
         const email = user.email;
         const password = this.user.password;
         // return { email, password }
         this.restProvider.login(email, password).then((auth: Auth) => {
+          loader.dismiss();
           this.dataProvider.saveProfile(auth);
           this.navCtrl.push(RegisterTwoOfThreePage);
         }).catch((error) => {
+          loader.dismiss();
           alert(error)
         })
       }).catch((error) => {
+        loader.dismiss();
         alert(error);
       })
   }

@@ -167,7 +167,9 @@
 	color: #a96ba7;
 }
 
-
+.loading-wrapper {
+  height: 100px;
+}
 @-webkit-keyframes sk-bounce {
   0%, 100% { -webkit-transform: scale(0.0) }
   50% { -webkit-transform: scale(1.0) }
