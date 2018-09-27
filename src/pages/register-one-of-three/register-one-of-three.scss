@@ -1,3 +1,12 @@
+
+@mixin browser($browsers: Mozilla) {
+  @each $browser in $browsers {
+    html[data-browser*="#{$browser}"] & {
+      @content;
+    }
+  }
+}
+
 page-register-one-of-three {
     .body {
         background-image: url('../assets/imgs/rio.jpg');
@@ -61,7 +70,21 @@ page-register-one-of-three {
     .input-cover {
         display: none;
     }
-    .btn-submit {
+
+    .div-btn-submit{
+        padding: .7em;
+        position: absolute !important;
+        width: 100%;
+        @include browser(Android) {
+            bottom: 4em;
+        }
+
+        @include browser("iPhone" "iPad") {
+            bottom: 0em;
+        }
+    }
+
+    .btn-submit{
         background-color: #a96ba7;
         color: white;
         font-size: 1em;
@@ -176,5 +199,15 @@ page-register-one-of-three {
     .modal-title {
         color: #000;
         margin-top: 0;
+    }
+
+    .iagree {
+        padding-left: 1em;
+        font-size: 1em;
+
+        a {
+            font-weight: bold;
+            text-decoration: underline !important;
+        }
     }
 }

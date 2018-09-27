@@ -1,4 +1,7 @@
-<ion-content class="body">
+<div class="text-center div-btn-submit">
+  <button type="submit" class="btn btn-submit btn-md" [disabled]="!validations_form.valid" (click)="register()" *ngIf="!isShow()">NEXT</button>
+</div>
+<ion-content #content class="body">
   <div class="navbar">
     <a (click)="goToLogin()"><i class="fa fa-angle-left"></i></a>
     <img src="assets/imgs/WATOG_Logo_RioDeJaneiro_Final.png" alt="WATOG LOGO" class="brand-logo img-fluid-height">
@@ -105,10 +108,17 @@
                 </ion-select>
               </div>
               <div class="input-group">
-                <img src="assets/icon/Phone.png" alt="password logo">
-                <ion-input type="text" class="form-control font-weight-light" id="PhoneInput" aria-describedby="passwd-picture" [textMask]="{mask: validations_form.value.country_phone.country.phone_mask}" placeholder="{{ validations_form.value.country_phone.country.sample_phone }}*" [(ngModel)]="user.cell_phone" formControlName="phone" [ngClass]="{ 'is-invalid': validations_form.get('country_phone').get('phone').errors && (validations_form.get('country_phone').get('phone').dirty || validations_form.get('country_phone').get('phone').touched) }"></ion-input>
-                <ng-container *ngFor="let validation of validation_messages.phone">
-                  <div class="error-message" *ngIf="validations_form.get('country_phone').get('phone').hasError(validation.type) && (validations_form.get('country_phone').get('phone').dirty || validations_form.get('country_phone').get('phone').touched)">
+                <a href="#" (click)="openQualificationModal()" id="qualificationInput">
+                  <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Select qualification" [(ngModel)]="user.job" formControlName="job" contenteditable="false" disabled></ion-input>
+                </a>
+              </div>
+              <div class="input-group">
+                <span class="iagree"> <ion-checkbox [(ngModel)]="agree" [ngModelOptions]="{standalone: true}" ></ion-checkbox> I agree with <a (click)="goToTerms()">WATOG Terms and Conditions</a></span>
+              </div>
+
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.job">
+                  <div class="error-message" *ngIf="validations_form.get('job').hasError(validation.type) && (validations_form.get('job').dirty || validations_form.get('job').touched)">
                     {{ validation.message }}
                   </div>
                 </ng-container>
