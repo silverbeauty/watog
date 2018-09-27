@@ -1,3 +1,12 @@
+
+@mixin browser($browsers: Mozilla) {
+  @each $browser in $browsers {
+    html[data-browser*="#{$browser}"] & {
+      @content;
+    }
+  }
+}
+
 page-register-one-of-three {
     .body{
         background-image: url('../assets/imgs/rio.jpg');
@@ -74,9 +83,15 @@ page-register-one-of-three {
 
     .div-btn-submit{
         padding: .7em;
-        position: absolute;
+        position: absolute !important;
         width: 100%;
-        bottom: 0;
+        @include browser(Android) {
+            bottom: 4em;
+        }
+
+        @include browser("iPhone" "iPad") {
+            bottom: 0em;
+        }
     }
 
     .btn-submit{
