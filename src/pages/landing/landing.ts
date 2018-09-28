@@ -35,15 +35,17 @@ export class LandingPage {
           throw "No Token In the Storage";
         }
       }).then((auth: Auth) => {
+        
         if (auth.proof_of_status) {
           if (!auth.sms_verified_date && !auth.email_verified_date) { // Email or cell_phone is not verified
-            this.navCtrl.push(RegisterThreeOfThreePage); // Goto SMS/Email verify page
-            // this.navCtrl.push(DashboardPage) // This is for dev
+            // this.navCtrl.push(RegisterThreeOfThreePage); // Goto SMS/Email verify page
+            this.navCtrl.push(DashboardPage) // This is for dev
           } else {
             this.navCtrl.push(DashboardPage)
           }
         } else {
-          this.navCtrl.push(RegisterTwoOfThreePage)  // proof_of_status not uploaded
+          // this.navCtrl.push(RegisterTwoOfThreePage)  // proof_of_status not uploaded
+          this.navCtrl.push(DashboardPage)  // proof_of_status not uploaded
         }
       }).catch((e: any) => {
         console.error(e)
