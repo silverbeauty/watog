@@ -1,0 +1,15 @@
+<ion-header class="header-bar">
+    <div class="navbar">
+        <ion-buttons class="btn-back" (click)="goBack()">
+            <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
+        </ion-buttons>
+        <ion-title>Chatroom</ion-title>
+        <header-action-bar class="header-action-bar"></header-action-bar>
+    </div>
+</ion-header>
+<ion-content no-padding class = "no-scroll">
+    <ion-tabs #tabBar>
+      <ion-tab [root]="myroomTab" tabTitle="MY" [rootParams]="tabParams"></ion-tab>
+      <ion-tab [root]="publicTab" tabTitle="PUBLIC" [rootParams]="tabParams"></ion-tab>
+    </ion-tabs>
+</ion-content>

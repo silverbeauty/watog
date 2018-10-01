@@ -46,6 +46,7 @@ export class LandingPage {
         } else {
           // this.navCtrl.push(RegisterTwoOfThreePage)  // proof_of_status not uploaded
           this.navCtrl.push(DashboardPage)  // proof_of_status not uploaded
+          // this.navCtrl.push(RegisterOneOfThreePage)  // proof_of_status not uploaded
         }
       }).catch((e: any) => {
         console.error(e)

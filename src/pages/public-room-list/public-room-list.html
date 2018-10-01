@@ -1,0 +1,38 @@
+<div class="tool-bar">
+  <ion-grid>
+      <ion-row class="btn-bar">
+          <ion-col class="add-item" col-2>
+              <ion-icon class="icon-btn" name="ios-add-outline"></ion-icon>
+          </ion-col>
+          <ion-col class="search-item" data-toggle="collapse" data-target="#search-public" col-8>
+              <ion-icon class="icon-btn" name="ios-search-outline"></ion-icon>
+          </ion-col>
+          <ion-col class="more" col-2>
+              <ion-icon class="icon-btn" name="md-more"></ion-icon> 
+          </ion-col>
+      </ion-row>        
+  </ion-grid>
+  
+  <div id="search-public" class="collapse">
+    <ion-row class="search-bar">
+      <ion-col class="search-view" col-11>
+          <ion-icon class="icon-sm" name="ios-search-outline"></ion-icon>
+          <input type="text" placeholder="Search" />
+      </ion-col>
+      <ion-col class="search-btn-view" col-1>
+          <ion-icon class="icon-sm" name="ios-search-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>
+<ion-content class = "list-content" padding>
+    <ion-list>
+      <ion-item *ngFor="let rowContent of lists">
+        <ion-checkbox class="public-check"></ion-checkbox>
+        <ion-avatar item-left>
+            <img src="./assets/imgs/logo.png">
+        </ion-avatar>
+        <ion-label>{{ rowContent.title }}</ion-label>
+      </ion-item>      
+    </ion-list>
+</ion-content>

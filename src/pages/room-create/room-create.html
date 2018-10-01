@@ -1,0 +1,57 @@
+<ion-header class="header-bar">
+  <div class="navbar">
+      <ion-buttons class="btn-back" (click)="goBack()">
+          <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
+      </ion-buttons>
+      <ion-title>Create Room</ion-title>
+      <header-action-bar class="header-action-bar"></header-action-bar>
+  </div>
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="validations_form">
+      <div class="input-group">
+        <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" formControlName="country" [(ngModel)]="country" placeholder = "Country*" okText="Ok" cancelText="Cancel">
+          <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
+        </ion-select>
+      </div>
+      <div class="input-group">
+        <ion-select class="form-control font-weight-light" id="TopicInput" aria-describedby="passwd-picture" formControlName="topics" [(ngModel)]="country" placeholder = "Topics" okText="Ok" cancelText="Cancel">
+          <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
+        </ion-select>
+      </div>
+      <div class="input-group">
+        <ion-select class="form-control font-weight-light" id="InvoiceLevelInput" aria-describedby="passwd-picture" formControlName="invoiceLevel" [(ngModel)]="country" placeholder = "Levels of OB/GYN to Involve" okText="Ok" cancelText="Cancel">
+          <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
+        </ion-select>
+      </div>
+      <div class="input-group">
+        <button type="submit" class="btn btn-submit btn-md full-width " (click)="create()">CREATE</button>
+      </div>
+      <div class="or-view">
+          <label>OR</label>
+      </div>
+      <div class="view-search">
+        <ion-row class="search-bar">
+          <ion-col class="search-view" col-10>
+              <input type="text" placeholder="Search" />
+          </ion-col>
+          <ion-col class="search-btn-view" col-2>
+              <ion-icon class="icon-sm" name="ios-search-outline"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </div>
+      <!-- <div class="selected-member">
+          <ion-scroll scrollX="true" class="selected-member-scroll">
+            <div class="selected-member-item">
+              <div class="selected-member-avatar-view">
+                  <ion-avatar item-left>
+                      <img src="./assets/imgs/logo.png">
+                  </ion-avatar>
+              </div> 
+            </div>
+          </ion-scroll>
+      </div> -->
+  </form>
+</ion-content>

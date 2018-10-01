@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
-import { ProfilePage } from '../profile/profile';
-import { SettingsPage } from '../settings/settings';
-import { LoginPage } from '../login/login';
 import { Auth, User, Category } from "../../types";
 
 import { DataProvider, RestProvider } from '../../providers';
 import { ContestPage } from '../contest/contest';
+import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
+import { ChatRoomPage } from '../chat-room/chat-room';
 import { AdModalPage } from '../ad-modal/ad-modal';
-import { ModalLogout } from '../modal-logout/modal-logout';
+
 /**
  * Generated class for the DashboardPage page.
  *
@@ -33,19 +31,11 @@ export class DashboardPage {
     }
   }
 
-  goToProfilePage(){
-    this.navCtrl.push(ProfilePage);
-  }
-
-  goToSettingsPage(){
-    this.navCtrl.push(SettingsPage);
-  }
-
-  logout(){
-    let profileModal = this.modalCtrl.create( ModalLogout );
+  presentAdModal() {
+    let profileModal = this.modalCtrl.create(AdModalPage, {});
     profileModal.present();
   }
-
+  
   goToWhatIsWatog(){
     this.navCtrl.push(WhatIsWatogPage);
   }
@@ -53,10 +43,16 @@ export class DashboardPage {
   goToContest(){
     this.navCtrl.push(ContestPage);
   }
-
-  presentAdModal() {
-    let profileModal = this.modalCtrl.create(AdModalPage, {});
-    profileModal.present();
+  goToLearn(){
+    this.navCtrl.push(WhatIsWatogPage);
   }
-
+  goToChatRoom(){
+    this.navCtrl.push(ChatRoomPage);
+  }
+  goToLive(){
+    this.navCtrl.push(WhatIsWatogPage);
+  }
+  goToSetting(){
+    this.navCtrl.push(WhatIsWatogPage);
+  }
 }

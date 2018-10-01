@@ -1,90 +1,92 @@
 page-dashboard {
     /*BEGIN TOOLBAR CSS*/
+    .header-bar{
+        .navbar{
+            background-color: #775576;
+            text-align: center;
+        }
 
-    .scroll-content {
-        display: flex;
-        flex-direction: column;
-        overflow-y: hidden !important;
-    }
-    .navbar{
-        background-color: #775576;
-    }
+        .toolbar-background {
+            background-color: #775576;
+        }
+        .title {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
 
-    .navbar h1{
-        color: white;
-        font-size: 1.2em;
-        font-weight: 200;
-        margin: 0;
-    }
-
-    .btn-profile{
-        background-color: #775576;
-    }
-
-    .btn-profile img{
-        height: 2em;
+            .toolbar-title {
+                color: #fff;
+                margin: 4px 0px;
+            }
+        }        
     }
 
-    .dropdown-menu{
-        padding: 2em;
-    }
-
-    .dropdown-item{
-        font-size: 1.5em;
-        font-weight: 200;
-        text-align: left;
-        padding-right: 5em;
-    }
-
-    .dropdown-item img{
-        height: 1.2em;
-        padding-right: 1em;
-    }
-
-    .dropdown-menu-right{
-        right: 0;
-        left: auto;
+    .header-action-bar {
+        position: absolute !important;
+        right: 10px;
     }
     /*END TOOLBAR CSS*/
-
-    .contest, .about{
-        flex: 1;
-        margin: 0;
+    .main-container{
         position: relative;
-    }
-
-    .contest{
-        background-image: url(../assets/imgs/rio.jpg);
-        background-size: cover;
-        background-position: center;
-        color: white;
-    }
-
-    .about{
-        background-image: url(../assets/imgs/Watog.jpg);
-        background-size: cover;
-        background-position: center;
-        color: white;
-    }
-
-    .label-area{
-        background-color: rgba(169, 107, 167, 0.8);
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        text-align: center;
-        padding-bottom: .5em;
-    }
-
-    .vertical-align-center{
         height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .main-board{
+        max-height: 100%;
+    }
+    .board-row {
+        padding: 2px 4px;
+        margin: 0px;
+    }
+    .board-item {
+        width: calc(50vw - 8px);
+        text-align: center;
+        .item-image {
+            height: 150px;
+            width: 100%;
+            background: #dddddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .item-title {
+            background-color:  rgba(169, 107, 167, 0.8);
+            font-size: 16px;
+            padding: 8px 0px;            
+            color: white;
+        }
     }
 
-    .poce-bleu{
-        height: 12vh;
-        transform: rotate(-15deg);
-        position: relative;
-        top: 25%;
-        margin: auto;
+    .board-item:nth-child(odd) {
+        margin-right: 2px;
+    }
+
+    .board-item:nth-child(even) {
+        margin-left: 2px;
+    }
+    .watog{
+        background-image: url(../assets/imgs/watog.png) !important;
+    }
+    .watog-contest{
+        background-image: url(../assets/imgs/watog-contest.png) !important;
+    }
+    .learn{
+        background-image: url(../assets/imgs/learn.png) !important;
+    }
+    .chatroom{
+        background-image: url(../assets/imgs/chatroom.png) !important;
+    }
+    .live{
+        background-image: url(../assets/imgs/live.png) !important;
+    }
+    .setting{
+        background-image: url(../assets/imgs/setting.png) !important;
+    }
+    @media screen and (min-width: 768px) {
+        .item-image { height: 250px !important; }
+    }
+    @media screen and (min-width: 1024px) {
+        .item-image { height: 300px !important; }
     }
 }

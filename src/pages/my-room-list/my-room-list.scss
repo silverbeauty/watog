@@ -1,0 +1,74 @@
+page-my-room-list {
+    .tool-bar{
+        background-color: #ffffff;
+        .btn-bar {
+            margin-right: 0px !important;
+            margin-left: 0px !important;
+            border-bottom: 0.55px solid #c8c7cc !important;
+            .add-item{
+                padding-left : 15px;
+                text-align: left;
+            }
+            .search-item{
+                text-align: center;
+            }
+            .more{
+                text-align: right;
+            }
+            .icon-btn{
+                padding-right : 15px;
+                font-size : 32px;
+            }
+        }
+        .search-bar{
+            margin-right: 10px !important;
+            margin-left: 10px !important;
+            padding : 5px 10px;
+            background-color : #e5e5e5;
+            display: flex;
+            align-items: center;
+            .search-view{
+                border-radius: 10px;
+                background-color : #ffffff;
+                display: flex;
+                align-items: center;
+                padding-left : 10px;
+                padding-right : 10px;                
+            }
+            .icon-sm{
+                font-size : 22px;
+                margin-right : 10px;
+            }
+            .search-btn-view{
+                width: 20%;
+                text-align: center;
+            }
+        }
+    }
+    .list-content {
+        position: relative;
+    }
+    .item {
+        border : none !important;
+        border-bottom: 0.55px solid #c8c7cc !important;
+        padding-top : 8px !important;
+        padding-bottom : 8px !important;
+        
+        .item-inner {
+            border: unset !important;
+        }
+
+        ion-avatar {
+            min-width: 55px;
+            min-height: 55px;
+            img {
+                width: 55px;
+                height: 55px;
+                border : 0.55px solid #c8c7cc;
+            }
+        }
+    }
+    .item:first-child{
+        border-top: 0.55px solid #c8c7cc !important;
+    }
+}

@@ -74,6 +74,17 @@ import { ModalQualification } from '../pages/modal-qualification/modal-qualifica
 
 import { AccomplishmentsToDatePageModule } from '../pages/accomplishments-to-date/accomplishments-to-date.module';
 
+
+import { ChatRoomPage } from '../pages/chat-room/chat-room';
+import { MyRoomListPage } from '../pages/my-room-list/my-room-list';
+import { PublicRoomListPage } from '../pages/public-room-list/public-room-list';
+import { RoomCreatePrePage } from '../pages/room-create-pre/room-create-pre';
+import { RoomCreatePage } from '../pages/room-create/room-create';
+
+// components
+import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
+
+
 /*Provider*/
 import { DataProvider } from '../providers/data/data';
 import { DistantDataBaseProvider } from '../providers/distant-data-base/distant-data-base';
@@ -136,7 +147,17 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     PartnersPage,
     AdModalPage,
     WatogContactPage,
-    ModalQualification
+    ModalQualification,
+
+    ChatRoomPage,
+    MyRoomListPage,
+    PublicRoomListPage,
+    RoomCreatePrePage,
+    RoomCreatePage,
+
+
+    // compoment
+    HeaderActionBarComponent
   ],
   imports: [
     BrowserModule,
@@ -194,7 +215,14 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     PartnersPage,
     AdModalPage,
     WatogContactPage,
-    ModalQualification
+    ModalQualification,
+
+    ChatRoomPage,
+    MyRoomListPage,
+    PublicRoomListPage,
+    RoomCreatePrePage,
+    RoomCreatePage,
+    
   ],
   providers: [
     StatusBar,
