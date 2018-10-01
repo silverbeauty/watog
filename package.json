@@ -45,7 +45,7 @@
     "angular2-swing": "^0.14.0",
     "angular2-text-mask": "^8.0.5",
     "com-sarriaroman-photoviewer": "^1.1.18",
-    "cordova-android": "7.0.0",
+    "cordova-android": "7.1.1",
     "cordova-android-support-gradle-release": "^1.4.4",
     "cordova-browser": "5.0.4",
     "cordova-ios": "4.5.5",
@@ -72,7 +72,7 @@
     "google-libphonenumber": "^2.0.15",
     "ionic-angular": "3.9.2",
     "ionic-img-viewer": "^2.9.0",
-    "ionic-plugin-keyboard": "^2.2.1",
+    "ionic-plugin-keyboard": "2.2.1",
     "ionic-swing": "^3.0.0",
     "ionicons": "3.0.0",
     "lint-fix": "^0.24.0",
@@ -121,7 +121,6 @@
     },
     "platforms": [
       "browser",
-      "android",
       "ios"
     ]
   }

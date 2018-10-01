@@ -1,0 +1,72 @@
+page-room-create-pre {
+    // start header bar
+    .header-bar{
+        .navbar{
+            background-color: #775576;
+            text-align: center;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .toolbar-background {
+            background-color: #775576;
+        }
+        .title {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+
+            .toolbar-title {
+                color: #fff;
+                margin: 4px 0px;
+            }
+        }        
+    }
+    .btn-back{
+        position: absolute !important;
+        button {
+            background-color: transparent;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            -webkit-transition: none !important;
+            transition: none !important;
+            transition: none !important;
+            transition: none !important;
+        }
+        .icon-back{
+            font-size: 22px !important;
+        }
+    }
+    .header-action-bar {
+        position: absolute !important;
+        right: 10px;
+    }
+    // end header bar
+
+    .row-item{
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        display: flex;
+        align-items: center;
+        .checkbox {
+            margin-right: 15px;   
+            // .checkbox-icon{
+            //     width: 26px;
+            //     height: 26px;
+            // }
+        }
+        label {
+            flex: 1;
+            font-size: 14.5px;
+        }
+    }
+    .row-item:first-child{
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+    .btn-next{
+        background-color: #775576;
+        position: absolute;
+        width:calc(100vw - 33px);
+        bottom: 30px;
+    }
+}

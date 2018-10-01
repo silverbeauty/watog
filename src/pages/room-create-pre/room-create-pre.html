@@ -1,0 +1,20 @@
+<ion-header class="header-bar">
+    <div class="navbar">
+        <ion-buttons class="btn-back" (click)="goBack()">
+            <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
+        </ion-buttons>
+        <ion-title>Chatroom</ion-title>
+        <header-action-bar class="header-action-bar"></header-action-bar>
+    </div>
+</ion-header>
+<ion-content padding>
+  <ion-row class="row-item">
+      <ion-checkbox></ion-checkbox>
+      <label>Do you accept to accept to be contacted by others?</label>
+  </ion-row>
+  <ion-row class="row-item">
+      <ion-checkbox></ion-checkbox>
+      <ion-label>Do you accept notifications?</ion-label>
+  </ion-row>
+  <button ion-button round class="btn-next" (click)="goNext()">NEXT</button>
+</ion-content>
