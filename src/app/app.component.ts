@@ -23,7 +23,8 @@ import { User, Auth } from '../types';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = LandingPage;
+  // rootPage: any = LandingPage;
+  rootPage: any = DashboardPage;
   @ViewChild(Nav) nav: Nav;
   showSplash = false;
   user: any;

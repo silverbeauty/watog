@@ -80,10 +80,17 @@ import { MyRoomListPage } from '../pages/my-room-list/my-room-list';
 import { PublicRoomListPage } from '../pages/public-room-list/public-room-list';
 import { RoomCreatePrePage } from '../pages/room-create-pre/room-create-pre';
 import { RoomCreatePage } from '../pages/room-create/room-create';
+import { ChatPage } from '../pages/chat/chat';
+import { EditChatRoomPage } from '../pages/edit-chat-room/edit-chat-room';
+import { ReportModalPage } from '../pages/report-modal/report-modal';
 
 // components
 import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
+import {EmojiPickerComponent} from '../components/emoji-picker/emoji-picker';
 
+import { EmojiProvider } from '../providers/emoji/emoji';
+import { ChatService} from '../providers/chat-service/chat-service';
+import { RelativeTime } from "../pipes/relative-time";
 
 /*Provider*/
 import { DataProvider } from '../providers/data/data';
@@ -154,10 +161,15 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     PublicRoomListPage,
     RoomCreatePrePage,
     RoomCreatePage,
-
+    ChatPage,
+    EditChatRoomPage,
+    ReportModalPage,
 
     // compoment
-    HeaderActionBarComponent
+    HeaderActionBarComponent,
+    EmojiPickerComponent,
+
+    RelativeTime
   ],
   imports: [
     BrowserModule,
@@ -222,6 +234,9 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     PublicRoomListPage,
     RoomCreatePrePage,
     RoomCreatePage,
+    ChatPage,
+    EditChatRoomPage,
+    ReportModalPage,
     
   ],
   providers: [
@@ -246,7 +261,9 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     InAppBrowser,
     PhotoViewer,
     EmailComposer,
-    Keyboard
+    Keyboard,
+    EmojiProvider,
+    ChatService
   ]
 })
 export class AppModule {}

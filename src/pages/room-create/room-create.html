@@ -17,14 +17,19 @@
         </ion-select>
       </div>
       <div class="input-group">
-        <ion-select class="form-control font-weight-light" id="TopicInput" aria-describedby="passwd-picture" formControlName="topics" [(ngModel)]="country" placeholder = "Topics" okText="Ok" cancelText="Cancel">
-          <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
+        <ion-select class="form-control font-weight-light" id="TopicInput" aria-describedby="passwd-picture" formControlName="topic" [(ngModel)]="topic" placeholder = "Topics" okText="Ok" cancelText="Cancel">
+          <ion-option *ngFor="let item of topics" [value]="item">{{item.name}}</ion-option>
         </ion-select>
       </div>
       <div class="input-group">
-        <ion-select class="form-control font-weight-light" id="InvoiceLevelInput" aria-describedby="passwd-picture" formControlName="invoiceLevel" [(ngModel)]="country" placeholder = "Levels of OB/GYN to Involve" okText="Ok" cancelText="Cancel">
-          <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
-        </ion-select>
+          <a href="#" (click)="openQualificationModal()" id="qualificationInput">
+            <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Levels of OB/GYN to Involve" [(ngModel)]="job" formControlName="job" contenteditable="false"></ion-input>
+          </a>
+          <!-- <ng-container *ngFor="let validation of validation_messages.job">
+            <div class="error-message" *ngIf="validations_form.get('job').hasError(validation.type) && (validations_form.get('job').dirty || validations_form.get('job').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container> -->
       </div>
       <div class="input-group">
         <button type="submit" class="btn btn-submit btn-md full-width " (click)="create()">CREATE</button>
@@ -42,16 +47,49 @@
           </ion-col>
         </ion-row>
       </div>
-      <!-- <div class="selected-member">
-          <ion-scroll scrollX="true" class="selected-member-scroll">
+      <!-- <div class="selected-member"> -->
+          <ion-scroll scrollX="true" class="selected-member-scroll">              
             <div class="selected-member-item">
-              <div class="selected-member-avatar-view">
-                  <ion-avatar item-left>
-                      <img src="./assets/imgs/logo.png">
-                  </ion-avatar>
-              </div> 
+              <div class="image-avatar">
+                  <img src="./assets/imgs/logo.png">
+                  <ion-icon name="ios-close-circle"></ion-icon>
+              </div>
+              <p>Benjamin</p>                     
             </div>
+            
           </ion-scroll>
-      </div> -->
+      <!-- </div> -->
+      <ion-list class="all-member-scroll">
+        <ion-item>
+            <div class="member-item">
+                <div class="image-avatar">
+                    <img src="./assets/imgs/logo.png">  
+                    <ion-icon name="ios-checkmark-circle" class="icon-blue"></ion-icon>                  
+                </div>
+                <div class="member-content">
+                  <h3>Benjamin</h3>
+                  <p>MD Trainee</p>
+                </div>
+            </div>          
+            <div class="member-item">
+                <div class="image-avatar">
+                    <img src="./assets/imgs/logo.png">
+                </div>
+                <div class="member-content">
+                  <h3>Benjamin</h3>
+                  <p>MD Trainee</p>
+                </div>
+            </div>          
+            <div class="member-item">
+                <div class="image-avatar">
+                    <img src="./assets/imgs/logo.png">                    
+                </div>
+                <div class="member-content">
+                  <h3>Benjamin</h3>
+                  <p>MD Trainee</p>
+                </div>
+            </div>          
+        </ion-item>      
+      </ion-list>          
   </form>
 </ion-content>
