@@ -83,6 +83,7 @@ import { RoomCreatePage } from '../pages/room-create/room-create';
 import { ChatPage } from '../pages/chat/chat';
 import { EditChatRoomPage } from '../pages/edit-chat-room/edit-chat-room';
 import { ReportModalPage } from '../pages/report-modal/report-modal';
+import { RoomInfoPage } from '../pages/room-info/room-info';
 
 // components
 import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
@@ -164,6 +165,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     ChatPage,
     EditChatRoomPage,
     ReportModalPage,
+    RoomInfoPage,
 
     // compoment
     HeaderActionBarComponent,
@@ -237,6 +239,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     ChatPage,
     EditChatRoomPage,
     ReportModalPage,
+    RoomInfoPage,
     
   ],
   providers: [

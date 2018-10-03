@@ -44,6 +44,7 @@ export class RegisterOneOfThreePage {
   }
 
   public other_speciality: string;
+  public dob: string;
 
   validations_form: FormGroup;
   matching_passwords_group: FormGroup;
@@ -136,6 +137,9 @@ export class RegisterOneOfThreePage {
       country_phone: this.country_phone_group,
       matching_passwords: this.matching_passwords_group,
       hospital: [''],
+      dob: ['',Validators.compose([
+        Validators.required
+      ])],
       job: ['', Validators.compose([
         Validators.required
       ])]
@@ -161,6 +165,22 @@ export class RegisterOneOfThreePage {
 
   register() {
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
+    
+    /*** only 17+ years old  */
+    var _dobYear = Number(new Date(this.dob).getFullYear());
+    var _thisYear = Number (new Date().getFullYear());
+    
+    if((_thisYear-_dobYear) < 17){
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'You must be at least 17 years old',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    }
+    
+    /*** end only 17 years old */
     if (!this.agree) {
       this.content.scrollToBottom(300);
       let agreeAlert = this.alertCtrl.create({
@@ -267,6 +287,9 @@ export class RegisterOneOfThreePage {
     'hospital': [],
     'job': [
       { type: 'required', message: 'Job is required.' }
+    ],
+    'dob': [
+      { type: 'required', message: 'Birthday is required.' }
     ]
   };
 }

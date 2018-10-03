@@ -18,7 +18,17 @@ export class RoomCreatePage {
   validations_form: FormGroup;
   public countries: Country[];
   public job : any;  
-  public topics : any=[{id:1, name: "Classical Surgery"}, {id:2, name: "Laparoscopy"}, {id:3, name: "Robotic"}];  
+  public topics : any=[
+    {id:1, name: "Classical Surgery"}, 
+    {id:2, name: "Laparoscopy"}, 
+    {id:3, name: "Robotic"}, 
+    {id:4, name: "Obstetrics"}, 
+    {id:5, name: "Neonats"}, 
+    {id:6, name: "Fertility"}, 
+    {id:7, name: "Ultrasound"}, 
+    {id:8, name: "Fetal Medicine"}, 
+    {id:9, name: "MRI"}, 
+    {id:10, name: "Simulation"}];
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public modalCtrl: ModalController) {
     this.countries = [
       new Country(countries[0].code, countries[0].name)
@@ -55,7 +65,7 @@ export class RoomCreatePage {
     this.navCtrl.pop();
   }
 
-  create(){
+  next(){
     this.navCtrl.push(ChatRoomPage);
   }
 }

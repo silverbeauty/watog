@@ -7,15 +7,25 @@
         <header-action-bar class="header-action-bar"></header-action-bar>
     </div>
 </ion-header>
-<ion-content padding>
-  <!-- <div class="title-view">
+<ion-content no-padding>
+  <div class="title-view">
     <input type="text" class="input-title" value="Room" placeholder="Room Name"/>
   </div>
   
   <div class="img-view">
-    <img src="./assets/imgs/logo.png"/>
-    <div class="btn-change-image">
-
-    </div>
-  </div> -->
+    <img class="main-avatar" src="./assets/imgs/logo.png"/>
+    <ion-row class="btn-change-image">
+      <ion-col (click)="TakeaPicture()" col-6>
+          <img src="assets/imgs/appareil.png" alt="camera">
+          <p class="font-weight-light text-center">Take a Picture</p>
+      </ion-col>
+      <ion-col (click)="navToGallery()" col-6>
+          <img src="assets/imgs/on_your_computer.png" alt="On your computer">
+          <p class="font-weight-light text-center">On your device</p>
+      </ion-col>
+    </ion-row>
+  </div>
+  
+  <button ion-button round class="btn-update" (click)="update()">UPDATE</button>
+  
 </ion-content>

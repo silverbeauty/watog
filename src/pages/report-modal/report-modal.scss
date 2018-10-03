@@ -1,3 +1,66 @@
+ion-modal.my-popup {
+    @media (min-width: 300px) and (min-height: 500px) {
+      ion-backdrop {
+        visibility: visible;
+      }
+    }
+    
+    .modal-wrapper {
+      position: absolute;
+      overflow: hidden;
+      width: 100%;
+      height: 60vh;
+      bottom: 0px;
+      right: 0;
+      margin: auto;
+      border: 0;
+      box-shadow: 0 16px 20px rgba(0, 0, 0, 0.4);
+      background-color: #fafafa;
+      .scroll-content{
+        overflow: hidden;          
+      }
+    }    
+}  
 page-report-modal {
-
+    .btn-close{
+        position: absolute;
+        padding: 5px;
+        right: 10px;
+        top: 10px;
+        ion-icon{
+            font-size: 24px;
+        }
+    }
+    .img-view{
+        text-align: center;
+        margin-top: 15px;
+        ion-icon{
+            font-size: 60px;
+        }
+    }
+    .title-view{
+        text-align: center;
+        margin-top: 10px;
+        h6{
+            margin: 0px;
+        }
+    }
+    .report-view{
+        margin-top: 40px;
+        float: left;
+        width:calc(100vw - 40px);
+        .report-view-item{
+            float: left;
+            font-size: 13px;
+            background-color: #c8c7cc;
+            border-radius: 30px;
+            padding: 5px 20px;
+            margin: 5px;
+        }
+    }
+    .btn-done{
+        background-color: #775576;
+        width:calc(100vw - 40px);
+        margin-top: 30px;
+    }
 }
