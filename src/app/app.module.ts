@@ -81,6 +81,10 @@ import { PublicRoomListPage } from '../pages/public-room-list/public-room-list';
 import { RoomCreatePrePage } from '../pages/room-create-pre/room-create-pre';
 import { RoomCreatePage } from '../pages/room-create/room-create';
 
+import { LearnPage } from '../pages/learn/learn';
+import { InstitutionalContentsPage } from '../pages/institutional-contents/institutional-contents';
+import { SponsoredContentPage } from '../pages/sponsored-content/sponsored-content';
+import { BreakingNewsPage } from '../pages/breaking-news/breaking-news';
 // components
 import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
 
@@ -154,6 +158,10 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     PublicRoomListPage,
     RoomCreatePrePage,
     RoomCreatePage,
+    LearnPage,
+    InstitutionalContentsPage,
+    SponsoredContentPage,
+    BreakingNewsPage,
 
 
     // compoment
@@ -222,6 +230,10 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     PublicRoomListPage,
     RoomCreatePrePage,
     RoomCreatePage,
+    LearnPage,
+    InstitutionalContentsPage,
+    SponsoredContentPage,
+    BreakingNewsPage,
     
   ],
   providers: [
