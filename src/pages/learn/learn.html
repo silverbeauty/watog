@@ -1,0 +1,58 @@
+<ion-header class="header-bar">
+  <div class="navbar">
+    <a href="#" (click)="goToDashboard()"><img src="../../assets/icon/Menu.png" alt="Menu icon"></a>
+      <ion-title>Learn</ion-title>
+      <header-action-bar class="header-action-bar"></header-action-bar>
+  </div>
+</ion-header>  
+<ion-content class="body" no-bounce>
+  <section class="main">
+    <div class="container">
+      <div class="row">
+        <div class="col" (click)="goToInstitutionalContents()">
+          <div class="icon-container">
+            <img src="../../assets/imgs/Participate.png" alt="participate img" class="img-left">
+          </div>            
+          <p class="ic-title">Institutional Contents</p> 
+        </div>
+      </div>
+    </div>
+    </section>
+    <section class="main">
+    <div class="container">
+      <div class="row">
+        <div class="col" (click)="goToSponsoredContents()">
+          <div class="icon-container">
+            <img src="../../assets/imgs/Participate.png" alt="participate img" class="img-right">
+          </div>            
+          <p class="ic-title">Sponsored Contents</p> 
+        </div>
+      </div>
+    </div>
+</section>
+<section class="main">
+    <div class="container">
+      <div class="row">
+        <div class="col" (click)="goToBreakingNews()">
+          <div class="icon-container">
+            <img src="../../assets/imgs/Participate.png" alt="participate img" class="img-left">
+          </div>            
+          <p class="ic-title">Breaking News</p> 
+        </div>
+      </div>
+    </div>
+    <!--<button class="btn btn-lg btn-primary" (click)="goToParticipate()">Participate</button>
+    <button class="btn btn-lg btn-secondary" (click)="goToVote()">Vote</button>-->
+  </section>
+  <section class="footer-sponsor">
+      <p>In partnership with: </p>
+      <div class="row">
+          <div class="col">
+              <img src="assets/imgs/laboratoire_ccdlarge.png" class="labor-img" alt="labor logo">
+          </div>
+          <div class="col">
+              <img src="assets/imgs/babyprogress_logoentier.png" class="baby-img" alt="baby logo">
+          </div>
+      </div>
+  </section>
+</ion-content>

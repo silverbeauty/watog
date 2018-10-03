@@ -7,6 +7,7 @@ import { ContestPage } from '../contest/contest';
 import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 import { ChatRoomPage } from '../chat-room/chat-room';
 import { AdModalPage } from '../ad-modal/ad-modal';
+import { LearnPage } from '../learn/learn';
 
 /**
  * Generated class for the DashboardPage page.
@@ -44,7 +45,7 @@ export class DashboardPage {
     this.navCtrl.push(ContestPage);
   }
   goToLearn(){
-    this.navCtrl.push(WhatIsWatogPage);
+    this.navCtrl.push(LearnPage);
   }
   goToChatRoom(){
     this.navCtrl.push(ChatRoomPage);

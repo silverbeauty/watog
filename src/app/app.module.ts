@@ -84,6 +84,10 @@ import { ChatPage } from '../pages/chat/chat';
 import { EditChatRoomPage } from '../pages/edit-chat-room/edit-chat-room';
 import { ReportModalPage } from '../pages/report-modal/report-modal';
 
+import { LearnPage } from '../pages/learn/learn';
+import { InstitutionalContentsPage } from '../pages/institutional-contents/institutional-contents';
+import { SponsoredContentPage } from '../pages/sponsored-content/sponsored-content';
+import { BreakingNewsPage } from '../pages/breaking-news/breaking-news';
 // components
 import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
 import {EmojiPickerComponent} from '../components/emoji-picker/emoji-picker';
@@ -161,9 +165,11 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     PublicRoomListPage,
     RoomCreatePrePage,
     RoomCreatePage,
-    ChatPage,
-    EditChatRoomPage,
-    ReportModalPage,
+    LearnPage,
+    InstitutionalContentsPage,
+    SponsoredContentPage,
+    BreakingNewsPage,
+
 
     // compoment
     HeaderActionBarComponent,
