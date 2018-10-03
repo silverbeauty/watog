@@ -1,22 +1,22 @@
 <div class="tool-bar">
   <ion-grid>
       <ion-row class="btn-bar">
-          <ion-col class="add-item" (click)="addRoom()" col-2>
+          <ion-col class="add-item" (click)="addRoom()" col-6>
               <ion-icon class="icon-btn" name="ios-add-outline"></ion-icon>
           </ion-col>
-          <ion-col class="search-item" data-toggle="collapse" data-target="#search" col-8>
+          <ion-col class="search-item" data-toggle="collapse" data-target="#search" col-6>
               <ion-icon class="icon-btn" name="ios-search-outline"></ion-icon>
           </ion-col>
-          <ion-col class="more" col-2>
+          <!-- <ion-col class="more" col-2>
               <ion-icon class="icon-btn" name="md-more"></ion-icon> 
-          </ion-col>
+          </ion-col> -->
       </ion-row>        
   </ion-grid>
   
   <div id="search" class="collapse">
     <ion-row class="search-bar">
       <ion-col class="search-view" col-11>
-          <ion-icon class="icon-sm" name="ios-search-outline"></ion-icon>
+          <!-- <ion-icon class="icon-sm" name="ios-search-outline"></ion-icon> -->
           <input type="text" placeholder="Search" />
       </ion-col>
       <ion-col class="search-btn-view" col-1>
@@ -27,11 +27,22 @@
 </div>
 <ion-content class = "list-content" padding>
     <ion-list>
-      <ion-item *ngFor="let rowContent of lists">
-        <ion-avatar item-left>
-            <img src="./assets/imgs/logo.png">
-        </ion-avatar>
-        <p>{{ rowContent.title }}</p>
-      </ion-item>      
+      <ion-item-sliding *ngFor="let rowContent of lists">
+        <ion-item (click)="goToChattingPage()">
+            <ion-avatar item-left>
+                <img src="./assets/imgs/logo.png">
+            </ion-avatar>
+            <p>{{ rowContent.title }}</p>
+        </ion-item>
+        <ion-item-options side="right" (click)="editRoom()">
+            <div class="btn-edit">
+                <ion-icon name="md-color-filter"></ion-icon>
+            </div>            
+            <div class="btn-trash" (click)="archiveRoom()">
+                <ion-icon name="trash"></ion-icon>
+            </div>            
+        </ion-item-options>
+        
+      </ion-item-sliding>      
     </ion-list>
 </ion-content>

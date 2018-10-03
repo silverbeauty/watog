@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { RoomCreatePrePage } from '../room-create-pre/room-create-pre';
 import { RoomCreatePage } from '../room-create/room-create';
+import { ChatPage } from '../chat/chat';
+import { EditChatRoomPage } from '../edit-chat-room/edit-chat-room';
 
 @IonicPage()
 @Component({
@@ -23,5 +25,14 @@ export class MyRoomListPage {
   addRoom (){
     // this.parentSelector.push(RoomCreatePrePage);
     this.parentSelector.push(RoomCreatePage);
+  }
+  goToChattingPage(){
+    this.parentSelector.push(ChatPage);
+  }
+  editRoom(){
+    this.parentSelector.push(EditChatRoomPage);
+  }
+  archiveRoom(){
+
   }
 }

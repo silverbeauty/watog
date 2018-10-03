@@ -49,9 +49,12 @@ page-room-create {
             font-size: 1.2em;
             padding: 0em;
             width: 100% !important;
-            padding-left: 50px !important;
-            padding-right: 30px !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
             max-width: 100%;
+        }
+        .select-text{
+            padding-left: 8px;
         }
     }
     .select-icon {
@@ -59,6 +62,20 @@ page-room-create {
     }
     .form-control.select {
         padding: 10px;
+    }
+    a#qualificationInput {
+        text-align: center;
+        color: black !important;
+        border: none;
+        text-decoration: none;
+        width: 100%;
+        input {
+            // text-align: center;
+            margin: 13px 0px;
+        }
+    }
+    .input-cover {
+        display: none;
     }
     .div-btn-submit{
         padding: .7em;
@@ -121,16 +138,77 @@ page-room-create {
         }
     }
 
-    .selected-member{
+    // .selected-member{
         .selected-member-scroll{
-            height : 60px;
-            ion-avatar {
-                min-width: 40px;
-                min-height: 40px;
-                img {
-                    width: 40px;
-                    height: 40px;
-                    border : 0.55px solid #c8c7cc;
+            // position: relative;
+            border-bottom: 0.55px solid #c8c7cc;
+            height: 90px;
+            white-space: nowrap;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            
+            .selected-member-item{
+                display: inline-block;
+                padding: 5px 20px;
+                text-align: center;
+                p{
+                    margin-bottom : 0px !important;
+                    margin-top: 5px !important;
+                }
+            }
+            
+            .scroll-content{
+                padding: 0px !important;                
+            }  
+        }
+        .icon-blue{
+            color : #a96ba7;
+        }
+    // }
+    .image-avatar {
+        min-width: 50px;
+        min-height: 50px;
+        display: inline-block;
+        position: relative;
+        img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            border : 0.55px solid #c8c7cc;
+        }
+        ion-icon {
+            position: absolute !important;
+            font-size: 23px;
+            bottom: -2px;
+            right: -5px;
+        }
+    }
+    .all-member-scroll{
+        margin-top : 15px;
+        margin-bottom: 15px;
+        ion-item{
+            padding-left:0px;
+            border: none !important;
+            .item-inner{
+                padding-right: 0px !important;
+                .label-md{
+                    margin: 0px !important;
+                }
+            }
+            .member-item{
+                padding : 10px 15px;
+                display: flex;
+                align-items: center;
+                background-color: #efefef;
+                margin-bottom: 2px;
+                border-radius: 5px;
+                .member-content{
+                    flex : 1;
+                    margin-left: 15px;
+                    p{
+                        margin-top: 5px;
+                    }
                 }
             }
         }

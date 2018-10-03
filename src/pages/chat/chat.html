@@ -1,0 +1,102 @@
+<ion-header class="header-bar">
+  <div class="navbar">
+      <ion-buttons class="btn-back" (click)="goBack()">
+          <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
+      </ion-buttons>
+      <ion-title>Chating page</ion-title>
+      <header-action-bar class="header-action-bar"></header-action-bar>
+  </div>
+  <ion-grid class="row-view">
+    <ion-row class="btn-bar" *ngIf="!isSearch">
+        <ion-col class="add-item" (click)="addUser()" col-2>
+            <ion-icon class="icon-btn" name="ios-add-outline"></ion-icon>
+        </ion-col>
+        <ion-col class="search-item" (click)="searchMessage()"  col-8>
+            <ion-icon class="icon-btn" name="ios-search-outline"></ion-icon>
+        </ion-col>
+        <ion-col class="more" col-2>
+            <ion-icon class="icon-btn" name="md-more"></ion-icon> 
+        </ion-col>
+    </ion-row> 
+    <ion-row class="search-bar" *ngIf="isSearch">
+      <ion-col class="search-view" col-10>
+          <ion-icon class="icon-sm" name="ios-search-outline"></ion-icon>
+          <input type="text" placeholder="Search" />
+      </ion-col>
+      <ion-col class="search-btn-view" (click)="closeSearchBar()" col-2>
+          <ion-icon class="icon-sm" name="md-close-circle"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row class="message-info">
+        <ion-col col-6>
+          <div class="col-div">
+              <p>Total Users:&nbsp;&nbsp;<b>500</b></p>
+          </div>          
+        </ion-col>
+        <ion-col col-6>
+            <div class="col-div">
+              <p>Messages:&nbsp;&nbsp;<b>1050</b></p>
+            </div>
+        </ion-col>
+    </ion-row>
+    <ion-row class="active-users-info">
+        <ion-col class="active-user" col-5>
+            <p>Active Users(350):&nbsp;&nbsp; </p>
+        </ion-col>
+        <ion-col col-7>
+            <ion-scroll scrollX="true" class="actived-member-scroll">              
+                <img src="./assets/imgs/logo.png">
+                <img src="./assets/imgs/logo.png">
+                <img src="./assets/imgs/logo.png">
+                <img src="./assets/imgs/logo.png">
+                <img src="./assets/imgs/logo.png">
+                <img src="./assets/imgs/logo.png">
+            </ion-scroll>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+<ion-content no-padding>
+  
+  <div class="message-wrap">  
+    <div *ngFor="let msg of msgList"
+          class="message"
+          [class.left]=" msg.userId === toUser.id "
+          [class.right]=" msg.userId === user.id ">
+      <img class="user-img" [src]="msg.userAvatar" alt="" src="">
+      <!-- <ion-spinner class="dot-typing" name="dots" *ngIf="msg.status === 'pending'"></ion-spinner> -->
+      <div class="msg-detail">
+        <div class="msg-info">
+          <p>
+            <b>{{msg.userName}}</b>&nbsp;&nbsp;&nbsp;{{msg.time | relativeTime}}
+          </p>
+        </div>
+        <div class="msg-content">
+          <span class="triangle"></span>
+          <p class="line-breaker ">{{msg.message}}</p>
+        </div>
+      </div>
+    </div>      
+  </div>
+</ion-content>
+  
+  <ion-footer no-border [style.height]="showEmojiPicker ? '255px' : '55px'">
+    <div class="input-wrap">
+      <!-- <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
+        <ion-icon name="md-happy"></ion-icon>
+      </button> -->
+      <input #chat_input
+                placeholder="Search your message here"
+                [(ngModel)]="editorMsg"
+                (keyup.enter)="sendMsg()"
+                (focusin)="onFocus()"/>
+      <!-- </input> -->
+      <button ion-button clear icon-only item-right (click)="attachFile()">
+        <ion-icon name="attach" ios="ios-attach" md="md-attach"></ion-icon>
+      </button>
+      <button ion-button clear icon-only item-right (click)="sendMsg()">
+        <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+      </button>
+    </div>
+    <emoji-picker [(ngModel)]="editorMsg"></emoji-picker>
+  </ion-footer>

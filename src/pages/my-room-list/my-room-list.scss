@@ -7,7 +7,7 @@ page-my-room-list {
             border-bottom: 0.55px solid #c8c7cc !important;
             .add-item{
                 padding-left : 15px;
-                text-align: left;
+                text-align: center;
             }
             .search-item{
                 text-align: center;
@@ -47,6 +47,28 @@ page-my-room-list {
     }
     .list-content {
         position: relative;
+    }
+    .btn-trash{
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;        
+        background-color: #808080;
+        ion-icon {
+            color : #ffffff;
+            font-size: 30px;
+        }
+    }
+    .btn-edit{
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;        
+        background-color: #775576;
+        ion-icon {
+            color : #ffffff;
+            font-size: 30px;
+        }
     }
     .item {
         border : none !important;

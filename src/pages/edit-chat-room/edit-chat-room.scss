@@ -1,0 +1,44 @@
+page-edit-chat-room {
+    // start header bar
+    .header-bar{
+        .navbar{
+            background-color: #775576;
+            text-align: center;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .toolbar-background {
+            background-color: #775576;
+        }
+        .title {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+
+            .toolbar-title {
+                color: #fff;
+                margin: 4px 0px;
+            }
+        }        
+    }
+    .btn-back{
+        position: absolute !important;
+        button {
+            background-color: transparent;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            -webkit-transition: none !important;
+            transition: none !important;
+            transition: none !important;
+            transition: none !important;
+        }
+        .icon-back{
+            font-size: 22px !important;
+        }
+    }
+    .header-action-bar {
+        position: absolute !important;
+        right: 10px;
+    }
+    // end header bar
+}
