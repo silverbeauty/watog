@@ -89,6 +89,7 @@ import { LearnPage } from '../pages/learn/learn';
 import { InstitutionalContentsPage } from '../pages/institutional-contents/institutional-contents';
 import { SponsoredContentPage } from '../pages/sponsored-content/sponsored-content';
 import { BreakingNewsPage } from '../pages/breaking-news/breaking-news';
+import { VideosListPage } from '../pages/videos-list/videos-list';
 // components
 import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
 import {EmojiPickerComponent} from '../components/emoji-picker/emoji-picker';
@@ -174,6 +175,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     InstitutionalContentsPage,
     SponsoredContentPage,
     BreakingNewsPage,
+    VideosListPage,
 
 
     // compoment
@@ -252,7 +254,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     LearnPage,
     InstitutionalContentsPage,
     SponsoredContentPage,
-    BreakingNewsPage
+    BreakingNewsPage,
+    VideosListPage,
     
   ],
   providers: [
