@@ -1,18 +1,75 @@
-<!--
-  Generated template for the BreakingNewsPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+<ion-header class="header-bar">
+  <div class="navbar">
+      <ion-buttons class="btn-back" (click)="goBack()">
+        <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
+      </ion-buttons>
+      <ion-title>Breaking News</ion-title>
+      <header-action-bar class="header-action-bar"></header-action-bar>
+  </div>
+</ion-header>  
 
-  <ion-navbar>
-    <ion-title>breaking-news</ion-title>
-  </ion-navbar>
+<ion-content class="body" no-bounce>
 
-</ion-header>
+  <section class="main">
+    <div class="container main-image">
+      <div class="main-image-title">
+      <div class="row">
+        <div class="col-5">
+          <div class="icon-container">
+            <img src="../../assets/imgs/Participate.png" alt="participate img" class="img-left" style="width:80px; height:80px;">
+          </div>            
+        </div>
+        <div class="divider"></div>
+        <div class="col">
+            <div class="icon-container">
+                <p><strong>View Gallery</strong><br/> 
+                8 Pictures</p> 
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    </div>
+  
+  </section>
 
-
-<ion-content padding>
-
+  <section class="main main-content">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1>Future Near-Term Goal</h1>   
+            <div class="small">John Doe, WATOG | Published 9th September 2018</div>  
+            <h2>Watog Online Campus</h2>
+            <p>Primarily a tool for senior societies to disseminate the educational contents; WATOG is designing a web based</p>
+            <h2>Training Exchange Program</h2>
+            <p>The ENTOG/Scandinavian network facilitates Trainee Exchange Program; however WATOG is aiming to expand the sporadically organized exchange program is non-Europe regions by facilitating bi- and multilateral programs</p>
+          </div>
+          
+          
+        </div>
+        <div class="row">
+          <div class="col">
+              <ion-item>
+                  <ion-badge item-end>260k</ion-badge>
+                </ion-item>
+          </div>
+        </div>
+   
+      </div>
+    
+    </section>
+  
+  
+  <section class="footer-sponsor">
+      <p>In partnership with: </p>
+      <div class="row">
+          <div class="col">
+              <img src="assets/imgs/laboratoire_ccdlarge.png" class="labor-img" alt="labor logo">
+          </div>
+          <div class="col">
+              <img src="assets/imgs/babyprogress_logoentier.png" class="baby-img" alt="baby logo">
+          </div>
+      </div>
+  </section>
 </ion-content>

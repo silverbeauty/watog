@@ -21,5 +21,6 @@ export class BreakingNewsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad BreakingNewsPage');
   }
+  
 
 }
