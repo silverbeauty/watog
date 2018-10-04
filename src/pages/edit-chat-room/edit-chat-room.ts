@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the EditChatRoomPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { DataProvider, RestProvider } from '../../providers';
+import { CameraProvider } from '../../providers/camera/camera';
 
 @IonicPage()
 @Component({
@@ -14,15 +10,44 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'edit-chat-room.html',
 })
 export class EditChatRoomPage {
+  public image_url: any;
+  public image_local: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public restProvider: RestProvider, 
+    public dataProvider: DataProvider, 
+    public cam: CameraProvider, ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditChatRoomPage');
   }
-  
+
   goBack() {
     this.navCtrl.pop();
+  }
+  update(){
+    this.navCtrl.pop();
+  }
+
+  TakeaPicture() {
+    this.cam.selectImage(1, 0).then(resp => {
+      this.image_local = "data:image/jpeg;base64," + resp;
+      alert("picture saved")
+    }, err => {
+      console.log("error with select of picture")
+      console.log("param not send")
+    });
+  }
+
+  navToGallery() {
+    this.cam.selectImage(0, 0).then(resp => {
+      this.image_local = "data:image/jpeg;base64," + resp;
+      alert("picture saved")
+    }, err => {
+      console.log("error with select of picture")
+      console.log("param not send")
+    });
   }
 }

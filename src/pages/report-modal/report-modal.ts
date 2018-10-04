@@ -1,12 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ReportModalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Component, Renderer } from '@angular/core';
+import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -15,11 +8,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ReportModalPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public viewCtrl: ViewController, 
+    public navCtrl: NavController, 
+    public renderer : Renderer,
+    public navParams: NavParams) {
+    this.renderer.setElementClass(viewCtrl.pageRef().nativeElement, 'my-popup', true);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReportModalPage');
   }
-
+  close(){
+    this.viewCtrl.dismiss();
+  }
+  done(){
+    this.viewCtrl.dismiss();
+  }
 }

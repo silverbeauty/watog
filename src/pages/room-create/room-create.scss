@@ -56,6 +56,14 @@ page-room-create {
         .select-text{
             padding-left: 8px;
         }
+        .is-invalid {
+            border-color: red;
+        }
+        .error-message {
+            text-align: center;
+            width: 100%;
+            color: red;
+        }
     }
     .select-icon {
         display: none;
@@ -142,17 +150,18 @@ page-room-create {
         .selected-member-scroll{
             // position: relative;
             border-bottom: 0.55px solid #c8c7cc;
-            height: 90px;
+            height: 110px;
             white-space: nowrap;
             margin-top: 15px;
             display: flex;
             align-items: center;
             
             .selected-member-item{
-                display: inline-block;
-                padding: 5px 20px;
+                width: 120px;
+                display: table-cell;
+                padding: 5px;
                 text-align: center;
-                p{
+                .name{
                     margin-bottom : 0px !important;
                     margin-top: 5px !important;
                 }
@@ -176,6 +185,9 @@ page-room-create {
             width: 50px;
             height: 50px;
             border : 0.55px solid #c8c7cc;
+            background-image: url(../assets/imgs/image_avatar.png);
+            background-size: cover;
+            background-position: center;
         }
         ion-icon {
             position: absolute !important;

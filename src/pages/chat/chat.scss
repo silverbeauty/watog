@@ -68,6 +68,28 @@ page-chat {
                 padding-right : 15px;
                 font-size : 32px;
             }
+            .dropdown-menu{
+                padding: 1em;
+                background-color: #373737;
+                .dropdown-item{
+                    text-align: left;
+                    padding: 10px;
+                    border-bottom: 0.55px solid #ffffff;
+                    color: #ffffff;
+                    ion-icon{
+                        font-size: 20px;
+                        display: flex;
+                        p{
+                            margin-left:10px;
+                            font-size: 16px;
+                        }
+                    }
+                }
+                .dropdown-menu-right{
+                    right: 0;
+                    left: auto;
+                }
+            }
         }
         .search-bar{
             padding : 5px 10px;
@@ -80,7 +102,10 @@ page-chat {
                 display: flex;
                 align-items: center;
                 padding-left : 10px;
-                padding-right : 10px;                
+                padding-right : 10px; 
+                input{
+                    flex: 1;
+                }               
             }
             .icon-sm{
                 font-size : 22px;
