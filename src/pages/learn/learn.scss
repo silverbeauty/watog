@@ -1,0 +1,145 @@
+page-learn {
+    .header-bar{
+        .navbar{
+            background-color: #775576;
+            text-align: center;
+        }
+
+        .toolbar-background {
+            background-color: #775576;
+        }
+        .title {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+
+            .toolbar-title {
+                color: #fff;
+                margin: 4px 0px;
+            }
+        }        
+    }
+
+    .header-action-bar {
+        position: absolute !important;
+        right: 10px;
+    }
+
+    .scroll-content {
+        overflow-y: auto !important;
+    }
+
+    .btn-profile{
+        background-color: #775576;
+    }
+
+    .btn-profile img{
+        height: 2em;
+    }
+
+    .dropdown-menu{
+        padding: 2em;        
+    }
+
+    .dropdown-item{
+        font-size: 1.5em;
+        font-weight: 200;
+        text-align: left;
+        padding-right: 5em;
+    }
+
+    .dropdown-item img{
+        height: 1.2em;
+        padding-right: 1em;
+    }
+
+    .dropdown-menu-right{
+        right: 0;
+        left: auto;
+    }
+
+    .body{
+        background-image: url(../../assets/imgs/rio.jpg);
+        background-position: center;
+        background-size: cover;
+        color: white;
+    }
+
+    .logo{
+        margin-top: 3em;
+    }
+
+    .main-p{
+        text-align: center;
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+        margin-bottom: 0;
+    }
+
+    .main{
+        background-color: white;
+        color: #525252;
+        margin: 1em 2em;
+        border-radius: 1em;
+        text-align: center;
+    }
+
+    .icon-container {
+        height: 7.5em;
+        display: flex;
+        align-items: left;
+        justify-content: left;
+        .img-left {
+            width: auto;
+            height: 112px;
+            object-fit: contain;
+        }
+
+        .img-right {
+            width: auto;
+            height: 112px;
+            object-fit: contain;
+            position: absolute;
+            right:0;
+        }
+        
+    }
+
+    .ic-title{
+        background: lightblue;
+        margin-bottom: 0;
+        padding: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .main .divider{
+        border-left: 1px solid #ddd;
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+
+    .main p{
+        font-size: 1.3em;
+    }
+
+    
+    .footer-sponsor{
+        background-color: rgb(219, 228, 231);
+        color: #000;
+        font-weight: 200;
+        font-size: .8em;
+        text-align: center;
+        padding: .5em;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+
+        .labor-img, .baby-img{
+            height: 6vh;
+        }
+
+        .baby-img{
+            margin-right: 2em;
+        }
+    }
+}
