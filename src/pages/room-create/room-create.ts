@@ -18,6 +18,7 @@ export class RoomCreatePage {
   
   validations_form: FormGroup;
   countries: Country[];
+  country: Country=null;
   job : any;  
   topics : any=[
     {id:1, name: "Classical Surgery"}, 
@@ -30,11 +31,13 @@ export class RoomCreatePage {
     {id:8, name: "Fetal Medicine"}, 
     {id:9, name: "MRI"}, 
     {id:10, name: "Simulation"}];
+  topic: '';
   promise: any;
   userList: Array<any> = [];
+  _tempuserList: Array<any> = [];  
   roomMemberList: Array<any> = [];
   isMembers = false;
-  // search: '';
+  search: '';
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -52,12 +55,12 @@ export class RoomCreatePage {
   }
 
   ionViewWillLoad(){
-    let country = new FormControl(this.countries[0], Validators.required);
-    let topic = new FormControl(this.topics[0], Validators.required);
+    let country = new FormControl('', Validators.required);
+    let topic = new FormControl('', Validators.required);
     this.validations_form = this.formBuilder.group({
       country: country,
       topic : topic,
-      // search : [''],
+      search : [''],
       job: ['', Validators.compose([
         Validators.required
       ])]
@@ -78,6 +81,7 @@ export class RoomCreatePage {
         _member["username"] = element.first_name+" "+element.last_name;
         _member["country"] = element.country;
         this.userList.push(_member);
+        this._tempuserList.push(_member);
       }
         loader.dismiss();
     }).catch(err => {
@@ -86,23 +90,48 @@ export class RoomCreatePage {
     })
   }
   addMember(_contact){
-    this.roomMemberList.push(_contact);
-    console.log("sdf", _contact)
-    this.userList.splice(_contact.index, 1);
-    console.log("ss", this.userList)
+    this.roomMemberList.push(_contact)
+    this.roomMemberList.sort(function (a, b) {
+      return a.index - b.index;
+    });
+
+    for(var i= 0 ; i < this.userList.length; i++){
+      if(this.userList[i].index === _contact.index){
+        this.userList.splice(i, 1)
+      }
+    }
+    this.userList.sort(function (a, b) {
+      return a.index - b.index;
+    });
+    
     if (this.roomMemberList.length > 0){
       this.isMembers = true
     }
   }
   removeMember(_member){
     this.userList.push(_member);
-    this.roomMemberList.splice(_member.index, 1);
+    this.userList.sort(function (a, b) {
+      return a.index - b.index;
+    });
+    for(var i= 0 ; i < this.roomMemberList.length; i++){
+      if(this.roomMemberList[i].index === _member.index){
+        this.roomMemberList.splice(i, 1)
+      }
+    }
+    this.roomMemberList.sort(function (a, b) {
+      return a.index - b.index;
+    });
+
+    // this.roomMemberList.splice(_member.index, 1);
     if (this.roomMemberList.length == 0){
       this.isMembers = false
     }
   }
   onSearch(){
-    // console.log(this.search)
+    let searchTerm = this.search;
+    this.userList = this._tempuserList.filter((item) => {
+        return item.username.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    }); 
   }
   /*Methods for the html dom modification */
   openQualificationModal() {
@@ -118,11 +147,21 @@ export class RoomCreatePage {
   }
 
   next(){
+    // console.log(this.country);
+    // console.log(this.topic);
+    // console.log(this.job);
+    // return;
     this.navCtrl.push(ChatRoomPage);
   }
   validation_messages = {    
     'job': [
       { type: 'required', message: 'Job is required.' }
+    ],
+    'topic': [
+      { type: 'required', message: 'Topic is required.' }
+    ],
+    'country': [
+      { type: 'required', message: 'Country is required.' }
     ],
   };
 }
