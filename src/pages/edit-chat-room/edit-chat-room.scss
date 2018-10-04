@@ -41,4 +41,42 @@ page-edit-chat-room {
         right: 10px;
     }
     // end header bar
+
+    .title-view{
+        margin-top: 30px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
+        input{
+            width: 100%;
+            padding: 7px 15px;
+            font-size: 20px;
+        }
+    }
+
+    .img-view{
+        margin-top: 20px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.36);
+        text-align: center;
+        .main-avatar {
+            margin-top: 15px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 0.55px solid #c8c7cc;
+        }
+        .btn-change-image{
+            margin : 5px 10px;
+            img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    }
+
+    .btn-update{
+        background-color: #775576;
+        position: absolute;
+        width:calc(100vw - 40px);
+        margin-left: 20px;
+        bottom: 30px;
+    }
 }

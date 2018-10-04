@@ -1,13 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Events, Content, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Events, Content, IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ChatService} from "../../providers/chat-service/chat-service";
 import { Contact, Message } from '../../types';
-/**
- * Generated class for the ChatPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ReportModalPage } from '../report-modal/report-modal';
+import { RoomInfoPage } from '../room-info/room-info';
 
 @IonicPage()
 @Component({
@@ -27,7 +23,8 @@ export class ChatPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private chatService: ChatService,
-    private events: Events,) {
+    private events: Events,
+    public modalCtrl: ModalController) {
     
       // Get the navParams toUserId parameter
     this.toUser = {
@@ -168,6 +165,7 @@ export class ChatPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChatPage');
   }
+  // toolbar funtion
   attachFile(){
 
   }
@@ -185,4 +183,20 @@ export class ChatPage {
     this.navCtrl.pop();
   }
 
+  // right side menu funtion
+  archiveMessage(){
+
+  }
+  
+  roomInfo(){
+    this.navCtrl.push(RoomInfoPage);
+  }
+
+  report(){
+    let reportModal = this.modalCtrl.create(ReportModalPage);
+    reportModal.onDidDismiss(data => {
+      console.log("report modal=>", data)
+    });
+    reportModal.present();    
+  }
 }

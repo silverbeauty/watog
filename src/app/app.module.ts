@@ -83,6 +83,7 @@ import { RoomCreatePage } from '../pages/room-create/room-create';
 import { ChatPage } from '../pages/chat/chat';
 import { EditChatRoomPage } from '../pages/edit-chat-room/edit-chat-room';
 import { ReportModalPage } from '../pages/report-modal/report-modal';
+import { RoomInfoPage } from '../pages/room-info/room-info';
 
 import { LearnPage } from '../pages/learn/learn';
 import { InstitutionalContentsPage } from '../pages/institutional-contents/institutional-contents';
@@ -165,6 +166,10 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     PublicRoomListPage,
     RoomCreatePrePage,
     RoomCreatePage,
+    ChatPage,
+    EditChatRoomPage,
+    ReportModalPage,
+    RoomInfoPage,
     LearnPage,
     InstitutionalContentsPage,
     SponsoredContentPage,
@@ -243,6 +248,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     ChatPage,
     EditChatRoomPage,
     ReportModalPage,
+    RoomInfoPage,
     
   ],
   providers: [

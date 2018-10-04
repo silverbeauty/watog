@@ -1,0 +1,54 @@
+<ion-header class="header-bar">
+    <div class="navbar">
+        <ion-buttons class="btn-back" (click)="goBack()">
+            <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
+        </ion-buttons>
+        <ion-title>Room Info</ion-title>
+        <header-action-bar class="header-action-bar"></header-action-bar>
+    </div>
+</ion-header>
+
+<ion-content no-padding>
+  <div class="messages-number-view">
+    <ion-icon name="ios-chatboxes-outline"></ion-icon>
+    <p class="message-label">Messages</p>
+    <p class="message-count">2000</p>    
+  </div>
+  <div class="contacts-view">
+    <div class="contacts-view-header">
+        <ion-icon name="md-contacts"></ion-icon>
+        <p class="contacts-label">Users 13</p>
+      </div>
+      <ion-list class="contact-list">
+        <ion-item>
+            <ion-avatar item-left>
+                <img src="./assets/imgs/image_avatar.png">
+            </ion-avatar>
+            <h3>Benjamin</h3>
+            <p>MD Trainee</p>
+            <div class="group-admin">GROUP ADMIN</div>
+        </ion-item>          
+        <ion-item>
+            <ion-avatar item-left>
+                <img src="./assets/imgs/image_avatar.png">
+            </ion-avatar>
+            <h3>Benjamin</h3>
+            <p>MD Trainee</p>
+        </ion-item>          
+        <ion-item>
+            <ion-avatar item-left>
+                <img src="./assets/imgs/image_avatar.png">
+            </ion-avatar>
+            <h3>Benjamin</h3>
+            <p>MD Trainee</p>
+        </ion-item>          
+        <ion-item>
+            <ion-avatar item-left>
+                <img src="./assets/imgs/image_avatar.png">
+            </ion-avatar>
+            <h3>Benjamin</h3>
+            <p>MD Trainee</p>
+        </ion-item>          
+      </ion-list>
+  </div>
+</ion-content>

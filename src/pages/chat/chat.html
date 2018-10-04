@@ -7,6 +7,7 @@
       <header-action-bar class="header-action-bar"></header-action-bar>
   </div>
   <ion-grid class="row-view">
+    <!-- tool bar  -->
     <ion-row class="btn-bar" *ngIf="!isSearch">
         <ion-col class="add-item" (click)="addUser()" col-2>
             <ion-icon class="icon-btn" name="ios-add-outline"></ion-icon>
@@ -14,9 +15,14 @@
         <ion-col class="search-item" (click)="searchMessage()"  col-8>
             <ion-icon class="icon-btn" name="ios-search-outline"></ion-icon>
         </ion-col>
-        <ion-col class="more" col-2>
+        <ion-col class="more"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" col-2>
             <ion-icon class="icon-btn" name="md-more"></ion-icon> 
         </ion-col>
+        <div class="dropdown-menu dropdown-menu-right">
+          <button type="button" class="dropdown-item" (click)="archiveMessage()"><ion-icon name="ios-archive-outline"><p>Archive</p></ion-icon></button>
+          <button type="button" class="dropdown-item" (click)="roomInfo()"><ion-icon name="ios-information-circle-outline"><p>Room Info</p></ion-icon></button>
+          <button type="button" class="dropdown-item" (click)="report()"><ion-icon name="ios-warning-outline"><p>Report Abuse</p></ion-icon></button>
+        </div>
     </ion-row> 
     <ion-row class="search-bar" *ngIf="isSearch">
       <ion-col class="search-view" col-10>
@@ -27,6 +33,7 @@
           <ion-icon class="icon-sm" name="md-close-circle"></ion-icon>
       </ion-col>
     </ion-row>
+    <!-- end tool bar -->
     <ion-row class="message-info">
         <ion-col col-6>
           <div class="col-div">
