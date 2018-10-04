@@ -249,6 +249,10 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     EditChatRoomPage,
     ReportModalPage,
     RoomInfoPage,
+    LearnPage,
+    InstitutionalContentsPage,
+    SponsoredContentPage,
+    BreakingNewsPage
     
   ],
   providers: [

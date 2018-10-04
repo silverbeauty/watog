@@ -92,16 +92,20 @@ page-learn {
         justify-content: left;
         .img-left {
             width: auto;
-            height: 112px;
+            height: 70px;
             object-fit: contain;
+            margin-top:20px;
+            margin-left:15px;
         }
 
         .img-right {
             width: auto;
-            height: 112px;
+            height: 70px;
             object-fit: contain;
             position: absolute;
-            right:0;
+            right:15px;
+            top:26px;
+
         }
         
     }
