@@ -91,6 +91,7 @@ import { SponsoredContentPage } from '../pages/sponsored-content/sponsored-conte
 import { BreakingNewsPage } from '../pages/breaking-news/breaking-news';
 import { VideosListPage } from '../pages/videos-list/videos-list';
 import { PlayVideoPage } from '../pages/play-video/play-video';
+import { LivePage } from '../pages/live/live';
 // components
 import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
 import {EmojiPickerComponent} from '../components/emoji-picker/emoji-picker';
@@ -178,6 +179,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     BreakingNewsPage,
     VideosListPage,
     PlayVideoPage,
+    LivePage,
 
 
     // compoment
@@ -258,7 +260,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     SponsoredContentPage,
     BreakingNewsPage,
     VideosListPage,
-    PlayVideoPage
+    PlayVideoPage,
+    LivePage
     
   ],
   providers: [

@@ -8,7 +8,7 @@ import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 import { ChatRoomPage } from '../chat-room/chat-room';
 import { AdModalPage } from '../ad-modal/ad-modal';
 import { LearnPage } from '../learn/learn';
-
+import { LivePage } from '../live/live';
 /**
  * Generated class for the DashboardPage page.
  *
@@ -32,6 +32,11 @@ export class DashboardPage {
     }
   }
 
+  presentLiveModal() {
+    const liveModal = this.modalCtrl.create(LivePage);
+    liveModal.present();
+  }
+
   presentAdModal() {
     let profileModal = this.modalCtrl.create(AdModalPage, {});
     profileModal.present();
@@ -49,9 +54,6 @@ export class DashboardPage {
   }
   goToChatRoom(){
     this.navCtrl.push(ChatRoomPage);
-  }
-  goToLive(){
-    this.navCtrl.push(WhatIsWatogPage);
   }
   goToSetting(){
     this.navCtrl.push(WhatIsWatogPage);
