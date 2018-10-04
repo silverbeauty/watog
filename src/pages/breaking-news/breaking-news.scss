@@ -1,3 +1,187 @@
 page-breaking-news {
 
-}
+    .header-bar{
+        .navbar{
+            background-color: #775576;
+            text-align: center;
+        }
+
+        .toolbar-background {
+            background-color: #775576;
+        }
+        .title {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+
+            .toolbar-title {
+                color: #fff;
+                margin: 4px 0px;
+            }
+        }        
+    }
+
+    .header-action-bar {
+        position: absolute !important;
+        right: 10px;
+    }
+    .btn-back{
+        position: absolute !important;
+        button {
+            background-color: transparent;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            -webkit-transition: none !important;
+            transition: none !important;
+            transition: none !important;
+            transition: none !important;
+        }
+        .icon-back{
+            font-size: 22px !important;
+        }
+    }
+    
+    .scroll-content{
+        bottom:87px;
+    }
+    
+        .btn-profile{
+            background-color: #775576;
+        }
+    
+        .btn-profile img{
+            height: 2em;
+        }
+    
+        .dropdown-menu{
+            padding: 2em;        
+        }
+    
+        .dropdown-item{
+            font-size: 1.5em;
+            font-weight: 200;
+            text-align: left;
+            padding-right: 5em;
+        }
+    
+        .dropdown-item img{
+            height: 1.2em;
+            padding-right: 1em;
+        }
+    
+        .dropdown-menu-right{
+            right: 0;
+            left: auto;
+        }
+    
+        .body{
+            background-image: url(../../assets/imgs/rio.jpg);
+            background-position: center;
+            background-size: cover;
+            color: white;
+        }
+    
+        .logo{
+            margin-top: 3em;
+        }
+    
+        .main-p{
+            text-align: center;
+            padding-left: 1.5em;
+            padding-right: 1.5em;
+            margin-bottom: 0;
+        }
+    
+        .main{
+            background-color: white;
+            color: #525252;
+            margin:0;
+            text-align: center;
+        }
+
+        .main-image{
+            background:#aaa;
+            height:14em;
+            position: relative;
+        }
+        .main-image-title{
+            position:absolute;
+            bottom:0;
+            left:0;
+            background:rgba(0,0,0,0.6);
+            width:100%;
+        }
+        .icon-container {
+            height: 4em;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            padding-left:10px;
+            text-align:left;
+            color:#fff;
+            .img-left {
+                width: 40px;
+                height: 40px;
+                object-fit: contain;
+                position: absolute;
+                right:0;
+                margin-top:5px;
+            }
+        }
+    
+        .main .divider{
+            border-left: 1px solid #ddd;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+        .main-content{
+            text-align:left;
+            padding-left:15px;
+            padding-right:15px;
+        }
+
+        .main-content h1{
+            font-size: 1.8rem;
+            font-weight: bold;
+            color:#000;
+
+        }
+        .main-content h2{
+            font-size: 1.5rem;
+            color:#000;
+        }
+        .main-content .small{
+            font-size: 1.1rem;
+            font-style: italic;
+
+        }
+
+        .main p{
+            font-size: 1em;
+        }
+        .icon-container p{
+            font-size: 1em;
+            color:#fff;
+            margin-bottom:0;
+        }
+        
+        .footer-sponsor{
+            background-color: rgb(219, 228, 231);
+            color: #000;
+            font-weight: 200;
+            font-size: .8em;
+            text-align: center;
+            padding: .5em;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+    
+            .labor-img, .baby-img{
+                height: 6vh;
+            }
+    
+            .baby-img{
+                margin-right: 2em;
+            }
+        }
+    }
+   

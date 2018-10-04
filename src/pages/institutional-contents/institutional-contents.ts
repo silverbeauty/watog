@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { VideosListPage } from '../videos-list/videos-list';
 
 /**
  * Generated class for the InstitutionalContentsPage page.
@@ -21,8 +22,11 @@ export class InstitutionalContentsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad InstitutionalContentsPage');
   }
-   goBack() {
+  goBack() {
     this.navCtrl.pop();
+  }
+  goToVideosListPage(){
+    this.navCtrl.push(VideosListPage);
   }
 
 }

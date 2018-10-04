@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the BreakingNewsPage page.
+ * Generated class for the PlayVideoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,20 +10,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-breaking-news',
-  templateUrl: 'breaking-news.html',
+  selector: 'page-play-video',
+  templateUrl: 'play-video.html',
 })
-export class BreakingNewsPage {
+export class PlayVideoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BreakingNewsPage');
+    console.log('ionViewDidLoad PlayVideoPage');
   }
   goBack() {
     this.navCtrl.pop();
   }
-  
 
 }

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { VideosListPage } from '../videos-list/videos-list';
+import { PlayVideoPage } from '../play-video/play-video';
+
 /**
- * Generated class for the SponsoredContentPage page.
+ * Generated class for the VideosListPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,23 +11,22 @@ import { VideosListPage } from '../videos-list/videos-list';
 
 @IonicPage()
 @Component({
-  selector: 'page-sponsored-content',
-  templateUrl: 'sponsored-content.html',
+  selector: 'page-videos-list',
+  templateUrl: 'videos-list.html',
 })
-export class SponsoredContentPage {
+export class VideosListPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SponsoredContentPage');
+    console.log('ionViewDidLoad VideosListPage');
   }
   goBack() {
     this.navCtrl.pop();
   }
-  goToVideosListPage(){
-    this.navCtrl.push(VideosListPage);
+  goToPlayVideo(){
+    this.navCtrl.push(PlayVideoPage)
   }
 
 }
- 
