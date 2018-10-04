@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { PlayVideoPage } from '../play-video/play-video';
 
 /**
  * Generated class for the VideosListPage page.
@@ -23,6 +24,9 @@ export class VideosListPage {
   }
   goBack() {
     this.navCtrl.pop();
+  }
+  goToPlayVideo(){
+    this.navCtrl.push(PlayVideoPage)
   }
 
 }

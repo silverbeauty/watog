@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { VideosListPage } from '../videos-list/videos-list';
 /**
  * Generated class for the SponsoredContentPage page.
  *
@@ -22,6 +23,9 @@ export class SponsoredContentPage {
   }
   goBack() {
     this.navCtrl.pop();
+  }
+  goToVideosListPage(){
+    this.navCtrl.push(VideosListPage);
   }
 
 }

@@ -1,0 +1,143 @@
+page-play-video {
+   // start header bar
+    .header-bar{
+        .navbar{
+            background-color: #775576;
+            text-align: center;
+        }
+
+        .toolbar-background {
+            background-color: #775576;
+        }
+        .title {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+
+            .toolbar-title {
+                color: #fff;
+                margin: 4px 0px;
+            }
+        }        
+    }
+
+    .header-action-bar {
+        position: absolute !important;
+        right: 10px;
+    }
+    .btn-back{
+        position: absolute !important;
+        button {
+            background-color: transparent;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            -webkit-transition: none !important;
+            transition: none !important;
+            transition: none !important;
+            transition: none !important;
+        }
+        .icon-back{
+            font-size: 22px !important;
+        }
+    }
+    
+    
+    .scroll-content {
+        overflow-y: auto !important;
+        bottom:86px;
+    }
+
+    .btn-profile{
+        background-color: #775576;
+    }
+
+    
+
+    .btn-profile img{
+        height: 2em;
+    }
+
+    .dropdown-menu{
+        padding: 2em;        
+    }
+
+    .dropdown-item{
+        font-size: 1.5em;
+        font-weight: 200;
+        text-align: left;
+        padding-right: 5em;
+    }
+
+    .dropdown-item img{
+        height: 1.2em;
+        padding-right: 1em;
+    }
+
+    .dropdown-menu-right{
+        right: 0;
+        left: auto;
+    }
+
+    .body{
+        background-image: url(../../assets/imgs/rio.jpg);
+        background-position: center;
+        background-size: cover;
+        color: white;
+    }
+
+    .logo{
+        margin-top: 3em;
+    }
+
+    
+
+    .main{
+        background:#fff;
+        color: #525252;
+        text-align: center;
+        height: 80.6vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    
+    .footer-sponsor{
+        background-color: rgb(219, 228, 231);
+        color: #000;
+        font-weight: 200;
+        font-size: .8em;
+        text-align: center;
+        padding: .5em;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+
+        .labor-img, .baby-img{
+            height: 6vh;
+        }
+        
+        .footer-content{
+            text-align: left;
+            margin-left: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #8c8c8c;
+            display:flex;
+            justify-content: left;
+            align-items: center;
+            height:65px;
+        }
+        .footer-content p{
+            margin-bottom:0;
+        }
+
+        .baby-img{
+            margin-right: 0;
+        }
+        .right-content{
+            position: absolute;
+            right:50px;
+        }
+    }
+}
+
