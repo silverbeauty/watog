@@ -25,14 +25,14 @@
           <a href="#" (click)="openQualificationModal()" id="qualificationInput">
             <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Levels of OB/GYN to Involve" [(ngModel)]="job" formControlName="job" contenteditable="false"></ion-input>
           </a>
-          <!-- <ng-container *ngFor="let validation of validation_messages.job">
+          <ng-container *ngFor="let validation of validation_messages.job">
             <div class="error-message" *ngIf="validations_form.get('job').hasError(validation.type) && (validations_form.get('job').dirty || validations_form.get('job').touched)">
               {{ validation.message }}
             </div>
-          </ng-container> -->
+          </ng-container>
       </div>
       <div class="input-group">
-        <button class="btn btn-submit btn-md full-width " (click)="next()">NEXT</button>
+        <button type="submit" class="btn btn-submit btn-md full-width " (click)="next()">NEXT</button>
       </div>
       <div class="or-view">
           <label>OR</label>
@@ -40,55 +40,37 @@
       <div class="view-search">
         <ion-row class="search-bar">
           <ion-col class="search-view" col-10>
-              <input type="text" placeholder="Search" />
+              <input type="text"  placeholder="Search" />
           </ion-col>
-          <ion-col class="search-btn-view" col-2>
+          <ion-col class="search-btn-view" (click)="onSearch()" col-2>
               <ion-icon class="icon-sm" name="ios-search-outline"></ion-icon>
           </ion-col>
         </ion-row>
       </div>
       <!-- <div class="selected-member"> -->
-          <ion-scroll scrollX="true" class="selected-member-scroll">              
-            <div class="selected-member-item">
+          <ion-scroll scrollX="true" class="selected-member-scroll" [style.height]="isMembers ? '110px' : '0px'" >              
+            <div *ngFor="let member of roomMemberList" class="selected-member-item"  (click)="removeMember(member)">
               <div class="image-avatar">
-                  <img src="./assets/imgs/logo.png">
+                  <img [src]="member.avatar">
                   <ion-icon name="ios-close-circle"></ion-icon>
               </div>
-              <p>Benjamin</p>                     
+              <div class="name" text-wrap>{{member.username}}</div>                     
             </div>
             
           </ion-scroll>
       <!-- </div> -->
       <ion-list class="all-member-scroll">
         <ion-item>
-            <div class="member-item">
+            <div *ngFor="let user of userList" class="member-item" (click)="addMember(user)">
                 <div class="image-avatar">
-                    <img src="./assets/imgs/logo.png">  
-                    <ion-icon name="ios-checkmark-circle" class="icon-blue"></ion-icon>                  
+                    <img [src]="user.avatar">  
+                    <!-- <ion-icon name="ios-checkmark-circle" class="icon-blue"></ion-icon>                   -->
                 </div>
                 <div class="member-content">
-                  <h3>Benjamin</h3>
-                  <p>MD Trainee</p>
+                  <h3>{{user.username}}</h3>
+                  <p>{{user.country}}</p>
                 </div>
-            </div>          
-            <div class="member-item">
-                <div class="image-avatar">
-                    <img src="./assets/imgs/logo.png">
-                </div>
-                <div class="member-content">
-                  <h3>Benjamin</h3>
-                  <p>MD Trainee</p>
-                </div>
-            </div>          
-            <div class="member-item">
-                <div class="image-avatar">
-                    <img src="./assets/imgs/logo.png">                    
-                </div>
-                <div class="member-content">
-                  <h3>Benjamin</h3>
-                  <p>MD Trainee</p>
-                </div>
-            </div>          
+            </div>
         </ion-item>      
       </ion-list>          
   </form>

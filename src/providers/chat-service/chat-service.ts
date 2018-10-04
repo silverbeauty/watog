@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Events } from 'ionic-angular';
 import { map } from 'rxjs/operators/map';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 
-import { Contact, Message } from '../../types';
+import { Contact, Message, Room, Member } from '../../types';
+import { server_url } from '../../environments/environment'
 
 @Injectable()
 export class ChatService {
@@ -98,10 +99,43 @@ export class ChatService {
     ]
   };
 
+  apiUrl: string = server_url;
+  userList: string = server_url+"/user?not_me";
+  token: string;
+
   constructor(private http: HttpClient,
               private events: Events) {
-                console.log('Hello ChatService Provider Provider');
+      const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
+      console.log("authorization => ", res)
+      if (res[0]) {
+        // Set token to RestProvider
+        this.token = res[0];
+      }
+      console.log('Hello ChatService Provider Provider');
   }
+
+  public getUserList(): Promise<Member>{
+    const headers = new HttpHeaders({
+      'Authorization':  this.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.get(this.userList, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data)
+          } else {
+            console.error('Failed to load profile:', res)
+            reject ('Failed to load All Users')
+          }
+        }, (err) => {
+          console.info('Failed to load All Users:', err)
+          reject(err);
+        });
+    })
+  }
+
 
   public mockNewMsg(msg) {
     
