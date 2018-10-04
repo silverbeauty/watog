@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
+import { AlertController, IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
-import { Country, Room, Member } from "../../types";
+import { Country } from "../../types";
 import { countries } from '../../models/model';
 import { ModalQualification } from '../modal-qualification/modal-qualification';
 
-import { ChatRoomPage } from '../chat-room/chat-room'
+import { ChatRoomPage } from '../chat-room/chat-room';
 import { ChatService } from '../../providers';
 
 @IonicPage()
@@ -31,7 +31,7 @@ export class RoomCreatePage {
     {id:8, name: "Fetal Medicine"}, 
     {id:9, name: "MRI"}, 
     {id:10, name: "Simulation"}];
-  topic: '';
+  topic: any;
   promise: any;
   userList: Array<any> = [];
   _tempuserList: Array<any> = [];  
@@ -39,12 +39,22 @@ export class RoomCreatePage {
   isMembers = false;
   search: '';
 
+  avatar: any;
+  title: '';
+  description: '';
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public formBuilder: FormBuilder, 
     public modalCtrl: ModalController,
     public chatService: ChatService, 
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController, 
+    public alertCtrl: AlertController) {
+
+    this.title = navParams.get("title");
+    this.description = navParams.get("description");
+    this.avatar = navParams.get("avatar");
+
     this.countries = [
       new Country(countries[0].code, countries[0].name)
     ]
@@ -89,6 +99,7 @@ export class RoomCreatePage {
       console.log(err)
     })
   }
+
   addMember(_contact){
     this.roomMemberList.push(_contact)
     this.roomMemberList.sort(function (a, b) {
@@ -108,6 +119,7 @@ export class RoomCreatePage {
       this.isMembers = true
     }
   }
+
   removeMember(_member){
     this.userList.push(_member);
     this.userList.sort(function (a, b) {
@@ -122,7 +134,6 @@ export class RoomCreatePage {
       return a.index - b.index;
     });
 
-    // this.roomMemberList.splice(_member.index, 1);
     if (this.roomMemberList.length == 0){
       this.isMembers = false
     }
@@ -133,6 +144,7 @@ export class RoomCreatePage {
         return item.username.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
     }); 
   }
+
   /*Methods for the html dom modification */
   openQualificationModal() {
     let profileModal = this.modalCtrl.create(ModalQualification);
@@ -147,12 +159,36 @@ export class RoomCreatePage {
   }
 
   next(){
-    // console.log(this.country);
-    // console.log(this.topic);
-    // console.log(this.job);
-    // return;
-    this.navCtrl.push(ChatRoomPage);
+    let _memberList = [];
+    this.roomMemberList.forEach(element => {
+      _memberList.push(element.user_id)
+    });
+    
+    let params = {};
+    params["category_id"] = 1;
+    params["title"] = this.title;
+    params["description"] = this.description;
+    params["countries"] = this.country.name;
+    params["topics"] = this.topic.name;
+    params["jobs"] = this.job;
+    params["avatar"] = this.avatar;
+    params["members"] = _memberList;
+
+    console.log("param => ", params);
+    
+    const loader = this.loadingCtrl.create({ content: "Please wait..." });
+    loader.present();
+    this.chatService.createRoom(params)
+    .then((res: any) => {
+        console.log("response =>", res);
+        loader.dismiss();
+        this.navCtrl.push(ChatRoomPage);
+    }).catch(err => {
+      loader.dismiss();
+      console.log(err)
+    })
   }
+
   validation_messages = {    
     'job': [
       { type: 'required', message: 'Job is required.' }

@@ -1,5 +1,6 @@
-page-edit-chat-room {
-    // start header bar
+page-room-create-complete {
+    
+        // start header bar
     .header-bar{
         .navbar{
             background-color: #775576;
@@ -66,9 +67,6 @@ page-edit-chat-room {
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.36);
         text-align: center;
         .main-avatar {
-            background-image: url(../assets/imgs/logo_Seul.png);
-            background-size: cover;
-            background-position: center;
             margin-top: 15px;
             width: 100px;
             height: 100px;
@@ -117,4 +115,5 @@ page-edit-chat-room {
             bottom: 10px !important;
         }
     }
+    
 }

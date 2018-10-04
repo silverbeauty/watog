@@ -20,6 +20,7 @@ import { FileTransferObject } from '@ionic-native/file-transfer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { Keyboard } from "@ionic-native/keyboard";
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
   /*Components*/
 import { MyApp } from './app.component';
@@ -84,6 +85,7 @@ import { ChatPage } from '../pages/chat/chat';
 import { EditChatRoomPage } from '../pages/edit-chat-room/edit-chat-room';
 import { ReportModalPage } from '../pages/report-modal/report-modal';
 import { RoomInfoPage } from '../pages/room-info/room-info';
+import { RoomCreateCompletePage } from '../pages/room-create-complete/room-create-complete';
 
 import { LearnPage } from '../pages/learn/learn';
 import { InstitutionalContentsPage } from '../pages/institutional-contents/institutional-contents';
@@ -108,6 +110,9 @@ import { ValidatorsModule } from '../providers/validator/validators.module';
 // Directives
 import { HideHeaderDirective } from '../directives/scroll-hide';
 import { ZoomPanDirective } from '../directives/photo-zoom';
+
+import { socket_server } from '../environments/environment'
+const config: SocketIoConfig = { url: socket_server, options: {} };
 
 @NgModule({
   declarations: [
@@ -170,6 +175,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     EditChatRoomPage,
     ReportModalPage,
     RoomInfoPage,
+    RoomCreateCompletePage,
+
     LearnPage,
     InstitutionalContentsPage,
     SponsoredContentPage,
@@ -189,6 +196,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     ValidatorsModule,
     SwingModule,
     IonicImageViewerModule,
+    SocketIoModule.forRoot(config),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -249,7 +257,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     EditChatRoomPage,
     ReportModalPage,
     RoomInfoPage,
-    
+    RoomCreateCompletePage,
   ],
   providers: [
     StatusBar,
