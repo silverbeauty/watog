@@ -1,18 +1,56 @@
-<!--
-  Generated template for the SponsoredContentPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+<ion-header class="header-bar">
+  <div class="navbar">
+      <ion-buttons class="btn-back" (click)="goBack()">
+        <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
+      </ion-buttons>
+      <ion-title>Sponsored Contents</ion-title>
+      <header-action-bar class="header-action-bar"></header-action-bar>
+  </div>
+</ion-header>  
+<ion-content class="body" no-bounce>
+  <section class="main">
+    <div class="container border-btm" (click)="goToVideosListPage()">
+      <div class="row">
+        <div class="col-4">
+          <div class="icon-container">
+            <img src="../../assets/imgs/play.png" alt="participate img" class="img-left">
+          </div>            
+        </div>
+        <div class="col-8">
+            <div class="icon-container text-left">
+                <p class="listtext-right">CCD</p> 
+              </div>       
+          
+        </div>
+      </div>
+    </div>
+    <div class="container border-btm" (click)="goToVideosListPage()"> 
+        <div class="row">
+          <div class="col-4">
+            <div class="icon-container">
+              <img src="../../assets/imgs/play.png" alt="participate img" class="img-left">
+            </div>            
+          </div>
+          <div class="col-8">
+              <div class="icon-container text-left">
+                  <p class="listtext-right">BABY PROGRESS</p> 
+                </div>       
+            
+          </div>
+        </div>
+      </div> 
+  </section>
 
-  <ion-navbar>
-    <ion-title>sponsored-content</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
+  <section class="footer-sponsor">
+      <p>In partnership with: </p>
+      <div class="row">
+          <div class="col">
+              <img src="assets/imgs/laboratoire_ccdlarge.png" class="labor-img" alt="labor logo">
+          </div>
+          <div class="col">
+              <img src="assets/imgs/babyprogress_logoentier.png" class="baby-img" alt="baby logo">
+          </div>
+      </div>
+  </section>
 </ion-content>

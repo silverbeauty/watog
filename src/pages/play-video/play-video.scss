@@ -1,5 +1,5 @@
-page-institutional-contents {
-    // start header bar
+page-play-video {
+   // start header bar
     .header-bar{
         .navbar{
             background-color: #775576;
@@ -39,9 +39,7 @@ page-institutional-contents {
             font-size: 22px !important;
         }
     }
-    .border-btm{
-        border-bottom:1px solid #aaa;
-    }
+    
     
     .scroll-content {
         overflow-y: auto !important;
@@ -52,7 +50,7 @@ page-institutional-contents {
         background-color: #775576;
     }
 
-  
+    
 
     .btn-profile img{
         height: 2em;
@@ -90,55 +88,16 @@ page-institutional-contents {
         margin-top: 3em;
     }
 
-    .main-p{
-        text-align: center;
-        padding-left: 1.5em;
-        padding-right: 1.5em;
-        margin-bottom: 0;
-    }
+    
 
     .main{
-        background-color: white;
+        background:#fff;
         color: #525252;
-        margin: 1em;
-        border-radius: 1em;
         text-align: center;
-    }
-
-    .icon-container {
-        height: 5em;
+        height: 80.6vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        .img-left {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-        }
-        .listtext-right{
-            font-weight: bold;
-            margin-top:1rem
-        }
-        
-    }
-    .text-left{justify-content: left}
-
-    .ic-title{
-        background: lightblue;
-        margin-bottom: 0;
-        padding: 10px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-
-    .main .divider{
-        border-left: 1px solid #ddd;
-        margin-top: 2em;
-        margin-bottom: 2em;
-    }
-
-    .main p{
-        font-size: 1.3em;
     }
 
     
@@ -156,9 +115,28 @@ page-institutional-contents {
         .labor-img, .baby-img{
             height: 6vh;
         }
+        
+        .footer-content{
+            text-align: left;
+            margin-left: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #8c8c8c;
+            display:flex;
+            justify-content: left;
+            align-items: center;
+            height:65px;
+        }
+        .footer-content p{
+            margin-bottom:0;
+        }
 
         .baby-img{
-            margin-right: 2em;
+            margin-right: 0;
+        }
+        .right-content{
+            position: absolute;
+            right:50px;
         }
     }
 }

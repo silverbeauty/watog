@@ -1,4 +1,4 @@
-page-institutional-contents {
+page-videos-list {
     // start header bar
     .header-bar{
         .navbar{
@@ -52,7 +52,7 @@ page-institutional-contents {
         background-color: #775576;
     }
 
-  
+    
 
     .btn-profile img{
         height: 2em;
@@ -94,51 +94,49 @@ page-institutional-contents {
         text-align: center;
         padding-left: 1.5em;
         padding-right: 1.5em;
-        margin-bottom: 0;
+        
     }
 
     .main{
-        background-color: white;
         color: #525252;
         margin: 1em;
-        border-radius: 1em;
         text-align: center;
     }
-
-    .icon-container {
-        height: 5em;
+    .vlink{
+        background:#fff;
+        color:#525252;
+        border-radius:1em;
+        text-align:center;
+        margin: 0 auto;
+        width: 90%;
+    }
+    .image-block{
+        height:90px;
         display: flex;
         align-items: center;
         justify-content: center;
-        .img-left {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-        }
-        .listtext-right{
-            font-weight: bold;
-            margin-top:1rem
-        }
-        
     }
-    .text-left{justify-content: left}
+    .image-block img{
+        width:40px;
+        height:40px;
+    }
 
-    .ic-title{
-        background: lightblue;
-        margin-bottom: 0;
-        padding: 10px;
-        border-bottom-left-radius: 10px;
+   
+    .text-bottom{
+        background: rgba(164, 217, 233, 0.5);
+        height: 3em;
+        margin-bottom: 10px;
         border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    .main .divider{
-        border-left: 1px solid #ddd;
-        margin-top: 2em;
-        margin-bottom: 2em;
-    }
-
+    
     .main p{
         font-size: 1.3em;
+        margin-bottom:0;
     }
 
     

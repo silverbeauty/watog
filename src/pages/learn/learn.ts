@@ -23,8 +23,7 @@ export class LearnPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
-  
+ 
   goToDashboard(){
     this.navCtrl.push(DashboardPage);
   }
@@ -38,8 +37,6 @@ export class LearnPage {
    goToBreakingNews(){
     this.navCtrl.push(BreakingNewsPage);
   }
-
-  
 
 }
 
