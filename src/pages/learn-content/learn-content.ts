@@ -23,11 +23,6 @@ value:any;
     this.value = navParams.get('item');
     
   }
-
-  ionViewDidLoad() {
-   console.log('ashu:'+ JSON.stringify(this.value));
-   
-  }
   goBack() {
     this.navCtrl.pop();
   }

@@ -87,7 +87,7 @@ export class RestProvider {
   }
 
 
-public getVideos(): Promise {
+public getVideos(): Promise<any> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'

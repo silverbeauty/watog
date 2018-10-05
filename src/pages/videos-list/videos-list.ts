@@ -27,10 +27,6 @@ public expression = false;
   this.vidvalue = navParams.get('N');
   }
 
-ionViewDidLoad() {
-   console.log('ashu:'+ JSON.stringify(this.vidvalue));
-   
-  }
   goBack() {
     this.navCtrl.pop();
   }
