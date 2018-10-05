@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Events, Content, IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { ChatService} from "../../providers/chat-service/chat-service";
+import { ChatService, SocketsProvider} from "../../providers/";
 import { Contact, Message } from '../../types';
 import { ReportModalPage } from '../report-modal/report-modal';
 import { RoomInfoPage } from '../room-info/room-info';
@@ -13,6 +13,7 @@ import { RoomInfoPage } from '../room-info/room-info';
 export class ChatPage {
   @ViewChild(Content) content: Content;
   @ViewChild('chat_input') messageInput: ElementRef;
+  
   msgList: Message[] = [];
   user: Contact;
   toUser: Contact;
@@ -27,21 +28,23 @@ export class ChatPage {
     public navParams: NavParams,
     private chatService: ChatService,
     private events: Events,
+    private socketProvider: SocketsProvider,
     public modalCtrl: ModalController) {
     
       this.roomData = navParams.get("roomInfo"); 
       this.totalUsers = this.roomData.Members.length;
+      
       // Get the navParams toUserId parameter
-    this.toUser = {
-      id: 210000198410281948,
-      name: "BenJamin",
-      avatar : ""
-    };
-    // Get mock user information
-    this.chatService.getUserInfo()
-    .then((res) => {
-      this.user = res;      
-    });    
+      this.toUser = {
+        id: 210000198410281948,
+        name: "BenJamin",
+        avatar : ""
+      };
+      // Get mock user information
+      this.chatService.getUserInfo()
+      .then((res) => {
+        this.user = res;      
+      });    
   }
 
   ionViewWillLeave() {
@@ -53,7 +56,7 @@ export class ChatPage {
     
     //get message list  
     // this.getMsg();
-    
+
     // Subscribe to received  new message events
     this.events.subscribe('chat:received', msg => {
       console.log("recived")
@@ -82,14 +85,13 @@ export class ChatPage {
    * @name getMsg
    * @returns {Promise<Message[]>}
    */
-  getMsg() {    
-    // Get mock message list
-    return this.chatService
-    .getMsgList()
-    .subscribe(res => {
-      this.msgList = res;
-      this.scrollToBottom();
-    });
+  getMsg(id, param) {    
+    
+    return this.chatService.getMsgList(id, param).then(res => {
+        console.log("chat history=> ", res);
+        // this.msgList = res;
+        // this.scrollToBottom();
+      });
   }
 
   /**
@@ -99,39 +101,36 @@ export class ChatPage {
     if (!this.editorMsg.trim()) return;
 
     // Mock message
-    const id = Date.now().toString();
-    let newMsg: Message = {
-      messageId: Date.now().toString(),
-      userId: this.user.id,
-      userName: this.user.name,
-      userAvatar: this.user.avatar,
-      toUserId: this.toUser.id,
-      time: Date.now(),
-      message: this.editorMsg,
-      status: 'pending'
-    };
-
-    this.pushNewMsg(newMsg);
+    // const id = Date.now().toString();
+    // let _newMsg: Message = {
+    //   messageId: Date.now().toString(),
+    //   userId: this.user.id,
+    //   userName: this.user.name,
+    //   userAvatar: this.user.avatar,
+    //   toUserId: this.toUser.id,
+    //   time: Date.now(),
+    //   message: this.editorMsg,
+    //   status: 'pending'
+    // };
+    let newMsg = {
+      text : this.editorMsg,
+      room_id : this.roomData.id
+    }
+   // this.pushNewMsg(newMsg);
     this.editorMsg = '';
 
     if (!this.showEmojiPicker) {
       this.focus();
     }
 
-    this.chatService.sendMsg(newMsg)
-    .then(() => {
-      let index = this.getMsgIndexById(id);
-      if (index !== -1) {
-        this.msgList[index].status = 'success';
-      }
-    })
+    this.socketProvider.sendMsg(newMsg);
   }
 
   /**
    * @name pushNewMsg
    * @param msg
    */
-  pushNewMsg(msg: Message) {
+  pushNewMsg(msg: any) {
     const userId = this.user.id,
       toUserId = this.toUser.id;
     // Verify user relationships
@@ -167,7 +166,12 @@ export class ChatPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ChatPage');
+    var d = new Date();
+    let _endDate = d.getTime();
+    let _startdate = _endDate - (86400 *2);
+    let _param = "from="+_startdate+"&to="+_endDate;
+    
+    this.getMsg(this.roomData.id, _param);
   }
   // toolbar funtion
   attachFile(){

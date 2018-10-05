@@ -17,9 +17,9 @@
     <ion-row class="search-bar">
       <ion-col class="search-view" col-11>
           <!-- <ion-icon class="icon-sm" name="ios-search-outline"></ion-icon> -->
-          <input type="text" placeholder="Search" />
+          <ion-input type="text" placeholder="Search" [(ngModel)]="search" (ionChange)="onSearch()"></ion-input>
       </ion-col>
-      <ion-col class="search-btn-view" col-1>
+      <ion-col class="search-btn-view" (click)="onSearch()" col-1>
           <ion-icon class="icon-sm" name="ios-search-outline"></ion-icon>
       </ion-col>
     </ion-row>

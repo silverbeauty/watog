@@ -19,6 +19,9 @@ import { Message, Room, Member } from '../../types';
 export class MyRoomListPage {
   parentSelector = null;
   lists: any = [];
+  _tempLists : any=[];
+  search: '';
+
   constructor(public navCtrl: NavController, 
     public loadingCtrl: LoadingController, 
     public navParams: NavParams,
@@ -32,13 +35,20 @@ export class MyRoomListPage {
     loader.present();
     this.chatService.myRoomList()
     .then((res: any) => {
-        console.log(res)
         this.lists = res;
+        console.log("room list", res)
+        this._tempLists = res;
         loader.dismiss();
     }).catch(err => {
       loader.dismiss();
-      console.log(err)
+      console.log("err", err)
     })
+  }
+  onSearch(){
+    let searchTerm = this.search;
+    this.lists = this._tempLists.filter((item) => {
+        return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    }); 
   }
 
   addRoom (){

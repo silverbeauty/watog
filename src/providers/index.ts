@@ -4,3 +4,4 @@ export * from './validator/phone.validator';
 export * from './validator/password.validator';
 export * from './emoji/emoji';
 export * from './chat-service/chat-service';
+export * from './sockets/sockets';

@@ -41,6 +41,22 @@ export class SocketsProvider {
          console.log("socket data=>", data)
       });
     }
+    
+    public sendMsg(msg: any):void {
+      this.socket.emit('send_message', { msg });
+    }
+
+    public retrieveMessages() : Observable<any>
+    {
+      return new Observable((observer) =>
+      {
+         this.socket.on('new_message', (data) =>
+         {
+            console.log("receive message=>", data)
+            //observer.next(data);
+         });
+      })
+    }
 
     logoutFromSocket() : void
     {

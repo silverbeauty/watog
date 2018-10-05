@@ -33,7 +33,10 @@ page-my-room-list {
                 display: flex;
                 align-items: center;
                 padding-left : 10px;
-                padding-right : 10px;                
+                padding-right : 10px;  
+                .text-input{
+                    margin: 5px 8px 5px 0;
+                }              
             }
             .icon-sm{
                 font-size : 22px;

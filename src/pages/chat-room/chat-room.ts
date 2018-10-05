@@ -26,12 +26,13 @@ export class ChatRoomPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChatRoomPage');
     this.socketProvider.registerForChatService();
+   
   }
 
   ionViewDidLeave(){
     this.socketProvider.logoutFromSocket();
   }
-  
+
   goBack() {
     this.navCtrl.pop();
   }
