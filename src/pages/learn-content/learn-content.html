@@ -4,33 +4,28 @@
         <ion-buttons class="btn-back" (click)="goBack()">
           <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
         </ion-buttons>
-        <ion-title>Videos</ion-title>
+        <ion-title>{{value.name}}</ion-title>
         <header-action-bar class="header-action-bar"></header-action-bar>
     </div>
   </ion-header>  
   <ion-content class="body" no-bounce>
     <section class="main">
+      <div class="container border-btm" (click)="goToVideosListPage($event, N.videos)" *ngFor="let N of value.list">
         <div class="row">
-          <div class="col">
-              <div class="vlink" (click)="goToPlayVideo()" *ngFor="let I of vidvalue">
-                  <div class="image-block">
-                      <img src="../../assets/imgs/play.png" alt="participate img" class="img-left">
-                  </div>
-                  <div class="text-bottom">
-                      <p class="listtext-right">{{I.name}}</p> 
-                  </div>
-              </div>
+          <div class="col-4">
+            <div class="icon-container">
+              <img src="../../assets/imgs/play.png" alt="participate img" class="img-left">
+            </div>            
+          </div>
+          <div class="col-8">
+              <div class="icon-container text-left">
+                  <p class="listtext-right">{{N.name}}</p> 
+                </div>       
+            
           </div>
         </div>
-
+      </div>
     </section>
-    
-    
-
-    
-    
-    
-    
   
     <section class="footer-sponsor">
         <p>In partnership with: </p>

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 import { PlayVideoPage } from '../play-video/play-video';
 
+import { RestProvider } from '../../providers';
+import { User, Auth } from '../../types';
 /**
  * Generated class for the VideosListPage page.
  *
@@ -15,12 +17,19 @@ import { PlayVideoPage } from '../play-video/play-video';
   templateUrl: 'videos-list.html',
 })
 export class VideosListPage {
+// public video;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+public vidvalue;
+
+public expression = false;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public modalCtrl: ModalController) {
+  this.vidvalue = navParams.get('N');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad VideosListPage');
+ionViewDidLoad() {
+   console.log('ashu:'+ JSON.stringify(this.vidvalue));
+   
   }
   goBack() {
     this.navCtrl.pop();

@@ -5,20 +5,21 @@
       <header-action-bar class="header-action-bar"></header-action-bar>
   </div>
 </ion-header>  
-<ion-content class="body" no-bounce>
-  <section class="main">
+<ion-content class="body" no-bounce *ngIf="expression">
+   
+  <section class="main" *ngFor="let k of catlist(video)">
     <div class="container">
       <div class="row">
-        <div class="col" (click)="goToInstitutionalContents()">
+        <div class="col" (click)="goToLearnContent($event, video[k])">
           <div class="icon-container">
             <img src="../../assets/imgs/ic.png" alt="participate img" class="img-left">
           </div>            
-          <p class="ic-title">Institutional Contents</p> 
+          <p class="ic-title">{{video[k].name}}</p> 
         </div>
       </div>
     </div>
     </section>
-    <section class="main">
+    <!-- <section class="main">
     <div class="container">
       <div class="row">
         <div class="col" (click)="goToSponsoredContents()">
@@ -29,7 +30,7 @@
         </div>
       </div>
     </div>
-</section>
+</section> -->
 <section class="main">
     <div class="container">
       <div class="row">
