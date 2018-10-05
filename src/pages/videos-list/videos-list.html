@@ -1,42 +1,39 @@
-
 <ion-header class="header-bar">
-    <div class="navbar">
-        <ion-buttons class="btn-back" (click)="goBack()">
-          <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
-        </ion-buttons>
-        <ion-title>Videos</ion-title>
-        <header-action-bar class="header-action-bar"></header-action-bar>
-    </div>
-  </ion-header>  
-  <ion-content class="body" no-bounce>
-    <section class="main">
-        <div class="row">
-          <div class="col">
-              <div class="vlink" (click)="goToPlayVideo()" *ngFor="let I of vidvalue">
-                  <div class="image-block">
-                      <img src="https://img.youtube.com/vi/dnnqs-rEUx8/0.jpg" alt="participate img" class="img-left">
-                  </div>
-                  <div class="text-bottom">
-                      <p class="listtext-right">{{I.name}}</p> 
-                  </div>
-              </div>
+  <div class="navbar">
+    <ion-buttons class="btn-back" (click)="goBack()">
+      <button ion-button>
+        <ion-icon class="icon-back" name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Videos</ion-title>
+    <header-action-bar class="header-action-bar"></header-action-bar>
+  </div>
+</ion-header>
+<ion-content class="body" no-bounce>
+  <section class="main">
+    <div class="row">
+      <div class="col">
+        <div class="vlink" (click)="openVideo(video.videoId)" *ngFor="let video of vidvalue">
+          <div class="image-block">
+            <img [src]="video.link" alt="participate img" class="img-left" >
+          </div>
+          <div class="text-bottom">
+            <p class="listtext-right">{{video.name}}</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-    </section>
-    
-    
-  
-    <section class="footer-sponsor">
-        <p>In partnership with: </p>
-        <div class="row">
-            <div class="col">
-                <img src="assets/imgs/laboratoire_ccdlarge.png" class="labor-img" alt="labor logo">
-            </div>
-            <div class="col">
-                <img src="assets/imgs/babyprogress_logoentier.png" class="baby-img" alt="baby logo">
-            </div>
-        </div>
-    </section>
-  </ion-content>
-  
+  <section class="footer-sponsor">
+    <p>In partnership with: </p>
+    <div class="row">
+      <div class="col">
+        <img src="assets/imgs/laboratoire_ccdlarge.png" class="labor-img" alt="labor logo">
+      </div>
+      <div class="col">
+        <img src="assets/imgs/babyprogress_logoentier.png" class="baby-img" alt="baby logo">
+      </div>
+    </div>
+  </section>
+</ion-content>

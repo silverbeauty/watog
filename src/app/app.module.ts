@@ -20,7 +20,7 @@ import { FileTransferObject } from '@ionic-native/file-transfer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { Keyboard } from "@ionic-native/keyboard";
-
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
   /*Components*/
 import { MyApp } from './app.component';
 
@@ -182,9 +182,6 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     PlayVideoPage,
     LivePage,
     LearnContentPage,
-
-
-    // compoment
     HeaderActionBarComponent,
     EmojiPickerComponent,
 
@@ -265,7 +262,7 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     PlayVideoPage,
     LivePage,
     LearnContentPage,
-    
+
   ],
   providers: [
     StatusBar,
@@ -291,7 +288,8 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
     EmailComposer,
     Keyboard,
     EmojiProvider,
-    ChatService
+    ChatService,
+    YoutubeVideoPlayer
   ]
 })
 export class AppModule {}

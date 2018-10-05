@@ -14,21 +14,22 @@ import { VideosListPage } from '../videos-list/videos-list';
   selector: 'page-learn-content',
   templateUrl: 'learn-content.html',
 })
+
 export class LearnContentPage {
-value:any;
-
-
+  value: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.value = navParams.get('item');
-    
+
   }
+
   goBack() {
     this.navCtrl.pop();
   }
-  goToVideosListPage(event, N){
-     this.navCtrl.push(VideosListPage,{
-      N:N
+
+  goToVideosListPage(event, N) {
+    this.navCtrl.push(VideosListPage, {
+      N: N
     });
   }
 

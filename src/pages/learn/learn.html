@@ -1,44 +1,44 @@
 <ion-header class="header-bar">
   <div class="navbar">
     <a href="#" (click)="goToDashboard()"><img src="../../assets/icon/Menu.png" alt="Menu icon"></a>
-      <ion-title>Learn</ion-title>
-      <header-action-bar class="header-action-bar"></header-action-bar>
+    <ion-title>Learn</ion-title>
+    <header-action-bar class="header-action-bar"></header-action-bar>
   </div>
-</ion-header>  
+</ion-header>
 <ion-content class="body" no-bounce *ngIf="expression">
-   
+
   <section class="main" *ngFor="let k of catlist(video)">
     <div class="container">
       <div class="row">
         <div class="col" (click)="goToLearnContent($event, video[k])">
           <div class="icon-container">
             <img src="../../assets/imgs/ic.png" alt="participate img" class="img-left">
-          </div>            
-          <p class="ic-title">{{video[k].name}}</p> 
+          </div>
+          <p class="ic-title">{{video[k].name}}</p>
         </div>
       </div>
     </div>
-    </section>
-    <!-- <section class="main">
+  </section>
+  <!-- <section class="main">
     <div class="container">
       <div class="row">
         <div class="col" (click)="goToSponsoredContents()">
           <div class="icon-container">
             <img src="../../assets/imgs/sc.png" alt="participate img" class="img-right">
-          </div>            
-          <p class="ic-title">Sponsored Contents</p> 
+          </div>
+          <p class="ic-title">Sponsored Contents</p>
         </div>
       </div>
     </div>
 </section> -->
-<section class="main">
+  <section class="main">
     <div class="container">
       <div class="row">
         <div class="col" (click)="goToBreakingNews()">
           <div class="icon-container">
             <img src="../../assets/imgs/bn.png" alt="participate img" class="img-left">
-          </div>            
-          <p class="ic-title">Breaking News</p> 
+          </div>
+          <p class="ic-title">Breaking News</p>
         </div>
       </div>
     </div>
@@ -46,14 +46,14 @@
     <button class="btn btn-lg btn-secondary" (click)="goToVote()">Vote</button>-->
   </section>
   <section class="footer-sponsor">
-      <p>In partnership with: </p>
-      <div class="row">
-          <div class="col">
-              <img src="assets/imgs/laboratoire_ccdlarge.png" class="labor-img" alt="labor logo">
-          </div>
-          <div class="col">
-              <img src="assets/imgs/babyprogress_logoentier.png" class="baby-img" alt="baby logo">
-          </div>
+    <p>In partnership with: </p>
+    <div class="row">
+      <div class="col">
+        <img src="assets/imgs/laboratoire_ccdlarge.png" class="labor-img" alt="labor logo">
       </div>
+      <div class="col">
+        <img src="assets/imgs/babyprogress_logoentier.png" class="baby-img" alt="baby logo">
+      </div>
+    </div>
   </section>
 </ion-content>

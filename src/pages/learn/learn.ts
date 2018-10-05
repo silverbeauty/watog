@@ -9,7 +9,6 @@ import { LearnContentPage } from '../learn-content/learn-content';
 import { RestProvider } from '../../providers';
 import { User, Auth } from '../../types';
 
-
 /**
  * Generated class for the LearnPage page.
  *
@@ -31,32 +30,34 @@ export class LearnPage {
   }
 
   ionViewDidLoad() {
-    this.restProvider.getVideos().then( (video: any) => {
+    this.restProvider.getVideos().then((video: any) => {
       this.video = video;
       this.expression = true;
-      
+
     }).catch(err => {
       console.error(err)
     })
   }
- 
-  goToDashboard(){
+
+  goToDashboard() {
     this.navCtrl.push(DashboardPage);
   }
- 
-  goToInstitutionalContents(){
+
+  goToInstitutionalContents() {
     this.navCtrl.push(InstitutionalContentsPage);
   }
-  goToSponsoredContents(){
+
+  goToSponsoredContents() {
     this.navCtrl.push(SponsoredContentPage);
   }
-   goToBreakingNews(){
+
+  goToBreakingNews() {
     this.navCtrl.push(BreakingNewsPage);
   }
 
-  goToLearnContent(event ,item){
-    this.navCtrl.push(LearnContentPage,{
-      item:item
+  goToLearnContent(event, item) {
+    this.navCtrl.push(LearnContentPage, {
+      item: item
     });
   }
 

@@ -17,7 +17,7 @@ page-videos-list {
                 color: #fff;
                 margin: 4px 0px;
             }
-        }        
+        }
     }
 
     .header-action-bar {
@@ -42,7 +42,7 @@ page-videos-list {
     .border-btm{
         border-bottom:1px solid #aaa;
     }
-    
+
     .scroll-content {
         overflow-y: auto !important;
         bottom:86px;
@@ -52,14 +52,12 @@ page-videos-list {
         background-color: #775576;
     }
 
-    
-
     .btn-profile img{
         height: 2em;
     }
 
     .dropdown-menu{
-        padding: 2em;        
+        padding: 2em;
     }
 
     .dropdown-item{
@@ -94,7 +92,7 @@ page-videos-list {
         text-align: center;
         padding-left: 1.5em;
         padding-right: 1.5em;
-        
+
     }
 
     .main{
@@ -102,6 +100,7 @@ page-videos-list {
         margin: 1em;
         text-align: center;
     }
+
     .vlink{
         background:#fff;
         color:#525252;
@@ -112,6 +111,7 @@ page-videos-list {
         float: left;
         margin: 2%;
     }
+
     .image-block{
         height:130px;
         display: flex;
@@ -123,25 +123,27 @@ page-videos-list {
         height:100%;
     }
 
-   
     .text-bottom{
-        background: rgba(164, 217, 233, 0.5);
+        background: rgba(164, 217, 233, 1);
         height: auto;
         margin-bottom: 0;
-        border-bottom-right-radius: 10px;
-        border-bottom-left-radius: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    
+    .listtext-right {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 5px;
+    }
+
     .main p{
         font-size: 1em;
         margin-bottom:0;
     }
 
-    
     .footer-sponsor{
         background-color: rgb(219, 228, 231);
         color: #000;
