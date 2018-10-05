@@ -20,7 +20,7 @@ import { User, Auth } from '../../types';
 export class VideosListPage {
   // public video;
 
-  public vidvalue;
+  public vidvalue = [];
   public expression = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public modalCtrl: ModalController, private youtube: YoutubeVideoPlayer, private plt: Platform) {
@@ -32,8 +32,10 @@ export class VideosListPage {
   ngOnInit(): void {
     this.vidvalue.forEach(element => {
       const link = element.link;
-      element.link = element.link.replace('https://www.youtube.com/embed', 'http://img.youtube.com/vi') + '/default.jpg';
-      element.videoId = link.replace('https://www.youtube.com/embed/', '')
+      if (element.link.indexOf('https://www.youtube.com/embed') > -1) {
+        element.link = element.link.replace('https://www.youtube.com/embed', 'http://img.youtube.com/vi') + '/default.jpg';
+        element.videoId = link.replace('https://www.youtube.com/embed/', '')
+      }
     });
     console.log(this.vidvalue)
   }

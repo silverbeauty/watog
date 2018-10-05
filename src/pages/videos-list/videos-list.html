@@ -11,7 +11,7 @@
 </ion-header>
 <ion-content class="body" no-bounce>
   <section class="main">
-    <div class="row">
+    <ion-row>
       <div class="col">
         <div class="vlink" (click)="openVideo(video.videoId)" *ngFor="let video of vidvalue">
           <div class="image-block">
@@ -22,18 +22,17 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="footer-sponsor">
-    <p>In partnership with: </p>
-    <div class="row">
-      <div class="col">
-        <img src="assets/imgs/laboratoire_ccdlarge.png" class="labor-img" alt="labor logo">
-      </div>
-      <div class="col">
-        <img src="assets/imgs/babyprogress_logoentier.png" class="baby-img" alt="baby logo">
-      </div>
-    </div>
+    </ion-row>
   </section>
 </ion-content>
+<section class="footer-sponsor">
+  <p>In partnership with: </p>
+  <ion-row>
+    <div class="col">
+      <img src="assets/imgs/laboratoire_ccdlarge.png" class="labor-img" alt="labor logo">
+    </div>
+    <div class="col">
+      <img src="assets/imgs/babyprogress_logoentier.png" class="baby-img" alt="baby logo">
+    </div>
+  </ion-row>
+</section>
