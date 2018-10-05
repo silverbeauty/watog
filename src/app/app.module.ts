@@ -114,6 +114,7 @@ import { HideHeaderDirective } from '../directives/scroll-hide';
 import { ZoomPanDirective } from '../directives/photo-zoom';
 
 import { socket_server } from '../environments/environment'
+import { SocketsProvider } from '../providers/sockets/sockets';
 const config: SocketIoConfig = { url: socket_server, options: {} };
 
 @NgModule({
@@ -295,7 +296,8 @@ const config: SocketIoConfig = { url: socket_server, options: {} };
     EmailComposer,
     Keyboard,
     EmojiProvider,
-    ChatService
+    ChatService,
+    SocketsProvider
   ]
 })
 export class AppModule {}

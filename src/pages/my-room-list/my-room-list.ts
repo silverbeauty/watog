@@ -8,6 +8,7 @@ import { ChatRoomPage } from '../chat-room/chat-room';
 import { EditChatRoomPage } from '../edit-chat-room/edit-chat-room';
 import { ChatService } from '../../providers';
 import { Socket } from 'ng-socket-io';
+import { Message, Room, Member } from '../../types';
 
 @IonicPage()
 @Component({
@@ -44,9 +45,10 @@ export class MyRoomListPage {
     // this.parentSelector.push(RoomCreatePrePage);
     this.parentSelector.push(RoomCreateCompletePage);
   }
-  goToChattingPage(){
-    this.socket.connect();
-    this.parentSelector.push(ChatPage);
+  goToChattingPage(roomInfo){
+    // this.socket.connect();
+    console.log(roomInfo)
+    this.parentSelector.push(ChatPage, {roomInfo : roomInfo});
   }
 
   editRoom(roomInfo){
