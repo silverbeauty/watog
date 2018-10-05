@@ -261,6 +261,7 @@ const config: SocketIoConfig = { url: socket_server, options: {} };
     EditChatRoomPage,
     ReportModalPage,
     RoomInfoPage,
+    RoomCreateCompletePage,
     
     LearnPage,
     InstitutionalContentsPage,

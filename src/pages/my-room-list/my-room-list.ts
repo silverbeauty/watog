@@ -46,8 +46,9 @@ export class MyRoomListPage {
   }
   goToChattingPage(){
     this.socket.connect();
+    this.parentSelector.push(ChatPage);
   }
-  
+
   editRoom(roomInfo){
     this.parentSelector.push(EditChatRoomPage, {roomInfo : roomInfo});
   }
