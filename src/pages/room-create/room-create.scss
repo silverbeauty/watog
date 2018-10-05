@@ -123,10 +123,11 @@ page-room-create {
             display: flex;
             align-items: center;
             padding : 0px; 
-            input {
+            .text-input-md {
                 font-size: 18px;
                 flex: 1;
                 padding-left: 10px;
+                margin: 0px;
             }             
         }
         .icon-sm{
@@ -158,7 +159,7 @@ page-room-create {
             
             .selected-member-item{
                 width: 120px;
-                display: table-cell;
+                display: inline-table;
                 padding: 5px;
                 text-align: center;
                 .name{

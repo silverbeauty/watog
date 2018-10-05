@@ -12,27 +12,38 @@
 <ion-content padding>
   <form [formGroup]="validations_form">
       <div class="input-group">
-        <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" formControlName="country" [(ngModel)]="country" placeholder = "Country*" okText="Ok" cancelText="Cancel">
+        <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" formControlName="country" [(ngModel)]="country" placeholder = "Country*" okText="Ok" cancelText="Cancel"   [ngClass]="{ 'is-invalid': validations_form.get('country').errors && (validations_form.get('country').dirty || validations_form.get('country').touched)}">
           <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
         </ion-select>
+        <ng-container *ngFor="let validation of validation_messages.country">
+          <div class="error-message" *ngIf="validations_form.get('country').hasError(validation.type) && (validations_form.get('country').dirty || validations_form.get('country').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
       </div>
       <div class="input-group">
-        <ion-select class="form-control font-weight-light" id="TopicInput" aria-describedby="passwd-picture" formControlName="topic" [(ngModel)]="topic" placeholder = "Topics" okText="Ok" cancelText="Cancel">
+        <ion-select class="form-control font-weight-light" id="TopicInput" aria-describedby="passwd-picture" formControlName="topic" [(ngModel)]="topic" placeholder = "Topics" okText="Ok" cancelText="Cancel"  [ngClass]="{ 'is-invalid': validations_form.get('topic').errors && (validations_form.get('topic').dirty || validations_form.get('topic').touched)}">
           <ion-option *ngFor="let item of topics" [value]="item">{{item.name}}</ion-option>
         </ion-select>
+        <ng-container *ngFor="let validation of validation_messages.topic">
+          <div class="error-message" *ngIf="validations_form.get('topic').hasError(validation.type) && (validations_form.get('topic').dirty || validations_form.get('topic').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
       </div>
       <div class="input-group">
           <a href="#" (click)="openQualificationModal()" id="qualificationInput">
+            <!-- <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Levels of OB/GYN to Involve" [(ngModel)]="job" formControlName="job" contenteditable="false"  [ngClass]="{ 'is-invalid': validations_form.get('job').errors && (validations_form.get('job').dirty || validations_form.get('job').touched)}"></ion-input> -->
             <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Levels of OB/GYN to Involve" [(ngModel)]="job" formControlName="job" contenteditable="false"></ion-input>
           </a>
-          <ng-container *ngFor="let validation of validation_messages.job">
+          <!-- <ng-container *ngFor="let validation of validation_messages.job">
             <div class="error-message" *ngIf="validations_form.get('job').hasError(validation.type) && (validations_form.get('job').dirty || validations_form.get('job').touched)">
               {{ validation.message }}
             </div>
-          </ng-container>
+          </ng-container> -->
       </div>
       <div class="input-group">
-        <button type="submit" class="btn btn-submit btn-md full-width " (click)="next()">NEXT</button>
+        <button class="btn btn-submit btn-md full-width "  [disabled]="!validations_form.valid" (click)="next()">NEXT</button>
       </div>
       <div class="or-view">
           <label>OR</label>
@@ -40,7 +51,7 @@
       <div class="view-search">
         <ion-row class="search-bar">
           <ion-col class="search-view" col-10>
-              <input type="text"  placeholder="Search" />
+              <ion-input type="text" [(ngModel)]="search" formControlName="search" (ionChange)="onSearch()" placeholder="Search"></ion-input>
           </ion-col>
           <ion-col class="search-btn-view" (click)="onSearch()" col-2>
               <ion-icon class="icon-sm" name="ios-search-outline"></ion-icon>
@@ -48,7 +59,7 @@
         </ion-row>
       </div>
       <!-- <div class="selected-member"> -->
-          <ion-scroll scrollX="true" class="selected-member-scroll" [style.height]="isMembers ? '110px' : '0px'" >              
+          <ion-scroll scrollX="true" class="selected-member-scroll" [style.height]="isMembers ? '120px' : '0px'" >              
             <div *ngFor="let member of roomMemberList" class="selected-member-item"  (click)="removeMember(member)">
               <div class="image-avatar">
                   <img [src]="member.avatar">
