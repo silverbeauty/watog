@@ -97,6 +97,16 @@
                 </div>
               </ng-container>
             </div>
+            <div class="input-group">
+              <img src="assets/icon/Mail02.png" alt="password logo">
+              <ion-datetime displayFormat="DD MMM YYYY" class="form-control font-weight-light" id="dobInput" aria-describedby="passwd-picture" placeholder="DD MM YYYY" [(ngModel)]="dob" formControlName="dob" [ngClass]="{ 'is-invalid': validations_form.get('email').errors && (validations_form.get('email').dirty || validations_form.get('email').touched) }"></ion-datetime>
+              <ng-container *ngFor="let validation of validation_messages.dob">
+                <div class="error-message" *ngIf="validations_form.get('dob').hasError(validation.type) && (validations_form.get('dob').dirty || validations_form.get('dob').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+  
             <div formGroupName="country_phone">
               <div class="input-group">
                 <img src="assets/icon/Location.png" alt="password logo">
