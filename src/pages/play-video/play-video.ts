@@ -40,7 +40,6 @@ export class PlayVideoPage {
     if (this.plt.is('cordova')) {
       this.youtube.openVideo(videoId);
     } else {
-      console.log(456)
       window.open('https://www.youtube.com/watch?v=' + videoId);
     }
   }
