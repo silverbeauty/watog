@@ -20,12 +20,17 @@ export class ChatPage {
   showEmojiPicker = false;
   isSearch= false;
 
+  roomData: any= [];
+  totalUsers=0;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private chatService: ChatService,
     private events: Events,
     public modalCtrl: ModalController) {
     
+      this.roomData = navParams.get("roomInfo"); 
+      this.totalUsers = this.roomData.Members.length;
       // Get the navParams toUserId parameter
     this.toUser = {
       id: 210000198410281948,
@@ -46,10 +51,9 @@ export class ChatPage {
 
   ionViewDidEnter() {
     
-    //get message list
-  
+    //get message list  
     // this.getMsg();
-
+    
     // Subscribe to received  new message events
     this.events.subscribe('chat:received', msg => {
       console.log("recived")

@@ -28,7 +28,7 @@
 <ion-content class = "list-content" padding>
     <ion-list>
       <ion-item-sliding *ngFor="let rowContent of lists">
-        <ion-item (click)="goToChattingPage()">
+        <ion-item (click)="goToChattingPage(rowContent)">
             <ion-avatar item-left>
                 <img [src]="rowContent.avatar">
             </ion-avatar>
