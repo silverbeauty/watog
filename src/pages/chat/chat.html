@@ -42,21 +42,19 @@
         </ion-col>
         <ion-col col-6>
             <div class="col-div">
-              <p>Messages:&nbsp;&nbsp;<b>1050</b></p>
+              <p>Messages:&nbsp;&nbsp;<b>{{roomData.message_count}}</b></p>
             </div>
         </ion-col>
     </ion-row>
     <ion-row class="active-users-info">
         <ion-col class="active-user" col-5>
-            <p>Active Users(350):&nbsp;&nbsp; </p>
+            <p>Active Users({{totalUsers}}):&nbsp;&nbsp; </p>
         </ion-col>
         <ion-col col-7>
             <ion-scroll scrollX="true" class="actived-member-scroll">
-                <img src="./assets/imgs/logo.png">
-                <img src="./assets/imgs/logo.png">
-                <img src="./assets/imgs/logo.png">
-                <img src="./assets/imgs/logo.png">
-                <img src="./assets/imgs/logo.png">
+                <div  *ngFor="let member of roomData.Members" >
+                    <img src="./assets/imgs/logo.png">
+                </div>
             </ion-scroll>
         </ion-col>
     </ion-row>

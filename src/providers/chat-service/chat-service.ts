@@ -14,12 +14,12 @@ export class ChatService {
   CREATE_ROOM: string = server_url+"/room";
   MY_ROOM: string = server_url+"/room/my";
   EDIT_ROOM: string = server_url+"/room/";
+  ATTACH: string = server_url+"/file";
   token: string;
 
   constructor(private http: HttpClient,
               private events: Events) {
       const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
-      console.log("authorization => ", res)
       if (res[0]) {
         // Set token to RestProvider
         this.token = res[0];
@@ -158,6 +158,44 @@ export class ChatService {
         }, (err) => {
           console.info('Failed to load archive room:', err)
           reject(err);
+        });
+    })
+  }
+
+  public sendFile(file: any): Promise<any>{
+    const headers = new HttpHeaders({
+      'Authorization':  this.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve, reject) => {
+      this.http.post(this.ATTACH, JSON.stringify({file: file}), { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data);
+          } else {
+            reject('Save File Failed:')
+          }
+        }, (err) => {
+          reject('Save File Failed:')
+        });
+    })
+  }
+  
+  public getRoomInfo(room_id: any): Promise<any>{
+    const headers = new HttpHeaders({
+      'Authorization':  this.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve, reject) => {
+      this.http.get(this.EDIT_ROOM+room_id, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data);
+          } else {
+            reject('Save File Failed:')
+          }
+        }, (err) => {
+          reject('Save File Failed:')
         });
     })
   }

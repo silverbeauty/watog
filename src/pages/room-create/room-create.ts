@@ -163,7 +163,6 @@ export class RoomCreatePage {
     this.roomMemberList.forEach(element => {
       _memberList.push(element.user_id)
     });
-    
     let params = {};
     params["category_id"] = 1;
     params["title"] = this.title;
@@ -171,22 +170,41 @@ export class RoomCreatePage {
     params["countries"] = this.country.name;
     params["topics"] = this.topic.name;
     params["jobs"] = this.job;
-    params["avatar"] = this.avatar;
-    params["members"] = _memberList;
-
-    console.log("param => ", params);
     
+    params["members"] = _memberList;
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
-    this.chatService.createRoom(params)
-    .then((res: any) => {
-        console.log("response =>", res);
+    
+    if (this.avatar) {
+      this.chatService.sendFile(this.avatar).then((data: any) => {
+        let _url = data.url;
+        params["avatar"] = _url;
+        this.chatService.createRoom(params)
+          .then((res: any) => {
+              loader.dismiss();
+              this.navCtrl.push(ChatRoomPage);
+          }).catch(err => {
+            loader.dismiss();
+            console.log(err)
+          })
+
+      }).catch((error) => {
+        alert("server error!")
+      })
+    }
+    else {     
+      params["avatar"] = this.avatar;
+      this.chatService.createRoom(params)
+      .then((res: any) => {
+          console.log("response =>", res);
+          loader.dismiss();
+          this.navCtrl.push(ChatRoomPage);
+      }).catch(err => {
         loader.dismiss();
-        this.navCtrl.push(ChatRoomPage);
-    }).catch(err => {
-      loader.dismiss();
-      console.log(err)
-    })
+        console.log(err)
+      })  
+    }   
+    
   }
 
   validation_messages = {    

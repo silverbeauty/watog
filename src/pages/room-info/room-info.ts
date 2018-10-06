@@ -8,7 +8,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RoomInfoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  roomData: any;
+  userCount : any;
+  admin : any;
+  members : any;
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams) {
+      this.roomData = navParams.get("roomData");
+      this.admin = this.roomData.User;
+      this.members = this.roomData.Members;
+      this.userCount = this.members.length;      
   }
 
   ionViewDidLoad() {

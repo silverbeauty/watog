@@ -10,10 +10,9 @@ import { ChatRoomPage } from '../chat-room/chat-room';
   templateUrl: 'edit-chat-room.html',
 })
 export class EditChatRoomPage {
-  image_local: any;
+  avatar: any;
   title: '';
   description: '';
-  avatar: '';
   roomInfo: any;
   
   constructor(public navCtrl: NavController, 
@@ -35,30 +34,49 @@ export class EditChatRoomPage {
     this.navCtrl.pop();
   }
   update(){
-    
+    let room_id = this.roomInfo.id;
     let params = {};
     params["title"] = this.title;
     params["description"] = this.description;
-    params["avatar"] = this.image_local;
-
-    console.log("param => ", params);
     
+
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
-    this.chatService.editRoom(params, this.roomInfo.id)
-    .then((res: any) => {
-        console.log("response =>", res);
-        loader.dismiss();
-        this.navCtrl.push(ChatRoomPage);
-    }).catch(err => {
-      loader.dismiss();
-      console.log(err)
-    })
+
+    if (this.avatar) {
+      this.chatService.sendFile(this.avatar).then((data: any) => {
+        let _url = data.url;
+        params["avatar"] = _url;
+        this.chatService.editRoom(params, room_id)
+          .then((res: any) => {
+              loader.dismiss();
+              this.navCtrl.pop();
+          }).catch(err => {
+            loader.dismiss();
+            console.log(err)
+          })
+
+      }).catch((error) => {
+        alert("server error!")
+      })
+    }
+    else {     
+      params["avatar"] = this.avatar;
+      this.chatService.editRoom(params, room_id)
+        .then((res: any) => {
+            console.log("response =>", res);
+            loader.dismiss();
+            this.navCtrl.pop();
+        }).catch(err => {
+          loader.dismiss();
+          console.log(err)
+        })
+    }  
   }
 
   TakeaPicture() {
     this.cam.selectImage(1, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;
+      this.avatar = "data:image/jpeg;base64," + resp;
       alert("picture saved")
     }, err => {
       console.log("error with select of picture")
@@ -68,7 +86,7 @@ export class EditChatRoomPage {
 
   navToGallery() {
     this.cam.selectImage(0, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;
+      this.avatar = "data:image/jpeg;base64," + resp;
       alert("picture saved")
     }, err => {
       console.log("error with select of picture")

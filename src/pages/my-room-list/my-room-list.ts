@@ -7,7 +7,7 @@ import { ChatPage } from '../chat/chat';
 import { ChatRoomPage } from '../chat-room/chat-room';
 import { EditChatRoomPage } from '../edit-chat-room/edit-chat-room';
 import { ChatService } from '../../providers';
-import { Socket } from 'ng-socket-io';
+
 import { Message, Room, Member } from '../../types';
 
 @IonicPage()
@@ -25,8 +25,7 @@ export class MyRoomListPage {
   constructor(public navCtrl: NavController, 
     public loadingCtrl: LoadingController, 
     public navParams: NavParams,
-    public chatService: ChatService, 
-    private socket: Socket) {
+    public chatService: ChatService) {
     this.parentSelector = navParams.get("parentSelector");    
   }
 
@@ -36,7 +35,6 @@ export class MyRoomListPage {
     this.chatService.myRoomList()
     .then((res: any) => {
         this.lists = res;
-        console.log("room list", res)
         this._tempLists = res;
         loader.dismiss();
     }).catch(err => {

@@ -24,13 +24,13 @@ export class ChatRoomPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ChatRoomPage');
-    this.socketProvider.registerForChatService();
+    // console.log('ionViewDidLoad ChatRoomPage');
+    // this.socketProvider.registerForChatService();
    
   }
 
   ionViewDidLeave(){
-    this.socketProvider.logoutFromSocket();
+   // this.socketProvider.logoutFromSocket();
   }
 
   goBack() {

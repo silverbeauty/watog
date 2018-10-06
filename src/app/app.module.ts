@@ -113,9 +113,14 @@ import { ValidatorsModule } from '../providers/validator/validators.module';
 import { HideHeaderDirective } from '../directives/scroll-hide';
 import { ZoomPanDirective } from '../directives/photo-zoom';
 
-import { socket_server } from '../environments/environment'
 import { SocketsProvider } from '../providers/sockets/sockets';
-const config: SocketIoConfig = { url: socket_server, options: {} };
+
+const config = {
+  io : {
+     url 				: "http://151.236.34.11:3000",
+     options 			: {}
+  }
+};
 
 @NgModule({
   declarations: [
@@ -201,7 +206,7 @@ const config: SocketIoConfig = { url: socket_server, options: {} };
     ValidatorsModule,
     SwingModule,
     IonicImageViewerModule,
-    SocketIoModule.forRoot(config),
+    SocketIoModule.forRoot(config.io)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

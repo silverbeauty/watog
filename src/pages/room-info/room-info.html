@@ -12,43 +12,29 @@
   <div class="messages-number-view">
     <ion-icon name="ios-chatboxes-outline"></ion-icon>
     <p class="message-label">Messages</p>
-    <p class="message-count">2000</p>    
+    <p class="message-count">{{roomData.message_count}}</p>    
   </div>
   <div class="contacts-view">
     <div class="contacts-view-header">
         <ion-icon name="md-contacts"></ion-icon>
-        <p class="contacts-label">Users 13</p>
+        <p class="contacts-label">Users {{userCount}}</p>
       </div>
       <ion-list class="contact-list">
         <ion-item>
             <ion-avatar item-left>
-                <img src="./assets/imgs/image_avatar.png">
+                <img [src]="admin.picture_profile">
             </ion-avatar>
-            <h3>Benjamin</h3>
-            <p>MD Trainee</p>
+            <h3>{{admin.first_name+" "+admin.last_name}}</h3>
+            <p>{{admin.country}}</p>
             <div class="group-admin">GROUP ADMIN</div>
         </ion-item>          
-        <ion-item>
+        <ion-item  *ngFor="let member of members">
             <ion-avatar item-left>
                 <img src="./assets/imgs/image_avatar.png">
             </ion-avatar>
             <h3>Benjamin</h3>
             <p>MD Trainee</p>
-        </ion-item>          
-        <ion-item>
-            <ion-avatar item-left>
-                <img src="./assets/imgs/image_avatar.png">
-            </ion-avatar>
-            <h3>Benjamin</h3>
-            <p>MD Trainee</p>
-        </ion-item>          
-        <ion-item>
-            <ion-avatar item-left>
-                <img src="./assets/imgs/image_avatar.png">
-            </ion-avatar>
-            <h3>Benjamin</h3>
-            <p>MD Trainee</p>
-        </ion-item>          
+        </ion-item>                 
       </ion-list>
   </div>
 </ion-content>

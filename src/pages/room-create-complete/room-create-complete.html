@@ -19,7 +19,7 @@
     </div>
     
     <div class="img-view">
-      <img class="main-avatar" src="./assets/imgs/logo.png"/>
+      <img class="main-avatar" [src]="image_local"/>
       <ion-row class="btn-change-image">
         <ion-col (click)="TakeaPicture()" col-6>
             <img src="assets/imgs/appareil.png" alt="camera">
