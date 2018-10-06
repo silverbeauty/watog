@@ -36,23 +36,29 @@ export class SocketsProvider {
     setInterval(function(){ 
       if(!self.socket.ioSocket.connected)
         self.socket.ioSocket.connect();
-    }, 1000);
-
-    
+    }, 1000);    
   }
 
-  public registerForChatService():void
+  public registerForChatService() : void
   {
-    //this.socket.connect();
-    console.log("registerForChatService = >", this.socket);    
-    this.socket.emit('authenticate', { token: this.token });
+    this.socket.on('authenticated', (data) =>{
+        console.log("socket data=>", data)
+    });
+    // After connected
+    this.socket.on('connect', () => {
+      this.socket.emit('authenticate', { token: this.token });
+    })
+    this.socket.connect();
   }
+  
   public getSocket(){
     return this.socket;
   }
   public sendMsg(msg: any):void {
     if(!this.socket.ioSocket.connected)
       this.socket.ioSocket.connect();
+
+   
     
     console.log("sendMsg =>  " , this.socket)
     this.socket.emit('send_message', { msg });
