@@ -100,7 +100,10 @@ export class ChatService {
   };
 
   apiUrl: string = server_url;
-  userList: string = server_url+"/user?not_me";
+  USER_LIST: string = server_url+"/user?not_me";
+  CREATE_ROOM: string = server_url+"/room";
+  MY_ROOM: string = server_url+"/room/my";
+  EDIT_ROOM: string = server_url+"/room/";
   token: string;
 
   constructor(private http: HttpClient,
@@ -121,12 +124,12 @@ export class ChatService {
     });
 
     return new Promise((resolve, reject) => {
-      this.http.get(this.userList, { headers })
+      this.http.get(this.USER_LIST, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data)
           } else {
-            console.error('Failed to load profile:', res)
+            console.error('Failed to load All users:', res)
             reject ('Failed to load All Users')
           }
         }, (err) => {
@@ -135,7 +138,97 @@ export class ChatService {
         });
     })
   }
+  
+  public createRoom(params : any ): Promise<any>{
+    const headers = new HttpHeaders({
+      'Authorization':  this.token,
+      'Content-Type': 'application/json'
+    });
 
+    return new Promise((resolve, reject) => {
+      this.http.post(this.CREATE_ROOM, JSON.stringify(params), { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            console.log("create room response => ", res)
+            resolve(res.status)
+          } else {
+            console.error('Failed to load profile:', res)
+            reject ('Failed to create room')
+          }
+        }, (err) => {
+          console.info('Failed to create room:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public myRoomList(): Promise<Array<Room>>{
+    const headers = new HttpHeaders({
+      'Authorization':  this.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.get(this.MY_ROOM, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data);
+          } else {
+            console.error('Failed to load All users:', res)
+            reject ('Failed to load All Users')
+          }
+        }, (err) => {
+          console.info('Failed to load All Users:', err)
+          reject(err);
+        });
+    })
+  }
+  
+  public editRoom(params : any, id : any): Promise<Room>{
+    const headers = new HttpHeaders({
+      'Authorization':  this.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.put(this.EDIT_ROOM+id, JSON.stringify(params), { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            console.log(res.data)
+            resolve(res.data);
+          } else {
+            console.error('Failed to load All users:', res)
+            reject ('Failed to load All Users')
+          }
+        }, (err) => {
+          console.info('Failed to load All Users:', err)
+          reject(err);
+        });
+    })
+  }
+  
+  public archiveRoom(id : any): Promise<Room>{
+    const headers = new HttpHeaders({
+      'Authorization':  this.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.put(this.EDIT_ROOM+id, JSON.stringify({archived: true}), { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            console.log(res.data)
+            resolve(res.data);
+          } else {
+            console.error('Failed to archive room:', res)
+            reject ('Failed to load archvie room')
+          }
+        }, (err) => {
+          console.info('Failed to load archive room:', err)
+          reject(err);
+        });
+    })
+  }
 
   public mockNewMsg(msg) {
     

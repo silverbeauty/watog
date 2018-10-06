@@ -9,4 +9,5 @@ export class Room {
     room_topic: string;
     room_is_private: boolean;
     room_members: Array<Member>;
+    room_creator: Member;
 }

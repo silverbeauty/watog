@@ -28,17 +28,17 @@
 <ion-content class = "list-content" padding>
     <ion-list>
       <ion-item-sliding *ngFor="let rowContent of lists">
-        <ion-item (click)="goToChattingPage()">
+        <ion-item (click)="goToChattingPage(rowContent)">
             <ion-avatar item-left>
-                <img src="./assets/imgs/logo.png">
+                <img [src]="rowContent.avatar">
             </ion-avatar>
-            <p>{{ rowContent.title }}</p>
+            <ion-label>{{ rowContent.title }}</ion-label>
         </ion-item>
-        <ion-item-options side="right" (click)="editRoom()">
-            <div class="btn-edit">
+        <ion-item-options side="right">
+            <div class="btn-edit" (click)="editRoom(rowContent)">
                 <ion-icon name="md-color-filter"></ion-icon>
             </div>            
-            <div class="btn-trash" (click)="archiveRoom()">
+            <div class="btn-trash" (click)="archiveRoom(rowContent)">
                 <ion-icon name="trash"></ion-icon>
             </div>            
         </ion-item-options>

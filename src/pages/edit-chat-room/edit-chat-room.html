@@ -8,24 +8,27 @@
     </div>
 </ion-header>
 <ion-content no-padding>
-  <div class="title-view">
-    <input type="text" class="input-title" value="Room" placeholder="Room Name"/>
-  </div>
-  
-  <div class="img-view">
-    <img class="main-avatar" src="./assets/imgs/logo.png"/>
-    <ion-row class="btn-change-image">
-      <ion-col (click)="TakeaPicture()" col-6>
-          <img src="assets/imgs/appareil.png" alt="camera">
-          <p class="font-weight-light text-center">Take a Picture</p>
-      </ion-col>
-      <ion-col (click)="navToGallery()" col-6>
-          <img src="assets/imgs/on_your_computer.png" alt="On your computer">
-          <p class="font-weight-light text-center">On your device</p>
-      </ion-col>
-    </ion-row>
-  </div>
-  
-  <button ion-button round class="btn-update" (click)="update()">UPDATE</button>
-  
+    
+    <div class="title-view" >
+        <ion-input type="text" class="input-title" [(ngModel)]="title" placeholder="Room Name">{{title}}</ion-input>
+    </div>
+    
+    <div class="img-view">
+        <img class="main-avatar" [src]="avatar"/>
+        <ion-row class="btn-change-image">
+            <ion-col (click)="TakeaPicture()" col-6>
+                <img src="assets/imgs/appareil.png" alt="camera">
+                <p class="font-weight-light text-center">Take a Picture</p>
+            </ion-col>
+            <ion-col (click)="navToGallery()" col-6>
+                <img src="assets/imgs/on_your_computer.png" alt="On your computer">
+                <p class="font-weight-light text-center">On your device</p>
+            </ion-col>
+        </ion-row>
+        <div class="description">
+            <ion-textarea placeholder="Description" rows="4"
+            [(ngModel)]="description" name="description" autocomplete="on" autocorrect="on">{{description}}</ion-textarea>                  
+        </div>
+    </div>
+    <button ion-button round class="btn-update" (click)="update()">Update</button>
 </ion-content>

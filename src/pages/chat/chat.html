@@ -3,7 +3,7 @@
       <ion-buttons class="btn-back" (click)="goBack()">
           <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
       </ion-buttons>
-      <ion-title>Chating page</ion-title>
+      <ion-title>{{roomData.title}}</ion-title>
       <header-action-bar class="header-action-bar"></header-action-bar>
   </div>
   <ion-grid class="row-view">
@@ -37,7 +37,7 @@
     <ion-row class="message-info">
         <ion-col col-6>
           <div class="col-div">
-              <p>Total Users:&nbsp;&nbsp;<b>500</b></p>
+              <p>Total Users:&nbsp;&nbsp;<b>{{totalUsers}}</b></p>
           </div>          
         </ion-col>
         <ion-col col-6>
@@ -51,8 +51,7 @@
             <p>Active Users(350):&nbsp;&nbsp; </p>
         </ion-col>
         <ion-col col-7>
-            <ion-scroll scrollX="true" class="actived-member-scroll">              
-                <img src="./assets/imgs/logo.png">
+            <ion-scroll scrollX="true" class="actived-member-scroll">
                 <img src="./assets/imgs/logo.png">
                 <img src="./assets/imgs/logo.png">
                 <img src="./assets/imgs/logo.png">

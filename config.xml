@@ -22,6 +22,8 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="ShowSplashScreen" value="true" />
     <preference name="FadeSplashScreen" value="true" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#775576" />
     <preference name="YouTubeDataApiKe" value="AIzaSyAznLC1F29sn09_-gW-7E-i22a_U0r2I2g" />
     <platform name="android">
         <allow-intent href="market:*" />
@@ -111,6 +113,10 @@
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
     <plugin name="com-sarriaroman-photoviewer" spec="^1.1.18" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
+    <plugin name="ionic-plugin-keyboard" spec="2.2.1" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
     <plugin name="cordova-plugin-youtube-video-player" spec="^1.0.6" />
+    <engine name="browser" spec="5.0.4" />
+    <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="~6.3.0" />
 </widget>
