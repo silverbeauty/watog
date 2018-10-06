@@ -22,6 +22,8 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="ShowSplashScreen" value="true" />
     <preference name="FadeSplashScreen" value="true" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#775576" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -109,6 +111,7 @@
     <plugin name="com-sarriaroman-photoviewer" spec="^1.1.18" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
     <plugin name="ionic-plugin-keyboard" spec="2.2.1" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
     <engine name="browser" spec="5.0.4" />
     <engine name="ios" spec="4.5.5" />
 </widget>
