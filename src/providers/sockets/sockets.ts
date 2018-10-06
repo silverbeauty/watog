@@ -35,6 +35,7 @@ export class SocketsProvider {
       this.socket.on('authenticated', (data) =>{
          console.log("socket data=>", data)
       });
+      // After connected
       this.socket.on('connect', () => {
         this.socket.emit('authenticate', { token: this.token });
       })
