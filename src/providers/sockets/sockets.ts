@@ -32,14 +32,13 @@ export class SocketsProvider {
 
    public registerForChatService() : void
     {
-      
-      this.socket.connect();
-      this.socket.emit('authenticated', { token: this.token });
-
-      this.socket.on('authenticated', (data) =>
-      {
+      this.socket.on('authenticated', (data) =>{
          console.log("socket data=>", data)
       });
+      this.socket.on('connect', () => {
+        this.socket.emit('authenticate', { token: this.token });
+      })
+      this.socket.connect();
     }
     
     public sendMsg(msg: any):void {
