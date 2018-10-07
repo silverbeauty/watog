@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 /**
  * Generated class for the PlayVideoPage page.
@@ -15,14 +16,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PlayVideoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public videoId;
+  public videoThumbnil;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private youtube: YoutubeVideoPlayer, private plt: Platform) {
+    this.videoId = navParams.get('videoId');
+  }
+
+  ngOnInit(): void {
+    this.videoThumbnil = 'http://img.youtube.com/vi' + this.videoId + '/default.jpg';
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlayVideoPage');
   }
+
   goBack() {
     this.navCtrl.pop();
+  }
+
+  openVideo(videoId) {
+    if (this.plt.is('cordova')) {
+      this.youtube.openVideo(videoId);
+    } else {
+      window.open('https://www.youtube.com/watch?v=' + videoId);
+    }
   }
 
 }

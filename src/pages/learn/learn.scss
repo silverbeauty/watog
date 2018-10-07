@@ -16,7 +16,7 @@ page-learn {
                 color: #fff;
                 margin: 4px 0px;
             }
-        }        
+        }
     }
 
     .header-action-bar {
@@ -25,7 +25,9 @@ page-learn {
     }
 
     .scroll-content {
+        margin-top: 48px;
         overflow-y: auto !important;
+        bottom:87px;
     }
 
     .btn-profile{
@@ -37,7 +39,7 @@ page-learn {
     }
 
     .dropdown-menu{
-        padding: 2em;        
+        padding: 2em;
     }
 
     .dropdown-item{
@@ -81,8 +83,8 @@ page-learn {
         margin: 1em 2em;
         border-radius: 1em;
         text-align: center;
-        
-        
+
+
     }
 
     .icon-container {
@@ -107,7 +109,7 @@ page-learn {
             top:26px;
 
         }
-        
+
     }
 
     .ic-title{
@@ -128,7 +130,7 @@ page-learn {
         font-size: 1.3em;
     }
 
-    
+
     .footer-sponsor{
         background-color: rgb(219, 228, 231);
         color: #000;

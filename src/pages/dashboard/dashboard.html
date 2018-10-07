@@ -4,7 +4,7 @@
         <ion-title>Dashboard</ion-title>
         <header-action-bar class="header-action-bar"></header-action-bar>
     </div>
-</ion-header>  
+</ion-header>
 <ion-content>
   <div class="main-container">
       <div class="main-board" no-padding>
@@ -29,7 +29,7 @@
             </ion-col>
           </ion-row>
           <ion-row class="board-row">
-            <ion-col class="board-item" (click)="goToLive()" no-padding>
+            <ion-col class="board-item" (click)="presentLiveModal()" no-padding>
                 <div class="item-image live"></div>
                 <div class="item-title">Live Stream</div>
             </ion-col>
@@ -38,7 +38,6 @@
                 <div class="item-title">Set</div>
             </ion-col>
           </ion-row>
-        </div>    
-  </div>  
+        </div>
+  </div>
 </ion-content>
-  
