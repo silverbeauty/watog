@@ -62,7 +62,8 @@
           <ion-scroll scrollX="true" class="selected-member-scroll" [style.height]="isMembers ? '120px' : '0px'" >              
             <div *ngFor="let member of roomMemberList" class="selected-member-item"  (click)="removeMember(member)">
               <div class="image-avatar">
-                  <img [src]="member.avatar">
+                  <img *ngIf="member.avatar" [src]="member.avatar">
+                  <img *ngIf="!member.avatar" src="../../assets/imgs/image_avatar.png">
                   <ion-icon name="ios-close-circle"></ion-icon>
               </div>
               <div class="name" text-wrap>{{member.username}}</div>                     
@@ -74,8 +75,8 @@
         <ion-item>
             <div *ngFor="let user of userList" class="member-item" (click)="addMember(user)">
                 <div class="image-avatar">
-                    <img [src]="user.avatar">  
-                    <!-- <ion-icon name="ios-checkmark-circle" class="icon-blue"></ion-icon>                   -->
+                    <img *ngIf="user.avatar" [src]="user.avatar">
+                    <img *ngIf="!user.avatar" src="../../assets/imgs/image_avatar.png">
                 </div>
                 <div class="member-content">
                   <h3>{{user.username}}</h3>

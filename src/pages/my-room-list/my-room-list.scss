@@ -50,6 +50,9 @@ page-my-room-list {
     }
     .list-content {
         position: relative;
+        ion-list {
+            margin-bottom: 90px !important;
+        }
     }
     .btn-trash{
         width: 60px;

@@ -14,7 +14,8 @@
     </div>
     
     <div class="img-view">
-        <img class="main-avatar" [src]="avatar"/>
+        <img class="main-avatar" *ngIf="avatar" [src]="avatar">
+        <img class="main-avatar" *ngIf="!avatar" src="../../assets/imgs/image_group_avatar.png">
         <ion-row class="btn-change-image">
             <ion-col (click)="TakeaPicture()" col-6>
                 <img src="assets/imgs/appareil.png" alt="camera">

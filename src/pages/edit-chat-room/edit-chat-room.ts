@@ -44,13 +44,14 @@ export class EditChatRoomPage {
     loader.present();
 
     if (this.avatar) {
+      var self = this;
       this.chatService.sendFile(this.avatar).then((data: any) => {
         let _url = data.url;
         params["avatar"] = _url;
-        this.chatService.editRoom(params, room_id)
+        self.chatService.editRoom(params, room_id)
           .then((res: any) => {
               loader.dismiss();
-              this.navCtrl.pop();
+              self.navCtrl.pop();
           }).catch(err => {
             loader.dismiss();
             console.log(err)
@@ -77,7 +78,6 @@ export class EditChatRoomPage {
   TakeaPicture() {
     this.cam.selectImage(1, 0).then(resp => {
       this.avatar = "data:image/jpeg;base64," + resp;
-      alert("picture saved")
     }, err => {
       console.log("error with select of picture")
       console.log("param not send")
@@ -87,7 +87,6 @@ export class EditChatRoomPage {
   navToGallery() {
     this.cam.selectImage(0, 0).then(resp => {
       this.avatar = "data:image/jpeg;base64," + resp;
-      alert("picture saved")
     }, err => {
       console.log("error with select of picture")
       console.log("param not send")

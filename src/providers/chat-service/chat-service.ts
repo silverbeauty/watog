@@ -16,7 +16,7 @@ export class ChatService {
   EDIT_ROOM: string = server_url+"/room/";
   ATTACH: string = server_url+"/file";
   token: string;
-
+  auth: any;
   constructor(private http: HttpClient,
               private events: Events) {
       const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
@@ -24,7 +24,7 @@ export class ChatService {
         // Set token to RestProvider
         this.token = res[0];
       }
-      console.log('Hello ChatService Provider Provider');
+      this.auth = JSON.parse(res[1]);
   }
 
   public getUserList(): Promise<Member>{
@@ -145,12 +145,27 @@ export class ChatService {
       'Authorization':  this.token,
       'Content-Type': 'application/json'
     });
+
     return new Promise((resolve, reject) => {
       this.http.get(this.EDIT_ROOM+id+"/messages?"+params, { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            console.log(res.data)
-            resolve(res.data);
+            console.log("chating history", res.data)
+            let _temp = [];
+            res.data.forEach(element => {
+              const sender = element.Member.User;
+              let _msg: Message = {
+                messageId: Date.now().toString(),
+                userId: sender.id,
+                userName: sender.first_name+" "+sender.last_name,
+                userAvatar: sender.picture_profile,
+                time: element.createdAt,
+                message: element.text
+              };
+              _temp.push(_msg);
+            });
+            
+            resolve(_temp);
           } else {
             console.error('Failed to archive room:', res)
             reject ('Failed to load archvie room')
@@ -199,32 +214,4 @@ export class ChatService {
         });
     })
   }
-
-  public mockNewMsg(msg) {
-    
-    const mockMsg: Message = {
-      messageId: Date.now().toString(),
-      userId: 210000198410281948,
-      userName: 'Hancock',
-      userAvatar: './assets/imgs/image_group_avatar.png',
-      toUserId: 140000198202211138,
-      time: Date.now(),
-      message: msg.message,
-      status: 'success'
-    };
-
-    setTimeout(() => {
-      this.events.publish('chat:received', mockMsg, Date.now())
-    }, Math.random() * 1800)
-  }
-
-  public getUserInfo(): Promise<Contact> {
-    const userInfo: Contact = {
-      id: 140000198202211138,
-      name: 'Luff',
-      avatar: './assets/imgs/image_avatar.png'
-    };
-    return new Promise(resolve => resolve(userInfo));
-  }
-
 }

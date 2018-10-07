@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 // import * as io from 'socket.io-client';
 import { Contact, Message, Room, Member } from '../../types';
-// import * as io from 'socket.io-client';
-import { Socket } from 'ng-socket-io';
+import * as io from 'socket.io-client';
+// import { Socket } from 'ng-socket-io';
 import { Events } from 'ionic-angular';
 // declare var io;
 const socket_server: string = 'http://151.236.34.11:3000';
@@ -14,106 +14,72 @@ const socket_server: string = 'http://151.236.34.11:3000';
 export class SocketsProvider {
 
   token: string;
-  // socket:any;
-
-  constructor(public http: HttpClient, public events: Events, public socket: Socket) {
+  socket:any;
+  auth: any;
+  constructor(public http: HttpClient, public events: Events, 
+    // public socket: Socket
+    ) {
       const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
       if (res[0]) {
         this.token = res[0];
       }
-
-      // events.publish('new_message', )
-      // events.subscribe('new_message', (dd) => {
-      //   console.log("dd", dd)
-      // })
-      
+      this.auth = JSON.parse(res[1]);      
   }
 
   public connectSocket():void{
-    // this.socket=io(socket_server);
-    // alert(this.socket.connected)
+    this.socket=io(socket_server);
+
     let self = this;
     setInterval(function(){ 
-      if(!self.socket.ioSocket.connected)
-        self.socket.ioSocket.connect();
+      if(!self.socket.connected)
+        self.socket.connect();
     }, 1000);    
   }
 
   public registerForChatService() : void
   {
-    this.socket.on('authenticated', (data) =>{
-        console.log("socket data=>", data)
-    });
-    // After connected
-    this.socket.on('connect', () => {
-      this.socket.emit('authenticate', { token: this.token });
-    })
-    this.socket.connect();
+    if(!this.socket.connected)
+      this.socket.connect();
+    console.log("registerForChatService => ", this.socket)
+    this.socket.emit('authenticate', { token: this.token });
   }
   
   public getSocket(){
     return this.socket;
   }
-  public sendMsg(msg: any):void {
-    if(!this.socket.ioSocket.connected)
-      this.socket.ioSocket.connect();
 
-   
+  public sendMsg(msg: any):void {
+    if(!this.socket.connected)
+      this.socket.connect();
     
-    console.log("sendMsg =>  " , this.socket)
-    this.socket.emit('send_message', { msg });
+    this.socket.emit('send_message', msg);
   }
     
   public Receive(){
-    // if(!this.socket.connected)
-    //   this.socket.connect();
+    var self = this;
+    this.socket.on('new_message', (data) =>
+    {
+      if(data.Member.user_id != self.auth.id){
+        const sender = data.Member.User;
+        let _newMsg: Message = {
+          messageId: Date.now().toString(),
+          userId: sender.id,
+          userName: sender.first_name+" "+sender.last_name,
+          userAvatar: sender.picture_profile,
+          time: data.createdAt,
+          message: data.text
+        };
+        self.events.publish('chat:received', _newMsg);
+      }          
+    });
     
-    console.log("Receive = > ", this.socket);
-    this.socket.on('new_message', (msg) => {
-      // separate the salted message with "#" tag 
-      console.log("receive message1=>", msg)
+    this.socket.on('authenticated', (authenticate) => {
+      console.log("authenticate status =>", authenticate)
     });
-    this.socket.on('send_message', (msg) => {
-      // separate the salted message with "#" tag 
-      console.log("receive message2=>", msg)
-    });
-    this.socket.on('authenticate', (msg) => {
-      // separate the salted message with "#" tag 
-      console.log("receive message3=>", msg)
-    });
-    // return new Observable((observer) =>
-    // {
-    //   console.log("receive => ", this.socket);
-    //   // this.socket.connect();
-    //   this.socket.on('new_message', (msg) => {
-    //     // separate the salted message with "#" tag 
-    //     console.log("receive message1=>", msg)
-    //   });
-    //   this.socket.on('send_message', (msg) => {
-    //     // separate the salted message with "#" tag 
-    //     console.log("receive message2=>", msg)
-    //   });
-    //   this.socket.on('authenticated', (msg) => {
-    //     // separate the salted message with "#" tag 
-    //     console.log("receive message3=>", msg)
-    //   });
-    // })
   }
-
-  public retrieveMessages() : Observable<any>
+  
+  logoutFromSocket() : void
   {
-    return new Observable((observer) =>
-    {
-        this.socket.on('new_message', (data) =>
-        {
-          console.log("receive message=>", data)
-          //observer.next(data);
-        });
-    })
+      this.socket.disconnect();
   }
-
-    logoutFromSocket() : void
-    {
-        this.socket.disconnect();
-    }
 }

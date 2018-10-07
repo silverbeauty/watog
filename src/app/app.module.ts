@@ -20,7 +20,7 @@ import { FileTransferObject } from '@ionic-native/file-transfer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { Keyboard } from "@ionic-native/keyboard";
-import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+// import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
   /*Components*/
 import { MyApp } from './app.component';
@@ -115,12 +115,6 @@ import { ZoomPanDirective } from '../directives/photo-zoom';
 
 import { SocketsProvider } from '../providers/sockets/sockets';
 
-const config = {
-  io : {
-     url 				: "http://151.236.34.11:3000",
-     options 			: {}
-  }
-};
 
 @NgModule({
   declarations: [
@@ -206,7 +200,7 @@ const config = {
     ValidatorsModule,
     SwingModule,
     IonicImageViewerModule,
-    SocketIoModule.forRoot(config.io)
+    // SocketIoModule.forRoot(config.io)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

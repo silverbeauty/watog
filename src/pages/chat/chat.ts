@@ -15,7 +15,7 @@ export class ChatPage {
   @ViewChild('chat_input') messageInput: ElementRef;
   
   msgList: Message[] = [];
-  user: Contact;
+  sender : Contact;
   toUser: Contact;
   editorMsg = '';
   showEmojiPicker = false;
@@ -27,28 +27,27 @@ export class ChatPage {
   _socket: any;
 
   constructor(public navCtrl: NavController, 
-    public navParams: NavParams,
-    private chatService: ChatService,
-    private events: Events,
-    public loadingCtrl: LoadingController,
-    private socketProvider: SocketsProvider,
-    public modalCtrl: ModalController) {    
+      public navParams: NavParams,
+      private chatService: ChatService,
+      private events: Events,
+      public loadingCtrl: LoadingController,
+      private socketProvider: SocketsProvider,
+      public modalCtrl: ModalController
+    ) {    
+      const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
+      
+      const auth = JSON.parse(res[1]);
+      
+      this.sender={
+        id : auth.id,
+        name : auth.first_name+" "+auth.last_name,
+        avatar : auth.picture_profile
+      }
+
       this.socketProvider.connectSocket();
       this.socketProvider.registerForChatService();
 
       this.room_id = navParams.get("roomInfo").id;
-      
-      // Get the navParams toUserId parameter
-      this.toUser = {
-        id: 210000198410281948,
-        name: "BenJamin",
-        avatar : ""
-      };
-      // Get mock user information
-      this.chatService.getUserInfo()
-      .then((res) => {
-        this.user = res;      
-      });   
       
       this.socketProvider.Receive();
   }
@@ -59,14 +58,8 @@ export class ChatPage {
   }
 
   ionViewDidEnter() {
-    console.log("ionViewDidEnter");
-    
-    //get message list  
-    // this.getMsg();
-    
     // Subscribe to received  new message events
     this.events.subscribe('chat:received', msg => {
-      console.log("recived")
       this.pushNewMsg(msg);
     })
   }
@@ -94,22 +87,21 @@ export class ChatPage {
     if (!this.editorMsg.trim()) return;
 
     // Mock message
-    // const id = Date.now().toString();
-    // let _newMsg: Message = {
-    //   messageId: Date.now().toString(),
-    //   userId: this.user.id,
-    //   userName: this.user.name,
-    //   userAvatar: this.user.avatar,
-    //   toUserId: this.toUser.id,
-    //   time: Date.now(),
-    //   message: this.editorMsg,
-    //   status: 'pending'
-    // };
+    let _newMsg: Message = {
+      messageId: Date.now().toString(),
+      userId: this.sender.id,
+      userName: this.sender.name,
+      userAvatar: this.sender.avatar,
+      time: Date.now(),
+      message: this.editorMsg
+    };
+
     let newMsg = {
       text : this.editorMsg,
       room_id : this.roomData.id
     }
-   // this.pushNewMsg(newMsg);
+
+    this.pushNewMsg(_newMsg);
     this.editorMsg = '';
 
     if (!this.showEmojiPicker) {
@@ -124,14 +116,7 @@ export class ChatPage {
    * @param msg
    */
   pushNewMsg(msg: any) {
-    const userId = this.user.id,
-      toUserId = this.toUser.id;
-    // Verify user relationships
-    if (msg.userId === userId && msg.toUserId === toUserId) {
-      this.msgList.push(msg);
-    } else if (msg.toUserId === userId && msg.userId === toUserId) {
-      this.msgList.push(msg);
-    }
+    this.msgList.push(msg);
     this.scrollToBottom();
   }
 
@@ -140,6 +125,7 @@ export class ChatPage {
   }
 
   scrollToBottom() {
+    console.log("scrollTiem")
     setTimeout(() => {
       if (this.content.scrollToBottom) {
         this.content.scrollToBottom();
@@ -159,12 +145,12 @@ export class ChatPage {
   }
 
   ionViewDidLoad() {
-    this.socketProvider.Receive();
+    
     var d = new Date();
-    let _endDate = d.getTime();
-    let _startdate = _endDate - (86400 *2);
+    let _endDate = new Date(d.getFullYear(), d.getMonth(), d.getDay(),d.getHours(), d.getMinutes(), d.getSeconds()).toISOString();    
+    let _startdate = new Date(d.getFullYear(), d.getMonth(), d.getDay()-2,d.getHours(), d.getMinutes(), d.getSeconds()).toISOString();
     let _param = "from="+_startdate+"&to="+_endDate;
-      console.log("room id => ", this.room_id);
+      
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
 
@@ -172,9 +158,11 @@ export class ChatPage {
     this.promise.then(data =>{
       console.log("chat ===> ", data)
       this.roomData = data[0];
+      console.log(this.roomData);
       this.msgList = data[1];
       this.totalUsers = this.roomData.Members.length;
       loader.dismiss();
+      this.scrollToBottom();
     }).catch(err => {
       loader.dismiss();
       console.log("err", err)
@@ -193,6 +181,11 @@ export class ChatPage {
   closeSearchBar(){
     this.isSearch = false;
   }
+
+  // doInfinite(infiniteScroll) {
+  //   console.log('Begin async operation');
+  //   infiniteScroll.complete();
+  // }
 
   goBack() {
     this.navCtrl.pop();

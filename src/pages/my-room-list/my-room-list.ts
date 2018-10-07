@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
 
 import { RoomCreatePrePage } from '../room-create-pre/room-create-pre';
 import { RoomCreateCompletePage } from '../room-create-complete/room-create-complete';
@@ -21,25 +21,30 @@ export class MyRoomListPage {
   lists: any = [];
   _tempLists : any=[];
   search: '';
+  isSearch= false;
 
   constructor(public navCtrl: NavController, 
     public loadingCtrl: LoadingController, 
     public navParams: NavParams,
+    public events: Events,
     public chatService: ChatService) {
     this.parentSelector = navParams.get("parentSelector");    
   }
 
   ionViewDidEnter() {
-    const loader = this.loadingCtrl.create({ content: "Please wait..." });
-    loader.present();
-    this.chatService.myRoomList()
-    .then((res: any) => {
-        this.lists = res;
-        this._tempLists = res;
+    var self = this;
+    this.events.subscribe('main-chat-dashboard', () => {
+      const loader = self.loadingCtrl.create({ content: "Please wait..." });
+      loader.present();
+      self.chatService.myRoomList()
+      .then((res: any) => {
+          self.lists = res;
+          self._tempLists = res;
+          loader.dismiss();
+      }).catch(err => {
         loader.dismiss();
-    }).catch(err => {
-      loader.dismiss();
-      console.log("err", err)
+        console.log("err", err)
+      })  
     })
   }
   onSearch(){
@@ -47,6 +52,13 @@ export class MyRoomListPage {
     this.lists = this._tempLists.filter((item) => {
         return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
     }); 
+  }
+
+  searchRoom(){
+    this.isSearch = true;
+  }
+  closeSearchBar(){
+    this.isSearch = false;
   }
 
   addRoom (){

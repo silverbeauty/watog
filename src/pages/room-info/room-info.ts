@@ -11,13 +11,17 @@ export class RoomInfoPage {
   roomData: any;
   userCount : any;
   admin : any;
-  members : any;
+  members : any=[];
   constructor(public navCtrl: NavController, 
     public navParams: NavParams) {
       this.roomData = navParams.get("roomData");
       this.admin = this.roomData.User;
-      this.members = this.roomData.Members;
-      this.userCount = this.members.length;      
+      this.roomData.Members.forEach(element => {
+        if (this.admin.id != element.User.id){
+          this.members.push(element);
+        }
+      });
+      this.userCount = this.roomData.Members.length;      
   }
 
   ionViewDidLoad() {
