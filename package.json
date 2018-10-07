@@ -124,7 +124,7 @@
       "cordova-plugin-email-composer": {},
       "ionic-plugin-keyboard": {},
       "cordova-plugin-youtube-video-player": {},
-      cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {}
     },
     "platforms": [
       "browser",
