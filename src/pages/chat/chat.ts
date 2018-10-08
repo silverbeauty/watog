@@ -49,10 +49,53 @@ export class ChatPage {
     this.room_id = navParams.get("roomInfo").id;
   }
 
+  ngOnInit(): void {
+    this.chatService.checkReadMessage(this.room_id)
+      .then((res: any) => {
+        console.log(res);
+      }).catch(err => {
+        console.log("err", err)
+      })
+
+  }
+
+  ionViewDidLoad() {
+    let _param = "limit=" + this.stepMessage + "&direction=DESC";
+
+    const loader = this.loadingCtrl.create({ content: "Please wait..." });
+    loader.present();
+
+    this.promise = Promise.all([this.chatService.getRoomInfo(this.room_id), this.chatService.getMsgList(this.room_id, _param)]);
+    this.promise.then(data => {
+      console.log("chat ===> ", data)
+      this.roomData = data[0];
+      this.msgList = data[1]
+      this.msgList.sort(function (a: any, b: any) {
+        return a.time - b.time;
+      });
+
+      this.totalUsers = this.roomData.Members.length;
+      loader.dismiss();
+      this.scrollToBottom();
+    }).catch(err => {
+      loader.dismiss();
+      console.log("err", err)
+    })
+  }
+
+  ionViewDidEnter() {
+    // Subscribe to received  new message events
+    console.log("scrollTop", this.content.scrollTop)
+    this.events.subscribe('chat:received', msg => {
+      this.pushNewMsg(msg);
+    })
+  }
+
   ionViewWillLeave() {
     // unsubscribe
     this.events.unsubscribe('chat:received');
   }
+
   onPageScroll() {
 
     if (this.content.scrollTop < 10) {
@@ -79,14 +122,6 @@ export class ChatPage {
         console.log("err", err)
       })
     }
-  }
-
-  ionViewDidEnter() {
-    // Subscribe to received  new message events
-    console.log("scrollTop", this.content.scrollTop)
-    this.events.subscribe('chat:received', msg => {
-      this.pushNewMsg(msg);
-    })
   }
 
   onFocus() {
@@ -168,30 +203,6 @@ export class ChatPage {
     textarea.scrollTop = textarea.scrollHeight;
   }
 
-  ionViewDidLoad() {
-
-    let _param = "limit=" + this.stepMessage + "&direction=DESC";
-
-    const loader = this.loadingCtrl.create({ content: "Please wait..." });
-    loader.present();
-
-    this.promise = Promise.all([this.chatService.getRoomInfo(this.room_id), this.chatService.getMsgList(this.room_id, _param)]);
-    this.promise.then(data => {
-      console.log("chat ===> ", data)
-      this.roomData = data[0];
-      this.msgList = data[1]
-      this.msgList.sort(function (a: any, b: any) {
-        return a.time - b.time;
-      });
-
-      this.totalUsers = this.roomData.Members.length;
-      loader.dismiss();
-      this.scrollToBottom();
-    }).catch(err => {
-      loader.dismiss();
-      console.log("err", err)
-    })
-  }
   // toolbar funtion
   attachFile() {
 

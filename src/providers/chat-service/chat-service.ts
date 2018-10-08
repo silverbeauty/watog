@@ -234,4 +234,23 @@ export class ChatService {
         });
     })
   }
+
+  public checkReadMessage(room_id): Promise<any> {
+    const headers = new HttpHeaders({
+      'Authorization': this.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve, reject) => {
+      this.http.post(this.EDIT_ROOM + room_id + '/read', { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data);
+          } else {
+            reject('Get Rooms Failed:')
+          }
+        }, (err) => {
+          reject('Get Rooms Failed:')
+        });
+    })
+  }
 }
