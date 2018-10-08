@@ -14,7 +14,8 @@ export class EditChatRoomPage {
   title: '';
   description: '';
   roomInfo: any;
-  
+  memberLimit: '';
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public chatService: ChatService, 
@@ -24,6 +25,8 @@ export class EditChatRoomPage {
       this.title = this.roomInfo.title
       this.description = this.roomInfo.description;
       this.avatar = this.roomInfo.avatar;
+      if(this.roomInfo.member_count_limit)
+        this.memberLimit = this.roomInfo.member_count_limit;
   }
   
   ionViewDidLoad() {
@@ -33,12 +36,14 @@ export class EditChatRoomPage {
   goBack() {
     this.navCtrl.pop();
   }
+  
   update(){
     let room_id = this.roomInfo.id;
     let params = {};
     params["title"] = this.title;
     params["description"] = this.description;
-    
+    if(this.memberLimit)
+      params["member_count_limit"] = parseInt(this.memberLimit);
 
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();

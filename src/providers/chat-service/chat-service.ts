@@ -154,12 +154,13 @@ export class ChatService {
             let _temp = [];
             res.data.forEach(element => {
               const sender = element.Member.User;
+              let _time = new Date(element.createdAt).getTime();
               let _msg: Message = {
                 messageId: Date.now().toString(),
                 userId: sender.id,
                 userName: sender.first_name + " " + sender.last_name,
                 userAvatar: sender.picture_profile,
-                time: element.createdAt,
+                time: _time,
                 message: element.text
               };
               _temp.push(_msg);

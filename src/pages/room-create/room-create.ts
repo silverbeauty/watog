@@ -18,7 +18,7 @@ export class RoomCreatePage {
   
   validations_form: FormGroup;
   countries: Country[];
-  country: Country=null;
+  country: Country[];
   job : any;  
   topics : any=[
     {id:1, name: "Classical Surgery"}, 
@@ -38,6 +38,7 @@ export class RoomCreatePage {
   roomMemberList: Array<any> = [];
   isMembers = false;
   search: '';
+  memberLimit: '';
 
   avatar: any;
   title: '';
@@ -71,6 +72,7 @@ export class RoomCreatePage {
       country: country,
       topic : topic,
       search : [''],
+      memberLimit : [''],
       job: ['', Validators.compose([
         Validators.required
       ])]
@@ -159,19 +161,54 @@ export class RoomCreatePage {
   }
 
   next(){
+   
     let _memberList = [];
     this.roomMemberList.forEach(element => {
       _memberList.push(element.user_id)
     });
+    let _countryName = "";
+    for(var i = 0 ; i < this.country.length ; i++){
+      if(i == 0 ){
+        _countryName = this.country[i].name
+      }
+      else{
+        _countryName += ", "+this.country[i].name
+      }
+    }
+   
+    if(_memberList.length == 0){
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'You must add one member',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    }
+    else if ((_memberList.length > parseInt(this.memberLimit)) && this.memberLimit){
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'You can`t add more member. Please increase member limit or remove member.',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    }
+    
     let params = {};
     params["category_id"] = 1;
     params["title"] = this.title;
     params["description"] = this.description;
-    params["countries"] = this.country.name;
+    params["countries"] = _countryName;
     params["topics"] = this.topic.name;
     params["jobs"] = this.job;
     
     params["members"] = _memberList;
+
+    if(this.memberLimit)
+      params["member_count_limit"] = parseInt(this.memberLimit);
+
+    
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
     

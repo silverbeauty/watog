@@ -18,25 +18,26 @@
     <div class="contacts-view-header">
         <ion-icon name="md-contacts"></ion-icon>
         <p class="contacts-label">Users {{userCount}}</p>
-      </div>
-      <ion-list class="contact-list">
-        <ion-item>
-            <ion-avatar item-left>
-                <img *ngIf="!admin.picture_profile" src="../../assets/imgs/image_avatar.png">      
-                <img *ngIf="admin.picture_profile" [src]="admin.picture_profile">
-            </ion-avatar>
-            <h3>{{admin.first_name+" "+admin.last_name}}</h3>
-            <p>{{admin.country}}</p>
-            <div class="group-admin">GROUP ADMIN</div>
-        </ion-item>          
-        <ion-item  *ngFor="let member of members">
-            <ion-avatar item-left>
-                <img *ngIf="member.User.picture_profile" [src]="member.User.picture_profile">
-                <img *ngIf="!member.User.picture_profile" src="../../assets/imgs/image_avatar.png">      
-            </ion-avatar>
-            <h3>{{member.User.first_name+""+member.User.last_name}}</h3>
-            <p>{{member.User.country}}</p>
-        </ion-item>                 
-      </ion-list>
+        <p class="contacts-label pull-right">Member Limit <b>{{memberLimit}}</b></p>        
+    </div>
+    <ion-list class="contact-list">
+    <ion-item>
+        <ion-avatar item-left>
+            <img *ngIf="!admin.picture_profile" src="../../assets/imgs/image_avatar.png">      
+            <img *ngIf="admin.picture_profile" [src]="admin.picture_profile">
+        </ion-avatar>
+        <h3>{{admin.first_name+" "+admin.last_name}}</h3>
+        <p>{{admin.country}}</p>
+        <div class="group-admin">GROUP ADMIN</div>
+    </ion-item>          
+    <ion-item  *ngFor="let member of members">
+        <ion-avatar item-left>
+            <img *ngIf="member.User.picture_profile" [src]="member.User.picture_profile">
+            <img *ngIf="!member.User.picture_profile" src="../../assets/imgs/image_avatar.png">      
+        </ion-avatar>
+        <h3>{{member.User.first_name+""+member.User.last_name}}</h3>
+        <p>{{member.User.country}}</p>
+    </ion-item>                 
+    </ion-list>
   </div>
 </ion-content>

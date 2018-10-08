@@ -91,22 +91,22 @@
 </ion-content>
 
   <ion-footer no-border [style.height]="showEmojiPicker ? '255px' : '55px'">
-  <div class="input-wrap">
-    <!-- <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
-    <ion-icon name="md-happy"></ion-icon>
-    </button> -->
-    <input #chat_input
-        placeholder="Search your message here"
-        [(ngModel)]="editorMsg"
-        (keyup.enter)="sendMsg()"
-        (focusin)="onFocus()"/>
-    <!-- </input> -->
-    <button ion-button clear icon-only item-right (click)="attachFile()">
-      <ion-icon name="attach" ios="ios-attach" md="md-attach"></ion-icon>
-    </button>
-    <button ion-button clear icon-only item-right (click)="sendMsg()">
-      <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
-    </button>
-  </div>
-  <emoji-picker [(ngModel)]="editorMsg"></emoji-picker>
-</ion-footer>
+    <div class="input-wrap">
+      <!-- <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
+        <ion-icon name="md-happy"></ion-icon>
+      </button> -->
+      <input #chat_input
+                placeholder="Write your message here"
+                [(ngModel)]="editorMsg"
+                (keyup.enter)="sendMsg()"
+                (focusin)="onFocus()"/>
+      <!-- </input> -->
+      <button ion-button clear icon-only item-right (click)="attachFile()">
+        <ion-icon name="attach" ios="ios-attach" md="md-attach"></ion-icon>
+      </button>
+      <button ion-button clear icon-only item-right (click)="sendMsg()">
+        <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+      </button>
+    </div>
+    <emoji-picker [(ngModel)]="editorMsg"></emoji-picker>
+  </ion-footer>
