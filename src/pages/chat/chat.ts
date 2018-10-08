@@ -1,9 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Events, Content, IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
+import { Events, Content, IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController } from 'ionic-angular';
 import { ChatService, SocketsProvider} from "../../providers/";
 import { Contact, Message, Auth } from '../../types';
 import { ReportModalPage } from '../report-modal/report-modal';
 import { RoomInfoPage } from '../room-info/room-info';
+import { ContactListPage } from '../contact-list/contact-list';
 
 @IonicPage()
 @Component({
@@ -27,6 +28,8 @@ export class ChatPage {
   isScrollLoading:boolean = false;
   currentPageIndex: number = 1;
   stepMessage: number= 20;
+  isCreator : boolean = false;
+  member_count_limit : any ='';
 
   constructor(public navCtrl: NavController, 
       public navParams: NavParams,
@@ -34,19 +37,26 @@ export class ChatPage {
       private events: Events,
       public loadingCtrl: LoadingController,
       private socketProvider: SocketsProvider,
-      public modalCtrl: ModalController
+      public modalCtrl: ModalController,
+      public alertCtrl: AlertController
     ) {    
       const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
       
       const auth = JSON.parse(res[1]);
-      
+      const roomData = navParams.get("roomInfo");
+      console.log("chat room data == > ", roomData)
+      this.member_count_limit = roomData.member_count_limit;
+      if(auth.id ==  roomData.User.id){
+        this.isCreator = true;
+      }
+
       this.sender={
         id : auth.id,
         name : auth.first_name+" "+auth.last_name,
         avatar : auth.picture_profile
       }      
 
-      this.room_id = navParams.get("roomInfo").id;
+      this.room_id = roomData.id;
   }
 
   ionViewWillLeave() {
@@ -86,6 +96,11 @@ export class ChatPage {
     console.log("scrollTop", this.content.scrollTop)
     this.events.subscribe('chat:received', msg => {
       this.pushNewMsg(msg);
+    })
+    
+    this.events.subscribe('add:member', data => {
+      this.totalUsers = data.Members.length;
+      this.roomData = data;
     })
   }
 
@@ -197,7 +212,26 @@ export class ChatPage {
 
   }
   addUser(){
+    if( !this.isCreator ){
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'The room creator can only add the member',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    }
 
+    if(this.member_count_limit && this.member_count_limit <= this.totalUsers){
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'The count of members was limited. ',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    }
+    this.navCtrl.push(ContactListPage, {roomData : this.roomData})
   }
   searchMessage(){
     this.isSearch = true;

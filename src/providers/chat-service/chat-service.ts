@@ -145,7 +145,7 @@ export class ChatService {
       'Authorization':  this.token,
       'Content-Type': 'application/json'
     });
-console.log("get Msg Endpoint => ", this.EDIT_ROOM+id+"/messages?"+params)
+// console.log("get Msg Endpoint => ", this.EDIT_ROOM+id+"/messages?"+params)
     return new Promise((resolve, reject) => {
       this.http.get(this.EDIT_ROOM+id+"/messages?"+params, { headers })
         .subscribe((res: any) => {
@@ -212,6 +212,29 @@ console.log("get Msg Endpoint => ", this.EDIT_ROOM+id+"/messages?"+params)
           }
         }, (err) => {
           reject('Save File Failed:')
+        });
+    })
+  }
+
+  public addMember(id: any, params : any ): Promise<any>{
+    const headers = new HttpHeaders({
+      'Authorization':  this.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.post(this.EDIT_ROOM+id+"/member", JSON.stringify(params), { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            console.log("add member response => ", res)
+            resolve(res.data)
+          } else {
+            console.error('Failed to add member:', res)
+            reject ('Failed to add member')
+          }
+        }, (err) => {
+          console.info('Failed to add member:', err)
+          reject(err);
         });
     })
   }

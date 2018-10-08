@@ -76,6 +76,11 @@ export class SocketsProvider {
     this.socket.on('authenticated', (authenticate) => {
       console.log("authenticate status =>", authenticate)
     });
+    
+    this.socket.on('new_member', (memberList) => {
+      console.log("new member =>", memberList)
+      self.events.publish('add:member', memberList);
+    });
   }
   
   logoutFromSocket() : void

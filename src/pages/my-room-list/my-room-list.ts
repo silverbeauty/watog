@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events, AlertController } from 'ionic-angular';
 
 import { RoomCreatePrePage } from '../room-create-pre/room-create-pre';
 import { RoomCreateCompletePage } from '../room-create-complete/room-create-complete';
@@ -22,13 +22,18 @@ export class MyRoomListPage {
   _tempLists : any=[];
   search: '';
   isSearch= false;
-
+  auth : any;
   constructor(public navCtrl: NavController, 
     public loadingCtrl: LoadingController, 
     public navParams: NavParams,
     public events: Events,
-    public chatService: ChatService) {
+    public chatService: ChatService,
+    public alertCtrl:AlertController) {
     this.parentSelector = navParams.get("parentSelector");    
+    
+    const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
+      
+    this.auth = JSON.parse(res[1]);    
   }
 
   ionViewDidEnter() {
@@ -72,7 +77,19 @@ export class MyRoomListPage {
   }
 
   editRoom(roomInfo){
-    this.parentSelector.push(EditChatRoomPage, {roomInfo : roomInfo});
+    if(this.auth.id ==  roomInfo.User.id){
+      this.parentSelector.push(EditChatRoomPage, {roomInfo : roomInfo});  
+    }
+    else{
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'The room creator can only add the member',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    }
+    
   }
 
   archiveRoom(roomInfo){
