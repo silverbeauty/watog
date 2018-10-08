@@ -20,7 +20,7 @@ import { FileTransferObject } from '@ionic-native/file-transfer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { Keyboard } from "@ionic-native/keyboard";
-import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
   /*Components*/
@@ -116,9 +116,8 @@ import { ValidatorsModule } from '../providers/validator/validators.module';
 import { HideHeaderDirective } from '../directives/scroll-hide';
 import { ZoomPanDirective } from '../directives/photo-zoom';
 
-import { socket_server } from '../environments/environment'
 import { SocketsProvider } from '../providers/sockets/sockets';
-const config: SocketIoConfig = { url: socket_server, options: {} };
+
 
 @NgModule({
   declarations: [
@@ -203,7 +202,7 @@ const config: SocketIoConfig = { url: socket_server, options: {} };
     ValidatorsModule,
     SwingModule,
     IonicImageViewerModule,
-    SocketIoModule.forRoot(config),
+    // SocketIoModule.forRoot(config.io)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

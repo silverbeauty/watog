@@ -15,9 +15,11 @@
         <ion-col class="search-item" (click)="searchMessage()"  col-8>
             <ion-icon class="icon-btn" name="ios-search-outline"></ion-icon>
         </ion-col>
-        <ion-col class="more"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" col-2>
-            <ion-icon class="icon-btn" name="md-more"></ion-icon> 
-        </ion-col>
+        <!-- <ion-col > -->
+            <button class="more"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" col-2>
+                <ion-icon class="icon-btn" name="md-more"></ion-icon> 
+            </button>
+        <!-- </ion-col> -->
         <div class="dropdown-menu dropdown-menu-right">
           <button type="button" class="dropdown-item" (click)="archiveMessage()"><ion-icon name="ios-archive-outline"><p>Archive</p></ion-icon></button>
           <button type="button" class="dropdown-item" (click)="roomInfo()"><ion-icon name="ios-information-circle-outline"><p>Room Info</p></ion-icon></button>
@@ -42,34 +44,36 @@
         </ion-col>
         <ion-col col-6>
             <div class="col-div">
-              <p>Messages:&nbsp;&nbsp;<b>1050</b></p>
+              <p>Messages:&nbsp;&nbsp;<b>{{roomData.message_count}}</b></p>
             </div>
         </ion-col>
     </ion-row>
     <ion-row class="active-users-info">
         <ion-col class="active-user" col-5>
-            <p>Active Users(350):&nbsp;&nbsp; </p>
+            <p>Active Users({{totalUsers}}):&nbsp;&nbsp; </p>
         </ion-col>
         <ion-col col-7>
             <ion-scroll scrollX="true" class="actived-member-scroll">
-                <img src="./assets/imgs/logo.png">
-                <img src="./assets/imgs/logo.png">
-                <img src="./assets/imgs/logo.png">
-                <img src="./assets/imgs/logo.png">
-                <img src="./assets/imgs/logo.png">
+                <div  *ngFor="let member of roomData.Members" >
+                    <img *ngIf="member.User.picture_profile" [src]="member.User.picture_profile">
+                    <img *ngIf="!member.User.picture_profile" src="../../assets/imgs/image_avatar.png">                    
+                </div>
             </ion-scroll>
         </ion-col>
     </ion-row>
   </ion-grid>
 </ion-header>
-<ion-content no-padding>
-  
-  <div class="message-wrap">  
+<ion-content  (ionScroll)="onPageScroll($event)" no-padding>
+  <div class="scroll-spinner-div" *ngIf="isScrollLoading" >
+      <ion-spinner class="scroll-spinner"name="circles"></ion-spinner>
+  </div>  
+  <div class="message-wrap">
     <div *ngFor="let msg of msgList"
           class="message"
-          [class.left]=" msg.userId === toUser.id "
-          [class.right]=" msg.userId === user.id ">
-      <img class="user-img" [src]="msg.userAvatar" alt="" src="">
+          [class.left]=" msg.userId !== sender.id "
+          [class.right]=" msg.userId === sender.id ">
+      <img  *ngIf="msg.userAvatar"class="user-img" [src]="msg.userAvatar" alt="">
+      <img  *ngIf="!msg.userAvatar" class="user-img" src="../../assets/imgs/image_avatar.png" alt="">
       <!-- <ion-spinner class="dot-typing" name="dots" *ngIf="msg.status === 'pending'"></ion-spinner> -->
       <div class="msg-detail">
         <div class="msg-info">
@@ -82,8 +86,8 @@
           <p class="line-breaker ">{{msg.message}}</p>
         </div>
       </div>
-    </div>      
-  </div>
+    </div>
+  </div>  
 </ion-content>
   
   <ion-footer no-border [style.height]="showEmojiPicker ? '255px' : '55px'">

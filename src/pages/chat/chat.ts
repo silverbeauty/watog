@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Events, Content, IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { ChatService} from "../../providers/chat-service/chat-service";
-import { Contact, Message } from '../../types';
+import { Events, Content, IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
+import { ChatService, SocketsProvider} from "../../providers/";
+import { Contact, Message, Auth } from '../../types';
 import { ReportModalPage } from '../report-modal/report-modal';
 import { RoomInfoPage } from '../room-info/room-info';
 
@@ -13,50 +13,76 @@ import { RoomInfoPage } from '../room-info/room-info';
 export class ChatPage {
   @ViewChild(Content) content: Content;
   @ViewChild('chat_input') messageInput: ElementRef;
+  
   msgList: Message[] = [];
-  user: Contact;
+  sender : Contact;
   toUser: Contact;
   editorMsg = '';
   showEmojiPicker = false;
   isSearch= false;
-
   roomData: any= [];
+  room_id: '';
   totalUsers=0;
+  promise: any;
+  isScrollLoading:boolean = false;
+  currentPageIndex: number = 0;
+  stepDate: number= 2;
 
   constructor(public navCtrl: NavController, 
-    public navParams: NavParams,
-    private chatService: ChatService,
-    private events: Events,
-    public modalCtrl: ModalController) {
-    
-      this.roomData = navParams.get("roomInfo"); 
-      this.totalUsers = this.roomData.Members.length;
-      // Get the navParams toUserId parameter
-    this.toUser = {
-      id: 210000198410281948,
-      name: "BenJamin",
-      avatar : ""
-    };
-    // Get mock user information
-    this.chatService.getUserInfo()
-    .then((res) => {
-      this.user = res;      
-    });    
+      public navParams: NavParams,
+      private chatService: ChatService,
+      private events: Events,
+      public loadingCtrl: LoadingController,
+      private socketProvider: SocketsProvider,
+      public modalCtrl: ModalController
+    ) {    
+      const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
+      
+      const auth = JSON.parse(res[1]);
+      
+      this.sender={
+        id : auth.id,
+        name : auth.first_name+" "+auth.last_name,
+        avatar : auth.picture_profile
+      }      
+
+      this.room_id = navParams.get("roomInfo").id;
   }
 
   ionViewWillLeave() {
     // unsubscribe
     this.events.unsubscribe('chat:received');
   }
+  onPageScroll(){
+    
+    if(this.content.scrollTop < 10){
+      this.isScrollLoading = true;
+      this.currentPageIndex++;
+      let d = new Date().getTime();
+      let endDate = new Date(d-(86400000*this.currentPageIndex*this.stepDate));
+      let startDate = new Date((d-(86400000*(this.currentPageIndex+1)*this.stepDate)));
+    
+      let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
+      let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
+
+      let _param = "from="+_startdate+"&to="+_endDate;
+      this.chatService.getMsgList(this.room_id, _param).then((data: any) =>{
+        console.log("chat ===> ", data)
+        data.forEach(element => {
+          this.msgList.push(element);
+        });   
+        
+        this.isScrollLoading = false;
+      }).catch(err => {
+        console.log("err", err)
+      })
+    }
+  }
 
   ionViewDidEnter() {
-    
-    //get message list  
-    // this.getMsg();
-    
     // Subscribe to received  new message events
+    console.log("scrollTop", this.content.scrollTop)
     this.events.subscribe('chat:received', msg => {
-      console.log("recived")
       this.pushNewMsg(msg);
     })
   }
@@ -77,21 +103,6 @@ export class ChatPage {
     this.content.resize();
     this.scrollToBottom();
   }
-
-  /**
-   * @name getMsg
-   * @returns {Promise<Message[]>}
-   */
-  getMsg() {    
-    // Get mock message list
-    return this.chatService
-    .getMsgList()
-    .subscribe(res => {
-      this.msgList = res;
-      this.scrollToBottom();
-    });
-  }
-
   /**
    * @name sendMsg
    */
@@ -99,47 +110,36 @@ export class ChatPage {
     if (!this.editorMsg.trim()) return;
 
     // Mock message
-    const id = Date.now().toString();
-    let newMsg: Message = {
+    let _newMsg: Message = {
       messageId: Date.now().toString(),
-      userId: this.user.id,
-      userName: this.user.name,
-      userAvatar: this.user.avatar,
-      toUserId: this.toUser.id,
+      userId: this.sender.id,
+      userName: this.sender.name,
+      userAvatar: this.sender.avatar,
       time: Date.now(),
-      message: this.editorMsg,
-      status: 'pending'
+      message: this.editorMsg
     };
 
-    this.pushNewMsg(newMsg);
+    let newMsg = {
+      text : this.editorMsg,
+      room_id : this.roomData.id
+    }
+
+    this.pushNewMsg(_newMsg);
     this.editorMsg = '';
 
     if (!this.showEmojiPicker) {
       this.focus();
     }
 
-    this.chatService.sendMsg(newMsg)
-    .then(() => {
-      let index = this.getMsgIndexById(id);
-      if (index !== -1) {
-        this.msgList[index].status = 'success';
-      }
-    })
+    this.socketProvider.sendMsg(newMsg);
   }
 
   /**
    * @name pushNewMsg
    * @param msg
    */
-  pushNewMsg(msg: Message) {
-    const userId = this.user.id,
-      toUserId = this.toUser.id;
-    // Verify user relationships
-    if (msg.userId === userId && msg.toUserId === toUserId) {
-      this.msgList.push(msg);
-    } else if (msg.toUserId === userId && msg.userId === toUserId) {
-      this.msgList.push(msg);
-    }
+  pushNewMsg(msg: any) {
+    this.msgList.push(msg);
     this.scrollToBottom();
   }
 
@@ -167,7 +167,32 @@ export class ChatPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ChatPage');
+    
+    let d = new Date().getTime();
+    var endDate = new Date(d);
+    var startDate = new Date((d-(86400000*this.stepDate)));
+    
+    let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
+    let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
+
+    // let _param = "from="+_startdate+"&to="+_endDate;
+    let _param = "";
+    
+    const loader = this.loadingCtrl.create({ content: "Please wait..." });
+    loader.present();
+
+    this.promise = Promise.all([this.chatService.getRoomInfo(this.room_id), this.chatService.getMsgList(this.room_id, _param)]);
+    this.promise.then(data =>{
+      console.log("chat ===> ", data)
+      this.roomData = data[0];
+      this.msgList = data[1];
+      this.totalUsers = this.roomData.Members.length;
+      loader.dismiss();
+      this.scrollToBottom();
+    }).catch(err => {
+      loader.dismiss();
+      console.log("err", err)
+    })
   }
   // toolbar funtion
   attachFile(){
@@ -193,7 +218,7 @@ export class ChatPage {
   }
   
   roomInfo(){
-    this.navCtrl.push(RoomInfoPage);
+    this.navCtrl.push(RoomInfoPage, {roomData : this.roomData});
   }
 
   report(){
