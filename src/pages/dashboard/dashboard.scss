@@ -30,7 +30,8 @@ page-dashboard {
         height: 100%;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
+        margin-top:2rem;
     }
     .main-board{
         max-height: 100%;

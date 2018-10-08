@@ -3,8 +3,7 @@ export class Message {
     public userId: number;
     public userName: string;
     public userAvatar: string;
-    public toUserId: number;
     public time: number | string;
     public message: string;
-    public status: string;
+    // public status: string;
 }

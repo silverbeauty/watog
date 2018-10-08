@@ -53,8 +53,7 @@ export class RoomCreateCompletePage {
 
   TakeaPicture() {
     this.cam.selectImage(1, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;
-      alert("picture saved")
+      this.image_local = "data:image/jpeg;base64," + resp;      
     }, err => {
       console.log("error with select of picture")
       console.log("param not send")
@@ -64,7 +63,6 @@ export class RoomCreateCompletePage {
   navToGallery() {
     this.cam.selectImage(0, 0).then(resp => {
       this.image_local = "data:image/jpeg;base64," + resp;
-      alert("picture saved")
     }, err => {
       console.log("error with select of picture")
       console.log("param not send")

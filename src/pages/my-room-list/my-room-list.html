@@ -1,36 +1,34 @@
 <div class="tool-bar">
   <ion-grid>
-      <ion-row class="btn-bar">
+      <ion-row class="btn-bar" *ngIf="!isSearch">
           <ion-col class="add-item" (click)="addRoom()" col-6>
               <ion-icon class="icon-btn" name="ios-add-outline"></ion-icon>
           </ion-col>
-          <ion-col class="search-item" data-toggle="collapse" data-target="#search" col-6>
+          <ion-col class="search-item" (click)="searchRoom()" col-6>
               <ion-icon class="icon-btn" name="ios-search-outline"></ion-icon>
           </ion-col>
           <!-- <ion-col class="more" col-2>
               <ion-icon class="icon-btn" name="md-more"></ion-icon> 
           </ion-col> -->
-      </ion-row>        
+      </ion-row>
+      <ion-row class="search-bar" *ngIf="isSearch">
+            <ion-col class="search-view" col-10>
+                <ion-input type="text" placeholder="Search" [(ngModel)]="search" (ionChange)="onSearch()"></ion-input>
+            </ion-col>
+            <ion-col class="search-btn-view" (click)="closeSearchBar()" col-2>
+                <ion-icon class="icon-sm" name="md-close-circle"></ion-icon>
+            </ion-col>
+    </ion-row>     
   </ion-grid>
-  
-  <div id="search" class="collapse">
-    <ion-row class="search-bar">
-      <ion-col class="search-view" col-11>
-          <!-- <ion-icon class="icon-sm" name="ios-search-outline"></ion-icon> -->
-          <input type="text" placeholder="Search" />
-      </ion-col>
-      <ion-col class="search-btn-view" col-1>
-          <ion-icon class="icon-sm" name="ios-search-outline"></ion-icon>
-      </ion-col>
-    </ion-row>
-  </div>
+
 </div>
 <ion-content class = "list-content" padding>
     <ion-list>
       <ion-item-sliding *ngFor="let rowContent of lists">
         <ion-item (click)="goToChattingPage(rowContent)">
             <ion-avatar item-left>
-                <img [src]="rowContent.avatar">
+                <img *ngIf="rowContent.avatar" [src]="rowContent.avatar">
+                <img *ngIf="!rowContent.avatar" src="../../assets/imgs/image_group_avatar.png">
             </ion-avatar>
             <ion-label>{{ rowContent.title }}</ion-label>
         </ion-item>
