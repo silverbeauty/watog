@@ -32,9 +32,8 @@ export class MyRoomListPage {
   }
 
   ionViewDidEnter() {
-    var self = this;
-    this.events.subscribe('main-chat-dashboard', () => {
-      const loader = self.loadingCtrl.create({ content: "Please wait..." });
+    const self = this;
+    const loader = self.loadingCtrl.create({ content: "Please wait..." });
       loader.present();
       self.chatService.myRoomList()
       .then((res: any) => {
@@ -44,8 +43,10 @@ export class MyRoomListPage {
       }).catch(err => {
         loader.dismiss();
         console.log("err", err)
-      })  
-    })
+      }) 
+    // this.events.subscribe('main-chat-dashboard', () => {
+ 
+    // })
   }
   onSearch(){
     let searchTerm = this.search;
