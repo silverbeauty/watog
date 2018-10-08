@@ -55,7 +55,7 @@ export class ChatPage {
   }
   onPageScroll(){
     
-    if(this.content.scrollTop < 5){
+    if(this.content.scrollTop < 10){
       this.isScrollLoading = true;
       this.currentPageIndex++;
       let d = new Date().getTime();
@@ -175,7 +175,8 @@ export class ChatPage {
     let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
     let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
 
-    let _param = "from="+_startdate+"&to="+_endDate;
+    // let _param = "from="+_startdate+"&to="+_endDate;
+    let _param = "";
     
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
