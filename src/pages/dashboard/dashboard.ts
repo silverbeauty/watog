@@ -11,6 +11,8 @@ import { ChatRoomPage } from '../chat-room/chat-room';
 import { AdModalPage } from '../ad-modal/ad-modal';
 import { LearnPage } from '../learn/learn';
 import { LivePage } from '../live/live';
+import { SettingsPage } from '../settings/settings';
+
 /**
  * Generated class for the DashboardPage page.
  *
@@ -67,6 +69,6 @@ export class DashboardPage {
     this.navCtrl.push(ChatRoomPage);
   }
   goToSetting(){
-    this.navCtrl.push(WhatIsWatogPage);
+    this.navCtrl.push(SettingsPage);
   }
 }
