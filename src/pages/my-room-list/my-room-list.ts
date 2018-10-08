@@ -19,16 +19,17 @@ import { Message, Room, Member } from '../../types';
 export class MyRoomListPage {
   parentSelector = null;
   lists: any = [];
-  _tempLists : any=[];
+  _tempLists: any = [];
   search: '';
-  isSearch= false;
+  isSearch = false;
 
-  constructor(public navCtrl: NavController, 
-    public loadingCtrl: LoadingController, 
+  constructor(
+    public navCtrl: NavController,
+    public loadingCtrl: LoadingController,
     public navParams: NavParams,
     public events: Events,
     public chatService: ChatService) {
-    this.parentSelector = navParams.get("parentSelector");    
+    this.parentSelector = navParams.get("parentSelector");
   }
 
   ionViewDidEnter() {
@@ -37,54 +38,57 @@ export class MyRoomListPage {
       const loader = self.loadingCtrl.create({ content: "Please wait..." });
       loader.present();
       self.chatService.myRoomList()
-      .then((res: any) => {
+        .then((res: any) => {
           self.lists = res;
           self._tempLists = res;
           loader.dismiss();
-      }).catch(err => {
-        loader.dismiss();
-        console.log("err", err)
-      })  
+        }).catch(err => {
+          loader.dismiss();
+          console.log("err", err)
+        })
     })
   }
-  onSearch(){
+
+  onSearch() {
     let searchTerm = this.search;
     this.lists = this._tempLists.filter((item) => {
-        return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-    }); 
+      return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
   }
 
-  searchRoom(){
+  searchRoom() {
     this.isSearch = true;
   }
-  closeSearchBar(){
+
+  closeSearchBar() {
     this.isSearch = false;
   }
 
-  addRoom (){
+  addRoom() {
     // this.parentSelector.push(RoomCreatePrePage);
     this.parentSelector.push(RoomCreateCompletePage);
   }
-  goToChattingPage(roomInfo){
+
+  goToChattingPage(roomInfo) {
     // this.socket.connect();
     console.log(roomInfo)
-    this.parentSelector.push(ChatPage, {roomInfo : roomInfo});
+    this.parentSelector.push(ChatPage, { roomInfo: roomInfo });
   }
 
-  editRoom(roomInfo){
-    this.parentSelector.push(EditChatRoomPage, {roomInfo : roomInfo});
+  editRoom(roomInfo) {
+    this.parentSelector.push(EditChatRoomPage, { roomInfo: roomInfo });
   }
 
-  archiveRoom(roomInfo){
+  archiveRoom(roomInfo) {
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
     this.chatService.archiveRoom(roomInfo.id)
-    .then((res: any) => {
+      .then((res: any) => {
         console.log(res)
-        loader.dismiss();        
-    }).catch(err => {
-      loader.dismiss();
-      console.log(err)
-    })    
+        loader.dismiss();
+      }).catch(err => {
+        loader.dismiss();
+        console.log(err)
+      })
   }
 }

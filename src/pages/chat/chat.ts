@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Events, Content, IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
-import { ChatService, SocketsProvider} from "../../providers/";
+import { ChatService, SocketsProvider } from "../../providers/";
 import { Contact, Message, Auth } from '../../types';
 import { ReportModalPage } from '../report-modal/report-modal';
 import { RoomInfoPage } from '../room-info/room-info';
@@ -13,65 +13,65 @@ import { RoomInfoPage } from '../room-info/room-info';
 export class ChatPage {
   @ViewChild(Content) content: Content;
   @ViewChild('chat_input') messageInput: ElementRef;
-  
+
   msgList: Message[] = [];
-  sender : Contact;
+  sender: Contact;
   toUser: Contact;
   editorMsg = '';
   showEmojiPicker = false;
-  isSearch= false;
-  roomData: any= [];
+  isSearch = false;
+  roomData: any = [];
   room_id: '';
-  totalUsers=0;
+  totalUsers = 0;
   promise: any;
-  isScrollLoading:boolean = false;
+  isScrollLoading: boolean = false;
   currentPageIndex: number = 0;
-  stepDate: number= 2;
+  stepDate: number = 2;
 
-  constructor(public navCtrl: NavController, 
-      public navParams: NavParams,
-      private chatService: ChatService,
-      private events: Events,
-      public loadingCtrl: LoadingController,
-      private socketProvider: SocketsProvider,
-      public modalCtrl: ModalController
-    ) {    
-      const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
-      
-      const auth = JSON.parse(res[1]);
-      
-      this.sender={
-        id : auth.id,
-        name : auth.first_name+" "+auth.last_name,
-        avatar : auth.picture_profile
-      }      
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private chatService: ChatService,
+    private events: Events,
+    public loadingCtrl: LoadingController,
+    private socketProvider: SocketsProvider,
+    public modalCtrl: ModalController
+  ) {
+    const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
 
-      this.room_id = navParams.get("roomInfo").id;
+    const auth = JSON.parse(res[1]);
+
+    this.sender = {
+      id: auth.id,
+      name: auth.first_name + " " + auth.last_name,
+      avatar: auth.picture_profile
+    }
+
+    this.room_id = navParams.get("roomInfo").id;
   }
 
   ionViewWillLeave() {
     // unsubscribe
     this.events.unsubscribe('chat:received');
   }
-  onPageScroll(){
-    
-    if(this.content.scrollTop < 10){
+  onPageScroll() {
+
+    if (this.content.scrollTop < 10) {
       this.isScrollLoading = true;
       this.currentPageIndex++;
       let d = new Date().getTime();
-      let endDate = new Date(d-(86400000*this.currentPageIndex*this.stepDate));
-      let startDate = new Date((d-(86400000*(this.currentPageIndex+1)*this.stepDate)));
-    
-      let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
+      let endDate = new Date(d - (86400000 * this.currentPageIndex * this.stepDate));
+      let startDate = new Date((d - (86400000 * (this.currentPageIndex + 1) * this.stepDate)));
+
+      let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();
       let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
 
-      let _param = "from="+_startdate+"&to="+_endDate;
-      this.chatService.getMsgList(this.room_id, _param).then((data: any) =>{
+      let _param = "from=" + _startdate + "&to=" + _endDate;
+      this.chatService.getMsgList(this.room_id, _param).then((data: any) => {
         console.log("chat ===> ", data)
         data.forEach(element => {
           this.msgList.push(element);
-        });   
-        
+        });
+
         this.isScrollLoading = false;
       }).catch(err => {
         console.log("err", err)
@@ -120,8 +120,8 @@ export class ChatPage {
     };
 
     let newMsg = {
-      text : this.editorMsg,
-      room_id : this.roomData.id
+      text: this.editorMsg,
+      room_id: this.roomData.id
     }
 
     this.pushNewMsg(_newMsg);
@@ -162,27 +162,27 @@ export class ChatPage {
   }
 
   private setTextareaScroll() {
-    const textarea =this.messageInput.nativeElement;
+    const textarea = this.messageInput.nativeElement;
     textarea.scrollTop = textarea.scrollHeight;
   }
 
   ionViewDidLoad() {
-    
+
     let d = new Date().getTime();
     var endDate = new Date(d);
-    var startDate = new Date((d-(86400000*this.stepDate)));
-    
-    let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
+    var startDate = new Date((d - (86400000 * this.stepDate)));
+
+    let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();
     let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
 
     // let _param = "from="+_startdate+"&to="+_endDate;
     let _param = "";
-    
+
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
 
     this.promise = Promise.all([this.chatService.getRoomInfo(this.room_id), this.chatService.getMsgList(this.room_id, _param)]);
-    this.promise.then(data =>{
+    this.promise.then(data => {
       console.log("chat ===> ", data)
       this.roomData = data[0];
       this.msgList = data[1];
@@ -195,16 +195,16 @@ export class ChatPage {
     })
   }
   // toolbar funtion
-  attachFile(){
+  attachFile() {
 
   }
-  addUser(){
+  addUser() {
 
   }
-  searchMessage(){
+  searchMessage() {
     this.isSearch = true;
   }
-  closeSearchBar(){
+  closeSearchBar() {
     this.isSearch = false;
   }
 
@@ -213,19 +213,19 @@ export class ChatPage {
   }
 
   // right side menu funtion
-  archiveMessage(){
+  archiveMessage() {
 
   }
-  
-  roomInfo(){
-    this.navCtrl.push(RoomInfoPage, {roomData : this.roomData});
+
+  roomInfo() {
+    this.navCtrl.push(RoomInfoPage, { roomData: this.roomData });
   }
 
-  report(){
+  report() {
     let reportModal = this.modalCtrl.create(ReportModalPage);
     reportModal.onDidDismiss(data => {
       console.log("report modal=>", data)
     });
-    reportModal.present();    
+    reportModal.present();
   }
 }

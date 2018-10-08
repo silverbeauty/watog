@@ -6,7 +6,7 @@ import { server_url } from '../../environments/environment'
 
 
 const jsonHeader = new HttpHeaders({
-  'Content-Type':  'application/json'
+  'Content-Type': 'application/json'
 });
 
 @Injectable()
@@ -21,16 +21,16 @@ export class RestProvider {
 
   public login(email: string, password: string): Promise<Auth> {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/user/login', JSON.stringify({email, password}), { headers: jsonHeader })
+      this.http.post(this.apiUrl + '/user/login', JSON.stringify({ email, password }), { headers: jsonHeader })
         .subscribe((res: any) => {
           if (res.status) {
-            const  { user, token } = res.data;
+            const { user, token } = res.data;
             RestProvider.token = token; // Set token
             const auth: Auth = user as Auth;
             auth.token = token;
             resolve(auth);
           } else {
-            reject ('Invalid email or password')
+            reject('Invalid email or password')
           }
         }, (err) => {
           console.info('Login Failed:', err)
@@ -41,21 +41,21 @@ export class RestProvider {
 
   public getProfile(): Promise<Auth> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
 
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl+'/user/me', { headers })
+      this.http.get(this.apiUrl + '/user/me', { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            const  user = res.data;
+            const user = res.data;
             const auth: Auth = user as Auth;
             auth.token = RestProvider.token;
             resolve(auth);
           } else {
             console.error('Failed to load profile:', res)
-            reject ('Failed to load profile')
+            reject('Failed to load profile')
           }
         }, (err) => {
           console.info('Failed to load profile:', err)
@@ -66,18 +66,18 @@ export class RestProvider {
 
   public setProfile(user: User): Promise<User> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
-      this.http.put(this.apiUrl+'/user/me', JSON.stringify(user), { headers })
+      this.http.put(this.apiUrl + '/user/me', JSON.stringify(user), { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            const  user = res.data;
+            const user = res.data;
             resolve(user);
           } else {
             console.error('Failed to load profile:', res)
-            reject ('Failed to load profile')
+            reject('Failed to load profile')
           }
         }, (err) => {
           console.info('Failed to load profile:', err)
@@ -87,21 +87,21 @@ export class RestProvider {
   }
 
 
-public getVideos(): Promise<any> {
+  public getVideos(): Promise<any> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
 
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl+'/learn', { headers })
+      this.http.get(this.apiUrl + '/learn', { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            const  video = res.data;
+            const video = res.data;
             resolve(video);
           } else {
             console.error('Failed to load Video:', res)
-            reject ('Failed to load Category/Video')
+            reject('Failed to load Category/Video')
           }
         }, (err) => {
           console.info('Failed to load Category/Video:', err)
@@ -115,17 +115,17 @@ public getVideos(): Promise<any> {
 
   public postADoc(file: any): Promise<Array<Post>> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/post', file,{ headers })
+      this.http.post(this.apiUrl + '/post', file, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Array<Post>);
           } else {
             console.error('Failed to load send doc:', res)
-            reject ('Failed to send doc')
+            reject('Failed to send doc')
           }
         }, (err) => {
           if (typeof err === 'object') {
@@ -140,17 +140,17 @@ public getVideos(): Promise<any> {
 
   public searchByKey(keyword: string): Promise<Post> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl+'/post?keyword=' + keyword,{ headers })
+      this.http.get(this.apiUrl + '/post?keyword=' + keyword, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data);
           } else {
             console.error('Failed to vote post:', res)
-            reject ('Failed to vote post')
+            reject('Failed to vote post')
           }
         }, (err) => {
           console.info('Failed to vote post:', err)
@@ -161,17 +161,17 @@ public getVideos(): Promise<any> {
 
   public votePost(id: number, commend: boolean = true): Promise<Post> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/post/' + id + '/vote', { commend } ,{ headers })
+      this.http.post(this.apiUrl + '/post/' + id + '/vote', { commend }, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Post);
           } else {
             console.error('Failed to vote post:', res)
-            reject ('Failed to vote post')
+            reject('Failed to vote post')
           }
         }, (err) => {
           console.info('Failed to vote post:', err)
@@ -182,17 +182,17 @@ public getVideos(): Promise<any> {
 
   public cancelVotePost(id: number): Promise<Post> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/post/' + id + '/vote/cancel', {} ,{ headers })
+      this.http.post(this.apiUrl + '/post/' + id + '/vote/cancel', {}, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Post);
           } else {
             console.error('Failed to cancel vote post:', res)
-            reject ('Failed to cancel vote post')
+            reject('Failed to cancel vote post')
           }
         }, (err) => {
           console.info('Failed to cancel vote post:', err)
@@ -203,19 +203,19 @@ public getVideos(): Promise<any> {
 
   public queryPost(str: string): Promise<Array<Post>> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
 
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl+'/post'+str, { headers })
+      this.http.get(this.apiUrl + '/post' + str, { headers })
         .subscribe((res: any) => {
           if (res.status) {
-                // Filter invalid pictures here
+            // Filter invalid pictures here
             resolve(res.data.filter(p => !!p.picture));
           } else {
             console.error('Failed to load send doc:', res)
-            reject ('Failed to send doc')
+            reject('Failed to send doc')
           }
         }, (err) => {
           console.info('Failed to send doc:', err)
@@ -226,24 +226,24 @@ public getVideos(): Promise<any> {
 
   public queryBestPost(str: string): Promise<string> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
 
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl+'/post?order=vote_score&direction=DESC&limit=1&category_id='+str, { headers })
+      this.http.get(this.apiUrl + '/post?order=vote_score&direction=DESC&limit=1&category_id=' + str, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             if (res.data.length > 0) {
-              const post:Post = res.data[0] as Post;
+              const post: Post = res.data[0] as Post;
               const photo = post.picture;
-              resolve(photo);              
+              resolve(photo);
             } else {
               resolve('');
             }
           } else {
             console.error('Failed to get best post:', res)
-            reject ('Failed to  get best post')
+            reject('Failed to  get best post')
           }
         }, (err) => {
           console.info('Failed to  get best post:', err)
@@ -253,13 +253,13 @@ public getVideos(): Promise<any> {
   }
 
 
-  public sendProfilePhoto(file: any): Promise<resFile>{
+  public sendProfilePhoto(file: any): Promise<resFile> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file}), { headers })
+      this.http.post(this.apiUrl + '/file', JSON.stringify({ file: file }), { headers })
         .timeout(30000)
         .subscribe((res: any) => {
           if (res.status) {
@@ -273,14 +273,14 @@ public getVideos(): Promise<any> {
     })
   }
 
-  public sendFile(file: any): Promise<resFile>{
+  public sendFile(file: any): Promise<resFile> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
 
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/file', JSON.stringify({file: file}), { headers })
+      this.http.post(this.apiUrl + '/file', JSON.stringify({ file: file }), { headers })
         .timeout(30000)
         .subscribe((res: any) => {
           if (res.status) {
@@ -296,10 +296,10 @@ public getVideos(): Promise<any> {
 
   public signUp(user: ObjUser): Promise<User> {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/user', JSON.stringify(user), { headers: jsonHeader })
+      this.http.post(this.apiUrl + '/user', JSON.stringify(user), { headers: jsonHeader })
         .subscribe((res: any) => {
           if (res.status) {
-            const user:User = res.data;
+            const user: User = res.data;
             resolve(user);
           } else {
             reject('SignUp Failed:')
@@ -316,21 +316,21 @@ public getVideos(): Promise<any> {
               }
             }
           }
-          reject(errStr ? errStr : 'Failed to sign up, please try again!') 
+          reject(errStr ? errStr : 'Failed to sign up, please try again!')
         });
     })
   }
 
-  public sendProofPhoto(file: any): Promise<User>{
+  public sendProofPhoto(file: any): Promise<User> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/file/verify', JSON.stringify({file: file}), { headers })
+      this.http.post(this.apiUrl + '/file/verify', JSON.stringify({ file: file }), { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            const user:User = res.data;
+            const user: User = res.data;
             resolve(user);
           } else {
             reject('Save File Failed:')
@@ -341,13 +341,13 @@ public getVideos(): Promise<any> {
     })
   }
 
-  public sendVerifyRequest(url_verify: string): Promise<String>{
+  public sendVerifyRequest(url_verify: string): Promise<String> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
-    return new Promise((resolve,reject)=>{
-      this.http.post(this.apiUrl+'/user/verify/'+ url_verify,  {}, {headers})
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl + '/user/verify/' + url_verify, {}, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve('Send Success');
@@ -361,16 +361,16 @@ public getVideos(): Promise<any> {
     })
   }
 
-  public sendVerifyCode(url_verify: string, code_verify: string): Promise<User>{
+  public sendVerifyCode(url_verify: string, code_verify: string): Promise<User> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
-    return new Promise((resolve,reject)=>{
-      this.http.get(this.apiUrl+'/user/verify/'+ url_verify + '/' + code_verify,   {headers})
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl + '/user/verify/' + url_verify + '/' + code_verify, { headers })
         .subscribe((res: any) => {
           if (res.status) {
-            const user:User = res.data;
+            const user: User = res.data;
             resolve(user);
           } else {
             reject('Verification Code Not Correct!')
@@ -384,21 +384,21 @@ public getVideos(): Promise<any> {
   public queryUsers(keyword: string, not_me: boolean = true, offset: number = 0, limit: number = 1000): Promise<Array<User>> {
     let name: string = keyword;
     let lastname: string = null;
-    if(keyword.includes(" ")){
-        name = keyword.split(" ")[0];
-        if(keyword.split(" ")[1].length > 0){
-          lastname = keyword.split(" ")[1];
-        }
+    if (keyword.includes(" ")) {
+      name = keyword.split(" ")[0];
+      if (keyword.split(" ")[1].length > 0) {
+        lastname = keyword.split(" ")[1];
+      }
     }
     let completeName = '&name=' + name;
-    if(lastname != null){
-      completeName = '&name=' + name +'&last_name=' + lastname;
+    if (lastname != null) {
+      completeName = '&name=' + name + '&last_name=' + lastname;
     }
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token
+      'Authorization': RestProvider.token
     });
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl + '/user?' + (not_me ? 'not_me&' : '') + 'offset=' + offset + '&limit=' + limit + completeName , { headers })
+      this.http.get(this.apiUrl + '/user?' + (not_me ? 'not_me&' : '') + 'offset=' + offset + '&limit=' + limit + completeName, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Array<User>);
@@ -414,7 +414,7 @@ public getVideos(): Promise<any> {
 
   public createCategory(category: any): Promise<Array<Category>> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token
+      'Authorization': RestProvider.token
     });
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl + '/category', category, { headers })
@@ -433,10 +433,10 @@ public getVideos(): Promise<any> {
 
   public getCategory(id: number): Promise<Category> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token
+      'Authorization': RestProvider.token
     });
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl + '/category/'+ id, { headers })
+      this.http.get(this.apiUrl + '/category/' + id, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Category);
@@ -452,7 +452,7 @@ public getVideos(): Promise<any> {
 
   public queryCategories(offset: number = 0, limit: number = 1000): Promise<Array<Category>> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token
+      'Authorization': RestProvider.token
     });
     return new Promise((resolve, reject) => {
       this.http.get(this.apiUrl + '/category?offset=' + offset + '&limit=' + limit, { headers })
@@ -471,11 +471,11 @@ public getVideos(): Promise<any> {
 
   public createVote(post_id: number, commend: boolean): Promise<Post> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl + `/post/` + post_id + '/vote', JSON.stringify({commend}),{ headers })
+      this.http.post(this.apiUrl + `/post/` + post_id + '/vote', JSON.stringify({ commend }), { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Post);
@@ -491,11 +491,11 @@ public getVideos(): Promise<any> {
 
   public cancelVote(post_id: number): Promise<Post> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl + `/post/` + post_id + '/vote/cancel', null,{  headers })
+      this.http.post(this.apiUrl + `/post/` + post_id + '/vote/cancel', null, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Post);
@@ -511,13 +511,13 @@ public getVideos(): Promise<any> {
 
   public reportPost(post_id: number, type: string, description: string): Promise<Report> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl + `/post/` + post_id + '/report', {
         type, description
-      }, {  headers })
+      }, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data as Report);
@@ -533,18 +533,18 @@ public getVideos(): Promise<any> {
 
   public countPost(query: string): Promise<number> {
     const headers = new HttpHeaders({
-      'Authorization':  RestProvider.token,
+      'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
 
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl+'/post/count' + query, { headers })
+      this.http.get(this.apiUrl + '/post/count' + query, { headers })
         .subscribe((res: any) => {
           if (res.status) {
             resolve(res.data.count);
           } else {
             console.error('Failed to count posts:', res)
-            reject ('Failed to count posts:')
+            reject('Failed to count posts:')
           }
         }, (err) => {
           console.info('Failed to count posts:', err)
