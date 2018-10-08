@@ -52,7 +52,6 @@ export class MyRoomListPage {
         loader.dismiss();
         console.log("err", err)
       })
-    // this.events.subscribe('main-chat-dashboard', () => {
   }
 
   onSearch() {
