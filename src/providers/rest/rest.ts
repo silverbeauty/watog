@@ -553,7 +553,7 @@ public getVideos(): Promise<any> {
     })
   }
 
-  public getLiveYouTubeId(query: string): Promise<string> {
+  public getLiveYouTubeId(): Promise<string> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
       'Content-Type': 'application/json'
