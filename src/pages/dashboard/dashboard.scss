@@ -17,7 +17,7 @@ page-dashboard {
                 color: #fff;
                 margin: 4px 0px;
             }
-        }        
+        }
     }
 
     .header-action-bar {
@@ -30,7 +30,8 @@ page-dashboard {
         height: 100%;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
+        margin-top:2rem;
     }
     .main-board{
         max-height: 100%;
@@ -53,7 +54,7 @@ page-dashboard {
         .item-title {
             background-color:  rgba(169, 107, 167, 0.8);
             font-size: 16px;
-            padding: 8px 0px;            
+            padding: 8px 0px;
             color: white;
         }
     }

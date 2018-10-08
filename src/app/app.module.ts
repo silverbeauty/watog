@@ -20,7 +20,8 @@ import { FileTransferObject } from '@ionic-native/file-transfer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { Keyboard } from "@ionic-native/keyboard";
-// import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
   /*Components*/
 import { MyApp } from './app.component';
@@ -93,6 +94,8 @@ import { SponsoredContentPage } from '../pages/sponsored-content/sponsored-conte
 import { BreakingNewsPage } from '../pages/breaking-news/breaking-news';
 import { VideosListPage } from '../pages/videos-list/videos-list';
 import { PlayVideoPage } from '../pages/play-video/play-video';
+import { LivePage } from '../pages/live/live';
+import { LearnContentPage } from '../pages/learn-content/learn-content';
 // components
 import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
 import {EmojiPickerComponent} from '../components/emoji-picker/emoji-picker';
@@ -185,9 +188,8 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     BreakingNewsPage,
     VideosListPage,
     PlayVideoPage,
-
-
-    // compoment
+    LivePage,
+    LearnContentPage,
     HeaderActionBarComponent,
     EmojiPickerComponent,
 
@@ -268,8 +270,10 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     SponsoredContentPage,
     BreakingNewsPage,
     VideosListPage,
-    PlayVideoPage
-    
+    PlayVideoPage,
+    LivePage,
+    LearnContentPage,
+
   ],
   providers: [
     StatusBar,
@@ -296,7 +300,8 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     Keyboard,
     EmojiProvider,
     ChatService,
-    SocketsProvider
+    SocketsProvider,
+    YoutubeVideoPlayer
   ]
 })
 export class AppModule {}

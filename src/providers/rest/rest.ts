@@ -86,6 +86,33 @@ export class RestProvider {
     })
   }
 
+
+public getVideos(): Promise<any> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl+'/learn', { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            const  video = res.data;
+            resolve(video);
+          } else {
+            console.error('Failed to load Video:', res)
+            reject ('Failed to load Category/Video')
+          }
+        }, (err) => {
+          console.info('Failed to load Category/Video:', err)
+          reject(err);
+        });
+    })
+  }
+
+
+
+
   public postADoc(file: any): Promise<Array<Post>> {
     const headers = new HttpHeaders({
       'Authorization':  RestProvider.token,
