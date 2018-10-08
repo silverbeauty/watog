@@ -28,6 +28,9 @@ page-learn {
         margin-top: 48px;
         overflow-y: auto !important;
         bottom:87px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .btn-profile{
