@@ -22,6 +22,7 @@ export class MyRoomListPage {
   _tempLists : any=[];
   search: '';
   isSearch= false;
+  isFirstLoad = true;
 
   constructor(public navCtrl: NavController, 
     public loadingCtrl: LoadingController, 
@@ -32,20 +33,25 @@ export class MyRoomListPage {
   }
 
   ionViewDidEnter() {
-    const self = this;
-    const loader = self.loadingCtrl.create({ content: "Please wait..." });
+    const isFirstLoad = this.isFirstLoad;
+    this.isFirstLoad = false;
+    let loader;
+    if (isFirstLoad) {
+      loader = this.loadingCtrl.create({ content: "Please wait..." });
       loader.present();
-      self.chatService.myRoomList()
+    }
+    this.chatService.myRoomList()
       .then((res: any) => {
-          self.lists = res;
-          self._tempLists = res;
-          loader.dismiss();
+          this.lists = res;
+          this._tempLists = res;
+          if (isFirstLoad) {
+            loader.dismiss();
+          }
       }).catch(err => {
         loader.dismiss();
         console.log("err", err)
       }) 
     // this.events.subscribe('main-chat-dashboard', () => {
- 
     // })
   }
   onSearch(){
