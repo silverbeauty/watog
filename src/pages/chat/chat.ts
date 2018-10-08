@@ -25,8 +25,8 @@ export class ChatPage {
   totalUsers=0;
   promise: any;
   isScrollLoading:boolean = false;
-  currentPageIndex: number = 0;
-  stepDate: number= 2;
+  currentPageIndex: number = 1;
+  stepMessage: number= 20;
 
   constructor(public navCtrl: NavController, 
       public navParams: NavParams,
@@ -58,20 +58,22 @@ export class ChatPage {
     if(this.content.scrollTop < 10){
       this.isScrollLoading = true;
       this.currentPageIndex++;
-      let d = new Date().getTime();
-      let endDate = new Date(d-(86400000*this.currentPageIndex*this.stepDate));
-      let startDate = new Date((d-(86400000*(this.currentPageIndex+1)*this.stepDate)));
+      // let d = new Date().getTime();
+      // let endDate = new Date(d-(86400000*this.currentPageIndex*this.stepDate));
+      // let startDate = new Date((d-(86400000*(this.currentPageIndex+1)*this.stepDate)));
     
-      let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
-      let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
-
-      let _param = "from="+_startdate+"&to="+_endDate;
+      // let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
+      // let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
+      let step = this.stepMessage * this.currentPageIndex;
+      let _param = "limit="+step+"&direction=DESC";
+      console.log("scroll To Bottom 0 => ", this.content.scrollHeight)
       this.chatService.getMsgList(this.room_id, _param).then((data: any) =>{
         console.log("chat ===> ", data)
-        data.forEach(element => {
-          this.msgList.push(element);
-        });   
-        
+        data.sort(function (a, b) {        
+          return a.time-b.time;
+        });
+        this.msgList = data;
+        this.content.scrollToBottom(this.content.scrollTop)
         this.isScrollLoading = false;
       }).catch(err => {
         console.log("err", err)
@@ -168,15 +170,7 @@ export class ChatPage {
 
   ionViewDidLoad() {
     
-    let d = new Date().getTime();
-    var endDate = new Date(d);
-    var startDate = new Date((d-(86400000*this.stepDate)));
-    
-    let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
-    let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
-
-    // let _param = "from="+_startdate+"&to="+_endDate;
-    let _param = "";
+    let _param = "limit="+this.stepMessage+"&direction=DESC";
     
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
@@ -185,7 +179,11 @@ export class ChatPage {
     this.promise.then(data =>{
       console.log("chat ===> ", data)
       this.roomData = data[0];
-      this.msgList = data[1];
+      this.msgList = data[1]
+      this.msgList.sort(function (a:any, b:any) {        
+        return a.time-b.time;
+      });
+
       this.totalUsers = this.roomData.Members.length;
       loader.dismiss();
       this.scrollToBottom();

@@ -30,6 +30,11 @@
             <ion-textarea placeholder="Description" rows="4"
             [(ngModel)]="description" name="description" autocomplete="on" autocorrect="on">{{description}}</ion-textarea>                  
         </div>
+
+        <div class="input-group">
+            <ion-input type="text" class="form-control font-weight-light" id="memberLimit" aria-describedby="passwd-picture" placeholder="Member No Limit" [(ngModel)]="memberLimit" contenteditable="false"></ion-input>
+        </div>
     </div>
+
     <button ion-button round class="btn-update" (click)="update()">Update</button>
 </ion-content>

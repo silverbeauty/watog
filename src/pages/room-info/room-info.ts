@@ -12,9 +12,12 @@ export class RoomInfoPage {
   userCount : any;
   admin : any;
   members : any=[];
+  memberLimit : any='';
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams) {
       this.roomData = navParams.get("roomData");
+      console.log(this.roomData);
       this.admin = this.roomData.User;
       this.roomData.Members.forEach(element => {
         if (this.admin.id != element.User.id){
@@ -22,6 +25,10 @@ export class RoomInfoPage {
         }
       });
       this.userCount = this.roomData.Members.length;      
+      if(this.roomData.member_count_limit)
+        this.memberLimit = this.roomData.member_count_limit
+      else
+        this.memberLimit = 'unlimited'
   }
 
   ionViewDidLoad() {
