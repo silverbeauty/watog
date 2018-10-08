@@ -12,7 +12,7 @@
 <ion-content padding>
   <form [formGroup]="validations_form">
       <div class="input-group">
-        <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" formControlName="country" [(ngModel)]="country" placeholder = "Country*" okText="Ok" cancelText="Cancel"   [ngClass]="{ 'is-invalid': validations_form.get('country').errors && (validations_form.get('country').dirty || validations_form.get('country').touched)}">
+        <ion-select class="form-control font-weight-light" id="CountryInput" aria-describedby="passwd-picture" formControlName="country" [(ngModel)]="country" placeholder = "Country*" okText="Ok" cancelText="Cancel"  multiple="true"  [ngClass]="{ 'is-invalid': validations_form.get('country').errors && (validations_form.get('country').dirty || validations_form.get('country').touched)}">
           <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
         </ion-select>
         <ng-container *ngFor="let validation of validation_messages.country">
