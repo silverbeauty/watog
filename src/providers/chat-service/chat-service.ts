@@ -145,7 +145,7 @@ export class ChatService {
       'Authorization':  this.token,
       'Content-Type': 'application/json'
     });
-
+console.log("get Msg Endpoint => ", this.EDIT_ROOM+id+"/messages?"+params)
     return new Promise((resolve, reject) => {
       this.http.get(this.EDIT_ROOM+id+"/messages?"+params, { headers })
         .subscribe((res: any) => {

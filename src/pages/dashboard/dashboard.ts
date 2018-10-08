@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Auth, User, Category } from "../../types";
 
-import { DataProvider, RestProvider } from '../../providers';
+import { DataProvider, RestProvider, SocketsProvider } from '../../providers';
 import { ContestPage } from '../contest/contest';
 import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 import { ChatRoomPage } from '../chat-room/chat-room';
@@ -23,13 +23,17 @@ import { LearnPage } from '../learn/learn';
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider) {}
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider, private socketProvider: SocketsProvider) {
+  }
 
   ionViewDidLoad() {
     if (DataProvider.showAd) {
       DataProvider.showAd = false;
       //this.presentAdModal();
     }
+    this.socketProvider.connectSocket();
+    this.socketProvider.registerForChatService();
+    this.socketProvider.Receive(); 
   }
 
   presentAdModal() {

@@ -40,7 +40,7 @@ export class SocketsProvider {
   {
     if(!this.socket.connected)
       this.socket.connect();
-    console.log("registerForChatService => ", this.socket)
+      
     this.socket.emit('authenticate', { token: this.token });
   }
   

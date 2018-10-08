@@ -24,7 +24,9 @@ export class ChatPage {
   room_id: '';
   totalUsers=0;
   promise: any;
-  _socket: any;
+  isScrollLoading:boolean = false;
+  currentPageIndex: number = 0;
+  stepDate: number= 2;
 
   constructor(public navCtrl: NavController, 
       public navParams: NavParams,
@@ -42,23 +44,44 @@ export class ChatPage {
         id : auth.id,
         name : auth.first_name+" "+auth.last_name,
         avatar : auth.picture_profile
-      }
-
-      this.socketProvider.connectSocket();
-      this.socketProvider.registerForChatService();
+      }      
 
       this.room_id = navParams.get("roomInfo").id;
-      
-      this.socketProvider.Receive();
   }
 
   ionViewWillLeave() {
     // unsubscribe
     this.events.unsubscribe('chat:received');
   }
+  onPageScroll(){
+    
+    if(this.content.scrollTop < 5){
+      this.isScrollLoading = true;
+      this.currentPageIndex++;
+      let d = new Date().getTime();
+      let endDate = new Date(d-(86400000*this.currentPageIndex*this.stepDate));
+      let startDate = new Date((d-(86400000*(this.currentPageIndex+1)*this.stepDate)));
+    
+      let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
+      let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
+
+      let _param = "from="+_startdate+"&to="+_endDate;
+      this.chatService.getMsgList(this.room_id, _param).then((data: any) =>{
+        console.log("chat ===> ", data)
+        data.forEach(element => {
+          this.msgList.push(element);
+        });   
+        
+        this.isScrollLoading = false;
+      }).catch(err => {
+        console.log("err", err)
+      })
+    }
+  }
 
   ionViewDidEnter() {
     // Subscribe to received  new message events
+    console.log("scrollTop", this.content.scrollTop)
     this.events.subscribe('chat:received', msg => {
       this.pushNewMsg(msg);
     })
@@ -125,7 +148,6 @@ export class ChatPage {
   }
 
   scrollToBottom() {
-    console.log("scrollTiem")
     setTimeout(() => {
       if (this.content.scrollToBottom) {
         this.content.scrollToBottom();
@@ -146,11 +168,15 @@ export class ChatPage {
 
   ionViewDidLoad() {
     
-    var d = new Date();
-    let _endDate = new Date(d.getFullYear(), d.getMonth(), d.getDay(),d.getHours(), d.getMinutes(), d.getSeconds()).toISOString();    
-    let _startdate = new Date(d.getFullYear(), d.getMonth(), d.getDay()-2,d.getHours(), d.getMinutes(), d.getSeconds()).toISOString();
+    let d = new Date().getTime();
+    var endDate = new Date(d);
+    var startDate = new Date((d-(86400000*this.stepDate)));
+    
+    let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
+    let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
+
     let _param = "from="+_startdate+"&to="+_endDate;
-      
+    
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
 
@@ -158,7 +184,6 @@ export class ChatPage {
     this.promise.then(data =>{
       console.log("chat ===> ", data)
       this.roomData = data[0];
-      console.log(this.roomData);
       this.msgList = data[1];
       this.totalUsers = this.roomData.Members.length;
       loader.dismiss();
@@ -181,11 +206,6 @@ export class ChatPage {
   closeSearchBar(){
     this.isSearch = false;
   }
-
-  // doInfinite(infiniteScroll) {
-  //   console.log('Begin async operation');
-  //   infiniteScroll.complete();
-  // }
 
   goBack() {
     this.navCtrl.pop();

@@ -120,6 +120,7 @@ page-chat {
                 }
             }
         }
+        
         .message-info{
             margin-top: 10px;
             ion-col {
@@ -186,6 +187,15 @@ page-chat {
         //     right: 10px;
         //     bottom: 5px;
         // }    
+        .scroll-spinner-div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px 0px;
+            .scroll-spinner{
+                margin: 10px 0px !important;
+            }
+        }
     }
 
     ion-footer {

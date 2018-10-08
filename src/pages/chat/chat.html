@@ -63,9 +63,11 @@
     </ion-row>
   </ion-grid>
 </ion-header>
-<ion-content no-padding>
-  
-  <div class="message-wrap">  
+<ion-content  (ionScroll)="onPageScroll($event)" no-padding>
+  <div class="scroll-spinner-div" *ngIf="isScrollLoading" >
+      <ion-spinner class="scroll-spinner"name="circles"></ion-spinner>
+  </div>  
+  <div class="message-wrap">
     <div *ngFor="let msg of msgList"
           class="message"
           [class.left]=" msg.userId !== sender.id "
@@ -85,10 +87,7 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>   -->
+  </div>  
 </ion-content>
   
   <ion-footer no-border [style.height]="showEmojiPicker ? '255px' : '55px'">
