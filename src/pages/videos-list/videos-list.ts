@@ -27,6 +27,10 @@ export class VideosListPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public modalCtrl: ModalController, private youtube: YoutubeVideoPlayer, private plt: Platform) {
     this.vidvalue = navParams.get('N');
     this.vidvalueName = navParams.get('Nname');
+
+    if (this.vidvalueName === 'FMF') {
+      this.vidvalueName = 'FLASOG';
+    }
   }
 
   ngOnInit(): void {
@@ -52,7 +56,7 @@ export class VideosListPage {
   }
 
   goToPlayVideo(video) {
-    this.navCtrl.push(PlayVideoPage, { 
+    this.navCtrl.push(PlayVideoPage, {
       videoId: video.videoId
     })
   }
