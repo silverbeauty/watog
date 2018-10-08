@@ -33,7 +33,6 @@ export class LearnPage {
     this.restProvider.getVideos().then((video: any) => {
       this.video = video;
       this.expression = true;
-
     }).catch(err => {
       console.error(err)
     })
