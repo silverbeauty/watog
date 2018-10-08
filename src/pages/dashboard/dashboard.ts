@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, LoadingController } from 'ionic-angular';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 import { Auth, User, Category } from "../../types";
@@ -27,7 +27,7 @@ import { SettingsPage } from '../settings/settings';
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider, private youtube: YoutubeVideoPlayer, private plt: Platform, private socketProvider: SocketsProvider) {}
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider, private youtube: YoutubeVideoPlayer, private plt: Platform, private socketProvider: SocketsProvider, public loadingCtrl: LoadingController) {}
 
   ionViewDidLoad() {
     if (DataProvider.showAd) {
@@ -42,12 +42,18 @@ export class DashboardPage {
   presentLiveModal() {
     // const liveModal = this.modalCtrl.create(LivePage);
     // liveModal.present();
-    const videoId = '4K9TKvjTmWA';
-    if (this.plt.is('cordova')) {
-      this.youtube.openVideo(videoId);
-    } else {
-      window.open('https://www.youtube.com/watch?v=' + videoId);
-    }
+    const loader = this.loadingCtrl.create({ content: "Connecting..." });
+    loader.present();
+    this.restProvider.getLiveYouTubeId().then(videoId => {
+      loader.dismiss();
+      if (this.plt.is('cordova')) {
+        this.youtube.openVideo(videoId);
+      } else {
+        window.open('https://www.youtube.com/watch?v=' + videoId);
+      }
+    }).catch((err) => {
+      window.alert(err);
+    });
   }
 
   presentAdModal() {
