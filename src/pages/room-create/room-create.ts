@@ -38,6 +38,7 @@ export class RoomCreatePage {
   roomMemberList: Array<any> = [];
   isMembers = false;
   search: '';
+  memberLimit: '';
 
   avatar: any;
   title: '';
@@ -71,6 +72,7 @@ export class RoomCreatePage {
       country: country,
       topic : topic,
       search : [''],
+      memberLimit : [''],
       job: ['', Validators.compose([
         Validators.required
       ])]
@@ -174,6 +176,25 @@ export class RoomCreatePage {
       }
     }
    
+    if(_memberList.length == 0){
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'You must add one member',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    }
+    else if ((_memberList.length > parseInt(this.memberLimit)) && this.memberLimit){
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'You can`t add more member. Please increase member limit or remove member.',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    }
+    
     let params = {};
     params["category_id"] = 1;
     params["title"] = this.title;
@@ -183,6 +204,11 @@ export class RoomCreatePage {
     params["jobs"] = this.job;
     
     params["members"] = _memberList;
+
+    if(this.memberLimit)
+      params["member_count_limit"] = parseInt(this.memberLimit);
+
+    
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
     

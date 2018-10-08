@@ -84,7 +84,7 @@ page-edit-chat-room {
         }
     }
     .scroll-content{
-        overflow: hidden;
+       // overflow: hidden;
     }
 
     .description{
@@ -96,12 +96,25 @@ page-edit-chat-room {
     }
     .btn-update{
         background-color: #775576;
-        position: absolute;
+        //position: absolute;
         width:calc(100vw - 40px);
         margin-left: 20px;
-        bottom: 20px;
+        margin-top : 30px;
+        margin-bottom : 30px;
     }  
-    
+    .input-group {
+        padding: 1em;
+        .form-control {
+            border-radius: 50em !important;
+            font-size: 1.2em;
+            padding: 0em;
+            width: 100% !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+            max-width: 100%;
+        }                
+    }
+
     @media screen and (max-width: 359px) {
         .main-avatar {
             width: 70px !important;
