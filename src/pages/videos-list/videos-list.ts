@@ -21,12 +21,12 @@ export class VideosListPage {
   // public video;
 
   public vidvalue = [];
+  public vidvalueName;
   public expression = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public modalCtrl: ModalController, private youtube: YoutubeVideoPlayer, private plt: Platform) {
     this.vidvalue = navParams.get('N');
-
-    console.log(this.vidvalue)
+    this.vidvalueName = navParams.get('Nname');
   }
 
   ngOnInit(): void {
@@ -37,7 +37,6 @@ export class VideosListPage {
         element.videoId = link.replace('https://www.youtube.com/embed/', '')
       }
     });
-    console.log(this.vidvalue)
   }
 
   openVideo(videoId) {
@@ -53,7 +52,7 @@ export class VideosListPage {
   }
 
   goToPlayVideo(video) {
-    this.navCtrl.push(PlayVideoPage, {
+    this.navCtrl.push(PlayVideoPage, { 
       videoId: video.videoId
     })
   }

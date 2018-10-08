@@ -27,9 +27,10 @@ export class LearnContentPage {
     this.navCtrl.pop();
   }
 
-  goToVideosListPage(event, N) {
+  goToVideosListPage(event, N, Nname) {
     this.navCtrl.push(VideosListPage, {
-      N: N
+      N: N,
+      Nname: Nname
     });
   }
 

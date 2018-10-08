@@ -154,6 +154,7 @@ page-videos-list {
         position: fixed;
         width: 100%;
         bottom: 0;
+        z-index: 999;
 
         .labor-img, .baby-img{
             height: 6vh;
