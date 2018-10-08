@@ -21,8 +21,8 @@ export class MyRoomListPage {
   lists: any = [];
   _tempLists: any = [];
   search: '';
-  isSearch= false;
-isFirstLoad = true;
+  isSearch = false;
+  isFirstLoad = true;
 
   constructor(
     public navCtrl: NavController,
@@ -43,15 +43,15 @@ isFirstLoad = true;
     }
     this.chatService.myRoomList()
       .then((res: any) => {
-          this.lists = res;
-          this._tempLists = res;
-          if (isFirstLoad) {
-            loader.dismiss();
-          }
+        this.lists = res;
+        this._tempLists = res;
+        if (isFirstLoad) {
+          loader.dismiss();
+        }
       }).catch(err => {
         loader.dismiss();
         console.log("err", err)
-      }) 
+      })
     // this.events.subscribe('main-chat-dashboard', () => {
   }
 

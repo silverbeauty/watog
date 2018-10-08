@@ -24,29 +24,29 @@ export class ChatPage {
   room_id: '';
   totalUsers = 0;
   promise: any;
-  isScrollLoading:boolean = false;
+  isScrollLoading: boolean = false;
   currentPageIndex: number = 1;
-  stepMessage: number= 20;
+  stepMessage: number = 20;
 
-  constructor(public navCtrl: NavController, 
-      public navParams: NavParams,
-      private chatService: ChatService,
-      private events: Events,
-      public loadingCtrl: LoadingController,
-      private socketProvider: SocketsProvider,
-      public modalCtrl: ModalController
-    ) {    
-      const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
-      
-      const auth = JSON.parse(res[1]);
-      
-      this.sender={
-        id : auth.id,
-        name : auth.first_name+" "+auth.last_name,
-        avatar : auth.picture_profile
-      }      
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private chatService: ChatService,
+    private events: Events,
+    public loadingCtrl: LoadingController,
+    private socketProvider: SocketsProvider,
+    public modalCtrl: ModalController
+  ) {
+    const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
 
-      this.room_id = navParams.get("roomInfo").id;
+    const auth = JSON.parse(res[1]);
+
+    this.sender = {
+      id: auth.id,
+      name: auth.first_name + " " + auth.last_name,
+      avatar: auth.picture_profile
+    }
+
+    this.room_id = navParams.get("roomInfo").id;
   }
 
   ionViewWillLeave() {
@@ -61,16 +61,16 @@ export class ChatPage {
       // let d = new Date().getTime();
       // let endDate = new Date(d-(86400000*this.currentPageIndex*this.stepDate));
       // let startDate = new Date((d-(86400000*(this.currentPageIndex+1)*this.stepDate)));
-    
-      // let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
+
+      // let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();
       // let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
       let step = this.stepMessage * this.currentPageIndex;
-      let _param = "limit="+step+"&direction=DESC";
+      let _param = "limit=" + step + "&direction=DESC";
       console.log("scroll To Bottom 0 => ", this.content.scrollHeight)
-      this.chatService.getMsgList(this.room_id, _param).then((data: any) =>{
+      this.chatService.getMsgList(this.room_id, _param).then((data: any) => {
         console.log("chat ===> ", data)
-        data.sort(function (a, b) {        
-          return a.time-b.time;
+        data.sort(function (a, b) {
+          return a.time - b.time;
         });
         this.msgList = data;
         this.content.scrollToBottom(this.content.scrollTop)
@@ -169,9 +169,9 @@ export class ChatPage {
   }
 
   ionViewDidLoad() {
-    
-    let _param = "limit="+this.stepMessage+"&direction=DESC";
-    
+
+    let _param = "limit=" + this.stepMessage + "&direction=DESC";
+
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
 
@@ -180,8 +180,8 @@ export class ChatPage {
       console.log("chat ===> ", data)
       this.roomData = data[0];
       this.msgList = data[1]
-      this.msgList.sort(function (a:any, b:any) {        
-        return a.time-b.time;
+      this.msgList.sort(function (a: any, b: any) {
+        return a.time - b.time;
       });
 
       this.totalUsers = this.roomData.Members.length;
