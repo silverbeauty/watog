@@ -14,7 +14,7 @@ page-room-info {
         .title {
             padding-left: 0px !important;
             padding-right: 0px !important;
-
+            min-height: 41px;
             .toolbar-title {
                 color: #fff;
                 margin: 4px 0px;
@@ -103,6 +103,17 @@ page-room-info {
         right: 15px;
         b{
             color: red;
+        }
+    }
+    .btn-trash{
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;        
+        background-color: #808080;
+        ion-icon {
+            color : #ffffff;
+            font-size: 30px;
         }
     }
 }

@@ -18,7 +18,7 @@ page-chat {
         .title {
             padding-left: 0px !important;
             padding-right: 0px !important;
-
+            min-height: 41px;
             .toolbar-title {
                 color: #fff;
                 margin: 4px 0px;
@@ -160,9 +160,9 @@ page-chat {
             }
             .actived-member-scroll{
                 height: 40px;
-                white-space: nowrap;
+                
                 div{
-                    display: flex;
+                    display: -webkit-box;
                 }
                 img{
                     width: 35px;

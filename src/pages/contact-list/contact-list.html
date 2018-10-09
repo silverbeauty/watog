@@ -1,0 +1,32 @@
+<ion-header class="header-bar">
+  <div class="navbar">
+      <ion-buttons class="btn-back" (click)="goBack()">
+          <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
+      </ion-buttons>
+      <ion-title>{{roomData.title}}</ion-title>
+      <header-action-bar class="header-action-bar"></header-action-bar>
+  </div>
+</ion-header>
+<ion-content padding>
+  <div class="view-search">
+    <ion-row class="search-bar">
+      <ion-col class="search-view">
+          <ion-input type="text" [(ngModel)]="search" (ionChange)="onSearch()" placeholder="Search"></ion-input>
+      </ion-col>
+    </ion-row>
+  </div>
+  <ion-list class="all-member-scroll">
+    <ion-item>
+        <div *ngFor="let user of userList" class="member-item" (click)="addMember(user)">
+            <div class="image-avatar">
+                <img *ngIf="user.avatar" [src]="user.avatar">
+                <img *ngIf="!user.avatar" src="../../assets/imgs/image_avatar.png">
+            </div>
+            <div class="member-content">
+              <h3>{{user.username}}</h3>
+              <p>{{user.country}}</p>
+            </div>
+        </div>
+    </ion-item>
+  </ion-list>  
+</ion-content>

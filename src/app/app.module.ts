@@ -96,6 +96,8 @@ import { VideosListPage } from '../pages/videos-list/videos-list';
 import { PlayVideoPage } from '../pages/play-video/play-video';
 import { LivePage } from '../pages/live/live';
 import { LearnContentPage } from '../pages/learn-content/learn-content';
+import { ContactListPage } from '../pages/contact-list/contact-list';
+
 // components
 import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
 import {EmojiPickerComponent} from '../components/emoji-picker/emoji-picker';
@@ -181,6 +183,7 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     ReportModalPage,
     RoomInfoPage,
     RoomCreateCompletePage,
+    ContactListPage,
 
     LearnPage,
     InstitutionalContentsPage,
@@ -264,7 +267,12 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     ReportModalPage,
     RoomInfoPage,
     RoomCreateCompletePage,
+<<<<<<< HEAD
+    ContactListPage,
+    
+=======
 
+>>>>>>> 00cedd86b81e61f7bc4b3b61b3f57a63604f0fd5
     LearnPage,
     InstitutionalContentsPage,
     SponsoredContentPage,

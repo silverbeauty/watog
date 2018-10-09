@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events, AlertController } from 'ionic-angular';
 
 import { RoomCreatePrePage } from '../room-create-pre/room-create-pre';
 import { RoomCreateCompletePage } from '../room-create-complete/room-create-complete';
@@ -21,7 +21,8 @@ export class MyRoomListPage {
   lists: any = [];
   _tempLists: any = [];
   search: '';
-  isSearch = false;
+  isSearch= false;
+  auth : any;
   isFirstLoad = true;
 
   constructor(
@@ -29,8 +30,13 @@ export class MyRoomListPage {
     public loadingCtrl: LoadingController,
     public navParams: NavParams,
     public events: Events,
-    public chatService: ChatService) {
-    this.parentSelector = navParams.get("parentSelector");
+    public chatService: ChatService,
+    public alertCtrl:AlertController) {
+
+    this.parentSelector = navParams.get("parentSelector");        
+    const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
+      
+    this.auth = JSON.parse(res[1]);    
   }
 
   ionViewDidEnter() {
@@ -41,7 +47,9 @@ export class MyRoomListPage {
       loader = this.loadingCtrl.create({ content: "Please wait..." });
       loader.present();
     }
-    this.chatService.myRoomList()
+    
+    this.events.subscribe('main-chat-dashboard', () => {
+      this.chatService.myRoomList()
       .then((res: any) => {
         this.lists = res;
         this._tempLists = res;
@@ -49,9 +57,12 @@ export class MyRoomListPage {
           loader.dismiss();
         }
       }).catch(err => {
-        loader.dismiss();
+        if (isFirstLoad) {
+          loader.dismiss();
+        }
         console.log("err", err)
-      })
+      }) 
+    })
   }
 
   onSearch() {
@@ -80,8 +91,20 @@ export class MyRoomListPage {
     this.parentSelector.push(ChatPage, { roomInfo: roomInfo });
   }
 
-  editRoom(roomInfo) {
-    this.parentSelector.push(EditChatRoomPage, { roomInfo: roomInfo });
+  editRoom(roomInfo){
+    if(this.auth.id ==  roomInfo.User.id){
+      this.parentSelector.push(EditChatRoomPage, {roomInfo : roomInfo});  
+    }
+    else{
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'The room creator can only add the member',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    }
+    
   }
 
   archiveRoom(roomInfo) {

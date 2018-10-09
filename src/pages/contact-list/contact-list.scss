@@ -1,4 +1,4 @@
-page-room-create {
+page-contact-list {
     // start header bar
     .header-bar{
         .navbar{
@@ -41,74 +41,7 @@ page-room-create {
         right: 10px;
     }
     // end header bar
-    
-    .input-group {
-        padding: 1em;
-        .form-control {
-            border-radius: 50em !important;
-            font-size: 1.2em;
-            padding: 0em;
-            width: 100% !important;
-            padding-left: 20px !important;
-            padding-right: 20px !important;
-            max-width: 100%;
-        }
-        .select-text{
-            padding-left: 8px;
-        }
-        .is-invalid {
-            border-color: red;
-        }
-        .error-message {
-            text-align: center;
-            width: 100%;
-            color: red;
-        }
-    }
-    .select-icon {
-        display: none;
-    }
-    .form-control.select {
-        padding: 10px;
-    }
-    a#qualificationInput {
-        text-align: center;
-        color: black !important;
-        border: none;
-        text-decoration: none;
-        width: 100%;
-        input {
-            // text-align: center;
-            margin: 13px 0px;
-        }
-    }
-    .input-cover {
-        display: none;
-    }
-    .div-btn-submit{
-        padding: .7em;
-        position: absolute !important;
-        width: 100%;
-        @include browser(Android) {
-            bottom: 4em;
-        }
 
-        @include browser("iPhone" "iPad") {
-            bottom: 0em;
-        }
-    }
-    .btn-submit{
-        background-color: #a96ba7;
-        color: white;
-        font-size: 1em;
-        border-radius: 50em;
-        padding: .7em;
-        width: 100%;
-        opacity: 1;
-    }
-    .or-view{
-        text-align: center;
-    }
     .search-bar{
         margin-top : 10px; 
         margin-right: 0px !important;
@@ -126,56 +59,11 @@ page-room-create {
             .text-input {
                 font-size: 18px;
                 flex: 1;
-                padding-left: 10px;
+                padding: 5px 10px;
                 margin: 0px;
             }             
         }
-        .icon-sm{
-            font-size : 22px;
-            margin-right : 10px;
-        }
-        
-        .search-btn-view{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color : #e5e5e5;
-            text-align: center;
-            ion-icon {
-                margin-right: 0px !important;
-            }
-        }
     }
-
-    // .selected-member{
-        .selected-member-scroll{
-            // position: relative;
-            border-bottom: 0.55px solid #c8c7cc;
-            height: 110px;
-            white-space: nowrap;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            
-            .selected-member-item{
-                width: 120px;
-                display: inline-table;
-                padding: 5px;
-                text-align: center;
-                .name{
-                    margin-bottom : 0px !important;
-                    margin-top: 5px !important;
-                }
-            }
-            
-            .scroll-content{
-                padding: 0px !important;                
-            }  
-        }
-        .icon-blue{
-            color : #a96ba7;
-        }
-    // }
     .image-avatar {
         min-width: 50px;
         min-height: 50px;

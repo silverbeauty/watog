@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Events } from 'ionic-angular';
 import { map } from 'rxjs/operators/map';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+// import { RequestOptions, Request, RequestMethod } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
 import { Contact, Message, Room, Member } from '../../types';
@@ -145,7 +146,11 @@ export class ChatService {
       'Authorization': this.token,
       'Content-Type': 'application/json'
     });
+<<<<<<< HEAD
+// console.log("get Msg Endpoint => ", this.EDIT_ROOM+id+"/messages?"+params)
+=======
     console.log("get Msg Endpoint => ", this.EDIT_ROOM + id + "/messages?" + params)
+>>>>>>> 00cedd86b81e61f7bc4b3b61b3f57a63604f0fd5
     return new Promise((resolve, reject) => {
       this.http.get(this.EDIT_ROOM + id + "/messages?" + params, { headers })
         .subscribe((res: any) => {
@@ -216,6 +221,54 @@ export class ChatService {
     })
   }
 
+<<<<<<< HEAD
+  public addMember(id: any, params : any ): Promise<any>{
+    const headers = new HttpHeaders({
+      'Authorization':  this.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.post(this.EDIT_ROOM+id+"/member", JSON.stringify(params), { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            console.log("add member response => ", res)
+            resolve(res.data)
+          } else {
+            console.error('Failed to add member:', res)
+            reject ('Failed to add member')
+          }
+        }, (err) => {
+          console.info('Failed to add member:', err)
+          reject(err);
+        });
+    })
+  }
+  public removeMember(id: any, params : any ): Promise<any>{
+    const headers = new HttpHeaders({
+      'Authorization':  this.token,
+      'Content-Type': 'application/json'
+    });
+
+    let options = {
+      headers: headers,
+      body : JSON.stringify(params)
+    };
+
+    return new Promise((resolve, reject) => {
+      this.http.request('delete', this.EDIT_ROOM+id+"/member", options)
+        .subscribe((res: any) => {
+          if (res.status) {
+            console.log("delete member response => ", res)
+            resolve(res.data)
+          } else {
+            console.error('Failed to add member:', res)
+            reject ('Failed to add member')
+          }
+        }, (err) => {
+          console.info('Failed to add member:', err)
+          reject(err);
+=======
   public getRoomsList(): Promise<any> {
     const headers = new HttpHeaders({
       'Authorization': this.token,
@@ -250,6 +303,7 @@ export class ChatService {
           }
         }, (err) => {
           reject('Get Rooms Failed:')
+>>>>>>> 00cedd86b81e61f7bc4b3b61b3f57a63604f0fd5
         });
     })
   }
