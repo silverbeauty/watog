@@ -55,7 +55,7 @@ export class MyRoomListPage {
         temp = res.filter((item) => {
           if(!item.archived)
             return item;
-        }); 
+        });
         res = temp;
         this.lists = res;
         console.log("res => ", res)
@@ -125,8 +125,8 @@ export class MyRoomListPage {
           temp = this.lists.filter((item) => {
             if(item.id !=res.id)
               return item;
-          }); 
-  
+          });
+
           this.lists = temp;
           this._tempLists = temp;
           loader.dismiss();
@@ -144,6 +144,6 @@ export class MyRoomListPage {
       _alert.present();
       return;
     }
-    
+
   }
 }
