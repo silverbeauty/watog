@@ -24,7 +24,6 @@ export class MyRoomListPage {
   isSearch = false;
   auth: any;
   isFirstLoad = true;
-  pushNewMsg = [];
 
   constructor(
     public navCtrl: NavController,
