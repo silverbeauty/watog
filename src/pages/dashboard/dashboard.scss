@@ -1,6 +1,13 @@
 page-dashboard {
     /*BEGIN TOOLBAR CSS*/
     .header-bar{
+        .side-menu{
+            padding : 5px;
+            ion-icon{
+                color: #fff;
+                font-size: 25px;
+            }
+        }
         .navbar{
             background-color: #775576;
             text-align: center;
