@@ -58,7 +58,6 @@ export class SocketsProvider {
     var self = this;
     console.log("receive token => ", this.socket)
     this.socket.on('new_message', (data) => {
-      console.log(data);
       if (data.Member.user_id != self.auth.id) {
         const sender = data.Member.User;
         let _newMsg = {
@@ -71,6 +70,7 @@ export class SocketsProvider {
           is_announcement: data.is_announcement,
           room_id: data.room_id
         };
+        console.log(data);
         self.events.publish('chat:received', _newMsg);
       }
     });

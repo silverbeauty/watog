@@ -80,6 +80,7 @@
     "ionic-swing": "^3.0.0",
     "ionicons": "3.0.0",
     "lint-fix": "^0.24.0",
+    "lodash": "^4.17.11",
     "ng-socket-io": "^0.2.4",
     "ng2-pdf-viewer": "^5.1.2",
     "ngx-bootstrap": "^3.0.1",
