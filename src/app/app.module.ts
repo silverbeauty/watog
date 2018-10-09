@@ -264,7 +264,7 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     ReportModalPage,
     RoomInfoPage,
     RoomCreateCompletePage,
-    
+
     LearnPage,
     InstitutionalContentsPage,
     SponsoredContentPage,

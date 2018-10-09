@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Events, Content, IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
-import { ChatService, SocketsProvider} from "../../providers/";
+import { ChatService, SocketsProvider } from "../../providers/";
 import { Contact, Message, Auth } from '../../types';
 import { ReportModalPage } from '../report-modal/report-modal';
 import { RoomInfoPage } from '../room-info/room-info';
@@ -13,72 +13,74 @@ import { RoomInfoPage } from '../room-info/room-info';
 export class ChatPage {
   @ViewChild(Content) content: Content;
   @ViewChild('chat_input') messageInput: ElementRef;
-  
+
   msgList: Message[] = [];
-  sender : Contact;
+  sender: Contact;
   toUser: Contact;
   editorMsg = '';
   showEmojiPicker = false;
-  isSearch= false;
-  roomData: any= [];
+  isSearch = false;
+  roomData: any = [];
   room_id: '';
-  totalUsers=0;
+  totalUsers = 0;
   promise: any;
-  isScrollLoading:boolean = false;
+  isScrollLoading: boolean = false;
   currentPageIndex: number = 1;
-  stepMessage: number= 20;
+  stepMessage: number = 20;
 
-  constructor(public navCtrl: NavController, 
-      public navParams: NavParams,
-      private chatService: ChatService,
-      private events: Events,
-      public loadingCtrl: LoadingController,
-      private socketProvider: SocketsProvider,
-      public modalCtrl: ModalController
-    ) {    
-      const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
-      
-      const auth = JSON.parse(res[1]);
-      
-      this.sender={
-        id : auth.id,
-        name : auth.first_name+" "+auth.last_name,
-        avatar : auth.picture_profile
-      }      
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private chatService: ChatService,
+    private events: Events,
+    public loadingCtrl: LoadingController,
+    private socketProvider: SocketsProvider,
+    public modalCtrl: ModalController
+  ) {
+    const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
 
-      this.room_id = navParams.get("roomInfo").id;
+    const auth = JSON.parse(res[1]);
+
+    this.sender = {
+      id: auth.id,
+      name: auth.first_name + " " + auth.last_name,
+      avatar: auth.picture_profile
+    }
+
+    this.room_id = navParams.get("roomInfo").id;
   }
 
-  ionViewWillLeave() {
-    // unsubscribe
-    this.events.unsubscribe('chat:received');
-  }
-  onPageScroll(){
-    
-    if(this.content.scrollTop < 10){
-      this.isScrollLoading = true;
-      this.currentPageIndex++;
-      // let d = new Date().getTime();
-      // let endDate = new Date(d-(86400000*this.currentPageIndex*this.stepDate));
-      // let startDate = new Date((d-(86400000*(this.currentPageIndex+1)*this.stepDate)));
-    
-      // let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
-      // let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
-      let step = this.stepMessage * this.currentPageIndex;
-      let _param = "limit="+step+"&direction=DESC";
-      console.log("scroll To Bottom 0 => ", this.content.scrollHeight)
-      this.chatService.getMsgList(this.room_id, _param).then((data: any) =>{
-        console.log("chat ===> ", data)
-        data.sort(function (a, b) {        
-          return a.time-b.time;
-        });
-        this.msgList = data;
-        this.content.scrollToBottom(this.content.scrollTop)
-        this.isScrollLoading = false;
+  ngOnInit(): void {
+    this.chatService.checkReadMessage(this.room_id)
+      .then((res: any) => {
+        console.log(res);
       }).catch(err => {
         console.log("err", err)
       })
-    }
+
+  }
+
+  ionViewDidLoad() {
+    let _param = "limit=" + this.stepMessage + "&direction=DESC";
+
+    const loader = this.loadingCtrl.create({ content: "Please wait..." });
+    loader.present();
+
+    this.promise = Promise.all([this.chatService.getRoomInfo(this.room_id), this.chatService.getMsgList(this.room_id, _param)]);
+    this.promise.then(data => {
+      console.log("chat ===> ", data)
+      this.roomData = data[0];
+      this.msgList = data[1]
+      this.msgList.sort(function (a: any, b: any) {
+        return a.time - b.time;
+      });
+
+      this.totalUsers = this.roomData.Members.length;
+      loader.dismiss();
+      this.scrollToBottom();
+    }).catch(err => {
+      loader.dismiss();
+      console.log("err", err)
+    })
   }
 
   ionViewDidEnter() {
@@ -87,6 +89,39 @@ export class ChatPage {
     this.events.subscribe('chat:received', msg => {
       this.pushNewMsg(msg);
     })
+  }
+
+  ionViewWillLeave() {
+    // unsubscribe
+    this.events.unsubscribe('chat:received');
+  }
+
+  onPageScroll() {
+
+    if (this.content.scrollTop < 10) {
+      this.isScrollLoading = true;
+      this.currentPageIndex++;
+      // let d = new Date().getTime();
+      // let endDate = new Date(d-(86400000*this.currentPageIndex*this.stepDate));
+      // let startDate = new Date((d-(86400000*(this.currentPageIndex+1)*this.stepDate)));
+
+      // let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();
+      // let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
+      let step = this.stepMessage * this.currentPageIndex;
+      let _param = "limit=" + step + "&direction=DESC";
+      console.log("scroll To Bottom 0 => ", this.content.scrollHeight)
+      this.chatService.getMsgList(this.room_id, _param).then((data: any) => {
+        console.log("chat ===> ", data)
+        data.sort(function (a, b) {
+          return a.time - b.time;
+        });
+        this.msgList = data;
+        this.content.scrollToBottom(this.content.scrollTop)
+        this.isScrollLoading = false;
+      }).catch(err => {
+        console.log("err", err)
+      })
+    }
   }
 
   onFocus() {
@@ -122,8 +157,8 @@ export class ChatPage {
     };
 
     let newMsg = {
-      text : this.editorMsg,
-      room_id : this.roomData.id
+      text: this.editorMsg,
+      room_id: this.roomData.id
     }
 
     this.pushNewMsg(_newMsg);
@@ -164,45 +199,21 @@ export class ChatPage {
   }
 
   private setTextareaScroll() {
-    const textarea =this.messageInput.nativeElement;
+    const textarea = this.messageInput.nativeElement;
     textarea.scrollTop = textarea.scrollHeight;
   }
 
-  ionViewDidLoad() {
-    
-    let _param = "limit="+this.stepMessage+"&direction=DESC";
-    
-    const loader = this.loadingCtrl.create({ content: "Please wait..." });
-    loader.present();
-
-    this.promise = Promise.all([this.chatService.getRoomInfo(this.room_id), this.chatService.getMsgList(this.room_id, _param)]);
-    this.promise.then(data =>{
-      console.log("chat ===> ", data)
-      this.roomData = data[0];
-      this.msgList = data[1]
-      this.msgList.sort(function (a:any, b:any) {        
-        return a.time-b.time;
-      });
-
-      this.totalUsers = this.roomData.Members.length;
-      loader.dismiss();
-      this.scrollToBottom();
-    }).catch(err => {
-      loader.dismiss();
-      console.log("err", err)
-    })
-  }
   // toolbar funtion
-  attachFile(){
+  attachFile() {
 
   }
-  addUser(){
+  addUser() {
 
   }
-  searchMessage(){
+  searchMessage() {
     this.isSearch = true;
   }
-  closeSearchBar(){
+  closeSearchBar() {
     this.isSearch = false;
   }
 
@@ -211,19 +222,19 @@ export class ChatPage {
   }
 
   // right side menu funtion
-  archiveMessage(){
+  archiveMessage() {
 
   }
-  
-  roomInfo(){
-    this.navCtrl.push(RoomInfoPage, {roomData : this.roomData});
+
+  roomInfo() {
+    this.navCtrl.push(RoomInfoPage, { roomData: this.roomData });
   }
 
-  report(){
+  report() {
     let reportModal = this.modalCtrl.create(ReportModalPage);
     reportModal.onDidDismiss(data => {
       console.log("report modal=>", data)
     });
-    reportModal.present();    
+    reportModal.present();
   }
 }

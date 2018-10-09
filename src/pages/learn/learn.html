@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col" (click)="goToLearnContent($event, video[k])">
           <div class="icon-container">
-              <img src="../../assets/imgs/hands.png" alt="participate img" class="img-left" *ngIf="k === 'sponsored_contents'" >
+            <img src="../../assets/imgs/hands.png" alt="participate img" class="img-left" *ngIf="k === 'sponsored_contents'" >
             <img src="../../assets/imgs/ic.png" alt="participate img" class="img-left" *ngIf="k !== 'sponsored_contents'">
           </div>
           <p class="ic-title">{{video[k].name}}</p>

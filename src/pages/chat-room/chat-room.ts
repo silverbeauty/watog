@@ -11,13 +11,17 @@ import { SocketsProvider} from "../../providers/sockets/sockets";
   templateUrl: 'chat-room.html',
 })
 export class ChatRoomPage {
+
   @ViewChild("tabBar") tabRef: any;
   myroomTab: any;
   publicTab: any;
   tabParams : any;
-  constructor(public navCtrl: NavController, 
+
+  constructor(
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public events: Events) {
+    public events: Events
+  ) {
     this.tabParams = {parentSelector : this.navCtrl};
     this.myroomTab = MyRoomListPage;
     this.publicTab = PublicRoomListPage;

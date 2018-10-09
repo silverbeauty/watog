@@ -20,7 +20,12 @@ export class LearnContentPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.value = navParams.get('item');
-
+    console.log(this.value)
+    // const qwantCare = {
+    //   name: 'Qwant Care',
+    //   videos: this.value.list[0].videos
+    // }
+    // this.value.list.push(qwantCare);
   }
 
   goBack() {
@@ -28,6 +33,7 @@ export class LearnContentPage {
   }
 
   goToVideosListPage(event, N, Nname) {
+    console.log(N, Nname)
     this.navCtrl.push(VideosListPage, {
       N: N,
       Nname: Nname

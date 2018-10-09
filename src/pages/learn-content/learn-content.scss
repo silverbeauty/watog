@@ -17,7 +17,7 @@ page-learn-content {
                 color: #fff;
                 margin: 4px 0px;
             }
-        }        
+        }
     }
 
     .header-action-bar {
@@ -42,7 +42,7 @@ page-learn-content {
     .border-btm{
         border-bottom:1px solid #aaa;
     }
-    
+
     .scroll-content {
         overflow-y: auto !important;
         bottom:86px;
@@ -52,14 +52,14 @@ page-learn-content {
         background-color: #775576;
     }
 
-    
+
 
     .btn-profile img{
         height: 2em;
     }
 
     .dropdown-menu{
-        padding: 2em;        
+        padding: 2em;
     }
 
     .dropdown-item{
@@ -119,9 +119,12 @@ page-learn-content {
             font-weight: bold;
             margin-top:1rem
         }
-        
+
     }
-    .text-left{justify-content: left}
+    .text-left{
+        justify-content: left;
+        padding-left: 30px;
+    }
 
     .ic-title{
         background: lightblue;
@@ -141,7 +144,7 @@ page-learn-content {
         font-size: 1.3em;
     }
 
-    
+
     .footer-sponsor{
         background-color: rgb(219, 228, 231);
         color: #000;
