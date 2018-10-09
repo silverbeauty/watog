@@ -27,14 +27,14 @@ import { SettingsPage } from '../settings/settings';
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, 
-    public modalCtrl: ModalController, 
-    public navParams: NavParams, 
-    public dataProvider: DataProvider, 
-    public restProvider: RestProvider, 
-    private youtube: YoutubeVideoPlayer, 
-    private plt: Platform, 
-    private socketProvider: SocketsProvider, 
+  constructor(public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    public navParams: NavParams,
+    public dataProvider: DataProvider,
+    public restProvider: RestProvider,
+    private youtube: YoutubeVideoPlayer,
+    private plt: Platform,
+    private socketProvider: SocketsProvider,
     public menuCtrl: MenuController,
     public loadingCtrl: LoadingController) {}
 
