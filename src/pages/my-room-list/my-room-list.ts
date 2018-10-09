@@ -33,10 +33,10 @@ export class MyRoomListPage {
     public chatService: ChatService,
     public alertCtrl:AlertController) {
 
-    this.parentSelector = navParams.get("parentSelector");        
+    this.parentSelector = navParams.get("parentSelector");
     const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
-      
-    this.auth = JSON.parse(res[1]);    
+
+    this.auth = JSON.parse(res[1]);
   }
 
   ionViewDidEnter() {
@@ -47,7 +47,7 @@ export class MyRoomListPage {
       loader = this.loadingCtrl.create({ content: "Please wait..." });
       loader.present();
     }
-    
+
     this.events.subscribe('main-chat-dashboard', () => {
       this.chatService.myRoomList()
       .then((res: any) => {
@@ -61,7 +61,7 @@ export class MyRoomListPage {
           loader.dismiss();
         }
         console.log("err", err)
-      }) 
+      })
     })
   }
 
@@ -93,7 +93,7 @@ export class MyRoomListPage {
 
   editRoom(roomInfo){
     if(this.auth.id ==  roomInfo.User.id){
-      this.parentSelector.push(EditChatRoomPage, {roomInfo : roomInfo});  
+      this.parentSelector.push(EditChatRoomPage, {roomInfo : roomInfo});
     }
     else{
       let _alert = this.alertCtrl.create({
@@ -104,7 +104,7 @@ export class MyRoomListPage {
       _alert.present();
       return;
     }
-    
+
   }
 
   archiveRoom(roomInfo) {
