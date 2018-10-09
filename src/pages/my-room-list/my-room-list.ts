@@ -21,8 +21,8 @@ export class MyRoomListPage {
   lists: any = [];
   _tempLists: any = [];
   search: '';
-  isSearch= false;
-  auth : any;
+  isSearch = false;
+  auth: any;
   isFirstLoad = true;
 
   constructor(
@@ -31,10 +31,10 @@ export class MyRoomListPage {
     public navParams: NavParams,
     public events: Events,
     public chatService: ChatService,
-    public alertCtrl:AlertController) {
+    public alertCtrl: AlertController) {
 
     this.parentSelector = navParams.get("parentSelector");
-    const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
+    const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
 
     this.auth = JSON.parse(res[1]);
   }
@@ -50,25 +50,25 @@ export class MyRoomListPage {
 
     this.events.subscribe('main-chat-dashboard', () => {
       this.chatService.myRoomList()
-      .then((res: any) => {
-        let temp : any=[];
-        temp = res.filter((item) => {
-          if(!item.archived)
-            return item;
-        }); 
-        res = temp;
-        this.lists = res;
-        console.log("res => ", res)
-        this._tempLists = res;
-        if (isFirstLoad) {
-          loader.dismiss();
-        }
-      }).catch(err => {
-        if (isFirstLoad) {
-          loader.dismiss();
-        }
-        console.log("err", err)
-      })
+        .then((res: any) => {
+          let temp: any = [];
+          temp = res.filter((item) => {
+            if (!item.archived)
+              return item;
+          });
+          res = temp;
+          this.lists = res;
+          console.log("res => ", res)
+          this._tempLists = res;
+          if (isFirstLoad) {
+            loader.dismiss();
+          }
+        }).catch(err => {
+          if (isFirstLoad) {
+            loader.dismiss();
+          }
+          console.log("err", err)
+        })
     })
   }
 
@@ -98,11 +98,11 @@ export class MyRoomListPage {
     this.parentSelector.push(ChatPage, { roomInfo: roomInfo });
   }
 
-  editRoom(roomInfo){
-    if(this.auth.id ==  roomInfo.User.id){
-      this.parentSelector.push(EditChatRoomPage, {roomInfo : roomInfo});
+  editRoom(roomInfo) {
+    if (this.auth.id == roomInfo.User.id) {
+      this.parentSelector.push(EditChatRoomPage, { roomInfo: roomInfo });
     }
-    else{
+    else {
       let _alert = this.alertCtrl.create({
         title: '',
         subTitle: 'The room creator can only edit this room',
@@ -115,18 +115,18 @@ export class MyRoomListPage {
   }
 
   archiveRoom(roomInfo) {
-    if(this.auth.id ==  roomInfo.User.id){
+    if (this.auth.id == roomInfo.User.id) {
       const loader = this.loadingCtrl.create({ content: "Please wait..." });
       loader.present();
       this.chatService.archiveRoom(roomInfo.id)
         .then((res: any) => {
           console.log(res)
-          let temp : any=[];
+          let temp: any = [];
           temp = this.lists.filter((item) => {
-            if(item.id !=res.id)
+            if (item.id != res.id)
               return item;
-          }); 
-  
+          });
+
           this.lists = temp;
           this._tempLists = temp;
           loader.dismiss();
@@ -135,7 +135,7 @@ export class MyRoomListPage {
           console.log(err)
         })
     }
-    else{
+    else {
       let _alert = this.alertCtrl.create({
         title: '',
         subTitle: 'The room creator can only remove this room',
@@ -144,6 +144,6 @@ export class MyRoomListPage {
       _alert.present();
       return;
     }
-    
+
   }
 }
