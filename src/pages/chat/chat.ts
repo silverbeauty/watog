@@ -83,6 +83,7 @@ export class ChatPage {
     // unsubscribe
     this.events.unsubscribe('chat:received');
   }
+
   onPageScroll() {
     let message_count = this.roomData.message_count;
     let _pages = Math.ceil(message_count / this.stepMessage);
@@ -139,9 +140,10 @@ export class ChatPage {
     const clientHeight = document.getElementById('message-wrap').clientHeight;
     console.log(clientHeight)
     if (this.platform.is('cordova')) {
-       if(clientHeight > this.deviceHeight) {
-        $('.footer-input').css('bottom', 220 + 'px');
-      }
+      // if(clientHeight > this.deviceHeight) {
+      //   $('.footer-input').css('bottom', 220 + 'px');
+      // }
+      $('.footer-input').css('bottom', 220 + 'px');
     }
   }
 
