@@ -9,6 +9,7 @@ page-chat {
             text-align: center;
             padding-left: 0px;
             padding-right: 0px;
+            min-height: 40px;
         }
 
         .toolbar-background {
@@ -22,7 +23,7 @@ page-chat {
                 color: #fff;
                 margin: 4px 0px;
             }
-        }        
+        }
     }
     .btn-back{
         position: absolute !important;
@@ -52,7 +53,7 @@ page-chat {
             margin-left: 0px !important;
         }
         .btn-bar {
-            
+
             // border-bottom: 0.55px solid #c8c7cc !important;
             .add-item{
                 padding-left : 15px;
@@ -103,10 +104,10 @@ page-chat {
                 display: flex;
                 align-items: center;
                 padding-left : 10px;
-                padding-right : 10px; 
+                padding-right : 10px;
                 input{
                     flex: 1;
-                }               
+                }
             }
             .icon-sm{
                 font-size : 22px;
@@ -120,7 +121,7 @@ page-chat {
                 }
             }
         }
-        
+
         .message-info{
             margin-top: 10px;
             ion-col {
@@ -142,7 +143,7 @@ page-chat {
                     }
                 }
             }
-        } 
+        }
         .active-users-info   {
             margin-top: 10px;
             padding: 0 15px;
@@ -175,18 +176,18 @@ page-chat {
     }
 
     // end header bar
-    
+
     $userBackgroundColor: #387ef5;
     $toUserBackgroundColor: #fff;
 
     ion-content .scroll-content {
-        background-color: #f5f5f5;    
+        background-color: #f5f5f5;
         margin-top: 193px !important;
         // ion-spinner {
         //     position: absolute;
         //     right: 10px;
         //     bottom: 5px;
-        // }    
+        // }
         .scroll-spinner-div{
             display: flex;
             align-items: center;
@@ -200,7 +201,7 @@ page-chat {
 
     ion-footer {
         // box-shadow: 0 0 4px rgba(0, 0, 0, 0.11);
-        background-color: #f5f5f5;        
+        background-color: #f5f5f5;
     }
 
     .line-breaker {
@@ -312,7 +313,7 @@ page-chat {
             .user-img {
                 right: 0;
             }
-            
+
             .msg-content {
                 background-color: $userBackgroundColor;
                 float: right;
@@ -322,7 +323,7 @@ page-chat {
                     border-left-width: 0;
                     right: -5px;
                 }
-            }        
-        }        
+            }
+        }
     }
 }

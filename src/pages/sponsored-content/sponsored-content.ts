@@ -21,12 +21,13 @@ export class SponsoredContentPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SponsoredContentPage');
   }
+
   goBack() {
     this.navCtrl.pop();
   }
+
   goToVideosListPage(){
     this.navCtrl.push(VideosListPage);
   }
 
 }
- 

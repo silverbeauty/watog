@@ -18,14 +18,14 @@ export class RoomCreateCompletePage {
   description: '';
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public formBuilder: FormBuilder, 
-    public cam: CameraProvider, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public cam: CameraProvider,
   ) {
   }
 
-  ionViewWillLoad(){
+  ionViewWillLoad() {
     this.validations_form = this.formBuilder.group({
       title: ['', Validators.compose([
         Validators.required
@@ -43,17 +43,18 @@ export class RoomCreateCompletePage {
   goBack() {
     this.navCtrl.pop();
   }
-  next(){
+  next() {
     let _title = this.title;
     let _description = this.description;
     let _avatar = this.image_local;
     this.navCtrl.push(RoomCreatePage, {
-      title: _title, description: _description, avatar :_avatar});
+      title: _title, description: _description, avatar: _avatar
+    });
   }
 
   TakeaPicture() {
     this.cam.selectImage(1, 0).then(resp => {
-      this.image_local = "data:image/jpeg;base64," + resp;      
+      this.image_local = "data:image/jpeg;base64," + resp;
     }, err => {
       console.log("error with select of picture")
       console.log("param not send")
@@ -69,7 +70,7 @@ export class RoomCreateCompletePage {
     });
   }
 
-  validation_messages = {    
+  validation_messages = {
     'title': [
       { type: 'required', message: 'The title is required.' }
     ],
