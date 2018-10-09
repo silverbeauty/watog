@@ -6,7 +6,7 @@ import { RoomCreateCompletePage } from '../room-create-complete/room-create-comp
 import { ChatPage } from '../chat/chat';
 import { ChatRoomPage } from '../chat-room/chat-room';
 import { EditChatRoomPage } from '../edit-chat-room/edit-chat-room';
-import { ChatService } from '../../providers';
+import { ChatService, SocketsProvider } from '../../providers';
 
 import { Message, Room, Member } from '../../types';
 
@@ -24,6 +24,7 @@ export class MyRoomListPage {
   isSearch = false;
   auth: any;
   isFirstLoad = true;
+  pushNewMsg = [];
 
   constructor(
     public navCtrl: NavController,
@@ -70,6 +71,19 @@ export class MyRoomListPage {
           console.log("err", err)
         })
     })
+
+    this.events.subscribe('chat:received', msg => {
+      this.lists.map(list => {
+        if (list.id === msg.room_id) {
+          list.unread_message_count++;
+        }
+      })
+    })
+  }
+
+  ionViewWillLeave() {
+    // unsubscribe
+    this.events.unsubscribe('chat:received');
   }
 
   onSearch() {

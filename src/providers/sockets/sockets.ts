@@ -14,79 +14,78 @@ const socket_server: string = 'http://151.236.34.11:3000';
 export class SocketsProvider {
 
   token: string;
-  socket:any;
+  socket: any;
   auth: any;
-  constructor(public http: HttpClient, public events: Events, 
+  constructor(public http: HttpClient, public events: Events,
     // public socket: Socket
-    ) {
-      const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
-      if (res[0]) {
-        this.token = res[0];
-      }
-      this.auth = JSON.parse(res[1]);      
+  ) {
+    const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
+    if (res[0]) {
+      this.token = res[0];
+    }
+    this.auth = JSON.parse(res[1]);
   }
 
-  public connectSocket():void{
-    this.socket=io(socket_server);
+  public connectSocket(): void {
+    this.socket = io(socket_server);
 
     let self = this;
-    setInterval(function(){ 
-      if(!self.socket.connected)
+    setInterval(function () {
+      if (!self.socket.connected)
         self.socket.connect();
-    }, 1000);    
+    }, 1000);
   }
 
-  public registerForChatService() : void
-  {
-    if(!this.socket.connected)
+  public registerForChatService(): void {
+    if (!this.socket.connected)
       this.socket.connect();
-      
+
     this.socket.emit('authenticate', { token: this.token });
   }
-  
-  public getSocket(){
+
+  public getSocket() {
     return this.socket;
   }
 
-  public sendMsg(msg: any):void {
-    if(!this.socket.connected)
+  public sendMsg(msg: any): void {
+    if (!this.socket.connected)
       this.socket.connect();
-    
+
     this.socket.emit('send_message', msg);
   }
-    
-  public Receive(){
+
+  public Receive() {
     var self = this;
     console.log("receive token => ", this.socket)
-    this.socket.on('new_message', (data) =>
-    {
-      if(data.Member.user_id != self.auth.id){
+    this.socket.on('new_message', (data) => {
+      console.log(data);
+      if (data.Member.user_id != self.auth.id) {
         const sender = data.Member.User;
-        let _newMsg: Message = {
+        let _newMsg = {
           messageId: Date.now().toString(),
           userId: sender.id,
-          userName: sender.first_name+" "+sender.last_name,
+          userName: sender.first_name + " " + sender.last_name,
           userAvatar: sender.picture_profile,
           time: data.createdAt,
           message: data.text,
-          is_announcement: data.is_announcement
+          is_announcement: data.is_announcement,
+          room_id: data.room_id
         };
         self.events.publish('chat:received', _newMsg);
-      }          
+      }
     });
-    
+
     this.socket.on('authenticated', (authenticate) => {
       console.log("authenticate status =>", authenticate)
     });
-    
+
     this.socket.on('new_member', (memberList) => {
       console.log("new member =>", memberList)
       self.events.publish('add:member', memberList);
     });
   }
-  
-  logoutFromSocket() : void
-  {
-      this.socket.disconnect();
+
+  logoutFromSocket(): void {
+    this.socket.disconnect();
   }
 }
