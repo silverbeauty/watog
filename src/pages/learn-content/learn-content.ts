@@ -20,11 +20,12 @@ export class LearnContentPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.value = navParams.get('item');
-    const qwantCare = {
-      name: 'Qwant Care',
-      videos: this.value.list[0].videos
-    }
-    this.value.list.push(qwantCare);
+    console.log(this.value)
+    // const qwantCare = {
+    //   name: 'Qwant Care',
+    //   videos: this.value.list[0].videos
+    // }
+    // this.value.list.push(qwantCare);
   }
 
   goBack() {
