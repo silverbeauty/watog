@@ -74,5 +74,9 @@ export class WhatIsWatogPage {
     this.navCtrl.push(WatogContactPage);
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
 
 }
