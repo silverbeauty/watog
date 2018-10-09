@@ -1,10 +1,13 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Events, Content, IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController } from 'ionic-angular';
-import { ChatService, SocketsProvider} from "../../providers/";
+import { Events, Content, IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController, Platform } from 'ionic-angular';
+import { ChatService, SocketsProvider } from "../../providers/";
 import { Contact, Message, Auth } from '../../types';
 import { ReportModalPage } from '../report-modal/report-modal';
 import { RoomInfoPage } from '../room-info/room-info';
 import { ContactListPage } from '../contact-list/contact-list';
+import { Keyboard } from '@ionic-native/keyboard';
+
+declare var $: any;
 
 @IonicPage()
 @Component({
@@ -28,35 +31,42 @@ export class ChatPage {
   isScrollLoading: boolean = false;
   currentPageIndex: number = 1;
 
-  stepMessage: number= 20;
-  isCreator : boolean = false;
-  member_count_limit : any ='';
+  stepMessage: number = 20;
+  isCreator: boolean = false;
+  member_count_limit: any = '';
+  deviceHeight: number;
 
-  constructor(public navCtrl: NavController, 
-      public navParams: NavParams,
-      private chatService: ChatService,
-      private events: Events,
-      public loadingCtrl: LoadingController,
-      private socketProvider: SocketsProvider,
-      public modalCtrl: ModalController,
-      public alertCtrl: AlertController
-    ) {    
-      const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
-      
-      const auth = JSON.parse(res[1]);
-      const roomData = navParams.get("roomInfo");
-      console.log("chat room data == > ", roomData)
-      if(auth.id ==  roomData.User.id){
-        this.isCreator = true;
-      }
-      this.member_count_limit = roomData.member_count_limit;
-      this.sender={
-        id : auth.id,
-        name : auth.first_name+" "+auth.last_name,
-        avatar : auth.picture_profile
-      }      
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private chatService: ChatService,
+    private events: Events,
+    public loadingCtrl: LoadingController,
+    private socketProvider: SocketsProvider,
+    public modalCtrl: ModalController,
+    public alertCtrl: AlertController,
+    private keyboard: Keyboard,
+    private platform: Platform
+  ) {
+    const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
 
-      this.room_id = roomData.id;
+    const auth = JSON.parse(res[1]);
+    const roomData = navParams.get("roomInfo");
+    console.log("chat room data == > ", roomData)
+    if (auth.id == roomData.User.id) {
+      this.isCreator = true;
+    }
+    this.member_count_limit = roomData.member_count_limit;
+    this.sender = {
+      id: auth.id,
+      name: auth.first_name + " " + auth.last_name,
+      avatar: auth.picture_profile
+    }
+
+    this.room_id = roomData.id;
+    platform.ready().then((readySource) => {
+      this.deviceHeight = platform.height();
+    });
   }
 
   ngOnInit(): void {
@@ -73,16 +83,16 @@ export class ChatPage {
     // unsubscribe
     this.events.unsubscribe('chat:received');
   }
-  onPageScroll(){
+  onPageScroll() {
     let message_count = this.roomData.message_count;
     let _pages = Math.ceil(message_count / this.stepMessage);
-    
-    if(_pages > this.currentPageIndex && this.content.scrollTop < 10){
+
+    if (_pages > this.currentPageIndex && this.content.scrollTop < 10) {
       this.isScrollLoading = true;
       this.currentPageIndex++;
       let step = this.stepMessage * this.currentPageIndex;
-      let _param = "limit="+step+"&direction=DESC";
-      this.chatService.getMsgList(this.room_id, _param).then((data: any) =>{
+      let _param = "limit=" + step + "&direction=DESC";
+      this.chatService.getMsgList(this.room_id, _param).then((data: any) => {
         console.log("chat ===> ", data)
         data.sort(function (a, b) {
           return a.time - b.time;
@@ -102,23 +112,23 @@ export class ChatPage {
     this.events.subscribe('chat:received', msg => {
       this.pushNewMsg(msg);
     })
-    
+
     this.events.subscribe('add:member', data => {
       console.log(" add member data => ", data)
       this.roomData.Members.push(data)
-      this.totalUsers = this.roomData.Members.length;      
+      this.totalUsers = this.roomData.Members.length;
     })
-    
+
     this.events.subscribe('remove:member', data => {
       console.log(" remove member data => ", data)
-      let temp : any=[];
+      let temp: any = [];
       temp = this.roomData.Members.filter((item) => {
-        if(item.id != data.id)
+        if (item.id != data.id)
           return item;
-      }); 
-      
+      });
+
       this.roomData.Members = temp;
-      this.totalUsers = this.roomData.Members.length;      
+      this.totalUsers = this.roomData.Members.length;
     })
   }
 
@@ -126,6 +136,19 @@ export class ChatPage {
     this.showEmojiPicker = false;
     this.content.resize();
     this.scrollToBottom();
+    const clientHeight = document.getElementById('message-wrap').clientHeight;
+    console.log(clientHeight)
+    if (this.platform.is('cordova')) {
+       if(clientHeight > this.deviceHeight) {
+         $('.header-bar').css('top', 216 + 'px');
+        $('.content').css('marginTop', 216 + 'px');
+      }
+    }
+  }
+
+  onBlur() {
+    $('.header-bar').css('top', 0 + 'px');
+    $('.content').css('marginTop', 0 + 'px');
   }
 
   switchEmojiPicker() {
@@ -203,25 +226,25 @@ export class ChatPage {
   }
 
   ionViewDidLoad() {
-    
-    let _param = "limit="+this.stepMessage+"&direction=DESC";
-    
+
+    let _param = "limit=" + this.stepMessage + "&direction=DESC";
+
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
 
     this.promise = Promise.all([this.chatService.getRoomInfo(this.room_id), this.chatService.getMsgList(this.room_id, _param)]);
-    this.promise.then(data =>{
+    this.promise.then(data => {
       console.log("chat ===> ", data)
-      let temp : any=[];
+      let temp: any = [];
       temp = data[0].Members.filter((item) => {
-        if(!item.removed)
+        if (!item.removed)
           return item;
-      }); 
+      });
       data[0].Members = temp;
       this.roomData = data[0];
       this.msgList = data[1]
-      this.msgList.sort(function (a:any, b:any) {        
-        return a.time-b.time;
+      this.msgList.sort(function (a: any, b: any) {
+        return a.time - b.time;
       });
 
       this.totalUsers = this.roomData.Members.length;
@@ -237,8 +260,8 @@ export class ChatPage {
   attachFile() {
 
   }
-  addUser(){
-    if( !this.isCreator ){
+  addUser() {
+    if (!this.isCreator) {
       let _alert = this.alertCtrl.create({
         title: '',
         subTitle: 'The room creator can only add the member',
@@ -248,7 +271,7 @@ export class ChatPage {
       return;
     }
 
-    if(this.member_count_limit && this.member_count_limit <= this.totalUsers){
+    if (this.member_count_limit && this.member_count_limit <= this.totalUsers) {
       let _alert = this.alertCtrl.create({
         title: '',
         subTitle: 'The count of members was limited. ',
@@ -257,7 +280,7 @@ export class ChatPage {
       _alert.present();
       return;
     }
-    this.navCtrl.push(ContactListPage, {roomData : this.roomData})
+    this.navCtrl.push(ContactListPage, { roomData: this.roomData })
   }
   searchMessage() {
     this.isSearch = true;
