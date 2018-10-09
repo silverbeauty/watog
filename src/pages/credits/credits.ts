@@ -46,7 +46,7 @@ export class CreditsPage {
         "avatar" : "",
       },
       {
-        "name" : "Valery Tsertvasde",
+        "name" : "Valeri Tsertvasde",
         "position" : "Dev team leader",
         "avatar" : "",
       },

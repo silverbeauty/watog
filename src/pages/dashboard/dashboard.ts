@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, LoadingController, MenuController } from 'ionic-angular';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 import { Auth, User, Category } from "../../types";
@@ -27,7 +27,16 @@ import { SettingsPage } from '../settings/settings';
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams, public dataProvider: DataProvider, public restProvider: RestProvider, private youtube: YoutubeVideoPlayer, private plt: Platform, private socketProvider: SocketsProvider, public loadingCtrl: LoadingController) {}
+  constructor(public navCtrl: NavController, 
+    public modalCtrl: ModalController, 
+    public navParams: NavParams, 
+    public dataProvider: DataProvider, 
+    public restProvider: RestProvider, 
+    private youtube: YoutubeVideoPlayer, 
+    private plt: Platform, 
+    private socketProvider: SocketsProvider, 
+    public menuCtrl: MenuController,
+    public loadingCtrl: LoadingController) {}
 
   ionViewDidLoad() {
     if (DataProvider.showAd) {
@@ -76,5 +85,8 @@ export class DashboardPage {
   }
   goToSetting(){
     this.navCtrl.push(SettingsPage);
+  }
+  onSideMenu(){
+    this.menuCtrl.open();
   }
 }
