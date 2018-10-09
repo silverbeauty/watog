@@ -267,12 +267,8 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     ReportModalPage,
     RoomInfoPage,
     RoomCreateCompletePage,
-<<<<<<< HEAD
     ContactListPage,
     
-=======
-
->>>>>>> 00cedd86b81e61f7bc4b3b61b3f57a63604f0fd5
     LearnPage,
     InstitutionalContentsPage,
     SponsoredContentPage,
