@@ -79,3 +79,7 @@ sudo npm install ionic-swing --save
 ### Ionic image viewer
 
 npm install --save ionic-img-viewer
+
+### xcode issue (not loading webview page)
+
+ionic cordova prepare ios
