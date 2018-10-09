@@ -42,18 +42,8 @@ export class DashboardPage {
     this.socketProvider.registerForChatService();
     this.socketProvider.Receive();
 
-    this.getMyRoomList()
   }
 
-  getMyRoomList(){
-    this.chatService.myRoomList()
-      .then((payload: any) => {
-        console.log("dashboard my room list 57 => ", payload)
-        
-      }).catch(err => {
-        console.log("err", err)
-      })
-  }
 
   presentLiveModal() {
     // const liveModal = this.modalCtrl.create(LivePage);
