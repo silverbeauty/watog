@@ -33,9 +33,6 @@ export class PublicRoomListPage {
 
   ngOnInit(): void {
     this.parentSelector = this.navParams.get('parentSelector');
-  }
-
-  ionViewDidLoad() {
     const loader = this.loadingCtrl.create({ content: 'Please wait...' });
     loader.present();
     this.chatService.getRoomsList()
@@ -48,6 +45,10 @@ export class PublicRoomListPage {
         loader.dismiss();
         console.log("err", err)
       })
+  }
+
+  ionViewDidLoad() {
+    console.log('public room');
   }
 
   onSearch() {
