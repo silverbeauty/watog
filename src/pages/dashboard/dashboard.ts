@@ -4,7 +4,7 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 import { Auth, User, Category } from "../../types";
 
-import { DataProvider, RestProvider, SocketsProvider } from '../../providers';
+import { DataProvider, RestProvider, SocketsProvider, ChatService } from '../../providers';
 import { ContestPage } from '../contest/contest';
 import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 import { ChatRoomPage } from '../chat-room/chat-room';
@@ -12,13 +12,7 @@ import { AdModalPage } from '../ad-modal/ad-modal';
 import { LearnPage } from '../learn/learn';
 import { LivePage } from '../live/live';
 import { SettingsPage } from '../settings/settings';
-
-/**
- * Generated class for the DashboardPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Contact, Message, Room, Member } from '../../types';
 
 @IonicPage()
 @Component({
@@ -36,6 +30,7 @@ export class DashboardPage {
     private plt: Platform, 
     private socketProvider: SocketsProvider, 
     public menuCtrl: MenuController,
+    public chatService: ChatService,
     public loadingCtrl: LoadingController) {}
 
   ionViewDidLoad() {
@@ -46,6 +41,18 @@ export class DashboardPage {
     this.socketProvider.connectSocket();
     this.socketProvider.registerForChatService();
     this.socketProvider.Receive();
+
+    this.getMyRoomList()
+  }
+
+  getMyRoomList(){
+    this.chatService.myRoomList()
+      .then((payload: any) => {
+        console.log("dashboard my room list 57 => ", payload)
+        
+      }).catch(err => {
+        console.log("err", err)
+      })
   }
 
   presentLiveModal() {
