@@ -1,0 +1,98 @@
+page-credits {
+    background-color: #f8f8f8;
+    // start header bar
+    .header-bar{
+        .navbar{
+            background-color: #775576;
+            text-align: center;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .toolbar-background {
+            background-color: #775576;
+        }
+        .title {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+            min-height: 41px;
+            .toolbar-title {
+                color: #fff;
+                margin: 4px 0px;
+            }
+        }        
+    }
+    .btn-back{
+        position: absolute !important;
+        button {
+            background-color: transparent;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            -webkit-transition: none !important;
+            transition: none !important;
+            transition: none !important;
+            transition: none !important;
+        }
+        .icon-back{
+            font-size: 22px !important;
+        }
+    }
+    .header-action-bar {
+        position: absolute !important;
+        right: 10px;
+    }
+    // end header bar
+
+    .image-avatar {
+        min-width: 50px;
+        min-height: 50px;
+        display: inline-block;
+        position: relative;
+        img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            border : 0.55px solid #c8c7cc;
+            padding: 0.1px;
+            background-size: cover;
+            background-position: center;
+        }
+    }
+    .member-row{
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+
+        .member-item{
+            margin: 5px;
+            padding : 5px;
+            text-align: center;
+            height: 100%;
+            .name{
+                margin-bottom : 0px !important;
+                margin-top: 5px !important;
+                color: #798092;
+                font-size: 14px;
+            }
+            .position {
+                color: #9aabbb;
+                font-size: 13px;
+            }
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
+            border-radius: 3px;
+        }
+    }
+    .description{
+        margin: 20px 16px;
+        
+        p{
+            color: #7a7a7a;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        border-bottom: 0.55px solid #ededed;
+    }
+    
+}

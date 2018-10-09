@@ -8,7 +8,8 @@
   <ion-content>
     <div class="menu-header" *ngIf="user">
       <div class="profile_picture">
-        <img [src]="user.picture_profile" />
+        <img *ngIf="user.picture_profile" [src]="user.picture_profile" />
+        <img *ngIf="!user.picture_profile" src="../assets/imgs/image_avatar.png" />
       </div>
       {{ user.first_name + ' ' + user.last_name }}
     </div>
@@ -25,6 +26,10 @@
         <img class="vote-icon" src="assets/imgs/Vote.png" item-start />
         Vote
       </ion-item>
+      <ion-item menuToggle class="meun-item" (click)="goToPage('credit')">
+          <img class="watog-icon" src="assets/imgs/logo_Seul.png" item-start />
+          Credits
+        </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
