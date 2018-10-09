@@ -140,15 +140,13 @@ export class ChatPage {
     console.log(clientHeight)
     if (this.platform.is('cordova')) {
        if(clientHeight > this.deviceHeight) {
-         $('.header-bar').css('top', 216 + 'px');
-        $('.content').css('marginTop', 216 + 'px');
+        $('.footer-input').css('bottom', 220 + 'px');
       }
     }
   }
 
   onBlur() {
-    $('.header-bar').css('top', 0 + 'px');
-    $('.content').css('marginTop', 0 + 'px');
+    $('.footer-input').css('bottom', 0 + 'px');
   }
 
   switchEmojiPicker() {
