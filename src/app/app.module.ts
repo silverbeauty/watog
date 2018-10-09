@@ -97,6 +97,7 @@ import { PlayVideoPage } from '../pages/play-video/play-video';
 import { LivePage } from '../pages/live/live';
 import { LearnContentPage } from '../pages/learn-content/learn-content';
 import { ContactListPage } from '../pages/contact-list/contact-list';
+import { CreditsPage } from '../pages/credits/credits';
 
 // components
 import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
@@ -184,6 +185,7 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     RoomInfoPage,
     RoomCreateCompletePage,
     ContactListPage,
+    CreditsPage,
 
     LearnPage,
     InstitutionalContentsPage,
@@ -268,6 +270,7 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     RoomInfoPage,
     RoomCreateCompletePage,
     ContactListPage,
+    CreditsPage,
     
     LearnPage,
     InstitutionalContentsPage,

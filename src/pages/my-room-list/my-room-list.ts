@@ -51,7 +51,14 @@ export class MyRoomListPage {
     this.events.subscribe('main-chat-dashboard', () => {
       this.chatService.myRoomList()
       .then((res: any) => {
+        let temp : any=[];
+        temp = res.filter((item) => {
+          if(!item.archived)
+            return item;
+        }); 
+        res = temp;
         this.lists = res;
+        console.log("res => ", res)
         this._tempLists = res;
         if (isFirstLoad) {
           loader.dismiss();
@@ -98,7 +105,7 @@ export class MyRoomListPage {
     else{
       let _alert = this.alertCtrl.create({
         title: '',
-        subTitle: 'The room creator can only add the member',
+        subTitle: 'The room creator can only edit this room',
         buttons: ['OK']
       });
       _alert.present();
@@ -108,15 +115,35 @@ export class MyRoomListPage {
   }
 
   archiveRoom(roomInfo) {
-    const loader = this.loadingCtrl.create({ content: "Please wait..." });
-    loader.present();
-    this.chatService.archiveRoom(roomInfo.id)
-      .then((res: any) => {
-        console.log(res)
-        loader.dismiss();
-      }).catch(err => {
-        loader.dismiss();
-        console.log(err)
-      })
+    if(this.auth.id ==  roomInfo.User.id){
+      const loader = this.loadingCtrl.create({ content: "Please wait..." });
+      loader.present();
+      this.chatService.archiveRoom(roomInfo.id)
+        .then((res: any) => {
+          console.log(res)
+          let temp : any=[];
+          temp = this.lists.filter((item) => {
+            if(item.id !=res.id)
+              return item;
+          }); 
+  
+          this.lists = temp;
+          this._tempLists = temp;
+          loader.dismiss();
+        }).catch(err => {
+          loader.dismiss();
+          console.log(err)
+        })
+    }
+    else{
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'The room creator can only remove this room',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    }
+    
   }
 }

@@ -1,0 +1,30 @@
+<ion-header class="header-bar">
+    <div class="navbar">
+        <ion-buttons class="btn-back" (click)="goBack()">
+            <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
+        </ion-buttons>
+        <ion-title>Credits</ion-title>
+        <header-action-bar class="header-action-bar"></header-action-bar>
+    </div>
+</ion-header>
+<ion-content no-padding>
+  <ion-grid>
+    <div class="description">
+      <p><b>
+          Project team is a team, which members, usually, belongs to the different groups but fulfill different functions and tasks of the same project. To build WATOG App, several stakeholders were involved to offer a user-friendly experience to you through the app.
+        </b>
+      </p>
+    </div>
+    <div class="member-row">
+      <ion-col *ngFor="let rowContent of lists" col-6 >
+          <div class="member-item">
+            <div class="image-avatar">
+              <img src="../../assets/imgs/image_avatar.png">              
+            </div>
+            <div class="name" text-wrap><b>{{rowContent.name}}</b></div>
+            <div class="position" text-wrap>{{rowContent.position}}</div>
+          </div>
+      </ion-col>
+    </div>
+  </ion-grid>
+</ion-content>

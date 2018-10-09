@@ -43,12 +43,14 @@ page-edit-chat-room {
     // end header bar
 
     .title-view{
-        margin-top: 30px;
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
+        margin: 30px 10px 0 10px !important;
+        border: 0.55px solid #c8c7cc !important;
+        // box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
         input{
             width: 100%;
             font-size: 20px;
-            text-align: center;
+            text-align: center;            
+            
         }
     }
     .is-invalid {
@@ -61,9 +63,9 @@ page-edit-chat-room {
     }
 
     .img-view{
-        margin-top: 20px;
+        // margin-top: 20px;
         padding-bottom: 10px;
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.36);
+        // box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.36);
         text-align: center;
         .main-avatar {
             background-image: url(../assets/imgs/logo_Seul.png);
@@ -84,7 +86,7 @@ page-edit-chat-room {
         }
     }
     .scroll-content{
-       // overflow: hidden;
+       overflow: hidden;
     }
 
     .description{
@@ -96,11 +98,10 @@ page-edit-chat-room {
     }
     .btn-update{
         background-color: #775576;
-        //position: absolute;
+        position: absolute;
         width:calc(100vw - 40px);
         margin-left: 20px;
-        margin-top : 30px;
-        margin-bottom : 30px;
+        bottom : 20px;
     }  
     .input-group {
         padding: 1em;

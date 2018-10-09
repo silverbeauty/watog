@@ -14,6 +14,7 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { WhatIsWatogPage } from '../pages/what-is-watog/what-is-watog';
 import { ModalPrinciplesPage } from '../pages/modal-principles/modal-principles';
 import { VoteModalPage } from '../pages/vote-modal/vote-modal';
+import { CreditsPage } from '../pages/credits/credits';
 //import { SettingsPage } from '../pages/settings/settings';
 
 import { DataProvider, RestProvider } from '../providers';
@@ -46,6 +47,8 @@ export class MyApp {
       this.nav.push(ModalPrinciplesPage);
     } else if (x === 'vote') {
       this.nav.push(VoteModalPage);
+    } else if (x === 'credit') {
+      this.nav.push(CreditsPage);
     }
   }
 

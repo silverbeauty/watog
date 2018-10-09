@@ -5,5 +5,6 @@ export class Message {
     public userAvatar: string;
     public time: number | string;
     public message: string;
+    public is_announcement: boolean;
     // public status: string;
 }

@@ -174,7 +174,8 @@ export class ChatPage {
       userName: this.sender.name,
       userAvatar: this.sender.avatar,
       time: Date.now(),
-      message: this.editorMsg
+      message: this.editorMsg,
+      is_announcement: false
     };
 
     let newMsg = {
