@@ -146,11 +146,7 @@ export class ChatService {
       'Authorization': this.token,
       'Content-Type': 'application/json'
     });
-<<<<<<< HEAD
 // console.log("get Msg Endpoint => ", this.EDIT_ROOM+id+"/messages?"+params)
-=======
-    console.log("get Msg Endpoint => ", this.EDIT_ROOM + id + "/messages?" + params)
->>>>>>> 00cedd86b81e61f7bc4b3b61b3f57a63604f0fd5
     return new Promise((resolve, reject) => {
       this.http.get(this.EDIT_ROOM + id + "/messages?" + params, { headers })
         .subscribe((res: any) => {
@@ -220,8 +216,25 @@ export class ChatService {
         });
     })
   }
+  public getRoomsList(): Promise<any> {
+    const headers = new HttpHeaders({
+      'Authorization': this.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve, reject) => {
+      this.http.get(this.CREATE_ROOM, { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data);
+          } else {
+            reject('Get Rooms Failed:')
+          }
+        }, (err) => {
+          reject('Get Rooms Failed:')
+        });
+    })
+  }
 
-<<<<<<< HEAD
   public addMember(id: any, params : any ): Promise<any>{
     const headers = new HttpHeaders({
       'Authorization':  this.token,
@@ -268,24 +281,8 @@ export class ChatService {
         }, (err) => {
           console.info('Failed to add member:', err)
           reject(err);
-=======
-  public getRoomsList(): Promise<any> {
-    const headers = new HttpHeaders({
-      'Authorization': this.token,
-      'Content-Type': 'application/json'
-    });
-    return new Promise((resolve, reject) => {
-      this.http.get(this.CREATE_ROOM, { headers })
-        .subscribe((res: any) => {
-          if (res.status) {
-            resolve(res.data);
-          } else {
-            reject('Get Rooms Failed:')
-          }
-        }, (err) => {
-          reject('Get Rooms Failed:')
-        });
-    })
+        })
+      })
   }
 
   public checkReadMessage(room_id): Promise<any> {
@@ -303,7 +300,7 @@ export class ChatService {
           }
         }, (err) => {
           reject('Get Rooms Failed:')
->>>>>>> 00cedd86b81e61f7bc4b3b61b3f57a63604f0fd5
+
         });
     })
   }
