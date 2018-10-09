@@ -78,7 +78,8 @@
       <div class="msg-detail">
       <div class="msg-info">
         <p>
-        <b>{{msg.userName}}</b>&nbsp;&nbsp;&nbsp;{{msg.time | relativeTime}}
+        <ion-icon name="volume-up" *ngIf="msg.is_announcement"></ion-icon>
+        <b *ngIf="!msg.is_announcement">{{msg.userName}}</b>&nbsp;&nbsp;&nbsp;{{msg.time | relativeTime}}
         </p>
       </div>
       <div class="msg-content">
