@@ -1,4 +1,4 @@
-<ion-header class="header-bar">
+<ion-header class="header-bar" id="header-bar">
   <div class="navbar">
     <ion-buttons class="btn-back" (click)="goBack()">
       <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
@@ -63,11 +63,11 @@
     </ion-row>
   </ion-grid>
 </ion-header>
-<ion-content (ionScroll)="onPageScroll($event)" no-padding>
+<ion-content (ionScroll)="onPageScroll($event)" no-padding class="content">
   <div class="scroll-spinner-div" *ngIf="isScrollLoading" >
     <ion-spinner class="scroll-spinner"name="circles"></ion-spinner>
   </div>
-  <div class="message-wrap">
+  <div class="message-wrap" id="message-wrap">
     <div *ngFor="let msg of msgList"
         class="message"
         [class.left]=" msg.userId !== sender.id "
@@ -91,23 +91,24 @@
   </div>
 </ion-content>
 
-  <ion-footer no-border [style.height]="showEmojiPicker ? '255px' : '55px'">
-    <div class="input-wrap">
-      <!-- <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
-        <ion-icon name="md-happy"></ion-icon>
-      </button> -->
-      <input #chat_input
-                placeholder="Write your message here"
-                [(ngModel)]="editorMsg"
-                (keyup.enter)="sendMsg()"
-                (focusin)="onFocus()"/>
-      <!-- </input> -->
-      <button ion-button clear icon-only item-right (click)="attachFile()">
-        <ion-icon name="attach" ios="ios-attach" md="md-attach"></ion-icon>
-      </button>
-      <button ion-button clear icon-only item-right (click)="sendMsg()">
-        <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
-      </button>
-    </div>
-    <emoji-picker [(ngModel)]="editorMsg"></emoji-picker>
-  </ion-footer>
+<ion-footer no-border [style.height]="showEmojiPicker ? '255px' : '55px'" class="footer-input">
+  <div class="input-wrap">
+    <!-- <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
+      <ion-icon name="md-happy"></ion-icon>
+    </button> -->
+    <ion-input #chat_input
+              placeholder="Write your message here"
+              [(ngModel)]="editorMsg"
+              (keyup.enter)="sendMsg()"
+              (focusin)="onFocus()"
+              (focusout)="onBlur()"></ion-input>
+    <!-- </input> -->
+    <button ion-button clear icon-only item-right (click)="attachFile()">
+      <ion-icon name="attach" ios="ios-attach" md="md-attach"></ion-icon>
+    </button>
+    <button ion-button clear icon-only item-right (click)="sendMsg()">
+      <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+    </button>
+  </div>
+  <emoji-picker [(ngModel)]="editorMsg"></emoji-picker>
+</ion-footer>

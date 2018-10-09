@@ -36,7 +36,7 @@ export class DashboardPage {
     }
     this.socketProvider.connectSocket();
     this.socketProvider.registerForChatService();
-    this.socketProvider.Receive(); 
+    this.socketProvider.Receive();
   }
 
   presentLiveModal() {
