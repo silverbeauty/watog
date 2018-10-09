@@ -46,7 +46,9 @@ export class MyRoomListPage {
       loader = this.loadingCtrl.create({ content: "Please wait..." });
       loader.present();
     }
-    this.chatService.myRoomList()
+    
+    this.events.subscribe('main-chat-dashboard', () => {
+      this.chatService.myRoomList()
       .then((res: any) => {
           this.lists = res;
           this._tempLists = res;
@@ -54,11 +56,12 @@ export class MyRoomListPage {
             loader.dismiss();
           }
       }).catch(err => {
-        loader.dismiss();
+        if (isFirstLoad) {
+          loader.dismiss();
+        }
         console.log("err", err)
       }) 
-    // this.events.subscribe('main-chat-dashboard', () => {
-    // })
+    })
   }
   onSearch(){
     let searchTerm = this.search;
