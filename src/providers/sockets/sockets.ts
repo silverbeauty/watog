@@ -68,7 +68,8 @@ export class SocketsProvider {
           userName: sender.first_name+" "+sender.last_name,
           userAvatar: sender.picture_profile,
           time: data.createdAt,
-          message: data.text
+          message: data.text,
+          is_announcement: data.is_announcement
         };
         self.events.publish('chat:received', _newMsg);
       }          

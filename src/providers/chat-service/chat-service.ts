@@ -162,7 +162,8 @@ export class ChatService {
                 userName: sender.first_name + " " + sender.last_name,
                 userAvatar: sender.picture_profile,
                 time: _time,
-                message: element.text
+                message: element.text,
+                is_announcement: element.is_announcement
               };
               _temp.push(_msg);
             });
