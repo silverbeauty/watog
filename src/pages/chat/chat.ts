@@ -45,11 +45,10 @@ export class ChatPage {
       const auth = JSON.parse(res[1]);
       const roomData = navParams.get("roomInfo");
       console.log("chat room data == > ", roomData)
-      this.member_count_limit = roomData.member_count_limit;
       if(auth.id ==  roomData.User.id){
         this.isCreator = true;
       }
-
+      this.member_count_limit = roomData.member_count_limit;
       this.sender={
         id : auth.id,
         name : auth.first_name+" "+auth.last_name,
@@ -64,19 +63,14 @@ export class ChatPage {
     this.events.unsubscribe('chat:received');
   }
   onPageScroll(){
+    let message_count = this.roomData.message_count;
+    let _pages = Math.ceil(message_count / this.stepMessage);
     
-    if(this.content.scrollTop < 10){
+    if(_pages > this.currentPageIndex && this.content.scrollTop < 10){
       this.isScrollLoading = true;
       this.currentPageIndex++;
-      // let d = new Date().getTime();
-      // let endDate = new Date(d-(86400000*this.currentPageIndex*this.stepDate));
-      // let startDate = new Date((d-(86400000*(this.currentPageIndex+1)*this.stepDate)));
-    
-      // let _endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(),endDate.getHours(), endDate.getMinutes(), endDate.getSeconds()).toISOString();    
-      // let _startdate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes(), startDate.getSeconds()).toISOString();
       let step = this.stepMessage * this.currentPageIndex;
       let _param = "limit="+step+"&direction=DESC";
-      console.log("scroll To Bottom 0 => ", this.content.scrollHeight)
       this.chatService.getMsgList(this.room_id, _param).then((data: any) =>{
         console.log("chat ===> ", data)
         data.sort(function (a, b) {        
@@ -99,8 +93,21 @@ export class ChatPage {
     })
     
     this.events.subscribe('add:member', data => {
-      this.totalUsers = data.Members.length;
-      this.roomData = data;
+      console.log(" add member data => ", data)
+      this.roomData.Members.push(data)
+      this.totalUsers = this.roomData.Members.length;      
+    })
+    
+    this.events.subscribe('remove:member', data => {
+      console.log(" remove member data => ", data)
+      let temp : any=[];
+      temp = this.roomData.Members.filter((item) => {
+        if(item.id != data.id)
+          return item;
+      }); 
+      
+      this.roomData.Members = temp;
+      this.totalUsers = this.roomData.Members.length;      
     })
   }
 
@@ -193,6 +200,12 @@ export class ChatPage {
     this.promise = Promise.all([this.chatService.getRoomInfo(this.room_id), this.chatService.getMsgList(this.room_id, _param)]);
     this.promise.then(data =>{
       console.log("chat ===> ", data)
+      let temp : any=[];
+      temp = data[0].Members.filter((item) => {
+        if(!item.removed)
+          return item;
+      }); 
+      data[0].Members = temp;
       this.roomData = data[0];
       this.msgList = data[1]
       this.msgList.sort(function (a:any, b:any) {        
@@ -200,6 +213,7 @@ export class ChatPage {
       });
 
       this.totalUsers = this.roomData.Members.length;
+      this.member_count_limit = this.roomData.member_count_limit;
       loader.dismiss();
       this.scrollToBottom();
     }).catch(err => {

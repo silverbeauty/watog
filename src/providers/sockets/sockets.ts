@@ -57,6 +57,7 @@ export class SocketsProvider {
     
   public Receive(){
     var self = this;
+    console.log("receive token => ", this.socket)
     this.socket.on('new_message', (data) =>
     {
       if(data.Member.user_id != self.auth.id){

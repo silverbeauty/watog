@@ -30,14 +30,21 @@
         <p>{{admin.country}}</p>
         <div class="group-admin">GROUP ADMIN</div>
     </ion-item>          
-    <ion-item  *ngFor="let member of members">
-        <ion-avatar item-left>
-            <img *ngIf="member.User.picture_profile" [src]="member.User.picture_profile">
-            <img *ngIf="!member.User.picture_profile" src="../../assets/imgs/image_avatar.png">      
-        </ion-avatar>
-        <h3>{{member.User.first_name+""+member.User.last_name}}</h3>
-        <p>{{member.User.country}}</p>
-    </ion-item>                 
+    <ion-item-sliding  *ngFor="let member of members">
+        <ion-item>
+            <ion-avatar item-left>
+                <img *ngIf="member.User.picture_profile" [src]="member.User.picture_profile">
+                <img *ngIf="!member.User.picture_profile" src="../../assets/imgs/image_avatar.png">      
+            </ion-avatar>
+            <h3>{{member.User.first_name+""+member.User.last_name}}</h3>
+            <p>{{member.User.country}}</p>
+        </ion-item>
+        <ion-item-options side="right">
+            <div class="btn-trash" (click)="deleteMember(member)">
+                <ion-icon name="trash"></ion-icon>
+            </div>            
+        </ion-item-options>
+    </ion-item-sliding>                 
     </ion-list>
   </div>
 </ion-content>

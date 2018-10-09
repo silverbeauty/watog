@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Events } from 'ionic-angular';
 import { map } from 'rxjs/operators/map';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+// import { RequestOptions, Request, RequestMethod } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
 import { Contact, Message, Room, Member } from '../../types';
@@ -227,6 +228,33 @@ export class ChatService {
         .subscribe((res: any) => {
           if (res.status) {
             console.log("add member response => ", res)
+            resolve(res.data)
+          } else {
+            console.error('Failed to add member:', res)
+            reject ('Failed to add member')
+          }
+        }, (err) => {
+          console.info('Failed to add member:', err)
+          reject(err);
+        });
+    })
+  }
+  public removeMember(id: any, params : any ): Promise<any>{
+    const headers = new HttpHeaders({
+      'Authorization':  this.token,
+      'Content-Type': 'application/json'
+    });
+
+    let options = {
+      headers: headers,
+      body : JSON.stringify(params)
+    };
+
+    return new Promise((resolve, reject) => {
+      this.http.request('delete', this.EDIT_ROOM+id+"/member", options)
+        .subscribe((res: any) => {
+          if (res.status) {
+            console.log("delete member response => ", res)
             resolve(res.data)
           } else {
             console.error('Failed to add member:', res)
