@@ -552,4 +552,26 @@ public getVideos(): Promise<any> {
         });
     })
   }
+
+  public getLiveYouTubeId(): Promise<string> {
+    const headers = new HttpHeaders({
+      'Authorization':  RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl+'/live', { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data.youtube_id);
+          } else {
+            console.error('Failed to get Live Stream:', res)
+            reject ('Failed to get Live Stream')
+          }
+        }, (err) => {
+          console.info('Failed to get Live Stream:', err)
+          reject(err);
+        });
+    })
+  }
 }
