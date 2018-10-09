@@ -1,37 +1,37 @@
 <div class="tool-bar">
   <ion-grid>
-	  <ion-row class="btn-bar" *ngIf="!isSearch">
-		  <ion-col class="add-item" (click)="addRoom()" col-6>
-			  <ion-icon class="icon-btn" name="ios-add-outline"></ion-icon>
-		  </ion-col>
-		  <ion-col class="search-item" (click)="searchRoom()" col-6>
-			  <ion-icon class="icon-btn" name="ios-search-outline"></ion-icon>
-		  </ion-col>
-		  <!-- <ion-col class="more" col-2>
-			  <ion-icon class="icon-btn" name="md-more"></ion-icon>
-		  </ion-col> -->
-	  </ion-row>
-	  <ion-row class="search-bar" *ngIf="isSearch">
-			<ion-col class="search-view" col-10>
-				<ion-input type="text" placeholder="Search" [(ngModel)]="search" (ionChange)="onSearch()"></ion-input>
-			</ion-col>
-			<ion-col class="search-btn-view" (click)="closeSearchBar()" col-2>
-				<ion-icon class="icon-sm" name="md-close-circle"></ion-icon>
-			</ion-col>
-		</ion-row>
+    <ion-row class="btn-bar" *ngIf="!isSearch">
+      <ion-col class="add-item" (click)="addRoom()" col-6>
+        <ion-icon class="icon-btn" name="ios-add-outline"></ion-icon>
+      </ion-col>
+      <ion-col class="search-item" (click)="searchRoom()" col-6>
+        <ion-icon class="icon-btn" name="ios-search-outline"></ion-icon>
+      </ion-col>
+      <!-- <ion-col class="more" col-2>
+        <ion-icon class="icon-btn" name="md-more"></ion-icon>
+      </ion-col> -->
+    </ion-row>
+    <ion-row class="search-bar" *ngIf="isSearch">
+      <ion-col class="search-view" col-10>
+        <ion-input type="text" placeholder="Search" [(ngModel)]="search" (ionChange)="onSearch()"></ion-input>
+      </ion-col>
+      <ion-col class="search-btn-view" (click)="closeSearchBar()" col-2>
+        <ion-icon class="icon-sm" name="md-close-circle"></ion-icon>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </div>
 
 <ion-content class = "list-content" padding>
   <ion-list>
     <ng-container *ngFor="let list of lists">
-			<ion-item (click)="goToChattingPage(list)">
-				<ion-avatar item-left>
-					<img *ngIf="list.avatar" [src]="list.avatar">
-					<img *ngIf="!list.avatar" src="../../assets/imgs/image_group_avatar.png">
-				</ion-avatar>
-				<ion-label>{{ list.title }}</ion-label>
-			</ion-item>
+      <ion-item (click)="goToChattingPage(list)">
+        <ion-avatar item-left>
+          <img *ngIf="list.avatar" [src]="list.avatar">
+          <img *ngIf="!list.avatar" src="../../assets/imgs/image_group_avatar.png">
+        </ion-avatar>
+        <ion-label>{{ list.title }}</ion-label>
+      </ion-item>
     </ng-container>
   </ion-list>
 </ion-content>
