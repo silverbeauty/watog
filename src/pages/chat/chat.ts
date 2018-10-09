@@ -138,11 +138,7 @@ export class ChatPage {
     this.content.resize();
     this.scrollToBottom();
     const clientHeight = document.getElementById('message-wrap').clientHeight;
-    console.log(clientHeight)
     if (this.platform.is('cordova')) {
-      // if(clientHeight > this.deviceHeight) {
-      //   $('.footer-input').css('bottom', 220 + 'px');
-      // }
       $('.footer-input').css('bottom', 220 + 'px');
     }
   }

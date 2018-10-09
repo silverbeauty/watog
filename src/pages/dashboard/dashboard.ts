@@ -21,14 +21,14 @@ import { Contact, Message, Room, Member } from '../../types';
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, 
-    public modalCtrl: ModalController, 
-    public navParams: NavParams, 
-    public dataProvider: DataProvider, 
-    public restProvider: RestProvider, 
-    private youtube: YoutubeVideoPlayer, 
-    private plt: Platform, 
-    private socketProvider: SocketsProvider, 
+  constructor(public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    public navParams: NavParams,
+    public dataProvider: DataProvider,
+    public restProvider: RestProvider,
+    private youtube: YoutubeVideoPlayer,
+    private plt: Platform,
+    private socketProvider: SocketsProvider,
     public menuCtrl: MenuController,
     public chatService: ChatService,
     public loadingCtrl: LoadingController) {}
