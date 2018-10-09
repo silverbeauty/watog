@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
 
 import { ChatPage } from '../chat/chat';
+import { RoomCreateCompletePage } from '../room-create-complete/room-create-complete';
 import { ChatService } from '../../providers';
 /**
  * Generated class for the PublicRoomListPage page.
@@ -68,6 +69,7 @@ export class PublicRoomListPage {
 
   addRoom() {
     console.log('addroom');
+    this.parentSelector.push(RoomCreateCompletePage);
 
   }
 
