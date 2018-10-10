@@ -25,6 +25,7 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#775576" />
     <preference name="YouTubeDataApiKey" value="AIzaSyC3fVtE_hN3Bx9KxgZrMWcYGxH2EHU86wY" />
+    <preference name="KeyboardResize" value="true" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
