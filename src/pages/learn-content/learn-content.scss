@@ -110,6 +110,13 @@ page-learn-content {
         display: flex;
         align-items: center;
         justify-content: center;
+        .logo-img-left{
+            width: 60px;
+            height: 40px;
+            // border: 1px solid #dddddd;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
+            object-fit: contain;
+        }
         .img-left {
             width: 40px;
             height: 40px;
@@ -123,7 +130,7 @@ page-learn-content {
     }
     .text-left{
         justify-content: left;
-        padding-left: 30px;
+        // padding-left: 30px;
     }
 
     .ic-title{
