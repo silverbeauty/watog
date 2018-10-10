@@ -197,7 +197,7 @@ export class ChatPage {
 
   scrollToBottom() {
     setTimeout(() => {
-      if (this.content.scrollToBottom) {
+      if (this.content && this.content.scrollToBottom) {
         this.content.scrollToBottom();
       }
     }, 400)

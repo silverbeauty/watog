@@ -13,28 +13,21 @@
   <section class="main">
     <div class="container border-btm" (click)="goToVideosListPage($event, N.videos, N.name)" *ngFor="let N of value.list">
       <div class="row">
-        <div class="col-8">
+        <div class="col-3">
+          <div class="icon-container">
+            <img [src]="N.logo" alt="participate img" class="logo-img-left">
+          </div>
+        </div>
+        <div class="col-6" no-padding>
           <div class="icon-container text-left">
             <p class="listtext-right">{{N.name}}</p>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-3">
           <div class="icon-container">
             <img src="../../assets/imgs/play.png" alt="participate img" class="img-left">
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="footer-sponsor">
-    <p>In partnership with: </p>
-    <div class="row">
-      <div class="col">
-        <img src="assets/imgs/laboratoire_ccdlarge.png" class="labor-img" alt="labor logo">
-      </div>
-      <div class="col">
-        <img src="assets/imgs/babyprogress_logoentier.png" class="baby-img" alt="baby logo">
+        </div>        
       </div>
     </div>
   </section>
