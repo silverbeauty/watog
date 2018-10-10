@@ -62,7 +62,7 @@ export class MyRoomListPage {
           });
           this.lists = res;
           console.log("res => ", res)
-          
+
           this._tempLists = res;
           if (isFirstLoad) {
             loader.dismiss();

@@ -1,13 +1,12 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Events, Content, IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController, Platform } from 'ionic-angular';
+import { Keyboard } from '@ionic-native/keyboard';
+
 import { ChatService, SocketsProvider } from "../../providers/";
 import { Contact, Message, Auth } from '../../types';
 import { ReportModalPage } from '../report-modal/report-modal';
 import { RoomInfoPage } from '../room-info/room-info';
 import { ContactListPage } from '../contact-list/contact-list';
-import { Keyboard } from '@ionic-native/keyboard';
-
-declare var $: any;
 
 @IonicPage()
 @Component({
@@ -45,8 +44,8 @@ export class ChatPage {
     private socketProvider: SocketsProvider,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
-    private keyboard: Keyboard,
-    private platform: Platform
+    public platform: Platform,
+    public keyboard: Keyboard
   ) {
     const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
 
@@ -64,8 +63,22 @@ export class ChatPage {
     }
 
     this.room_id = roomData.id;
-    platform.ready().then((readySource) => {
-      this.deviceHeight = platform.height();
+
+    platform.ready().then(() => {
+      if (platform.is('ios')) {
+        let appEl = <HTMLElement>(document.getElementsByTagName('ION-APP')[0]),
+          appElHeight = appEl.clientHeight;
+        keyboard.disableScroll(true);
+
+        window.addEventListener('native.keyboardshow', (e) => {
+          keyboard.disableScroll(true);
+          appEl.style.height = (appElHeight - (<any>e).keyboardHeight) + 'px';
+        });
+
+        window.addEventListener('native.keyboardhide', () => {
+          appEl.style.height = '100%';
+        });
+      }
     });
   }
 
@@ -76,12 +89,6 @@ export class ChatPage {
       }).catch(err => {
         console.log("err", err)
       })
-
-  }
-
-  ionViewWillLeave() {
-    // unsubscribe
-    this.events.unsubscribe('chat:received');
   }
 
   onPageScroll() {
@@ -137,14 +144,6 @@ export class ChatPage {
     this.showEmojiPicker = false;
     this.content.resize();
     this.scrollToBottom();
-    const clientHeight = document.getElementById('message-wrap').clientHeight;
-    if (this.platform.is('cordova')) {
-      $('.footer-input').css('bottom', 220 + 'px');
-    }
-  }
-
-  onBlur() {
-    $('.footer-input').css('bottom', 0 + 'px');
   }
 
   switchEmojiPicker() {
