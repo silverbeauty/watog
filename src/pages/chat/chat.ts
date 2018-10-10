@@ -52,7 +52,6 @@ export class ChatPage {
 
     const auth = JSON.parse(res[1]);
     const roomData = navParams.get("roomInfo");
-    console.log("chat room data == > ", roomData)
     if (auth.id == roomData.User.id) {
       this.isCreator = true;
     }
@@ -72,7 +71,6 @@ export class ChatPage {
   ngOnInit(): void {
     this.chatService.checkReadMessage(this.room_id)
       .then((res: any) => {
-        console.log(res);
       }).catch(err => {
         console.log("err", err)
       })
@@ -94,7 +92,6 @@ export class ChatPage {
       let step = this.stepMessage * this.currentPageIndex;
       let _param = "limit=" + step + "&direction=DESC";
       this.chatService.getMsgList(this.room_id, _param).then((data: any) => {
-        console.log("chat ===> ", data)
         data.sort(function (a, b) {
           return a.time - b.time;
         });
@@ -108,20 +105,16 @@ export class ChatPage {
   }
 
   ionViewDidEnter() {
-    // Subscribe to received  new message events
-    console.log("scrollTop", this.content.scrollTop)
     this.events.subscribe('chat:received', msg => {
       this.pushNewMsg(msg);
     })
 
     this.events.subscribe('add:member', data => {
-      console.log(" add member data => ", data)
       this.roomData.Members.push(data)
       this.totalUsers = this.roomData.Members.length;
     })
 
     this.events.subscribe('remove:member', data => {
-      console.log(" remove member data => ", data)
       let temp: any = [];
       temp = this.roomData.Members.filter((item) => {
         if (item.id != data.id)
@@ -230,7 +223,6 @@ export class ChatPage {
 
     this.promise = Promise.all([this.chatService.getRoomInfo(this.room_id), this.chatService.getMsgList(this.room_id, _param)]);
     this.promise.then(data => {
-      console.log("chat ===> ", data)
       let temp: any = [];
       temp = data[0].Members.filter((item) => {
         if (!item.removed)
@@ -301,7 +293,6 @@ export class ChatPage {
   report() {
     let reportModal = this.modalCtrl.create(ReportModalPage);
     reportModal.onDidDismiss(data => {
-      console.log("report modal=>", data)
     });
     reportModal.present();
   }
