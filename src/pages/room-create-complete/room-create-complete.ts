@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { Keyboard } from '@ionic-native/keyboard';
+
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import { CameraProvider } from '../../providers/camera/camera';
@@ -22,7 +24,28 @@ export class RoomCreateCompletePage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public cam: CameraProvider,
+    public platform: Platform,
+    public keyboard: Keyboard
   ) {
+    platform.ready().then(() => {
+      if (platform.is('ios')) {
+        let appEl = <HTMLElement>(document.getElementsByTagName('ION-APP')[0]),
+          appElHeight = appEl.clientHeight;
+        keyboard.disableScroll(true);
+
+        window.addEventListener('native.keyboardshow', (e) => {
+          console.log(123)
+          keyboard.disableScroll(true);
+          console.log(appElHeight)
+          appEl.style.height = (appElHeight - (<any>e).keyboardHeight) + 'px';
+          console.log(appEl.clientHeight)
+        });
+
+        window.addEventListener('native.keyboardhide', () => {
+          appEl.style.height = '100%';
+        });
+      }
+    });
   }
 
   ionViewWillLoad() {
