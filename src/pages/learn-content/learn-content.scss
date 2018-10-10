@@ -45,7 +45,10 @@ page-learn-content {
 
     .scroll-content {
         overflow-y: auto !important;
-        bottom:86px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
     }
 
     .btn-profile{
@@ -103,6 +106,7 @@ page-learn-content {
         margin: 1em;
         border-radius: 1em;
         text-align: center;
+        width: 100%;
     }
 
     .icon-container {
