@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Events, AlertController } from 'ionic-angular';
+import * as _ from 'lodash';
 
 import { RoomCreatePrePage } from '../room-create-pre/room-create-pre';
 import { RoomCreateCompletePage } from '../room-create-complete/room-create-complete';
@@ -57,12 +58,9 @@ export class MyRoomListPage {
               return item;
           });
           res = temp;
-          res.sort(function (a, b) {
-            return b.unread_message_count - a.unread_message_count;
-          });
-          this.lists = res;
+          res = _.orderBy(res, ['unread_message_count'], ['desc']);
           console.log("res => ", res)
-          
+          this.lists = res;
           this._tempLists = res;
           if (isFirstLoad) {
             loader.dismiss();
@@ -81,6 +79,7 @@ export class MyRoomListPage {
           list.unread_message_count++;
         }
       })
+      this.lists = _.orderBy(this.lists, ['unread_message_count'], ['desc']);
     })
   }
 
@@ -122,7 +121,7 @@ export class MyRoomListPage {
     else {
       let _alert = this.alertCtrl.create({
         title: '',
-        subTitle: 'The room creator can only edit this room',
+        subTitle: 'Only the room creator can edit / delete the room',
         buttons: ['OK']
       });
       _alert.present();
@@ -155,7 +154,7 @@ export class MyRoomListPage {
     else {
       let _alert = this.alertCtrl.create({
         title: '',
-        subTitle: 'The room creator can only remove this room',
+        subTitle: 'Only the room creator can edit / delete the room',
         buttons: ['OK']
       });
       _alert.present();
