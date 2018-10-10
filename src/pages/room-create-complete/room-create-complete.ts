@@ -34,11 +34,8 @@ export class RoomCreateCompletePage {
         keyboard.disableScroll(true);
 
         window.addEventListener('native.keyboardshow', (e) => {
-          console.log(123)
           keyboard.disableScroll(true);
-          console.log(appElHeight)
           appEl.style.height = (appElHeight - (<any>e).keyboardHeight) + 'px';
-          console.log(appEl.clientHeight)
         });
 
         window.addEventListener('native.keyboardhide', () => {
