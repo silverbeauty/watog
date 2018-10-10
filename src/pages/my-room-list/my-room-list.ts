@@ -122,7 +122,7 @@ export class MyRoomListPage {
     else {
       let _alert = this.alertCtrl.create({
         title: '',
-        subTitle: 'The room creator can only edit this room',
+        subTitle: 'Only the room creator can edit / delete the room',
         buttons: ['OK']
       });
       _alert.present();
@@ -155,7 +155,7 @@ export class MyRoomListPage {
     else {
       let _alert = this.alertCtrl.create({
         title: '',
-        subTitle: 'The room creator can only remove this room',
+        subTitle: 'Only the room creator can edit / delete the room',
         buttons: ['OK']
       });
       _alert.present();
