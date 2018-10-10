@@ -57,8 +57,12 @@ export class MyRoomListPage {
               return item;
           });
           res = temp;
+          res.sort(function (a, b) {
+            return b.unread_message_count - a.unread_message_count;
+          });
           this.lists = res;
           console.log("res => ", res)
+          
           this._tempLists = res;
           if (isFirstLoad) {
             loader.dismiss();

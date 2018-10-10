@@ -31,7 +31,12 @@ export class LearnPage {
 
   ionViewDidLoad() {
     this.restProvider.getVideos().then((video: any) => {
+      let temp_1 = {name: "FOGSI", videos: Array()}
+      let temp_2 = {name: "COGA", videos: Array()}
+      video["institutional_contents"].list.push(temp_1)
+      video["institutional_contents"].list.push(temp_2)
       this.video = video;
+      console.log(video)
       this.expression = true;
     }).catch(err => {
       console.error(err)
