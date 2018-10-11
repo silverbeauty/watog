@@ -1,5 +1,14 @@
-<ion-content class="body">
+<ion-header class="header-bar">
     <div class="navbar">
+        <ion-buttons class="btn-back" (click)="goBack()">
+            <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
+        </ion-buttons>
+        <ion-title>Discover</ion-title>
+        <header-action-bar class="header-action-bar"></header-action-bar>
+    </div>
+</ion-header>
+<ion-content class="body">
+    <!-- <div class="navbar">
       <a href="#" (click)="goToDashboard()"><img src="../../assets/icon/Menu.png" alt="Menu icon"></a>
       <h1>Discover</h1>
       <div class="btn-group">
@@ -14,11 +23,11 @@
           <button type="button" class="dropdown-item" (click)="logout()"><img src="../../assets/icon/Logout.png" alt="profile icon"> Logout</button>
         </div>
       </div>
-    </div>
-  <section class="title">
+    </div> -->
+  <!-- <section class="title">
     <i class="fa fa-arrow-left" (click)="goBack()"></i>
     <h3 class="font-weight-bold mt-5 mb-5">Discover</h3>
-  </section>
+  </section> -->
   <section class="menu">
     <div class="container">
       <div class="row">
