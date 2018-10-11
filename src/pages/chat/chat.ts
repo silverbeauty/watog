@@ -40,7 +40,7 @@ export class ChatPage {
   deviceHeight: number;
   attachFile : any = null;
   attachFileUrl : string;
-  isAttach : boolean = false;  
+  isAttach : boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -74,7 +74,7 @@ export class ChatPage {
     }
 
     this.room_id = roomData.id;
-   
+
   }
 
   ngOnInit(): void {
@@ -121,7 +121,7 @@ export class ChatPage {
 
         window.addEventListener('native.keyboardshow', (e) => {
           keyboard.disableScroll(true);
-          
+
           appEl.style.bottom = (<any>e).keyboardHeight + 'px'
           footerEl.style.bottom = (<any>e).keyboardHeight + 'px'
           // appEl.style.height = (appElHeight - (<any>e).keyboardHeight) + 'px';
@@ -171,12 +171,13 @@ export class ChatPage {
     }
     this.content.resize();
     this.scrollToBottom();
+    this.chatService.setEmojiUnicode(null);
   }
   /**
    * @name sendMsg
    */
   sendMsg() {
-    
+
     let _newMsg: Message;
     if(this.isAttach){
       _newMsg = {
@@ -188,11 +189,11 @@ export class ChatPage {
         message: "",
         attach: this.attachFileUrl,
         is_announcement: false
-      };   
-      this.editorMsg = "attach file"      
+      };
+      this.editorMsg = "attach file"
     }
     else{
-      
+
       if (!this.editorMsg.trim()) return;
 
       // Mock message
@@ -208,7 +209,12 @@ export class ChatPage {
       };
 
     }
-    
+
+    let emojiUnicode = this.chatService.getEmojiUnicode();
+    if(emojiUnicode) {
+      emojiUnicode = emojiUnicode.substr(0, emojiUnicode.length -1);
+    }
+
     let newMsg = {
       text: this.editorMsg,
       room_id: this.roomData.id,
@@ -224,10 +230,10 @@ export class ChatPage {
     if (!this.showEmojiPicker) {
       this.focus();
     }
-
+    this.chatService.setEmojiUnicode(null);
     this.socketProvider.sendMsg(newMsg);
 
-    
+
   }
 
   /**
@@ -292,7 +298,7 @@ export class ChatPage {
       console.log("err", err)
     })
   }
-  
+
   addUser() {
     if (!this.isCreator) {
       let _alert = this.alertCtrl.create({
@@ -348,7 +354,7 @@ export class ChatPage {
     });
     reportModal.present();
   }
-  
+
   // attach part
   attachFileSend() {
     let actionSheet = this.actionSheetCtrl.create({
@@ -372,14 +378,14 @@ export class ChatPage {
         }
       ]
     });
- 
+
     actionSheet.present();
   }
 
   TakeaPicture() {
     this.cam.selectImage(1, 0).then(resp => {
       this.attachFile = "data:image/jpeg;base64," + resp;
-      this.UploadAttachFile(this.attachFile);    
+      this.UploadAttachFile(this.attachFile);
     }, err => {
       console.log("error with select of picture")
       console.log("param not send")

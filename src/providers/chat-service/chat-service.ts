@@ -18,6 +18,8 @@ export class ChatService {
   ATTACH: string = server_url + "/file";
   token: string;
   auth: any;
+  emojiUnicode: string;
+
   constructor(private http: HttpClient,
     private events: Events) {
     const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
@@ -325,5 +327,12 @@ export class ChatService {
 
         });
     })
+  }
+  setEmojiUnicode(val) {
+    this.emojiUnicode = val;
+  }
+
+  getEmojiUnicode() {
+    return this.emojiUnicode;
   }
 }

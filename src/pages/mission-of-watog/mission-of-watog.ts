@@ -45,6 +45,10 @@ export class MissionOfWatogPage {
     this.navCtrl.push(OrganizationPage);
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
   goToWhatIsWatog(){
     this.navCtrl.push(WhatIsWatogPage);
   }

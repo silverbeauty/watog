@@ -25,7 +25,14 @@
       <p> <i class="fa fa-envelope"></i> 35 rue Berger <br> 75001 Paris <br> FRANCE </p>
     </div>
   </section>
-  <div class="text-center">
-    <button class="btn btn-logout" (click)="goToDashboard()">HOME</button>
+  <div class="pt-4 pb-4">
+    <div class="row">
+      <div class="col-5 offset-1 text-center">
+        <button class="btn btn-back" (click)="goBack()">BACK</button>
+      </div>
+      <div class="col-5 text-center">
+        <button class="btn btn-next" (click)="goToWhatIsWatog()">NEXT</button>
+      </div>
+    </div>
   </div>
 </ion-content>

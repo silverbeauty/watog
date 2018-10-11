@@ -6,6 +6,7 @@ import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
 import { ModalLogout } from '../modal-logout/modal-logout';
+import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 
 /**
  * Generated class for the WatogContactPage page.
@@ -38,6 +39,14 @@ export class WatogContactPage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goBack(){
+    this.navCtrl.pop();
+  }
+
+  goToWhatIsWatog(){
+    this.navCtrl.push(WhatIsWatogPage);
   }
 
   logout(){
