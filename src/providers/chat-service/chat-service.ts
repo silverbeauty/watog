@@ -165,6 +165,7 @@ export class ChatService {
                 userAvatar: sender.picture_profile,
                 time: _time,
                 message: element.text,
+                attach: element.file_url,
                 is_announcement: element.is_announcement
               };
               _temp.push(_msg);

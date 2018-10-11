@@ -72,16 +72,25 @@ page-futur-near-term-goals {
             color: #555;
         }
     }
-
+    
     .btn-next{
         background-color: #a96ba7;
         color: white;
         font-size: 1.2em;
         font-weight: 200;
         padding: .7em;
-        margin: 1em 0;
         border-radius: 20em;
-        width: 90vw;
+        width: 100%;
+    }
+
+    .btn-back{
+        background-color: #dce4e7;
+        color: black;
+        font-size: 1.2em;
+        font-weight: 200;
+        padding: .7em;
+        border-radius: 20em;
+        width: 100%;
     }
 
 }
