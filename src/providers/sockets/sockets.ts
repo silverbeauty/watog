@@ -68,6 +68,7 @@ export class SocketsProvider {
           time: data.createdAt,
           message: data.text,
           is_announcement: data.is_announcement,
+          attach: data.file_url,
           room_id: data.room_id
         };
         console.log(data);

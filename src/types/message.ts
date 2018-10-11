@@ -6,5 +6,6 @@ export class Message {
     public time: number | string;
     public message: string;
     public is_announcement: boolean;
+    public attach: string;
     // public status: string;
 }

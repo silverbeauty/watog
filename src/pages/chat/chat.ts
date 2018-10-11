@@ -1,12 +1,13 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Events, Content, IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController, Platform } from 'ionic-angular';
+import { Events, Content, IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController, Platform, ActionSheetController } from 'ionic-angular';
 import { Keyboard } from '@ionic-native/keyboard';
 
-import { ChatService, SocketsProvider } from "../../providers/";
+import { ChatService, SocketsProvider, CameraProvider } from "../../providers/";
 import { Contact, Message, Auth } from '../../types';
 import { ReportModalPage } from '../report-modal/report-modal';
 import { RoomInfoPage } from '../room-info/room-info';
 import { ContactListPage } from '../contact-list/contact-list';
+import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
 
 @IonicPage()
 @Component({
@@ -34,6 +35,9 @@ export class ChatPage {
   isCreator: boolean = false;
   member_count_limit: any = '';
   deviceHeight: number;
+  attachFile : any = null;
+  attachFileUrl : string;
+  isAttach : boolean = false;  
 
   constructor(
     public navCtrl: NavController,
@@ -45,10 +49,12 @@ export class ChatPage {
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     public platform: Platform,
-    public keyboard: Keyboard
+    public keyboard: Keyboard,
+    public cam: CameraProvider,
+    public actionSheetCtrl: ActionSheetController
   ) {
     const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
-
+    console.log(res[0])
     const auth = JSON.parse(res[1]);
     const roomData = navParams.get("roomInfo");
     if (auth.id == roomData.User.id) {
@@ -164,32 +170,58 @@ export class ChatPage {
    * @name sendMsg
    */
   sendMsg() {
-    if (!this.editorMsg.trim()) return;
+    
+    let _newMsg: Message;
+    if(this.isAttach){
+      _newMsg = {
+        messageId: Date.now().toString(),
+        userId: this.sender.id,
+        userName: this.sender.name,
+        userAvatar: this.sender.avatar,
+        time: Date.now(),
+        message: "",
+        attach: this.attachFileUrl,
+        is_announcement: false
+      };   
+      this.editorMsg = "attach file"      
+    }
+    else{
+      
+      if (!this.editorMsg.trim()) return;
 
-    // Mock message
-    let _newMsg: Message = {
-      messageId: Date.now().toString(),
-      userId: this.sender.id,
-      userName: this.sender.name,
-      userAvatar: this.sender.avatar,
-      time: Date.now(),
-      message: this.editorMsg,
-      is_announcement: false
-    };
+      // Mock message
+      _newMsg = {
+        messageId: Date.now().toString(),
+        userId: this.sender.id,
+        userName: this.sender.name,
+        userAvatar: this.sender.avatar,
+        time: Date.now(),
+        message: this.editorMsg,
+        attach: null,
+        is_announcement: false
+      };
 
+    }
+    
     let newMsg = {
       text: this.editorMsg,
-      room_id: this.roomData.id
+      room_id: this.roomData.id,
+      file_url : this.attachFileUrl
     }
-
+    console.log(this.roomData.id)
+    console.log(this.attachFileUrl)
     this.pushNewMsg(_newMsg);
     this.editorMsg = '';
+    this.attachFile = null;
+    this.isAttach = false;
 
     if (!this.showEmojiPicker) {
       this.focus();
     }
 
     this.socketProvider.sendMsg(newMsg);
+
+    
   }
 
   /**
@@ -245,7 +277,6 @@ export class ChatPage {
       this.msgList.sort(function (a: any, b: any) {
         return a.time - b.time;
       });
-
       this.totalUsers = this.roomData.Members.length;
       this.member_count_limit = this.roomData.member_count_limit;
       loader.dismiss();
@@ -255,10 +286,7 @@ export class ChatPage {
       console.log("err", err)
     })
   }
-  // toolbar funtion
-  attachFile() {
-
-  }
+  
   addUser() {
     if (!this.isCreator) {
       let _alert = this.alertCtrl.create({
@@ -306,5 +334,63 @@ export class ChatPage {
     reportModal.onDidDismiss(data => {
     });
     reportModal.present();
+  }
+  
+  // attach part
+  attachFileSend() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Select Image Source',
+      buttons: [
+        {
+          text: 'Load from Library',
+          handler: () => {
+            this.navToGallery();
+          }
+        },
+        {
+          text: 'Use Camera',
+          handler: () => {
+            this.TakeaPicture();
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        }
+      ]
+    });
+ 
+    actionSheet.present();
+  }
+
+  TakeaPicture() {
+    this.cam.selectImage(1, 0).then(resp => {
+      this.attachFile = "data:image/jpeg;base64," + resp;
+      this.UploadAttachFile(this.attachFile);    
+    }, err => {
+      console.log("error with select of picture")
+      console.log("param not send")
+    });
+  }
+
+  navToGallery() {
+    this.cam.selectImage(0, 0).then(resp => {
+      this.attachFile = "data:image/jpeg;base64," + resp;
+      this.UploadAttachFile(this.attachFile);
+    }, err => {
+      console.log("error with select of picture")
+      console.log("param not send")
+    });
+  }
+
+  UploadAttachFile(attach: any){
+    var self = this;
+    this.chatService.sendFile(attach).then((data: any) => {
+      self.attachFileUrl = data.url;
+      self.isAttach = true;
+      self.sendMsg();
+    }).catch((error) => {
+      alert("server error!")
+    })
   }
 }
