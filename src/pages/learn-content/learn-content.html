@@ -10,7 +10,7 @@
   </div>
 </ion-header>
 <ion-content class="body" no-bounce>
-  <section class="main">
+  <div class="main">
     <div class="container border-btm" (click)="goToVideosListPage($event, N.videos, N.name)" *ngFor="let N of value.list">
       <div class="row">
         <div class="col-3">
@@ -30,5 +30,5 @@
         </div>        
       </div>
     </div>
-  </section>
+  </div>
 </ion-content>

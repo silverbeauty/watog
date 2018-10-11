@@ -86,7 +86,7 @@ page-edit-chat-room {
         }
     }
     .scroll-content{
-       overflow: hidden;
+   //    overflow: hidden;
     }
 
     .description{
@@ -98,10 +98,10 @@ page-edit-chat-room {
     }
     .btn-update{
         background-color: #775576;
-        position: absolute;
+        // position: absolute;
         width:calc(100vw - 40px);
         margin-left: 20px;
-        bottom : 20px;
+        // bottom : 20px;
     }  
     .input-group {
         padding: 1em;
@@ -128,7 +128,7 @@ page-edit-chat-room {
             }
         }
         .btn-update{
-            bottom: 10px !important;
+            // bottom: 10px !important;
         }
     }
 }

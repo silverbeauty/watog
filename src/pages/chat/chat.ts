@@ -62,23 +62,7 @@ export class ChatPage {
     }
 
     this.room_id = roomData.id;
-
-    platform.ready().then(() => {
-      if (platform.is('ios')) {
-        let appEl = <HTMLElement>(document.getElementsByTagName('ION-APP')[0]),
-          appElHeight = appEl.clientHeight;
-        keyboard.disableScroll(true);
-
-        window.addEventListener('native.keyboardshow', (e) => {
-          keyboard.disableScroll(true);
-          appEl.style.height = (appElHeight - (<any>e).keyboardHeight) + 'px';
-        });
-
-        window.addEventListener('native.keyboardhide', () => {
-          appEl.style.height = '100%';
-        });
-      }
-    });
+   
   }
 
   ngOnInit(): void {
@@ -112,6 +96,33 @@ export class ChatPage {
   }
 
   ionViewDidEnter() {
+
+    let platform = this.platform
+    let keyboard = this.keyboard
+    platform.ready().then(() => {
+      if (platform.is('ios')) {
+        // let appEl = <HTMLElement>(document.getElementsByTagName('ION-APP')[0]),
+        //   appElHeight = appEl.clientHeight;
+        let appEl = <HTMLElement> (document.getElementById("chatboard").getElementsByClassName("scroll-content")[0]);
+        let footerEl = <HTMLElement> (document.getElementById("footer-input"));
+        keyboard.disableScroll(true);
+
+        window.addEventListener('native.keyboardshow', (e) => {
+          keyboard.disableScroll(true);
+          
+          appEl.style.bottom = (<any>e).keyboardHeight + 'px'
+          footerEl.style.bottom = (<any>e).keyboardHeight + 'px'
+          // appEl.style.height = (appElHeight - (<any>e).keyboardHeight) + 'px';
+        });
+
+        window.addEventListener('native.keyboardhide', () => {
+          appEl.style.bottom = '0px'
+          footerEl.style.bottom = '0px'
+          // appEl.style.height = '100%';
+        });
+      }
+    });
+
     this.events.subscribe('chat:received', msg => {
       this.pushNewMsg(msg);
     })
