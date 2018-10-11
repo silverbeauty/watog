@@ -148,6 +148,7 @@ export class ChatPage {
     }
     this.content.resize();
     this.scrollToBottom();
+    this.chatService.setEmojiUnicode(null);
   }
   /**
    * @name sendMsg
@@ -166,6 +167,11 @@ export class ChatPage {
       is_announcement: false
     };
 
+    let emojiUnicode = this.chatService.getEmojiUnicode();
+    if(emojiUnicode) {
+      emojiUnicode = emojiUnicode.substr(0, emojiUnicode.length -1);
+    }
+
     let newMsg = {
       text: this.editorMsg,
       room_id: this.roomData.id
@@ -177,8 +183,9 @@ export class ChatPage {
     if (!this.showEmojiPicker) {
       this.focus();
     }
-
+    this.chatService.setEmojiUnicode(null);
     this.socketProvider.sendMsg(newMsg);
+
   }
 
   /**
