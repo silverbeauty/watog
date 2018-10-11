@@ -86,8 +86,8 @@
           <span class="triangle"></span>
           <p class="line-breaker ">{{msg.message}}</p>
         </div>
-        <div class="msg-content" *ngIf="msg.attach">
-          <img class="attach" [src]="msg.attach" alt="">
+        <div class="msg-content" *ngIf="msg.attach" >
+          <img class="attach" [src]="msg.attach" alt="" #attach (click)="presentImage(attach)">
         </div>
       </div>
     </div>
