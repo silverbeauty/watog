@@ -30,7 +30,7 @@ export class EditChatRoomPage {
       if(this.roomInfo.member_count_limit)
         this.memberLimit = this.roomInfo.member_count_limit;
   }
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditChatRoomPage');
   }
@@ -59,7 +59,7 @@ export class EditChatRoomPage {
   goBack() {
     this.navCtrl.pop();
   }
-  
+
   update(){
     let room_id = this.roomInfo.id;
     let params = {};
@@ -89,7 +89,7 @@ export class EditChatRoomPage {
         alert("server error!")
       })
     }
-    else {     
+    else {
       params["avatar"] = this.avatar;
       this.chatService.editRoom(params, room_id)
         .then((res: any) => {
@@ -100,7 +100,7 @@ export class EditChatRoomPage {
           loader.dismiss();
           console.log(err)
         })
-    }  
+    }
   }
 
   TakeaPicture() {
