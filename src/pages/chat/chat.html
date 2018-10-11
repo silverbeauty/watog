@@ -21,7 +21,7 @@
         </button>
       <!-- </ion-col> -->
       <div class="dropdown-menu dropdown-menu-right">
-        <button type="button" class="dropdown-item" (click)="archiveMessage()"><ion-icon name="ios-archive-outline"><p>Archive</p></ion-icon></button>
+        <button type="button" class="dropdown-item" (click)="archiveRoom()" *ngIf="isCreator" ><ion-icon name="ios-archive-outline"><p>Archive</p></ion-icon></button>
         <button type="button" class="dropdown-item" (click)="roomInfo()"><ion-icon name="ios-information-circle-outline"><p>Room Info</p></ion-icon></button>
         <button type="button" class="dropdown-item" (click)="report()"><ion-icon name="ios-warning-outline"><p>Report Abuse</p></ion-icon></button>
       </div>

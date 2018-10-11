@@ -308,7 +308,7 @@ export class ChatService {
         });
     })
   }
-  
+
   public reportRoom(room_id, params): Promise<any> {
     const headers = new HttpHeaders({
       'Authorization': this.token,
@@ -336,25 +336,4 @@ export class ChatService {
     return this.emojiUnicode;
   }
 
-  public archiveMessage(room_id): Promise<any>{
-    const headers = new HttpHeaders({
-      'Authorization': this.token,
-      'Content-Type': 'application/json'
-    });
-    return new Promise((resolve, reject) => {
-      this.http.put(this.EDIT_ROOM + room_id, {archived: true}, { headers })
-      .subscribe((res: any) => {
-        if (res.status) {
-          console.log(res)
-          resolve(res.data);
-        } else {
-          reject('Archive Rooms Failed:')
-        }
-      }, (err) => {
-        reject('Archive Rooms Failed:')
-
-      });
-    })
-
-  }
 }

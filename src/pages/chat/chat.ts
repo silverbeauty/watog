@@ -334,8 +334,8 @@ export class ChatPage {
   }
 
   // right side menu funtion
-  archiveMessage() {
-    this.chatService.archiveMessage(this.room_id).then((data: any) => {
+  archiveRoom() {
+    this.chatService.archiveRoom(this.room_id).then((data: any) => {
       this.navCtrl.push(ChatRoomPage)
     }).catch((error) => {
       let _alert = this.alertCtrl.create({
