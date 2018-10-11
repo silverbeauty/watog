@@ -203,7 +203,14 @@ import { SocketsProvider } from '../providers/sockets/sockets';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      platforms : {
+        ios : {
+          scrollAssist: true,    // Valid options appear to be [true, false]
+          autoFocusAssist: false,  // Valid options appear to be ['instant', 'delay', false]
+        }
+      }
+    }),
     ValidatorsModule,
     SwingModule,
     IonicImageViewerModule,
@@ -271,7 +278,7 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     RoomCreateCompletePage,
     ContactListPage,
     CreditsPage,
-    
+
     LearnPage,
     InstitutionalContentsPage,
     SponsoredContentPage,

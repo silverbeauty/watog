@@ -1,11 +1,11 @@
 <ion-header class="header-bar">
-    <div class="navbar">
-        <ion-buttons class="btn-back" (click)="goBack()">
-            <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
-        </ion-buttons>
-        <ion-title>Create Chat Room</ion-title>
-        <header-action-bar class="header-action-bar"></header-action-bar>
-    </div>
+  <div class="navbar">
+    <ion-buttons class="btn-back" (click)="goBack()">
+      <button ion-button><ion-icon class="icon-back"name="arrow-back"></ion-icon></button>
+    </ion-buttons>
+    <ion-title>Create Chat Room</ion-title>
+    <header-action-bar class="header-action-bar"></header-action-bar>
+  </div>
 </ion-header>
 <ion-content no-padding>
   <form [formGroup]="validations_form">
@@ -17,24 +17,24 @@
         </div>
       </ng-container>
     </div>
-    
+
     <div class="img-view">
       <img class="main-avatar" *ngIf="image_local" [src]="image_local">
       <img class="main-avatar" *ngIf="!image_local" src="../../assets/imgs/image_group_avatar.png">
-      
+
       <ion-row class="btn-change-image">
         <ion-col (click)="TakeaPicture()" col-6>
-            <img src="assets/imgs/appareil.png" alt="camera">
-            <p class="font-weight-light text-center">Take a Picture</p>
+          <img src="assets/imgs/appareil.png" alt="camera">
+          <p class="font-weight-light text-center">Take a Picture</p>
         </ion-col>
         <ion-col (click)="navToGallery()" col-6>
-            <img src="assets/imgs/on_your_computer.png" alt="On your computer">
-            <p class="font-weight-light text-center">On your device</p>
+          <img src="assets/imgs/on_your_computer.png" alt="On your computer">
+          <p class="font-weight-light text-center">On your device</p>
         </ion-col>
       </ion-row>
       <div class="description" [ngClass]="{ 'is-invalid': validations_form.get('description').errors && (validations_form.get('description').dirty || validations_form.get('description').touched)}">
-          <ion-textarea placeholder="Description" rows="4" formControlName="description"
-          [(ngModel)]="description" name="description" autocomplete="on" autocorrect="on"></ion-textarea>                  
+        <ion-textarea placeholder="Description" rows="4" formControlName="description"
+        [(ngModel)]="description" name="description" autocomplete="on" autocorrect="on"></ion-textarea>
       </div>
       <ng-container *ngFor="let validation of validation_messages.description">
           <div class="error-message" *ngIf="validations_form.get('description').hasError(validation.type) && (validations_form.get('description').dirty || validations_form.get('description').touched)">
@@ -42,7 +42,7 @@
           </div>
         </ng-container>
     </div>
-    
+
     <button ion-button round class="btn-update"   [disabled]="!validations_form.valid" (click)="next()">Next</button>
   </form>
 </ion-content>
