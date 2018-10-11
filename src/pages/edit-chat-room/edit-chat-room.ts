@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
+import { Keyboard } from '@ionic-native/keyboard';
 import { ChatService } from '../../providers';
 import { CameraProvider } from '../../providers/camera/camera';
 import { ChatRoomPage } from '../chat-room/chat-room';
@@ -16,10 +16,12 @@ export class EditChatRoomPage {
   roomInfo: any;
   memberLimit: '';
 
-  constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    public chatService: ChatService,
-    public loadingCtrl: LoadingController,
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public chatService: ChatService, 
+    public loadingCtrl: LoadingController, 
+    public platform: Platform,
+    public keyboard: Keyboard,
     public cam: CameraProvider, ) {
       this.roomInfo = navParams.get("roomInfo");
       this.title = this.roomInfo.title
@@ -33,6 +35,27 @@ export class EditChatRoomPage {
     console.log('ionViewDidLoad EditChatRoomPage');
   }
 
+  ionViewDidEnter(){
+    let platform = this.platform
+    let keyboard = this.keyboard
+    platform.ready().then(() => {
+      if (platform.is('ios')) {
+        
+        let appEl = <HTMLElement> (document.getElementById("profileboard").getElementsByClassName("scroll-content")[0]);
+        keyboard.disableScroll(true);
+
+        window.addEventListener('native.keyboardshow', (e) => {
+          keyboard.disableScroll(true);
+          
+          appEl.style.bottom = (<any>e).keyboardHeight + 'px'
+        });
+
+        window.addEventListener('native.keyboardhide', () => {
+          appEl.style.bottom = '0px';
+        });
+      }
+    });
+  }
   goBack() {
     this.navCtrl.pop();
   }

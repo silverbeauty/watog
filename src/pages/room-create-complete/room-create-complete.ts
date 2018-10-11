@@ -27,22 +27,6 @@ export class RoomCreateCompletePage {
     public platform: Platform,
     public keyboard: Keyboard
   ) {
-    platform.ready().then(() => {
-      if (platform.is('ios')) {
-        let appEl = <HTMLElement>(document.getElementsByTagName('ION-APP')[0]),
-          appElHeight = appEl.clientHeight;
-        keyboard.disableScroll(true);
-
-        window.addEventListener('native.keyboardshow', (e) => {
-          keyboard.disableScroll(true);
-          appEl.style.height = (appElHeight - (<any>e).keyboardHeight) + 'px';
-        });
-
-        window.addEventListener('native.keyboardhide', () => {
-          appEl.style.height = '100%';
-        });
-      }
-    });
   }
 
   ionViewWillLoad() {
@@ -60,6 +44,27 @@ export class RoomCreateCompletePage {
     console.log('ionViewDidLoad RoomCreateCompletePage');
   }
 
+  ionViewDidEnter(){
+    let platform = this.platform
+    let keyboard = this.keyboard
+    platform.ready().then(() => {
+      if (platform.is('ios')) {
+        
+        let appEl = <HTMLElement> (document.getElementById("profileboard").getElementsByClassName("scroll-content")[0]);
+        keyboard.disableScroll(true);
+
+        window.addEventListener('native.keyboardshow', (e) => {
+          keyboard.disableScroll(true);
+          
+          appEl.style.bottom = (<any>e).keyboardHeight + 'px'
+        });
+
+        window.addEventListener('native.keyboardhide', () => {
+          appEl.style.bottom = '0px';
+        });
+      }
+    });
+  }
   goBack() {
     this.navCtrl.pop();
   }

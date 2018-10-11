@@ -175,5 +175,15 @@ page-learn-content {
             margin-right: 2em;
         }
     }
+    
+    @media screen and (max-width: 412px) {
+        .main{margin-top: 100px;}
+    }
+    @media screen and (max-width: 374px) {
+        .main{margin-top: 135px;}
+    }
+    @media screen and (max-width: 359px) {
+        .main{margin-top: 185px;}
+    }
 }
 
