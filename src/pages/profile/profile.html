@@ -2,18 +2,7 @@
     <div class="navbar">
       <a href="#" (click)="goToDashboard()"><img src="assets/icon/Menu.png" alt="Menu icon"></a>
       <h1>Profile</h1>
-      <div class="btn-group">
-        <button type="button" class="btn btn-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="assets/icon/Profil02.png" alt="profile icon">
-        </button>
-        <div class="dropdown-menu dropdown-menu-right">
-          <button type="button" class="dropdown-item"><img src="assets/icon/Profil.png" alt="profile icon"> Profile</button>
-          <hr>
-          <button type="button" class="dropdown-item" (click)="goToSettingsPage()"><img src="assets/icon/Gear.png" alt="profile icon"> Settings</button>
-          <hr>
-          <button type="button" class="dropdown-item" (click)="logout()"><img src="assets/icon/Logout.png" alt="profile icon"> Logout</button>
-        </div>
-      </div>
+      <header-action-bar class="header-action-bar"></header-action-bar>
     </div>
     <section class="profile-info">
       <div id="profile-picture" class="container-fluid" [ngStyle]="{'background-image':'url(' + auth.picture_profile + ')'}"></div>
