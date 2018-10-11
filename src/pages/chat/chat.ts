@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Events, Content, IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController, Platform, ActionSheetController } from 'ionic-angular';
 import { Keyboard } from '@ionic-native/keyboard';
+import { ImageViewerController } from 'ionic-img-viewer';
 
 import { ChatService, SocketsProvider, CameraProvider } from "../../providers/";
 import { Contact, Message, Auth } from '../../types';
@@ -8,7 +9,7 @@ import { ReportModalPage } from '../report-modal/report-modal';
 import { RoomInfoPage } from '../room-info/room-info';
 import { ContactListPage } from '../contact-list/contact-list';
 import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
-import { ImageViewerController } from 'ionic-img-viewer';
+import { ChatRoomPage } from '../chat-room/chat-room';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,7 @@ import { ImageViewerController } from 'ionic-img-viewer';
 export class ChatPage {
   @ViewChild(Content) content: Content;
   @ViewChild('chat_input') messageInput: ElementRef;
-  
+
   _imageViewerCtrl: ImageViewerController;
 
   msgList: Message[] = [];
@@ -57,7 +58,7 @@ export class ChatPage {
     public imageViewerCtrl: ImageViewerController,
     public actionSheetCtrl: ActionSheetController
   ) {
-    
+
     this._imageViewerCtrl = imageViewerCtrl;
 
     const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
@@ -335,6 +336,17 @@ export class ChatPage {
 
   // right side menu funtion
   archiveMessage() {
+    this.chatService.archiveMessage(this.room_id).then((data: any) => {
+      this.navCtrl.push(ChatRoomPage)
+    }).catch((error) => {
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'Only room creator can archive the room',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    })
 
   }
 
