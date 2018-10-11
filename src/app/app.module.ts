@@ -23,10 +23,10 @@ import { Keyboard } from "@ionic-native/keyboard";
 
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
-  /*Components*/
+/*Components*/
 import { MyApp } from './app.component';
 
-  /*Pages*/
+/*Pages*/
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-one-of-three';
@@ -53,7 +53,7 @@ import { RegisterThreeOfThreePage } from '../pages/register-three-of-three/regis
 import { RegisterTwoOfThreePage } from '../pages/register-two-of-three/register-two-of-three';
 import { UploadCoverPhotoPage } from '../pages/upload-cover-photo/upload-cover-photo';
 import { UploadProfilePhotoPage } from '../pages/upload-profile-photo/upload-profile-photo';
-import { UploadWatogLogoPage} from "../pages/upload-watog-logo/upload-watog-logo";
+import { UploadWatogLogoPage } from "../pages/upload-watog-logo/upload-watog-logo";
 import { WhatIsWatogPage } from '../pages/what-is-watog/what-is-watog';
 import { SettingsPage } from '../pages/settings/settings';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
@@ -65,7 +65,7 @@ import { ModalPrinciplesPage } from '../pages/modal-principles/modal-principles'
 import { ModalContestPage } from '../pages/modal-contest/modal-contest';
 import { SelectionPage } from '../pages/selection/selection';
 import { ProfilesLoadPage } from '../pages/profiles-load/profiles-load';
-import { BestPhotoPage} from "../pages/best-photo/best-photo";
+import { BestPhotoPage } from "../pages/best-photo/best-photo";
 import { ModalChangeVotePage } from '../pages/modal-change-vote/modal-change-vote';
 import { ImageModalPage } from '../pages/imge-modal/img-modal';
 import { ModalLogout } from '../pages/modal-logout/modal-logout';
@@ -101,10 +101,10 @@ import { CreditsPage } from '../pages/credits/credits';
 
 // components
 import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
-import {EmojiPickerComponent} from '../components/emoji-picker/emoji-picker';
+import { EmojiPickerComponent } from '../components/emoji-picker/emoji-picker';
 
 import { EmojiProvider } from '../providers/emoji/emoji';
-import { ChatService} from '../providers/chat-service/chat-service';
+import { ChatService } from '../providers/chat-service/chat-service';
 import { RelativeTime } from "../pipes/relative-time";
 
 /*Provider*/
@@ -126,31 +126,31 @@ import { SocketsProvider } from '../providers/sockets/sockets';
   declarations: [
     MyApp,
     HomePage,
-  	LoginPage,
-  	RegisterOneOfThreePage,
-  	LandingPage,
-  	DashboardPage,
-  	BestGroupPhotoWithTheWatogLogoPage,
-  	AccomplishmentsToDatePage,
-  	BestHumanitaryPhotoPage,
-  	BestPhotoWithTheWatogLogoPage,
-  	BestSurgicalImagePage,
-  	BestUltrasoundImagePage,
-  	ContestPage,
-  	ContestVoteSearchDetailPage,
-  	ContestSearchResultsPage,
-  	ContestSubmitPage,
-  	ContestSubmitedPage,
-  	ContestVotePage,
-  	FuturNearTermGoalsPage,
-  	MissionOfWatogPage,
-  	OrganizationPage,
-  	ParticipatePage,
-  	ProfilePage,
-  	RegisterThreeOfThreePage,
-  	RegisterTwoOfThreePage,
-  	UploadCoverPhotoPage,
-  	UploadProfilePhotoPage,
+    LoginPage,
+    RegisterOneOfThreePage,
+    LandingPage,
+    DashboardPage,
+    BestGroupPhotoWithTheWatogLogoPage,
+    AccomplishmentsToDatePage,
+    BestHumanitaryPhotoPage,
+    BestPhotoWithTheWatogLogoPage,
+    BestSurgicalImagePage,
+    BestUltrasoundImagePage,
+    ContestPage,
+    ContestVoteSearchDetailPage,
+    ContestSearchResultsPage,
+    ContestSubmitPage,
+    ContestSubmitedPage,
+    ContestVotePage,
+    FuturNearTermGoalsPage,
+    MissionOfWatogPage,
+    OrganizationPage,
+    ParticipatePage,
+    ProfilePage,
+    RegisterThreeOfThreePage,
+    RegisterTwoOfThreePage,
+    UploadCoverPhotoPage,
+    UploadProfilePhotoPage,
     UploadWatogLogoPage,
     WhatIsWatogPage,
     SettingsPage,
@@ -204,8 +204,8 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp, {
-      platforms : {
-        ios : {
+      platforms: {
+        ios: {
           scrollAssist: true,    // Valid options appear to be [true, false]
           autoFocusAssist: false,  // Valid options appear to be ['instant', 'delay', false]
         }
@@ -220,31 +220,31 @@ import { SocketsProvider } from '../providers/sockets/sockets';
   entryComponents: [
     MyApp,
     HomePage,
-  	LoginPage,
-  	RegisterOneOfThreePage,
-  	LandingPage,
-  	DashboardPage,
-  	BestGroupPhotoWithTheWatogLogoPage,
-  	AccomplishmentsToDatePage,
-  	BestHumanitaryPhotoPage,
-  	BestPhotoWithTheWatogLogoPage,
-  	BestSurgicalImagePage,
-  	BestUltrasoundImagePage,
-  	ContestPage,
-  	ContestVoteSearchDetailPage,
-  	ContestSearchResultsPage,
-  	ContestSubmitPage,
-  	ContestSubmitedPage,
-  	ContestVotePage,
-  	FuturNearTermGoalsPage,
-  	MissionOfWatogPage,
-  	OrganizationPage,
-  	ParticipatePage,
-  	ProfilePage,
-  	RegisterThreeOfThreePage,
-  	RegisterTwoOfThreePage,
-  	UploadCoverPhotoPage,
-  	UploadProfilePhotoPage,
+    LoginPage,
+    RegisterOneOfThreePage,
+    LandingPage,
+    DashboardPage,
+    BestGroupPhotoWithTheWatogLogoPage,
+    AccomplishmentsToDatePage,
+    BestHumanitaryPhotoPage,
+    BestPhotoWithTheWatogLogoPage,
+    BestSurgicalImagePage,
+    BestUltrasoundImagePage,
+    ContestPage,
+    ContestVoteSearchDetailPage,
+    ContestSearchResultsPage,
+    ContestSubmitPage,
+    ContestSubmitedPage,
+    ContestVotePage,
+    FuturNearTermGoalsPage,
+    MissionOfWatogPage,
+    OrganizationPage,
+    ParticipatePage,
+    ProfilePage,
+    RegisterThreeOfThreePage,
+    RegisterTwoOfThreePage,
+    UploadCoverPhotoPage,
+    UploadProfilePhotoPage,
     UploadWatogLogoPage,
     WhatIsWatogPage,
     SettingsPage,
@@ -292,7 +292,7 @@ import { SocketsProvider } from '../providers/sockets/sockets';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     DataProvider,
     SQLite,
     DistantDataBaseProvider,
@@ -318,4 +318,4 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     YoutubeVideoPlayer
   ]
 })
-export class AppModule {}
+export class AppModule { }

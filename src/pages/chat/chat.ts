@@ -202,13 +202,14 @@ export class ChatPage {
     }, 400)
   }
 
-  private focus() {
+  focus() {
     if (this.messageInput && this.messageInput.nativeElement) {
       this.messageInput.nativeElement.focus();
     }
   }
 
-  private setTextareaScroll() {
+  setTextareaScroll() {
+    console.log(this.messageInput.nativeElement)
     const textarea = this.messageInput.nativeElement;
     textarea.scrollTop = textarea.scrollHeight;
   }
