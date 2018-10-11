@@ -177,6 +177,7 @@ export class ChatPage {
    * @name sendMsg
    */
   sendMsg() {
+    
 
     let _newMsg: Message;
     if(this.isAttach){
@@ -186,16 +187,22 @@ export class ChatPage {
         userName: this.sender.name,
         userAvatar: this.sender.avatar,
         time: Date.now(),
-        message: "",
+        message: this.editorMsg,
         attach: this.attachFileUrl,
         is_announcement: false
       };
       this.editorMsg = "attach file"
     }
     else{
-
-      if (!this.editorMsg.trim()) return;
-
+      if (!this.editorMsg.trim()) {
+        let _alert = this.alertCtrl.create({
+          title: '',
+          subTitle: 'The message is empty.',
+          buttons: ['OK']
+        });
+        _alert.present();
+        return;
+      }
       // Mock message
       _newMsg = {
         messageId: Date.now().toString(),
