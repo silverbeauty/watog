@@ -308,7 +308,26 @@ export class ChatService {
         });
     })
   }
+  
+  public reportRoom(room_id, params): Promise<any> {
+    const headers = new HttpHeaders({
+      'Authorization': this.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve, reject) => {
+      this.http.post(this.EDIT_ROOM + room_id + '/report', JSON.stringify(params), { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            resolve(res.data);
+          } else {
+            reject('Get Rooms Failed:')
+          }
+        }, (err) => {
+          reject('Get Rooms Failed:')
 
+        });
+    })
+  }
   setEmojiUnicode(val) {
     this.emojiUnicode = val;
   }
