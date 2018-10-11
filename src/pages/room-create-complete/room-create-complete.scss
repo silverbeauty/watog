@@ -1,8 +1,8 @@
 page-room-create-complete {
-    
-        // start header bar
-    .header-bar{
-        .navbar{
+
+    // start header bar
+    .header-bar {
+        .navbar {
             background-color: #775576;
             text-align: center;
             padding-left: 0px;
@@ -20,9 +20,9 @@ page-room-create-complete {
                 color: #fff;
                 margin: 4px 0px;
             }
-        }        
+        }
     }
-    .btn-back{
+    .btn-back {
         position: absolute !important;
         button {
             background-color: transparent;
@@ -33,7 +33,7 @@ page-room-create-complete {
             transition: none !important;
             transition: none !important;
         }
-        .icon-back{
+        .icon-back {
             font-size: 22px !important;
         }
     }
@@ -43,7 +43,7 @@ page-room-create-complete {
     }
     // end header bar
 
-    .title-view{
+    .title-view {
         margin-top: 30px;
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
         input{
@@ -61,7 +61,7 @@ page-room-create-complete {
         color: red;
     }
 
-    .img-view{
+    .img-view {
         margin-top: 20px;
         padding-bottom: 10px;
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.36);
@@ -74,47 +74,47 @@ page-room-create-complete {
             border: 0.55px solid #c8c7cc;
             background-image: url(../assets/imgs/logo_Seul.png);
         }
-        .btn-change-image{
-            margin : 5px 10px;
+        .btn-change-image {
+            margin: 5px 10px;
             img {
                 width: 60px;
                 height: 60px;
             }
         }
     }
-    .scroll-content{
+    .scroll-content {
         overflow: hidden;
     }
 
-    .description{
+    .description {
         margin: 0px 15px;
         border: 0.55px solid #c8c7cc;
-        ion-textarea{
+        ion-textarea {
             padding: 5px 10px;
         }
     }
-    .btn-update{
+    .btn-update {
         background-color: #775576;
         position: absolute;
-        width:calc(100vw - 40px);
+        width: calc(100vw - 40px);
         margin-left: 20px;
         bottom: 20px;
-    }  
-    
+    }
+
     @media screen and (max-width: 359px) {
         .main-avatar {
             width: 70px !important;
             height: 70px !important;
         }
-        .btn-change-image{
+        .btn-change-image {
             img {
                 width: 50px !important;
                 height: 50px !important;
             }
         }
-        .btn-update{
+        .btn-update {
             bottom: 10px !important;
         }
     }
-    
+
 }

@@ -91,7 +91,7 @@
   </div>
 </ion-content>
 
-<ion-footer no-border [style.height]="showEmojiPicker ? '255px' : '55px'" class="footer-input">
+<ion-footer no-border class="footer-input">
   <div class="input-wrap">
     <!-- <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
       <ion-icon name="md-happy"></ion-icon>
@@ -101,12 +101,12 @@
               [(ngModel)]="editorMsg"
               (keyup.enter)="sendMsg()"
               (focusin)="onFocus()"
-              (focusout)="onBlur()"></ion-input>
+              class="input-send-message"></ion-input>
     <!-- </input> -->
-    <button ion-button clear icon-only item-right (click)="attachFile()">
+    <!-- <button ion-button clear icon-only item-right (click)="attachFile()">
       <ion-icon name="attach" ios="ios-attach" md="md-attach"></ion-icon>
-    </button>
-    <button ion-button clear icon-only item-right (click)="sendMsg()">
+    </button> -->
+    <button ion-button clear icon-only item-right (click)="sendMsg()" class="btn-send">
       <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
     </button>
   </div>
