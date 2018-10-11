@@ -93,16 +93,16 @@
 
 <ion-footer no-border class="footer-input">
   <div class="input-wrap">
-    <!-- <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
+    <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
       <ion-icon name="md-happy"></ion-icon>
-    </button> -->
-    <ion-input #chat_input
-              placeholder="Write your message here"
-              [(ngModel)]="editorMsg"
-              (keyup.enter)="sendMsg()"
-              (focusin)="onFocus()"
-              class="input-send-message"></ion-input>
-    <!-- </input> -->
+    </button>
+    <textarea #chat_input
+      placeholder="Write your message here"
+      [(ngModel)]="editorMsg"
+      (keyup.enter)="sendMsg()"
+      (focusin)="onFocus()"
+      class="input-send-message">
+    </textarea>
     <!-- <button ion-button clear icon-only item-right (click)="attachFile()">
       <ion-icon name="attach" ios="ios-attach" md="md-attach"></ion-icon>
     </button> -->
@@ -110,5 +110,5 @@
       <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
     </button>
   </div>
-  <!-- <emoji-picker [(ngModel)]="editorMsg"></emoji-picker> -->
+  <emoji-picker [(ngModel)]="editorMsg" [hidden]="!showEmojiPicker"></emoji-picker>
 </ion-footer>
