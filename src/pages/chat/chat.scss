@@ -213,14 +213,14 @@ page-chat {
         border:0.55px solid #888;
         padding: 2px 15px;
         display: flex;
+        align-items: center;
         margin: 0px 10px 6px 10px;
         border-radius: 30px;
-        textarea, input {
+        textarea {
             flex: 1;
             border: 0;
-            // border-bottom: 1px $userBackgroundColor;
-            border-style: solid;
             margin-left: 15px;
+            padding-top: 15px;
         }
         ion-icon {
             padding: 0px 6px !important;

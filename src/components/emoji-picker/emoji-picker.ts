@@ -13,8 +13,8 @@ export const EMOJI_PICKER_VALUE_ACCESSOR: any = {
   providers: [EMOJI_PICKER_VALUE_ACCESSOR],
   templateUrl: 'emoji-picker.html'
 })
-export class EmojiPickerComponent implements ControlValueAccessor  {
-// export class EmojiPickerComponent{
+export class EmojiPickerComponent implements ControlValueAccessor {
+  // export class EmojiPickerComponent{
 
   emojiArr = [];
 
@@ -23,7 +23,7 @@ export class EmojiPickerComponent implements ControlValueAccessor  {
   _onTouched: Function;
 
   constructor(emojiProvider: EmojiProvider) {
-    this.emojiArr = emojiProvider.getEmojis();    
+    this.emojiArr = emojiProvider.getEmojis();
   }
 
   writeValue(obj: any): void {
