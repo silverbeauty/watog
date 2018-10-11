@@ -8,6 +8,7 @@ import { ReportModalPage } from '../report-modal/report-modal';
 import { RoomInfoPage } from '../room-info/room-info';
 import { ContactListPage } from '../contact-list/contact-list';
 import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
+import { ImageViewerController } from 'ionic-img-viewer';
 
 @IonicPage()
 @Component({
@@ -17,6 +18,8 @@ import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-p
 export class ChatPage {
   @ViewChild(Content) content: Content;
   @ViewChild('chat_input') messageInput: ElementRef;
+  
+  _imageViewerCtrl: ImageViewerController;
 
   msgList: Message[] = [];
   sender: Contact;
@@ -51,8 +54,12 @@ export class ChatPage {
     public platform: Platform,
     public keyboard: Keyboard,
     public cam: CameraProvider,
+    public imageViewerCtrl: ImageViewerController,
     public actionSheetCtrl: ActionSheetController
   ) {
+    
+    this._imageViewerCtrl = imageViewerCtrl;
+
     const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
     console.log(res[0])
     const auth = JSON.parse(res[1]);
@@ -392,5 +399,10 @@ export class ChatPage {
     }).catch((error) => {
       alert("server error!")
     })
+  }
+
+  presentImage(myImage) {
+    const imageViewer = this._imageViewerCtrl.create(myImage);
+    imageViewer.present();
   }
 }
