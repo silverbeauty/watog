@@ -50,10 +50,10 @@ export class LearnContentPage {
         case "CCD":
           _element["logo"] = "../../assets/logos/LABORATOIRE.jpg"
           break;
-        case "BABY PROGRESS":
+        case "Baby Progress":
           _element["logo"] = "../../assets/logos/BABY.jpg"
           break;
-        case "Qwant Care":
+        case "Qwant":
           _element["logo"] = "../../assets/logos/QWANT.png"
           break;
         case "FOGSI":

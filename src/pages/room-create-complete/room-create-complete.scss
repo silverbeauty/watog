@@ -83,7 +83,7 @@ page-room-create-complete {
         }
     }
     .scroll-content {
-        overflow: hidden;
+        // overflow: hidden;
     }
 
     .description {
@@ -95,10 +95,11 @@ page-room-create-complete {
     }
     .btn-update {
         background-color: #775576;
-        position: absolute;
+        // position: absolute;
+        margin-top: 20px;
         width: calc(100vw - 40px);
         margin-left: 20px;
-        bottom: 20px;
+        // bottom: 20px;
     }
 
     @media screen and (max-width: 359px) {
@@ -113,7 +114,7 @@ page-room-create-complete {
             }
         }
         .btn-update {
-            bottom: 10px !important;
+            // bottom: 10px !important;
         }
     }
 

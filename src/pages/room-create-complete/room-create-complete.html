@@ -7,7 +7,7 @@
     <header-action-bar class="header-action-bar"></header-action-bar>
   </div>
 </ion-header>
-<ion-content no-padding>
+<ion-content  id="profileboard" no-padding>
   <form [formGroup]="validations_form">
     <div class="title-view" >
       <ion-input type="text" class="input-title" [(ngModel)]="title" formControlName="title" placeholder="Room Name" [ngClass]="{ 'is-invalid': validations_form.get('title').errors && (validations_form.get('title').dirty || validations_form.get('title').touched)}"></ion-input>
