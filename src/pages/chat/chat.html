@@ -76,16 +76,19 @@
       <img  *ngIf="!msg.userAvatar" class="user-img" src="../../assets/imgs/image_avatar.png" alt="">
       <!-- <ion-spinner class="dot-typing" name="dots" *ngIf="msg.status === 'pending'"></ion-spinner> -->
       <div class="msg-detail">
-      <div class="msg-info">
-        <p>
-        <ion-icon name="volume-up" *ngIf="msg.is_announcement"></ion-icon>
-        <b *ngIf="!msg.is_announcement">{{msg.userName}}</b>&nbsp;&nbsp;&nbsp;{{msg.time | relativeTime}}
-        </p>
-      </div>
-      <div class="msg-content">
-        <span class="triangle"></span>
-        <p class="line-breaker ">{{msg.message}}</p>
-      </div>
+        <div class="msg-info">
+          <p>
+          <ion-icon name="volume-up" *ngIf="msg.is_announcement"></ion-icon>
+          <b *ngIf="!msg.is_announcement">{{msg.userName}}</b>&nbsp;&nbsp;&nbsp;{{msg.time | relativeTime}}
+          </p>
+        </div>
+        <div class="msg-content" *ngIf="!msg.attach">
+          <span class="triangle"></span>
+          <p class="line-breaker ">{{msg.message}}</p>
+        </div>
+        <div class="msg-content" *ngIf="msg.attach">
+          <img class="attach" [src]="msg.attach" alt="">
+        </div>
       </div>
     </div>
   </div>
@@ -103,9 +106,9 @@
       (focusin)="onFocus()"
       class="input-send-message">
     </textarea>
-    <!-- <button ion-button clear icon-only item-right (click)="attachFile()">
+    <button ion-button clear icon-only item-right (click)="attachFileSend()">
       <ion-icon name="attach" ios="ios-attach" md="md-attach"></ion-icon>
-    </button> -->
+    </button>
     <button ion-button clear icon-only item-right (click)="sendMsg()" class="btn-send">
       <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
     </button>
