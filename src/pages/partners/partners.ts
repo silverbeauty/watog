@@ -6,6 +6,8 @@ import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
 import { ModalLogout } from '../modal-logout/modal-logout';
+import { ContactListPage } from '../contact-list/contact-list';
+import { WatogContactPage } from '../watog-contact/watog-contact';
 /**
  * Generated class for the PartnersPage page.
  *
@@ -37,6 +39,14 @@ export class PartnersPage {
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  goBack(){
+    this.navCtrl.pop();
+  }
+
+  goToContacts(){
+    this.navCtrl.push(WatogContactPage);
   }
 
   logout(){

@@ -7,6 +7,7 @@ import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
 import { LoginPage } from '../login/login';
 import { DataProvider } from '../../providers/data/data';
 import { ModalLogout } from '../modal-logout/modal-logout';
+import { PartnersPage } from '../partners/partners';
 /**
  * Generated class for the FuturNearTermGoalsPage page.
  *
@@ -42,6 +43,14 @@ export class FuturNearTermGoalsPage {
 
   goToWhatIsWatog(){
     this.navCtrl.push(WhatIsWatogPage);
+  }
+
+  goToPartners(){
+    this.navCtrl.push(PartnersPage);
+  }
+
+  goBack(){
+    this.navCtrl.pop();
   }
 
   logout(){
