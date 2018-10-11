@@ -61,7 +61,6 @@ export class ChatPage {
     this._imageViewerCtrl = imageViewerCtrl;
 
     const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
-    console.log(res[0])
     const auth = JSON.parse(res[1]);
     const roomData = navParams.get("roomInfo");
     if (auth.id == roomData.User.id) {
@@ -337,8 +336,15 @@ export class ChatPage {
   }
 
   report() {
-    let reportModal = this.modalCtrl.create(ReportModalPage);
+    let reportModal = this.modalCtrl.create(ReportModalPage,{"room_id": this.room_id});
     reportModal.onDidDismiss(data => {
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'The room reported successfully',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
     });
     reportModal.present();
   }

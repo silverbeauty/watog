@@ -20,6 +20,14 @@ export class RoomCreatePage {
   countries: Country[];
   country: Country[];
   job : any;  
+  jobList : any=[
+    {id:1, name: "Trainee or resident in OB/GYN"}, 
+    {id:2, name: "Fellow or Young OB/GYN (Less than 10 years after entering OB/GYN residency"}, 
+    {id:3, name: "Confirmed OB/GYN (More than 10 years after entering OB/GYN residency"}, 
+    {id:4, name: "Medical Student (Not OB/GYN yet)"}, 
+    {id:5, name: "Medical Doctor, Other Speciality"}, 
+    {id:6, name: "Mid Wife"}, 
+    {id:7, name: "Other: Please specify"}];
   topics : any=[
     {id:1, name: "Classical Surgery"}, 
     {id:2, name: "Laparoscopy"}, 
@@ -68,14 +76,13 @@ export class RoomCreatePage {
   ionViewWillLoad(){
     let country = new FormControl('', Validators.required);
     let topic = new FormControl('', Validators.required);
+    let job = new FormControl('', Validators.required);
     this.validations_form = this.formBuilder.group({
       country: country,
       topic : topic,
       search : [''],
       memberLimit : [''],
-      job: ['', Validators.compose([
-        Validators.required
-      ])]
+      job: job,
     });
   }
   ionViewDidLoad() {
@@ -147,15 +154,6 @@ export class RoomCreatePage {
     }); 
   }
 
-  /*Methods for the html dom modification */
-  openQualificationModal() {
-    let profileModal = this.modalCtrl.create(ModalQualification);
-    profileModal.onDidDismiss(data => {
-      this.job = data.other;
-    });
-    profileModal.present();    
-  }
-
   goBack() {
     this.navCtrl.pop();
   }
@@ -173,6 +171,16 @@ export class RoomCreatePage {
       }
       else{
         _countryName += ", "+this.country[i].name
+      }
+    }
+    
+    let _jobList = "";
+    for(var i = 0 ; i < this.job.length ; i++){
+      if(i == 0 ){
+        _jobList = this.job[i].name
+      }
+      else{
+        _jobList += ", "+this.job[i].name
       }
     }
    
@@ -201,10 +209,11 @@ export class RoomCreatePage {
     params["description"] = this.description;
     params["countries"] = _countryName;
     params["topics"] = this.topic.name;
-    params["jobs"] = this.job;
+    params["jobs"] = _jobList;
     
     params["members"] = _memberList;
 
+    console.log(" creating room param =>", params);
     if(this.memberLimit)
       params["member_count_limit"] = parseInt(this.memberLimit);
 

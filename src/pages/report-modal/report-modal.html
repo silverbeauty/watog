@@ -8,23 +8,8 @@
       <h6>Please help us know what is it</h6>
   </div>
   <div class="report-view">
-    <div class="report-view-item">
-      Violence
-    </div>
-    <div class="report-view-item">
-      Harassment
-    </div>
-    <div class="report-view-item">
-      Spam
-    </div>
-    <div class="report-view-item">
-      Hate
-    </div>
-    <div class="report-view-item">
-      Nudity
-    </div>
-    <div class="report-view-item">
-      Other
+    <div *ngFor="let list of reportList" class="report-view-item" (click)="report(list.name)" [ngClass]="{ 'is-invalid': list.name==selectedReport }" >
+      {{list.name}}
     </div>
   </div>
 

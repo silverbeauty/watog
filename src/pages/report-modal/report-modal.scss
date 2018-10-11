@@ -53,6 +53,7 @@ page-report-modal {
             float: left;
             font-size: 13px;
             background-color: #c8c7cc;
+            color: #000000;
             border-radius: 30px;
             padding: 5px 20px;
             margin: 5px;
@@ -62,5 +63,9 @@ page-report-modal {
         background-color: #775576;
         width:calc(100vw - 40px);
         margin-top: 30px;
+    }
+    .is-invalid {
+        background-color: #775576 !important;
+        color: #ffffff !important;
     }
 }

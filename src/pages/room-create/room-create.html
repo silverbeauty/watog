@@ -31,15 +31,17 @@
       </ng-container>
     </div>
     <div class="input-group">
-      <a href="#" (click)="openQualificationModal()" id="qualificationInput">
-        <!-- <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Levels of OB/GYN to Involve" [(ngModel)]="job" formControlName="job" contenteditable="false"  [ngClass]="{ 'is-invalid': validations_form.get('job').errors && (validations_form.get('job').dirty || validations_form.get('job').touched)}"></ion-input> -->
-        <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Levels of OB/GYN to Involve" [(ngModel)]="job" formControlName="job" contenteditable="false"></ion-input>
-      </a>
-      <!-- <ng-container *ngFor="let validation of validation_messages.job">
+      <ion-select class="form-control font-weight-light" id="qualificationInput" multiple="true" aria-describedby="passwd-picture" formControlName="job" [(ngModel)]="job" placeholder = "Levels of OB/GYN to Involve" okText="Ok" cancelText="Cancel"  [ngClass]="{ 'is-invalid': validations_form.get('job').errors && (validations_form.get('job').dirty || validations_form.get('job').touched)}">
+        <ion-option *ngFor="let item of jobList" [value]="item" >{{item.name}}</ion-option>
+      </ion-select>
+      <ng-container *ngFor="let validation of validation_messages.job">
         <div class="error-message" *ngIf="validations_form.get('job').hasError(validation.type) && (validations_form.get('job').dirty || validations_form.get('job').touched)">
           {{ validation.message }}
-          </div>
-        </ng-container> -->
+        </div>
+      </ng-container>
+      <!-- <a href="#" (click)="openQualificationModal()" id="qualificationInput">
+        <ion-input type="text" class="form-control font-weight-light" id="JobInput" aria-describedby="passwd-picture" placeholder="Levels of OB/GYN to Involve" [(ngModel)]="job" formControlName="job" contenteditable="false"></ion-input>
+      </a> -->
     </div>
     <div class="input-group">
       <button class="btn btn-submit btn-md full-width "  [disabled]="!validations_form.valid" (click)="next()">NEXT</button>
