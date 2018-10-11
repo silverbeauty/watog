@@ -8,6 +8,7 @@ import { ReportModalPage } from '../report-modal/report-modal';
 import { RoomInfoPage } from '../room-info/room-info';
 import { ContactListPage } from '../contact-list/contact-list';
 import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
+import { ImageViewerController } from 'ionic-img-viewer';
 
 @IonicPage()
 @Component({
@@ -17,6 +18,8 @@ import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-p
 export class ChatPage {
   @ViewChild(Content) content: Content;
   @ViewChild('chat_input') messageInput: ElementRef;
+  
+  _imageViewerCtrl: ImageViewerController;
 
   msgList: Message[] = [];
   sender: Contact;
@@ -37,7 +40,7 @@ export class ChatPage {
   deviceHeight: number;
   attachFile : any = null;
   attachFileUrl : string;
-  isAttach : boolean = false;  
+  isAttach : boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -51,8 +54,12 @@ export class ChatPage {
     public platform: Platform,
     public keyboard: Keyboard,
     public cam: CameraProvider,
+    public imageViewerCtrl: ImageViewerController,
     public actionSheetCtrl: ActionSheetController
   ) {
+    
+    this._imageViewerCtrl = imageViewerCtrl;
+
     const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
     console.log(res[0])
     const auth = JSON.parse(res[1]);
@@ -68,7 +75,7 @@ export class ChatPage {
     }
 
     this.room_id = roomData.id;
-   
+
   }
 
   ngOnInit(): void {
@@ -115,7 +122,7 @@ export class ChatPage {
 
         window.addEventListener('native.keyboardshow', (e) => {
           keyboard.disableScroll(true);
-          
+
           appEl.style.bottom = (<any>e).keyboardHeight + 'px'
           footerEl.style.bottom = (<any>e).keyboardHeight + 'px'
           // appEl.style.height = (appElHeight - (<any>e).keyboardHeight) + 'px';
@@ -170,7 +177,7 @@ export class ChatPage {
    * @name sendMsg
    */
   sendMsg() {
-    
+
     let _newMsg: Message;
     if(this.isAttach){
       _newMsg = {
@@ -182,11 +189,11 @@ export class ChatPage {
         message: "",
         attach: this.attachFileUrl,
         is_announcement: false
-      };   
-      this.editorMsg = "attach file"      
+      };
+      this.editorMsg = "attach file"
     }
     else{
-      
+
       if (!this.editorMsg.trim()) return;
 
       // Mock message
@@ -202,7 +209,7 @@ export class ChatPage {
       };
 
     }
-    
+
     let newMsg = {
       text: this.editorMsg,
       room_id: this.roomData.id,
@@ -221,7 +228,7 @@ export class ChatPage {
 
     this.socketProvider.sendMsg(newMsg);
 
-    
+
   }
 
   /**
@@ -286,7 +293,7 @@ export class ChatPage {
       console.log("err", err)
     })
   }
-  
+
   addUser() {
     if (!this.isCreator) {
       let _alert = this.alertCtrl.create({
@@ -335,7 +342,7 @@ export class ChatPage {
     });
     reportModal.present();
   }
-  
+
   // attach part
   attachFileSend() {
     let actionSheet = this.actionSheetCtrl.create({
@@ -359,14 +366,14 @@ export class ChatPage {
         }
       ]
     });
- 
+
     actionSheet.present();
   }
 
   TakeaPicture() {
     this.cam.selectImage(1, 0).then(resp => {
       this.attachFile = "data:image/jpeg;base64," + resp;
-      this.UploadAttachFile(this.attachFile);    
+      this.UploadAttachFile(this.attachFile);
     }, err => {
       console.log("error with select of picture")
       console.log("param not send")
@@ -392,5 +399,10 @@ export class ChatPage {
     }).catch((error) => {
       alert("server error!")
     })
+  }
+
+  presentImage(myImage) {
+    const imageViewer = this._imageViewerCtrl.create(myImage);
+    imageViewer.present();
   }
 }

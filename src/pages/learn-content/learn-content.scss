@@ -44,10 +44,11 @@ page-learn-content {
     }
 
     .scroll-content {
+        // margin-top: 0px !important;
         overflow-y: auto !important;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        // align-items: center;
+        // justify-content: center;
         width: 100%;
     }
 
@@ -107,6 +108,7 @@ page-learn-content {
         border-radius: 1em;
         text-align: center;
         width: 100%;
+        display: inline-table;
     }
 
     .icon-container {
@@ -174,16 +176,6 @@ page-learn-content {
         .baby-img{
             margin-right: 2em;
         }
-    }
-    
-    @media screen and (max-width: 412px) {
-        .main{margin-top: 100px;}
-    }
-    @media screen and (max-width: 374px) {
-        .main{margin-top: 135px;}
-    }
-    @media screen and (max-width: 359px) {
-        .main{margin-top: 185px;}
     }
 }
 
