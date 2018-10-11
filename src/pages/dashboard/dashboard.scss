@@ -74,22 +74,34 @@ page-dashboard {
         margin-left: 2px;
     }
     .watog{
-        background-image: url(../assets/imgs/watog.png) !important;
+        background-image: url(../assets/imgs/logo_Seul.png) !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
     }
     .watog-contest{
-        background-image: url(../assets/imgs/watog-contest.png) !important;
+        background-image: url(../assets/imgs/dashboard/play.png) !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
     }
     .learn{
-        background-image: url(../assets/imgs/learn.png) !important;
+        background-image: url(../assets/imgs/dashboard/learn.png) !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
     }
     .chatroom{
-        background-image: url(../assets/imgs/chatroom.png) !important;
+        background-image: url(../assets/imgs/dashboard/chat.png) !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
     }
     .live{
-        background-image: url(../assets/imgs/live.png) !important;
+        background-image: url(../assets/imgs/dashboard/Live_stream.png) !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
     }
     .setting{
-        background-image: url(../assets/imgs/setting.png) !important;
+        background-image: url(../assets/imgs/dashboard/set.png) !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
     }
     @media screen and (min-width: 768px) {
         .item-image { height: 250px !important; }
