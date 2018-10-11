@@ -308,7 +308,7 @@ export class ChatService {
         });
     })
   }
-  
+
   public reportRoom(room_id, params): Promise<any> {
     const headers = new HttpHeaders({
       'Authorization': this.token,
@@ -335,4 +335,5 @@ export class ChatService {
   getEmojiUnicode() {
     return this.emojiUnicode;
   }
+
 }
