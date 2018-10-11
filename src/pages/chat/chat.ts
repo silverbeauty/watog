@@ -335,18 +335,36 @@ export class ChatPage {
 
   // right side menu funtion
   archiveRoom() {
-    this.chatService.archiveRoom(this.room_id).then((data: any) => {
-      this.navCtrl.push(ChatRoomPage)
-    }).catch((error) => {
-      let _alert = this.alertCtrl.create({
-        title: '',
-        subTitle: 'Only room creator can archive the room',
-        buttons: ['OK']
-      });
-      _alert.present();
-      return;
-    })
-
+    let confimAlert = this.alertCtrl.create({
+      title: '',
+      message: 'Are you sure to archive this room?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.chatService.archiveRoom(this.room_id).then((data: any) => {
+              this.navCtrl.push(ChatRoomPage)
+            }).catch((error) => {
+              let _alert = this.alertCtrl.create({
+                title: '',
+                subTitle: 'Only room creator can archive the room',
+                buttons: ['OK']
+              });
+              _alert.present();
+              return;
+            })
+          }
+        }
+      ]
+    });
+    confimAlert.present();
   }
 
   roomInfo() {
