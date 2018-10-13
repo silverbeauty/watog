@@ -3,9 +3,6 @@ import { IonicPageModule } from 'ionic-angular';
 import { LivePage } from './live';
 
 @NgModule({
-  declarations: [
-    LivePage,
-  ],
   imports: [
     IonicPageModule.forChild(LivePage),
   ],

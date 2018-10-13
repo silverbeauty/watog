@@ -3,9 +3,6 @@ import { IonicPageModule } from 'ionic-angular';
 import { LearnContentPage } from './learn-content';
 
 @NgModule({
-  declarations: [
-    LearnContentPage,
-  ],
   imports: [
     IonicPageModule.forChild(LearnContentPage),
   ],

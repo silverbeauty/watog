@@ -3,9 +3,6 @@ import { IonicPageModule } from 'ionic-angular';
 import { EmojiPickerComponent } from './emoji-picker';
 
 @NgModule({
-  declarations: [
-    EmojiPickerComponent,
-  ],
   imports: [
     IonicPageModule.forChild(EmojiPickerComponent),
   ],

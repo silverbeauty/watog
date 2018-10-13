@@ -7,9 +7,6 @@ import { EmojiPickerComponentModule } from "../../components/emoji-picker/emoji-
 // import { EmojiProvider } from "../../providers/emoji/emoji";
 
 @NgModule({
-  declarations: [
-    ChatPage,
-  ],
   imports: [
     EmojiPickerComponentModule,
     IonicPageModule.forChild(ChatPage),

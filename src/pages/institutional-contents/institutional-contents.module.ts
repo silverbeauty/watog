@@ -3,9 +3,6 @@ import { IonicPageModule } from 'ionic-angular';
 import { InstitutionalContentsPage } from './institutional-contents';
 
 @NgModule({
-  declarations: [
-    InstitutionalContentsPage,
-  ],
   imports: [
     IonicPageModule.forChild(InstitutionalContentsPage),
   ],

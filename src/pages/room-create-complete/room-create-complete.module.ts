@@ -3,9 +3,6 @@ import { IonicPageModule } from 'ionic-angular';
 import { RoomCreateCompletePage } from './room-create-complete';
 
 @NgModule({
-  declarations: [
-    RoomCreateCompletePage,
-  ],
   imports: [
     IonicPageModule.forChild(RoomCreateCompletePage),
   ],
