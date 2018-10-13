@@ -6,9 +6,9 @@ import { EmojiPickerComponent } from './emoji-picker';
   imports: [
     IonicPageModule.forChild(EmojiPickerComponent),
   ],
-  exports: [
-    EmojiPickerComponent
-  ]
+  // exports: [
+  //   EmojiPickerComponent
+  // ]
 })
 export class EmojiPickerComponentModule {
 }
