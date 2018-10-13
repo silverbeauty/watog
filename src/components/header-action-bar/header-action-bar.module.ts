@@ -6,9 +6,9 @@ import { HeaderActionBarComponent } from './header-action-bar';
   imports: [
     IonicPageModule.forChild(HeaderActionBarComponent),
   ],
-  exports: [
-    HeaderActionBarComponent
-  ]
+  // exports: [
+  //   HeaderActionBarComponent
+  // ]
 })
 export class HeaderActionBarModule {
 }

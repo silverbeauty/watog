@@ -23,7 +23,7 @@ export class EmojiPickerComponent implements ControlValueAccessor {
   _onTouched: Function;
   unicode: string = "";
 
-  constructor(private emojiProvider: EmojiProvider, private chatService: ChatService) {
+  constructor(emojiProvider: EmojiProvider, private chatService: ChatService) {
     this.emojiArr = emojiProvider.getEmojis();
   }
 

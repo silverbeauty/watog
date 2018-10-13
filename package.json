@@ -47,7 +47,7 @@
     "angular2-swing": "^0.14.0",
     "angular2-text-mask": "^8.0.5",
     "com-sarriaroman-photoviewer": "^1.1.18",
-    "cordova-android": "7.1.1",
+    "cordova-android": "6.4.0",
     "cordova-android-support-gradle-release": "^1.4.5",
     "cordova-browser": "5.0.4",
     "cordova-ios": "4.5.5",
@@ -131,8 +131,7 @@
     },
     "platforms": [
       "browser",
-      "ios",
-      "android"
+      "ios"
     ]
   }
 }
