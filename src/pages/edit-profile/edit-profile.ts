@@ -5,14 +5,14 @@ import { ProfilePage } from '../profile/profile';
 import { SettingsPage } from '../settings/settings';
 import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
 import { countries } from '../../models/model';
-import {HttpClient,  HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { server_url } from '../../environments/environment';
-import {DataProvider, PasswordValidator, PhoneValidator, RestProvider} from '../../providers';
+import { DataProvider, PasswordValidator, PhoneValidator, RestProvider } from '../../providers';
 import { ElementRef } from '@angular/core';
-import {LoginPage} from "../login/login";
-import {Auth, Country, User} from "../../types";
+import { LoginPage } from "../login/login";
+import { Auth, Country, User } from "../../types";
 import { UploadCoverPhotoPage } from "../upload-cover-photo/upload-cover-photo";
-import {FormControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ModalLogout } from '../modal-logout/modal-logout';
 /**
  * Generated class for the EditProfilePage page.
@@ -50,15 +50,15 @@ export class EditProfilePage {
   }
 
   public profile_image: string = "assets/imgs/rio.jpg";
-  public promise : any;
+  public promise: any;
   countries: Country[];
   public country: Country = new Country("FR", "France");;
   validations_form: FormGroup;
   country_phone_group: FormGroup;
 
-  constructor( public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public restProvider : RestProvider, public dataProvider: DataProvider, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public restProvider: RestProvider, public dataProvider: DataProvider, public modalCtrl: ModalController) {
     const params = this.navParams.data;
-    if(params.image_url) {
+    if (params.image_url) {
       this.image = params;
       this.profile_image = this.image.image_url;
       this.user.picture_profile = this.image.image_url;
@@ -69,13 +69,13 @@ export class EditProfilePage {
       this.countries = [
         new Country(countries[0].code, countries[0].name)
       ]
-      if(this.countries[0].name == this.user.country){
+      if (this.countries[0].name == this.user.country) {
         this.country = this.countries[0];
       }
-      for(var i = 1; i < countries.length; i ++){
+      for (var i = 1; i < countries.length; i++) {
         const County = new Country(countries[i].code, countries[i].name);
         this.countries.push(County);
-        if(countries[i].name == this.user.country){
+        if (countries[i].name == this.user.country) {
           this.country = this.countries[i];
         }
       }
@@ -101,7 +101,7 @@ export class EditProfilePage {
       last_name: ['', Validators.compose([
         Validators.required
       ])],
-      user_name:  ['', Validators.compose([
+      user_name: ['', Validators.compose([
         Validators.required,
         Validators.maxLength(25),
         Validators.minLength(5),
@@ -113,7 +113,7 @@ export class EditProfilePage {
     });
   }
   setCurrentUser() {
-    if(this.user.cell_phone.lastIndexOf('_') != -1) {
+    if (this.user.cell_phone.lastIndexOf('_') != -1) {
       this.user.cell_phone = (this.user.cell_phone.slice(0, -1))
     }
     this.user.picture_profile = this.profile_image;
@@ -132,33 +132,33 @@ export class EditProfilePage {
     })
   }
 
-  navToUploadProfilePhoto(){
+  navToUploadProfilePhoto() {
     this.navCtrl.push(UploadCoverPhotoPage);
   }
 
-  goToDashboard(){
+  goToDashboard() {
     this.navCtrl.push(DashboardPage);
   }
 
-  goToProfilePage(){
+  goToProfilePage() {
     this.navCtrl.push(ProfilePage);
   }
 
-  goToSettingsPage(){
+  goToSettingsPage() {
     this.navCtrl.push(SettingsPage);
   }
 
-  goBack(){
+  goBack() {
     this.navCtrl.pop();
   }
 
-  logout(){
-    let profileModal = this.modalCtrl.create( ModalLogout );
+  logout() {
+    let profileModal = this.modalCtrl.create(ModalLogout);
     profileModal.present();
   }
 
-  checkFocus(){
-    if(this.user.cell_phone.lastIndexOf('_') != -1){
+  checkFocus() {
+    if (this.user.cell_phone.lastIndexOf('_') != -1) {
       this.user.cell_phone = (this.user.cell_phone.slice(0, -1))
     }
   }
