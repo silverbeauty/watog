@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { EnterTokenPage } from '../enter-token/enter-token';
 import { DataProvider, RestProvider } from '../../providers';
 import { Auth, Country, User } from '../../types';
 import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
-
+import { ModalLogout } from '../../pages/modal-logout/modal-logout';
 /**
  * Generated class for the RegisterThreeOfThreePage page.
  *
@@ -24,7 +24,7 @@ export class RegisterThreeOfThreePage {
   public cell_phone: string;
   public validation_error: boolean;
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -62,6 +62,11 @@ export class RegisterThreeOfThreePage {
 
   changePhoneNum() {
     this.validation_error = false;
+  }
+
+  logout(){
+    let profileModal = this.modalCtrl.create( ModalLogout );
+    profileModal.present();
   }
 
 }

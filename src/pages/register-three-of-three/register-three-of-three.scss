@@ -60,7 +60,8 @@ page-register-three-of-three {
         font-size: 1em;
         padding: .8em;
         border-radius: 50em;
-        margin-top: 4em;
+        margin: 0 auto;
+        margin-top: 2em;
         width: 70%;
     }
 
@@ -91,21 +92,46 @@ page-register-three-of-three {
         text-align: center;
         font-weight: 200;
     }
-    .is-invalid {
-        border-color: red;
-    }
-    .error-message {
-        text-align: center;
-        width: 100%;
-        color: red;
-    }
     .input-group {
-        width: 90% !important;
-        margin: 0 auto;
-        margin-top: 30px;
+        padding: 1em;
+        img {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: 35px;
+            top: 30px;
+            z-index: 99;
+        }
+        .form-control {
+            border-radius: 50em !important;
+            font-size: 1.2em;
+            padding: 0em;
+            width: 100% !important;
+            padding-left: 50px !important;
+            padding-right: 30px !important;
+            max-width: 100%;
+        }
+        .is-invalid {
+            border-color: red;
+        }
+        .error-message {
+            text-align: center;
+            width: 100%;
+            color: red;
+        }
     }
     .cell-phone {
         font-size: 16px;
         padding-left: 15px;
+    }
+    .btn-logout {
+        color: #ffffff;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .text-center {
+        display: flex;
+        flex-direction: column;
     }
 }

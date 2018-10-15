@@ -27,6 +27,7 @@
         </div>
     </section>
     <div class="input-group">
+      <img src="assets/icon/Phone.png" alt="password logo">
       <ion-input type="text" class="form-control cell-phone" placeholder="Please insert phone number" name="cell_phone"  [(ngModel)]="cell_phone" [ngClass]="{ 'is-invalid': validation_error }" (ngModelChange)="changePhoneNum()"></ion-input>
       <div class="error-message" *ngIf="validation_error">
         Please insert valid cell phone.
@@ -35,6 +36,7 @@
 
     <div class="text-center">
       <button class="btn btn-next" (click)="goToEnterToken()">SEND TOKEN</button>
+      <a class="btn-logout" (click)="logout()">Logout</a>
     </div>
   </form>
   <section class="token-info">
