@@ -52,14 +52,13 @@ export class MyRoomListPage {
     this.events.subscribe('main-chat-dashboard', () => {
       this.chatService.myRoomList()
         .then((res: any) => {
-          let temp: any = [];
-          temp = res.filter((item) => {
-            if (!item.archived)
-              return item;
-          });
-          res = temp;
+          // let temp: any = [];
+          // temp = res.filter((item) => {
+          //   if (!item.archived)
+          //     return item;
+          // });
+          // res = temp;
           res = _.orderBy(res, ['unread_message_count'], ['desc']);
-          console.log("res => ", res)
           this.lists = res;
           this._tempLists = res;
           if (isFirstLoad) {
@@ -135,14 +134,13 @@ export class MyRoomListPage {
       const loader = this.loadingCtrl.create({ content: "Please wait..." });
       loader.present();
       this.chatService.archiveRoom(roomInfo.id)
-        .then((res: any) => {
-          console.log(res)
-          let temp: any = [];
-          temp = this.lists.filter((item) => {
-            if (item.id != res.id)
-              return item;
-          });
-
+        .then((temp: any) => {
+          console.log(temp)
+          // let temp: any = [];
+          // temp = this.lists.filter((item) => {
+          //   if (item.id != res.id)
+          //     return item;
+          // });
           this.lists = temp;
           this._tempLists = temp;
           loader.dismiss();

@@ -76,6 +76,10 @@ page-my-room-list {
             font-size: 30px;
         }
     }
+    .is-archvied{
+        font-size: 12px;
+        color: red;        
+    }
     .item {
         border : none !important;
         border-bottom: 0.55px solid #c8c7cc !important;
@@ -102,11 +106,13 @@ page-my-room-list {
     .item:first-child{
         border-top: 0.55px solid #c8c7cc !important;
     }
-
-    .room-title {
-        display: flex;
-        justify-content: space-between;
+    .row{
+        margin: 0px 0px;
+    }
+    .badger{
         align-items: center;
+        display: flex;
+        justify-content: flex-end;
         .unread_message {
             background: red;
             border-radius: 50%;
@@ -117,5 +123,13 @@ page-my-room-list {
             align-items: center;
             justify-content: center;
         }
+    }
+    .room-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1;
+        font-size: 18px;
+        font-weight: 500;        
     }
 }

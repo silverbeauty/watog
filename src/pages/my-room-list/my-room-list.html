@@ -25,21 +25,30 @@
 <ion-content class = "list-content" padding>
   <ion-list>
     <ion-item-sliding *ngFor="let rowContent of lists">
-    <ion-item (click)="goToChattingPage(rowContent)">
-      <ion-avatar item-left>
-        <img *ngIf="rowContent.avatar" [src]="rowContent.avatar">
-        <img *ngIf="!rowContent.avatar" src="../../assets/imgs/image_group_avatar.png">
-      </ion-avatar>
-      <ion-label class="room-title">{{ rowContent.title }} <span class="unread_message" *ngIf="rowContent.unread_message_count > 0" >{{ rowContent.unread_message_count }}</span></ion-label>
-    </ion-item>
-    <ion-item-options side="right">
-      <div class="btn-edit" (click)="editRoom(rowContent)">
-        <ion-icon name="md-color-filter"></ion-icon>
-      </div>
-      <div class="btn-trash" (click)="archiveRoom(rowContent)">
-        <ion-icon name="trash"></ion-icon>
-      </div>
-    </ion-item-options>
+      <ion-item (click)="goToChattingPage(rowContent)">
+        <ion-avatar item-left>
+          <img *ngIf="rowContent.avatar" [src]="rowContent.avatar">
+          <img *ngIf="!rowContent.avatar" src="../../assets/imgs/image_group_avatar.png">
+        </ion-avatar>
+        
+        <ion-row>
+          <ion-col col-9>
+              <label class="room-title">{{ rowContent.title }}</label>
+              <label class="is-archvied" *ngIf="rowContent.archived" >Archived</label>
+          </ion-col>
+          <ion-col class="badger" col-3>
+              <span class="unread_message" *ngIf="rowContent.unread_message_count > 0" >{{ rowContent.unread_message_count }}</span>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+      <ion-item-options side="right">
+        <button class="btn-edit" [disabled]="rowContent.archived" (click)="editRoom(rowContent)">
+          <ion-icon name="md-color-filter"></ion-icon>
+        </button>
+        <button class="btn-trash" [disabled]="rowContent.archived" (click)="archiveRoom(rowContent)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
 
     </ion-item-sliding>
   </ion-list>
