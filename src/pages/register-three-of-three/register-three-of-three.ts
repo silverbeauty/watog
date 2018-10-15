@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { EnterTokenPage } from '../enter-token/enter-token';
-import { DataProvider, RestProvider } from "../../providers";
-import { Auth, ObjUser } from "../../types";
-import { RegisterTwoOfThreePage } from "../register-two-of-three/register-two-of-three";
+import { DataProvider, RestProvider } from '../../providers';
+import { Auth, Country, User } from '../../types';
+import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
 
 /**
  * Generated class for the RegisterThreeOfThreePage page.
@@ -21,21 +21,47 @@ import { RegisterTwoOfThreePage } from "../register-two-of-three/register-two-of
 export class RegisterThreeOfThreePage {
 
   public url_verify: string = 'sms';
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {
+  public cell_phone: string;
+  public validation_error: boolean;
+
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterThreeOfThreePage');
+    this.validation_error = false;
+    this.cell_phone = this.restProvider.getCellPhone();
+    console.log(this.cell_phone)
   }
 
   goToEnterToken() {
+    const loader = this.loadingCtrl.create({ content: "Please wait..." });
+    loader.present();
+    if (this.cell_phone.lastIndexOf('_') != -1) {
+      this.cell_phone = (this.cell_phone.slice(0, -1))
+    }
     const url_verify = this.url_verify;
-    this.restProvider.sendVerifyRequest(url_verify).then((data) => {
-      alert(data);
-      this.navCtrl.push(EnterTokenPage, { url_verify: url_verify });
+    const data = {
+      cell_phone: this.cell_phone
+    }
+    console.log(this.cell_phone);
+    this.restProvider.updatePhone(data).then((user) => {
+      this.restProvider.sendVerifyRequest(url_verify).then((data) => {
+        loader.dismiss();
+        alert(data);
+        this.navCtrl.push(EnterTokenPage, { url_verify: url_verify });
+      }).catch((error) => {
+        loader.dismiss();
+        alert(error);
+        this.validation_error = true;
+      })
     }).catch((error) => {
-      alert(error);
+      loader.dismiss();
+      this.validation_error = true;
     })
+  }
+
+  changePhoneNum() {
+    this.validation_error = false;
   }
 
 }

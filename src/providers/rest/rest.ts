@@ -14,6 +14,7 @@ export class RestProvider {
 
   apiUrl: string = server_url;
   public static token: string;
+  public cellPhone: string;
 
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
@@ -570,6 +571,38 @@ export class RestProvider {
           }
         }, (err) => {
           console.info('Failed to get Live Stream:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public setCellPhone(cellPhone) {
+    this.cellPhone = cellPhone;
+    localStorage.setItem('cellPhone', this.cellPhone)
+  }
+
+  public getCellPhone() {
+    this.cellPhone = localStorage.getItem('cellPhone')
+    return this.cellPhone;
+  }
+
+  public updatePhone(data) {
+    const headers = new HttpHeaders({
+      'Authorization': RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve, reject) => {
+      this.http.put(this.apiUrl + '/user/me', JSON.stringify(data), { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            const user = res.data;
+            resolve(user);
+          } else {
+            console.error('Failed to load profile:', res)
+            reject('Failed to load profile')
+          }
+        }, (err) => {
+          console.info('Failed to load profile:', err)
           reject(err);
         });
     })

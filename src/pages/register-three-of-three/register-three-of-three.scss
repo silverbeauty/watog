@@ -91,4 +91,21 @@ page-register-three-of-three {
         text-align: center;
         font-weight: 200;
     }
+    .is-invalid {
+        border-color: red;
+    }
+    .error-message {
+        text-align: center;
+        width: 100%;
+        color: red;
+    }
+    .input-group {
+        width: 90% !important;
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+    .cell-phone {
+        font-size: 16px;
+        padding-left: 15px;
+    }
 }
