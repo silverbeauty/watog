@@ -2,10 +2,11 @@
 <div class="btn-group">
   <!--button type="button" class="btn btn-toolbar">
     <ion-icon name="ios-mail-outline" class="toolbar-icon"></ion-icon>
-  </button>
-  <button type="button" class="btn btn-toolbar">
+  </button>-->
+  <button type="button" class="btn btn-toolbar" (click)="onClickNotification()">
     <ion-icon name="ios-notifications-outline" class="toolbar-icon"></ion-icon>
-  </button-->
+    <ion-badge *ngIf="count_unreadmessage > 0" color="secondary" class="icon-badge">{{count_unreadmessage}}</ion-badge>
+  </button>
   <button type="button" class="btn btn-toolbar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <ion-icon name="ios-person-outline" class="toolbar-icon" large></ion-icon>
   </button>

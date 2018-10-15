@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform, LoadingController, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, LoadingController, MenuController, Events } from 'ionic-angular';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 import { Auth, User, Category } from "../../types";
@@ -31,7 +31,9 @@ export class DashboardPage {
     private socketProvider: SocketsProvider,
     public menuCtrl: MenuController,
     public chatService: ChatService,
-    public loadingCtrl: LoadingController) {}
+    public events: Events,
+    public loadingCtrl: LoadingController) {
+    }
 
   ionViewDidLoad() {
     if (DataProvider.showAd) {
@@ -42,6 +44,21 @@ export class DashboardPage {
     this.socketProvider.registerForChatService();
     this.socketProvider.Receive();
 
+    var self = this;
+    setInterval(function () {
+      self.chatService.myRoomList()
+      .then((res: any) => {
+        let count_unreadmessage: any = 0;
+        res.forEach(element => {
+          if(element.unread_message_count > 0){
+            count_unreadmessage += parseInt(element.unread_message_count)
+          }
+        });
+        self.events.publish('notification:unread', count_unreadmessage);          
+      }).catch(err => {
+        console.log("err", err)
+      })
+    }, 30000);
   }
 
 
