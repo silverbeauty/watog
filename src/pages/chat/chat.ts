@@ -42,7 +42,8 @@ export class ChatPage {
   attachFile : any = null;
   attachFileUrl : string;
   isAttach : boolean = false;
-
+  isArchive : boolean = false;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -299,6 +300,7 @@ export class ChatPage {
       });
       this.totalUsers = this.roomData.Members.length;
       this.member_count_limit = this.roomData.member_count_limit;
+      this.isArchive = this.roomData.archived;
       loader.dismiss();
       this.scrollToBottom();
     }).catch(err => {
