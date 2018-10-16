@@ -59,6 +59,10 @@ export class MyRoomListPage {
           // });
           // res = temp;
           res = _.orderBy(res, ['unread_message_count'], ['desc']);
+          res.sort(function (a, b) {
+            return a.archived - b.archived;
+          });
+          
           this.lists = res;
           this._tempLists = res;
           if (isFirstLoad) {
@@ -79,6 +83,9 @@ export class MyRoomListPage {
         }
       })
       this.lists = _.orderBy(this.lists, ['unread_message_count'], ['desc']);
+      this.lists.sort(function (a, b) {
+        return a.archived - b.archived;
+      });
     })
   }
 
@@ -146,6 +153,9 @@ export class MyRoomListPage {
               return item
             }
           });
+          temp.sort(function (a, b) {
+            return a.archived - b.archived;
+          });
           this.lists = temp;
           this._tempLists = temp;
           loader.dismiss();
@@ -179,6 +189,9 @@ export class MyRoomListPage {
               item.archived = false;
               return item
             }
+          });
+          temp.sort(function (a, b) {
+            return a.archived - b.archived;
           });
           this.lists = temp;
           this._tempLists = temp;          
