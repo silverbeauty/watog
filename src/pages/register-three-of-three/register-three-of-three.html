@@ -41,7 +41,7 @@
     </div>
 
     <div class="input-group" *ngIf="url_verify === 'email'" >
-      <img src="assets/icon/Phone.png" alt="password logo">
+      <img src="assets/icon/Mail02.png" alt="password logo">
       <ion-input type="text" class="form-control cell-phone" placeholder="Please insert email" formControlName="email"  [(ngModel)]="user.email" [ngClass]="{ 'is-invalid': validation_error_email }" (ngModelChange)="changeEmail()"></ion-input>
       <div class="error-message" *ngIf="validation_error_email">
         Please insert valid email.
