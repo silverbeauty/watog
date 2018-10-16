@@ -576,17 +576,7 @@ export class RestProvider {
     })
   }
 
-  public setCellPhone(cellPhone) {
-    this.cellPhone = cellPhone;
-    localStorage.setItem('cellPhone', this.cellPhone)
-  }
-
-  public getCellPhone() {
-    this.cellPhone = localStorage.getItem('cellPhone')
-    return this.cellPhone;
-  }
-
-  public updatePhone(data) {
+  public updateUserInfo(data) {
     const headers = new HttpHeaders({
       'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
