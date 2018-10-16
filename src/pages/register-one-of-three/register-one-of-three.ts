@@ -194,7 +194,6 @@ export class RegisterOneOfThreePage {
     if (this.user.cell_phone.lastIndexOf('_') != -1) {
       this.user.cell_phone = (this.user.cell_phone.slice(0, -1))
     }
-    this.restProvider.setCellPhone(this.user.cell_phone);
     this.user.country = this.country.name;
     /*if(this.profile_selected != true){
       this.dataProvider.saveObjUser(this.user as ObjUser);
