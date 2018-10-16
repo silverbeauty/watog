@@ -24,7 +24,7 @@
 </div>
 <ion-content class = "list-content" padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let rowContent of lists">
+    <ion-item-sliding *ngFor="let rowContent of lists" #slidingItem>
       <ion-item (click)="goToChattingPage(rowContent)">
         <ion-avatar item-left>
           <img *ngIf="rowContent.avatar" [src]="rowContent.avatar">
@@ -41,12 +41,17 @@
           </ion-col>
         </ion-row>
       </ion-item>
-      <ion-item-options side="right">
-        <button class="btn-edit" [disabled]="rowContent.archived" (click)="editRoom(rowContent)">
+      <ion-item-options side="right" *ngIf="!rowContent.archived">
+        <button class="btn-edit" (click)="editRoom(rowContent, slidingItem)">
           <ion-icon name="md-color-filter"></ion-icon>
         </button>
-        <button class="btn-trash" [disabled]="rowContent.archived" (click)="archiveRoom(rowContent)">
+        <button class="btn-trash" (click)="archiveRoom(rowContent, slidingItem)">
           <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right" *ngIf="rowContent.archived">
+        <button class="btn-unarchive" (click)="unArchiveRoom(rowContent, slidingItem)">
+          <ion-icon name="ios-undo"></ion-icon>
         </button>
       </ion-item-options>
 

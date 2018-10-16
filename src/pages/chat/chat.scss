@@ -219,12 +219,26 @@ page-chat {
         textarea {
             flex: 1;
             border: 0;
-            margin-left: 15px;
+            margin-left: 10px;
+            margin-right: 10px;
             padding-top: 15px;
         }
         ion-icon {
             padding: 0px 6px !important;
             // color: #775576;
+        }
+        p{
+            margin-top: 9px;
+            margin-bottom: 9px;
+            margin-left: 3px;
+            margin-right: 3px;
+            text-align: center;
+            button{
+                background-color: transparent;
+                padding: 0px;
+                text-decoration: underline;
+                color: #00008B;
+            }
         }
     }
 

@@ -344,9 +344,15 @@ export class ChatPage {
 
   // right side menu funtion
   archiveRoom() {
+    let _message = ""
+    if(this.isArchive)
+      _message = "Are you sure to unarchive this room?"
+    else
+      _message = "Are you sure to archive this room?"
+
     let confimAlert = this.alertCtrl.create({
       title: '',
-      message: 'Are you sure to archive this room?',
+      message: _message,
       buttons: [
         {
           text: 'No',
@@ -358,8 +364,12 @@ export class ChatPage {
         {
           text: 'Yes',
           handler: () => {
-            this.chatService.archiveRoom(this.room_id).then((data: any) => {
-              this.navCtrl.push(ChatRoomPage)
+            this.chatService.archiveRoom(this.room_id, !this.isArchive).then((data: any) => {
+              
+              this.isArchive = data.archived
+              this.roomData.archived = data.archived
+              console.log(this.roomData)
+              // this.navCtrl.push(ChatRoomPage)
             }).catch((error) => {
               let _alert = this.alertCtrl.create({
                 title: '',
