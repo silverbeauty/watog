@@ -96,21 +96,22 @@
 
 <ion-footer no-border class="footer-input" id="footer-input">
   <div class="input-wrap">
-    <button ion-button clear icon-only item-right (click)="switchEmojiPicker()" [disabled]="isArchive">
+    <button ion-button clear icon-only item-right (click)="switchEmojiPicker()" [hidden]="isArchive">
       <ion-icon name="md-happy"></ion-icon>
     </button>
     <textarea #chat_input
+      *ngIf="!isArchive"
       placeholder="Write your message here"
       [(ngModel)]="editorMsg"
       (keyup.enter)="sendMsg()"
       (focusin)="onFocus()"
-      [disabled]="isArchive"
       class="input-send-message">
     </textarea>
-    <button ion-button clear icon-only item-right (click)="attachFileSend()" [disabled]="isArchive">
+    <p *ngIf="isArchive" >This is an archived room: please <button (click)="archiveRoom()" >Unarchive</button> to send messages</p>
+    <button ion-button clear icon-only item-right (click)="attachFileSend()" [hidden]="isArchive">
       <ion-icon name="attach" ios="ios-attach" md="md-attach"></ion-icon>
     </button>
-    <button ion-button clear icon-only item-right (click)="sendMsg()" class="btn-send" [disabled]="isArchive">
+    <button ion-button clear icon-only item-right (click)="sendMsg()" class="btn-send" [hidden]="isArchive">
       <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
     </button>
   </div>
