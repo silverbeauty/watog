@@ -159,12 +159,7 @@ export class DataProvider {
 
 
   get(){
-    // if(this.isBrowser) {
-    //   return new Promise((resolve, reject) => {
-    //     return
-    //   });
-    // }
-    return this.storage.getItem('user');
+    return localStorage.getItem('user');
   }
 
 

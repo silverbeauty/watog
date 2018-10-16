@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { EnterTokenPage } from '../enter-token/enter-token';
@@ -22,29 +23,54 @@ export class RegisterThreeOfThreePage {
 
   public url_verify: string = 'sms';
   public cell_phone: string;
-  public validation_error: boolean;
+  public validation_error_sms: boolean;
+  public validation_error_email: boolean;
+  public user = {
+    email: '',
+    cell_phone: ''
+  };
+  validations_form: FormGroup;
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public navParams: NavParams, public restProvider: RestProvider, public dataProvider: DataProvider, public formBuilder: FormBuilder) {
+  }
+
+  ionViewWillLoad() {
+    this.validations_form = this.formBuilder.group({
+      email: ['', Validators.compose([
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])],
+      cell_phone: ['']
+    });
   }
 
   ionViewDidLoad() {
-    this.validation_error = false;
-    this.cell_phone = this.restProvider.getCellPhone();
-    console.log(this.cell_phone)
+    this.validation_error_sms = false;
+    this.validation_error_email = false;
+    this.user = JSON.parse(this.dataProvider.get());
+    console.log(this.user)
   }
 
-  goToEnterToken() {
+  sendToken() {
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
-    if (this.cell_phone.lastIndexOf('_') != -1) {
-      this.cell_phone = (this.cell_phone.slice(0, -1))
+    let data = {};
+    if (this.url_verify === 'sms') {
+      if (this.cell_phone.lastIndexOf('_') != -1) {
+        this.cell_phone = (this.validations_form.value.cell_phone.slice(0, -1));
+        data = {
+          cell_phone: this.validations_form.value.cell_phone
+        }
+      }
+    } else {
+      data = {
+        email: this.validations_form.value.email
+      }
     }
+
     const url_verify = this.url_verify;
-    const data = {
-      cell_phone: this.cell_phone
-    }
-    console.log(this.cell_phone);
-    this.restProvider.updatePhone(data).then((user) => {
+
+    console.log(data);
+    this.restProvider.updateUserInfo(data).then((user) => {
       this.restProvider.sendVerifyRequest(url_verify).then((data) => {
         loader.dismiss();
         alert(data);
@@ -52,16 +78,28 @@ export class RegisterThreeOfThreePage {
       }).catch((error) => {
         loader.dismiss();
         alert(error);
-        this.validation_error = true;
+        if(url_verify === 'sms') {
+          this.validation_error_sms = true;
+        } else {
+          this.validation_error_email = true;
+        }
       })
     }).catch((error) => {
       loader.dismiss();
-      this.validation_error = true;
+      if(url_verify === 'sms') {
+        this.validation_error_sms = true;
+      } else {
+        this.validation_error_email = true;
+      }
     })
   }
 
   changePhoneNum() {
-    this.validation_error = false;
+    this.validation_error_sms = false;
+  }
+
+  changeEmail() {
+    this.validation_error_email = false;
   }
 
   logout(){
