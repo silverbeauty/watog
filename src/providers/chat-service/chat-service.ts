@@ -120,14 +120,14 @@ export class ChatService {
     })
   }
 
-  public archiveRoom(id: any): Promise<Room> {
+  public archiveRoom(id: any, archive: boolean): Promise<Room> {
     const headers = new HttpHeaders({
       'Authorization': this.token,
       'Content-Type': 'application/json'
     });
 
     return new Promise((resolve, reject) => {
-      this.http.put(this.EDIT_ROOM + id, JSON.stringify({ archived: true }), { headers })
+      this.http.put(this.EDIT_ROOM + id, JSON.stringify({ archived: archive }), { headers })
         .subscribe((res: any) => {
           if (res.status) {
             console.log(res.data)

@@ -76,6 +76,17 @@ page-my-room-list {
             font-size: 30px;
         }
     }
+    .btn-unarchive{
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #94D3FF;
+        ion-icon {
+            color : #ffffff;
+            font-size: 30px;
+        }
+    }
     .is-archvied{
         font-size: 12px;
         color: red;        

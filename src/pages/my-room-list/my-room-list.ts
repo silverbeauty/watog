@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Events, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events, AlertController, ItemSliding} from 'ionic-angular';
 import * as _ from 'lodash';
 
 import { RoomCreatePrePage } from '../room-create-pre/room-create-pre';
@@ -113,7 +113,8 @@ export class MyRoomListPage {
     this.parentSelector.push(ChatPage, { roomInfo: roomInfo });
   }
 
-  editRoom(roomInfo) {
+  editRoom(roomInfo, slidingItem: ItemSliding) {
+    slidingItem.close();
     if (this.auth.id == roomInfo.User.id) {
       this.parentSelector.push(EditChatRoomPage, { roomInfo: roomInfo });
     }
@@ -129,18 +130,23 @@ export class MyRoomListPage {
 
   }
 
-  archiveRoom(roomInfo) {
+  archiveRoom(roomInfo:any, slidingItem: ItemSliding) {
+    slidingItem.close();
     if (this.auth.id == roomInfo.User.id) {
       const loader = this.loadingCtrl.create({ content: "Please wait..." });
       loader.present();
-      this.chatService.archiveRoom(roomInfo.id)
-        .then((temp: any) => {
-          console.log(temp)
-          // let temp: any = [];
-          // temp = this.lists.filter((item) => {
-          //   if (item.id != res.id)
-          //     return item;
-          // });
+      this.chatService.archiveRoom(roomInfo.id, true)
+        .then((res: any) => {
+          // console.log(res)
+          let temp: any = [];
+          temp = this.lists.filter((item) => {
+            if (item.id != res.id)
+              return item;
+            else{
+              item.archived = true;
+              return item
+            }
+          });
           this.lists = temp;
           this._tempLists = temp;
           loader.dismiss();
@@ -158,6 +164,40 @@ export class MyRoomListPage {
       _alert.present();
       return;
     }
-
+  }
+  unArchiveRoom(roomInfo:any, slidingItem: ItemSliding){
+    slidingItem.close();
+    if (this.auth.id == roomInfo.User.id) {
+      const loader = this.loadingCtrl.create({ content: "Please wait..." });
+      loader.present();
+      this.chatService.archiveRoom(roomInfo.id, false)
+        .then((res: any) => {
+          console.log(res)
+          let temp: any = [];
+          temp = this.lists.filter((item) => {
+            if (item.id != res.id)
+              return item;
+            else{
+              item.archived = false;
+              return item
+            }
+          });
+          this.lists = temp;
+          this._tempLists = temp;          
+          loader.dismiss();
+        }).catch(err => {
+          loader.dismiss();
+          console.log(err)
+        })
+    }
+    else {
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'Only the room creator can edit / delete the room',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    }
   }
 }
