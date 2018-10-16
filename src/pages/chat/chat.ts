@@ -358,7 +358,7 @@ export class ChatPage {
         {
           text: 'Yes',
           handler: () => {
-            this.chatService.archiveRoom(this.room_id).then((data: any) => {
+            this.chatService.archiveRoom(this.room_id, true).then((data: any) => {
               this.navCtrl.push(ChatRoomPage)
             }).catch((error) => {
               let _alert = this.alertCtrl.create({
