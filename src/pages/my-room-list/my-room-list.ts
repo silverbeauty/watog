@@ -109,7 +109,6 @@ export class MyRoomListPage {
 
   goToChattingPage(roomInfo) {
     // this.socket.connect();
-    console.log(roomInfo)
     this.parentSelector.push(ChatPage, { roomInfo: roomInfo });
   }
 
@@ -172,7 +171,6 @@ export class MyRoomListPage {
       loader.present();
       this.chatService.archiveRoom(roomInfo.id, false)
         .then((res: any) => {
-          console.log(res)
           let temp: any = [];
           temp = this.lists.filter((item) => {
             if (item.id != res.id)
