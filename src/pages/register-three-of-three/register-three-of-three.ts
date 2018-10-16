@@ -70,7 +70,30 @@ export class RegisterThreeOfThreePage {
     const url_verify = this.url_verify;
 
     console.log(data);
-    this.restProvider.updateUserInfo(data).then((user) => {
+    if(this.user.cell_phone !== this.validations_form.value.cell_phone || this.user.email !== this.validations_form.value.email) {
+      this.restProvider.updateUserInfo(data).then((user) => {
+        this.restProvider.sendVerifyRequest(url_verify).then((data) => {
+          loader.dismiss();
+          alert(data);
+          this.navCtrl.push(EnterTokenPage, { url_verify: url_verify });
+        }).catch((error) => {
+          loader.dismiss();
+          alert(error);
+          if(url_verify === 'sms') {
+            this.validation_error_sms = true;
+          } else {
+            this.validation_error_email = true;
+          }
+        })
+      }).catch((error) => {
+        loader.dismiss();
+        if(url_verify === 'sms') {
+          this.validation_error_sms = true;
+        } else {
+          this.validation_error_email = true;
+        }
+      })
+    } else {
       this.restProvider.sendVerifyRequest(url_verify).then((data) => {
         loader.dismiss();
         alert(data);
@@ -84,14 +107,8 @@ export class RegisterThreeOfThreePage {
           this.validation_error_email = true;
         }
       })
-    }).catch((error) => {
-      loader.dismiss();
-      if(url_verify === 'sms') {
-        this.validation_error_sms = true;
-      } else {
-        this.validation_error_email = true;
-      }
-    })
+    }
+
   }
 
   changePhoneNum() {

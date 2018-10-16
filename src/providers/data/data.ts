@@ -1,12 +1,12 @@
 //import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Injectable } from '@angular/core';
-import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
-import {File} from "@ionic-native/file";
+import { DocumentViewer, DocumentViewerOptions } from "@ionic-native/document-viewer";
+import { File } from "@ionic-native/file";
 
 import { Auth, User, ObjUser } from '../../types';
 import { RestProvider } from '../rest/rest';
-import {resolveDefinition} from "@angular/core/src/view/util";
+import { resolveDefinition } from "@angular/core/src/view/util";
 
 const my_database = 'data.db';
 
@@ -14,17 +14,17 @@ const my_database = 'data.db';
 export class DataProvider {
 
   //private db: SQLiteObject;
-/*  private Firstname: string;
-  private Password: string;
-  private Email: string;
-  private Country: string;
-  private Hospital: string;
-  private Phone: number;
-  private arr: any;*/
+  /*  private Firstname: string;
+    private Password: string;
+    private Email: string;
+    private Country: string;
+    private Hospital: string;
+    private Phone: number;
+    private arr: any;*/
 
   public isBrowser = document.URL.startsWith('http');
 
-  //public sqlite: SQLite, private storage: Storage
+  // public sqlite: SQLite, private storage: Storage
 
   public static searchUserName: string;
   public static searchedUsers: Array<any> = [];
@@ -35,7 +35,7 @@ export class DataProvider {
   public static auth: Auth;
   public static showAd: boolean = true;
 
-  constructor(private storage: NativeStorage, private documentViewer: DocumentViewer, private file: File) {}
+  constructor(private storage: NativeStorage, private documentViewer: DocumentViewer, private file: File) { }
 
   public showRules() {
     const options: DocumentViewerOptions = {
@@ -58,9 +58,10 @@ export class DataProvider {
     this.storage.setItem('user', JSON.stringify(user));
     this.storage.setItem('authorization', auth.token);
   }
-  public saveUser(user: User): void{
-    const profile_user:User= user;
-    if(this.isBrowser) {
+
+  public saveUser(user: User): void {
+    const profile_user: User = user;
+    if (this.isBrowser) {
       window.localStorage.setItem('user', JSON.stringify(profile_user));
       return
     }
@@ -77,19 +78,19 @@ export class DataProvider {
     this.storage.remove('authorization');
   }
 
-  public saveObjUser(user: ObjUser): void{
-    const profile_user:ObjUser= user;
-    if(this.isBrowser) {
+  public saveObjUser(user: ObjUser): void {
+    const profile_user: ObjUser = user;
+    if (this.isBrowser) {
       window.localStorage.setItem('obj_user', JSON.stringify(profile_user));
       return
     }
     this.storage.setItem('obj_user', JSON.stringify(profile_user));
   }
 
-  public getObjUser(){
+  public getObjUser() {
     if (this.isBrowser) {
       return window.localStorage.getItem('obj_user');
-    } else{
+    } else {
       return this.storage.getItem('obj_user');
     }
   }
@@ -97,23 +98,23 @@ export class DataProvider {
   public getProfile(): Promise<User> {
     if (this.isBrowser) {
       return new Promise((resolve, reject) => {
-        const res = [ window.localStorage.getItem('authorization'),  window.localStorage.getItem('user')]
+        const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
         if (res[0]) {
-        // Set token to RestProvider
-        RestProvider.token = res[0];
+          // Set token to RestProvider
+          RestProvider.token = res[0];
 
-        const profile: object = JSON.parse(res[1]);
-        if (profile) {
-          const auth: Auth = profile as Auth;
-          auth.token = res[0];
-          DataProvider.auth = auth;
-          resolve(auth);
-        } else {
-          const auth = new Auth()
-          auth.token = res[0];
-          DataProvider.auth = auth;
-          resolve(auth);
-        }
+          const profile: object = JSON.parse(res[1]);
+          if (profile) {
+            const auth: Auth = profile as Auth;
+            auth.token = res[0];
+            DataProvider.auth = auth;
+            resolve(auth);
+          } else {
+            const auth = new Auth()
+            auth.token = res[0];
+            DataProvider.auth = auth;
+            resolve(auth);
+          }
         } else {
           resolve(null)
         }
@@ -142,7 +143,7 @@ export class DataProvider {
       console.info(e)
       return null;
     })
-   }
+  }
 
   public clearProfile() {
     if (this.isBrowser) {
@@ -158,7 +159,7 @@ export class DataProvider {
   /*** SIMPLE GET AND SET ***/
 
 
-  get(){
+  get() {
     return localStorage.getItem('user');
   }
 
