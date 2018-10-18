@@ -140,7 +140,7 @@
             <div class="input-group">
               <span class="iagree"> <ion-checkbox [(ngModel)]="agree" [ngModelOptions]="{standalone: true}" ></ion-checkbox> I agree with <a (click)="goToTerms()">WATOG Terms and Conditions</a></span>
             </div>
-            <div class="input-group">
+            <div class="input-group" style="padding-bottom: 50%;">
               <button type="submit" class="btn btn-submit btn-md" [disabled]="!validations_form.valid" (click)="register()" *ngIf="!isShow()">NEXT</button>
             </div>
           </div>
