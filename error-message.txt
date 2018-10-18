@@ -1,0 +1,1062 @@
+ ionic cordova build android --prod --release --verbose
+2018-10-15T07:27:43.602Z ionic:cli-utils Terminal info: { tty: false, ci: false }
+2018-10-15T07:27:43.604Z ionic:cli-utils CLI global options: { _: [ 'cordova', 'build', 'android' ], help: null, h: null, verbose: true, quiet: null, interactive: false, color: true, confirm: null, json: null, prod: true, release: true, project: null, '--': [] }
+2018-10-15T07:27:43.868Z ionic:cli-utils:lib:project Project type from config: Ionic Angular 3 (ionic-angular)
+2018-10-15T07:27:43.868Z ionic:cli-utils Project name: undefined
+2018-10-15T07:27:43.872Z ionic:cli Context: { binPath: 'C:\\Users\\Taletad\\AppData\\Roaming\\npm\\node_modules\\ionic\\bin\\ionic', libPath: 'C:\\Users\\Taletad\\AppData\\Roaming\\npm\\node_modules\\ionic', execPath: 'C:\\Users\\Taletad\\Documents\\watog\\ionic-front\\the-new-ionic-front', version: '4.0.6' }
+2018-10-15T07:27:43.934Z ionic:cli-utils:lib:integrations:cordova:config Using config.xml: C:\Users\Taletad\Documents\watog\ionic-front\the-new-ionic-front\config.xml
+2018-10-15T07:27:43.973Z ionic:cli-utils:lib:hooks Looking for ionic:build:before npm script.
+2018-10-15T07:27:43.974Z ionic:cli-utils:lib:project:ionic-angular:build Looking for ionic:build npm script.
+> ionic-app-scripts build --prod --target cordova --platform android
+[09:27:46]  ionic-app-scripts 3.1.11
+[09:27:46]  build prod started ...
+[09:27:46]  clean started ...
+[09:27:46]  clean finished in 69 ms
+[09:27:46]  copy started ...
+[09:27:46]  deeplinks started ...
+[09:27:47]  deeplinks finished in 556 ms
+[09:27:47]  ngc started ...
+[09:28:04]  ngc finished in 17.19 s
+[09:28:04]  preprocess started ...
+[09:28:04]  preprocess finished in 1 ms
+[09:28:04]  webpack started ...
+[09:28:05]  copy finished in 18.36 s
+[09:28:37]  webpack finished in 32.83 s
+[09:28:37]  uglify started ...
+[09:28:37]  sass started ...
+Without `from` option PostCSS could generate wrong source map and will not find Browserslist config. Set it to CSS file path or to `undefined` to prevent this warning.
+[09:28:40]  sass finished in 3.38 s
+[09:28:40]  cleancss started ...
+[09:28:43]  cleancss finished in 2.50 s
+[09:29:06]  uglify finished in 28.47 s
+[09:29:06]  postprocess started ...
+[09:29:06]  postprocess finished in 67 ms
+[09:29:06]  lint started ...
+[09:29:06]  build prod finished in 79.59 s
+[09:29:11]  tslint: ...d/Documents/watog/ionic-front/the-new-ionic-front/src/providers/camera/camera.ts, line: 3
+            All imports on this line are unused.
+
+[09:29:11]  tslint: ...letad/Documents/watog/ionic-front/the-new-ionic-front/src/providers/rest/rest.ts, line: 3
+[09:29:11]  tslint: ...letad/Documents/watog/ionic-front/the-new-ionic-front/src/providers/rest/rest.ts, line: 3
+[09:29:11]  tslint: ...letad/Documents/watog/ionic-front/the-new-ionic-front/src/providers/data/data.ts, line: 11
+[09:29:11]  tslint: ...letad/Documents/watog/ionic-front/the-new-ionic-front/src/providers/data/data.ts, line: 9
+[09:29:11]  tslint: ...watog/ionic-front/the-new-ionic-front/src/providers/chat-service/chat-service.ts, line: 24
+[09:29:11]  tslint: ...watog/ionic-front/the-new-ionic-front/src/providers/chat-service/chat-service.ts, line: 3
+[09:29:11]  tslint: ...watog/ionic-front/the-new-ionic-front/src/providers/chat-service/chat-service.ts, line: 6
+[09:29:11]  tslint: ...watog/ionic-front/the-new-ionic-front/src/providers/chat-service/chat-service.ts, line: 8
+[09:29:11]  tslint: ...Documents/watog/ionic-front/the-new-ionic-front/src/providers/sockets/sockets.ts, line: 3
+[09:29:11]  tslint: ...Documents/watog/ionic-front/the-new-ionic-front/src/providers/sockets/sockets.ts, line: 5
+[09:29:11]  tslint: ...tog/ionic-front/the-new-ionic-front/src/pages/change-password/change-password.ts, line: 6
+[09:29:11]  tslint: ...s/watog/ionic-front/the-new-ionic-front/src/pages/profiles-load/profiles-load.ts, line: 1
+[09:29:11]  tslint: ...s/watog/ionic-front/the-new-ionic-front/src/pages/profiles-load/profiles-load.ts, line: 2
+       L2:  import { Camera, CameraOptions } from '@ionic-native/camera';
+       L3:  import { ImagePicker } from '@ionic-native/image-picker';
+
+            'Resp' is declared but its value is never read.
+
+       L2:  import { HttpClient, HttpHeaders } from '@angular/common/http';
+       L3:  import { User, ObjUser, Auth, resFile, Category, Resp, Post, UserResp, Report } from '../../types';
+       L4:  import 'rxjs/add/operator/timeout';
+
+            'UserResp' is declared but its value is never read.
+
+       L2:  import { HttpClient, HttpHeaders } from '@angular/common/http';
+       L3:  import { User, ObjUser, Auth, resFile, Category, Resp, Post, UserResp, Report } from '../../types';
+       L4:  import 'rxjs/add/operator/timeout';
+
+            'my_database' is declared but its value is never read.
+
+      L11:  const my_database = 'data.db';
+
+            All imports on this line are unused.
+
+       L8:  import { RestProvider } from '../rest/rest';
+       L9:  import {resolveDefinition} from "@angular/core/src/view/util";
+
+            Property 'events' is declared but its value is never read.
+
+      L23:  constructor(private http: HttpClient,
+      L24:    private events: Events) {
+      L25:    const res = [window.localStorage.getItem('authorization'), window.localStorage.getItem('user')]
+
+            All imports on this line are unused.
+
+       L2:  import { Events } from 'ionic-angular';
+       L3:  import { map } from 'rxjs/operators/map';
+       L4:  import { HttpClient, HttpHeaders } from "@angular/common/http";
+
+            All imports on this line are unused.
+
+       L5:  // import { RequestOptions, Request, RequestMethod } from "@angular/http";
+       L6:  import { Observable } from "rxjs/Observable";
+
+            'Contact' is declared but its value is never read.
+
+       L8:  import { Contact, Message, Room, Member } from '../../types';
+       L9:  import { server_url } from '../../environments/environment'
+
+            All imports on this line are unused.
+
+       L2:  import { Injectable } from '@angular/core';
+       L3:  import { Observable } from 'rxjs/Observable';
+       L4:  // import * as io from 'socket.io-client';
+
+            All imports on this line are unused.
+
+       L4:  // import * as io from 'socket.io-client';
+       L5:  import { Contact, Message, Room, Member } from '../../types';
+       L6:  import * as io from 'socket.io-client';
+
+            All imports on this line are unused.
+
+       L5:  import { SettingsPage } from '../settings/settings';
+       L6:  import { LoginPage } from '../login/login';
+       L7:  import { DataProvider, RestProvider } from '../../providers';
+
+            'EventEmitter' is declared but its value is never read.
+
+       L1:  import { Component, EventEmitter, ViewChild, ViewChildren, QueryList,  } from '@angular/core';
+       L2:  import { IonicPage, NavController, NavParams, AlertController, Modal, ModalController } from 'ionic-angular';
+
+            'Modal' is declared but its value is never read.
+
+       L1:  import { Component, EventEmitter, ViewChild, ViewChildren, QueryList,  } from '@angular/core';
+       L2:  port { IonicPage, NavController, NavParams, AlertController, Modal, ModalController } from 'ionic-angular';
+
+            'StackConfig' is declared but its value is never read.
+
+       L5:  Direction,
+       L6:  StackConfig,
+       L7:  Stack,
+
+[09:29:11]  tslint: ...s/watog/ionic-front/the-new-ionic-front/src/pages/profiles-load/profiles-load.ts, line: 6
+[09:29:11]  tslint: ...s/watog/ionic-front/the-new-ionic-front/src/pages/profiles-load/profiles-load.ts, line: 7
+[09:29:11]  tslint: ...s/watog/ionic-front/the-new-ionic-front/src/pages/profiles-load/profiles-load.ts, line: 8
+[09:29:11]  tslint: ...s/watog/ionic-front/the-new-ionic-front/src/pages/profiles-load/profiles-load.ts, line: 9
+[09:29:11]  tslint: ...s/watog/ionic-front/the-new-ionic-front/src/pages/profiles-load/profiles-load.ts, line: 10
+[09:29:11]  tslint: ...s/watog/ionic-front/the-new-ionic-front/src/pages/profiles-load/profiles-load.ts, line: 18
+[09:29:11]  tslint: ...s/watog/ionic-front/the-new-ionic-front/src/pages/profiles-load/profiles-load.ts, line: 19
+            'Stack' is declared but its value is never read.
+
+       L6:  StackConfig,
+       L7:  Stack,
+       L8:  Card,
+
+            'Card' is declared but its value is never read.
+
+       L7:  Stack,
+       L8:  Card,
+       L9:  ThrowEvent,
+
+            'ThrowEvent' is declared but its value is never read.
+
+       L8:  Card,
+       L9:  ThrowEvent,
+      L10:  DragEvent,
+
+            'DragEvent' is declared but its value is never read.
+
+       L9:  ThrowEvent,
+      L10:  DragEvent,
+      L11:  SwingStackComponent,
+
+            'Auth' is declared but its value is never read.
+
+      L17:  import { DataProvider, RestProvider } from '../../providers';
+      L18:  import { User, Auth, Post } from '../../types';
+      L19:  import { LoginPage } from '../login/login';
+
+            All imports on this line are unused.
+
+      L18:  import { User, Auth, Post } from '../../types';
+      L19:  import { LoginPage } from '../login/login';
+      L20:  import { ModalLogout } from '../modal-logout/modal-logout';
+
+            All imports on this line are unused.
+
+       L6:  import { ChangePasswordPage } from '../change-password/change-password';
+       L7:  import { LoginPage } from '../login/login';
+       L8:  import { DataProvider } from '../../providers/data/data';
+
+[09:29:11]  tslint: ...d/Documents/watog/ionic-front/the-new-ionic-front/src/pages/settings/settings.ts, line: 7
+[09:29:11]  tslint: ...cuments/watog/ionic-front/the-new-ionic-front/src/pages/best-photo/best-photo.ts, line: 6
+[09:29:11]  tslint: ...cuments/watog/ionic-front/the-new-ionic-front/src/pages/best-photo/best-photo.ts, line: 10
+[09:29:11]  tslint: ...cuments/watog/ionic-front/the-new-ionic-front/src/pages/best-photo/best-photo.ts, line: 11
+[09:29:11]  tslint: ...tad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/profile/profile.ts, line: 2
+[09:29:11]  tslint: ...tad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/profile/profile.ts, line: 6
+[09:29:11]  tslint: ...tad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/profile/profile.ts, line: 7
+            All imports on this line are unused.
+
+       L5:  import {SettingsPage} from "../settings/settings";
+       L6:  import {LoginPage} from "../login/login";
+       L7:  import { ModalLogout } from '../modal-logout/modal-logout';
+
+            All imports on this line are unused.
+
+       L9:  import { DataProvider } from '../../providers/data/data';
+      L10:  import { RestProvider } from '../../providers/rest/rest';
+      L11:  import { User, Auth } from '../../types';
+
+            'User' is declared but its value is never read.
+
+      L10:  import { RestProvider } from '../../providers/rest/rest';
+      L11:  import { User, Auth } from '../../types';
+
+            'ViewController' is declared but its value is never read.
+
+       L1:  import { Component } from '@angular/core';
+       L2:  onicPage, NavController, NavParams, AlertController, ModalController, ViewController} from 'ionic-angular';
+       L3:  import { DashboardPage } from '../dashboard/dashboard';
+
+            'User' is declared but its value is never read.
+
+       L5:  import { DataProvider, RestProvider } from '../../providers';
+       L6:  import { User, Auth } from '../../types';
+       L7:  import { LoginPage } from '../login/login';
+
+            All imports on this line are unused.
+
+       L6:  import { User, Auth } from '../../types';
+       L7:  import { LoginPage } from '../login/login';
+       L8:  import { ProfilesLoadPage } from '../profiles-load/profiles-load';
+
+            All imports on this line are unused.
+
+       L7:  import { LoginPage } from '../login/login';
+[09:29:11]  tslint: ...tad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/profile/profile.ts, line: 8
+[09:29:11]  tslint: ...ionic-front/the-new-ionic-front/src/pages/modal-change-vote/modal-change-vote.ts, line: 1
+[09:29:11]  tslint: ...ionic-front/the-new-ionic-front/src/pages/modal-change-vote/modal-change-vote.ts, line: 6
+       L8:  import { ProfilesLoadPage } from '../profiles-load/profiles-load';
+       L9:  import { BestPhotoPage } from '../best-photo/best-photo'
+
+            'EventEmitter' is declared but its value is never read.
+
+       L1:  import { Component, EventEmitter, ViewChild, ViewChildren, QueryList } from '@angular/core';
+       L2:  import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+
+            'StackConfig' is declared but its value is never read.
+
+       L5:  Direction,
+       L6:  StackConfig,
+       L7:  Stack,
+
+[09:29:11]  tslint: ...ionic-front/the-new-ionic-front/src/pages/modal-change-vote/modal-change-vote.ts, line: 7
+            'Stack' is declared but its value is never read.
+
+       L6:  StackConfig,
+[09:29:11]  tslint: ...ionic-front/the-new-ionic-front/src/pages/modal-change-vote/modal-change-vote.ts, line: 8
+       L7:  Stack,
+       L8:  Card,
+
+            'Card' is declared but its value is never read.
+
+       L7:  Stack,
+[09:29:11]  tslint: ...ionic-front/the-new-ionic-front/src/pages/modal-change-vote/modal-change-vote.ts, line: 9
+       L8:  Card,
+       L9:  ThrowEvent,
+
+            'ThrowEvent' is declared but its value is never read.
+
+       L8:  Card,
+       L9:  ThrowEvent,
+      L10:  DragEvent,
+[09:29:11]  tslint: ...ionic-front/the-new-ionic-front/src/pages/modal-change-vote/modal-change-vote.ts, line: 10
+[09:29:11]  tslint: ...ionic-front/the-new-ionic-front/src/pages/modal-change-vote/modal-change-vote.ts, line: 17
+
+            'DragEvent' is declared but its value is never read.
+
+       L9:  ThrowEvent,
+      L10:  DragEvent,
+      L11:  SwingStackComponent,
+
+            'Auth' is declared but its value is never read.
+
+      L16:  import { DataProvider, RestProvider } from '../../providers';
+[09:29:11]  tslint: ...ionic-front/the-new-ionic-front/src/pages/modal-change-vote/modal-change-vote.ts, line: 18
+      L17:  import { User, Auth, Post } from '../../types';
+      L18:  import { LoginPage } from '../login/login';
+
+            All imports on this line are unused.
+
+      L17:  import { User, Auth, Post } from '../../types';
+      L18:  import { LoginPage } from '../login/login';
+      L19:  import { ModalLogout } from '../modal-logout/modal-logout';
+
+            All imports on this line are unused.
+
+[09:29:11]  tslint: ...ments/watog/ionic-front/the-new-ionic-front/src/pages/vote-random/vote-random.ts, line: 4
+[09:29:11]  tslint: ...ments/watog/ionic-front/the-new-ionic-front/src/pages/vote-random/vote-random.ts, line: 10
+       L3:  import { DashboardPage } from '../dashboard/dashboard';
+       L4:  import { ProfilePage } from '../profile/profile';
+       L5:  import { SettingsPage } from '../settings/settings';
+
+            'User' is declared but its value is never read.
+
+       L9:  import { RestProvider } from '../../providers/rest/rest';
+      L10:  import { User, Auth } from '../../types';
+      L11:  import { ModalChangeVotePage } from '../modal-change-vote/modal-change-vote';
+
+            All imports on this line are unused.
+
+      L10:  import { User, Auth } from '../../types';
+[09:29:11]  tslint: ...ments/watog/ionic-front/the-new-ionic-front/src/pages/vote-random/vote-random.ts, line: 11
+[09:29:11]  tslint: ...Documents/watog/ionic-front/the-new-ionic-front/src/pages/selection/selection.ts, line: 4
+[09:29:11]  tslint: ...Documents/watog/ionic-front/the-new-ionic-front/src/pages/selection/selection.ts, line: 10
+      L11:  import { ModalChangeVotePage } from '../modal-change-vote/modal-change-vote';
+      L12:  import { ModalLogout } from '../modal-logout/modal-logout';
+
+            All imports on this line are unused.
+
+       L3:  import { DashboardPage } from '../dashboard/dashboard';
+       L4:  import { ProfilePage } from '../profile/profile';
+       L5:  import { SettingsPage } from '../settings/settings';
+
+            All imports on this line are unused.
+
+       L9:  import { RestProvider } from '../../providers/rest/rest';
+      L10:  import { User, Auth } from '../../types';
+      L11:  import { ModalLogout } from '../modal-logout/modal-logout';
+
+            All imports on this line are unused.
+
+       L6:  import { VoteRandomPage } from '../vote-random/vote-random';
+[09:29:11]  tslint: ...w-ionic-front/src/pages/contest-vote-search-detail/contest-vote-search-detail.ts, line: 7
+[09:29:11]  tslint: ...w-ionic-front/src/pages/contest-vote-search-detail/contest-vote-search-detail.ts, line: 8
+[09:29:11]  tslint: ...w-ionic-front/src/pages/contest-vote-search-detail/contest-vote-search-detail.ts, line: 12
+[09:29:11]  tslint: ...t/the-new-ionic-front/src/pages/contest-search-results/contest-search-results.ts, line: 6
+       L7:  import { SelectionPage } from '../selection/selection';
+       L8:  import { LoginPage } from '../login/login';
+
+            All imports on this line are unused.
+
+       L7:  import { SelectionPage } from '../selection/selection';
+       L8:  import { LoginPage } from '../login/login';
+
+            All imports on this line are unused.
+
+      L11:  import { RestProvider } from '../../providers/rest/rest';
+      L12:  import { User, Auth } from '../../types';
+      L13:  import { ModalLogout } from '../modal-logout/modal-logout';
+
+            All imports on this line are unused.
+
+       L5:  import { SettingsPage } from '../settings/settings';
+       L6:  import { LoginPage } from '../login/login';
+       L7:  import { ProfilesLoadPage } from '../profiles-load/profiles-load';
+
+            All imports on this line are unused.
+
+       L9:  import { RestProvider } from '../../providers/rest/rest';
+[09:29:11]  tslint: ...t/the-new-ionic-front/src/pages/contest-search-results/contest-search-results.ts, line: 10
+[09:29:11]  tslint: ...t/the-new-ionic-front/src/pages/contest-search-results/contest-search-results.ts, line: 11
+[09:29:11]  tslint: ...t/the-new-ionic-front/src/pages/contest-search-results/contest-search-results.ts, line: 12
+      L10:  import { User, Auth } from '../../types';
+      L11:  import { ContestVoteSearchDetailPage } from '../contest-vote-search-detail/contest-vote-search-detail';
+
+            All imports on this line are unused.
+
+      L10:  import { User, Auth } from '../../types';
+      L11:  import { ContestVoteSearchDetailPage } from '../contest-vote-search-detail/contest-vote-search-detail';
+      L12:  import { SelectionPage } from '../selection/selection';
+
+            All imports on this line are unused.
+
+      L11:  import { ContestVoteSearchDetailPage } from '../contest-vote-search-detail/contest-vote-search-detail';
+      L12:  import { SelectionPage } from '../selection/selection';
+      L13:  import { ModalLogout } from '../modal-logout/modal-logout';
+
+            All imports on this line are unused.
+
+       L7:  import { SettingsPage } from '../settings/settings';
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/contest-vote/contest-vote.ts, line: 8
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/contest-vote/contest-vote.ts, line: 9
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/contest-vote/contest-vote.ts, line: 10
+       L8:  import { VoteRandomPage } from '../vote-random/vote-random';
+       L9:  import { LoginPage } from '../login/login';
+
+            All imports on this line are unused.
+
+       L8:  import { VoteRandomPage } from '../vote-random/vote-random';
+       L9:  import { LoginPage } from '../login/login';
+      L10:  import { ContestSearchResultsPage } from '../contest-search-results/contest-search-results';
+
+            All imports on this line are unused.
+
+       L9:  import { LoginPage } from '../login/login';
+      L10:  import { ContestSearchResultsPage } from '../contest-search-results/contest-search-results';
+      L11:  import { ProfilesLoadPage } from '../profiles-load/profiles-load';
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/contest-vote/contest-vote.ts, line: 12
+
+            All imports on this line are unused.
+
+      L11:  import { ProfilesLoadPage } from '../profiles-load/profiles-load';
+      L12:  import { ImageModalPage } from '../imge-modal/img-modal';
+      L13:  import { DataProvider } from '../../providers/data/data';
+
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/contest-vote/contest-vote.ts, line: 15
+            'Auth' is declared but its value is never read.
+
+      L14:  import { RestProvider } from '../../providers/rest/rest';
+      L15:  import {User, Auth, Post} from '../../types';
+      L16:  import { ModalLogout } from '../modal-logout/modal-logout';
+
+[09:29:11]  tslint: ...g/ionic-front/the-new-ionic-front/src/pages/contest-submited/contest-submited.ts, line: 6
+[09:29:11]  tslint: ...watog/ionic-front/the-new-ionic-front/src/pages/contest-submit/contest-submit.ts, line: 1
+            All imports on this line are unused.
+
+       L5:  import { SettingsPage } from '../settings/settings';
+       L6:  import { LoginPage } from '../login/login';
+       L7:  import { DataProvider } from '../../providers/data/data';
+
+            'isDevMode' is declared but its value is never read.
+
+       L1:  import { Component, isDevMode } from '@angular/core';
+
+[09:29:11]  tslint: ...watog/ionic-front/the-new-ionic-front/src/pages/contest-submit/contest-submit.ts, line: 6
+[09:29:11]  tslint: ...watog/ionic-front/the-new-ionic-front/src/pages/contest-submit/contest-submit.ts, line: 12
+            All imports on this line are unused.
+
+       L5:  import { ProfilePage } from '../profile/profile';
+       L6:  import { LoginPage } from '../login/login';
+       L7:  import { SettingsPage } from '../settings/settings';
+
+            'Auth' is declared but its value is never read.
+
+      L11:  import { RestProvider } from '../../providers';
+      L12:  import { Auth, resFile } from "../../types";
+      L13:  import { ModalLogout } from '../modal-logout/modal-logout';
+[09:29:11]  tslint: ...ont/the-new-ionic-front/src/pages/best-ultrasound-image/best-ultrasound-image.ts, line: 31
+
+            Property 'fileOpener' is declared but its value is never read.
+
+      L31:  er, public platform: Platform, private file: File, private fileOpener: FileOpener, public modalCtrl: ModalCo
+      L32:      this.passParam = this.navParams.data
+
+[09:29:11]  tslint: ...ont/the-new-ionic-front/src/pages/best-ultrasound-image/best-ultrasound-image.ts, line: 48
+            'onShow' is declared but its value is never read.
+
+      L48:  private onShow(){
+      L49:    window.console.log('Exibir documento.');
+
+[09:29:11]  tslint: ...ont/the-new-ionic-front/src/pages/best-ultrasound-image/best-ultrasound-image.ts, line: 53
+            'onClose' is declared but its value is never read.
+
+      L53:    private onClose(){
+      L54:      window.console.log('Fechar documento');
+
+[09:29:11]  tslint: ...ont/the-new-ionic-front/src/pages/best-ultrasound-image/best-ultrasound-image.ts, line: 58
+            'onMissingApp' is declared but its value is never read.
+
+      L58:    private onMissingApp(appId, installer) {
+[09:29:11]  tslint: ...ont/the-new-ionic-front/src/pages/best-ultrasound-image/best-ultrasound-image.ts, line: 62
+      L59:      if (confirm("Você quer instalar o app grátis PDF Viewer " + appId + " para Android?")) { installer(); }
+
+            'onError' is declared but its value is never read.
+
+[09:29:11]  tslint: ...ont/the-new-ionic-front/src/pages/best-ultrasound-image/best-ultrasound-image.ts, line: 7
+      L62:    private onError(error) {
+      L63:      window.console.log(error);
+
+            All imports on this line are unused.
+
+       L6:  import { ContestSubmitPage } from '../contest-submit/contest-submit';
+       L7:  import { LoginPage } from '../login/login';
+       L8:  import { DataProvider } from '../../providers/data/data';
+
+[09:29:11]  tslint: ...ges/best-group-photo-with-the-watog-logo/best-group-photo-with-the-watog-logo.ts, line: 34
+            Property 'document' is declared but its value is never read.
+
+      L34:  ms: NavParams, public dataProvider: DataProvider, private document: DocumentViewer, private file: File, publ
+      L35:      this.passParam = this.navParams.data
+
+            Property 'file' is declared but its value is never read.
+
+[09:29:11]  tslint: ...ges/best-group-photo-with-the-watog-logo/best-group-photo-with-the-watog-logo.ts, line: 34
+[09:29:11]  tslint: ...ges/best-group-photo-with-the-watog-logo/best-group-photo-with-the-watog-logo.ts, line: 3
+      L34:  r: DataProvider, private document: DocumentViewer, private file: File, public modalCtrl: ModalController) {
+      L35:      this.passParam = this.navParams.data
+
+            'DocumentViewerOptions' is declared but its value is never read.
+
+       L2:  import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+       L3:  import {DocumentViewer, DocumentViewerOptions} from '@ionic-native/document-viewer';
+       L4:  import {File} from "@ionic-native/file";
+
+[09:29:11]  tslint: ...ges/best-group-photo-with-the-watog-logo/best-group-photo-with-the-watog-logo.ts, line: 9
+[09:29:11]  tslint: ...c-front/the-new-ionic-front/src/pages/best-surgical-image/best-surgical-image.ts, line: 29
+            All imports on this line are unused.
+
+       L8:  import { ContestSubmitPage } from '../contest-submit/contest-submit';
+       L9:  import { LoginPage } from '../login/login';
+      L10:  import { UploadWatogLogoPage } from "../upload-watog-logo/upload-watog-logo";
+
+            Property 'fileOpener' is declared but its value is never read.
+
+      L29:  vate document: DocumentViewer, private file: File, private fileOpener: FileOpener, public modalCtrl: ModalCo
+      L30:      this.passParam = this.navParams.data
+[09:29:11]  tslint: ...c-front/the-new-ionic-front/src/pages/best-surgical-image/best-surgical-image.ts, line: 7
+
+            All imports on this line are unused.
+
+       L6:  import { ContestSubmitPage } from '../contest-submit/contest-submit';
+       L7:  import { LoginPage } from '../login/login';
+       L8:  import { DataProvider } from '../../providers/data/data';
+
+            All imports on this line are unused.
+
+       L6:  import { ContestSubmitPage } from '../contest-submit/contest-submit';
+[09:29:11]  tslint: ...ont/the-new-ionic-front/src/pages/best-humanitary-photo/best-humanitary-photo.ts, line: 7
+[09:29:11]  tslint: ...front/src/pages/best-photo-with-the-watog-logo/best-photo-with-the-watog-logo.ts, line: 35
+       L7:  import { LoginPage } from '../login/login';
+       L8:  import { ModalLogout } from '../modal-logout/modal-logout';
+
+            Property 'fileChooser' is declared but its value is never read.
+
+[09:29:11]  tslint: ...front/src/pages/best-photo-with-the-watog-logo/best-photo-with-the-watog-logo.ts, line: 35
+      L35:    constructor(private fileChooser: FileChooser, private fileOpener: FileOpener, private filePath: FilePath,
+      L36:      this.passParam = this.navParams.data;
+
+            Property 'fileOpener' is declared but its value is never read.
+
+[09:29:11]  tslint: ...front/src/pages/best-photo-with-the-watog-logo/best-photo-with-the-watog-logo.ts, line: 35
+      L35:    constructor(private fileChooser: FileChooser, private fileOpener: FileOpener, private filePath: FilePath,
+      L36:      this.passParam = this.navParams.data;
+
+            Property 'filePath' is declared but its value is never read.
+
+      L35:  ser: FileChooser, private fileOpener: FileOpener, private filePath: FilePath, public navCtrl: NavController,
+      L36:      this.passParam = this.navParams.data;
+[09:29:11]  tslint: ...front/src/pages/best-photo-with-the-watog-logo/best-photo-with-the-watog-logo.ts, line: 35
+
+            Property 'document' is declared but its value is never read.
+
+      L35:  s: NavParams, public dataProvider: DataProvider , private document: DocumentViewer, private file: File, publ
+      L36:      this.passParam = this.navParams.data;
+
+            Property 'file' is declared but its value is never read.
+
+[09:29:11]  tslint: ...front/src/pages/best-photo-with-the-watog-logo/best-photo-with-the-watog-logo.ts, line: 35
+[09:29:11]  tslint: ...front/src/pages/best-photo-with-the-watog-logo/best-photo-with-the-watog-logo.ts, line: 8
+      L35:  : DataProvider , private document: DocumentViewer, private file: File, public modalCtrl: ModalController) {
+      L36:      this.passParam = this.navParams.data;
+
+            All imports on this line are unused.
+
+       L7:  import { ParticipatePage } from "../participate/participate"
+       L8:  import { LoginPage } from '../login/login';
+       L9:  import { DataProvider } from '../../providers/data/data';
+
+            'DocumentViewerOptions' is declared but its value is never read.
+
+       L9:  import { DataProvider } from '../../providers/data/data';
+[09:29:11]  tslint: ...front/src/pages/best-photo-with-the-watog-logo/best-photo-with-the-watog-logo.ts, line: 10
+[09:29:11]  tslint: ...ionic-front/the-new-ionic-front/src/pages/upload-watog-logo/upload-watog-logo.ts, line: 6
+[09:29:11]  tslint: ...ments/watog/ionic-front/the-new-ionic-front/src/pages/participate/participate.ts, line: 54
+      L10:  import {DocumentViewer, DocumentViewerOptions} from "@ionic-native/document-viewer";
+      L11:  import {File} from "@ionic-native/file";
+
+            All imports on this line are unused.
+
+       L6:  import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
+       L7:  import { CameraProvider } from '../../providers/camera/camera';
+
+            'myCategorieId' is declared but its value is never read.
+
+      L53:  goToBestSurgicalImage(){
+      L54:    let myCategorieId = 5;
+[09:29:11]  tslint: ...ments/watog/ionic-front/the-new-ionic-front/src/pages/participate/participate.ts, line: 11
+[09:29:11]  tslint: ...ments/watog/ionic-front/the-new-ionic-front/src/pages/participate/participate.ts, line: 13
+[09:29:11]  tslint: ...ments/watog/ionic-front/the-new-ionic-front/src/pages/participate/participate.ts, line: 13
+      L55:    this.goToNextPage(5, BestSurgicalImagePage, 'Surgical')
+
+            All imports on this line are unused.
+
+      L10:  import { BestHumanitaryPhotoPage } from '../best-humanitary-photo/best-humanitary-photo';
+      L11:  import { LoginPage } from '../login/login';
+      L12:  import { DataProvider, RestProvider } from '../../providers';
+
+            'User' is declared but its value is never read.
+
+      L12:  import { DataProvider, RestProvider } from '../../providers';
+      L13:  import { User, Auth, Post } from '../../types';
+      L14:  import { ModalLogout } from '../modal-logout/modal-logout';
+
+            'Auth' is declared but its value is never read.
+
+      L12:  import { DataProvider, RestProvider } from '../../providers';
+      L13:  import { User, Auth, Post } from '../../types';
+      L14:  import { ModalLogout } from '../modal-logout/modal-logout';
+
+            All imports on this line are unused.
+
+       L3:  import { ModalContestPage } from '../modal-contest/modal-contest';
+[09:29:11]  tslint: ...g/ionic-front/the-new-ionic-front/src/pages/modal-principles/modal-principles.ts, line: 4
+[09:29:11]  tslint: ...tad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/contest/contest.ts, line: 7
+       L4:  import { LandingPage } from '../landing/landing';
+       L5:  import { DataProvider } from '../../providers/data/data';
+
+            All imports on this line are unused.
+
+       L6:  import { SettingsPage } from '../settings/settings';
+       L7:  import { LoginPage } from '../login/login';
+
+            All imports on this line are unused.
+
+[09:29:11]  tslint: ...s/watog/ionic-front/the-new-ionic-front/src/pages/watog-contact/watog-contact.ts, line: 6
+[09:29:11]  tslint: ...d/Documents/watog/ionic-front/the-new-ionic-front/src/pages/partners/partners.ts, line: 6
+       L5:  import { SettingsPage } from '../settings/settings';
+       L6:  import { LoginPage } from '../login/login';
+       L7:  import { DataProvider } from '../../providers/data/data';
+
+            All imports on this line are unused.
+
+       L5:  import { SettingsPage } from '../settings/settings';
+       L6:  import { LoginPage } from '../login/login';
+       L7:  import { DataProvider } from '../../providers/data/data';
+[09:29:11]  tslint: ...d/Documents/watog/ionic-front/the-new-ionic-front/src/pages/partners/partners.ts, line: 9
+
+            All imports on this line are unused.
+
+       L8:  import { ModalLogout } from '../modal-logout/modal-logout';
+       L9:  import { ContactListPage } from '../contact-list/contact-list';
+      L10:  import { WatogContactPage } from '../watog-contact/watog-contact';
+
+[09:29:11]  tslint: ...ont/the-new-ionic-front/src/pages/futur-near-term-goals/futur-near-term-goals.ts, line: 7
+            All imports on this line are unused.
+
+       L6:  import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
+       L7:  import { LoginPage } from '../login/login';
+       L8:  import { DataProvider } from '../../providers/data/data';
+
+[09:29:11]  tslint: ...the-new-ionic-front/src/pages/accomplishments-to-date/accomplishments-to-date.ts, line: 7
+            All imports on this line are unused.
+
+       L6:  import { FuturNearTermGoalsPage } from '../futur-near-term-goals/futur-near-term-goals';
+       L7:  import { LoginPage } from '../login/login';
+       L8:  import { DataProvider } from '../../providers/data/data';
+
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/organization/organization.ts, line: 7
+            All imports on this line are unused.
+
+       L6:  import { AccomplishmentsToDatePage } from '../accomplishments-to-date/accomplishments-to-date';
+       L7:  import { LoginPage } from '../login/login';
+       L8:  import { DataProvider } from '../../providers/data/data';
+
+[09:29:11]  tslint: ...g/ionic-front/the-new-ionic-front/src/pages/mission-of-watog/mission-of-watog.ts, line: 8
+            All imports on this line are unused.
+
+       L7:  import { WhatIsWatogPage } from '../what-is-watog/what-is-watog';
+       L8:  import { LoginPage } from '../login/login';
+       L9:  import { DataProvider } from '../../providers/data/data';
+[09:29:11]  tslint: ...s/watog/ionic-front/the-new-ionic-front/src/pages/what-is-watog/what-is-watog.ts, line: 10
+
+            All imports on this line are unused.
+
+       L9:  import { FuturNearTermGoalsPage } from '../futur-near-term-goals/futur-near-term-goals';
+[09:29:11]  tslint: ...ments/watog/ionic-front/the-new-ionic-front/src/pages/room-create/room-create.ts, line: 178
+      L10:  import { LoginPage } from '../login/login';
+      L11:  import { PartnersPage } from '../partners/partners';
+
+            Duplicate variable: 'i'
+
+     L177:  let _jobList = "";
+[09:29:11]  tslint: ...ments/watog/ionic-front/the-new-ionic-front/src/pages/room-create/room-create.ts, line: 7
+     L178:  for(var i = 0 ; i < this.job.length ; i++){
+     L179:    if(i == 0 ){
+
+            All imports on this line are unused.
+
+       L6:  import { countries } from '../../models/model';
+       L7:  import { ModalQualification } from '../modal-qualification/modal-qualification';
+
+[09:29:11]  tslint: ...front/the-new-ionic-front/src/pages/room-create-complete/room-create-complete.ts, line: 5
+            'FormControl' is declared but its value is never read.
+
+       L5:  import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+[09:29:11]  tslint: ...front/the-new-ionic-front/src/pages/upload-profile-photo/upload-profile-photo.ts, line: 87
+
+            'strImage' is declared but its value is never read.
+
+      L86:  //console.log('ionViewDidLoad ContestSubmitPage');
+      L87:  const strImage = img;
+      L88:  this.restProvider.sendFile(img)
+
+[09:29:11]  tslint: ...s/Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/chat/chat.ts, line: 7
+            'Auth' is declared but its value is never read.
+
+       L6:  import { ChatService, SocketsProvider, CameraProvider } from "../../providers/";
+       L7:  import { Contact, Message, Auth } from '../../types';
+       L8:  import { ReportModalPage } from '../report-modal/report-modal';
+
+[09:29:11]  tslint: ...s/Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/chat/chat.ts, line: 11
+            All imports on this line are unused.
+
+      L10:  import { ContactListPage } from '../contact-list/contact-list';
+      L11:  import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
+      L12:  import { ChatRoomPage } from '../chat-room/chat-room';
+
+[09:29:11]  tslint: ...watog/ionic-front/the-new-ionic-front/src/pages/edit-chat-room/edit-chat-room.ts, line: 6
+            All imports on this line are unused.
+
+       L5:  import { CameraProvider } from '../../providers/camera/camera';
+       L6:  import { ChatRoomPage } from '../chat-room/chat-room';
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/my-room-list/my-room-list.ts, line: 5
+       L7:  @IonicPage()
+
+            All imports on this line are unused.
+
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/my-room-list/my-room-list.ts, line: 8
+       L5:  import { RoomCreatePrePage } from '../room-create-pre/room-create-pre';
+       L6:  import { RoomCreateCompletePage } from '../room-create-complete/room-create-complete';
+
+            All imports on this line are unused.
+
+       L7:  import { ChatPage } from '../chat/chat';
+       L8:  import { ChatRoomPage } from '../chat-room/chat-room';
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/my-room-list/my-room-list.ts, line: 10
+       L9:  import { EditChatRoomPage } from '../edit-chat-room/edit-chat-room';
+
+            'SocketsProvider' is declared but its value is never read.
+
+       L9:  import { EditChatRoomPage } from '../edit-chat-room/edit-chat-room';
+      L10:  import { ChatService, SocketsProvider } from '../../providers';
+
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/my-room-list/my-room-list.ts, line: 12
+[09:29:11]  tslint: ...g/ionic-front/the-new-ionic-front/src/pages/public-room-list/public-room-list.ts, line: 28
+            All imports on this line are unused.
+
+      L12:  import { Message, Room, Member } from '../../types';
+
+            Property 'navCtrl' is declared but its value is never read.
+
+      L27:  constructor(
+      L28:    private navCtrl: NavController,
+      L29:    private navParams: NavParams,
+
+[09:29:11]  tslint: ...g/ionic-front/the-new-ionic-front/src/pages/public-room-list/public-room-list.ts, line: 31
+            Property 'events' is declared but its value is never read.
+
+      L30:  private loadingCtrl: LoadingController,
+      L31:  private events: Events,
+[09:29:11]  tslint: ...Documents/watog/ionic-front/the-new-ionic-front/src/pages/chat-room/chat-room.ts, line: 7
+      L32:  private chatService: ChatService
+
+            All imports on this line are unused.
+
+       L6:  import {DashboardPage} from '../dashboard/dashboard'
+[09:29:11]  tslint: ...d/Documents/watog/ionic-front/the-new-ionic-front/src/pages/ad-modal/ad-modal.ts, line: 3
+       L7:  import { SocketsProvider} from "../../providers/sockets/sockets";
+
+            All imports on this line are unused.
+
+       L2:  import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+       L3:  import { ContestVotePage } from '../contest-vote/contest-vote';
+
+[09:29:11]  tslint: ...ments/watog/ionic-front/the-new-ionic-front/src/pages/videos-list/videos-list.ts, line: 2
+            'ViewController' is declared but its value is never read.
+
+       L1:  import { Component } from '@angular/core';
+       L2:  port { IonicPage, NavController, NavParams, ModalController, ViewController, Platform } from 'ionic-angular'
+       L3:  import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+
+[09:29:11]  tslint: ...ments/watog/ionic-front/the-new-ionic-front/src/pages/videos-list/videos-list.ts, line: 7
+            All imports on this line are unused.
+
+       L6:  import { RestProvider } from '../../providers';
+       L7:  import { User, Auth } from '../../types';
+
+[09:29:11]  tslint: ...t/the-new-ionic-front/src/pages/institutional-contents/institutional-contents.ts, line: 2
+            'ModalController' is declared but its value is never read.
+
+       L1:  import { Component } from '@angular/core';
+       L2:  import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+       L3:  import { VideosListPage } from '../videos-list/videos-list';
+[09:29:11]  tslint: ...ionic-front/the-new-ionic-front/src/pages/sponsored-content/sponsored-content.ts, line: 2
+
+            'ModalController' is declared but its value is never read.
+
+       L1:  import { Component } from '@angular/core';
+       L2:  import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+       L3:  import { VideosListPage } from '../videos-list/videos-list';
+
+[09:29:11]  tslint: ...s/watog/ionic-front/the-new-ionic-front/src/pages/learn-content/learn-content.ts, line: 2
+            'ModalController' is declared but its value is never read.
+
+       L1:  import { Component } from '@angular/core';
+       L2:  import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+       L3:  import { VideosListPage } from '../videos-list/videos-list';
+
+[09:29:11]  tslint: ...Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/learn/learn.ts, line: 2
+            'ModalController' is declared but its value is never read.
+
+       L1:  import { Component } from '@angular/core';
+[09:29:11]  tslint: ...Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/learn/learn.ts, line: 10
+       L2:  import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+
+            All imports on this line are unused.
+
+       L9:  import { RestProvider } from '../../providers';
+[09:29:11]  tslint: ...Documents/watog/ionic-front/the-new-ionic-front/src/pages/dashboard/dashboard.ts, line: 5
+      L10:  import { User, Auth } from '../../types';
+
+            All imports on this line are unused.
+
+       L5:  import { Auth, User, Category } from "../../types";
+
+[09:29:11]  tslint: ...Documents/watog/ionic-front/the-new-ionic-front/src/pages/dashboard/dashboard.ts, line: 13
+            All imports on this line are unused.
+
+      L12:  import { LearnPage } from '../learn/learn';
+      L13:  import { LivePage } from '../live/live';
+      L14:  import { SettingsPage } from '../settings/settings';
+
+            All imports on this line are unused.
+[09:29:11]  tslint: ...Documents/watog/ionic-front/the-new-ionic-front/src/pages/dashboard/dashboard.ts, line: 15
+[09:29:11]  tslint: ...ont/the-new-ionic-front/src/pages/register-two-of-three/register-two-of-three.ts, line: 6
+
+      L14:  import { SettingsPage } from '../settings/settings';
+      L15:  import { Contact, Message, Room, Member } from '../../types';
+
+            'Auth' is declared but its value is never read.
+
+       L5:  import { RegisterThreeOfThreePage } from '../register-three-of-three/register-three-of-three';
+[09:29:11]  tslint: ...ont/the-new-ionic-front/src/pages/register-two-of-three/register-two-of-three.ts, line: 6
+       L6:  import { Auth, User, resFile } from "../../types";
+       L7:  import { DataProvider, RestProvider } from '../../providers';
+
+            'resFile' is declared but its value is never read.
+
+       L5:  import { RegisterThreeOfThreePage } from '../register-three-of-three/register-three-of-three';
+       L6:  import { Auth, User, resFile } from "../../types";
+       L7:  import { DataProvider, RestProvider } from '../../providers';
+
+            All imports on this line are unused.
+
+       L5:  import { SettingsPage } from '../settings/settings';
+       L6:  import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
+       L7:  import { countries } from '../../models/model';
+
+            All imports on this line are unused.
+
+       L7:  import { countries } from '../../models/model';
+       L8:  import {HttpClient,  HttpHeaders} from '@angular/common/http';
+       L9:  import { server_url } from '../../environments/environment';
+
+            All imports on this line are unused.
+
+       L8:  import {HttpClient,  HttpHeaders} from '@angular/common/http';
+       L9:  import { server_url } from '../../environments/environment';
+      L10:  import {DataProvider, PasswordValidator, PhoneValidator, RestProvider} from '../../providers';
+
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/edit-profile/edit-profile.ts, line: 6
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/edit-profile/edit-profile.ts, line: 8
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/edit-profile/edit-profile.ts, line: 9
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/edit-profile/edit-profile.ts, line: 10
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/edit-profile/edit-profile.ts, line: 11
+            'PasswordValidator' is declared but its value is never read.
+
+       L9:  import { server_url } from '../../environments/environment';
+      L10:  import {DataProvider, PasswordValidator, PhoneValidator, RestProvider} from '../../providers';
+      L11:  import { ElementRef } from '@angular/core';
+
+            All imports on this line are unused.
+
+      L10:  import {DataProvider, PasswordValidator, PhoneValidator, RestProvider} from '../../providers';
+      L11:  import { ElementRef } from '@angular/core';
+      L12:  import {LoginPage} from "../login/login";
+
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/edit-profile/edit-profile.ts, line: 12
+[09:29:11]  tslint: ...nts/watog/ionic-front/the-new-ionic-front/src/pages/edit-profile/edit-profile.ts, line: 13
+[09:29:11]  tslint: ...the-new-ionic-front/src/pages/register-three-of-three/register-three-of-three.ts, line: 3
+            All imports on this line are unused.
+
+      L11:  import { ElementRef } from '@angular/core';
+      L12:  import {LoginPage} from "../login/login";
+      L13:  import {Auth, Country, User} from "../../types";
+
+            'Auth' is declared but its value is never read.
+
+      L12:  import {LoginPage} from "../login/login";
+      L13:  import {Auth, Country, User} from "../../types";
+      L14:  import { UploadCoverPhotoPage } from "../upload-cover-photo/upload-cover-photo";
+
+            All imports on this line are unused.
+
+       L2:  import { IonicPage, NavController, NavParams } from 'ionic-angular';
+       L3:  import { DashboardPage } from '../dashboard/dashboard';
+       L4:  import { EnterTokenPage } from '../enter-token/enter-token';
+
+            All imports on this line are unused.
+
+[09:29:11]  tslint: ...the-new-ionic-front/src/pages/register-three-of-three/register-three-of-three.ts, line: 6
+[09:29:11]  tslint: ...the-new-ionic-front/src/pages/register-three-of-three/register-three-of-three.ts, line: 7
+       L5:  import { DataProvider, RestProvider } from "../../providers";
+       L6:  import { Auth, ObjUser } from "../../types";
+       L7:  import { RegisterTwoOfThreePage } from "../register-two-of-three/register-two-of-three";
+
+            All imports on this line are unused.
+
+       L6:  import { Auth, ObjUser } from "../../types";
+[09:29:11]  tslint: ...ont/the-new-ionic-front/src/pages/register-one-of-three/register-one-of-three.ts, line: 9
+[09:29:11]  tslint: ...ont/the-new-ionic-front/src/pages/register-one-of-three/register-one-of-three.ts, line: 13
+       L7:  import { RegisterTwoOfThreePage } from "../register-two-of-three/register-two-of-three";
+
+            All imports on this line are unused.
+
+       L8:  import { LoginPage } from '../login/login';
+       L9:  import { UploadCoverPhotoPage } from '../upload-cover-photo/upload-cover-photo';
+      L10:  import { UploadProfilePhotoPage } from '../upload-profile-photo/upload-profile-photo';
+
+            All imports on this line are unused.
+
+      L12:  import { ModalQualification } from '../modal-qualification/modal-qualification';
+[09:29:11]  tslint: ...Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/login/login.ts, line: 2
+[09:29:11]  tslint: ...Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/login/login.ts, line: 14
+      L13:  import { DashboardPage } from "../dashboard/dashboard";
+      L14:  import { Auth, ObjUser, Country } from "../../types";
+
+            All imports on this line are unused.
+
+       L1:  import { Component } from '@angular/core';
+       L2:  import { HttpClient } from '@angular/common/http';
+
+            'User' is declared but its value is never read.
+
+      L13:  import { DataProvider, RestProvider } from '../../providers';
+      L14:  import { User, Auth } from '../../types';
+      L15:  import {RegisterTwoOfThreePage} from "../register-two-of-three/register-two-of-three";
+
+            All imports on this line are unused.
+
+       L2:  import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+[09:29:11]  tslint: ...nic-front/the-new-ionic-front/src/pages/upload-cover-photo/upload-cover-photo.ts, line: 3
+[09:29:11]  tslint: ...tad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/landing/landing.ts, line: 5
+[09:29:11]  tslint: ...tad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/landing/landing.ts, line: 6
+[09:29:11]  tslint: ...tad/Documents/watog/ionic-front/the-new-ionic-front/src/pages/landing/landing.ts, line: 11
+       L3:  import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
+       L4:  import { CameraProvider } from '../../providers/camera/camera';
+
+            All imports on this line are unused.
+
+       L4:  import { LoginPage } from '../login/login';
+       L5:  import { HomePage } from '../home/home';
+       L6:  import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
+
+            All imports on this line are unused.
+
+       L5:  import { HomePage } from '../home/home';
+       L6:  import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
+       L7:  import { RegisterTwoOfThreePage } from '../register-two-of-three/register-two-of-three';
+
+            'User' is declared but its value is never read.
+
+      L10:  import { DataProvider, RestProvider } from '../../providers';
+      L11:  import { User, Auth } from '../../types';
+[09:29:11]  tslint: ...Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/app/app.component.ts, line: 5
+
+            All imports on this line are unused.
+
+       L4:  import { SplashScreen } from '@ionic-native/splash-screen';
+       L5:  import { timer } from 'rxjs/observable/timer';
+
+[09:29:11]  tslint: ...Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/app/app.component.ts, line: 8
+            All imports on this line are unused.
+
+       L7:  import { LandingPage } from '../pages/landing/landing';
+       L8:  import { HomePage } from '../pages/home/home';
+       L9:  import { LoginPage } from '../pages/login/login';
+
+[09:29:11]  tslint: ...Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/app/app.component.ts, line: 9
+            All imports on this line are unused.
+
+       L8:  import { HomePage } from '../pages/home/home';
+       L9:  import { LoginPage } from '../pages/login/login';
+      L10:  import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-one-of-three';
+
+[09:29:11]  tslint: ...Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/app/app.component.ts, line: 10
+            All imports on this line are unused.
+
+       L9:  import { LoginPage } from '../pages/login/login';
+      L10:  import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-one-of-three';
+      L11:  import { RegisterTwoOfThreePage } from '../pages/register-two-of-three/register-two-of-three';
+
+[09:29:11]  tslint: ...Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/app/app.component.ts, line: 11
+            All imports on this line are unused.
+
+      L10:  import { RegisterOneOfThreePage } from '../pages/register-one-of-three/register-one-of-three';
+      L11:  import { RegisterTwoOfThreePage } from '../pages/register-two-of-three/register-two-of-three';
+      L12:  import { RegisterThreeOfThreePage } from '../pages/register-three-of-three/register-three-of-three';
+
+[09:29:11]  tslint: ...Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/app/app.component.ts, line: 12
+            All imports on this line are unused.
+
+      L11:  import { RegisterTwoOfThreePage } from '../pages/register-two-of-three/register-two-of-three';
+      L12:  import { RegisterThreeOfThreePage } from '../pages/register-three-of-three/register-three-of-three';
+      L13:  import { DashboardPage } from '../pages/dashboard/dashboard';
+
+[09:29:11]  tslint: ...Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/app/app.component.ts, line: 13
+            All imports on this line are unused.
+
+      L12:  import { RegisterThreeOfThreePage } from '../pages/register-three-of-three/register-three-of-three';
+      L13:  import { DashboardPage } from '../pages/dashboard/dashboard';
+      L14:  import { WhatIsWatogPage } from '../pages/what-is-watog/what-is-watog';
+
+[09:29:11]  tslint: ...Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/app/app.component.ts, line: 21
+            All imports on this line are unused.
+
+      L20:  import { DataProvider, RestProvider } from '../providers';
+      L21:  import { User, Auth } from '../types';
+
+[09:29:11]  tslint: ...the-new-ionic-front/src/components/header-action-bar/header-action-bar.module.ts, line: 1
+            'CUSTOM_ELEMENTS_SCHEMA' is declared but its value is never read.
+
+       L1:  import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+       L2:  import { IonicPageModule } from 'ionic-angular';
+
+[09:29:11]  tslint: ...rs/Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/app/app.module.ts, line: 14
+            All imports on this line are unused.
+
+      L13:  import { File } from '@ionic-native/file';
+      L14:  import { FileTransfer } from '@ionic-native/file-transfer';
+      L15:  import { SwingModule } from 'angular2-swing';
+
+[09:29:11]  tslint: ...rs/Taletad/Documents/watog/ionic-front/the-new-ionic-front/src/app/app.module.ts, line: 77
+            All imports on this line are unused.
+
+      L77:  import { AccomplishmentsToDatePageModule } from '../pages/accomplishments-to-date/accomplishments-to-date.mo
+
+[09:29:11]  lint finished in 5.19 s
+2018-10-15T07:29:11.399Z ionic:cli-utils:lib:hooks Looking for ionic:build:after npm script.
+> cordova build android --release --verbose
+Executing script found in config.xml for hook "before_build": hooks\patch-android-studio-check.js
+Script file does't exist and will be skipped: C:\Users\Taletad\Documents\watog\ionic-front\the-new-ionic-front\hooks\patch-android-studio-check.js
+Executing script found in plugin cordova-android-support-gradle-release for hook "before_build": plugins\cordova-android-support-gradle-release\scripts\apply-changes.js
+Resolving module name for q => q
+cordova-android-support-gradle-release: Android platform: cordova-android@7
+cordova-android-support-gradle-release: Wrote custom version '27.+' to C:\Users\Taletad\Documents\watog\ionic-front\the-new-ionic-front\platforms\android\app\build.gradle
+cordova-android-support-gradle-release: Wrote custom version '27.+' to C:\Users\Taletad\Documents\watog\ionic-front\the-new-ionic-front\platforms\android\app\cordova-android-support-gradle-release\properties.gradle
+No scripts found for hook "before_prepare".
+Checking config.xml and package.json for saved platforms that haven't been added to the project
+Config.xml and package.json platforms are the same. No pkg.json modification.
+Package.json and config.xml platforms are different. Updating config.xml with most current list of platforms.
+PlatformApi successfully found for platform android
+Checking config.xml for saved plugins that haven't been added to the project
+Checking for any plugins added to the project that have not been installed in android platform
+No differences found between plugins added to project and installed in android platform. Continuing...
+Generating platform-specific config.xml from defaults for android at C:\Users\Taletad\Documents\watog\ionic-front\the-new-ionic-front\platforms\android\res\xml\config.xml
+cp: copyFileSync: could not write to dest file (code=ENOENT):C:\Users\Taletad\Documents\watog\ionic-front\the-new-ionic-front\platforms\android\res\xml\config.xml
+
+Merging project's config.xml into platform-specific android config.xml
+(node:18028) UnhandledPromiseRejectionWarning: Error [ERR_UNHANDLED_ERROR]: Unhandled error. (Parsing C:\Users\Taletad\Documents\watog\ionic-front\the-new-ionic-front\platforms\android\res\xml\config.xml failed)
+    at EventEmitter.emit (events.js:141:19)
+    at EventEmitter.module.exports.emit (C:\Users\Taletad\AppData\Roaming\npm\node_modules\cordova\node_modules\cordova-common\src\events.js:71:17)
+    at EventEmitter.module.exports.emit (C:\Users\Taletad\Documents\watog\ionic-front\the-new-ionic-front\platforms\android\cordova\node_modules\cordova-common\src\events.js:68:30)
+    at new ConfigParser (C:\Users\Taletad\Documents\watog\ionic-front\the-new-ionic-front\platforms\android\cordova\node_modules\cordova-common\src\ConfigParser\ConfigParser.js:34:16)
+    at updateConfigFilesFrom (C:\Users\Taletad\Documents\watog\ionic-front\the-new-ionic-front\platforms\android\cordova\lib\prepare.js:106:18)
+    at Api.module.exports.prepare (C:\Users\Taletad\Documents\watog\ionic-front\the-new-ionic-front\platforms\android\cordova\lib\prepare.js:42:20)
+    at Api.prepare (C:\Users\Taletad\Documents\watog\ionic-front\the-new-ionic-front\platforms\android\cordova\Api.js:192:45)
+    at C:\Users\Taletad\AppData\Roaming\npm\node_modules\cordova\node_modules\cordova-lib\src\cordova\prepare.js:106:36
+    at _fulfilled (C:\Users\Taletad\AppData\Roaming\npm\node_modules\cordova\node_modules\cordova-lib\node_modules\q\q.js:787:54)
+    at self.promiseDispatch.done (C:\Users\Taletad\AppData\Roaming\npm\node_modules\cordova\node_modules\cordova-lib\node_modules\q\q.js:816:30)
+(node:18028) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
+(node:18028) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
