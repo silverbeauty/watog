@@ -14,6 +14,7 @@ export class RestProvider {
 
   apiUrl: string = server_url;
   public static token: string;
+  public cellPhone: string;
 
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
@@ -361,24 +362,40 @@ export class RestProvider {
     })
   }
 
-  public sendVerifyCode(url_verify: string, code_verify: string): Promise<User> {
+  public sendVerifyCode(code_verify: string, type: string = 'sms'): Promise<User> {
     const headers = new HttpHeaders({
       'Authorization': RestProvider.token,
       'Content-Type': 'application/json'
     });
-    return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl + '/user/verify/' + url_verify + '/' + code_verify, { headers })
-        .subscribe((res: any) => {
-          if (res.status) {
-            const user: User = res.data;
-            resolve(user);
-          } else {
-            reject('Verification Code Not Correct!')
-          }
-        }, (err) => {
-          reject('Verification Code Send Failed:')
-        });
-    })
+    if (type === 'sms') {
+      return new Promise((resolve, reject) => {
+        this.http.get(this.apiUrl + '/user/verify/sms/' + code_verify, { headers })
+          .subscribe((res: any) => {
+            if (res.status) {
+              const user: User = res.data;
+              resolve(user);
+            } else {
+              reject('Verification Code Not Correct!')
+            }
+          }, (err) => {
+            reject('Verification Code Send Failed:')
+          });
+      });
+    } else if (type === 'email') {
+      return new Promise((resolve, reject) => {
+        this.http.post(this.apiUrl + '/user/verify/email/code', { code: code_verify } ,{ headers })
+          .subscribe((res: any) => {
+            if (res.status) {
+              const user: User = res.data;
+              resolve(user);
+            } else {
+              reject('Verification Code Not Correct!')
+            }
+          }, (err) => {
+            reject('Verification Code Send Failed:')
+          });
+      });
+    }
   }
 
   public queryUsers(keyword: string, not_me: boolean = true, offset: number = 0, limit: number = 1000): Promise<Array<User>> {
@@ -570,6 +587,28 @@ export class RestProvider {
           }
         }, (err) => {
           console.info('Failed to get Live Stream:', err)
+          reject(err);
+        });
+    })
+  }
+
+  public updateUserInfo(data) {
+    const headers = new HttpHeaders({
+      'Authorization': RestProvider.token,
+      'Content-Type': 'application/json'
+    });
+    return new Promise((resolve, reject) => {
+      this.http.put(this.apiUrl + '/user/me', JSON.stringify(data), { headers })
+        .subscribe((res: any) => {
+          if (res.status) {
+            const user = res.data;
+            resolve(user);
+          } else {
+            console.error('Failed to load profile:', res)
+            reject('Failed to load profile')
+          }
+        }, (err) => {
+          console.info('Failed to load profile:', err)
           reject(err);
         });
     })

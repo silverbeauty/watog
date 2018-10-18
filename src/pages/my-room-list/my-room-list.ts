@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Events, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events, AlertController, ItemSliding} from 'ionic-angular';
 import * as _ from 'lodash';
 
 import { RoomCreatePrePage } from '../room-create-pre/room-create-pre';
@@ -52,14 +52,17 @@ export class MyRoomListPage {
     this.events.subscribe('main-chat-dashboard', () => {
       this.chatService.myRoomList()
         .then((res: any) => {
-          let temp: any = [];
-          temp = res.filter((item) => {
-            if (!item.archived)
-              return item;
-          });
-          res = temp;
+          // let temp: any = [];
+          // temp = res.filter((item) => {
+          //   if (!item.archived)
+          //     return item;
+          // });
+          // res = temp;
           res = _.orderBy(res, ['unread_message_count'], ['desc']);
-          console.log("res => ", res)
+          res.sort(function (a, b) {
+            return a.archived - b.archived;
+          });
+          
           this.lists = res;
           this._tempLists = res;
           if (isFirstLoad) {
@@ -80,6 +83,9 @@ export class MyRoomListPage {
         }
       })
       this.lists = _.orderBy(this.lists, ['unread_message_count'], ['desc']);
+      this.lists.sort(function (a, b) {
+        return a.archived - b.archived;
+      });
     })
   }
 
@@ -110,11 +116,11 @@ export class MyRoomListPage {
 
   goToChattingPage(roomInfo) {
     // this.socket.connect();
-    console.log(roomInfo)
     this.parentSelector.push(ChatPage, { roomInfo: roomInfo });
   }
 
-  editRoom(roomInfo) {
+  editRoom(roomInfo, slidingItem: ItemSliding) {
+    slidingItem.close();
     if (this.auth.id == roomInfo.User.id) {
       this.parentSelector.push(EditChatRoomPage, { roomInfo: roomInfo });
     }
@@ -130,19 +136,26 @@ export class MyRoomListPage {
 
   }
 
-  archiveRoom(roomInfo) {
+  archiveRoom(roomInfo:any, slidingItem: ItemSliding) {
+    slidingItem.close();
     if (this.auth.id == roomInfo.User.id) {
       const loader = this.loadingCtrl.create({ content: "Please wait..." });
       loader.present();
-      this.chatService.archiveRoom(roomInfo.id)
+      this.chatService.archiveRoom(roomInfo.id, true)
         .then((res: any) => {
-          console.log(res)
+          // console.log(res)
           let temp: any = [];
           temp = this.lists.filter((item) => {
             if (item.id != res.id)
               return item;
+            else{
+              item.archived = true;
+              return item
+            }
           });
-
+          temp.sort(function (a, b) {
+            return a.archived - b.archived;
+          });
           this.lists = temp;
           this._tempLists = temp;
           loader.dismiss();
@@ -160,6 +173,42 @@ export class MyRoomListPage {
       _alert.present();
       return;
     }
-
+  }
+  unArchiveRoom(roomInfo:any, slidingItem: ItemSliding){
+    slidingItem.close();
+    if (this.auth.id == roomInfo.User.id) {
+      const loader = this.loadingCtrl.create({ content: "Please wait..." });
+      loader.present();
+      this.chatService.archiveRoom(roomInfo.id, false)
+        .then((res: any) => {
+          let temp: any = [];
+          temp = this.lists.filter((item) => {
+            if (item.id != res.id)
+              return item;
+            else{
+              item.archived = false;
+              return item
+            }
+          });
+          temp.sort(function (a, b) {
+            return a.archived - b.archived;
+          });
+          this.lists = temp;
+          this._tempLists = temp;          
+          loader.dismiss();
+        }).catch(err => {
+          loader.dismiss();
+          console.log(err)
+        })
+    }
+    else {
+      let _alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'Only the room creator can edit / delete the room',
+        buttons: ['OK']
+      });
+      _alert.present();
+      return;
+    }
   }
 }

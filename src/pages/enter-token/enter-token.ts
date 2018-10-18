@@ -38,7 +38,7 @@ export class EnterTokenPage {
   goToDashboard(){
     const url_verify = this.url_verify;
     const code_verify = this.code_verify;
-    this.restProvider.sendVerifyCode(url_verify, code_verify ).then((user: User) => {
+    this.restProvider.sendVerifyCode(code_verify, url_verify ).then((user: User) => {
       const profile_user:User = user;
       this.dataProvider.saveUser(profile_user);
       this.navCtrl.push(DashboardPage);

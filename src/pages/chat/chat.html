@@ -21,7 +21,7 @@
         </button>
       <!-- </ion-col> -->
       <div class="dropdown-menu dropdown-menu-right">
-        <button type="button" class="dropdown-item" (click)="archiveRoom()" *ngIf="isCreator" ><ion-icon name="ios-archive-outline"><p>Archive</p></ion-icon></button>
+        <button type="button" class="dropdown-item" (click)="archiveRoom()" *ngIf="isCreator" ><ion-icon name="ios-archive-outline"><p *ngIf="!isArchive">Archive</p><p *ngIf="isArchive">Unarchive</p></ion-icon></button>
         <button type="button" class="dropdown-item" (click)="roomInfo()"><ion-icon name="ios-information-circle-outline"><p>Room Info</p></ion-icon></button>
         <button type="button" class="dropdown-item" (click)="report()"><ion-icon name="ios-warning-outline"><p>Report Abuse</p></ion-icon></button>
       </div>
@@ -96,20 +96,22 @@
 
 <ion-footer no-border class="footer-input" id="footer-input">
   <div class="input-wrap">
-    <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
+    <button ion-button clear icon-only item-right (click)="switchEmojiPicker()" [hidden]="isArchive">
       <ion-icon name="md-happy"></ion-icon>
     </button>
     <textarea #chat_input
+      *ngIf="!isArchive"
       placeholder="Write your message here"
       [(ngModel)]="editorMsg"
       (keyup.enter)="sendMsg()"
       (focusin)="onFocus()"
       class="input-send-message">
     </textarea>
-    <button ion-button clear icon-only item-right (click)="attachFileSend()">
+    <p *ngIf="isArchive" >This is an archived room: please <button (click)="archiveRoom()" >Unarchive</button> to send messages</p>
+    <button ion-button clear icon-only item-right (click)="attachFileSend()" [hidden]="isArchive">
       <ion-icon name="attach" ios="ios-attach" md="md-attach"></ion-icon>
     </button>
-    <button ion-button clear icon-only item-right (click)="sendMsg()" class="btn-send">
+    <button ion-button clear icon-only item-right (click)="sendMsg()" class="btn-send" [hidden]="isArchive">
       <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
     </button>
   </div>

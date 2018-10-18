@@ -88,7 +88,7 @@ export class RegisterOneOfThreePage {
     this.countries = [
       new Country(countries[0].code, countries[0].name)
     ]
-    for (var i = 1; i < countries.length; i++) {
+    for (let i = 1; i < countries.length; i++) {
       const County = new Country(countries[i].code, countries[i].name)
       this.countries.push(County);
     }
@@ -137,7 +137,7 @@ export class RegisterOneOfThreePage {
       country_phone: this.country_phone_group,
       matching_passwords: this.matching_passwords_group,
       hospital: [''],
-      dob: ['',Validators.compose([
+      dob: ['', Validators.compose([
         Validators.required
       ])],
       job: ['', Validators.compose([
@@ -165,12 +165,12 @@ export class RegisterOneOfThreePage {
 
   register() {
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
-    
+
     /*** only 17+ years old  */
-    var _dobYear = Number(new Date(this.dob).getFullYear());
-    var _thisYear = Number (new Date().getFullYear());
-    
-    if((_thisYear-_dobYear) < 17){
+    const _dobYear = Number(new Date(this.dob).getFullYear());
+    const _thisYear = Number(new Date().getFullYear());
+
+    if ((_thisYear - _dobYear) < 17) {
       let _alert = this.alertCtrl.create({
         title: '',
         subTitle: 'You must be at least 17 years old',
@@ -179,7 +179,7 @@ export class RegisterOneOfThreePage {
       _alert.present();
       return;
     }
-    
+
     /*** end only 17 years old */
     if (!this.agree) {
       this.content.scrollToBottom(300);

@@ -18,18 +18,41 @@
   </section>
   <section class="proof text-center">
     <p class="title">Choose Validation</p>
-    <form>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="validationRadios" id="smsValidation" value="sms"  [(ngModel)]="url_verify" >
         <label class="form-check-label" for="smsValidation">
           SMS Validation
         </label>
       </div>
-    </form>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="validationRadios" id="emailValidation" value="email" [(ngModel)]="url_verify" >
+        <label class="form-check-label" for="emailValidation">
+          Email Validation
+        </label>
+      </div>
   </section>
-  <div class="text-center">
-    <button class="btn btn-next" (click)="goToEnterToken()">SEND TOKEN</button>
-  </div>
+  <form [formGroup]="validations_form">
+    <div class="input-group" *ngIf="url_verify === 'sms'" >
+      <img src="assets/icon/Phone.png" alt="password logo">
+      <ion-input type="text" class="form-control cell-phone" placeholder="Please insert phone number" formControlName="cell_phone" [(ngModel)]="user.cell_phone" [ngClass]="{ 'is-invalid': validation_error_sms }" (ngModelChange)="changePhoneNum()"></ion-input>
+      <div class="error-message" *ngIf="validation_error_sms">
+        Please insert valid cell phone.
+      </div>
+    </div>
+
+    <div class="input-group" *ngIf="url_verify === 'email'" >
+      <img src="assets/icon/Mail02.png" alt="password logo">
+      <ion-input type="text" class="form-control cell-phone" placeholder="Please insert email" formControlName="email"  [(ngModel)]="user.email" [ngClass]="{ 'is-invalid': validation_error_email }" (ngModelChange)="changeEmail()"></ion-input>
+      <div class="error-message" *ngIf="validation_error_email">
+        Please insert valid email.
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-next" (click)="sendToken()">SEND TOKEN</button>
+      <a class="btn-logout" (click)="logout()">Logout</a>
+    </div>
+  </form>
   <section class="token-info">
     <p>This token will be active for 10 minutes</p>
   </section>

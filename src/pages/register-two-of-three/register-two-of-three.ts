@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 
 import { RegisterOneOfThreePage } from '../register-one-of-three/register-one-of-three';
 import { RegisterThreeOfThreePage } from '../register-three-of-three/register-three-of-three';
-import { Auth, User, resFile } from "../../types";
+import { Auth, User, resFile } from '../../types';
 import { DataProvider, RestProvider } from '../../providers';
 import { CameraProvider } from '../../providers/camera/camera';
 
