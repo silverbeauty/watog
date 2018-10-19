@@ -98,6 +98,7 @@ import { LivePage } from '../pages/live/live';
 import { LearnContentPage } from '../pages/learn-content/learn-content';
 import { ContactListPage } from '../pages/contact-list/contact-list';
 import { CreditsPage } from '../pages/credits/credits';
+import { ForgottenPasswordPage } from '../pages/forgotten-password/forgotten-password';
 
 // components
 import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
@@ -198,7 +199,8 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     HeaderActionBarComponent,
     EmojiPickerComponent,
 
-    RelativeTime
+    RelativeTime,
+    ForgottenPasswordPage
   ],
   imports: [
     BrowserModule,
@@ -287,6 +289,7 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     PlayVideoPage,
     LivePage,
     LearnContentPage,
+    ForgottenPasswordPage
 
   ],
   providers: [

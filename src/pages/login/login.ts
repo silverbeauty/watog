@@ -14,6 +14,7 @@ import { DataProvider, RestProvider } from '../../providers';
 import { User, Auth } from '../../types';
 import {RegisterTwoOfThreePage} from "../register-two-of-three/register-two-of-three";
 import {RegisterThreeOfThreePage} from "../register-three-of-three/register-three-of-three";
+import { ForgottenPasswordPage } from '../forgotten-password/forgotten-password';
 
 
 @IonicPage()
@@ -46,7 +47,10 @@ export class LoginPage {
 
   navigateToLanding(){
     this.navCtrl.push(LandingPage);
+  }
 
+  goToForgottenPassword(){
+    this.navCtrl.push(ForgottenPasswordPage);
   }
 
   invalidate() {

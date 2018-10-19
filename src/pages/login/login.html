@@ -28,7 +28,7 @@
                             <ion-input type="password" class="form-control font-weight-light" id="password-input" aria-describedby="passwd-picture" placeholder="Password" name="Pass" [(ngModel)]="data.password" (focus)="invalidate()"></ion-input>
                         </div>
 
-                        <p class="text-center"><a href="#" class="font-weight-light">Forgot password ?</a></p>
+                        <p class="text-center"><a href="#" class="font-weight-light" (click)="goToForgottenPassword()">Forgot password ?</a></p>
                         <div class="text-center">
                             <button type="submit" class="btn btn-submit btn-md font-weight-light">LOGIN</button>
                         </div>
