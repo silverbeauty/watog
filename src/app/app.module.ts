@@ -99,6 +99,7 @@ import { LearnContentPage } from '../pages/learn-content/learn-content';
 import { ContactListPage } from '../pages/contact-list/contact-list';
 import { CreditsPage } from '../pages/credits/credits';
 import { ForgottenPasswordPage } from '../pages/forgotten-password/forgotten-password';
+import { PasswordResetPage } from '../pages/password-reset/password-reset';
 
 // components
 import { HeaderActionBarComponent } from '../components/header-action-bar/header-action-bar';
@@ -200,7 +201,8 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     EmojiPickerComponent,
 
     RelativeTime,
-    ForgottenPasswordPage
+    ForgottenPasswordPage,
+    PasswordResetPage
   ],
   imports: [
     BrowserModule,
@@ -289,7 +291,8 @@ import { SocketsProvider } from '../providers/sockets/sockets';
     PlayVideoPage,
     LivePage,
     LearnContentPage,
-    ForgottenPasswordPage
+    ForgottenPasswordPage,
+    PasswordResetPage
 
   ],
   providers: [

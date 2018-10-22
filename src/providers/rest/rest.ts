@@ -613,4 +613,10 @@ export class RestProvider {
         });
     })
   }
+
+  /*public sendForgottenPasswdEmail(data){
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl + '/user/forgot-password',)
+    })
+  }*/
 }

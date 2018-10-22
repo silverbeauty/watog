@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { PasswordResetPage } from '../password-reset/password-reset';
 
 /**
  * Generated class for the ForgottenPasswordPage page.
@@ -15,7 +16,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ForgottenPasswordPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public any: object;
+
+  public data = {
+    email: '',
+    error: null
+  }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -24,5 +32,22 @@ export class ForgottenPasswordPage {
 
   goBack(){
     this.navCtrl.pop();
+  }
+
+  invalidate() {
+    this.data.error = null;
+  }
+
+  onSubmit(){
+    const  { email } = this.data;
+    const loader = this.loadingCtrl.create({ content: "Please wait..." });
+    loader.present();
+    if(email){
+      this.navCtrl.push(PasswordResetPage);
+      loader.dismiss();
+    } else {
+      loader.dismiss();
+      this.data.error = 'Please enter email !'
+    }
   }
 }
