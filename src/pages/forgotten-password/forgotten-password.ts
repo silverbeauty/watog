@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { PasswordResetPage } from '../password-reset/password-reset';
 import { RestProvider } from '../../providers';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the ForgottenPasswordPage page.
@@ -32,7 +33,7 @@ export class ForgottenPasswordPage {
   }
 
   goBack(){
-    this.navCtrl.pop();
+    this.navCtrl.push(LoginPage);
   }
 
   invalidate() {
@@ -57,7 +58,7 @@ export class ForgottenPasswordPage {
       this.restProvider.forgotPassword(email).then(() => {
         loader.dismiss();
         this.showAlert(this.data.email);
-        this.navCtrl.push(PasswordResetPage);
+        this.navCtrl.push(PasswordResetPage, {email: this.data.email});
       }).catch((error) => {
         loader.dismiss();
         this.data.error = 'Invalid email';

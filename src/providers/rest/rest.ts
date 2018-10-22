@@ -630,4 +630,21 @@ export class RestProvider {
         });
     })
   }
+
+  public resetPasswordFromToken(token: string, password: string): Promise<boolean>{
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl + '/reset-password/' + token, JSON.stringify({ password }), {headers: jsonHeader})
+      .subscribe((res: any) => {
+        if(res.status){
+          console.log('Password reset successfull')
+          resolve(res.status)
+        } else {
+          reject('Invalid token')
+        }
+      }, (err) => {
+        console.info('Forgotten password Failed:', err)
+        reject(err);
+      });
+    })
+  }
 }
