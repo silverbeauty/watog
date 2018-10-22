@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { PasswordResetPage } from '../password-reset/password-reset';
+import { RestProvider } from '../../providers';
 
 /**
  * Generated class for the ForgottenPasswordPage page.
@@ -23,7 +24,7 @@ export class ForgottenPasswordPage {
     error: null
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public restProvider: RestProvider, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -38,13 +39,29 @@ export class ForgottenPasswordPage {
     this.data.error = null;
   }
 
+  showAlert(email){
+    const alert = this.alertCtrl.create({
+      title: 'We sent a password reset token to : ',
+      subTitle: email,
+      buttons: ['OK']
+    });
+
+    alert.present();
+  }
+
   onSubmit(){
     const  { email } = this.data;
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
     if(email){
-      this.navCtrl.push(PasswordResetPage);
-      loader.dismiss();
+      this.restProvider.forgotPassword(email).then(() => {
+        loader.dismiss();
+        this.showAlert(this.data.email);
+        this.navCtrl.push(PasswordResetPage);
+      }).catch((error) => {
+        loader.dismiss();
+        this.data.error = 'Invalid email';
+      })
     } else {
       loader.dismiss();
       this.data.error = 'Please enter email !'

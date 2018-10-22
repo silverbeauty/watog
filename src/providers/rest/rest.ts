@@ -614,9 +614,20 @@ export class RestProvider {
     })
   }
 
-  /*public sendForgottenPasswdEmail(data){
+  public forgotPassword(email: string): Promise<boolean>{
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl + '/user/forgot-password',)
+      this.http.post(this.apiUrl + '/user/forgot-password', JSON.stringify({ email}), { headers: jsonHeader })
+        .subscribe((res: any) => {
+          if (res.status) {
+            console.log('Successfully sent verification email')
+            resolve(res.status)
+          } else {
+            reject('Invalid email')
+          }
+        }, (err) => {
+          console.info('Forgotten password Failed:', err)
+          reject(err);
+        });
     })
-  }*/
+  }
 }
