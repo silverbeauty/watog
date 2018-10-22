@@ -63,22 +63,24 @@ export class PasswordResetPage {
   onSubmit(){
     const token = this.data.token;
     const password = this.data.new_password;
+    const email = this.data.email;
     const loader = this.loadingCtrl.create({ content: "Please wait..." });
     loader.present();
     
     if(token && password){
-      if(this.data.new_password === this.data.passwd_conf){
-        this.restProvider.resetPasswordFromToken(token, password).then(() => {
+      if((this.data.new_password === this.data.passwd_conf) && (this.data.passwd_conf.length >= 5)){
+        this.restProvider.resetPasswordFromToken(token, password, email).then(() => {
           loader.dismiss();
           this.showAlert();
           this.navCtrl.push(LoginPage);
         }).catch((error) => {
           loader.dismiss();
+          console.log(error);
           this.data.error = 'invalid token';
         })
       } else {
         loader.dismiss();
-        this.data.error = "Passwords don't match";
+        this.data.error = "Passwords don't match OR too short (min length: 5)";
       }
     } else {
       loader.dismiss();

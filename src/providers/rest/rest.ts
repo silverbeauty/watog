@@ -631,9 +631,9 @@ export class RestProvider {
     })
   }
 
-  public resetPasswordFromToken(token: string, password: string): Promise<boolean>{
+  public resetPasswordFromToken(code: string, password: string, email: string): Promise<boolean>{
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl + '/reset-password/' + token, JSON.stringify({ password }), {headers: jsonHeader})
+      this.http.post(this.apiUrl + '/user/reset-password', JSON.stringify({ password, email, code }), {headers: jsonHeader})
       .subscribe((res: any) => {
         if(res.status){
           console.log('Password reset successfull')
