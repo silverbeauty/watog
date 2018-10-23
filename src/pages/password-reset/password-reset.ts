@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { Component , ViewChild} from '@angular/core';
+import { Content, IonicPage, NavController, NavParams, LoadingController, AlertController, Platform } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { ForgottenPasswordPage } from '../forgotten-password/forgotten-password';
 import { RestProvider } from '../../providers';
-
+import { Keyboard } from '@ionic-native/keyboard';
 /**
  * Generated class for the PasswordResetPage page.
  *
@@ -17,7 +17,7 @@ import { RestProvider } from '../../providers';
   templateUrl: 'password-reset.html',
 })
 export class PasswordResetPage {
-  
+  @ViewChild(Content) content: Content;
   public any: object;
 
   public data = {
@@ -36,7 +36,8 @@ export class PasswordResetPage {
     this.data.error = null;
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public restProvider: RestProvider, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public restProvider: RestProvider, public alertCtrl: AlertController,public platform: Platform,
+    public keyboard: Keyboard) {
   }
 
   ionViewDidLoad() {
@@ -57,6 +58,32 @@ export class PasswordResetPage {
       title: 'password reset successfull',
       subTitle: '',
       buttons: ['OK']
+    });
+  }
+  
+  ionViewDidEnter(){
+    let platform = this.platform
+    let keyboard = this.keyboard
+    const self = this
+    platform.ready().then(() => {
+     if (platform.is('ios')) {
+        
+        let appEl = <HTMLElement> (document.getElementById("resetboard").getElementsByClassName("scroll-content")[0]);
+        keyboard.disableScroll(true);
+        
+        window.addEventListener('native.keyboardshow', (e) => {
+          keyboard.disableScroll(true);
+          appEl.style.bottom = (<any>e).keyboardHeight + 'px'
+          
+          if (self.content && self.content.scrollToBottom) {
+           self.content.scrollToBottom();
+          }
+        });
+
+        window.addEventListener('native.keyboardhide', () => {
+          appEl.style.bottom = '0px';
+        });
+      }
     });
   }
 
