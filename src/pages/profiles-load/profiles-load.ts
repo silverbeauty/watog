@@ -39,6 +39,7 @@ export class ProfilesLoadPage {
   public voting : boolean = false;
   public showButtonFlag: boolean = false;
   public commend : boolean = null;
+  private memory : number;
 
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
@@ -49,6 +50,8 @@ export class ProfilesLoadPage {
       allowedDirections: [Direction.LEFT, Direction.RIGHT],
       // Now need to send offsetX and offsetY with element instead of just offset
       throwOutConfidence: (offsetX, offsetY, element) => {
+        this.showLikeDislike((offsetX) / (element.offsetWidth / 1.7));
+        console.log((offsetX) / (element.offsetWidth / 1.7));
         return Math.min(Math.max(Math.abs(offsetX) / (element.offsetWidth / 1.7), Math.abs(offsetY) / (element.offsetHeight / 2)), 1);
       },
       throwOutDistance: (d) => {
@@ -308,5 +311,41 @@ export class ProfilesLoadPage {
   onCancelPress(event) {
     // event.preventDefault();
     this.isPressed = false;
+  }
+
+  showLikeDislike(x_offset){
+    const hiddenLike = document.getElementById('hidden-liked');
+    const hiddenDislike = document.getElementById('hidden-disliked');
+
+    /*If the x_offset is the same value twice in a row,
+     then the image stopped moving, 
+     the Like/Dislike doesn't need to be displayed anymore*/
+
+    if (x_offset == this.memory) {
+      hiddenLike.style.display = 'none';
+      hiddenDislike.style.display = 'none';
+    } 
+    else if(x_offset > 0){
+      hiddenLike.style.display = 'block';
+      hiddenDislike.style.display = 'none';
+      this.memory = x_offset; 
+    } 
+    else if (x_offset < 0){
+      hiddenDislike.style.display = 'block';
+      hiddenLike.style.display = 'none';
+      this.memory = x_offset;
+    } 
+    else {
+      hiddenLike.style.display = 'none';
+      hiddenDislike.style.display = 'none';
+    }
+  }
+
+  onClickDislike(){
+    //
+  }
+
+  onClickLike(){
+    //
   }
 }
