@@ -371,7 +371,7 @@ export class ProfilesLoadPage {
     $element.className += ' animated rotateOutUpRight';
     const card = this.swingCards.first.getCard();
     setTimeout(() => { 
-      card.throwOut(-450, 0); // -1 means swipe left
+      card.throwOut(450, 0); // -1 means swipe right
     }, 400)
   }
 }
