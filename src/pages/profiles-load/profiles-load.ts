@@ -341,10 +341,12 @@ export class ProfilesLoadPage {
   }
 
   onClickDislike(){
-    //
+    const card = this.swingCards.first.getCard();
+    card.throwOut(Direction.LEFT, 0);
   }
 
   onClickLike(){
-    //
+    const card = this.swingCards.first.getCard();
+    card.throwOut(Direction.RIGHT, 0);
   }
 }
