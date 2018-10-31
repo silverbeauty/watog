@@ -50,7 +50,7 @@ export class ProfilesLoadPage {
       allowedDirections: [Direction.LEFT, Direction.RIGHT],
       // Now need to send offsetX and offsetY with element instead of just offset
       throwOutConfidence: (offsetX, offsetY, element) => {
-        this.showLikeDislike((offsetX) / (element.offsetWidth / 1.7));
+        this.showLikeDislike((offsetX) / element.offsetWidth);
         return Math.min(Math.max(Math.abs(offsetX) / (element.offsetWidth / 1.7), Math.abs(offsetY) / (element.offsetHeight / 2)), 1);
       },
       // throwOutDistance: (d) => {
@@ -107,6 +107,11 @@ export class ProfilesLoadPage {
       this.hideVoting()
       //console.log("My err: ",err)
     })
+  }
+
+  onThrowEnd(event) {
+    const bottomCard = document.getElementById('card_toolbar');
+    bottomCard && (bottomCard.style.backgroundColor = '#775576');
   }
 
   showVoting() {
@@ -317,6 +322,7 @@ export class ProfilesLoadPage {
   showLikeDislike(x_offset){
     const hiddenLike = document.getElementById('hidden-liked');
     const hiddenDislike = document.getElementById('hidden-disliked');
+    const bottomCard = document.getElementById('card_toolbar');
 
     /*If the x_offset is the same value twice in a row,
      then the image stopped moving, 
@@ -339,6 +345,13 @@ export class ProfilesLoadPage {
     else {
       hiddenLike.style.display = 'none';
       hiddenDislike.style.display = 'none';
+    }
+    if (x_offset < 0) {
+      bottomCard.style.backgroundColor = `rgb(${-x_offset * 255}, 0, 0)`;
+    } else if (x_offset > 0){
+      bottomCard.style.backgroundColor = `rgb(0, ${x_offset * 255}, 0)`;
+    } else {
+      bottomCard.style.backgroundColor = '#775576';
     }
   }
 
