@@ -76,14 +76,14 @@
             </div>
           </div>
 
-          <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" (swipe)="swipeEvent($event)">
+          <div class="stack" swing-stack  [stackConfig]="stackConfig"  #postStacks (throwout)="onThrowOut($event)" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" (swipe)="swipeEvent($event)" (dragend)="onThrowEnd($event)">
             <div [id]="post.id" (press)="onPress($event)" swing-card #postCard class="post_img_div" [ngClass]="'Post:' + post.id" access-key="post.id" *ngFor="let post of posts.slice(posts.length - 1, posts.length)">
               <p class="loading">Loading...</p>
               <img src="../../assets/imgs/LikeWATOG.png" alt="LikeWATOG" id="hidden-liked">
               <img src="../../assets/imgs/disLikeWATOG.png" alt="disLikeWATOG" id="hidden-disliked">
               <img class="picture" [src]="post.picture" imageViewer>
               
-              <div class="toolbar" *ngIf="posts.length > 0 && currentPost > -1">
+              <div class="toolbar" id="card_toolbar" *ngIf="posts.length > 0 && currentPost > -1">
                 <div class="row">
                   <div id="profile-picture" class="col-4" [ngStyle]="{'background-image':'url(' + posts[currentPost].User.picture_profile + ')'}"></div>
                   <div class="col-8">
