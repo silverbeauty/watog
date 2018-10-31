@@ -51,7 +51,6 @@ export class ProfilesLoadPage {
       // Now need to send offsetX and offsetY with element instead of just offset
       throwOutConfidence: (offsetX, offsetY, element) => {
         this.showLikeDislike((offsetX) / (element.offsetWidth / 1.7));
-        console.log((offsetX) / (element.offsetWidth / 1.7));
         return Math.min(Math.max(Math.abs(offsetX) / (element.offsetWidth / 1.7), Math.abs(offsetY) / (element.offsetHeight / 2)), 1);
       },
       throwOutDistance: (d) => {
