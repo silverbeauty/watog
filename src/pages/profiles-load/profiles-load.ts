@@ -345,11 +345,11 @@ export class ProfilesLoadPage {
 // TODO: no animation - https://github.com/gajus/angular-swing/issues/13
   onClickDislike(){
     const card = this.swingCards.first.getCard();
-    card.throwOut(-450, 0, Direction.LEFT); // -1 means swipe left
+    card.throwOut(-450, 0); // -1 means swipe left
   }
 
   onClickLike(){
     const card = this.swingCards.first.getCard();
-    card.throwOut(450, 0, Direction.RIGHT); // 1 means swipe right 
+    card.throwOut(450, 0); // 1 means swipe right 
   }
 }
