@@ -74,7 +74,7 @@ sudo npm i angular2-text-mask --save
 
 ### Angular2-swing
 
-sudo npm install ionic-swing --save
+sudo npm install angular-swing --save
 
 ### Ionic image viewer
 
