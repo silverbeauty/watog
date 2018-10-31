@@ -344,12 +344,20 @@ export class ProfilesLoadPage {
 
 // TODO: no animation - https://github.com/gajus/angular-swing/issues/13
   onClickDislike(){
+    const $element = this.swingCards.first.getNativeElement();
+    $element.className += ' animated rotateOutUpLeft';
     const card = this.swingCards.first.getCard();
-    card.throwOut(-450, 0); // -1 means swipe left
+    setTimeout(() => { 
+      card.throwOut(-450, 0); // -1 means swipe left
+    }, 400)
   }
 
   onClickLike(){
+    const $element = this.swingCards.first.getNativeElement();
+    $element.className += ' animated rotateOutUpRight';
     const card = this.swingCards.first.getCard();
-    card.throwOut(450, 0); // 1 means swipe right 
+    setTimeout(() => { 
+      card.throwOut(-450, 0); // -1 means swipe left
+    }, 400)
   }
 }
