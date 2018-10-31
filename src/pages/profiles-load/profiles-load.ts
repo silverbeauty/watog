@@ -51,12 +51,13 @@ export class ProfilesLoadPage {
       // Now need to send offsetX and offsetY with element instead of just offset
       throwOutConfidence: (offsetX, offsetY, element) => {
         this.showLikeDislike((offsetX) / (element.offsetWidth / 1.7));
-        console.log((offsetX) / (element.offsetWidth / 1.7));
         return Math.min(Math.max(Math.abs(offsetX) / (element.offsetWidth / 1.7), Math.abs(offsetY) / (element.offsetHeight / 2)), 1);
       },
-      throwOutDistance: (d) => {
-        return 800;
-      }
+      // throwOutDistance: (d) => {
+      //   return 800;
+      // },
+      minThrowOutDistance: 400,
+      maxThrowOutDistance: 500
     }
 
     const params = this.navParams.data;
@@ -341,11 +342,14 @@ export class ProfilesLoadPage {
     }
   }
 
+// TODO: no animation - https://github.com/gajus/angular-swing/issues/13
   onClickDislike(){
-    //
+    const card = this.swingCards.first.getCard();
+    card.throwOut(-450, 0, Direction.LEFT); // -1 means swipe left
   }
 
   onClickLike(){
-    //
+    const card = this.swingCards.first.getCard();
+    card.throwOut(450, 0, Direction.RIGHT); // 1 means swipe right 
   }
 }
