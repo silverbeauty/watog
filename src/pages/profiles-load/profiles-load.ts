@@ -342,11 +342,11 @@ export class ProfilesLoadPage {
 
   onClickDislike(){
     const card = this.swingCards.first.getCard();
-    card.throwOut(-1, 0);
+    card.throwOut(-1, 0); // -1 means swipe left
   }
 
   onClickLike(){
     const card = this.swingCards.first.getCard();
-    card.throwOut(1, 0);
+    card.throwOut(1, 0); // 1 means swipe right 
   }
 }
