@@ -72,10 +72,6 @@ npm install --save-prod google-libphonenumber
 
 sudo npm i angular2-text-mask --save
 
-### Angular2-swing
-
-sudo npm install angular-swing --save
-
 ### Ionic image viewer
 
 npm install --save ionic-img-viewer
