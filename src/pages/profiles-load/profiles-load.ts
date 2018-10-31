@@ -52,11 +52,9 @@ export class ProfilesLoadPage {
         this.showLikeDislike((offsetX) / element.offsetWidth);
         return Math.min(Math.max(Math.abs(offsetX) / (element.offsetWidth / 1.7), Math.abs(offsetY) / (element.offsetHeight / 2)), 1);
       },
-      // throwOutDistance: (d) => {
-      //   return 800;
-      // },
-      minThrowOutDistance: 400,
-      maxThrowOutDistance: 500
+      throwOutDistance: (d) => {
+        return 800;
+      }
     }
 
     const params = this.navParams.data;
