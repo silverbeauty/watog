@@ -39,7 +39,6 @@ export class ProfilesLoadPage {
   public voting : boolean = false;
   public showButtonFlag: boolean = false;
   public commend : boolean = null;
-  private memory : number;
 
   @ViewChild('postStacks') swingStack: SwingStackComponent;
   @ViewChildren('postCard') swingCards: QueryList<SwingCardComponent>;
@@ -109,8 +108,16 @@ export class ProfilesLoadPage {
     })
   }
 
-  onThrowEnd(event) {
+  onDragEnd(event) {
+    const hiddenLike = document.getElementById('hidden-liked');
+    const hiddenDislike = document.getElementById('hidden-disliked');
     const bottomCard = document.getElementById('card_toolbar');
+
+    // Fix hidden like/dislike
+    hiddenLike.style.display = 'none';
+    hiddenDislike.style.display = 'none';
+
+    // Fix bottom card back color
     bottomCard && (bottomCard.style.backgroundColor = '#775576');
   }
 
@@ -328,24 +335,20 @@ export class ProfilesLoadPage {
      then the image stopped moving, 
      the Like/Dislike doesn't need to be displayed anymore*/
 
-    if (x_offset == this.memory) {
-      hiddenLike.style.display = 'none';
-      hiddenDislike.style.display = 'none';
-    } 
-    else if(x_offset > 0){
+    console.info('Offset:', x_offset);
+
+    if(x_offset > 0){
       hiddenLike.style.display = 'block';
       hiddenDislike.style.display = 'none';
-      this.memory = x_offset; 
-    } 
-    else if (x_offset < 0){
+    } else if (x_offset < 0){
       hiddenDislike.style.display = 'block';
       hiddenLike.style.display = 'none';
-      this.memory = x_offset;
-    } 
-    else {
+    } else {
       hiddenLike.style.display = 'none';
       hiddenDislike.style.display = 'none';
     }
+
+    // Bottom bar color
     if (x_offset < 0) {
       bottomCard.style.backgroundColor = `rgb(${-x_offset * 255}, 0, 0)`;
     } else if (x_offset > 0){
