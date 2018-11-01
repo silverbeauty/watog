@@ -56,6 +56,7 @@
         <allow-intent href="itms-apps:*" />
         <icon height="57" src="resources/ios/icon/Icon-App-57x57@1x.png" width="57" />
         <icon height="114" src="resources/ios/icon/Icon-App-57x57@2x.png" width="114" />
+        <icon height="20" src="resources/ios/icon/Icon-App-20x20@1x.png" width="20" />
         <icon height="40" src="resources/ios/icon/Icon-App-40x40@1x.png" width="40" />
         <icon height="80" src="resources/ios/icon/Icon-App-40x40@2x.png" width="80" />
         <icon height="120" src="resources/ios/icon/Icon-App-40x40@3x.png" width="120" />
