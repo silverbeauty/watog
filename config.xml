@@ -81,8 +81,10 @@
         <splash height="1125" src="resources/ios/splash/Default-Landscape-1125h.png" width="2436" />
         <splash height="1242" src="resources/ios/splash/Default-Landscape-736h.png" width="2208" />
         <splash height="1536" src="resources/ios/splash/Default-Landscape@2x~ipad.png" width="2048" />
+        <splash height="1536" src="resources/ios/splash/Default-Landscape@2x~ipad_no_statusbar.png" width="2048" />
         <splash height="2048" src="resources/ios/splash/Default-Landscape@~ipadpro.png" width="2732" />
         <splash height="768" src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" />
+        <splash height="768" src="resources/ios/splash/Default-Landscape~ipad_no_statusbar.png" width="1004" />
         <splash height="2048" src="resources/ios/splash/Default-Portrait@2x~ipad.png" width="1536" />
         <splash height="2732" src="resources/ios/splash/Default-Portrait@~ipadpro.png" width="2048" />
         <splash height="1024" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" />
